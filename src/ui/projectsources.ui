@@ -1,0 +1,961 @@
+<ui version="4.0" >
+ <class>DialogSources</class>
+ <widget class="QDialog" name="DialogSources" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>904</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Sources</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3" >
+   <property name="topMargin" >
+    <number>3</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidgetMain" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabTables" >
+      <attribute name="title" >
+       <string>Tables</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <property name="spacing" >
+        <number>0</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>3</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTabWidget" name="tabWidgetTables" >
+         <property name="tabShape" >
+          <enum>QTabWidget::Triangular</enum>
+         </property>
+         <property name="currentIndex" >
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tabSources" >
+          <attribute name="title" >
+           <string>Sources</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_11" >
+           <item>
+            <widget class="QSplitter" name="splitter_5" >
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QSplitter" name="splitter_2" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <widget class="QSplitter" name="splitter" >
+               <property name="orientation" >
+                <enum>Qt::Vertical</enum>
+               </property>
+               <widget class="QTableView" name="TVSources" >
+                <property name="selectionBehavior" >
+                 <enum>QAbstractItemView::SelectRows</enum>
+                </property>
+               </widget>
+               <widget class="QGroupBox" name="GBSourceDetails" >
+                <property name="title" >
+                 <string/>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_6" >
+                 <property name="leftMargin" >
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin" >
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_12" >
+                   <item>
+                    <spacer name="horizontalSpacer_2" >
+                     <property name="orientation" >
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0" >
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_7" >
+                     <property name="sizePolicy" >
+                      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize" >
+                      <size>
+                       <width>100</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize" >
+                      <size>
+                       <width>100</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="text" >
+                      <string>Short variant</string>
+                     </property>
+                     <property name="alignment" >
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13" >
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_7" >
+                     <item>
+                      <widget class="QLabel" name="label_4" >
+                       <property name="text" >
+                        <string>Title</string>
+                       </property>
+                       <property name="alignment" >
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                       <property name="buddy" >
+                        <cstring>LETitle</cstring>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_5" >
+                       <property name="text" >
+                        <string>Original title</string>
+                       </property>
+                       <property name="alignment" >
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                       <property name="buddy" >
+                        <cstring>LETitleOriginal</cstring>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_6" >
+                       <property name="text" >
+                        <string>Author</string>
+                       </property>
+                       <property name="alignment" >
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_5" >
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_8" >
+                       <item>
+                        <widget class="QLineEdit" name="LETitle" >
+                         <property name="minimumSize" >
+                          <size>
+                           <width>200</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="LETitleShort" >
+                         <property name="sizePolicy" >
+                          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_9" >
+                       <item>
+                        <widget class="QLineEdit" name="LETitleOriginal" >
+                         <property name="minimumSize" >
+                          <size>
+                           <width>200</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="LETitleOriginalShort" >
+                         <property name="minimumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_10" >
+                       <item>
+                        <widget class="QComboBox" name="CBAuthor" >
+                         <property name="sizePolicy" >
+                          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize" >
+                          <size>
+                           <width>200</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="CBAuthorShort" >
+                         <property name="minimumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize" >
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="layoutWidget" >
+               <layout class="QVBoxLayout" name="verticalLayout" >
+                <item>
+                 <widget class="QLabel" name="label_8" >
+                  <property name="text" >
+                   <string>Comment</string>
+                  </property>
+                  <property name="buddy" >
+                   <cstring>TESrcComment</cstring>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTextEdit" name="TESrcComment" />
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_11" >
+                  <item>
+                   <widget class="QPushButton" name="PBSrcNew" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>+</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="PBSrcDel" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>-</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="PBSetSignString" >
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="toolTip" >
+                     <string>Set as default source for signing</string>
+                    </property>
+                    <property name="text" >
+                     <string>*</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="PBSrcLoad" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>()</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_4" >
+                    <property name="orientation" >
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0" >
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+             <widget class="QSplitter" name="splitter_3" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <widget class="QTableView" name="TVLinks" >
+               <property name="selectionBehavior" >
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
+              </widget>
+              <widget class="QWidget" name="layoutWidget" >
+               <layout class="QVBoxLayout" name="verticalLayout_8" >
+                <item>
+                 <widget class="QLabel" name="label_9" >
+                  <property name="text" >
+                   <string>Comment</string>
+                  </property>
+                  <property name="buddy" >
+                   <cstring>TELnkComment</cstring>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTextEdit" name="TELnkComment" />
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout" >
+                  <item>
+                   <widget class="QPushButton" name="PBLnkNew" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>+</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="PBLnkDel" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text" >
+                     <string>-</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_3" >
+                    <property name="orientation" >
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0" >
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="PBLnkAll" >
+                    <property name="minimumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize" >
+                     <size>
+                      <width>29</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="toolTip" >
+                     <string>Show all links</string>
+                    </property>
+                    <property name="text" >
+                     <string>All</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tabAuthors" >
+          <attribute name="title" >
+           <string>Authors</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_10" >
+           <item>
+            <widget class="QSplitter" name="splitter_4" >
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <widget class="QTableView" name="TVAuthors" >
+              <property name="selectionBehavior" >
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+             </widget>
+             <widget class="QWidget" name="layoutWidget" >
+              <layout class="QVBoxLayout" name="verticalLayout_9" >
+               <item>
+                <widget class="QLabel" name="label_10" >
+                 <property name="text" >
+                  <string>Comment</string>
+                 </property>
+                 <property name="buddy" >
+                  <cstring>TEAuthorComment</cstring>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="TEAuthorComment" />
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14" >
+             <item>
+              <widget class="QPushButton" name="PBAuthorNew" >
+               <property name="minimumSize" >
+                <size>
+                 <width>29</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize" >
+                <size>
+                 <width>29</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PBAuthorDel" >
+               <property name="minimumSize" >
+                <size>
+                 <width>29</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize" >
+                <size>
+                 <width>29</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3" >
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabFormat" >
+      <attribute name="title" >
+       <string>Signature format</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4" >
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2" >
+         <item>
+          <widget class="QTextEdit" name="textEdit" >
+           <property name="minimumSize" >
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy" >
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet" >
+            <string notr="true" >background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+           <property name="frameShape" >
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="lineWidth" >
+            <number>1</number>
+           </property>
+           <property name="undoRedoEnabled" >
+            <bool>false</bool>
+           </property>
+           <property name="html" >
+            <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">Parameters to use:&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%1&lt;/span> - Title&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%2&lt;/span> - Short title&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%3&lt;/span> - Original title&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%4&lt;/span> - Short original title&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%9&lt;/span> - Comment&lt;/p>&lt;/body>&lt;/html></string>
+           </property>
+           <property name="textInteractionFlags" >
+            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="textEdit_2" >
+           <property name="minimumSize" >
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy" >
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet" >
+            <string notr="true" >background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+           <property name="frameShape" >
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="lineWidth" >
+            <number>1</number>
+           </property>
+           <property name="undoRedoEnabled" >
+            <bool>false</bool>
+           </property>
+           <property name="html" >
+            <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%11&lt;/span> - Author name&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%12&lt;/span> - Short author name&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%19&lt;/span> - Comment&lt;/p>&lt;/body>&lt;/html></string>
+           </property>
+           <property name="textInteractionFlags" >
+            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="textEdit_3" >
+           <property name="minimumSize" >
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy" >
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet" >
+            <string notr="true" >background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+           <property name="frameShape" >
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="lineWidth" >
+            <number>1</number>
+           </property>
+           <property name="undoRedoEnabled" >
+            <bool>false</bool>
+           </property>
+           <property name="html" >
+            <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%21&lt;/span> - Link URL&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans'; font-size:10pt;">&lt;span style=" font-weight:600;">%29&lt;/span> - Link comment&lt;/p>&lt;/body>&lt;/html></string>
+           </property>
+           <property name="textInteractionFlags" >
+            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5" >
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="PTESignCode" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>200</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="plainText" >
+          <string>&lt;div style="margin: 0px; text-indent: 0px;" align="right">
+&lt;span  style="color: rgb(153, 153, 153);"> Source:&lt;/span> %1 - %2 (%11), page 
+&lt;/div></string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5" >
+         <property name="spacing" >
+          <number>3</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="PBTest" >
+           <property name="minimumSize" >
+            <size>
+             <width>40</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize" >
+            <size>
+             <width>70</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text" >
+            <string>Test</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LSignFormat" >
+           <property name="toolTip" >
+            <string>Format preview</string>
+           </property>
+           <property name="frameShape" >
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="textFormat" >
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="textInteractionFlags" >
+            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3" >
+         <property name="text" >
+          <string>Example</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6" >
+         <property name="spacing" >
+          <number>3</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="PBSetSignStringFromExample" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize" >
+            <size>
+             <width>25</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize" >
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="toolTip" >
+            <string>Set as default</string>
+           </property>
+           <property name="text" >
+            <string>*</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="SBLinkID" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip" >
+            <string>Example source number</string>
+           </property>
+           <property name="buttonSymbols" >
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+           <property name="minimum" >
+            <number>1</number>
+           </property>
+           <property name="value" >
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LSignExample" >
+           <property name="frameShape" >
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="textFormat" >
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="textInteractionFlags" >
+            <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4" >
+     <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="font" >
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text" >
+        <string>Default signature:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="LDefaultSignString" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize" >
+        <size>
+         <width>0</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="frameShape" >
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="textFormat" >
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="textInteractionFlags" >
+        <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" >
+     <item>
+      <spacer name="horizontalSpacer" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBOK" >
+       <property name="text" >
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBClose" >
+       <property name="text" >
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../ra.qrc" />
+ </resources>
+ <connections/>
+</ui>

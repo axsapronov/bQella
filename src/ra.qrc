@@ -1,0 +1,68 @@
+<RCC>
+    <qresource prefix="/app" >
+        <file>images/app_about.png</file>
+        <file>images/app_exit.png</file>
+        <file>images/app_settings.png</file>
+        <file>images/app_whatsthis.png</file>
+    </qresource>
+    <qresource prefix="/edit" >
+        <file>images/edit_copy.png</file>
+        <file>images/edit_cut.png</file>
+        <file>images/edit_paste.png</file>
+        <file>images/edit_redo.png</file>
+        <file>images/edit_undo.png</file>
+        <file>images/edit_viewsource.png</file>
+        <file>images/find.png</file>
+    </qresource>
+    <qresource prefix="/file" >
+        <file>images/exportpdf.png</file>
+        <file>images/file_add.png</file>
+        <file>images/file_delete.png</file>
+        <file>images/file_new.png</file>
+        <file>images/file_print.png</file>
+        <file>images/file_save.png</file>
+        <file>images/home.png</file>
+        <file>images/item_property.png</file>
+        <file>images/item_remove.png</file>
+        <file>images/link.png</file>
+    </qresource>
+    <qresource prefix="/flags" >
+        <file>images/flag_gb.png</file>
+        <file>images/flag_ru.png</file>
+    </qresource>
+    <qresource prefix="/msc" >
+        <file>images/book.png</file>
+        <file>images/bookmark_add.png</file>
+        <file>images/close.png</file>
+        <file>images/home.png</file>
+        <file>images/searchnext.png</file>
+        <file>images/searchprevious.png</file>
+        <file>images/wrap.png</file>
+        <file>images/zoomin.png</file>
+        <file>images/zoomout.png</file>
+    </qresource>
+    <qresource prefix="/project" >
+        <file>images/prj_new.png</file>
+        <file>images/prj_open.png</file>
+        <file>images/prj_property.png</file>
+        <file>images/prj_save.png</file>
+        <file>images/prj_statistics.png</file>
+    </qresource>
+    <qresource prefix="/tabs" >
+        <file>images/tab_add.png</file>
+        <file>images/tab_close.png</file>
+        <file>images/tab_next.png</file>
+        <file>images/tab_prev.png</file>
+        <file>images/tab_sync.png</file>
+    </qresource>
+    <qresource prefix="/text" >
+        <file>images/textbold.png</file>
+        <file>images/textcenter.png</file>
+        <file>images/textcolor.png</file>
+        <file>images/textitalic.png</file>
+        <file>images/textjustify.png</file>
+        <file>images/textleft.png</file>
+        <file>images/textright.png</file>
+        <file>images/textunder.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Pavel Malakhov</author>
+ <comment>*********************************************************************
+*********************************************************************</comment>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>848</width>
+    <height>672</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Research Assistant by Pavel Malakhov</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>32</width>
+    <height>32</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="__qt_central_widget"/>
+  <widget class="QToolBar" name="toolBarProject">
+   <property name="windowTitle">
+    <string>Project</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionProjectNew"/>
+   <addaction name="actionProjectOpen"/>
+   <addaction name="actionProjectSave"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarTabs">
+   <property name="windowTitle">
+    <string>Tabs</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPrevPage"/>
+   <addaction name="actionNextPage"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarEdit">
+   <property name="windowTitle">
+    <string>Edit</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionCut"/>
+   <addaction name="actionCopy"/>
+   <addaction name="actionPaste"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>848</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAboutAssistant"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuProject">
+     <property name="title">
+      <string>Project</string>
+     </property>
+     <widget class="QMenu" name="menuNew_with_pattern">
+      <property name="title">
+       <string>New with pattern</string>
+      </property>
+      <addaction name="actionNewPrjDiary"/>
+      <addaction name="actionNewPrjNotebook"/>
+     </widget>
+     <addaction name="actionProjectNew"/>
+     <addaction name="menuNew_with_pattern"/>
+     <addaction name="actionProjectOpen"/>
+     <addaction name="separator"/>
+     <addaction name="actionProjectSave"/>
+     <addaction name="actionProjectSaveAs"/>
+     <addaction name="actionProjectBackup"/>
+     <addaction name="separator"/>
+     <addaction name="actionProjectProperties"/>
+     <addaction name="actionProjectSources"/>
+     <addaction name="separator"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="menuProject"/>
+    <addaction name="actionFileAdd"/>
+    <addaction name="separator"/>
+    <addaction name="actionSaveFile"/>
+    <addaction name="actionSaveFileAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_Module"/>
+    <addaction name="separator"/>
+    <addaction name="actionFilePrint"/>
+    <addaction name="actionPrint_Preview"/>
+    <addaction name="separator"/>
+    <addaction name="actionItemProperties"/>
+    <addaction name="actionRemoveItem"/>
+    <addaction name="actionDeleteFile"/>
+    <addaction name="actionAppExit"/>
+   </widget>
+   <widget class="QMenu" name="viewMenu">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="goMenu">
+     <property name="title">
+      <string>Tabs</string>
+     </property>
+     <addaction name="actionOpenPage"/>
+     <addaction name="actionClosePage"/>
+     <addaction name="separator"/>
+     <addaction name="actionNextPage"/>
+     <addaction name="actionPrevPage"/>
+    </widget>
+    <addaction name="actionNewWindow"/>
+    <addaction name="separator"/>
+    <addaction name="goMenu"/>
+   </widget>
+   <widget class="QMenu" name="editMenu">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionEditFind"/>
+    <addaction name="actionEditFindNext"/>
+    <addaction name="actionEditFindPrev"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsertImage"/>
+   </widget>
+   <widget class="QMenu" name="menuFormat">
+    <property name="title">
+     <string>F&amp;ormat</string>
+    </property>
+    <addaction name="actionTextBold"/>
+    <addaction name="actionTextItalic"/>
+    <addaction name="actionTextUnderline"/>
+    <addaction name="separator"/>
+    <addaction name="actionTextLeft"/>
+    <addaction name="actionTextCenter"/>
+    <addaction name="actionTextRight"/>
+    <addaction name="actionTextJustify"/>
+    <addaction name="separator"/>
+    <addaction name="actionHyperlink"/>
+    <addaction name="actionTextColor"/>
+   </widget>
+   <widget class="QMenu" name="menuBookmarks">
+    <property name="title">
+     <string>&amp;Bookmarks</string>
+    </property>
+    <addaction name="actionAddBookmark"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionLang_en"/>
+     <addaction name="actionLang_ru"/>
+    </widget>
+    <addaction name="menuLanguage"/>
+    <addaction name="actionSettings"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="editMenu"/>
+   <addaction name="menuFormat"/>
+   <addaction name="viewMenu"/>
+   <addaction name="menuBookmarks"/>
+   <addaction name="menuSettings"/>
+   <addaction name="helpMenu"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarFormat">
+   <property name="windowTitle">
+    <string>Format</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionTextBold"/>
+   <addaction name="actionTextItalic"/>
+   <addaction name="actionTextUnderline"/>
+   <addaction name="separator"/>
+   <addaction name="actionTextLeft"/>
+   <addaction name="actionTextCenter"/>
+   <addaction name="actionTextRight"/>
+   <addaction name="actionTextJustify"/>
+   <addaction name="separator"/>
+   <addaction name="actionHyperlink"/>
+   <addaction name="actionTextColor"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarFile">
+   <property name="windowTitle">
+    <string>File</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFileAdd"/>
+   <addaction name="actionRemoveItem"/>
+   <addaction name="actionSaveFile"/>
+   <addaction name="actionFilePrint"/>
+   <addaction name="separator"/>
+   <addaction name="actionEditFind"/>
+  </widget>
+  <action name="actionFilePrint">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/file_print.png</normaloff>:/file/images/file_print.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Print...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Print the currently displayed page.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionAppExit">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/app/images/app_exit.png</normaloff>:/app/images/app_exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;xit Application</string>
+   </property>
+   <property name="whatsThis">
+    <string>Exit Application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/edit_copy.png</normaloff>:/edit/images/edit_copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Copy</string>
+   </property>
+   <property name="whatsThis">
+    <string>Copy the selected text to the clipboard.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionEditFind">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/find.png</normaloff>:/edit/images/find.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Find in Text...</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open the Find dialog. This will search the currently displayed page for the text you enter.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionEditFindNext">
+   <property name="text">
+    <string>Find &amp;Next</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="actionEditFindPrev">
+   <property name="text">
+    <string>Find &amp;Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F3</string>
+   </property>
+  </action>
+  <action name="actionAboutAssistant">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/app/images/app_about.png</normaloff>:/app/images/app_about.png</iconset>
+   </property>
+   <property name="text">
+    <string>About Research Assistant</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="actionNewWindow">
+   <property name="text">
+    <string>New Window</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open a new window.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionDeleteFile">
+   <property name="icon">
+    <iconset>
+     <normaloff>C:/Documents and Settings/Admin/.designer/backup</normaloff>C:/Documents and Settings/Admin/.designer/backup</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Delete Item and File</string>
+   </property>
+   <property name="whatsThis">
+    <string>Close the current window.</string>
+   </property>
+  </action>
+  <action name="actionOpenPage">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/tabs/images/tab_add.png</normaloff>:/tabs/images/tab_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+N</string>
+   </property>
+  </action>
+  <action name="actionNextPage">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/tabs/images/tab_next.png</normaloff>:/tabs/images/tab_next.png</iconset>
+   </property>
+   <property name="text">
+    <string>Next Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Right</string>
+   </property>
+  </action>
+  <action name="actionPrevPage">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/tabs/images/tab_prev.png</normaloff>:/tabs/images/tab_prev.png</iconset>
+   </property>
+   <property name="text">
+    <string>Previous Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Left</string>
+   </property>
+  </action>
+  <action name="actionClosePage">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/tabs/images/tab_close.png</normaloff>:/tabs/images/tab_close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Q</string>
+   </property>
+  </action>
+  <action name="actionSaveFileAs">
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+S</string>
+   </property>
+  </action>
+  <action name="actionEditFont_Settings">
+   <property name="icon">
+    <iconset>
+     <normaloff>C:/Documents and Settings/Admin/.designer/images/fontsettings.png</normaloff>C:/Documents and Settings/Admin/.designer/images/fontsettings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Font Settings...</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::PreferencesRole</enum>
+   </property>
+  </action>
+  <action name="actionProjectProperties">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/project/images/prj_property.png</normaloff>:/project/images/prj_property.png</iconset>
+   </property>
+   <property name="text">
+    <string>Properties...</string>
+   </property>
+  </action>
+  <action name="actionProjectStatistics">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/project/images/prj_statistics.png</normaloff>:/project/images/prj_statistics.png</iconset>
+   </property>
+   <property name="text">
+    <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionProjectNew">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/project/images/prj_new.png</normaloff>:/project/images/prj_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>New project</string>
+   </property>
+  </action>
+  <action name="actionProjectOpen">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/project/images/prj_open.png</normaloff>:/project/images/prj_open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open project</string>
+   </property>
+  </action>
+  <action name="actionProjectSave">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/project/images/prj_save.png</normaloff>:/project/images/prj_save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save project</string>
+   </property>
+  </action>
+  <action name="actionFileAdd">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/file_add.png</normaloff>:/file/images/file_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add...</string>
+   </property>
+  </action>
+  <action name="actionSaveFile">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/file_save.png</normaloff>:/file/images/file_save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionPrint_Preview">
+   <property name="text">
+    <string>Print Preview...</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/edit_undo.png</normaloff>:/edit/images/edit_undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/edit_redo.png</normaloff>:/edit/images/edit_redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/edit_paste.png</normaloff>:/edit/images/edit_paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/edit/images/edit_cut.png</normaloff>:/edit/images/edit_cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionRemoveItem">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/item_remove.png</normaloff>:/file/images/item_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove Item</string>
+   </property>
+  </action>
+  <action name="actionTextBold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textbold.png</normaloff>:/text/images/textbold.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bold</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionTextItalic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textitalic.png</normaloff>:/text/images/textitalic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Italic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionTextUnderline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textunder.png</normaloff>:/text/images/textunder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Underline</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionTextLeft">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textleft.png</normaloff>:/text/images/textleft.png</iconset>
+   </property>
+   <property name="text">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionTextCenter">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textcenter.png</normaloff>:/text/images/textcenter.png</iconset>
+   </property>
+   <property name="text">
+    <string>Center</string>
+   </property>
+  </action>
+  <action name="actionTextRight">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textright.png</normaloff>:/text/images/textright.png</iconset>
+   </property>
+   <property name="text">
+    <string>Right</string>
+   </property>
+  </action>
+  <action name="actionTextJustify">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textjustify.png</normaloff>:/text/images/textjustify.png</iconset>
+   </property>
+   <property name="text">
+    <string>Justify</string>
+   </property>
+  </action>
+  <action name="actionTextColor">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/text/images/textcolor.png</normaloff>:/text/images/textcolor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Text color</string>
+   </property>
+  </action>
+  <action name="actionItemProperties">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/item_property.png</normaloff>:/file/images/item_property.png</iconset>
+   </property>
+   <property name="text">
+    <string>Item properties...</string>
+   </property>
+  </action>
+  <action name="actionProjectSaveAs">
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save project as...</string>
+   </property>
+  </action>
+  <action name="actionLang_en">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/flags/images/flag_gb.png</normaloff>:/flags/images/flag_gb.png</iconset>
+   </property>
+   <property name="text">
+    <string comment="Name on your language (in English)">English</string>
+   </property>
+  </action>
+  <action name="actionLang_ru">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/flags/images/flag_ru.png</normaloff>:/flags/images/flag_ru.png</iconset>
+   </property>
+   <property name="text">
+    <string comment="Name on your language (in English)">Russian</string>
+   </property>
+  </action>
+  <action name="actionHyperlink">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/file/images/link.png</normaloff>:/file/images/link.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hyperlink</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/app/images/app_settings.png</normaloff>:/app/images/app_settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionProjectSources">
+   <property name="text">
+    <string>Sources</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+  </action>
+  <action name="actionNewPrjDiary">
+   <property name="text">
+    <string>Diary</string>
+   </property>
+  </action>
+  <action name="actionNewPrjNotebook">
+   <property name="text">
+    <string>Notebook</string>
+   </property>
+  </action>
+  <action name="actionProjectBackup">
+   <property name="text">
+    <string>Backup</string>
+   </property>
+  </action>
+  <action name="actionExport_Module">
+   <property name="text">
+    <string>Export Module</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionInsertImage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Insert Image</string>
+   </property>
+  </action>
+  <action name="actionAddBookmark">
+   <property name="icon">
+    <iconset resource="../ra.qrc">
+     <normaloff>:/msc/images/bookmark_add.png</normaloff>:/msc/images/bookmark_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add to bookmarks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Add the currently displayed page as a new bookmark.</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../ra.qrc"/>
+ </resources>
+ <connections/>
+</ui>

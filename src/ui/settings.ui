@@ -1,0 +1,520 @@
+<ui version="4.0" >
+ <class>AppSettings</class>
+ <widget class="QDialog" name="AppSettings" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>395</width>
+    <height>331</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Settings</string>
+  </property>
+  <layout class="QHBoxLayout" >
+   <property name="spacing" >
+    <number>3</number>
+   </property>
+   <property name="leftMargin" >
+    <number>1</number>
+   </property>
+   <property name="topMargin" >
+    <number>1</number>
+   </property>
+   <property name="rightMargin" >
+    <number>1</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>3</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" >
+     <property name="spacing" >
+      <number>3</number>
+     </property>
+     <item>
+      <widget class="QTabWidget" name="tabWidget" >
+       <property name="currentIndex" >
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="tabGeneral" >
+        <attribute name="title" >
+         <string>General</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_3" >
+         <item>
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>External editor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout" >
+           <property name="spacing" >
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LEExternalEditor" />
+           </item>
+           <item>
+            <widget class="QPushButton" name="PBExternalEditor" >
+             <property name="minimumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="text" >
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2" >
+           <property name="text" >
+            <string>External browser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2" >
+           <property name="spacing" >
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LEExternalBrowser" />
+           </item>
+           <item>
+            <widget class="QPushButton" name="PBExternalBrowser" >
+             <property name="minimumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="text" >
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame" >
+           <property name="frameShape" >
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow" >
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="midLineWidth" >
+            <number>0</number>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_7" >
+            <item>
+             <widget class="QLabel" name="label_8" >
+              <property name="text" >
+               <string>Log events:
+0 = no log; 1 = basic;
+2 = more info; 3 = debug</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2" >
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_6" >
+                <item>
+                 <widget class="QSpinBox" name="SBAppLogLevel" >
+                  <property name="minimumSize" >
+                   <size>
+                    <width>33</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize" >
+                   <size>
+                    <width>33</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="maximum" >
+                   <number>3</number>
+                  </property>
+                  <property name="value" >
+                   <number>3</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_7" >
+                  <property name="sizePolicy" >
+                   <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text" >
+                   <string>Log level for application</string>
+                  </property>
+                  <property name="buddy" >
+                   <cstring>SBAppLogLevel</cstring>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5" >
+                <item>
+                 <widget class="QSpinBox" name="SBPrjLogLevel" >
+                  <property name="minimumSize" >
+                   <size>
+                    <width>33</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize" >
+                   <size>
+                    <width>33</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="maximum" >
+                   <number>3</number>
+                  </property>
+                  <property name="value" >
+                   <number>3</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_6" >
+                  <property name="sizePolicy" >
+                   <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text" >
+                   <string>Log level for project</string>
+                  </property>
+                  <property name="buddy" >
+                   <cstring>SBPrjLogLevel</cstring>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="CBItemAutoProperties" >
+           <property name="text" >
+            <string>Do not ask for item properties when creating</string>
+           </property>
+           <property name="checked" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer" >
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0" >
+            <size>
+             <width>364</width>
+             <height>110</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabView" >
+        <attribute name="title" >
+         <string>View</string>
+        </attribute>
+        <widget class="QPushButton" name="PBFontSettings" >
+         <property name="geometry" >
+          <rect>
+           <x>10</x>
+           <y>110</y>
+           <width>111</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Font settings...</string>
+         </property>
+        </widget>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="geometry" >
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>361</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="title" >
+          <string>Contents</string>
+         </property>
+         <widget class="QCheckBox" name="CBContentsAdditionalView" >
+          <property name="geometry" >
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>361</width>
+            <height>24</height>
+           </rect>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Contents additional view</string>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="CBAutoCollapse" >
+          <property name="geometry" >
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>361</width>
+            <height>24</height>
+           </rect>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Automaticly collapse expended items</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="CBShowSubItemsTitle" >
+          <property name="geometry" >
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>361</width>
+            <height>24</height>
+           </rect>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Show parent item title in header</string>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab" >
+        <attribute name="title" >
+         <string>Backup</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout" >
+         <item>
+          <widget class="QLabel" name="label_5" >
+           <property name="text" >
+            <string>Path to store backup archives</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4" >
+           <property name="spacing" >
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LEBackupDir" />
+           </item>
+           <item>
+            <widget class="QPushButton" name="PBBackupDir" >
+             <property name="minimumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="text" >
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3" >
+           <property name="text" >
+            <string>Archiver</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3" >
+           <property name="spacing" >
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LEExternalArchiver" />
+           </item>
+           <item>
+            <widget class="QPushButton" name="PBExternalArchiver" >
+             <property name="minimumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="text" >
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4" >
+           <property name="text" >
+            <string>Parameters for archiver to compress directory with all its content.
+For 7Zip: "a -t7z"</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="LEExternalArchiverOptions" />
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2" >
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0" >
+            <size>
+             <width>364</width>
+             <height>50</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QDialogButtonBox" name="buttonBox" >
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="standardButtons" >
+          <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>AppSettings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>AppSettings</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
