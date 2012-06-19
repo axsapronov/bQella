@@ -387,6 +387,7 @@ void AutoItems::changeCase(int state)
 //-------------------------------------------------
 void AutoItems::changeFormat(int n)
 {
+    n = n;
 	ui.LEDateFormat->setEnabled( ui.CBDateFormat->isChecked() );		
 }
 

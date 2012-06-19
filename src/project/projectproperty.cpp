@@ -67,7 +67,7 @@ void ProjectProperties::chooseStartPage()
    	}
     */
 
-    QString *s= new QString();
+//    QString *s= new QString();
         QString path = ui.EprjFileName->text();
         if (path.isEmpty()) path = Config::configuration()->CurPrjDir();
 
@@ -166,7 +166,7 @@ void ProjectProperties::accept()
                                     .arg(ui.ETitle->text()
 
 */
-                            QString str_body = "<body>"+tr("\nBibleName = %1"
+                            QString str_body = "<body>"+tr("\nBibleName = 44 %1"
                                                            "\nBibleShortName = %2"
                                                            "\nCopyright = %3"
                                                            "\nDefaultEncoding = utf-8"

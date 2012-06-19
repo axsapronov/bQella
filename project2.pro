@@ -19,7 +19,10 @@ RCC_DIR     = build
 INCLUDEPATH += src/h/ \
     src/project/ \
     src/helpdialog \
-    src/tab
+    src/tab \
+    src/config \
+    src/settings \
+    src/about
 
 
 FORMS += src/ui/autoitems.ui \
@@ -36,13 +39,13 @@ FORMS += src/ui/autoitems.ui \
      src/ui/cellsplit.ui \
      src/ui/imageproperty.ui \
      src/ui/bookadddialog.ui \
-     src/ui/guiabout.ui \
-     src/ui/settings.ui
+     src/about/guiabout.ui \
+     src/settings/settings.ui
 
 SOURCES +=  src/project/projectproperty.cpp \
      src/project/projectsources.cpp \
      src/cpp/autoitems.cpp \
-     src/cpp/config.cpp \
+     src/config/config.cpp \
      src/cpp/docproperty.cpp \
      src/cpp/docuparser.cpp \
      src/cpp/fontsettingsdialog.cpp \
@@ -56,7 +59,7 @@ SOURCES +=  src/project/projectproperty.cpp \
      src/cpp/pcommon.cpp \
      src/cpp/profile.cpp \
      src/cpp/raedit.cpp \
-     src/cpp/settings.cpp \
+     src/settings/settings.cpp \
      src/cpp/srclistparser.cpp \
      src/tab/tabbedbrowser.cpp \
      src/tab/tableproperty.cpp \
@@ -65,10 +68,10 @@ SOURCES +=  src/project/projectproperty.cpp \
      src/cpp/imageproperty.cpp\
      src/cpp/fontpanel.cpp \
      src/cpp/bookadddialog.cpp \
-     src/cpp/guiabout.cpp
+     src/about/guiabout.cpp
 
 HEADERS += src/h/autoitems.h \
-     src/h/config.h \
+     src/config/config.h \
      src/h/docproperty.h \
      src/h/docuparser.h \
      src/h/fontsettingsdialog.h \
@@ -83,7 +86,7 @@ HEADERS += src/h/autoitems.h \
      src/project/projectproperty.h \
      src/project/projectsources.h \
      src/h/raedit.h \
-     src/h/settings.h \
+     src/settings/settings.h \
      src/h/srclistparser.h \
      src/tab/tabbedbrowser.h \
      src/tab/tableproperty.h \
@@ -92,7 +95,7 @@ HEADERS += src/h/autoitems.h \
      src/h/imageproperty.h\
      src/h/fontpanel.h \
      src/h/bookadddialog.h \
-     src/h/guiabout.h
+     src/about/guiabout.h
 
 RESOURCES += resources/ra.qrc
 TRANSLATIONS += lang/ra_rus.ts

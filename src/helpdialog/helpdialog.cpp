@@ -2447,7 +2447,6 @@ void HelpDialog::export_bibleqtstep1()
 void HelpDialog::export_module()
 {
     //qDebug() << "WOoooOW";
-
     QString fileBibleqtname = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
     QFile filebibleqt(fileBibleqtname);
     filebibleqt.close();
@@ -2499,9 +2498,6 @@ void HelpDialog::export_module()
         filebibleqt.close();
 
 
-
-
-
         QFile filebook(filename);
         filebook.remove();
         if(!filebook.open(QIODevice::Append))
@@ -2523,8 +2519,6 @@ void HelpDialog::export_module()
                 //qDebug() << "child! my parent is" << ui.listContents->topLevelItem(i) << "( i= "<< i <<") i is" << ui.listContents->topLevelItem(i)->child(j);
                 //qDebug() << ui.listContents->topLevelItem(i)->child(j)->text(0);
             }
-
-
         }
         filebook.close();
     }
@@ -2533,7 +2527,6 @@ void HelpDialog::export_module()
 QString HelpDialog::export_textoffile(QString filename,int i,bool chapt)
 {
     QFile file(filename);
-
     QString str;
     if(file.exists())
     {
@@ -2548,8 +2541,6 @@ QString HelpDialog::export_textoffile(QString filename,int i,bool chapt)
 
                 str = stream.readAll();
 
-
-
                 if (!chapt)
                 {
                     QString title = QString("<title>%1</title>").arg(i-1);
@@ -2561,6 +2552,7 @@ QString HelpDialog::export_textoffile(QString filename,int i,bool chapt)
                     QString chapter = tr("\n<h4>Глава %1</h4>").arg(i);
                     str.replace(title,chapter);
                 }
+
                 str.remove("<title>1</title>");
                 str.remove("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">");
                 str.remove("<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
