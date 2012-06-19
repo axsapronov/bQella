@@ -3,6 +3,10 @@
 *.lo
 *.o
 
+# settings
+#*.user
+#
+
 # Compiled Dynamic libraries
 *.so
 
