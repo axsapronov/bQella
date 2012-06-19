@@ -159,22 +159,14 @@ private slots:
    void exportModule();
 
    QString exportTextoffile(QString filename,int i,bool chapt);
-   void exportBibleqtstep1();
-
-
-
    void exportCreateDir(QString current_dir);
    void exportBibleqtIni(QString path);
    QString exportChapter (QString filename);
-   void exportBibleBook(QString filebook);
-
-
-
+   void exportBibleBook(QString filebook,int i);
 
    void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
   // void prevMatchedItem();
    //void GoToMatchedItem(int n);
-
     
 private:
    void removeOldCacheFiles(bool onlyFulltextSearchIndex = false);

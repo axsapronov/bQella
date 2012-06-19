@@ -2437,12 +2437,6 @@ void HelpDialog::itemChanged(QTreeWidgetItem* item, int column)
 }
 
 
-void HelpDialog::exportBibleqtstep1()
-{
-//    QString fileBibleqtname = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
-//    QFile filebibleqt(fileBibleqtname);
-
-}
 
 
 void HelpDialog::exportCreateDir(QString current_dir)
@@ -2470,9 +2464,32 @@ void HelpDialog::exportCreateDir(QString current_dir)
 
 }
 
-void HelpDialog::exportBibleqtIni(QString path)
+void HelpDialog::exportBibleqtIni(QString string)
 {
     //экспортируем ini файл
+    QFile file(string);
+    qDebug() << string;
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error write";
+    }
+    else
+    {
+        QString stru =""+tr("BibleName = %1"
+                            "\nBibleShortName = %2"
+                            "\nCopyright = %3"
+                            "\nDefaultEncoding = utf-8"
+                            "\nChapterSign = <h4>"
+                            "\nVerseSign = <p>"
+                            "\nBookQty = %4")
+                .arg(Config::configuration()->ModuleBiblename())
+                .arg(Config::configuration()->ModuleBibleShortName())
+                .arg(Config::configuration()->ModuleCopyright())
+                .arg(ui.listContents->topLevelItemCount()-1);
+
+        file.write(QString("%1").arg(stru).toUtf8());
+    }
+    file.close();
 }
 
 QString HelpDialog::exportChapter (QString filename)
@@ -2480,67 +2497,27 @@ QString HelpDialog::exportChapter (QString filename)
     // подготовливаем главы
 }
 
-void HelpDialog::exportBibleBook(QString filebook)
+void HelpDialog::exportBibleBook(QString filenamebook, int i)
 {
-    // экспортируем книгу
-}
-
-
-
-
-
-QString HelpDialog::exportTextoffile(QString filename,int i,bool chapt)
-{
-    QFile file(filename);
-    QString str;
-    if(file.exists())
+    QFile filebook(filenamebook);
+    filebook.remove();
+    if(!filebook.open(QIODevice::Append))
     {
-            if(!file.open(QIODevice::ReadWrite  | QIODevice::Text))
-            {
-                    qDebug() << "Error write";
-            }
-            else
-            {
-                QTextStream stream(&file);
-                stream.setCodec(QTextCodec::codecForName("UTF-8"));
-
-                str = stream.readAll();
-
-                if (!chapt)
-                {
-                    QString title = QString("<title>%1</title>").arg(i-1);
-                    str.remove(title);
-                }
-                else
-                {
-                    QString title = QString("<title>%1</title>").arg(i);
-                    QString chapter = tr("\n<h4>Глава %1</h4>").arg(i);
-                    str.replace(title,chapter);
-                }
-
-                str.remove("<title>1</title>");
-                str.remove("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">");
-                str.remove("<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
-                str.remove("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>Bibleqt.ini</title></head>");
-                str.remove("<body>").remove("</body>").remove("</html>").remove("<html>").remove("</p>").remove("<head>").remove("</head>");
-                str.remove("<style type=\"text/css\">").remove("</p></body></html>").remove("p, li { white-space: pre-wrap; }");
-                str.remove("</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
-                str.remove("<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
-                str.remove("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
-                str.remove("</style><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
-
-
-                str.replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");
-
-                //qDebug() << "text = " << str;
-            }
+        qDebug() << "Error write";
     }
     else
-    qDebug() << "Error exist";
-    file.close();
-    //file.remove();
-    return str;
+    {
+        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
+        for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
+        {
+            QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
+            filebook.write(QString("%1").arg(exportTextoffile(filenamechapter,ui.listContents->topLevelItem(i)->childCount()-j,true)).toUtf8());
+        }
+        filebook.write(QString("</body>\n</html>").toUtf8());
+    }
+    filebook.close();
 }
+
 
 
 
@@ -2548,112 +2525,86 @@ void HelpDialog::exportModule()
 {
     //qDebug() << "WOoooOW";
     QString fileBibleqtName = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
-    QFile filebibleqt(fileBibleqtName);
 
-    if (fileBibleqtName.isEmpty())
-    {
-        filebibleqt.close();
-        filebibleqt.remove();
-    }
+    QString curdir = QString(fileBibleqtName.replace("Bibleqt.ini",""));
+    exportCreateDir(curdir);
+    exportBibleqtIni(QString("%1export/bibleqt.ini").arg(curdir));
 
-    exportCreateDir(QString(fileBibleqtName.replace("Bibleqt.ini","")));
-
-
-    if(!filebibleqt.open(QIODevice::WriteOnly))
-    {
-            qDebug() << "Error write";
-    }
-    else
-    {
-        QString stru =""+tr("\nBibleName = %1"
-                            "\nBibleShortName = %2"
-                            "\nCopyright = %3"
-                            "\nDefaultEncoding = utf-8"
-                            "\nChapterSign = <h4>"
-                            "\nVerseSign = <p>"
-                            "\nBookQty = %4")
-     .arg(Config::configuration()->ModuleBiblename())
-     .arg(Config::configuration()->ModuleBibleShortName())
-     .arg(Config::configuration()->ModuleCopyright())
-     .arg(ui.listContents->topLevelItemCount()-1);
-
-      filebibleqt.write(QString("%1").arg(stru).toUtf8());
-
-    }
-    filebibleqt.close();
+    QFile file(QString("%1export/bibleqt.ini").arg(curdir));
 
     QString string;
-    for (int i=1; i<ui.listContents->topLevelItemCount();++i)  //0 это Bibleqt.ini
+    for (int i = 1; i < ui.listContents->topLevelItemCount(); ++i)  //0 это Bibleqt.ini
     {
-
-        //qDebug() << "parent!" << ui.listContents->topLevelItem(i) << "i have " << ui.listContents->topLevelItem(i)->childCount() << "children";
-        //qDebug() << ui.listContents->topLevelItem(i)->text(0);
-        //qDebug() << "filename = " << filename;
-        //qDebug() << "fileBibleqtname = " << fileBibleqtname << "string = "<< string2;
-
-        QString filename = ui.listContents->topLevelItem(i)->data(0,LinkRole).toString().remove("file:");
+        QString filename = ui.listContents->topLevelItem(i)->data(0, LinkRole).toString().remove("file:");
         string = exportTextoffile(filename,ui.listContents->topLevelItem(i)->childCount(),false);
 
-
-        if(!filebibleqt.open(QIODevice::Append))
-        {
-                qDebug() << "Error write";
-        }
-        else
-        {
-            filebibleqt.write(QString("%1").arg(string).toUtf8());
-        }
-        filebibleqt.close();
-
-
-        QFile filebook(filename);
-        filebook.remove();
-        if(!filebook.open(QIODevice::Append))
-        {
+        if(!file.open(QIODevice::Append)){
             qDebug() << "Error write";
         }
         else
         {
-//            filebook.write(QStringList)
-            filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
-
-
-//            <html>
-//            <head>
-//            <meta http-equiv="content-type" content="text/html; charset=windows-1251">
-//            <meta name="Title" content="Russian Synodal Translation with Strong's numbers">
-//            <meta name="Rights" content="Strong's coding copyrighted by Bob Jones University, 1996">
-//            <meta name="Date" content="2001-05-05">
-//            <meta name="Revision" content="1.0">
-//            <meta name="Language" content="Ru">
-//            <link href="..\common.css" type=text/css rel=stylesheet>
-//            <link href="directory.css" type=text/css rel=stylesheet>
-//            <title>Первая книга Моисеева. Бытие</title>
-//            </head>
-//            <body>
-
-
-
-
-            //QString stringchapter;
-            //filebook.write(QString("%1").arg(string).toUtf8());
-
-            for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
-            {
-                QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
-                qDebug() << "i = " << i << "j = " << j << "jo = " << ui.listContents->topLevelItem(i)->childCount()-j;
-
-                filebook.write(QString("%1").arg(exportTextoffile(filenamechapter,ui.listContents->topLevelItem(i)->childCount()-j,true)).toUtf8());
-                            //stringchapter = export_textoffile(filenamechapter);
-                //qDebug() << "child! my parent is" << ui.listContents->topLevelItem(i) << "( i= "<< i <<") i is" << ui.listContents->topLevelItem(i)->child(j);
-                //qDebug() << ui.listContents->topLevelItem(i)->child(j)->text(0);
-            }
-            filebook.write(QString("</body>\n</html>").toUtf8());
+            file.write(QString("%1").arg(string).toUtf8());
         }
-        filebook.close();
+        file.close();
+
+        exportBibleBook(filename, i);
     }
 }
 
 
+
+QString HelpDialog::exportTextoffile(QString filename,int i,bool chapt)
+{
+
+    QFile file(filename);
+    QString str;
+    if(file.exists())
+    {
+        if(!file.open(QIODevice::ReadWrite  | QIODevice::Text))
+        {
+            qDebug() << "Error write";
+        }
+        else
+        {
+            QTextStream stream(&file);
+            stream.setCodec(QTextCodec::codecForName("UTF-8"));
+
+            str = stream.readAll();
+
+            if (!chapt)
+            {
+                QString title = QString("<title>%1</title>").arg(i-1);
+                str.remove(title);
+            }
+            else
+            {
+                QString title = QString("<title>%1</title>").arg(i);
+                QString chapter = tr("\n<h4>Глава %1</h4>").arg(i);
+                str.replace(title,chapter);
+            }
+
+            str.remove("<title>1</title>");
+            str.remove("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">");
+            str.remove("<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
+            str.remove("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>Bibleqt.ini</title></head>");
+            str.remove("<body>").remove("</body>").remove("</html>").remove("<html>").remove("</p>").remove("<head>").remove("</head>");
+            str.remove("<style type=\"text/css\">").remove("</p></body></html>").remove("p, li { white-space: pre-wrap; }");
+            str.remove("</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
+            str.remove("<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
+            str.remove("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
+            str.remove("</style><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
+
+
+            str.replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");
+
+            //qDebug() << "text = " << str;
+        }
+    }
+    else
+        qDebug() << "Error exist";
+    file.close();
+    //file.remove();
+    return str;
+}
 
 
