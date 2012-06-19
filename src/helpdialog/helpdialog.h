@@ -36,6 +36,7 @@
 #include <QValidator>
 #include <QMenu>
 #include <QHash>
+#include <QString>
 
 class QProgressBar;
 class MainWindow;
@@ -155,10 +156,19 @@ private slots:
    void locateItemByName(QString name);
    void nextMatchedItem();
 
-   void export_module();
+   void exportModule();
 
-   QString export_textoffile(QString filename,int i,bool chapt);
-   void export_bibleqtstep1();
+   QString exportTextoffile(QString filename,int i,bool chapt);
+   void exportBibleqtstep1();
+
+
+
+   void exportCreateDir(QString current_dir);
+   void exportBibleqtIni(QString path);
+   QString exportChapter (QString filename);
+   void exportBibleBook(QString filebook);
+
+
 
 
    void fixedBookConfFile(QString,QTreeWidgetItem*,QString);

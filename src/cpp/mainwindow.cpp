@@ -166,24 +166,24 @@ void MainWindow::setup()
     connect(prjprop, SIGNAL(createProject(QString, QString, QString)), this, SLOT(createProject(QString, QString, QString)));
     connect(prjprop, SIGNAL(updateProjectProperties(QString, QString, QString)), this, SLOT(updateProjectProperties(QString, QString, QString)));
 
-	// Menu File
-	connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
-	connect(ui.actionDeleteFile, SIGNAL(triggered()), helpDock, SLOT(deleteItem())); 
-        //warmonger
-        connect(ui.actionExport_Module, SIGNAL(triggered()), helpDock, SLOT(export_module()));
+    // Menu File
+    connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
+    connect(ui.actionDeleteFile, SIGNAL(triggered()), helpDock, SLOT(deleteItem()));
+
+    connect(ui.actionExport_Module, SIGNAL(triggered()), helpDock, SLOT(exportModule()));
 
 
 
 
-	// Menu Edit
+    // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
-	connect(ui.actionHyperlink, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(showLinkProperties()));
-	connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
+    connect(ui.actionHyperlink, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(showLinkProperties()));
+    connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
 
 	// Menu Format
-	connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
-	connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
+    connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
+    connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
     //connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
     
@@ -242,8 +242,8 @@ void MainWindow::setup()
 //    connect(tabs->currentBrowser(), SIGNAL(copyAvailable(bool)), this, SLOT(copyAvailable(bool)));
 
 	//apply settings
-	appsets->set();
-	appsets->apply();
+    appsets->set();
+    appsets->apply();
 
     // set the current selected item in the treeview
     helpDialog()->locateContents(tabs->currentBrowser()->source().toString());

@@ -38,6 +38,7 @@
 class TabbedBrowser;
 class HelpDialog;
 class HelpWindow;
+class Export;
 class QMenu;
 class QDockWidget;
 
@@ -54,7 +55,9 @@ public:
 	Ui::MainWindow ui;
 
     TabbedBrowser *browsers() const;
-	HelpDialog *helpDialog() const;
+    HelpDialog *helpDialog() const;
+    Export *exportModule();
+
 
     void setupPopupMenu(QMenu *menu);
     void removePendingBrowser(HelpWindow *win);

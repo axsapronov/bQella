@@ -2437,94 +2437,59 @@ void HelpDialog::itemChanged(QTreeWidgetItem* item, int column)
 }
 
 
-void HelpDialog::export_bibleqtstep1()
+void HelpDialog::exportBibleqtstep1()
 {
 //    QString fileBibleqtname = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
 //    QFile filebibleqt(fileBibleqtname);
 
 }
 
-void HelpDialog::export_module()
+
+void HelpDialog::exportCreateDir(QString current_dir)
 {
-    //qDebug() << "WOoooOW";
-    QString fileBibleqtname = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
-    QFile filebibleqt(fileBibleqtname);
-    filebibleqt.close();
-    filebibleqt.remove();
-    if(!filebibleqt.open(QIODevice::WriteOnly))
+    // если папки export нету, то создаем, если есть, то удаляем содержимое
+    QDir dir(current_dir);
+    if (!QDir(QString("%1export/").arg(current_dir)).exists())
     {
-            qDebug() << "Error write";
+        dir.mkdir("export");
     }
     else
     {
-        QString stru =""+tr("\nBibleName = %1"
-                            "\nBibleShortName = %2"
-                            "\nCopyright = %3"
-                            "\nDefaultEncoding = utf-8"
-                            "\nChapterSign = <h4>"
-                            "\nVerseSign = <p>"
-                            "\nBookQty = %4")
-     .arg(Config::configuration()->ModuleBiblename())
-     .arg(Config::configuration()->ModuleBibleShortName())
-     .arg(Config::configuration()->ModuleCopyright())
-     .arg(ui.listContents->topLevelItemCount()-1);
+        dir.setPath((QString("%1export").arg(current_dir)));
+        QStringList lstFiles = dir.entryList(QDir::Files); //Получаем список файлов
 
-      filebibleqt.write(QString("%1").arg(stru).toUtf8());
-
+        //Удаляем файлы
+        foreach (QString entry, lstFiles)
+        {
+            QString entryAbsPath = dir.absolutePath() + "/" + entry;
+            qDebug() << entryAbsPath;
+            QFile::setPermissions(entryAbsPath, QFile::ReadOwner | QFile::WriteOwner);
+            QFile::remove(entryAbsPath);
+        }
     }
-    filebibleqt.close();
 
-    QString string;
-    for (int i=1; i<ui.listContents->topLevelItemCount();++i)  //0 это Bibleqt.ini
-    {
-
-        //qDebug() << "parent!" << ui.listContents->topLevelItem(i) << "i have " << ui.listContents->topLevelItem(i)->childCount() << "children";
-        //qDebug() << ui.listContents->topLevelItem(i)->text(0);
-        //qDebug() << "filename = " << filename;
-        //qDebug() << "fileBibleqtname = " << fileBibleqtname << "string = "<< string2;
-
-        QString filename = ui.listContents->topLevelItem(i)->data(0,LinkRole).toString().remove("file:");
-        string = export_textoffile(filename,ui.listContents->topLevelItem(i)->childCount(),false);
-
-
-        if(!filebibleqt.open(QIODevice::Append))
-        {
-                qDebug() << "Error write";
-        }
-        else
-        {
-            filebibleqt.write(QString("%1").arg(string).toUtf8());
-        }
-        filebibleqt.close();
-
-
-        QFile filebook(filename);
-        filebook.remove();
-        if(!filebook.open(QIODevice::Append))
-        {
-            qDebug() << "Error write";
-        }
-        else
-        {
-            //QString stringchapter;
-            //filebook.write(QString("%1").arg(string).toUtf8());
-
-            for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
-            {
-                QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
-                qDebug() << "i = " << i << "j = " << j << "jo = " << ui.listContents->topLevelItem(i)->childCount()-j;
-
-                filebook.write(QString("%1").arg(export_textoffile(filenamechapter,ui.listContents->topLevelItem(i)->childCount()-j,true)).toUtf8());
-                            //stringchapter = export_textoffile(filenamechapter);
-                //qDebug() << "child! my parent is" << ui.listContents->topLevelItem(i) << "( i= "<< i <<") i is" << ui.listContents->topLevelItem(i)->child(j);
-                //qDebug() << ui.listContents->topLevelItem(i)->child(j)->text(0);
-            }
-        }
-        filebook.close();
-    }
 }
 
-QString HelpDialog::export_textoffile(QString filename,int i,bool chapt)
+void HelpDialog::exportBibleqtIni(QString path)
+{
+    //экспортируем ini файл
+}
+
+QString HelpDialog::exportChapter (QString filename)
+{
+    // подготовливаем главы
+}
+
+void HelpDialog::exportBibleBook(QString filebook)
+{
+    // экспортируем книгу
+}
+
+
+
+
+
+QString HelpDialog::exportTextoffile(QString filename,int i,bool chapt)
 {
     QFile file(filename);
     QString str;
@@ -2576,3 +2541,119 @@ QString HelpDialog::export_textoffile(QString filename,int i,bool chapt)
     //file.remove();
     return str;
 }
+
+
+
+void HelpDialog::exportModule()
+{
+    //qDebug() << "WOoooOW";
+    QString fileBibleqtName = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
+    QFile filebibleqt(fileBibleqtName);
+
+    if (fileBibleqtName.isEmpty())
+    {
+        filebibleqt.close();
+        filebibleqt.remove();
+    }
+
+    exportCreateDir(QString(fileBibleqtName.replace("Bibleqt.ini","")));
+
+
+    if(!filebibleqt.open(QIODevice::WriteOnly))
+    {
+            qDebug() << "Error write";
+    }
+    else
+    {
+        QString stru =""+tr("\nBibleName = %1"
+                            "\nBibleShortName = %2"
+                            "\nCopyright = %3"
+                            "\nDefaultEncoding = utf-8"
+                            "\nChapterSign = <h4>"
+                            "\nVerseSign = <p>"
+                            "\nBookQty = %4")
+     .arg(Config::configuration()->ModuleBiblename())
+     .arg(Config::configuration()->ModuleBibleShortName())
+     .arg(Config::configuration()->ModuleCopyright())
+     .arg(ui.listContents->topLevelItemCount()-1);
+
+      filebibleqt.write(QString("%1").arg(stru).toUtf8());
+
+    }
+    filebibleqt.close();
+
+    QString string;
+    for (int i=1; i<ui.listContents->topLevelItemCount();++i)  //0 это Bibleqt.ini
+    {
+
+        //qDebug() << "parent!" << ui.listContents->topLevelItem(i) << "i have " << ui.listContents->topLevelItem(i)->childCount() << "children";
+        //qDebug() << ui.listContents->topLevelItem(i)->text(0);
+        //qDebug() << "filename = " << filename;
+        //qDebug() << "fileBibleqtname = " << fileBibleqtname << "string = "<< string2;
+
+        QString filename = ui.listContents->topLevelItem(i)->data(0,LinkRole).toString().remove("file:");
+        string = exportTextoffile(filename,ui.listContents->topLevelItem(i)->childCount(),false);
+
+
+        if(!filebibleqt.open(QIODevice::Append))
+        {
+                qDebug() << "Error write";
+        }
+        else
+        {
+            filebibleqt.write(QString("%1").arg(string).toUtf8());
+        }
+        filebibleqt.close();
+
+
+        QFile filebook(filename);
+        filebook.remove();
+        if(!filebook.open(QIODevice::Append))
+        {
+            qDebug() << "Error write";
+        }
+        else
+        {
+//            filebook.write(QStringList)
+            filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
+
+
+//            <html>
+//            <head>
+//            <meta http-equiv="content-type" content="text/html; charset=windows-1251">
+//            <meta name="Title" content="Russian Synodal Translation with Strong's numbers">
+//            <meta name="Rights" content="Strong's coding copyrighted by Bob Jones University, 1996">
+//            <meta name="Date" content="2001-05-05">
+//            <meta name="Revision" content="1.0">
+//            <meta name="Language" content="Ru">
+//            <link href="..\common.css" type=text/css rel=stylesheet>
+//            <link href="directory.css" type=text/css rel=stylesheet>
+//            <title>Первая книга Моисеева. Бытие</title>
+//            </head>
+//            <body>
+
+
+
+
+            //QString stringchapter;
+            //filebook.write(QString("%1").arg(string).toUtf8());
+
+            for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
+            {
+                QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
+                qDebug() << "i = " << i << "j = " << j << "jo = " << ui.listContents->topLevelItem(i)->childCount()-j;
+
+                filebook.write(QString("%1").arg(exportTextoffile(filenamechapter,ui.listContents->topLevelItem(i)->childCount()-j,true)).toUtf8());
+                            //stringchapter = export_textoffile(filenamechapter);
+                //qDebug() << "child! my parent is" << ui.listContents->topLevelItem(i) << "( i= "<< i <<") i is" << ui.listContents->topLevelItem(i)->child(j);
+                //qDebug() << ui.listContents->topLevelItem(i)->child(j)->text(0);
+            }
+            filebook.write(QString("</body>\n</html>").toUtf8());
+        }
+        filebook.close();
+    }
+}
+
+
+
+
