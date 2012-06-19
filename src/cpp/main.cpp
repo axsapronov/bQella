@@ -67,7 +67,7 @@ int main( int argc, char ** argv )
 	//qDebug()<< "locale = " << locale;
 	QTranslator translator;
 	if (conf->Lang() == "Russian"){
-    	translator.load("lang/ra_rus");
+        translator.load("resources/lang/rus");
     	a.installTranslator(&translator);
     }
 
