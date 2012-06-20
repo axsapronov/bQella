@@ -1909,7 +1909,7 @@ void HelpDialog::InsertChapter(QTreeWidgetItem * book, QString title, QString fi
 
 void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QString title)
 {
-
+    title = title;
     qDebug() << "\nfilename" << filename << "\n";
 
     // до сюда работает
@@ -2468,7 +2468,7 @@ void HelpDialog::exportBibleqtIni(QString string)
 {
     //экспортируем ini файл
     QFile file(string);
-    qDebug() << string;
+//    qDebug() << string;
     if(!file.open(QIODevice::WriteOnly))
     {
         qDebug() << "Error write";
@@ -2490,6 +2490,25 @@ void HelpDialog::exportBibleqtIni(QString string)
         file.write(QString("%1").arg(stru).toUtf8());
     }
     file.close();
+}
+
+void HelpDialog::exportBibleqtIniInfo(QString file,int i)
+{
+    QString filename = ui.listContents->topLevelItem(i)->data(0,LinkRole).toString().remove("file:");
+    QString string = exportChapter(filename,ui.listContents->topLevelItem(i)->childCount(),false);
+
+    QFile filebibleqt(file);
+    if(!filebibleqt.open(QIODevice::Append))
+    {
+            qDebug() << "Error write";
+    }
+    else
+    {
+        filebibleqt.write(QString("%1").arg(string).toUtf8());
+    }
+    filebibleqt.close();
+    qDebug() << string;
+
 }
 
 QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
@@ -2522,6 +2541,38 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                 str.replace(title,chapter);
             }
 
+            QRegExp rx("<[^>]*>");
+
+
+
+            QRegExp rx2("(\\d+)");
+            QString str2 = "Offsets: 12 14 99 231 7";
+            QStringList list2;
+            int pos = 0;
+
+            while ((pos = rx.indexIn(str, pos)) != -1) {
+                list2 << rx.cap(1);
+                pos += rx.matchedLength();
+                qDebug() << rx.cap(1);
+            }
+//            rx.indexIn(str);
+
+//            indexEdit->setText(QString::number(rx.indexIn(text)));
+//            matchedLengthEdit->setText(QString::number(rx.matchedLength()));
+//            for (int i = 0; i < MaxCaptures; ++i) {
+//                captureLabels[i]->setEnabled(i <= rx.captureCount());
+//                captureEdits[i]->setEnabled(i <= rx.captureCount());
+//                captureEdits[i]->setText(rx.cap(i));
+//            }
+
+
+            qDebug() << " str";
+            qDebug() << str;
+            qDebug() << " list2";
+            qDebug() << list2;
+
+
+
             str.remove("<title>1</title>");
             str.remove("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">");
             str.remove("<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
@@ -2549,14 +2600,6 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
 void HelpDialog::exportBibleBook(QString filenamebook, int i)
 {
 
-//    QString str = "=1234567:1111111=2222222=3333333";
-//    QStringList lst = QString(str).replace(QRegExp("(\\=|\\:)"), ",\\1")
-//                                  .split(",", QString::SkipEmptyParts);
-//    qDebug() << lst;
-
-
-
-
     QFile filebook(filenamebook);
     filebook.remove();
     if(!filebook.open(QIODevice::Append))
@@ -2571,7 +2614,7 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
             QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
             filebook.write(QString("%1").arg(exportChapter(filenamechapter,ui.listContents->topLevelItem(i)->childCount()-j,true)).toUtf8());
         }
-        filebook.write(QString("</body>\n</html>").toUtf8());
+        filebook.write(QString("\n</body>\n</html>").toUtf8());
     }
     filebook.close();
 }
@@ -2581,34 +2624,16 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
 
 void HelpDialog::exportModule()
 {
-    //qDebug() << "WOoooOW";
     QString fileBibleqtName = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
-
     QString curdir = QString(fileBibleqtName.replace("Bibleqt.ini",""));
     exportCreateDir(curdir);
     exportBibleqtIni(QString("%1export/bibleqt.ini").arg(curdir));
 
-    QFile file(QString("%1export/bibleqt.ini").arg(curdir));
-
-    QString string;
     for (int i = 1; i < ui.listContents->topLevelItemCount(); ++i)  //0 это Bibleqt.ini
     {
         QString filename = ui.listContents->topLevelItem(i)->data(0, LinkRole).toString().remove("file:");
         filename = curdir+"export/"+filename.split("/").last();
-
-        string = exportChapter(filename,ui.listContents->topLevelItem(i)->childCount(),false);
-
-        if(!file.open(QIODevice::Append)){
-            qDebug() << "Error write";
-        }
-        else
-        {
-            file.write(QString("%1").arg(string).toUtf8());
-        }
-        file.close();
-
-        qDebug() << string;
-
+        exportBibleqtIniInfo(QString("%1export/bibleqt.ini").arg(curdir),i);
         exportBibleBook(filename, i);
     }
 }
