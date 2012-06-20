@@ -49,11 +49,11 @@ int main( int argc, char ** argv )
     conf->setCacheDir(conf->AppDir() + "cache/");
 	conf->setImgDir(conf->AppDir() + "images/");
 	conf->setPrjDir(conf->AppDir() + "projects/");
-	conf->setIniFile(conf->AppDir() + "ra.ini");
+        conf->setIniFile(conf->AppDir() + "project.ini");
 	conf->setErrPage(conf->AppDir() + "last-error.html");
-	conf->setAppLogFN(conf->AppDir() + "log/ra.log");
+        conf->setAppLogFN(conf->AppDir() + "log/project.log");
 	toLog(conf->AppLogFN(), "-------");
-	toLog(conf->AppLogFN(), "Research Assitant started.");
+        toLog(conf->AppLogFN(), "Project started.");
 	conf->loadSettings();
 	conf->loadProject(conf->CurProject());
 	

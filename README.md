@@ -1,3 +1,5 @@
 project
 =======
-using RA for begin
+
+Для начальной разработки была взяты сорцы http://sourceforge.net/projects/rassistant/
+

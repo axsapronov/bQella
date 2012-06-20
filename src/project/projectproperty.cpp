@@ -42,7 +42,7 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 void ProjectProperties::chooseProjectFineName()
 {//warmonger
 	QString fn = QFileDialog::getSaveFileName(this, tr("Choose project name"),
-                               Config::configuration()->PrjDir(), tr("Research Assistant Project (*.rap);;All Files (*)"));
+                               Config::configuration()->PrjDir(), tr("Project Project (*.pp);;All Files (*)"));
     if (!fn.isEmpty()){
     	QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 

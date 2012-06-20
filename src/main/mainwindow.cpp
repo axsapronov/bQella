@@ -55,7 +55,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 
 //-------------------------------------------------
 MainWindow::MainWindow():
-        m_gui_About(new GUIAbout(this))
+    m_gui_About(new GUIAbout(this))
 {
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
@@ -68,7 +68,7 @@ MainWindow::MainWindow():
     setupCompleted = false;
 
     goActions = QList<QAction*>();
-//    goActionDocFiles = new QMap<QAction*,QString>;
+    //    goActionDocFiles = new QMap<QAction*,QString>;
     
     windows.append(this);
     tabs = new TabbedBrowser(this);
@@ -101,7 +101,7 @@ MainWindow::MainWindow():
     setMenuSign(config->DefaultSignatureID());
     connect(prjsrc, SIGNAL(updateSigns()), this, SLOT(setMenuSign()));
     connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
-							 
+
     // read geometry configuration
     //setupGoActions();
 
@@ -116,19 +116,10 @@ MainWindow::MainWindow():
     
     if (config->Lang() == "Russian"){
     	setLangRu();
-   	}
-
-
+    }
 
     //выключаем ненужный функционал
     ui.actionInsertImage->setVisible(!ui.actionInsertImage->isVisible());
-
-
-
-
-
-
-
 
 }
 
@@ -136,7 +127,7 @@ MainWindow::MainWindow():
 MainWindow::~MainWindow()
 {
     windows.removeAll(this);
-//    delete goActionDocFiles;
+    //    delete goActionDocFiles;
 }
 
 //-------------------------------------------------
@@ -148,8 +139,8 @@ void MainWindow::setup()
     qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar()->showMessage(tr("Initializing %1...").arg(GL_Prog_Name));
     helpDock->initialize();
-//    connect(ui.actionGoPrevious, SIGNAL(triggered()), tabs, SLOT(backward()));
-//    connect(ui.actionGoNext, SIGNAL(triggered()), tabs, SLOT(forward()));
+    //    connect(ui.actionGoPrevious, SIGNAL(triggered()), tabs, SLOT(backward()));
+    //    connect(ui.actionGoNext, SIGNAL(triggered()), tabs, SLOT(forward()));
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -172,37 +163,24 @@ void MainWindow::setup()
 
     connect(ui.actionExport_Module, SIGNAL(triggered()), helpDock, SLOT(exportModule()));
 
-
-
-
     // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
     connect(ui.actionHyperlink, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(showLinkProperties()));
     connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
 
-	// Menu Format
+    // Menu Format
     connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
     //connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
     
-	// Menu Table
-	// defined in HelpWindow.cpp
-	
-	// Menu View
-
-
-    
-	// Menu Tabs
+    // Menu Tabs
     connect(ui.actionOpenPage,  SIGNAL(triggered()), tabs, SLOT(newTab()));
     connect(ui.actionClosePage, SIGNAL(triggered()), tabs, SLOT(closeTab()));
     connect(ui.actionNextPage,  SIGNAL(triggered()), tabs, SLOT(nextTab()));
     connect(ui.actionPrevPage,  SIGNAL(triggered()), tabs, SLOT(previousTab()));
 
-        // Menu Bookmarks
-    connect(ui.actionAddBookmark, SIGNAL(triggered()), helpDock, SLOT(addBookmark()));
-    connect(ui.menuBookmarks, SIGNAL(triggered(QAction*)), this, SLOT(showBookmark(QAction*)));
 
     // Menu Language
     connect(ui.actionLang_en, SIGNAL(triggered()), this, SLOT(setLangEn()) );
@@ -214,8 +192,6 @@ void MainWindow::setup()
     connect(new QShortcut(tr("Ctrl+Shift+Insert"), this), SIGNAL(activated()), this, SLOT(globalShortcut_CtrlShiftInsert()));//!+! move to browsers()->currentBrowser()
 
     Config *config = Config::configuration();
-
-    setupBookmarkMenu();
 
     QAction *viewsAction = createPopupMenu()->menuAction();
     viewsAction->setText(tr("Toolbars & panels"));
@@ -236,12 +212,12 @@ void MainWindow::setup()
     QObject::connect(ui.actionEditFindPrev, SIGNAL(triggered()), tabs, SLOT(findPrevious()));
 
     qApp->restoreOverrideCursor();
-//    ui.actionGoPrevious->setEnabled(false);
-//    ui.actionGoNext->setEnabled(false);
-//    ui.actionEditCopy->setEnabled(false);
-//    connect(tabs->currentBrowser(), SIGNAL(copyAvailable(bool)), this, SLOT(copyAvailable(bool)));
+    //    ui.actionGoPrevious->setEnabled(false);
+    //    ui.actionGoNext->setEnabled(false);
+    //    ui.actionEditCopy->setEnabled(false);
+    //    connect(tabs->currentBrowser(), SIGNAL(copyAvailable(bool)), this, SLOT(copyAvailable(bool)));
 
-	//apply settings
+    //apply settings
     appsets->set();
     appsets->apply();
 
@@ -255,7 +231,7 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::browserTabChanged()
 {
-/*    if (tabs->currentBrowser()) {
+    /*    if (tabs->currentBrowser()) {
         ui.actionGoPrevious->setEnabled(tabs->currentBrowser()->isBackwardAvailable());
         ui.actionGoNext->setEnabled(tabs->currentBrowser()->isForwardAvailable());
     }*/
@@ -291,7 +267,7 @@ bool MainWindow::insertActionSeparator()
 //-------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *e)
 {
-	qDebug()<< "closeEvent()";
+    qDebug()<< "closeEvent()";
     saveSettings();
     e->accept();
 }
@@ -355,40 +331,6 @@ void MainWindow::on_actionFilePrint_triggered()
 }
 
 //-------------------------------------------------
-void MainWindow::updateBookmarkMenu()
-{
-    for(QList<MainWindow*>::Iterator it = windows.begin(); it != windows.end(); ++it)
-        (*it)->setupBookmarkMenu();
-}
-
-//-------------------------------------------------
-void MainWindow::setupBookmarkMenu()
-{
-    ui.menuBookmarks->clear();
-    bookmarks.clear();
-    ui.menuBookmarks->addAction(ui.actionAddBookmark);
-
-    QFile f(Config::configuration()->CacheDir() + QDir::separator() + QLatin1String("bookmarks.") + Config::configuration()->profileName());
-    if (!f.open(QFile::ReadOnly))
-        return;
-    QTextStream ts(&f);
-    ui.menuBookmarks->addSeparator();
-    while (!ts.atEnd()) {
-        QString title = ts.readLine();
-        QString link = ts.readLine();
-        link = urlifyFileName( absolutifyFileName(link, Config::configuration()->CacheDir()) );
-        bookmarks.insert(ui.menuBookmarks->addAction(title), link);
-    }
-}
-
-//-------------------------------------------------
-void MainWindow::showBookmark(QAction *action)
-{
-    if (bookmarks.contains(action))
-        showLink(bookmarks.value(action));
-}
-
-//-------------------------------------------------
 void MainWindow::showLinkFromClient(const QString &link)
 {
     setWindowState(windowState() & ~Qt::WindowMinimized);
@@ -404,22 +346,22 @@ void MainWindow::showLinkFromClient(const QString &link)
 // open link in active tab. Link should be in format file://<absolute path>/filename.html
 void MainWindow::showLink(const QString &link)
 {
-	QString lnk = unurlifyFileName(link);
-	QFileInfo fi(lnk);
+    QString lnk = unurlifyFileName(link);
+    QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){    	
     	// don't open a new tab for the same url more then once
     	if (link == tabs->currentBrowser()->source().toString())
     	    return;
     	if (ui.actionSaveFile->isEnabled()) //i.e. document was modified
-		    emit saveOpenedLink();
+            emit saveOpenedLink();
     	QUrl url(link);
         //qDebug() << "down!";
         tabs->setSource(url.toString()); // w
         tabs->currentBrowser()->setFocus();
-	}else{
-   	   qWarning() << "Failed to open link: " << link;
-           QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
-	}
+    }else{
+        qWarning() << "Failed to open link: " << link;
+        QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
+    }
 }
 
 //-------------------------------------------------
@@ -446,7 +388,7 @@ void MainWindow::showLinks(const QStringList &links)
         tabs->setAppTitle(tabs->currentBrowser(), tr("..."));
     }
     ++it;
-	
+
     while(it != links.end()) {
         QPair<HelpWindow*, QString> browser;
         browser.first = tabs->newBackgroundTab();
@@ -505,7 +447,7 @@ MainWindow* MainWindow::newWindow()
         mw->showMaximized();
     else
         mw->show();
-//    mw->on_actionGoHome_triggered();
+    //    mw->on_actionGoHome_triggered();
     return mw;
 }
 
@@ -513,7 +455,7 @@ MainWindow* MainWindow::newWindow()
 void MainWindow::saveSettings()
 {
     Config *config = Config::configuration();
-qDebug() << "src = start to save settings";
+    qDebug() << "src = start to save settings";
     config->setSideBarPage(helpDock->tabWidget()->currentIndex());
     config->setWindowGeometry(saveGeometry());
     config->setMainWindowState(saveState());
@@ -615,7 +557,7 @@ void MainWindow::updateProfileSettings()
 {
     Config *config = Config::configuration();
 
-/*	#ifndef Q_WS_MAC
+    /*	#ifndef Q_WS_MAC
     setWindowIcon(config->applicationIcon());
 #endif 
     ui.helpMenu->clear();
@@ -631,7 +573,7 @@ void MainWindow::updateProfileSettings()
 void MainWindow::setupPopupMenu(QMenu *m)
 {
     m->addMenu(menuSign);
-	m->addSeparator();
+    m->addSeparator();
     m->addAction(ui.actionNewWindow);
     m->addAction(ui.actionOpenPage);
     m->addAction(ui.actionClosePage);
@@ -649,42 +591,42 @@ void MainWindow::setupPopupMenu(QMenu *m)
 //-------------------------------------------------
 void MainWindow::ProjectOpen()
 {//warmongeR
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration()->PrjDir(), 
-						tr("Research Assistant Projects (*.rap)")); 
-	if (!fileName.isEmpty()){
-		ProjectOpen(fileName);
-	}
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration()->PrjDir(),
+                                                    tr("Project Projects (*.pp)"));
+    if (!fileName.isEmpty()){
+        ProjectOpen(fileName);
+    }
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectOpen(QString fileName)
 {
-	if (!fileName.isEmpty()){
-		//Config::configuration()->toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
-		browsers()->currentBrowser()->fileSave();
-		prjsrc->closeDb();
-		Config::configuration()->loadProject(fileName);
-		helpDock->enableProjectButtons();
-		helpDock->initTabs();
-		browsers()->closeAllTabs();
-		helpDock->insertContents();
-		//Config::configuration()->toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration()->CurFile()));
+    if (!fileName.isEmpty()){
+        //Config::configuration()->toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
+        browsers()->currentBrowser()->fileSave();
+        prjsrc->closeDb();
+        Config::configuration()->loadProject(fileName);
+        helpDock->enableProjectButtons();
+        helpDock->initTabs();
+        browsers()->closeAllTabs();
+        helpDock->insertContents();
+        //Config::configuration()->toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration()->CurFile()));
     	showLink(urlifyFileName(Config::configuration()->CurFile()));
     	projectModified(false);
     	Config::configuration()->toPrjLog(1, "-------");
-		Config::configuration()->toPrjLog(1, tr("Project is opened.", "For log"));
-	}
+        Config::configuration()->toPrjLog(1, tr("Project is opened.", "For log"));
+    }
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {//warmonger
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Research Assistant Projects (*.rap)")); 
-	if ( !fileName.isEmpty() ){
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Research Assistant Projects (*.rap)"));
+    if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_Project_File);
-		helpDock->saveProject(fileName);
-	}
+        helpDock->saveProject(fileName);
+    }
 }
 
 
@@ -722,7 +664,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
         return;
 
     QFile file(fileName);
-	//qDebug() << "opening file on_actionSaveFileAs_triggered: " << fileName;
+    //qDebug() << "opening file on_actionSaveFileAs_triggered: " << fileName;
     if (!file.open(QIODevice::WriteOnly)) {
         QMessageBox::critical(this, tr("Save Page"), tr("Cannot open file for writing!"));
         return;
@@ -760,13 +702,13 @@ void MainWindow::on_actionSaveFileAs_triggered()
                         QFileInfo info(from);
                         if (info.exists()) {
                             if (!QFile::copy(from, destDir.absolutePath()
-                                + QDir::separator() + destName))
+                                             + QDir::separator() + destName))
                                 continue;
                             fm.setName(QLatin1String("./") + relativeDestPath + QLatin1String("/") + destName);
                             QTextCursor cursor(doc);
                             cursor.setPosition(fragment.position());
                             cursor.setPosition(fragment.position() + fragment.length(),
-                                QTextCursor::KeepAnchor);
+                                               QTextCursor::KeepAnchor);
                             cursor.setCharFormat(fm);
                         }
                     }
@@ -817,9 +759,9 @@ void MainWindow::updateAppFont(FontSettings settings)
 //-------------------------------------------------
 void MainWindow::exitApp()
 {
-	browsers()->currentBrowser()->fileSave();
-	helpDock->saveProject();
-	qApp->closeAllWindows();	
+    browsers()->currentBrowser()->fileSave();
+    helpDock->saveProject();
+    qApp->closeAllWindows();
 }
 
 //-------------------------------------------------
@@ -834,67 +776,67 @@ void MainWindow::ProjectNew()
     QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
 
     QString fn = QFileDialog::getExistingDirectory(this,
-                                tr("Select folder for new project"),
-                                Config::configuration()->PrjDir(),
-                                options);
+                                                   tr("Select folder for new project"),
+                                                   Config::configuration()->PrjDir(),
+                                                   options);
 
     if (!fn.isEmpty()){
-                QFileInfo fi(fn);
+        QFileInfo fi(fn);
         /*if (fi.suffix().isEmpty())
                 fn += GL_Project_File;*/
         QString sp = fi.absolutePath();
     	bool newProject = true;
-                fn.append("/");
-		prjprop->setProperties(tr("New Project","Default project name"), fn, sp, newProject);
-		prjprop->show();
-	}
+        fn.append("/");
+        prjprop->setProperties(tr("New Project","Default project name"), fn, sp, newProject);
+        prjprop->show();
+    }
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectNewDiary()
 {
-	ProjectNew();
-	helpDock->dialogAutoItems->activateTab(0);
-	helpDock->dialogAutoItems->CreateItems();
-	helpDock->dialogAutoItems->show();	
+    ProjectNew();
+    helpDock->dialogAutoItems->activateTab(0);
+    helpDock->dialogAutoItems->CreateItems();
+    helpDock->dialogAutoItems->show();
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectNewNotebook()
 {
-	ProjectNew();
-	helpDock->dialogAutoItems->activateTab(1);
-	helpDock->dialogAutoItems->setCounterType(3);
-	helpDock->dialogAutoItems->setMaxCounter();
-	helpDock->dialogAutoItems->CreateItems();
-	helpDock->dialogAutoItems->show();
+    ProjectNew();
+    helpDock->dialogAutoItems->activateTab(1);
+    helpDock->dialogAutoItems->setCounterType(3);
+    helpDock->dialogAutoItems->setMaxCounter();
+    helpDock->dialogAutoItems->CreateItems();
+    helpDock->dialogAutoItems->show();
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectProps()
 {
-	QString  t = Config::configuration()->profile()->props["title"];
-	QString sp = Config::configuration()->profile()->props["startpage"];
-   	bool newProject = false;
+    QString  t = Config::configuration()->profile()->props["title"];
+    QString sp = Config::configuration()->profile()->props["startpage"];
+    bool newProject = false;
 
-	prjprop->setProperties(t,Config::configuration()->CurProject(), sp, newProject);
-	prjprop->show();	
+    prjprop->setProperties(t,Config::configuration()->CurProject(), sp, newProject);
+    prjprop->show();
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectSrc()
 {
-	prjsrc->show();	
+    prjsrc->show();
 }
 
 //-------------------------------------------------
 void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStartPage)
 { 
-	QString ind1="   ";
-	QString fn = unurlifyFileName(prjFN);
-	Config::configuration()->toAppLog(1, tr("Create a new project: %1", "For log").arg(prjTitle));
-	Config::configuration()->toAppLog(3, tr("- project file: %1", "For log").arg(fn));
-	QFile f(fn);
+    QString ind1="   ";
+    QString fn = unurlifyFileName(prjFN);
+    Config::configuration()->toAppLog(1, tr("Create a new project: %1", "For log").arg(prjTitle));
+    Config::configuration()->toAppLog(3, tr("- project file: %1", "For log").arg(fn));
+    QFile f(fn);
     if (!f.open(QFile::WriteOnly)){
     	qDebug() << "Failed to create project: " << fn;
     	statusBar()->showMessage(tr("Failed to create project: %1").arg(fn), 7000);
@@ -903,31 +845,31 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     }
 
 
-	Config::configuration()->toAppLog(3, tr("- project start page: %1", "For log").arg(prjStartPage));
-	QFileInfo fi(fn);
-	QString name = fi.baseName();
-	QString path = fi.absolutePath();
-	Config::configuration()->setDbName(path +"/"+ name +"-sources.db");
-	name.remove(QChar(' '));
-	QString spFN = relatifyFileName(prjStartPage, path);
-	//fi.setFile(spFN);
-        QString spT = tr("Bibleqt.ini");//fi.baseName(); // name of first doc in project in listcontent
+    Config::configuration()->toAppLog(3, tr("- project start page: %1", "For log").arg(prjStartPage));
+    QFileInfo fi(fn);
+    QString name = fi.baseName();
+    QString path = fi.absolutePath();
+    Config::configuration()->setDbName(path +"/"+ name +"-sources.db");
+    name.remove(QChar(' '));
+    QString spFN = relatifyFileName(prjStartPage, path);
+    //fi.setFile(spFN);
+    QString spT = tr("Bibleqt.ini");//fi.baseName(); // name of first doc in project in listcontent
     QTextStream ts(&f);
-	ts.setCodec("UTF-8");
-	ts << "<raproject version=\"1.0\">" << endl << endl;
-   	
-   	ts << "<profile>" << endl;
-	ts << ind1 << "<property name=\"title\">" << Qt::escape(prjTitle) << "</property>" << endl;
-	ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
-	ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
+    ts.setCodec("UTF-8");
+    ts << "<raproject version=\"1.0\">" << endl << endl;
+
+    ts << "<profile>" << endl;
+    ts << ind1 << "<property name=\"title\">" << Qt::escape(prjTitle) << "</property>" << endl;
+    ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
+    ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
     ts << "</profile>" << endl << endl;
-	
-	ts << "<contents>" << endl;
-	ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
-	ts << ind1 << "</section>" << endl;
-	ts << "</contents>" << endl << endl;
-	
-	ts << "</raproject>" << endl;
+
+    ts << "<contents>" << endl;
+    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
+    ts << ind1 << "</section>" << endl;
+    ts << "</contents>" << endl << endl;
+
+    ts << "</raproject>" << endl;
     f.close();
 
     Config::configuration()->toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration()->DbName()));
@@ -943,18 +885,18 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
 //-------------------------------------------------
 void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage)
 {
-	QString p = unurlifyFileName(prjFN);
-	QFileInfo fi(p);
-	Config::configuration()->toPrjLog(1, tr("Update project properties:", "For log"));
-	Config::configuration()->toPrjLog(3, tr("- title      = %1", "For log").arg(prjTitle));
-	Config::configuration()->toPrjLog(3, tr("- file name  = %1", "For log").arg(prjFN));
-	Config::configuration()->toPrjLog(3, tr("- start page = %1", "For log").arg(prjStartPage));
+    QString p = unurlifyFileName(prjFN);
+    QFileInfo fi(p);
+    Config::configuration()->toPrjLog(1, tr("Update project properties:", "For log"));
+    Config::configuration()->toPrjLog(3, tr("- title      = %1", "For log").arg(prjTitle));
+    Config::configuration()->toPrjLog(3, tr("- file name  = %1", "For log").arg(prjFN));
+    Config::configuration()->toPrjLog(3, tr("- start page = %1", "For log").arg(prjStartPage));
 
-	Config::configuration()->profile()->addProperty("title", prjTitle); 
-	Config::configuration()->profile()->addProperty("startpage", prjStartPage);
-	Config::configuration()->setCurProject(p);
-	Config::configuration()->setCurPrjDir(fi.absolutePath());
-	Config::configuration()->setCurPrjSrc();
+    Config::configuration()->profile()->addProperty("title", prjTitle);
+    Config::configuration()->profile()->addProperty("startpage", prjStartPage);
+    Config::configuration()->setCurProject(p);
+    Config::configuration()->setCurPrjDir(fi.absolutePath());
+    Config::configuration()->setCurPrjSrc();
     Config::configuration()->toPrjLog(1, tr("- done", "For log"));    
     //включить после отладки
     prjsrc->loadSources();	
@@ -963,39 +905,39 @@ void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QStrin
 //-------------------------------------------------
 void MainWindow::setLangEn()
 {
-	ui.actionLang_en->setChecked(true);
-	ui.actionLang_ru->setChecked(false);
-	Config::configuration()->setLang("English");	
-	msgReloadRequest();	
+    ui.actionLang_en->setChecked(true);
+    ui.actionLang_ru->setChecked(false);
+    Config::configuration()->setLang("English");
+    msgReloadRequest();
 }
 
 //-------------------------------------------------
 void MainWindow::setLangRu()
 {
-	ui.actionLang_en->setChecked(false);
-	ui.actionLang_ru->setChecked(true);
-	Config::configuration()->setLang("Russian");		
-	msgReloadRequest();
+    ui.actionLang_en->setChecked(false);
+    ui.actionLang_ru->setChecked(true);
+    Config::configuration()->setLang("Russian");
+    msgReloadRequest();
 }
 
 //-------------------------------------------------
 void MainWindow::msgReloadRequest()
 {	
-	if (setupCompleted)
-		QMessageBox::warning(this, tr("Reload application"), tr("Changes will be applied after application reload.", "Append this warning in English after translation"));
+    if (setupCompleted)
+        QMessageBox::warning(this, tr("Reload application"), tr("Changes will be applied after application reload.", "Append this warning in English after translation"));
 }
 
 //-------------------------------------------------
 void MainWindow::showAppSettings()
 {
-	appsets->show();	
+    appsets->show();
 }
 
 //-------------------------------------------------
 void MainWindow::OpenInExternalApplication(QString app, QString FileName)
 {
-	QString fn = unurlifyFileName(FileName);
-	QProcess *extApp = new QProcess(this);
+    QString fn = unurlifyFileName(FileName);
+    QProcess *extApp = new QProcess(this);
     QStringList arguments;
     arguments << fn;
     extApp->start(app, arguments);  
@@ -1012,70 +954,70 @@ void  MainWindow::setMenuSign()
 //Set up popup menu of signatures
 void  MainWindow::setMenuSign(int defaultSignIndex)
 {
-	menuSign->clear();
-	QString strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(0)).toPlainText();
-	QAction *actionSign = new QAction(this);
-	actionSign->setText(strSign);
-	actionSign->setData("0");
-	//QKeySequence shortcut = QKeySequence(Qt::CTRL + Qt::Key_H); //did not work here, so moved to global scope in MainWindow::setup(), may be uncomment for hint in menu
-	//actionSign->setShortcut(shortcut);
+    menuSign->clear();
+    QString strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(0)).toPlainText();
+    QAction *actionSign = new QAction(this);
+    actionSign->setText(strSign);
+    actionSign->setData("0");
+    //QKeySequence shortcut = QKeySequence(Qt::CTRL + Qt::Key_H); //did not work here, so moved to global scope in MainWindow::setup(), may be uncomment for hint in menu
+    //actionSign->setShortcut(shortcut);
     menuSign->addAction(actionSign);
     menuSign->setDefaultAction(actionSign);
     
     menuSign->addSeparator();
     int n = prjsrc->signList().count();	//!+! Runtime error if trying to get last sign in the list, which = .count() +1
     qDebug() << "menuSign n = " << n; 
-	for (int i=1; i<n; i++){
-		strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(i)).toPlainText();
-		actionSign = new QAction(this);
-		actionSign->setText(strSign);
-		actionSign->setData(i);
+    for (int i=1; i<n; i++){
+        strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(i)).toPlainText();
+        actionSign = new QAction(this);
+        actionSign->setText(strSign);
+        actionSign->setData(i);
     	menuSign->addAction(actionSign);
-	}
+    }
 }
 
 //-------------------------------------------------
 void MainWindow::insertSignature(QAction *a)
 {
-	int signIndex = a->data().toInt();
-	QString signature = prjsrc->signList().at(signIndex);
-	browsers()->currentBrowser()->insertRichText(signature);
+    int signIndex = a->data().toInt();
+    QString signature = prjsrc->signList().at(signIndex);
+    browsers()->currentBrowser()->insertRichText(signature);
 }
 
 //-------------------------------------------------
 void MainWindow::insertDefaultSignature()
 {
-	//Config *config = Config::configuration();
-	//int signIndex = config->DefaultSignatureID();
-	QString signature = prjsrc->signList().at(0);
-	browsers()->currentBrowser()->insertRichText(signature);
+    //Config *config = Config::configuration();
+    //int signIndex = config->DefaultSignatureID();
+    QString signature = prjsrc->signList().at(0);
+    browsers()->currentBrowser()->insertRichText(signature);
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectBackup()
 {
-	QDateTime dt = QDateTime::currentDateTime();
-	QString archiveFN = Config::configuration()->BackupDir() + "/" + Config::configuration()->profileName()+ dt.toString(" yyyy-MM-dd-hh-mm")+ ".7z";
-	QString cmd =	"\"" + Config::configuration()->ExternalArchiver() +"\" "+ 
-					Config::configuration()->ExternalArchiverOptions() + 
-					" \""+ archiveFN +"\" \""+
-					Config::configuration()->CurPrjDir() + "/\"";
-	QProcess *extApp = new QProcess(this);
-	extApp->start(cmd);
-	Config::configuration()->toPrjLog(1,tr("Creating backup archive: %1", "For log").arg(cmd));
-	QMessageBox::information(this, tr("Backup"), tr("Backup is in\n%1").arg(archiveFN), tr("OK"));
+    QDateTime dt = QDateTime::currentDateTime();
+    QString archiveFN = Config::configuration()->BackupDir() + "/" + Config::configuration()->profileName()+ dt.toString(" yyyy-MM-dd-hh-mm")+ ".7z";
+    QString cmd =	"\"" + Config::configuration()->ExternalArchiver() +"\" "+
+            Config::configuration()->ExternalArchiverOptions() +
+            " \""+ archiveFN +"\" \""+
+            Config::configuration()->CurPrjDir() + "/\"";
+    QProcess *extApp = new QProcess(this);
+    extApp->start(cmd);
+    Config::configuration()->toPrjLog(1,tr("Creating backup archive: %1", "For log").arg(cmd));
+    QMessageBox::information(this, tr("Backup"), tr("Backup is in\n%1").arg(archiveFN), tr("OK"));
 }
 
 //-------------------------------------------------
 void MainWindow::globalShortcut_CtrlShiftInsert()
 {
-	if (QApplication::focusWidget()->objectName() == "raWorkArea"){
-		insertDefaultSignature();		
-	}
-	
+    if (QApplication::focusWidget()->objectName() == "raWorkArea"){
+        insertDefaultSignature();
+    }
+
 }
 
 //-------------------------------------------------
 void MainWindow::projectModified(bool modified){
-	ui.actionProjectSave->setEnabled(modified);
+    ui.actionProjectSave->setEnabled(modified);
 }

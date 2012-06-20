@@ -748,7 +748,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
     quint32 fileAges = 0;
     for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it) {
         QFile file(*it);
-//        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.rap file. Should we remove 'for' cycle and docuFiles 
+//        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pp file. Should we remove 'for' cycle and docuFiles
 
         if (!file.exists()) {
             QMessageBox::warning(this, tr("Warning"),
@@ -2062,7 +2062,7 @@ void HelpDialog::saveProject(QString profileFN)
 {
 	QString str;
 	QMap<QString, QString>::iterator i;
-	//QFile f(Config::configuration()->curprjDir + QDir::separator() + Config::configuration()->profileName() + "2.rap");
+        //QFile f(Config::configuration()->curprjDir + QDir::separator() + Config::configuration()->profileName() + "2.pp");
 	QFile f(profileFN);
     if (!f.open(QFile::WriteOnly))
         return;

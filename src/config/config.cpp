@@ -72,7 +72,7 @@ void Config::loadProject(const QString &projectFileName)
         qWarning( (QLatin1String("Project does not exist: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- project does not exist: " + prjFN); 
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
-        prjFN = PrjDir() + "rahelp/rahelp.rap";
+        prjFN = PrjDir() + "rahelp/rahelp.pp";
         fi.setFile(prjFN);
         qWarning( (QLatin1String("Open RA help project instead: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- open RA help project instead: " + prjFN);

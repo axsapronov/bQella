@@ -37,7 +37,7 @@
 #define GL_Prog_Author "Alexander Sapronov"
 
 //.pjm  = project module
-#define GL_Project_File ".rap"
+#define GL_Project_File ".pp"
 #define GL_Project_Conf_File ".ini"
 
 

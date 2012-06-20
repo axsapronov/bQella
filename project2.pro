@@ -19,12 +19,13 @@ RCC_DIR     = build
 INCLUDEPATH += src/h/ \
     src/project/ \
     src/dialogs/helpdialog \
-    src/tab \
-    src/config \
-    src/settings \
     src/dialogs/about \
     src/dialogs/fontdialog \
     src/dialogs/bookdialog \
+    src/tab \
+    src/config \
+    src/settings \
+    src/main \
     src/doc
 
 
