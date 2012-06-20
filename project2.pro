@@ -18,19 +18,22 @@ RCC_DIR     = build
 
 INCLUDEPATH += src/h/ \
     src/project/ \
-    src/helpdialog \
+    src/dialogs/helpdialog \
     src/tab \
     src/config \
     src/settings \
-    src/about
+    src/dialogs/about \
+    src/dialogs/fontdialog \
+    src/dialogs/bookdialog \
+    src/doc
 
 
 FORMS += src/ui/autoitems.ui \
-     src/ui/docproperty.ui \
-     src/helpdialog/helpdialog.ui \
+     src/doc/docproperty.ui \
+     src/dialogs/helpdialog/helpdialog.ui \
      src/ui/itemproperty.ui \
      src/ui/linkproperty.ui \
-     src/ui/mainwindow.ui \
+     src/main/mainwindow.ui \
      src/project/projectproperty.ui \
      src/project/projectsources.ui \
      src/tab/tabbedbrowser.ui \
@@ -38,24 +41,24 @@ FORMS += src/ui/autoitems.ui \
      src/ui/topicchooser.ui \
      src/ui/cellsplit.ui \
      src/ui/imageproperty.ui \
-     src/ui/bookadddialog.ui \
-     src/about/guiabout.ui \
+     src/dialogs/bookdialog/bookadddialog.ui \
+     src/dialogs/about/guiabout.ui \
      src/settings/settings.ui
 
 SOURCES +=  src/project/projectproperty.cpp \
      src/project/projectsources.cpp \
      src/cpp/autoitems.cpp \
      src/config/config.cpp \
-     src/cpp/docproperty.cpp \
-     src/cpp/docuparser.cpp \
-     src/cpp/fontsettingsdialog.cpp \
-     src/helpdialog/helpdialog.cpp \
-     src/helpdialog/helpwindow.cpp \
+     src/doc/docproperty.cpp \
+     src/doc/docuparser.cpp \
+     src/dialogs/fontdialog/fontsettingsdialog.cpp \
+     src/dialogs/helpdialog/helpdialog.cpp \
+     src/dialogs/helpdialog/helpwindow.cpp \
      src/cpp/index.cpp \
      src/cpp/itemproperty.cpp \
      src/cpp/linkproperty.cpp \
-     src/cpp/main.cpp \
-     src/cpp/mainwindow.cpp \
+     src/main/main.cpp \
+     src/main/mainwindow.cpp \
      src/cpp/pcommon.cpp \
      src/cpp/profile.cpp \
      src/cpp/raedit.cpp \
@@ -66,36 +69,36 @@ SOURCES +=  src/project/projectproperty.cpp \
      src/cpp/topicchooser.cpp \
      src/cpp/cellsplit.cpp \
      src/cpp/imageproperty.cpp\
-     src/cpp/fontpanel.cpp \
-     src/cpp/bookadddialog.cpp \
-     src/about/guiabout.cpp
+     src/dialogs/fontdialog/fontpanel.cpp \
+     src/dialogs/bookdialog/bookadddialog.cpp \
+     src/dialogs/about/guiabout.cpp
 
 HEADERS += src/h/autoitems.h \
      src/config/config.h \
-     src/h/docproperty.h \
-     src/h/docuparser.h \
-     src/h/fontsettingsdialog.h \
-     src/helpdialog/helpdialog.h \
-     src/helpdialog/helpwindow.h \
+     src/doc/docproperty.h \
+     src/doc/docuparser.h \
+     src/dialogs/fontdialog/fontsettingsdialog.h \
+     src/dialogs/helpdialog/helpdialog.h \
+     src/dialogs/helpdialog/helpwindow.h \
+     src/main/mainwindow.h \
+     src/project/projectproperty.h \
+     src/project/projectsources.h \
+     src/settings/settings.h \
+     src/tab/tabbedbrowser.h \
+     src/tab/tableproperty.h \
+     src/dialogs/fontdialog/fontpanel.h \
+     src/dialogs/bookdialog/bookadddialog.h \
+     src/dialogs/about/guiabout.h \
+     src/h/topicchooser.h \
+     src/h/cellsplit.h \
+     src/h/imageproperty.h \
+     src/h/pcommon.h \
+     src/h/profile.h \
      src/h/index.h \
      src/h/itemproperty.h \
      src/h/linkproperty.h \
-     src/h/mainwindow.h \
-     src/h/pcommon.h \
-     src/h/profile.h \
-     src/project/projectproperty.h \
-     src/project/projectsources.h \
      src/h/raedit.h \
-     src/settings/settings.h \
-     src/h/srclistparser.h \
-     src/tab/tabbedbrowser.h \
-     src/tab/tableproperty.h \
-     src/h/topicchooser.h \
-     src/h/cellsplit.h \
-     src/h/imageproperty.h\
-     src/h/fontpanel.h \
-     src/h/bookadddialog.h \
-     src/about/guiabout.h
+     src/h/srclistparser.h
 
 RESOURCES += resources/ra.qrc
 TRANSLATIONS += lang/ra_rus.ts
