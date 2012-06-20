@@ -158,10 +158,10 @@ private slots:
 
    void exportModule();
 
-   QString exportTextoffile(QString filename,int i,bool chapt);
+//   QString exportTextoffile(QString filename,int i,bool chapt);
    void exportCreateDir(QString current_dir);
    void exportBibleqtIni(QString path);
-   QString exportChapter (QString filename);
+   QString exportChapter (QString filename,int i,bool chapt);
    void exportBibleBook(QString filebook,int i);
 
    void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
