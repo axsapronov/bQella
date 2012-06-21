@@ -1,5 +1,5 @@
 project
 =======
 
-Для начальной разработки была взяты сорцы http://sourceforge.net/projects/rassistant/
+Для начальной разработки были взяты сорцы http://sourceforge.net/projects/rassistant/
 

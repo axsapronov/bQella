@@ -40,9 +40,9 @@
 #include <QMap>				//for saveProject
 #include <QMessageBox>
 #include <QTranslator>
- 
+
 static Config *static_configuration = 0;
-	
+
 //-------------------------------------------------
 Config::Config()
     : profil(0), hideSidebar(false), rebuildDocs(true)
@@ -64,10 +64,10 @@ Config *Config::configuration()
 //-------------------------------------------------
 void Config::loadProject(const QString &projectFileName)
 {
-	toAppLog(2, "Load project: " + projectFileName);
-	QString prjFN = projectFileName;
-	QFileInfo fi(prjFN);
-	
+    toAppLog(2, "Load project: " + projectFileName);
+    QString prjFN = projectFileName;
+    QFileInfo fi(prjFN);
+
     if ( !(fi.exists() && fi.isFile()) ){
         qWarning( (QLatin1String("Project does not exist: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- project does not exist: " + prjFN); 
@@ -78,15 +78,15 @@ void Config::loadProject(const QString &projectFileName)
         toAppLog(2, "- open RA help project instead: " + prjFN);
     } 
     
-	setCurProject(prjFN);
-	setCurPrjDir(fi.absolutePath());
+    setCurProject(prjFN);
+    setCurPrjDir(fi.absolutePath());
     DocuParser *parser = DocuParser::createParser( prjFN );
     if (!parser) {
         qWarning( (QLatin1String("Failed to create parser for file: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- failed to create parser for file: " + prjFN);
     }
     DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
-	QFile file(prjFN);
+    QFile file(prjFN);
     parser->parse(&file);
     profil = profileParser->profile();
     if (!profil) {
@@ -94,23 +94,23 @@ void Config::loadProject(const QString &projectFileName)
         toAppLog(2, "- no profile in: " + prjFN);
     }
     profil->setDocuParser(profileParser);
-	setCurFile(profil->props["startpage"]);
-	setCurPrjSrc();
-	prjLogFN = AppDir() + "log/" + profileName() + ".log";
-	qDebug() << " curProject = " << curProject <<", curFile = " << curFile << ", sources file = " << CurPrjSrc();
-	toAppLog(2, "- loaded succesfully");
+    setCurFile(profil->props["startpage"]);
+    setCurPrjSrc();
+    prjLogFN = AppDir() + "log/" + profileName() + ".log";
+    qDebug() << " curProject = " << curProject <<", curFile = " << curFile << ", sources file = " << CurPrjSrc();
+    toAppLog(2, "- loaded succesfully");
 }
 
 //-------------------------------------------------
 void Config::loadSettings()
 {
     QSettings settings(iniFile, QSettings::IniFormat);
-	setAppLogLevel( settings.value(QLatin1String("LogLevel-Application") ).toInt() );
-	setPrjLogLevel( settings.value(QLatin1String("LogLevel-Project") ).toInt() );
-	toAppLog(2, "Load application settings");
-	
-	//miscellaneous settings 
-	lang = settings.value(QLatin1String("Language") ).toString();
+    setAppLogLevel( settings.value(QLatin1String("LogLevel-Application") ).toInt() );
+    setPrjLogLevel( settings.value(QLatin1String("LogLevel-Project") ).toInt() );
+    toAppLog(2, "Load application settings");
+
+    //miscellaneous settings
+    lang = settings.value(QLatin1String("Language") ).toString();
     src = settings.value(QLatin1String("Source") ).toStringList();
     QStringList::iterator it = src.begin();
     for (; it != src.end(); ++it) {
@@ -119,12 +119,12 @@ void Config::loadSettings()
     sideBar = settings.value(QLatin1String("SideBarPage") ).toInt();
     rebuildDocs = settings.value(QLatin1String("RebuildDocDB"), true ).toBool();
     profileFNs = settings.value(QLatin1String("Projects") ).toStringList();
-	profileFNs = absolutifyFileList(profileFNs, prjDir);	//we will load this list to widget in HelpDialog::initialize()
+    profileFNs = absolutifyFileList(profileFNs, prjDir);	//we will load this list to widget in HelpDialog::initialize()
     curProject = settings.value(QLatin1String("ActiveProject") ).toString();
     curProject = absolutifyFileName(curProject, prjDir);	 //absolutify project file path
     setContentsSortOrder(settings.value(QLatin1String("ContentsSortOrder") ).toString()); 
 
-	//window and font settings
+    //window and font settings
     winGeometry = settings.value(QLatin1String("WindowGeometry")).toByteArray();
     mainWinState = settings.value(QLatin1String("MainWindowState")).toByteArray();
     pointFntSize = settings.value(QLatin1String("FontSize"), qApp->font().pointSizeF()).toDouble();
@@ -133,9 +133,9 @@ void Config::loadSettings()
     m_fontSettings.useWindowFont = settings.value(QLatin1String("UseWindowFont"), false).toBool();
     m_fontSettings.useBrowserFont = settings.value(QLatin1String("UseBrowserFont"), false).toBool();
     m_fontSettings.windowWritingSystem = static_cast<QFontDatabase::WritingSystem>(
-        settings.value(QLatin1String("WindowWritingSystem"), QFontDatabase::Latin).toInt());
+                settings.value(QLatin1String("WindowWritingSystem"), QFontDatabase::Latin).toInt());
     m_fontSettings.browserWritingSystem = static_cast<QFontDatabase::WritingSystem>(
-        settings.value(QLatin1String("BrowserWritingSystem"), QFontDatabase::Latin).toInt());
+                settings.value(QLatin1String("BrowserWritingSystem"), QFontDatabase::Latin).toInt());
     m_fontSettings.browserFont.setPointSizeF(pointFntSize);
 
     //settings from Settings window
@@ -143,7 +143,7 @@ void Config::loadSettings()
     setShowSubItemsTitle(		settings.value(QLatin1String("ShowSubItemsTitle")).toBool() );
     setAutoCollapse(			settings.value(QLatin1String("AutoCollapse")).toBool() );
     backupDir = settings.value(QLatin1String("BackupPath") ).toString();
-	backupDir = absolutifyFileName(backupDir, prjDir);		//absolutify path to backup dir
+    backupDir = absolutifyFileName(backupDir, prjDir);		//absolutify path to backup dir
     externalEditor = settings.value(QLatin1String("ExternalEditor") ).toString();
     externalEditor = absolutifyFileName(externalEditor, prjDir); //absolutify file path to editor
     externalBrowser = settings.value(QLatin1String("ExternalBrowser") ).toString();
@@ -162,19 +162,19 @@ void Config::loadSettings()
 //-------------------------------------------------
 void Config::saveSettings()
 {
-	toAppLog(2, "Save application settings");
+    toAppLog(2, "Save application settings");
     QSettings settings(iniFile, QSettings::IniFormat);
     
-	//miscellaneous settings
-	settings.setValue(QLatin1String("Language"), lang);
-	settings.setValue(QLatin1String("Projects"), relatifyFileList(profileFNs, prjDir) );
-	settings.setValue(QLatin1String("ActiveProject"), relatifyFileName(curProject, prjDir) );
+    //miscellaneous settings
+    settings.setValue(QLatin1String("Language"), lang);
+    settings.setValue(QLatin1String("Projects"), relatifyFileList(profileFNs, prjDir) );
+    settings.setValue(QLatin1String("ActiveProject"), relatifyFileName(curProject, prjDir) );
     settings.setValue(QLatin1String("Source"),src );	 //paths relatified in MainWindow::saveSettings()
     settings.setValue(QLatin1String("SideBarPage"), sideBarPage() );
     settings.setValue(QLatin1String("RebuildDocDB"), rebuildDocs );
     settings.setValue(QLatin1String("ContentsSortOrder"), contentsSortOrder );
-    	
-	//window and font settings
+
+    //window and font settings
     settings.setValue(QLatin1String("WindowGeometry"), winGeometry);
     settings.setValue(QLatin1String("MainWindowState"), mainWinState );
     settings.setValue(QLatin1String("FontSize"), pointFntSize);
@@ -184,7 +184,7 @@ void Config::saveSettings()
     settings.setValue(QLatin1String("UseBrowserFont"), m_fontSettings.useBrowserFont);
     settings.setValue(QLatin1String("WindowWritingSystem"), m_fontSettings.windowWritingSystem);
     settings.setValue(QLatin1String("BrowserWritingSystem"), m_fontSettings.browserWritingSystem);
-     
+
     //settings from Settings window
     settings.setValue(QLatin1String("ExternalEditor"), relatifyFileName(externalEditor, prjDir) );
     settings.setValue(QLatin1String("ExternalBrowser"), relatifyFileName(externalBrowser, prjDir) );
@@ -219,11 +219,11 @@ QStringList Config::mimePaths() //where to make full search. Used only in Tabbed
 //-------------------------------------------------
 void Config::delProject(QString prj)
 {
-	int i, index=-1;
-	int n = profileFNs.count();
-	for (i=0; i<n; i++)
-		if (profileFNs[i] == prj)
-			index = i; 
+    int i, index=-1;
+    int n = profileFNs.count();
+    for (i=0; i<n; i++)
+        if (profileFNs[i] == prj)
+            index = i;
     if (index >=0)
     	profileFNs.removeAt(index);
 }
@@ -253,8 +253,8 @@ QStringList Config::source() const
 QStringList Config::docFiles() const //used in HelpDialog to build keyword DB. Earlier it used to return profil->docs
 {
     QStringList tmp;
-	tmp << curProject; //probably will need to change to something else. 
-	return tmp;
+    tmp << curProject; //probably will need to change to something else.
+    return tmp;
 }
 
 //-------------------------------------------------
@@ -266,7 +266,7 @@ bool Config::sideBarHidden() const {  return hideSidebar; }
 //-------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN) 
 {
-	QFile file(prjFN);
+    QFile file(prjFN);
     if (!file.exists()) {
         qWarning( (QLatin1String("Project does not exist: ") + prjFN).toAscii().constData() );
         toAppLog(1, "Failed to get property for project:" + prjFN);
@@ -286,36 +286,36 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
         toAppLog(1, "No profile in:" + prjFN);
         return "";
     }
-	return profil_tmp->props[prop];
+    return profil_tmp->props[prop];
 }
 
 //-------------------------------------------------
 void Config::setCurPrjSrc()	
 {
-	curPrjSrc = CurProject();
-	curPrjSrc.chop(4);
-	dbName = curPrjSrc + "-sources.db";
-	curPrjSrc = curPrjSrc + "-sources.xml";	// !+! for future XML import-export 
+    curPrjSrc = CurProject();
+    curPrjSrc.chop(4);
+    dbName = curPrjSrc + "-sources.db";
+    curPrjSrc = curPrjSrc + "-sources.xml";	// !+! for future XML import-export
 }	
 
 //-------------------------------------------------
 void Config::setFontPointSize(qreal size)
 {
-	pointFntSize = size;
-	m_fontSettings.useBrowserFont = true;
-	m_fontSettings.browserFont.setPointSizeF(size);
+    pointFntSize = size;
+    m_fontSettings.useBrowserFont = true;
+    m_fontSettings.browserFont.setPointSizeF(size);
 }
 
 //-------------------------------------------------
 void Config::toAppLog(int logLevel, QString msg)
 {
-	if (logLevel <= AppLogLevel())
-		toLog(AppLogFN() ,msg);
+    if (logLevel <= AppLogLevel())
+        toLog(AppLogFN() ,msg);
 }
 
 //-------------------------------------------------
 void Config::toPrjLog(int logLevel, QString msg)
 {
-	if (logLevel <= PrjLogLevel())
-		toLog(PrjLogFN() ,msg);
+    if (logLevel <= PrjLogLevel())
+        toLog(PrjLogFN() ,msg);
 }

@@ -47,7 +47,7 @@ struct FontSettings
 {
     FontSettings() : useWindowFont(false), useBrowserFont(false),
         windowWritingSystem(QFontDatabase::Latin), browserWritingSystem(QFontDatabase::Latin)
-        { }
+    { }
 
     QFont windowFont;
     QFont browserFont;
@@ -77,7 +77,7 @@ public:
     QStringList mimePaths();
     QString getProjectProperty(QString prop, QString prjFN); //especially for not current projects. Gets projects' property without loading.
     void toAppLog(int logLevel, QString msg);
-	void toPrjLog(int logLevel, QString msg);
+    void toPrjLog(int logLevel, QString msg);
 
 
     // From profile, read only
@@ -113,87 +113,87 @@ public:
     static Config *configuration();
     void loadProject(const QString &projectFileName);
 
-	//variables for global use via  Config::configuration()->variable()  
+    //variables for global use via  Config::configuration()->variable()
     QString AppDir()	{ return appDir; }
     QString BackupDir()	{ return backupDir; }
-	QString CacheDir()	{ return cacheDir; }	
-	QString PrjDir()	{ return prjDir; }
-	QString ImgDir()	{ return imgDir; }
-	QString CurPrjDir()	{ return curPrjDir; }
-	QString CurProject(){ return curProject; }	
-	QString CurFile()	{ return curFile; }
-	QString CurPrjSrc()	{ return curPrjSrc; }
-	QString Lang()		{ return lang; }
-	QString ErrPage()	{ return errPage; }	
-	QString IniFile()	{ return iniFile; }
-	QString DbName()	{ return dbName; }
-	QString ContentsSortOrder()	{ return contentsSortOrder; }
-	QString IndentString()	{ return "   "; }
+    QString CacheDir()	{ return cacheDir; }
+    QString PrjDir()	{ return prjDir; }
+    QString ImgDir()	{ return imgDir; }
+    QString CurPrjDir()	{ return curPrjDir; }
+    QString CurProject(){ return curProject; }
+    QString CurFile()	{ return curFile; }
+    QString CurPrjSrc()	{ return curPrjSrc; }
+    QString Lang()		{ return lang; }
+    QString ErrPage()	{ return errPage; }
+    QString IniFile()	{ return iniFile; }
+    QString DbName()	{ return dbName; }
+    QString ContentsSortOrder()	{ return contentsSortOrder; }
+    QString IndentString()	{ return "   "; }
 
-//
-        //warmonger
-        QString ModuleBiblename()  { return moduleBiblename;}
-        QString ModuleCopyright()  { return moduleCopyright;}
-        QString ModuleBibleShortName() { return moduleBibleShortName;}
+    //
+    //warmonger
+    QString ModuleBiblename()  { return moduleBiblename;}
+    QString ModuleCopyright()  { return moduleCopyright;}
+    QString ModuleBibleShortName() { return moduleBibleShortName;}
 
 
 
     void setAppDir(QString dir)		{ appDir = dir; }
     void setBackupDir(QString dir)	{ backupDir = dir; }
-	void setCacheDir(QString dir)	{ cacheDir = dir; }
-	void setPrjDir(QString dir)		{ prjDir = dir; }
-	void setImgDir(QString dir)		{ imgDir = dir; }
-	void setCurPrjDir(QString dir)	{ curPrjDir = dir; }
-	void setCurProject(QString prjFN)	{ curProject = prjFN; }	
-	void setCurFile(QString fn)		{ curFile = fn; }	
-	void setCurPrjSrc();
-	void setLang(QString lng)		{ lang = lng; }
-	void setErrPage(QString fn)		{ errPage = fn; }	
-	void setIniFile(QString fn)		{ iniFile = fn; }
-	void setDbName(QString fn)		{ dbName = fn; }
-	void setContentsSortOrder(QString order)	{ contentsSortOrder = order; }
+    void setCacheDir(QString dir)	{ cacheDir = dir; }
+    void setPrjDir(QString dir)		{ prjDir = dir; }
+    void setImgDir(QString dir)		{ imgDir = dir; }
+    void setCurPrjDir(QString dir)	{ curPrjDir = dir; }
+    void setCurProject(QString prjFN)	{ curProject = prjFN; }
+    void setCurFile(QString fn)		{ curFile = fn; }
+    void setCurPrjSrc();
+    void setLang(QString lng)		{ lang = lng; }
+    void setErrPage(QString fn)		{ errPage = fn; }
+    void setIniFile(QString fn)		{ iniFile = fn; }
+    void setDbName(QString fn)		{ dbName = fn; }
+    void setContentsSortOrder(QString order)	{ contentsSortOrder = order; }
 
-        //warmonger
-        void setModuleBiblename(QString fn)   { moduleBiblename = fn; }
-        void setModuleCopyright(QString fn)   { moduleCopyright = fn; }
-        void setModuleBibleShortName(QString fn)    { moduleBibleShortName = fn; }
-
-
+    //warmonger
+    void setModuleBiblename(QString fn)   { moduleBiblename = fn; }
+    void setModuleCopyright(QString fn)   { moduleCopyright = fn; }
+    void setModuleBibleShortName(QString fn)    { moduleBibleShortName = fn; }
 
 
-	//variables from Settings window
-	QString AppLogFN()	{ return appLogFN; }
-	QString PrjLogFN()	{ return prjLogFN; }
-	int AppLogLevel()	{ return appLogLevel; }
-	int PrjLogLevel()	{ return prjLogLevel; }
-	QString ExternalEditor()	{ return externalEditor; }
-	QString ExternalBrowser()	{ return externalBrowser; }
-	QString ExternalArchiver()	{ return externalArchiver; }
-	QString ExternalArchiverOptions()	{ return externalArchiverOptions; }
-	bool ContentsAdditionalView()	{ return contentsAdditionalView; }
-	bool ShowSubItemsTitle()		{ return showSubItemsTitle; }
-	bool AutoCollapse()				{ return autoCollapse; }
-	bool ItemAutoProperties()		{ return itemAutoProperties; }
 
-	void setAppLogFN(QString fn)	{ appLogFN = fn; }
-	void setAppLogLevel(int n)		{ appLogLevel = n; }
-	void setPrjLogLevel(int n)		{ prjLogLevel = n; }
-	void setItemAutoProperties(bool b)	{ itemAutoProperties = b; }
-	void setExternalEditor(QString fn)	{ externalEditor = fn; }
-	void setExternalBrowser(QString fn)	{ externalBrowser = fn; }
-	void setExternalArchiver(QString fn){ externalArchiver = fn; }
-	void setExternalArchiverOptions(QString opts)	{ externalArchiverOptions = opts; }
-	
-	//variables from Signature window
-	int DefaultSignatureID()	{ return defaultSignatureID; }
 
-	void setDefaultSignatureID(int id)	{ defaultSignatureID = id; }
-   	
+    //variables from Settings window
+    QString AppLogFN()	{ return appLogFN; }
+    QString PrjLogFN()	{ return prjLogFN; }
+    int AppLogLevel()	{ return appLogLevel; }
+    int PrjLogLevel()	{ return prjLogLevel; }
+    QString ExternalEditor()	{ return externalEditor; }
+    QString ExternalBrowser()	{ return externalBrowser; }
+    QString ExternalArchiver()	{ return externalArchiver; }
+    QString ExternalArchiverOptions()	{ return externalArchiverOptions; }
+    bool ContentsAdditionalView()	{ return contentsAdditionalView; }
+    bool ShowSubItemsTitle()		{ return showSubItemsTitle; }
+    bool AutoCollapse()				{ return autoCollapse; }
+    bool ItemAutoProperties()		{ return itemAutoProperties; }
+
+    void setAppLogFN(QString fn)	{ appLogFN = fn; }
+    void setAppLogLevel(int n)		{ appLogLevel = n; }
+    void setPrjLogLevel(int n)		{ prjLogLevel = n; }
+    void setItemAutoProperties(bool b)	{ itemAutoProperties = b; }
+    void setExternalEditor(QString fn)	{ externalEditor = fn; }
+    void setExternalBrowser(QString fn)	{ externalBrowser = fn; }
+    void setExternalArchiver(QString fn){ externalArchiver = fn; }
+    void setExternalArchiverOptions(QString opts)	{ externalArchiverOptions = opts; }
+
+    //variables from Signature window
+    int DefaultSignatureID()	{ return defaultSignatureID; }
+
+    void setDefaultSignatureID(int id)	{ defaultSignatureID = id; }
+
 public slots:
-	void setContentsAdditionalView(bool checked)	{ contentsAdditionalView = checked; } 
-	void setShowSubItemsTitle(bool checked)			{ showSubItemsTitle = checked; }
-	void setAutoCollapse(bool checked)				{ autoCollapse = checked; }
-	
+    void setContentsAdditionalView(bool checked)	{ contentsAdditionalView = checked; }
+    void setShowSubItemsTitle(bool checked)			{ showSubItemsTitle = checked; }
+    void setAutoCollapse(bool checked)				{ autoCollapse = checked; }
+
 private:
     Config( const Config &c );
     Config& operator=( const Config &c );
@@ -212,43 +212,43 @@ private:
     bool hideSidebar;
     bool rebuildDocs;
     FontSettings m_fontSettings;
-	
-	//variables for global use via  Config::configuration()->variable()
-	QString appDir;
-	QString backupDir;
-	QString cacheDir;	//path for cache
-	QString prjDir;
-	QString imgDir;
-	QString curPrjDir;
-	QString curProject;	// current project file name *.rap
-	QString curFile;	// opened file. We need this to save any changes automaticly
-	QString curPrjSrc;
-	QString lang;
-	QString errPage;	// html file to output application errors
-	QString iniFile;
-	QString appLogFN;
-	QString prjLogFN;
-	int appLogLevel;
-	int prjLogLevel;	
-	QString dbName;
-        QString contentsSortOrder;
 
-        //warmonger
-        QString moduleBiblename;
-        QString moduleCopyright;
-        QString moduleBibleShortName;
+    //variables for global use via  Config::configuration()->variable()
+    QString appDir;
+    QString backupDir;
+    QString cacheDir;	//path for cache
+    QString prjDir;
+    QString imgDir;
+    QString curPrjDir;
+    QString curProject;	// current project file name *.rap
+    QString curFile;	// opened file. We need this to save any changes automaticly
+    QString curPrjSrc;
+    QString lang;
+    QString errPage;	// html file to output application errors
+    QString iniFile;
+    QString appLogFN;
+    QString prjLogFN;
+    int appLogLevel;
+    int prjLogLevel;
+    QString dbName;
+    QString contentsSortOrder;
+
+    //warmonger
+    QString moduleBiblename;
+    QString moduleCopyright;
+    QString moduleBibleShortName;
 
 
-		//variables from Settings window
-	bool contentsAdditionalView;
-	bool showSubItemsTitle;
-	bool autoCollapse;
-	bool itemAutoProperties;
-	QString externalEditor;
-	QString externalBrowser;
-	QString externalArchiver;
-	QString externalArchiverOptions;
-	int defaultSignatureID;
+    //variables from Settings window
+    bool contentsAdditionalView;
+    bool showSubItemsTitle;
+    bool autoCollapse;
+    bool itemAutoProperties;
+    QString externalEditor;
+    QString externalBrowser;
+    QString externalArchiver;
+    QString externalArchiverOptions;
+    int defaultSignatureID;
 };
 
 #endif // CONFIG_H
