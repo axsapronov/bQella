@@ -43,7 +43,6 @@
 #include <QTextDocumentFragment>
 #include <QTextObject>
 #include <QTimer>
-#include <QWhatsThis>
 #include <QtDebug> //to use qWarning and qDebug messages
 #include <QtEvents>
 
@@ -98,10 +97,6 @@ MainWindow::MainWindow():
     //включить после отладки
     connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
 
-    // read geometry configuration
-    //setupGoActions();
-
-
     restoreGeometry(config->windowGeometry());
     restoreState(config->mainWindowState());
     if (config->sideBarHidden())
@@ -116,6 +111,8 @@ MainWindow::MainWindow():
 
     //выключаем ненужный функционал
     ui.actionInsertImage->setVisible(!ui.actionInsertImage->isVisible());
+    ui.actionFilePrint->setVisible(false);
+    ui.actionPrint_Preview->setVisible(false);
 
 }
 

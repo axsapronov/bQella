@@ -2536,7 +2536,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
             {
 
                 qDebug() << "hahaha1";
-                qDebug() << i;
+//                qDebug() << i;
 
 
 
@@ -2570,25 +2570,25 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
 //            //            teststr = teststr.replace("<h4>","?h4?").replace("</h4>","?/h4?").remove("p, li { white-space: pre-wrap; }").remove("<title>1</title>").replace(rxp,"?p?").remove("</p>").remove(rx);
 
 
-            qDebug() << " =========begin=====";
-            qDebug() << teststr;
+//            qDebug() << " =========begin=====";
+//            qDebug() << teststr;
 //            qDebug() << "1";
 //            qDebug() << teststr.replace("<h4>","?h4?");
 //            qDebug() << "2";
 //            qDebug() << teststr.replace("</h4>","?/h4?");
-            qDebug() << "3";
-            qDebug() << teststr.remove("p, li { white-space: pre-wrap; }");
-            qDebug() << "4";
-            qDebug() << teststr.remove(title);
-            qDebug() << "5";
-            qDebug() << teststr.replace(rxp,"?p?"); // этот вырезает
-            qDebug() << "6";
-            qDebug() << teststr.remove("</p>");
-            qDebug() << "7";
-            qDebug() << teststr.remove(rx);
+//            qDebug() << "3";
+//            qDebug() << teststr.remove("p, li { white-space: pre-wrap; }");
+//            qDebug() << "4";
+//            qDebug() << teststr.remove(title);
+//            qDebug() << "5";
+//            qDebug() << teststr.replace(rxp,"?p?"); // этот вырезает
+//            qDebug() << "6";
+//            qDebug() << teststr.remove("</p>");
+//            qDebug() << "7";
+//            qDebug() << teststr.remove(rx);
 //            qDebug() << " =========center=====";
-////            qDebug() << teststr;
-            qDebug() << " =======end====== ";
+            qDebug() << teststr;
+//            qDebug() << " =======end====== ";
 
 //            QString test = QString("<p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">vdsd</p></body></html>");
 
@@ -2659,10 +2659,8 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
         for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
         {
             QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
-
-            int my = abs(j  +1   - ui.listContents->topLevelItem(i)->childCount());
-            qDebug() << "my = " << my;
-            filebook.write(QString("%1").arg(exportChapter(filenamechapter, my,true)).toUtf8());
+            int icount = j+1;
+            filebook.write(QString("%1").arg(exportChapter(filenamechapter, icount, true)).toUtf8());
         }
         filebook.write(QString("\n</body>\n</html>").toUtf8());
     }
