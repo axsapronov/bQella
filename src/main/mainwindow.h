@@ -26,7 +26,6 @@
 #include "settings.h"
 #include "config.h"
 #include "raedit.h"
-#include "projectsources.h"
 #include "fontsettingsdialog.h"
 //#include "projectsettings.h"
 
@@ -74,12 +73,7 @@ public slots:
     void showLink(const QString &link);
     void showLinks(const QStringList &links);
     void saveSettings();
-
     void ProjectOpen(QString fileName);
-    void setMenuSign();
-    void setMenuSign(int defaultSignIndex);
-    void insertSignature(QAction *a);
-    void insertDefaultSignature();
     void updateAppFont(FontSettings settings);
     void projectModified(bool modified);
 
@@ -97,32 +91,17 @@ private slots:
     void setLangEn();
     void setLangRu();
     void showAppSettings();
-    void globalShortcut_CtrlShiftInsert();
-    
+    void globalShortcut_CtrlShiftInsert();    
     void on_actionNewWindow_triggered();
-    //    void on_actionGoHome_triggered();
     void on_actionFilePrint_triggered();
-    //    void on_actionClose_triggered();
-    //  void on_actionHelpWhatsThis_triggered();
-    //    void on_actionHelpAssistant_triggered();
     void on_actionAboutAssistant_triggered();
     void on_actionSaveFileAs_triggered();
-
-
     void about();
-
     void showLinkFromClient(const QString &link);
-    //    void showQtHelp();
     void showSearchLink(const QString &link, const QStringList &terms);
-    //    void showGoActionLink();
     void updateProfileSettings();
-    //    void backwardAvailable(bool);
-    //    void forwardAvailable(bool);
-
     void browserTabChanged();
-    //    void copyAvailable(bool yes);
     void updateTabActions(int index);
-    //void showFontSettingsDialog();
     void exitApp();
 
 protected:
@@ -136,7 +115,6 @@ private:
     QMap<QAction*, QString> bookmarks;
     TabbedBrowser *tabs;
     ProjectProperties *prjprop;
-    ProjectSources *prjsrc;
     //ProjectSettings *prjset;
     AppSettings *appsets;
     HelpDialog *helpDock;

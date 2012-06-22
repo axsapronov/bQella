@@ -94,12 +94,8 @@ MainWindow::MainWindow():
     
     prjprop = new ProjectProperties(this);    
     appsets = new AppSettings(this);
-    prjsrc  = new ProjectSources(this);  
-    prjsrc->loadSources();  
     menuSign = new QMenu(tr("Insert Sign"));
     //включить после отладки
-    setMenuSign(config->DefaultSignatureID());
-    connect(prjsrc, SIGNAL(updateSigns()), this, SLOT(setMenuSign()));
     connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
 
     // read geometry configuration
@@ -139,8 +135,6 @@ void MainWindow::setup()
     qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar()->showMessage(tr("Initializing %1...").arg(GL_Prog_Name));
     helpDock->initialize();
-    //    connect(ui.actionGoPrevious, SIGNAL(triggered()), tabs, SLOT(backward()));
-    //    connect(ui.actionGoNext, SIGNAL(triggered()), tabs, SLOT(forward()));
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -151,7 +145,6 @@ void MainWindow::setup()
     connect(ui.actionProjectSaveAs, SIGNAL(triggered()), this, SLOT(ProjectSaveAs()));
     connect(ui.actionProjectBackup, SIGNAL(triggered()), this, SLOT(ProjectBackup()));
     connect(ui.actionProjectProperties, SIGNAL(triggered()), this, SLOT(ProjectProps()));
-    connect(ui.actionProjectSources, SIGNAL(triggered()), this, SLOT(ProjectSrc()));
     connect(ui.actionAppExit, SIGNAL(triggered()), this, SLOT(exitApp()));
     //connect(prjprop, SIGNAL(createDB(QString)), prjsrc, SLOT(newDb(QString)));
     connect(prjprop, SIGNAL(createProject(QString, QString, QString)), this, SLOT(createProject(QString, QString, QString)));
@@ -160,7 +153,6 @@ void MainWindow::setup()
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
     connect(ui.actionDeleteFile, SIGNAL(triggered()), helpDock, SLOT(deleteItem()));
-
     connect(ui.actionExport_Module, SIGNAL(triggered()), helpDock, SLOT(exportModule()));
 
     // Menu Edit
@@ -237,13 +229,6 @@ void MainWindow::browserTabChanged()
     }*/
 }
 
-/*
-//-------------------------------------------------
-void MainWindow::copyAvailable(bool yes)
-{
-    ui.actionCopy->setEnabled(yes);
-}
-*/
 
 //-------------------------------------------------
 void MainWindow::updateTabActions(int index)
@@ -254,15 +239,6 @@ void MainWindow::updateTabActions(int index)
     ui.actionClosePage->setEnabled(enabled);
 }
 
-/*
-//-------------------------------------------------
-bool MainWindow::insertActionSeparator()
-{
-    ui.goMenu->addSeparator();
-    ui.Toolbar->addSeparator();
-    return true;
-}
-*/
 
 //-------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *e)
@@ -275,29 +251,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 //-------------------------------------------------
 void MainWindow::about()
 {
-
-    /*
-    QMessageBox box(this);
-    QString release = tr("version %1<br>%2").arg(QLatin1String(RA_VERSION_STR)).arg(QLatin1String(RA_BUILD_STR));
-    QString info = tr("Research Assistant is a free open source project for researchers to ease their work in classification of any kind of information.\n"
-                      "Research Assistant is powered by Qt Open Source Edition.");
-    QString warranty = tr("The program is provided AS IS with NO WARRANTY OF ANY KIND.");
-    box.setText(QString::fromLatin1("<p align=\"center\"><h3>Research Assistant</h3></p>"
-                                    "<p align=\"center\">%1</p>"
-                                    "<p>%2</p>"
-                                    "<p>%3<p/>"
-                                    "<p>Copyright (C) 2007-2009 Pavel Malakhov</p>"
-                                    "<p align=\"center\">e-mail:<a href=\"mailto:24pm@mail.ru\">24pm@mail.ru</a> </p>"
-                                    "<p align=\"center\">web: <a href=\"https://sourceforge.net/projects/rassistant/\">https://sourceforge.net/projects/rassistant/</a></p>")
-                                    .arg(release).arg(info).arg(warranty));
-    box.setWindowTitle(tr("About Research Assistant"));
-    box.setIcon(QMessageBox::NoIcon);
-    box.exec();
-
-    */
     m_gui_About->show();
-
-
 }
 
 //-------------------------------------------------
@@ -305,15 +259,6 @@ void MainWindow::on_actionAboutAssistant_triggered()
 {
     about();
 }
-
-/*
-//-------------------------------------------------
-void MainWindow::on_actionGoHome_triggered()
-{
-    QString home = MainWindow::urlifyFileName(Config::configuration()->homePage());
-    showLink(home);
-}
-*/
 
 //-------------------------------------------------
 void MainWindow::on_actionFilePrint_triggered()
@@ -429,14 +374,6 @@ void MainWindow::timerEvent(QTimerEvent *e)
     browser.first->setSource(urlifyFileName(browser.second));
 }
 
-/*
-//-------------------------------------------------
-void MainWindow::showQtHelp()
-{
-    showLink(Profile::props[QLatin1String("basepath")] + QLatin1String("ra-help.html"));
-}
-*/
-
 //-------------------------------------------------
 MainWindow* MainWindow::newWindow()
 {qDebug()<< "newWindow()";
@@ -525,26 +462,6 @@ void MainWindow::showSearchLink(const QString &link, const QStringList &terms)
     hw->viewport()->setUpdatesEnabled(true);
 }
 
-/*
-//-------------------------------------------------
-void MainWindow::showGoActionLink()
-{
-    const QObject *origin = sender();
-    if(!origin ||
-        QString::fromLatin1(origin->metaObject()->className()) != QString::fromLatin1("QAction"))
-        return;
-
-    QAction *action = (QAction*) origin;
-//    QString docfile = *(goActionDocFiles->find(action));
-    showLink(MainWindow::urlifyFileName(docfile));
-}
-
-//-------------------------------------------------
-void MainWindow::on_actionHelpAssistant_triggered()
-{
-    showLink(Config::configuration()->assistantDocPath() + QLatin1String("/assistant-manual.html"));
-}
-*/
 
 //-------------------------------------------------
 HelpDialog* MainWindow::helpDialog() const
@@ -604,7 +521,6 @@ void MainWindow::ProjectOpen(QString fileName)
     if (!fileName.isEmpty()){
         //Config::configuration()->toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
         browsers()->currentBrowser()->fileSave();
-        prjsrc->closeDb();
         Config::configuration()->loadProject(fileName);
         helpDock->enableProjectButtons();
         helpDock->initTabs();
@@ -635,20 +551,6 @@ void MainWindow::on_actionNewWindow_triggered()
 {
     newWindow()->show();
 }
-
-/*
-//-------------------------------------------------
-void MainWindow::on_actionClose_triggered()
-{
-    close();
-}
-*/
-
-//-------------------------------------------------
-//void MainWindow::on_actionHelpWhatsThis_triggered()
-//{
-//    QWhatsThis::enterWhatsThisMode();
-//}
 
 //-------------------------------------------------
 void MainWindow::on_actionSaveFileAs_triggered()
@@ -723,24 +625,6 @@ void MainWindow::on_actionSaveFileAs_triggered()
     s.flush();
     file.close();
 } //on_actionSaveFileAs_triggered()
-/*
-//-------------------------------------------------
-void MainWindow::showFontSettingsDialog()
-{
-    Config *config = Config::configuration();
-    FontSettings settings = config->fontSettings();
-
-    { // It is important that the dialog be deleted before UI mode changes.
-        FontSettingsDialog dialog;
-        if (!dialog.showDialog(&settings))
-            return;
-    }
-    config->setFontPointSize(settings.browserFont.pointSizeF());
-    config->setFontSettings(settings);
-    
-    updateAppFont(settings);
-}
-*/
 //-------------------------------------------------
 void MainWindow::updateAppFont(FontSettings settings)
 {
@@ -826,7 +710,7 @@ void MainWindow::ProjectProps()
 //-------------------------------------------------
 void MainWindow::ProjectSrc()
 {
-    prjsrc->show();
+    //    prjsrc->show();
 }
 
 //-------------------------------------------------
@@ -873,9 +757,6 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     f.close();
 
     Config::configuration()->toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration()->DbName()));
-    prjsrc->closeDb();	// close db of previous project
-    prjsrc->newDb();	// create new db
-    prjsrc->closeDb();	// close new db before open new project
     Config::configuration()->toAppLog(1, tr("- done", "For log"));
     ProjectOpen(fn);
 
@@ -898,8 +779,6 @@ void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QStrin
     Config::configuration()->setCurPrjDir(fi.absolutePath());
     Config::configuration()->setCurPrjSrc();
     Config::configuration()->toPrjLog(1, tr("- done", "For log"));    
-    //включить после отладки
-    prjsrc->loadSources();	
 }
 
 //-------------------------------------------------
@@ -944,54 +823,7 @@ void MainWindow::OpenInExternalApplication(QString app, QString FileName)
     Config::configuration()->toPrjLog(2, tr("Open file in external application: %1 %2", "For log").arg(app).arg(FileName));      			
 }
 
-//-------------------------------------------------
-void  MainWindow::setMenuSign()
-{
-    setMenuSign(Config::configuration()->DefaultSignatureID());
-}
 
-//-------------------------------------------------
-//Set up popup menu of signatures
-void  MainWindow::setMenuSign(int defaultSignIndex)
-{
-    menuSign->clear();
-    QString strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(0)).toPlainText();
-    QAction *actionSign = new QAction(this);
-    actionSign->setText(strSign);
-    actionSign->setData("0");
-    //QKeySequence shortcut = QKeySequence(Qt::CTRL + Qt::Key_H); //did not work here, so moved to global scope in MainWindow::setup(), may be uncomment for hint in menu
-    //actionSign->setShortcut(shortcut);
-    menuSign->addAction(actionSign);
-    menuSign->setDefaultAction(actionSign);
-    
-    menuSign->addSeparator();
-    int n = prjsrc->signList().count();	//!+! Runtime error if trying to get last sign in the list, which = .count() +1
-    qDebug() << "menuSign n = " << n; 
-    for (int i=1; i<n; i++){
-        strSign = QTextDocumentFragment::fromHtml(prjsrc->signList().at(i)).toPlainText();
-        actionSign = new QAction(this);
-        actionSign->setText(strSign);
-        actionSign->setData(i);
-    	menuSign->addAction(actionSign);
-    }
-}
-
-//-------------------------------------------------
-void MainWindow::insertSignature(QAction *a)
-{
-    int signIndex = a->data().toInt();
-    QString signature = prjsrc->signList().at(signIndex);
-    browsers()->currentBrowser()->insertRichText(signature);
-}
-
-//-------------------------------------------------
-void MainWindow::insertDefaultSignature()
-{
-    //Config *config = Config::configuration();
-    //int signIndex = config->DefaultSignatureID();
-    QString signature = prjsrc->signList().at(0);
-    browsers()->currentBrowser()->insertRichText(signature);
-}
 
 //-------------------------------------------------
 void MainWindow::ProjectBackup()
@@ -1012,7 +844,7 @@ void MainWindow::ProjectBackup()
 void MainWindow::globalShortcut_CtrlShiftInsert()
 {
     if (QApplication::focusWidget()->objectName() == "raWorkArea"){
-        insertDefaultSignature();
+      //  insertDefaultSignature();
     }
 
 }

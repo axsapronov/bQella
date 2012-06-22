@@ -36,7 +36,6 @@ FORMS += src/ui/autoitems.ui \
      src/ui/linkproperty.ui \
      src/main/mainwindow.ui \
      src/project/projectproperty.ui \
-     src/project/projectsources.ui \
      src/tab/tabbedbrowser.ui \
      src/tab/tableproperty.ui \
      src/ui/topicchooser.ui \
@@ -47,7 +46,6 @@ FORMS += src/ui/autoitems.ui \
      src/settings/settings.ui
 
 SOURCES +=  src/project/projectproperty.cpp \
-     src/project/projectsources.cpp \
      src/cpp/autoitems.cpp \
      src/config/config.cpp \
      src/doc/docproperty.cpp \
@@ -83,7 +81,6 @@ HEADERS += src/h/autoitems.h \
      src/dialogs/helpdialog/helpwindow.h \
      src/main/mainwindow.h \
      src/project/projectproperty.h \
-     src/project/projectsources.h \
      src/settings/settings.h \
      src/tab/tabbedbrowser.h \
      src/tab/tableproperty.h \
