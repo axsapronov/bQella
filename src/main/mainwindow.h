@@ -79,8 +79,8 @@ public slots:
 
 private slots:
     void ProjectNew();
-    void ProjectNewDiary();
-    void ProjectNewNotebook();
+//    void ProjectNewDiary();
+//    void ProjectNewNotebook();
     void createProject(QString prjTitle, QString prjFN, QString prjStartPage);
     void updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage);
     void ProjectOpen();

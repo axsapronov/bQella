@@ -115,6 +115,9 @@ MainWindow::MainWindow():
     ui.actionInsertImage->setVisible(!ui.actionInsertImage->isVisible());
     ui.actionFilePrint->setVisible(false);
     ui.actionPrint_Preview->setVisible(false);
+    ui.toolBarTabs->setVisible(false);
+    ui.actionEditFind->setVisible(false);
+//    ui.menuNew_with_pattern->setVisible(false);
 
 }
 
@@ -137,8 +140,8 @@ void MainWindow::setup()
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
-    connect(ui.actionNewPrjDiary, SIGNAL(triggered()), this, SLOT(ProjectNewDiary()));
-    connect(ui.actionNewPrjNotebook, SIGNAL(triggered()), this, SLOT(ProjectNewNotebook()));
+//    connect(ui.actionNewPrjDiary, SIGNAL(triggered()), this, SLOT(ProjectNewDiary()));
+//    connect(ui.actionNewPrjNotebook, SIGNAL(triggered()), this, SLOT(ProjectNewNotebook()));
     connect(ui.actionProjectOpen, SIGNAL(triggered()), this, SLOT(ProjectOpen()));
     connect(ui.actionProjectSave, SIGNAL(triggered()), helpDock, SLOT(saveProject()));
     connect(ui.actionProjectSaveAs, SIGNAL(triggered()), this, SLOT(ProjectSaveAs()));
@@ -675,25 +678,25 @@ void MainWindow::ProjectNew()
     }
 }
 
-//-------------------------------------------------
-void MainWindow::ProjectNewDiary()
-{
-    ProjectNew();
-    helpDock->dialogAutoItems->activateTab(0);
-    helpDock->dialogAutoItems->CreateItems();
-    helpDock->dialogAutoItems->show();
-}
+////-------------------------------------------------
+//void MainWindow::ProjectNewDiary()
+//{
+//    ProjectNew();
+//    helpDock->dialogAutoItems->activateTab(0);
+//    helpDock->dialogAutoItems->CreateItems();
+//    helpDock->dialogAutoItems->show();
+//}
 
-//-------------------------------------------------
-void MainWindow::ProjectNewNotebook()
-{
-    ProjectNew();
-    helpDock->dialogAutoItems->activateTab(1);
-    helpDock->dialogAutoItems->setCounterType(3);
-    helpDock->dialogAutoItems->setMaxCounter();
-    helpDock->dialogAutoItems->CreateItems();
-    helpDock->dialogAutoItems->show();
-}
+////-------------------------------------------------
+//void MainWindow::ProjectNewNotebook()
+//{
+//    ProjectNew();
+//    helpDock->dialogAutoItems->activateTab(1);
+//    helpDock->dialogAutoItems->setCounterType(3);
+//    helpDock->dialogAutoItems->setMaxCounter();
+//    helpDock->dialogAutoItems->CreateItems();
+//    helpDock->dialogAutoItems->show();
+//}
 
 //-------------------------------------------------
 void MainWindow::ProjectProps()

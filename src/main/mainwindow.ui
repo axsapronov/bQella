@@ -27,6 +27,12 @@
    <property name="windowTitle">
     <string>Project</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -40,6 +46,12 @@
   <widget class="QToolBar" name="toolBarTabs">
    <property name="windowTitle">
     <string>Tabs</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -56,6 +68,12 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -90,45 +108,37 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <widget class="QMenu" name="menuProject">
+    <widget class="QMenu" name="menuProperties">
      <property name="title">
-      <string>Project</string>
+      <string>Properties</string>
      </property>
-     <widget class="QMenu" name="menuNew_with_pattern">
-      <property name="title">
-       <string>New with pattern</string>
-      </property>
-      <addaction name="actionNewPrjDiary"/>
-      <addaction name="actionNewPrjNotebook"/>
-     </widget>
-     <addaction name="actionProjectNew"/>
-     <addaction name="menuNew_with_pattern"/>
-     <addaction name="actionProjectOpen"/>
-     <addaction name="separator"/>
-     <addaction name="actionProjectSave"/>
-     <addaction name="actionProjectSaveAs"/>
-     <addaction name="actionProjectBackup"/>
-     <addaction name="separator"/>
      <addaction name="actionProjectProperties"/>
-     <addaction name="actionProjectSources"/>
-     <addaction name="separator"/>
+     <addaction name="actionItemProperties"/>
     </widget>
+    <widget class="QMenu" name="menuRemove">
+     <property name="title">
+      <string>Remove</string>
+     </property>
+     <addaction name="actionRemoveItem"/>
+     <addaction name="actionDeleteFile"/>
+    </widget>
+    <addaction name="actionProjectNew"/>
+    <addaction name="actionProjectOpen"/>
     <addaction name="separator"/>
-    <addaction name="menuProject"/>
+    <addaction name="actionProjectSave"/>
+    <addaction name="actionProjectSaveAs"/>
     <addaction name="actionFileAdd"/>
-    <addaction name="separator"/>
-    <addaction name="actionSaveFile"/>
-    <addaction name="actionSaveFileAs"/>
     <addaction name="separator"/>
     <addaction name="actionExport_Module"/>
     <addaction name="separator"/>
     <addaction name="actionFilePrint"/>
     <addaction name="actionPrint_Preview"/>
+    <addaction name="menuProperties"/>
+    <addaction name="menuRemove"/>
+    <addaction name="actionProjectBackup"/>
     <addaction name="separator"/>
-    <addaction name="actionItemProperties"/>
-    <addaction name="actionRemoveItem"/>
-    <addaction name="actionDeleteFile"/>
     <addaction name="actionAppExit"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="viewMenu">
     <property name="title">
@@ -207,6 +217,12 @@
    <property name="windowTitle">
     <string>Format</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -232,6 +248,12 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -437,7 +459,7 @@
      <normaloff>:/project/images/prj_property.png</normaloff>:/project/images/prj_property.png</iconset>
    </property>
    <property name="text">
-    <string>Properties...</string>
+    <string>Project properties...</string>
    </property>
   </action>
   <action name="actionProjectStatistics">
@@ -732,10 +754,16 @@
    <property name="text">
     <string>Diary</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionNewPrjNotebook">
    <property name="text">
     <string>Notebook</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
    </property>
   </action>
   <action name="actionProjectBackup">
