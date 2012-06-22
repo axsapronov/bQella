@@ -2510,6 +2510,8 @@ void HelpDialog::exportBibleqtIniInfo(QString file,int i)
 QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
 {
     // подготовливаем главы
+
+    // мега индия
     QFile file(filename);
     QString str;
     if(file.exists())
@@ -2522,7 +2524,6 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
         {
             QTextStream stream(&file);
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
-
             str = stream.readAll();
 
             QRegExp title("<title>[1]</title>");
@@ -2550,7 +2551,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                     .remove(rxi)
                     .replace("<p>", "?p?")
                     .remove(rx)
-                    .replace("?p?PathName =","PathName")
+                    .replace("?p?PathName","PathName")
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty")
@@ -2579,10 +2580,12 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
     else
     {
         filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
-        for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
+//        for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
+        for (int j=1; j <= ui.listContents->topLevelItem(i)->childCount(); j++)
         {
-            QString filenamechapter = ui.listContents->topLevelItem(i)->child(j)->data(0,LinkRole).toString().remove("file:");
-            int icount = j+1;
+            QString filenamechapter = ui.listContents->topLevelItem(i)->child(j-1)->data(0,LinkRole).toString().remove("file:");
+            qDebug() << "filenamechapter = " << filenamechapter;
+            int icount = j;
             filebook.write(QString("%1").arg(exportChapter(filenamechapter, icount, true)).toUtf8());
         }
         filebook.write(QString("\n</body>\n</html>").toUtf8());
