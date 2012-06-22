@@ -2530,110 +2530,66 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
             QRegExp rxp("(<p.*?>)");
             rxp.setPatternSyntax(QRegExp::RegExp);
 
-            QRegExp rxe("(?<=style/=\")[^]+?(?=\")");
+//            QRegExp rxe("(?<=style/=\")[^]+?(?=\")");
 
             if (chapt)
             {
-
                 qDebug() << "hahaha1";
-//                qDebug() << i;
-
-
-
                 QString title = QString("<title>%1</title>").arg(i);
-
-
                 QString chapter = tr("\n?h4?Глава %1?/h4?").arg(i);
                 str.replace(title,chapter);
-//                QString title = QString("<title>%1</title>").arg(i-1);
-//                str.remove(title);
+                //                QString title = QString("<title>%1</title>").arg(i-1);
+                //                str.remove(title);
 
             }
             else
             {
                 str.remove(title);
                 qDebug() << "hahaha";
-
             }
 
-
-//            rxp.setPatternSyntax(QRegExp::Wildcard);
-
-            //            QRegExp rxh4a("<h4>");
-            //            QRegExp rxh4b("</h4>");
 
             //            QRegExp rx2("^(?<=^|>)[^><]+?(?=<|$)");
 
 
-            QString teststr = str; //"<h4>test</h4>";
+            //            QString teststr = str; //"<h4>test</h4>";
 
-//            //            teststr = teststr.replace("<h4>","?h4?").replace("</h4>","?/h4?").remove("p, li { white-space: pre-wrap; }").remove("<title>1</title>").replace(rxp,"?p?").remove("</p>").remove(rx);
-
-
-//            qDebug() << " =========begin=====";
-//            qDebug() << teststr;
-//            qDebug() << "1";
-//            qDebug() << teststr.replace("<h4>","?h4?");
-//            qDebug() << "2";
-//            qDebug() << teststr.replace("</h4>","?/h4?");
-//            qDebug() << "3";
-//            qDebug() << teststr.remove("p, li { white-space: pre-wrap; }");
-//            qDebug() << "4";
-//            qDebug() << teststr.remove(title);
-//            qDebug() << "5";
-//            qDebug() << teststr.replace(rxp,"?p?"); // этот вырезает
-//            qDebug() << "6";
-//            qDebug() << teststr.remove("</p>");
-//            qDebug() << "7";
-//            qDebug() << teststr.remove(rx);
-//            qDebug() << " =========center=====";
-            qDebug() << teststr;
-//            qDebug() << " =======end====== ";
-
-//            QString test = QString("<p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">vdsd</p></body></html>");
-
-//            qDebug() << " ===== begin === =";
-//            qDebug() << test;
-//            qDebug() << "center";
-//            qDebug() << test.remove("</p>").replace(rxe,"?p?");
-//            qDebug() << " ====== end ========";
-
-            //            while ((pos = rxh4.indexIn(str, pos)) != -1) {
-            //                list2 << rxh4.cap(1);
-            //                pos += rxh4.matchedLength();
-            //                qDebug() << rx.cap(1);
-            //            }
-            //            rx.indexIn(str);
-
-            //            indexEdit->setText(QString::number(rx.indexIn(text)));
-            //            matchedLengthEdit->setText(QString::number(rx.matchedLength()));
-            //            for (int i = 0; i < MaxCaptures; ++i) {
-            //                captureLabels[i]->setEnabled(i <= rx.captureCount());
-            //                captureEdits[i]->setEnabled(i <= rx.captureCount());
-            //                captureEdits[i]->setText(rx.cap(i));
-            //            }
+//            teststr = teststr.replace("<h4>","?h4?").replace("</h4>","?/h4?").remove("p, li { white-space: pre-wrap; }").remove("<title>1</title>").replace(rxp,"?p?").remove("</p>").remove(rx);
 
 
-            //           qDebug() << " str";
-            //            qDebug() << str;
-            //            qDebug() << " list2";
-            //            qDebug() << list2;
+            //            qDebug() << " =========begin=====";
+            //            qDebug() << teststr;
+            //            qDebug() << teststr;
+            //            qDebug() << "1";
+            //            qDebug() << teststr.replace("<h4>","?h4?");
+            //            qDebug() << "2";
+            //            qDebug() << teststr.replace("</h4>","?/h4?");
+            //            qDebug() << "3";
+            //            qDebug() << teststr.remove("p, li { white-space: pre-wrap; }");
+            //            qDebug() << "4";
+            //            qDebug() << teststr.remove(title);
+            //            qDebug() << "5";
+            //            qDebug() << teststr.replace(rxp,"?p?"); // этот вырезает
+            //            qDebug() << "6";
+            //            qDebug() << teststr.remove("</p>");
+            //            qDebug() << "7";
+            //            //            qDebug() << teststr.remove(rx);
+            //            qDebug() << " =========center=====";
 
+            //            //                        str.replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");
+            //            teststr = teststr.remove("p, li { white-space: pre-wrap; }").remove(title).replace(rxp,"?p?").remove("</p>").remove(rx).replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");;
+            //            qDebug() << teststr;
 
+            //            qDebug() << " =======end====== ";
 
-            str.remove("<title>1</title>");
-            str.remove("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">");
-            str.remove("<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
-            str.remove("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>Bibleqt.ini</title></head>");
-            str.remove("<body>").remove("</body>").remove("</html>").remove("<html>").remove("</p>").remove("<head>").remove("</head>");
-            str.remove("<style type=\"text/css\">").remove("</p></body></html>").remove("p, li { white-space: pre-wrap; }");
-            str.remove("</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
-            str.remove("<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
-            str.remove("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
-            str.remove("</style><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">");
-
-
-            str.replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");
+            str.remove("p, li { white-space: pre-wrap; }")
+                    .remove(title)
+                    .replace(rxp,"?p?")
+                    .remove("</p>")
+                    .remove(rx)
+                    .replace("FullName","\nFullName")
+                    .replace("ShortName","\nShortName")
+                    .replace("ChapterQty","\nChapterQty");
 
             //qDebug() << "text = " << str;
         }

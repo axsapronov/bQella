@@ -23,7 +23,6 @@ INCLUDEPATH += src/h/ \
     src/dialogs/fontdialog \
     src/dialogs/bookdialog \
     src/tab \
-    src/config \
     src/settings \
     src/main \
     src/doc
@@ -47,7 +46,7 @@ FORMS += src/ui/autoitems.ui \
 
 SOURCES +=  src/project/projectproperty.cpp \
      src/cpp/autoitems.cpp \
-     src/config/config.cpp \
+     src/settings/config.cpp \
      src/doc/docproperty.cpp \
      src/doc/docuparser.cpp \
      src/dialogs/fontdialog/fontsettingsdialog.cpp \
@@ -59,7 +58,7 @@ SOURCES +=  src/project/projectproperty.cpp \
      src/main/main.cpp \
      src/main/mainwindow.cpp \
      src/cpp/pcommon.cpp \
-     src/cpp/profile.cpp \
+     src/settings/profile.cpp \
      src/cpp/raedit.cpp \
      src/settings/settings.cpp \
      src/cpp/srclistparser.cpp \
@@ -73,7 +72,7 @@ SOURCES +=  src/project/projectproperty.cpp \
      src/dialogs/about/guiabout.cpp
 
 HEADERS += src/h/autoitems.h \
-     src/config/config.h \
+     src/settings/config.h \
      src/doc/docproperty.h \
      src/doc/docuparser.h \
      src/dialogs/fontdialog/fontsettingsdialog.h \
@@ -91,7 +90,7 @@ HEADERS += src/h/autoitems.h \
      src/h/cellsplit.h \
      src/h/imageproperty.h \
      src/h/pcommon.h \
-     src/h/profile.h \
+     src/settings/profile.h \
      src/h/index.h \
      src/h/itemproperty.h \
      src/h/linkproperty.h \
