@@ -25,7 +25,8 @@ INCLUDEPATH += src/h/ \
     src/tab \
     src/settings \
     src/main \
-    src/doc
+    src/doc \
+    src/export
 
 
 FORMS += src/ui/autoitems.ui \

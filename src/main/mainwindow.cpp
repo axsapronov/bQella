@@ -25,6 +25,8 @@
 #include "pcommon.h"
 #include "settings.h"
 
+
+
 #include "guiabout.h"
 
 #include <QAbstractTextDocumentLayout>
@@ -95,7 +97,7 @@ MainWindow::MainWindow():
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
     //включить после отладки
-    connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
+//    connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
 
     restoreGeometry(config->windowGeometry());
     restoreState(config->mainWindowState());

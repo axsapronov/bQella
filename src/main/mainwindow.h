@@ -27,6 +27,7 @@
 #include "config.h"
 #include "raedit.h"
 #include "fontsettingsdialog.h"
+
 //#include "projectsettings.h"
 
 
@@ -34,13 +35,12 @@
 #include <QMap>
 #include <QTreeWidget>
 
-class TabbedBrowser;
-class HelpDialog;
-class HelpWindow;
-class Export;
 class QMenu;
 class QDockWidget;
 
+class TabbedBrowser;
+class HelpDialog;
+class HelpWindow;
 class GUIAbout;
 
 //====================== class MainWindow ============================
@@ -55,7 +55,7 @@ public:
 
     TabbedBrowser *browsers() const;
     HelpDialog *helpDialog() const;
-    Export *exportModule();
+
 
 
     void setupPopupMenu(QMenu *menu);
@@ -118,6 +118,7 @@ private:
     //ProjectSettings *prjset;
     AppSettings *appsets;
     HelpDialog *helpDock;
+
     QDockWidget *dw;
     static QList<MainWindow*> windows;
     //    QMap<QAction*,QString> *goActionDocFiles;

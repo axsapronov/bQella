@@ -2439,13 +2439,16 @@ void HelpDialog::exportCreateDir(QString current_dir)
 {
     // если папки export нету, то создаем, если есть, то удаляем содержимое
     QDir dir(current_dir);
-    if (!QDir(QString("%1export/").arg(current_dir)).exists())
+
+
+//    qDebug() << "path = " << path <<  "last = " << path.last();
+    if (!QDir(QString("%1export_%2/").arg(current_dir, getNameFolder(current_dir))).exists())
     {
-        dir.mkdir("export");
+        dir.mkdir(QString("export_%1").arg(getNameFolder(current_dir)));
     }
     else
     {
-        dir.setPath((QString("%1export").arg(current_dir)));
+        dir.setPath((QString("%1export_%2").arg(current_dir, getNameFolder(current_dir))));
         QStringList lstFiles = dir.entryList(QDir::Files); //Получаем список файлов
 
         //Удаляем файлы
@@ -2559,7 +2562,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                     .replace("?p?", "<p>")
                     .replace("?/h4?", "</h4>");
 
-            qDebug() << "text = " << str;
+            //            qDebug() << "text = " << str;
 
         }
     }
@@ -2580,11 +2583,10 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
     else
     {
         filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
-//        for (int j=ui.listContents->topLevelItem(i)->childCount()-1; j>=0 ;--j)
+
         for (int j=1; j <= ui.listContents->topLevelItem(i)->childCount(); j++)
         {
             QString filenamechapter = ui.listContents->topLevelItem(i)->child(j-1)->data(0,LinkRole).toString().remove("file:");
-            qDebug() << "filenamechapter = " << filenamechapter;
             int icount = j;
             filebook.write(QString("%1").arg(exportChapter(filenamechapter, icount, true)).toUtf8());
         }
@@ -2601,17 +2603,23 @@ void HelpDialog::exportModule()
     QString fileBibleqtName = ui.listContents->topLevelItem(0)->data(0,LinkRole).toString().remove("file:");
     QString curdir = QString(fileBibleqtName.replace("Bibleqt.ini",""));
     exportCreateDir(curdir);
-    exportBibleqtIni(QString("%1export/bibleqt.ini").arg(curdir));
+    exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)));
 
     for (int i = 1; i < ui.listContents->topLevelItemCount(); ++i)  //0 это Bibleqt.ini
     {
         QString filename = ui.listContents->topLevelItem(i)->data(0, LinkRole).toString().remove("file:");
-        filename = curdir+"export/"+filename.split("/").last();
-        exportBibleqtIniInfo(QString("%1export/bibleqt.ini").arg(curdir),i);
+        filename = curdir+"export_"+ getNameFolder(curdir) +  "/"+filename.split("/").last();
+        exportBibleqtIniInfo(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)),i);
         exportBibleBook(filename, i);
     }
 }
 
 
+QString HelpDialog::getNameFolder(QString cur_dir)
+{
+    QStringList path = cur_dir.split("/");
+    path.removeLast();
 
+    return path.last();
+}
 

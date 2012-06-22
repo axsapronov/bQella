@@ -157,13 +157,13 @@ private slots:
    void nextMatchedItem();
 
    void exportModule();
-
-
    void exportCreateDir(QString current_dir);
    void exportBibleqtIni(QString path);
    QString exportChapter (QString filename,int i,bool chapt);
    void exportBibleBook(QString filebook,int i);
    void exportBibleqtIniInfo(QString filebibleqt,int i);
+
+   QString getNameFolder(QString cur_dir);
 
    void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
   // void prevMatchedItem();
