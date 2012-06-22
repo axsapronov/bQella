@@ -2526,11 +2526,9 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
             str = stream.readAll();
 
             QRegExp title("<title>[1]</title>");
-            QRegExp rx("<[^>]*>");
+            QRegExp rx("(<[^>]*>)");
             QRegExp rxp("(<p.*?>)");
-            rxp.setPatternSyntax(QRegExp::RegExp);
-
-//            QRegExp rxe("(?<=style/=\")[^]+?(?=\")");
+            QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
 
             if (chapt)
             {
@@ -2538,9 +2536,6 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                 QString title = QString("<title>%1</title>").arg(i);
                 QString chapter = tr("\n?h4?Глава %1?/h4?").arg(i);
                 str.replace(title,chapter);
-                //                QString title = QString("<title>%1</title>").arg(i-1);
-                //                str.remove(title);
-
             }
             else
             {
@@ -2548,56 +2543,28 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                 qDebug() << "hahaha";
             }
 
-
-            //            QRegExp rx2("^(?<=^|>)[^><]+?(?=<|$)");
-
-
-            //            QString teststr = str; //"<h4>test</h4>";
-
-//            teststr = teststr.replace("<h4>","?h4?").replace("</h4>","?/h4?").remove("p, li { white-space: pre-wrap; }").remove("<title>1</title>").replace(rxp,"?p?").remove("</p>").remove(rx);
-
-
-            //            qDebug() << " =========begin=====";
-            //            qDebug() << teststr;
-            //            qDebug() << teststr;
-            //            qDebug() << "1";
-            //            qDebug() << teststr.replace("<h4>","?h4?");
-            //            qDebug() << "2";
-            //            qDebug() << teststr.replace("</h4>","?/h4?");
-            //            qDebug() << "3";
-            //            qDebug() << teststr.remove("p, li { white-space: pre-wrap; }");
-            //            qDebug() << "4";
-            //            qDebug() << teststr.remove(title);
-            //            qDebug() << "5";
-            //            qDebug() << teststr.replace(rxp,"?p?"); // этот вырезает
-            //            qDebug() << "6";
-            //            qDebug() << teststr.remove("</p>");
-            //            qDebug() << "7";
-            //            //            qDebug() << teststr.remove(rx);
-            //            qDebug() << " =========center=====";
-
-            //            //                        str.replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");
-            //            teststr = teststr.remove("p, li { white-space: pre-wrap; }").remove(title).replace(rxp,"?p?").remove("</p>").remove(rx).replace("FullName","\nFullName").replace("ShortName","\nShortName").replace("ChapterQty","\nChapterQty");;
-            //            qDebug() << teststr;
-
-            //            qDebug() << " =======end====== ";
-
             str.remove("p, li { white-space: pre-wrap; }")
                     .remove(title)
-                    .replace(rxp,"?p?")
+                    .replace(rxp, "?p?")
                     .remove("</p>")
+                    .remove(rxi)
+                    .replace("<p>", "?p?")
                     .remove(rx)
-                    .replace("FullName","\nFullName")
-                    .replace("ShortName","\nShortName")
-                    .replace("ChapterQty","\nChapterQty");
+                    .replace("?p?PathName =","PathName")
+                    .replace("FullName", "\nFullName")
+                    .replace("ShortName", "\nShortName")
+                    .replace("ChapterQty", "\nChapterQty")
+                    .replace("?h4?", "<h4>")
+                    .replace("?p?", "<p>")
+                    .replace("?/h4?", "</h4>");
 
-            //qDebug() << "text = " << str;
+            qDebug() << "text = " << str;
+
         }
     }
     else
         qDebug() << "Error exist";
     file.close();
-    //file.remove();
     return str;
 }
 
