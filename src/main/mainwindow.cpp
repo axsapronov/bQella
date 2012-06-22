@@ -539,7 +539,7 @@ void MainWindow::ProjectOpen(QString fileName)
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {//warmonger
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Research Assistant Projects (*.rap)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Research Assistant Projects (*.pp)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_Project_File);

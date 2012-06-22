@@ -220,7 +220,7 @@ private:
     QString prjDir;
     QString imgDir;
     QString curPrjDir;
-    QString curProject;	// current project file name *.rap
+    QString curProject;	// current project file name *.pp
     QString curFile;	// opened file. We need this to save any changes automaticly
     QString curPrjSrc;
     QString lang;
