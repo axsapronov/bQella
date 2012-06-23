@@ -8,11 +8,5 @@ TODO
 Добавить:
 * Название
 * Инсталл (позже)
-* Добавить в конфиг файл:
-    * Поле BibleName
-    * Поле BibleShortName
-    * Поле Copyright
-    * Поле (Default)Encoding
 
-Мелкие правки:
-* README
+

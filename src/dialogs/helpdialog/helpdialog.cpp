@@ -323,16 +323,9 @@ void HelpDialog::initialize()
     itemPopup->addAction(actionOpenLinkInExtEditor);
     itemPopup->addAction(actionOpenLinkInExtBrowser);
 
-
-
-
-    
-
     actionItemProperties = new QAction(this);
     actionItemProperties->setText(tr("Item properties..."));
     actionItemProperties->setShortcut( QKeySequence(Qt::ControlModifier + Qt::Key_Return) ); //!+! shortcuts does not trigger action, see eventFilter()
-    
-
 
     actionItemBookAdd = new QAction(this);
     actionItemBookAdd->setText(tr("Add book"));
@@ -345,12 +338,6 @@ void HelpDialog::initialize()
     actionItemVerseAdd = new QAction(this);
     actionItemVerseAdd->setText(tr("Add verse"));
     actionItemVerseAdd->setShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_3));
-
-
-
-
-
-
 
     actionItemInsert = new QAction(this);
     actionItemInsert->setText(tr("Insert new subitem (and create source file)"));

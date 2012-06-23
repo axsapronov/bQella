@@ -150,8 +150,8 @@ void MainWindow::setup()
     connect(ui.actionProjectProperties, SIGNAL(triggered()), this, SLOT(ProjectProps()));
     connect(ui.actionAppExit, SIGNAL(triggered()), this, SLOT(exitApp()));
     //connect(prjprop, SIGNAL(createDB(QString)), prjsrc, SLOT(newDb(QString)));
-    connect(prjprop, SIGNAL(createProject(QString, QString, QString)), this, SLOT(createProject(QString, QString, QString)));
-    connect(prjprop, SIGNAL(updateProjectProperties(QString, QString, QString)), this, SLOT(updateProjectProperties(QString, QString, QString)));
+    connect(prjprop, SIGNAL(createProject(QString, QString, QString, QString, QString, QString)), this, SLOT(createProject(QString, QString, QString, QString, QString, QString)));
+    connect(prjprop, SIGNAL(updateProjectProperties(QString, QString, QString, QString, QString, QString)), this, SLOT(updateProjectProperties(QString, QString, QString, QString, QString, QString)));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -499,7 +499,6 @@ void MainWindow::setupPopupMenu(QMenu *m)
     m->addAction(ui.actionClosePage);
     m->addSeparator();
 
-
     m->addSeparator();
     m->addAction(ui.actionCopy);
     m->addAction(ui.actionPaste);
@@ -674,7 +673,7 @@ void MainWindow::ProjectNew()
         QString sp = fi.absolutePath();
     	bool newProject = true;
         fn.append("/");
-        prjprop->setProperties(tr("New Project","Default project name"), fn, sp, newProject);
+        prjprop->setProperties(tr("New Project","Default project name"), fn, sp, newProject," ", " ", " ");
         prjprop->show();
     }
 }
@@ -704,9 +703,15 @@ void MainWindow::ProjectProps()
 {
     QString  t = Config::configuration()->profile()->props["title"];
     QString sp = Config::configuration()->profile()->props["startpage"];
+    QString b1 = Config::configuration()->profile()->props["biblename"];
+    QString b2 = Config::configuration()->profile()->props["bibleshortname"];
+    QString b3 = Config::configuration()->profile()->props["copyright"];
+
     bool newProject = false;
 
-    prjprop->setProperties(t,Config::configuration()->CurProject(), sp, newProject);
+    prjprop->setProperties(t,Config::configuration()->CurProject(), sp, newProject, b1, b2, b3);
+//    prjprop->ui.lineEditBibleName->setText("gsdg"); /// добавил
+//    prjprop->set
     prjprop->show();
 }
 
@@ -717,7 +722,7 @@ void MainWindow::ProjectSrc()
 }
 
 //-------------------------------------------------
-void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStartPage)
+void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
 { 
     QString ind1="   ";
     QString fn = unurlifyFileName(prjFN);
@@ -749,6 +754,9 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     ts << ind1 << "<property name=\"title\">" << Qt::escape(prjTitle) << "</property>" << endl;
     ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
     ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
+    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(moduleBiblename) << "</property>" << endl;
+    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(moduleBibleShortName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(moduleCopyright) << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
@@ -767,7 +775,7 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
 }
 
 //-------------------------------------------------
-void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage)
+void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
 {
     QString p = unurlifyFileName(prjFN);
     QFileInfo fi(p);
@@ -778,6 +786,10 @@ void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QStrin
 
     Config::configuration()->profile()->addProperty("title", prjTitle);
     Config::configuration()->profile()->addProperty("startpage", prjStartPage);
+    Config::configuration()->profile()->addProperty("biblename", moduleBiblename);
+    Config::configuration()->profile()->addProperty("bibleshortname", moduleBibleShortName);
+    Config::configuration()->profile()->addProperty("copyright", moduleCopyright);
+
     Config::configuration()->setCurProject(p);
     Config::configuration()->setCurPrjDir(fi.absolutePath());
     Config::configuration()->setCurPrjSrc();

@@ -90,7 +90,7 @@ void ProjectProperties::chooseStartPage()
         }
 }
 
-void ProjectProperties::setProperties(QString title, QString fileName, QString startPage, bool newPrj)
+void ProjectProperties::setProperties(QString title, QString fileName, QString startPage, bool newPrj, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
 {
 	prjTitle= title;
 	prjFN = fileName;
@@ -99,6 +99,10 @@ void ProjectProperties::setProperties(QString title, QString fileName, QString s
 
         //qDebug() << "/n" << fileName << " " << startPage << " " << title << "/n";
 	ui.ETitle->setText(title);
+
+        ui.lineEditBibleName->setText(moduleBiblename); // добавил
+        ui.lineEditBibleShortName->setText(moduleBibleShortName);
+        ui.lineEditCopyright->setText(moduleCopyright);
         //ui.EprjFileName->setText(fileName);
         //ui.EStartPage->setText(startPage);
 }
@@ -153,20 +157,10 @@ void ProjectProperties::accept()
                     if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
                             QTextStream ts(&fileSP);
                             ts.setCodec("UTF-8");
-/*
-                            QString str_conf = tr("BibleName = %1\nBibleShortName = %2\nCopyright = %3").arg(ui.lineEditBibleName->text())
-                                                                                             .arg(ui.lineEditBibleShortName->text())
-                                                                                             .arg(ui.lineEditCopyright->text());
-*/
+
                             QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
                                                                     tr("Bibleqt.ini") + "</title></head>\n";
-/*
-                            QString str_body = "<body>"+tr("<p>This is start page of the project \"%1\"</p>"
-                                                                    "<p>It is good idea to describe your project on this page.</p>")
-                                    .arg(ui.ETitle->text()
-
-*/
-                            QString str_body = "<body>"+tr("\nBibleName = 44 %1"
+                            QString str_body = "<body>"+tr("\nBibleName = %1"
                                                            "\nBibleShortName = %2"
                                                            "\nCopyright = %3"
                                                            "\nDefaultEncoding = utf-8"
@@ -194,47 +188,21 @@ void ProjectProperties::accept()
 				er = true;
 			}
 		}  
-		/*
-		//create file with sources database
-		QString sourcesFN = ui.EprjFileName->text();
-		sourcesFN.chop(4);
-		sourcesFN = sourcesFN + "-sources.db";
-		emit createDb(sourcesFN);
-		
-		sourcesFN = sourcesFN + "-sources.xml";
-		QFile fileSources(sourcesFN);
-		if (!fileSources.exists()){		//create file if it does not exist
-			if (fileSources.open(QIODevice::ReadWrite)){		//try to create file
-				QTextStream ts(&fileSources);
-				ts.setCodec("UTF-8");
-				QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" + 
-									tr("About project") + "</title></head>\n";
-				QString str_body = "<body>"+tr("<p>This is start page of the project \"%1\"</p>"
-									"<p>It is good idea to describe your project on this page.</p>").arg(ui.ETitle->text()); 
-				QString str_ender = "</body>\n</html>\n";
-                                ts	<< "<pemproject-sources version=\"1.0\">" << endl << endl
-					<< "<source title=\"" << tr("Book Name") << "\" author=\"" << tr("Book Author") << "\" comment=\"" << tr("Book comment") << "\">" << endl
-					<< "	<link comment=\"" << tr("Edition comment or Link name") << "\">" << tr("URL or path to local source file") << "</link>" << endl
-					<< "</source>" << endl << endl
-                                        << "</pemproject-sources>";
-				fileSources.close();  
-			}else{
-				QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(sourcesFN));
-				er = true;
-			}
-		}  
-		*/
 
 
 		if (!er){	//project, start page and sources files do exist we can proceed with setting project properties
                         prjTitle= ui.ETitle->text();
                         prjStartPage = urlifyFileName(prjFN+"Bibleqt"+GL_Project_Conf_File);
                         prjFN = urlifyFileName(prjFN+ui.EprjFileName->text()+GL_Project_File);
+                        moduleBiblename = ui.lineEditBibleName->text();
+                        moduleBibleShortName = ui.lineEditBibleShortName->text();
+                        moduleCopyright = ui.lineEditCopyright->text();
+
                         validProperties = true;
 			if (modeNewProject){ 
-				emit createProject(prjTitle, prjFN, prjStartPage);				
+                                emit createProject(prjTitle, prjFN, prjStartPage, moduleBiblename, moduleBibleShortName, moduleCopyright);
 			}else{
-				emit updateProjectProperties(prjTitle, prjFN, prjStartPage);
+                                emit updateProjectProperties(prjTitle, prjFN, prjStartPage, moduleBiblename, moduleBibleShortName, moduleCopyright);
 			}
 			QWidget::hide();  //close dialog
 		}

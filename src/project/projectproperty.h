@@ -34,8 +34,8 @@ public:
 	bool valid() { return validProperties; }
 
 signals:
-	void createProject(QString title, QString fileName, QString startPage);
-	void updateProjectProperties(QString title, QString fileName, QString startPage);
+        void createProject(QString title, QString fileName, QString startPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
+        void updateProjectProperties(QString title, QString fileName, QString startPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
 	//void createDb(QString dbFileName);
      
 public slots:
@@ -43,7 +43,7 @@ public slots:
 	void chooseStartPage();
 	void accept();
 	void reject();
-	void setProperties(QString title, QString fileName, QString startPage, bool newPrj);
+        void setProperties(QString title, QString fileName, QString startPage, bool newPrj, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
 //	QString Title()			{ return prjTitle; }	
 	QString FileName()		{ return prjFN; }
 //	QString StartPage()		{ return prjStartPage; } 
@@ -52,7 +52,7 @@ private:
 	Ui::ProjectProperty ui; 
 	
 	bool modeNewProject; 	
-	QString prjTitle, prjFN, prjStartPage;
+        QString prjTitle, prjFN, prjStartPage, moduleBiblename, moduleCopyright, moduleBibleShortName;
 	bool validProperties;
 }; // class ProjectProperties
 

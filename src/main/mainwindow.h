@@ -56,8 +56,6 @@ public:
     TabbedBrowser *browsers() const;
     HelpDialog *helpDialog() const;
 
-
-
     void setupPopupMenu(QMenu *menu);
     void removePendingBrowser(HelpWindow *win);
     void msgReloadRequest();
@@ -81,8 +79,8 @@ private slots:
     void ProjectNew();
 //    void ProjectNewDiary();
 //    void ProjectNewNotebook();
-    void createProject(QString prjTitle, QString prjFN, QString prjStartPage);
-    void updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage);
+    void createProject(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
+    void updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
     void ProjectOpen();
     void ProjectSaveAs();
     void ProjectBackup();
