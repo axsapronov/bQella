@@ -157,7 +157,7 @@
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources>
-  <include location="ra.qrc" />
+  <include location="../../resources/recources.qrc" />
  </resources>
  <connections>
   <connection>

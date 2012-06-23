@@ -270,7 +270,7 @@
   </widget>
   <action name="actionFilePrint">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/file_print.png</normaloff>:/file/images/file_print.png</iconset>
    </property>
    <property name="text">
@@ -285,7 +285,7 @@
   </action>
   <action name="actionAppExit">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/app/images/app_exit.png</normaloff>:/app/images/app_exit.png</iconset>
    </property>
    <property name="text">
@@ -303,7 +303,7 @@
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/edit_copy.png</normaloff>:/edit/images/edit_copy.png</iconset>
    </property>
    <property name="text">
@@ -318,7 +318,7 @@
   </action>
   <action name="actionEditFind">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/find.png</normaloff>:/edit/images/find.png</iconset>
    </property>
    <property name="text">
@@ -349,7 +349,7 @@
   </action>
   <action name="actionAboutAssistant">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/app/images/app_about.png</normaloff>:/app/images/app_about.png</iconset>
    </property>
    <property name="text">
@@ -387,7 +387,7 @@
   </action>
   <action name="actionOpenPage">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/tabs/images/tab_add.png</normaloff>:/tabs/images/tab_add.png</iconset>
    </property>
    <property name="text">
@@ -399,7 +399,7 @@
   </action>
   <action name="actionNextPage">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/tabs/images/tab_next.png</normaloff>:/tabs/images/tab_next.png</iconset>
    </property>
    <property name="text">
@@ -411,7 +411,7 @@
   </action>
   <action name="actionPrevPage">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/tabs/images/tab_prev.png</normaloff>:/tabs/images/tab_prev.png</iconset>
    </property>
    <property name="text">
@@ -423,7 +423,7 @@
   </action>
   <action name="actionClosePage">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/tabs/images/tab_close.png</normaloff>:/tabs/images/tab_close.png</iconset>
    </property>
    <property name="text">
@@ -455,7 +455,7 @@
   </action>
   <action name="actionProjectProperties">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/project/images/prj_property.png</normaloff>:/project/images/prj_property.png</iconset>
    </property>
    <property name="text">
@@ -464,7 +464,7 @@
   </action>
   <action name="actionProjectStatistics">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/project/images/prj_statistics.png</normaloff>:/project/images/prj_statistics.png</iconset>
    </property>
    <property name="text">
@@ -473,7 +473,7 @@
   </action>
   <action name="actionProjectNew">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/project/images/prj_new.png</normaloff>:/project/images/prj_new.png</iconset>
    </property>
    <property name="text">
@@ -485,7 +485,7 @@
   </action>
   <action name="actionProjectOpen">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/project/images/prj_open.png</normaloff>:/project/images/prj_open.png</iconset>
    </property>
    <property name="text">
@@ -500,7 +500,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/project/images/prj_save.png</normaloff>:/project/images/prj_save.png</iconset>
    </property>
    <property name="text">
@@ -512,7 +512,7 @@
   </action>
   <action name="actionFileAdd">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/file_add.png</normaloff>:/file/images/file_add.png</iconset>
    </property>
    <property name="text">
@@ -521,7 +521,7 @@
   </action>
   <action name="actionSaveFile">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/file_save.png</normaloff>:/file/images/file_save.png</iconset>
    </property>
    <property name="text">
@@ -535,7 +535,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/edit_undo.png</normaloff>:/edit/images/edit_undo.png</iconset>
    </property>
    <property name="text">
@@ -544,7 +544,7 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/edit_redo.png</normaloff>:/edit/images/edit_redo.png</iconset>
    </property>
    <property name="text">
@@ -553,7 +553,7 @@
   </action>
   <action name="actionPaste">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/edit_paste.png</normaloff>:/edit/images/edit_paste.png</iconset>
    </property>
    <property name="text">
@@ -562,7 +562,7 @@
   </action>
   <action name="actionCut">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/edit/images/edit_cut.png</normaloff>:/edit/images/edit_cut.png</iconset>
    </property>
    <property name="text">
@@ -571,7 +571,7 @@
   </action>
   <action name="actionRemoveItem">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/item_remove.png</normaloff>:/file/images/item_remove.png</iconset>
    </property>
    <property name="text">
@@ -583,7 +583,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textbold.png</normaloff>:/text/images/textbold.png</iconset>
    </property>
    <property name="text">
@@ -598,7 +598,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textitalic.png</normaloff>:/text/images/textitalic.png</iconset>
    </property>
    <property name="text">
@@ -613,7 +613,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textunder.png</normaloff>:/text/images/textunder.png</iconset>
    </property>
    <property name="text">
@@ -628,7 +628,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textleft.png</normaloff>:/text/images/textleft.png</iconset>
    </property>
    <property name="text">
@@ -640,7 +640,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textcenter.png</normaloff>:/text/images/textcenter.png</iconset>
    </property>
    <property name="text">
@@ -652,7 +652,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textright.png</normaloff>:/text/images/textright.png</iconset>
    </property>
    <property name="text">
@@ -664,7 +664,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textjustify.png</normaloff>:/text/images/textjustify.png</iconset>
    </property>
    <property name="text">
@@ -673,7 +673,7 @@
   </action>
   <action name="actionTextColor">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/text/images/textcolor.png</normaloff>:/text/images/textcolor.png</iconset>
    </property>
    <property name="text">
@@ -682,7 +682,7 @@
   </action>
   <action name="actionItemProperties">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/item_property.png</normaloff>:/file/images/item_property.png</iconset>
    </property>
    <property name="text">
@@ -705,7 +705,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/flags/images/flag_gb.png</normaloff>:/flags/images/flag_gb.png</iconset>
    </property>
    <property name="text">
@@ -717,7 +717,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/flags/images/flag_ru.png</normaloff>:/flags/images/flag_ru.png</iconset>
    </property>
    <property name="text">
@@ -726,7 +726,7 @@
   </action>
   <action name="actionHyperlink">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/file/images/link.png</normaloff>:/file/images/link.png</iconset>
    </property>
    <property name="text">
@@ -735,7 +735,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/app/images/app_settings.png</normaloff>:/app/images/app_settings.png</iconset>
    </property>
    <property name="text">
@@ -789,7 +789,7 @@
   </action>
   <action name="actionAddBookmark">
    <property name="icon">
-    <iconset resource="../../resources/ra.qrc">
+    <iconset resource="../../resources/recources.qrc">
      <normaloff>:/msc/images/bookmark_add.png</normaloff>:/msc/images/bookmark_add.png</iconset>
    </property>
    <property name="text">
@@ -801,7 +801,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../../resources/ra.qrc"/>
+  <include location="../../resources/recources.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -34,9 +34,9 @@
 
 int main( int argc, char ** argv )
 {
-    Q_INIT_RESOURCE(ra); //Initialize the resources specified by the .qrc file 
+//    Q_INIT_RESOURCE(ra); //Initialize the resources specified by the .qrc file
 
-    QString aDocPath;
+//    QString aDocPath;
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
@@ -44,29 +44,29 @@ int main( int argc, char ** argv )
     a.setOrganizationName(GL_Prog_Author);
     a.setApplicationName(GL_Prog_Name);
 
-	Config *conf = new Config();
+    Config *conf = new Config();
     conf->setAppDir(QDir::currentPath() + "/");
     conf->setCacheDir(conf->AppDir() + "cache/");
-	conf->setImgDir(conf->AppDir() + "images/");
-	conf->setPrjDir(conf->AppDir() + "projects/");
-        conf->setIniFile(conf->AppDir() + "project.ini");
-	conf->setErrPage(conf->AppDir() + "last-error.html");
-        conf->setAppLogFN(conf->AppDir() + "log/project.log");
-	toLog(conf->AppLogFN(), "-------");
-        toLog(conf->AppLogFN(), "Project started.");
-	conf->loadSettings();
-	conf->loadProject(conf->CurProject());
-	
+    conf->setImgDir(conf->AppDir() + "images/");
+    conf->setPrjDir(conf->AppDir() + "projects/");
+    conf->setIniFile(conf->AppDir() + "project.ini");
+    conf->setErrPage(conf->AppDir() + "last-error.html");
+    conf->setAppLogFN(conf->AppDir() + "log/project.log");
+    toLog(conf->AppLogFN(), "-------");
+    toLog(conf->AppLogFN(), "Project started.");
+    conf->loadSettings();
+    conf->loadProject(conf->CurProject());
+
     if (!conf) {
         fprintf( stderr, "Profile '%s' does not exist!\n", conf->CurProject().toLatin1().constData() );
         fflush( stderr );
         return -1;
     }
-	//!+! load language based on locale on first startup or if it was not set directly
-	//QString locale = QLocale::system().name();
-	//qDebug()<< "locale = " << locale;
-	QTranslator translator;
-	if (conf->Lang() == "Russian"){
+    //!+! load language based on locale on first startup or if it was not set directly
+    //QString locale = QLocale::system().name();
+    //qDebug()<< "locale = " << locale;
+    QTranslator translator;
+    if (conf->Lang() == "Russian"){
         translator.load("resources/lang/rus");
     	a.installTranslator(&translator);
     }
@@ -78,15 +78,15 @@ int main( int argc, char ** argv )
     FontSettings settings = conf->fontSettings();
     if (mw->font() != settings.windowFont)
         a.setFont(settings.windowFont, "QWidget");
-	toLog(conf->AppLogFN(), "Done with setup. Show main window.");
+    toLog(conf->AppLogFN(), "Done with setup. Show main window.");
     mw->show();
 
     QStringList links = conf->source();	
-	if (links.isEmpty()) //!+! or option "Remember opened files" is not set 
-   	 	mw->showLink( urlifyFileName(conf->CurFile()) );
+    if (links.isEmpty()) //!+! or option "Remember opened files" is not set
+        mw->showLink( urlifyFileName(conf->CurFile()) );
     else 
         mw->showLinks( links );
-	a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
+    a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
     
     int appExec = a.exec();
     delete (MainWindow*)mw;
@@ -113,7 +113,7 @@ msc		- general purpose procedures with no class relations
 HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;	
 HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
 MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
-										TabbedBrowser *browsers();		HelpDialog *helpDialog();
+          TabbedBrowser *browsers();		HelpDialog *helpDialog();
 TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
 
 To access from HelpDialog to HelpWindow functions use:

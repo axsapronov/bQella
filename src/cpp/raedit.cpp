@@ -22,11 +22,11 @@
 #include <qapplication.h>
 #include <qevent.h>
 #include <qdesktopwidget.h>
-#include <qdebug.h>
+#include <QtDebug>
 #include <qabstracttextdocumentlayout.h>
 #include <qtextcodec.h>
 #include <qpainter.h>
-#include <qdir.h>
+#include <QDir>
 #include <qwhatsthis.h>
 #include <qtextobject.h>
 #include <qdesktopservices.h>
@@ -325,6 +325,7 @@ QVariant raEdit::loadResource(int /*type*/, const QUrl &name)
 {
     QByteArray data;
     QString fileName = findFile(resolveUrl(name));
+//    qDebug() << "filename KNJM = " << fileName;
     QFile f(fileName);
     if (f.open(QFile::ReadWrite)) {
         data = f.readAll();

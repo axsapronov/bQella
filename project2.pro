@@ -98,5 +98,8 @@ HEADERS += src/h/autoitems.h \
      src/h/raedit.h \
      src/h/srclistparser.h
 
-RESOURCES += resources/ra.qrc
-TRANSLATIONS += lang/ra_rus.ts
+
+TRANSLATIONS += resources/lang/rus.ts
+
+RESOURCES += \
+    resources/recources.qrc
