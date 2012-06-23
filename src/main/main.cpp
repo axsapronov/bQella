@@ -67,8 +67,10 @@ int main( int argc, char ** argv )
     //qDebug()<< "locale = " << locale;
     QTranslator translator;
     if (conf->Lang() == "Russian"){
-        translator.load("resources/lang/rus");
-    	a.installTranslator(&translator);
+//        translator.load("resources/lang/rus"); // СДЕЛАТЬ: разобраться с переводом, что-то не работает
+//        translator.load("rus","/resources/lang");
+        translator.load("lang/ra_rus");
+        a.installTranslator(&translator);
     }
 
     conf->hideSideBar( hideSidebar );

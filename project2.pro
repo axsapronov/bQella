@@ -15,7 +15,6 @@ OBJECTS_DIR = build/obj
 MOC_DIR     = build/moc
 RCC_DIR     = build
 
-
 INCLUDEPATH += src/h/ \
     src/project/ \
     src/dialogs/helpdialog \
@@ -27,7 +26,6 @@ INCLUDEPATH += src/h/ \
     src/main \
     src/doc \
     src/export
-
 
 FORMS += src/ui/autoitems.ui \
      src/doc/docproperty.ui \
@@ -98,8 +96,8 @@ HEADERS += src/h/autoitems.h \
      src/h/raedit.h \
      src/h/srclistparser.h
 
-
-TRANSLATIONS += resources/lang/rus.ts
-
 RESOURCES += \
     resources/recources.qrc
+
+TRANSLATIONS += \
+    lang/ra_rus.ts

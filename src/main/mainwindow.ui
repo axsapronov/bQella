@@ -279,9 +279,6 @@
    <property name="whatsThis">
     <string>Print the currently displayed page.</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
   </action>
   <action name="actionAppExit">
    <property name="icon">
