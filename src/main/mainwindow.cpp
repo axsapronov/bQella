@@ -150,8 +150,8 @@ void MainWindow::setup()
     connect(ui.actionProjectProperties, SIGNAL(triggered()), this, SLOT(ProjectProps()));
     connect(ui.actionAppExit, SIGNAL(triggered()), this, SLOT(exitApp()));
     //connect(prjprop, SIGNAL(createDB(QString)), prjsrc, SLOT(newDb(QString)));
-    connect(prjprop, SIGNAL(createProject(QString, QString, QString, QString, QString, QString)), this, SLOT(createProject(QString, QString, QString, QString, QString, QString)));
-    connect(prjprop, SIGNAL(updateProjectProperties(QString, QString, QString, QString, QString, QString)), this, SLOT(updateProjectProperties(QString, QString, QString, QString, QString, QString)));
+    connect(prjprop, SIGNAL(createProject(ModuleProperties)), this, SLOT(createProject(ModuleProperties)));
+    connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -722,11 +722,11 @@ void MainWindow::ProjectSrc()
 }
 
 //-------------------------------------------------
-void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
+void MainWindow::createProject(ModuleProperties pr)
 { 
     QString ind1="   ";
-    QString fn = unurlifyFileName(prjFN);
-    Config::configuration()->toAppLog(1, tr("Create a new project: %1", "For log").arg(prjTitle));
+    QString fn = unurlifyFileName(pr.prjFN);
+    Config::configuration()->toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
     Config::configuration()->toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
     if (!f.open(QFile::WriteOnly)){
@@ -737,13 +737,13 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     }
 
 
-    Config::configuration()->toAppLog(3, tr("- project start page: %1", "For log").arg(prjStartPage));
+    Config::configuration()->toAppLog(3, tr("- project start page: %1", "For log").arg(pr.prjStartPage));
     QFileInfo fi(fn);
     QString name = fi.baseName();
     QString path = fi.absolutePath();
     Config::configuration()->setDbName(path +"/"+ name +"-sources.db");
     name.remove(QChar(' '));
-    QString spFN = relatifyFileName(prjStartPage, path);
+    QString spFN = relatifyFileName(pr.prjStartPage, path);
     //fi.setFile(spFN);
     QString spT = tr("Bibleqt.ini");//fi.baseName(); // name of first doc in project in listcontent
     QTextStream ts(&f);
@@ -751,12 +751,12 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     ts << "<pemproject version=\"1.0\">" << endl << endl;
 
     ts << "<profile>" << endl;
-    ts << ind1 << "<property name=\"title\">" << Qt::escape(prjTitle) << "</property>" << endl;
+    ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
     ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
     ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
-    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(moduleBiblename) << "</property>" << endl;
-    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(moduleBibleShortName) << "</property>" << endl;
-    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(moduleCopyright) << "</property>" << endl;
+    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(pr.moduleBiblename) << "</property>" << endl;
+    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
@@ -775,20 +775,20 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
 }
 
 //-------------------------------------------------
-void MainWindow::updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
+void MainWindow::updateProjectProperties(ModuleProperties pr)
 {
-    QString p = unurlifyFileName(prjFN);
+    QString p = unurlifyFileName(pr.prjFN);
     QFileInfo fi(p);
     Config::configuration()->toPrjLog(1, tr("Update project properties:", "For log"));
-    Config::configuration()->toPrjLog(3, tr("- title      = %1", "For log").arg(prjTitle));
-    Config::configuration()->toPrjLog(3, tr("- file name  = %1", "For log").arg(prjFN));
-    Config::configuration()->toPrjLog(3, tr("- start page = %1", "For log").arg(prjStartPage));
+    Config::configuration()->toPrjLog(3, tr("- title      = %1", "For log").arg(pr.prjTitle));
+    Config::configuration()->toPrjLog(3, tr("- file name  = %1", "For log").arg(pr.prjFN));
+    Config::configuration()->toPrjLog(3, tr("- start page = %1", "For log").arg(pr.prjStartPage));
 
-    Config::configuration()->profile()->addProperty("title", prjTitle);
-    Config::configuration()->profile()->addProperty("startpage", prjStartPage);
-    Config::configuration()->profile()->addProperty("biblename", moduleBiblename);
-    Config::configuration()->profile()->addProperty("bibleshortname", moduleBibleShortName);
-    Config::configuration()->profile()->addProperty("copyright", moduleCopyright);
+    Config::configuration()->profile()->addProperty("title", pr.prjTitle);
+    Config::configuration()->profile()->addProperty("startpage", pr.prjStartPage);
+    Config::configuration()->profile()->addProperty("biblename", pr.moduleBiblename);
+    Config::configuration()->profile()->addProperty("bibleshortname", pr.moduleBibleShortName);
+    Config::configuration()->profile()->addProperty("copyright", pr.moduleCopyright);
 
     Config::configuration()->setCurProject(p);
     Config::configuration()->setCurPrjDir(fi.absolutePath());

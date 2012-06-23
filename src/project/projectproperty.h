@@ -25,6 +25,19 @@
 
 //===================== class ProjectProperties ===========================
 
+typedef struct StructModuleProperties
+{
+    QString prjTitle;
+    QString prjFN;
+    QString prjStartPage;
+    QString moduleBiblename;
+    QString moduleCopyright;
+    QString moduleBibleShortName;
+    double moduleVersion;
+
+} ModuleProperties;
+
+
 class ProjectProperties : public QDialog
 {
      Q_OBJECT
@@ -34,8 +47,8 @@ public:
 	bool valid() { return validProperties; }
 
 signals:
-        void createProject(QString title, QString fileName, QString startPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
-        void updateProjectProperties(QString title, QString fileName, QString startPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
+        void createProject(ModuleProperties propert);
+        void updateProjectProperties(ModuleProperties propert);
 	//void createDb(QString dbFileName);
      
 public slots:

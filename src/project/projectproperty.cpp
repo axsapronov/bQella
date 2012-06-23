@@ -103,6 +103,8 @@ void ProjectProperties::setProperties(QString title, QString fileName, QString s
         ui.lineEditBibleName->setText(moduleBiblename); // добавил
         ui.lineEditBibleShortName->setText(moduleBibleShortName);
         ui.lineEditCopyright->setText(moduleCopyright);
+//        ui.doubleSpinBoxVersion->setValue()
+
         //ui.EprjFileName->setText(fileName);
         //ui.EStartPage->setText(startPage);
 }
@@ -191,18 +193,19 @@ void ProjectProperties::accept()
 
 
 		if (!er){	//project, start page and sources files do exist we can proceed with setting project properties
-                        prjTitle= ui.ETitle->text();
-                        prjStartPage = urlifyFileName(prjFN+"Bibleqt"+GL_Project_Conf_File);
-                        prjFN = urlifyFileName(prjFN+ui.EprjFileName->text()+GL_Project_File);
-                        moduleBiblename = ui.lineEditBibleName->text();
-                        moduleBibleShortName = ui.lineEditBibleShortName->text();
-                        moduleCopyright = ui.lineEditCopyright->text();
+                        ModuleProperties prop;
+                        prop.prjTitle= ui.ETitle->text();
+                        prop.prjStartPage = urlifyFileName(prjFN+"Bibleqt"+GL_Project_Conf_File);
+                        prop.prjFN = urlifyFileName(prjFN+ui.EprjFileName->text()+GL_Project_File);
+                        prop.moduleBiblename = ui.lineEditBibleName->text();
+                        prop.moduleBibleShortName = ui.lineEditBibleShortName->text();
+                        prop.moduleCopyright = ui.lineEditCopyright->text();
 
                         validProperties = true;
 			if (modeNewProject){ 
-                                emit createProject(prjTitle, prjFN, prjStartPage, moduleBiblename, moduleBibleShortName, moduleCopyright);
+                                emit createProject(prop);
 			}else{
-                                emit updateProjectProperties(prjTitle, prjFN, prjStartPage, moduleBiblename, moduleBibleShortName, moduleCopyright);
+                                emit updateProjectProperties(prop);
 			}
 			QWidget::hide();  //close dialog
 		}

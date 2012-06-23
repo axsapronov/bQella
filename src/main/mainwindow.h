@@ -79,8 +79,8 @@ private slots:
     void ProjectNew();
 //    void ProjectNewDiary();
 //    void ProjectNewNotebook();
-    void createProject(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
-    void updateProjectProperties(QString prjTitle, QString prjFN, QString prjStartPage, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
+    void createProject(ModuleProperties);
+    void updateProjectProperties(ModuleProperties);
     void ProjectOpen();
     void ProjectSaveAs();
     void ProjectBackup();
