@@ -118,6 +118,7 @@ MainWindow::MainWindow():
     ui.toolBarTabs->setVisible(false);
     ui.actionEditFind->setVisible(false);
 //    ui.menuNew_with_pattern->setVisible(false);
+    ui.actionProjectBackup->setVisible(false);
 
 }
 
@@ -511,7 +512,7 @@ void MainWindow::setupPopupMenu(QMenu *m)
 void MainWindow::ProjectOpen()
 {//warmongeR
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration()->PrjDir(),
-                                                    tr("Project Projects (*.pp)"));
+                                                    tr("Project Projects (*.pem)"));
     if (!fileName.isEmpty()){
         ProjectOpen(fileName);
     }
@@ -539,7 +540,7 @@ void MainWindow::ProjectOpen(QString fileName)
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {//warmonger
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Research Assistant Projects (*.pp)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration()->CurPrjDir(), tr("Project editor module (*.pep)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_Project_File);
@@ -655,7 +656,7 @@ void MainWindow::ProjectNew()
 {
     /*
     QString fn = QFileDialog::getSaveFileName(this, tr("New Project"),
-                              Config::configuration()->PrjDir(), tr("Research Assistant Project (*.rap);;All Files (*)"));
+                              Config::configuration()->PrjDir(), tr("Research Assistant Project (*.pem);;All Files (*)"));
 
     */
 
@@ -742,7 +743,7 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     QString spT = tr("Bibleqt.ini");//fi.baseName(); // name of first doc in project in listcontent
     QTextStream ts(&f);
     ts.setCodec("UTF-8");
-    ts << "<raproject version=\"1.0\">" << endl << endl;
+    ts << "<pemproject version=\"1.0\">" << endl << endl;
 
     ts << "<profile>" << endl;
     ts << ind1 << "<property name=\"title\">" << Qt::escape(prjTitle) << "</property>" << endl;
@@ -755,7 +756,7 @@ void MainWindow::createProject(QString prjTitle, QString prjFN, QString prjStart
     ts << ind1 << "</section>" << endl;
     ts << "</contents>" << endl << endl;
 
-    ts << "</raproject>" << endl;
+    ts << "</pemproject>" << endl;
     f.close();
 
     Config::configuration()->toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration()->DbName()));

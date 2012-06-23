@@ -42,7 +42,7 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 void ProjectProperties::chooseProjectFineName()
 {//warmonger
 	QString fn = QFileDialog::getSaveFileName(this, tr("Choose project name"),
-                               Config::configuration()->PrjDir(), tr("Project Project (*.pp);;All Files (*)"));
+                               Config::configuration()->PrjDir(), tr("Project editor module (*.pem);;All Files (*)"));
     if (!fn.isEmpty()){
     	QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 
@@ -137,7 +137,7 @@ void ProjectProperties::accept()
             if (!filePrj.exists()){		//create file if it's not exist
                     if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
                             QTextStream ts(&filePrj);
-                            ts << "<raproject>\n</raproject>";
+                            ts << "<pemproject>\n</pemproject>";
                             filePrj.close();
                     }else{
                             QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.EprjFileName->text()));
@@ -212,11 +212,11 @@ void ProjectProperties::accept()
 				QString str_body = "<body>"+tr("<p>This is start page of the project \"%1\"</p>"
 									"<p>It is good idea to describe your project on this page.</p>").arg(ui.ETitle->text()); 
 				QString str_ender = "</body>\n</html>\n";
-				ts	<< "<raproject-sources version=\"1.0\">" << endl << endl
+                                ts	<< "<pemproject-sources version=\"1.0\">" << endl << endl
 					<< "<source title=\"" << tr("Book Name") << "\" author=\"" << tr("Book Author") << "\" comment=\"" << tr("Book comment") << "\">" << endl
 					<< "	<link comment=\"" << tr("Edition comment or Link name") << "\">" << tr("URL or path to local source file") << "</link>" << endl
 					<< "</source>" << endl << endl
-					<< "</raproject-sources>";
+                                        << "</pemproject-sources>";
 				fileSources.close();  
 			}else{
 				QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(sourcesFN));

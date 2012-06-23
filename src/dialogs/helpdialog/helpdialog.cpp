@@ -744,7 +744,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
     quint32 fileAges = 0;
     for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it) {
         QFile file(*it);
-        //        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pp file. Should we remove 'for' cycle and docuFiles
+        //        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pem file. Should we remove 'for' cycle and docuFiles
 
         if (!file.exists()) {
             QMessageBox::warning(this, tr("Warning"),
@@ -1751,18 +1751,14 @@ void HelpDialog::on_searchButton_clicked()
 // нужная херь
 void HelpDialog::InsertContentsItem(QString title, QString fileName, QString iconFN) 
 {
-
-
     QString strfor = fileName;
     strfor.remove("file:");
-
 
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)
     {
-        qDebug() << "\n" << m_bookadddialog->bookChapterQty << " " << m_bookadddialog->bookFullName << " " << m_bookadddialog->bookShortName;
-        qDebug() << "\n" << title << " " << fileName << " " << iconFN << " " << Config::configuration()->CurPrjDir() << "\n";
-
+//        qDebug() << "\n" << m_bookadddialog->bookChapterQty << " " << m_bookadddialog->bookFullName << " " << m_bookadddialog->bookShortName;
+//        qDebug() << "\n" << title << " " << fileName << " " << iconFN << " " << Config::configuration()->CurPrjDir() << "\n";
         QString fileNameFor = fileName;
         QString fileNameFor2 = fileName;
         QFile file1(fileNameFor2.remove("file:"));
@@ -1850,14 +1846,6 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
     }
     mw->projectModified(true);
 
-
-
-    //
-
-
-    //
-
-    // не устанавливает нужный заголовок файла
     if (newSameLevelItem and m_bookadddialog->bookCheckAutoChapterCreate)
     {
         for (int i=1; i<=m_bookadddialog->bookChapterQty; ++i)
@@ -1906,15 +1894,12 @@ void HelpDialog::InsertChapter(QTreeWidgetItem * book, QString title, QString fi
 void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QString title)
 {
     title = title;
-    qDebug() << "\nfilename" << filename << "\n";
-
-    // до сюда работает
+//    qDebug() << "\nfilename" << filename << "\n";
     QFile file(filename);
     QString string;
 
     if(file.exists())
     {
-        //qDebug() << "до сюда работает 1";
         if(!file.open(QIODevice::ReadWrite  | QIODevice::Text))
         {
             qDebug() << "Error write";
@@ -1923,25 +1908,15 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
         {
             QTextStream stream(&file);
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
-
-            //qDebug() << "до сюда работает 2";
             QString str;
             while (!stream.atEnd())
             {
                 str = stream.readLine();
                 str.toUtf8();
-                qDebug() << "str = " << str;
-                //                    if (newSameLevelItem and (str == "</body></html>"))
-                //                    {
-                //                        str="";
-                //                    }
-
-                //if (str.indexOf("ChapterQty ="))
+//                qDebug() << "str = " << str;
                 if (item->childCount())
                 {
-
                     int stint = str.indexOf("ChapterQty =");
-
                     if (stint >0)
                     {
                         qDebug() << "str do  " << str;
@@ -1950,57 +1925,24 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                         str.append(QString("ChapterQty = %1</p></body></html>").arg(item->childCount()));
                         qDebug() << "str append " << str;
                     }
-
-
-                    //                         if (item->childCount() )
-                    //                         {
-                    //                             if (str.indexOf("ChapterQty =")>=0)
-                    //                             {
-
-                    //                             int stint = str.indexOf("ChapterQty =");
-                    //                             qDebug() << "str do  " << str;
-                    //                             str.remove(stint, str.length()-stint);
-                    //                             qDebug() << "str remove " << str;
-                    //                             str.append(QString("ChapterQty = %1</p></body></html>").arg(item->childCount()));
-                    //                             qDebug() << "str append " << str;
-                    //                             }
-
-
-                    //                         }
-
                 }
-
                 if (str.left(13) == "ChapterQty = ")
                 {
                     //qDebug() << "\n" << "find!";
                     //str = QString("ChapterQty = %1").arg(m_bookadddialog->bookChapterQty);
                     //qDebug() << "\n" << ui.listContents->currentItem() << " " << ui.listContents->currentItem()->childCount();
                     str = QString("ChapterQty = %1\n").arg(item->childCount());
-
                 }
-
                 string.append(str+"\n");
-                // не перезаписывается, а дописывается в конец файла
-
             }
-
-            //                if (newSameLevelItem)
-            //                    string.append("</body>\n</html>");
-
             qDebug() << "\nstring = " << string;
         }
     }
     else
         qDebug() << "Error exist";
     file.close();
-
     file.remove();
 
-    // createEmptyHtml(f)
-    //createEmptyHtml(filename, title, string);
-
-
-    //qDebug() << "до сюда работает 1";
     if(!file.open(QIODevice::WriteOnly))
     {
         qDebug() << "Error write";
@@ -2008,22 +1950,14 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
     else
     {
         file.write(QString("%1").arg(string).toUtf8());
-
-
     }
     file.close();
-
-
-
-
-
-
 }
 
 //-------------------------------------------------
 //for saving contents to file. Used by HelpDialog::saveContents()
 static void store2xml(QTreeWidgetItem *i, QTextStream &ts) 
-{	
+{
     ts  << indent << "<section title=\"" << i->text(0)
         << "\" ref=\"" << relatifyFileName(i->data(0, LinkRole).toString(),  Config::configuration()->CurPrjDir())
         << "\" icon=\"" << relatifyFileName(i->data(0, IconFNRole).toString(),  Config::configuration()->CurPrjDir()) + "\" >" << endl;
@@ -2058,14 +1992,14 @@ void HelpDialog::saveProject(QString profileFN)
 {
     QString str;
     QMap<QString, QString>::iterator i;
-    //QFile f(Config::configuration()->curprjDir + QDir::separator() + Config::configuration()->profileName() + "2.pp");
+    //QFile f(Config::configuration()->curprjDir + QDir::separator() + Config::configuration()->profileName() + "2.pem");
     QFile f(profileFN);
     if (!f.open(QFile::WriteOnly))
         return;
 
     QTextStream ts(&f);
     ts.setCodec("UTF-8");
-    ts << "<raproject version=\"1.0\">\n\n"
+    ts << "<pemproject version=\"1.0\">\n\n"
 
           // save profile settings
        << "<profile>\n";
@@ -2080,7 +2014,7 @@ void HelpDialog::saveProject(QString profileFN)
 
     // save contents
     store2xml(ui.listContents, ts);
-    ts << "\n</raproject>\n";
+    ts << "\n</pemproject>\n";
     f.close();
     mw->projectModified(false);
     mw->statusBar()->showMessage(tr("Project has been saved"), 5000);
@@ -2441,7 +2375,7 @@ void HelpDialog::exportCreateDir(QString current_dir)
     QDir dir(current_dir);
 
 
-//    qDebug() << "path = " << path <<  "last = " << path.last();
+    //    qDebug() << "path = " << path <<  "last = " << path.last();
     if (!QDir(QString("%1export_%2/").arg(current_dir, getNameFolder(current_dir))).exists())
     {
         dir.mkdir(QString("export_%1").arg(getNameFolder(current_dir)));
@@ -2455,7 +2389,7 @@ void HelpDialog::exportCreateDir(QString current_dir)
         foreach (QString entry, lstFiles)
         {
             QString entryAbsPath = dir.absolutePath() + "/" + entry;
-            qDebug() << entryAbsPath;
+            //qDebug() << entryAbsPath;
             QFile::setPermissions(entryAbsPath, QFile::ReadOwner | QFile::WriteOwner);
             QFile::remove(entryAbsPath);
         }
@@ -2506,14 +2440,13 @@ void HelpDialog::exportBibleqtIniInfo(QString file,int i)
         filebibleqt.write(QString("%1").arg(string).toUtf8());
     }
     filebibleqt.close();
-    qDebug() << string;
+  //  qDebug() << string;
 
 }
 
 QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
 {
-    // подготовливаем главы
-
+    // подготавливаем главы
     // мега индия
     QFile file(filename);
     QString str;
@@ -2536,7 +2469,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
 
             if (chapt)
             {
-                qDebug() << "hahaha1";
+                qDebug() << "************ Export: chapter-file";
                 QString title = QString("<title>%1</title>").arg(i);
                 QString chapter = tr("\n?h4?Глава %1?/h4?").arg(i);
                 str.replace(title,chapter);
@@ -2544,7 +2477,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
             else
             {
                 str.remove(title);
-                qDebug() << "hahaha";
+                qDebug() << "************ Export: book-file";
             }
 
             str.remove("p, li { white-space: pre-wrap; }")
@@ -2558,12 +2491,9 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty")
-                    .replace("?h4?", "<h4>")
-                    .replace("?p?", "<p>")
-                    .replace("?/h4?", "</h4>");
-
-            //            qDebug() << "text = " << str;
-
+                    .replace("?h4?", "<h4>")                    
+                    .replace("?/h4?\n\n", "</h4>")
+                    .replace("?p?", "<p>");
         }
     }
     else
@@ -2590,7 +2520,7 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
             int icount = j;
             filebook.write(QString("%1").arg(exportChapter(filenamechapter, icount, true)).toUtf8());
         }
-        filebook.write(QString("\n</body>\n</html>").toUtf8());
+        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
     }
     filebook.close();
 }

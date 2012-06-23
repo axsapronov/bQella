@@ -110,7 +110,7 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
     switch(state) {
 
     case StateInit:
-        if(lower == QLatin1String("raproject"))
+        if(lower == QLatin1String("pemproject"))
 			state = StateProfile;
         break;
 

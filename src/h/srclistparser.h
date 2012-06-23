@@ -20,7 +20,7 @@
  */
 
 /* This parser parse files with structure like:
-<raproject-sources version="1.0">
+<pemproject-sources version="1.0">
 <source title="Book Name" author="Book Author" comment="First Edition">
     <link comment="local">../../sources/book.html</link>
     <link comment="remote">http://ya.ru</link>
@@ -30,7 +30,7 @@
     <link comment="remote location">http://pm4u.opennet.ru</link>
     <link comment="second local ">folder</link>
 </source>
-</raproject-sources>
+</pemproject-sources>
 */
 #ifndef __SrcListParser_H__
 #define __SrcListParser_H__

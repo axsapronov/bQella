@@ -37,7 +37,7 @@
 #define GL_Prog_Author "Alexander Sapronov"
 
 //.pjm  = project module
-#define GL_Project_File ".pp"
+#define GL_Project_File ".pem"
 #define GL_Project_Conf_File ".ini"
 
 
@@ -220,7 +220,7 @@ private:
     QString prjDir;
     QString imgDir;
     QString curPrjDir;
-    QString curProject;	// current project file name *.pp
+    QString curProject;	// current project file name *.pep
     QString curFile;	// opened file. We need this to save any changes automaticly
     QString curPrjSrc;
     QString lang;
