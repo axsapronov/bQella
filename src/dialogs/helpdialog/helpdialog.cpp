@@ -2487,7 +2487,7 @@ QString HelpDialog::exportChapter (QString filename,int i,bool chapt)
                     .remove(rxi)
                     .replace("<p>", "?p?")
                     .remove(rx)
-                    .replace("?p?PathName","PathName")
+                    .replace("\n\n?p?PathName","PathName")
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty")
@@ -2549,7 +2549,6 @@ QString HelpDialog::getNameFolder(QString cur_dir)
 {
     QStringList path = cur_dir.split("/");
     path.removeLast();
-
     return path.last();
 }
 

@@ -75,7 +75,7 @@ void Config::loadProject(const QString &projectFileName)
         prjFN = PrjDir() + "help/help.pem";
         fi.setFile(prjFN);
         qWarning( (QLatin1String("Open help project instead: ") + prjFN).toAscii().constData() );
-        toAppLog(2, "- open RA help project instead: " + prjFN);
+        toAppLog(2, "- open help project instead: " + prjFN);
     } 
     
     setCurProject(prjFN);
