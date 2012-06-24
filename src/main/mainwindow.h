@@ -85,7 +85,6 @@ private slots:
     void ProjectSaveAs();
     void ProjectBackup();
     void ProjectProps();
-    void ProjectSrc();
     void setLangEn();
     void setLangRu();
     void showAppSettings();

@@ -52,8 +52,6 @@ signals:
 	//void createDb(QString dbFileName);
      
 public slots:
-	void chooseProjectFineName();
-	void chooseStartPage();
 	void accept();
 	void reject();
         void setProperties(bool newPrj, ModuleProperties pr);
