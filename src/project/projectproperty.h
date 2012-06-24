@@ -33,7 +33,7 @@ typedef struct StructModuleProperties
     QString moduleBiblename;
     QString moduleCopyright;
     QString moduleBibleShortName;
-    double moduleVersion;
+    double moduleBVersion;
 
 } ModuleProperties;
 
@@ -56,7 +56,7 @@ public slots:
 	void chooseStartPage();
 	void accept();
 	void reject();
-        void setProperties(QString title, QString fileName, QString startPage, bool newPrj, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright);
+        void setProperties(bool newPrj, ModuleProperties pr);
 //	QString Title()			{ return prjTitle; }	
 	QString FileName()		{ return prjFN; }
 //	QString StartPage()		{ return prjStartPage; } 
@@ -66,6 +66,7 @@ private:
 	
 	bool modeNewProject; 	
         QString prjTitle, prjFN, prjStartPage, moduleBiblename, moduleCopyright, moduleBibleShortName;
+        double moduleVersion;
 	bool validProperties;
 }; // class ProjectProperties
 

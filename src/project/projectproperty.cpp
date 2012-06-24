@@ -90,20 +90,25 @@ void ProjectProperties::chooseStartPage()
         }
 }
 
-void ProjectProperties::setProperties(QString title, QString fileName, QString startPage, bool newPrj, QString moduleBiblename, QString moduleBibleShortName, QString moduleCopyright)
+void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 {
-	prjTitle= title;
-	prjFN = fileName;
-	prjStartPage = startPage; 
+        prjTitle= pr.prjTitle;
+        prjFN = pr.prjFN;
+        prjStartPage = pr.prjStartPage;
 	modeNewProject = newPrj;
 
-        //qDebug() << "/n" << fileName << " " << startPage << " " << title << "/n";
-	ui.ETitle->setText(title);
 
-        ui.lineEditBibleName->setText(moduleBiblename); // добавил
-        ui.lineEditBibleShortName->setText(moduleBibleShortName);
-        ui.lineEditCopyright->setText(moduleCopyright);
-//        ui.doubleSpinBoxVersion->setValue()
+        QString version;
+        version.setNum(pr.moduleBVersion);
+        qDebug() << "_ProjectProperties::setProperties" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+
+
+        //qDebug() << "/n" << fileName << " " << startPage << " " << title << "/n";
+        ui.ETitle->setText(pr.prjTitle);
+        ui.lineEditBibleName->setText(pr.moduleBiblename); // добавил
+        ui.lineEditBibleShortName->setText(pr.moduleBibleShortName);
+        ui.lineEditCopyright->setText(pr.moduleCopyright);
+        ui.doubleSpinBoxVersion->setValue(pr.moduleBVersion);
 
         //ui.EprjFileName->setText(fileName);
         //ui.EStartPage->setText(startPage);
@@ -176,6 +181,7 @@ void ProjectProperties::accept()
 
                             Config::configuration()->setModuleBiblename(ui.lineEditBibleName->text());
                             Config::configuration()->setModuleBibleShortName(ui.lineEditBibleShortName->text());
+                            Config::configuration()->setModuleCopyright(ui.lineEditCopyright->text());
                             Config::configuration()->setModuleCopyright(ui.lineEditCopyright->text());
                             QString str_ender = "\n</body>\n</html>\n";
 

@@ -66,6 +66,7 @@ public:
 
     Config();
 
+
     void loadSettings();
     void saveSettings();
     Profile *profile() const { return profil; }
@@ -123,7 +124,7 @@ public:
     QString CurProject(){ return curProject; }
     QString CurFile()	{ return curFile; }
     QString CurPrjSrc()	{ return curPrjSrc; }
-    QString Lang()		{ return lang; }
+    QString Lang()	{ return lang; }
     QString ErrPage()	{ return errPage; }
     QString IniFile()	{ return iniFile; }
     QString DbName()	{ return dbName; }
@@ -135,6 +136,7 @@ public:
     QString ModuleBiblename()  { return moduleBiblename;}
     QString ModuleCopyright()  { return moduleCopyright;}
     QString ModuleBibleShortName() { return moduleBibleShortName;}
+//    double ModuleVersion() { return moduleVersion;}
 
 
 
@@ -157,8 +159,7 @@ public:
     void setModuleBiblename(QString fn)   { moduleBiblename = fn; }
     void setModuleCopyright(QString fn)   { moduleCopyright = fn; }
     void setModuleBibleShortName(QString fn)    { moduleBibleShortName = fn; }
-
-
+//    void setModuleVersion(double ve)    { moduleVersion = ve; }
 
 
     //variables from Settings window
@@ -198,7 +199,6 @@ private:
     Config( const Config &c );
     Config& operator=( const Config &c );
 
-private:
     Profile *profil;
     Profile *profil_tmp; //to build project list
     
@@ -249,6 +249,7 @@ private:
     QString externalArchiver;
     QString externalArchiverOptions;
     int defaultSignatureID;
+
 };
 
 #endif // CONFIG_H

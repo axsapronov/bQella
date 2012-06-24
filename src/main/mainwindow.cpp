@@ -97,7 +97,7 @@ MainWindow::MainWindow():
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
     //включить после отладки
-//    connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
+    //    connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
 
     restoreGeometry(config->windowGeometry());
     restoreState(config->mainWindowState());
@@ -117,7 +117,7 @@ MainWindow::MainWindow():
     ui.actionPrint_Preview->setVisible(false);
     ui.toolBarTabs->setVisible(false);
     ui.actionEditFind->setVisible(false);
-//    ui.menuNew_with_pattern->setVisible(false);
+    //    ui.menuNew_with_pattern->setVisible(false);
     ui.actionProjectBackup->setVisible(false);
 
 }
@@ -141,8 +141,8 @@ void MainWindow::setup()
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
-//    connect(ui.actionNewPrjDiary, SIGNAL(triggered()), this, SLOT(ProjectNewDiary()));
-//    connect(ui.actionNewPrjNotebook, SIGNAL(triggered()), this, SLOT(ProjectNewNotebook()));
+    //    connect(ui.actionNewPrjDiary, SIGNAL(triggered()), this, SLOT(ProjectNewDiary()));
+    //    connect(ui.actionNewPrjNotebook, SIGNAL(triggered()), this, SLOT(ProjectNewNotebook()));
     connect(ui.actionProjectOpen, SIGNAL(triggered()), this, SLOT(ProjectOpen()));
     connect(ui.actionProjectSave, SIGNAL(triggered()), helpDock, SLOT(saveProject()));
     connect(ui.actionProjectSaveAs, SIGNAL(triggered()), this, SLOT(ProjectSaveAs()));
@@ -653,27 +653,31 @@ void MainWindow::exitApp()
 //-------------------------------------------------
 void MainWindow::ProjectNew()
 {
-    /*
-    QString fn = QFileDialog::getSaveFileName(this, tr("New Project"),
-                              Config::configuration()->PrjDir(), tr("Research Assistant Project (*.pem);;All Files (*)"));
 
-    */
+    ModuleProperties pr;
 
     QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
 
-    QString fn = QFileDialog::getExistingDirectory(this,
-                                                   tr("Select folder for new project"),
-                                                   Config::configuration()->PrjDir(),
-                                                   options);
+    pr.prjFN = QFileDialog::getExistingDirectory(this,
+                                                 tr("Select folder for new project"),
+                                                 Config::configuration()->PrjDir(),
+                                                 options);
 
-    if (!fn.isEmpty()){
-        QFileInfo fi(fn);
+    if (!pr.prjFN.isEmpty()){
+        QFileInfo fi(pr.prjFN);
         /*if (fi.suffix().isEmpty())
                 fn += GL_Project_File;*/
-        QString sp = fi.absolutePath();
+        pr.prjStartPage = fi.absolutePath();
     	bool newProject = true;
-        fn.append("/");
-        prjprop->setProperties(tr("New Project","Default project name"), fn, sp, newProject," ", " ", " ");
+        pr.prjFN.append("/");
+
+        pr.prjTitle = tr("New Project", "Default project name");
+        pr.moduleBiblename = " ";
+        pr.moduleBibleShortName = " ";
+        pr.moduleCopyright = " ";
+        pr.moduleBVersion = 1.0;
+
+        prjprop->setProperties(newProject, pr);
         prjprop->show();
     }
 }
@@ -701,17 +705,20 @@ void MainWindow::ProjectNew()
 //-------------------------------------------------
 void MainWindow::ProjectProps()
 {
-    QString  t = Config::configuration()->profile()->props["title"];
-    QString sp = Config::configuration()->profile()->props["startpage"];
-    QString b1 = Config::configuration()->profile()->props["biblename"];
-    QString b2 = Config::configuration()->profile()->props["bibleshortname"];
-    QString b3 = Config::configuration()->profile()->props["copyright"];
+    ModuleProperties pr;
+    pr.prjTitle = Config::configuration()->profile()->props["title"];
+    pr.prjStartPage = Config::configuration()->profile()->props["startpage"];
+    pr.moduleBiblename = Config::configuration()->profile()->props["biblename"];
+    pr.moduleBibleShortName = Config::configuration()->profile()->props["bibleshortname"];
+    pr.moduleCopyright = Config::configuration()->profile()->props["copyright"];
+    pr.moduleBVersion = QString(Config::configuration()->profile()->props["version"]).toDouble();
+
 
     bool newProject = false;
 
-    prjprop->setProperties(t,Config::configuration()->CurProject(), sp, newProject, b1, b2, b3);
-//    prjprop->ui.lineEditBibleName->setText("gsdg"); /// добавил
-//    prjprop->set
+    prjprop->setProperties(newProject, pr);
+    //    prjprop->ui.lineEditBibleName->setText("gsdg"); /// добавил
+    //    prjprop->set
     prjprop->show();
 }
 
@@ -750,6 +757,10 @@ void MainWindow::createProject(ModuleProperties pr)
     ts.setCodec("UTF-8");
     ts << "<pemproject version=\"1.0\">" << endl << endl;
 
+    QString version;
+    version.setNum(pr.moduleBVersion);
+    qDebug() << "_MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+
     ts << "<profile>" << endl;
     ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
     ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
@@ -757,6 +768,7 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"biblename\">" << Qt::escape(pr.moduleBiblename) << "</property>" << endl;
     ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
     ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
+    ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
@@ -783,12 +795,21 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration()->toPrjLog(3, tr("- title      = %1", "For log").arg(pr.prjTitle));
     Config::configuration()->toPrjLog(3, tr("- file name  = %1", "For log").arg(pr.prjFN));
     Config::configuration()->toPrjLog(3, tr("- start page = %1", "For log").arg(pr.prjStartPage));
+    Config::configuration()->toPrjLog(3, tr("- module name      = %1", "For log").arg(pr.moduleBiblename));
+    Config::configuration()->toPrjLog(3, tr("- module short name  = %1", "For log").arg(pr.moduleBibleShortName));
+    Config::configuration()->toPrjLog(3, tr("- module copyright = %1", "For log").arg(pr.moduleCopyright));
 
     Config::configuration()->profile()->addProperty("title", pr.prjTitle);
     Config::configuration()->profile()->addProperty("startpage", pr.prjStartPage);
     Config::configuration()->profile()->addProperty("biblename", pr.moduleBiblename);
     Config::configuration()->profile()->addProperty("bibleshortname", pr.moduleBibleShortName);
     Config::configuration()->profile()->addProperty("copyright", pr.moduleCopyright);
+
+    QString version;
+    version.setNum(pr.moduleBVersion);
+    qDebug() << "_MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+    Config::configuration()->profile()->addProperty("version", version);
+
 
     Config::configuration()->setCurProject(p);
     Config::configuration()->setCurPrjDir(fi.absolutePath());
@@ -859,7 +880,7 @@ void MainWindow::ProjectBackup()
 void MainWindow::globalShortcut_CtrlShiftInsert()
 {
     if (QApplication::focusWidget()->objectName() == "raWorkArea"){
-      //  insertDefaultSignature();
+        //  insertDefaultSignature();
     }
 
 }

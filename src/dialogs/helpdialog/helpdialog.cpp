@@ -2402,10 +2402,17 @@ void HelpDialog::exportBibleqtIni(QString string)
                             "\nChapterSign = <h4>"
                             "\nVerseSign = <p>"
                             "\nBookQty = %4")
-                .arg(Config::configuration()->ModuleBiblename())
-                .arg(Config::configuration()->ModuleBibleShortName())
-                .arg(Config::configuration()->ModuleCopyright())
+                .arg(Config::configuration()->profile()->props["biblename"])
+                .arg(Config::configuration()->profile()->props["bibleshortname"])
+                .arg(Config::configuration()->profile()->props["copyright"])
                 .arg(ui.listContents->topLevelItemCount()-1);
+//                .arg(Config::configuration()->ModuleBiblename())
+//                .arg(Config::configuration()->ModuleBibleShortName())
+//                .arg(Config::configuration()->ModuleCopyright())
+//                .arg(ui.listContents->topLevelItemCount()-1);
+
+         qDebug() << "test = " << Config::configuration()->profile()->props["biblename"];
+
 
         file.write(QString("%1").arg(stru).toUtf8());
     }
