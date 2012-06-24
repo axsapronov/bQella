@@ -2411,7 +2411,7 @@ void HelpDialog::exportBibleqtIni(QString string)
 //                .arg(Config::configuration()->ModuleCopyright())
 //                .arg(ui.listContents->topLevelItemCount()-1);
 
-         qDebug() << "test = " << Config::configuration()->profile()->props["biblename"];
+//         qDebug() << "test = " << Config::configuration()->profile()->props["biblename"];
 
 
         file.write(QString("%1").arg(stru).toUtf8());

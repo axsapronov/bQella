@@ -35,20 +35,20 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 {
      ui.setupUi(this);
      
-     connect(ui.BprjFileName, SIGNAL(clicked()), this, SLOT(chooseProjectFineName()));
+//     connect(ui.BprjFileName, SIGNAL(clicked()), this, SLOT(chooseProjectFineName()));
      //connect(ui.BStartPage, SIGNAL(clicked()), this, SLOT(chooseStartPage()));
 }
 
 void ProjectProperties::chooseProjectFineName()
 {//warmonger
-	QString fn = QFileDialog::getSaveFileName(this, tr("Choose project name"),
-                               Config::configuration()->PrjDir(), tr("Project editor module (*.pem);;All Files (*)"));
-    if (!fn.isEmpty()){
-    	QFileInfo fi(fn);
-    	if (fi.suffix().isEmpty()) 
-                fn += GL_Project_File;
-		ui.EprjFileName->setText(fn);
-	}
+//	QString fn = QFileDialog::getSaveFileName(this, tr("Choose project name"),
+//                               Config::configuration()->PrjDir(), tr("Project editor module (*.pem);;All Files (*)"));
+//    if (!fn.isEmpty()){
+//    	QFileInfo fi(fn);
+//    	if (fi.suffix().isEmpty())
+//                fn += GL_Project_File;
+//		ui.EprjFileName->setText(fn);
+//	}
 }
 
 
@@ -57,37 +57,37 @@ void ProjectProperties::chooseStartPage()
 /*	QString *s= new QString();
 	QString path = ui.EprjFileName->text();
 	if (path.isEmpty()) path = Config::configuration()->CurPrjDir();
-    QString fn = QFileDialog::getSaveFileName(this, tr("Choose file for start page"),
-                               path, tr("HTML (*.htm *.html);;All Files (*)"), s, QFileDialog::DontConfirmOverwrite );
-    if (!fn.isEmpty()){
-    	QFileInfo fi(fn);
-    	if (fi.suffix().isEmpty()) 
-    		fn += ".html";
-    	ui.EStartPage->setText(fn);
-   	}
-    */
+//    QString fn = QFileDialog::getSaveFileName(this, tr("Choose file for start page"),
+//                               path, tr("HTML (*.htm *.html);;All Files (*)"), s, QFileDialog::DontConfirmOverwrite );
+//    if (!fn.isEmpty()){
+//    	QFileInfo fi(fn);
+//    	if (fi.suffix().isEmpty())
+//    		fn += ".html";
+//    	ui.EStartPage->setText(fn);
+//   	}
+//    */
 
-//    QString *s= new QString();
-        QString path = ui.EprjFileName->text();
-        if (path.isEmpty()) path = Config::configuration()->CurPrjDir();
-
-
-    QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
-
-    QString fn  = QFileDialog::getExistingDirectory(this,
-                                tr("Choose path for project"),
-                                ui.EprjFileName->text(),
-                                options);
+////    QString *s= new QString();
+//        QString path = ui.EprjFileName->text();
+//        if (path.isEmpty()) path = Config::configuration()->CurPrjDir();
 
 
-    if (!fn.isEmpty()){
-        /*
-        QFileInfo fi(fn);
+//    QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
 
-        if (fi.suffix().isEmpty())
-                fn += ".html";*/
-        //ui.EStartPage->setText(fn);
-        }
+//    QString fn  = QFileDialog::getExistingDirectory(this,
+//                                tr("Choose path for project"),
+//                                ui.EprjFileName->text(),
+//                                options);
+
+
+//    if (!fn.isEmpty()){
+//        /*
+//        QFileInfo fi(fn);
+
+//        if (fi.suffix().isEmpty())
+//                fn += ".html";*/
+//        //ui.EStartPage->setText(fn);
+//        }
 }
 
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
@@ -100,11 +100,11 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 
         QString version;
         version.setNum(pr.moduleBVersion);
-        qDebug() << "_ProjectProperties::setProperties" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+        qDebug() << "Debug: _ProjectProperties::setProperties" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
 
         //qDebug() << "/n" << fileName << " " << startPage << " " << title << "/n";
-        ui.ETitle->setText(pr.prjTitle);
+//        ui.ETitle->setText(pr.prjTitle);
         ui.lineEditBibleName->setText(pr.moduleBiblename); // добавил
         ui.lineEditBibleShortName->setText(pr.moduleBibleShortName);
         ui.lineEditCopyright->setText(pr.moduleCopyright);
@@ -125,14 +125,14 @@ void ProjectProperties::accept()
 	QString s = "";  //holds list of errors
 	bool er = false;
 	validProperties = false;
-	if (ui.ETitle->text().isEmpty()){
-		s = tr("- Please enter a title.\n");
-		er = true;
-	}
-	if (ui.EprjFileName->text().isEmpty()) {
-		s += tr("- Please enter a project file name.\n");
-		er = true;
-	}
+//	if (ui.ETitle->text().isEmpty()){
+//		s = tr("- Please enter a title.\n");
+//		er = true;
+//	}
+//	if (ui.EprjFileName->text().isEmpty()) {
+//		s += tr("- Please enter a project file name.\n");
+//		er = true;
+//	}
 	//check for correct start page
         /*if  (ui.EStartPage->text().isEmpty()){ //|| (!itemprop->valid()) )
 		s += tr("- Please choose a valid start page.");
@@ -143,15 +143,26 @@ void ProjectProperties::accept()
 		QMessageBox::critical(this, tr("Project property error"), s);	
 	}else{
 
+            // если папки export нету, то создаем, если есть, то удаляем содержимое
+            QDir dir(prjFN);
+
+
+            //    qDebug() << "path = " << path <<  "last = " << path.last();
+
+                dir.mkdir(ui.lineEditBibleName->text());
+
             //check for valid project file name
-            QFile filePrj(prjFN+ui.EprjFileName->text()+GL_Project_File);
+            //QFile filePrj(prjFN+ui.EprjFileName->text()+GL_Project_File);
+//            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName->text() << "biblname = " << ui.lineEditBibleName->text();
+//            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File;
+            QFile filePrj(prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File);
             if (!filePrj.exists()){		//create file if it's not exist
                     if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
                             QTextStream ts(&filePrj);
                             ts << "<pemproject>\n</pemproject>";
                             filePrj.close();
                     }else{
-                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.EprjFileName->text()));
+                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName->text()));
                             er = true;
                     }
             }
@@ -159,7 +170,7 @@ void ProjectProperties::accept()
 
 
             //QFile fileSP(prjFN+ui.EStartPage->text()+GL_Project_Conf_File);
-            QFile fileSP(prjFN+"Bibleqt"+GL_Project_Conf_File);
+            QFile fileSP(prjFN+ui.lineEditBibleName->text()+"/"+"Bibleqt"+GL_Project_Conf_File);
             if (!fileSP.exists()){		//create file if it does not exist
                     if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
                             QTextStream ts(&fileSP);
@@ -192,7 +203,7 @@ void ProjectProperties::accept()
 
 
 			}else{
-				QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.EprjFileName->text()));
+                                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName->text()));
 				er = true;
 			}
 		}  
@@ -200,12 +211,13 @@ void ProjectProperties::accept()
 
 		if (!er){	//project, start page and sources files do exist we can proceed with setting project properties
                         ModuleProperties prop;
-                        prop.prjTitle= ui.ETitle->text();
-                        prop.prjStartPage = urlifyFileName(prjFN+"Bibleqt"+GL_Project_Conf_File);
-                        prop.prjFN = urlifyFileName(prjFN+ui.EprjFileName->text()+GL_Project_File);
+                        prop.prjTitle= ui.lineEditBibleName->text();//ui.ETitle->text();
+                        prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName->text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+                        prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File);
                         prop.moduleBiblename = ui.lineEditBibleName->text();
                         prop.moduleBibleShortName = ui.lineEditBibleShortName->text();
                         prop.moduleCopyright = ui.lineEditCopyright->text();
+                        prop.moduleBVersion = ui.doubleSpinBoxVersion->value();
 
                         validProperties = true;
 			if (modeNewProject){ 

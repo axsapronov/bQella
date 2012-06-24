@@ -656,30 +656,45 @@ void MainWindow::ProjectNew()
 
     ModuleProperties pr;
 
-    QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
+//    QFileDialog::Options options = QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly;
 
-    pr.prjFN = QFileDialog::getExistingDirectory(this,
-                                                 tr("Select folder for new project"),
-                                                 Config::configuration()->PrjDir(),
-                                                 options);
+//    pr.prjFN = QFileDialog::getExistingDirectory(this,
+//                                                 tr("Select folder for new project"),
+//                                                 Config::configuration()->PrjDir(),
+//                                                 options);
 
-    if (!pr.prjFN.isEmpty()){
-        QFileInfo fi(pr.prjFN);
-        /*if (fi.suffix().isEmpty())
-                fn += GL_Project_File;*/
-        pr.prjStartPage = fi.absolutePath();
-    	bool newProject = true;
-        pr.prjFN.append("/");
+    qDebug() << "Debug: _MainWindow::ProjectNew()" << " prjdir = " <<  Config::configuration()->PrjDir();
 
-        pr.prjTitle = tr("New Project", "Default project name");
-        pr.moduleBiblename = " ";
-        pr.moduleBibleShortName = " ";
-        pr.moduleCopyright = " ";
-        pr.moduleBVersion = 1.0;
 
-        prjprop->setProperties(newProject, pr);
-        prjprop->show();
-    }
+            bool newProject = true;
+
+    pr.prjTitle = tr("New Project", "Default project name");
+    pr.moduleBiblename = "";
+    pr.moduleBibleShortName = "";
+    pr.moduleCopyright = "";
+    pr.moduleBVersion = 1.0;
+    pr.prjFN = Config::configuration()->PrjDir()+pr.moduleBiblename;
+
+    prjprop->setProperties(newProject, pr);
+    prjprop->show();
+
+//    if (!pr.prjFN.isEmpty()){
+//        QFileInfo fi(pr.prjFN);
+//        /*if (fi.suffix().isEmpty())
+//                fn += GL_Project_File;*/
+//        pr.prjStartPage = fi.absolutePath();
+//        bool newProject = true;
+//        pr.prjFN.append("/");
+
+//        pr.prjTitle = tr("New Project", "Default project name");
+//        pr.moduleBiblename = "";
+//        pr.moduleBibleShortName = "";
+//        pr.moduleCopyright = "";
+//        pr.moduleBVersion = 1.0;
+
+//        prjprop->setProperties(newProject, pr);
+//        prjprop->show();
+//    }
 }
 
 ////-------------------------------------------------
@@ -759,7 +774,7 @@ void MainWindow::createProject(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-    qDebug() << "_MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ts << "<profile>" << endl;
     ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
@@ -807,7 +822,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-    qDebug() << "_MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
     Config::configuration()->profile()->addProperty("version", version);
 
 
