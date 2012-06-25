@@ -73,7 +73,7 @@ protected:
 };
 
 //===================== class DocuParserRAP =====================
-class DocuParserRAP : public DocuParser //parser for Research Assistant Project
+class DocuParserRAP : public DocuParser //parser for bQella Project
 {
 public:
     enum States { StateInit, StateProfile, StateProperty, StateContents, StateSection,

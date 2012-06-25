@@ -1,19 +1,20 @@
 #ifndef IMPORT_H
 #define IMPORT_H
 
+#include <QObject>
 
-#include <QWidget>
-
-class Import
+class Import : public QObject
 {
+    Q_OBJECT
 public:
-    Import();
+    explicit Import(QObject *parent = 0);
+
+signals:
+
 public slots:
-    void setTestValue(QString test);
-    QString getTestValue();
-    void test();
-private:
-    QString mystr;
+    void importChapter(QString file);
+    void importBook(QString file);
+    void importModule(QString file);
 
 };
 

@@ -1,5 +1,5 @@
 QT += xml sql
-TARGET = project2
+TARGET = bQella
 TEMPLATE = app
 
 CONFIG += qt warn_on release
@@ -9,7 +9,7 @@ win32 {
     RC_FILE =  project.rc
 }
 
-PROJECTNAME = project2
+PROJECTNAME = bQella
 DESTDIR     = build/bin
 OBJECTS_DIR = build/obj
 MOC_DIR     = build/moc
@@ -65,14 +65,14 @@ SOURCES +=  \
      src/dialogs/about/guiabout.cpp \
      src/dialogs/itemproperty/itemproperty.cpp \
      src/dialogs/linkproperty/linkproperty.cpp \
-     src/import/import.cpp \
      src/cpp/index.cpp \
      src/cpp/pcommon.cpp \
      src/cpp/raedit.cpp \
      src/cpp/srclistparser.cpp \
      src/cpp/topicchooser.cpp \
      src/cpp/cellsplit.cpp \
-    src/export/export.cpp
+    src/export/export.cpp \
+    src/import/import.cpp
 
 HEADERS += \     
      src/doc/docproperty.h \
@@ -92,14 +92,14 @@ HEADERS += \
      src/settings/config.h \
      src/tab/tabbedbrowser.h \
      src/tab/tableproperty.h \
-     src/import/import.h \
      src/h/topicchooser.h \
      src/h/cellsplit.h \
      src/h/pcommon.h \
      src/h/index.h \
      src/h/raedit.h \
      src/h/srclistparser.h \
-    src/export/export.h
+    src/export/export.h \
+    src/import/import.h
 
 RESOURCES += \
     resources/recources.qrc

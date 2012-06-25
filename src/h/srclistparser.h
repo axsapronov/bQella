@@ -70,7 +70,7 @@ struct SrcItem { //structure of source
 };
 
 //===================== class SrcListParser =====================
-class SrcListParser : public QXmlDefaultHandler //parser for Research Assistant Projects' source list
+class SrcListParser : public QXmlDefaultHandler //parser for bQella Projects' source list
 {
 public:
     SrcListParser();    

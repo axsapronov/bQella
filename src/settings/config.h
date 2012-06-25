@@ -33,7 +33,7 @@
 
 #define GL_Prog_RA_VERSION_STR	"0.0"
 #define GL_Prog_BUILD_STR	"2012.06.23"
-#define GL_Prog_Name "WarmongeR Project"
+#define GL_Prog_Name "bQella"
 #define GL_Prog_Author "Alexander Sapronov"
 
 //.pjm  = project module

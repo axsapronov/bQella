@@ -53,7 +53,7 @@ int main( int argc, char ** argv )
     conf -> setErrPage(conf -> AppDir() + "last-error.html");
     conf -> setAppLogFN(conf -> AppDir() + "log/project.log");
     toLog(conf -> AppLogFN(), "-------");
-    toLog(conf -> AppLogFN(), "Project started.");
+    toLog(conf -> AppLogFN(), "Project bQella started.");
     conf -> loadSettings();
     conf -> loadProject(conf -> CurProject());
 

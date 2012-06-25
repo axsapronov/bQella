@@ -87,9 +87,7 @@ MainWindow::MainWindow():
     helpDock = new HelpDialog(dw, this);
 
 
-    exportm = new Export(0);
-
-
+    exportm = new Export();
 
     importm = new Import();
 
@@ -166,6 +164,14 @@ void MainWindow::setup()
     connect(ui.actionDeleteFile, SIGNAL(triggered()), helpDock, SLOT(deleteItem()));
     connect(ui.actionExport_Module, SIGNAL(triggered()), this/*exportm*//*helpDock*/, SLOT(exportModule()));
 
+
+    // Menu Import
+    connect(ui.actionImportChapter, SIGNAL(triggered()), importm, SLOT(importChapter(QString)));
+    connect(ui.actionImportBook, SIGNAL(triggered()), importm, SLOT(importBook(QString)));
+    connect(ui.actionImportModule, SIGNAL(triggered()), importm, SLOT(importModule(QString)));
+
+
+
     // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
@@ -234,8 +240,8 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-    QString test = "mytest";
-    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
+//    QString test = "mytest";
+//    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
 
 
 
@@ -403,7 +409,8 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
 //-------------------------------------------------
 MainWindow* MainWindow::newWindow()
-{qDebug()<< "newWindow()";
+{
+    qDebug()<< "Debug: _MainWindow::newWindow()" << "newWindow()";
     saveSettings();
     MainWindow *mw = new MainWindow;
     mw -> move(geometry().topLeft());
@@ -535,7 +542,7 @@ void MainWindow::setupPopupMenu(QMenu *m)
 void MainWindow::ProjectOpen()
 {//warmongeR
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration() -> PrjDir(),
-                                                    tr("Project Projects (*.pem)"));
+                                                    tr("Project bQella (*.pem)"));
     if (!fileName.isEmpty()){
         ProjectOpen(fileName);
     }
@@ -563,7 +570,7 @@ void MainWindow::ProjectOpen(QString fileName)
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {//warmonger
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project editor module (*.pep)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_Project_File);
