@@ -28,9 +28,6 @@
 #include "raedit.h"
 #include "fontsettingsdialog.h"
 
-//#include "projectsettings.h"
-
-
 #include <QPointer>
 #include <QMap>
 #include <QTreeWidget>
@@ -42,6 +39,8 @@ class TabbedBrowser;
 class HelpDialog;
 class HelpWindow;
 class GUIAbout;
+class Export;
+class Import;
 
 //====================== class MainWindow ============================
 
@@ -99,6 +98,9 @@ private slots:
     void updateProfileSettings();
     void browserTabChanged();
     void updateTabActions(int index);
+
+
+    void exportModule();
     void exitApp();
 
 protected:
@@ -115,14 +117,16 @@ private:
     //ProjectSettings *prjset;
     AppSettings *appsets;
     HelpDialog *helpDock;
+    Export * exportm;
+    Import * importm;
+    GUIAbout *m_gui_About;
 
     QDockWidget *dw;
+
     static QList<MainWindow*> windows;
     //    QMap<QAction*,QString> *goActionDocFiles;
     QList<QPair<HelpWindow*,QString> > pendingBrowsers;
     QMenu *menuSign;
-
-    GUIAbout *m_gui_About;
 };
 
 #endif // MAINWINDOW_H

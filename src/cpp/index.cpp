@@ -143,10 +143,10 @@ void Index::insertInDict( const QString &str, int docNum )
         e = dict[ str ];
 
     if ( e ) {
-        if ( e->documents.last().docNumber != docNum )
-            e->documents.append( Document(docNum, 1 ) );
+        if ( e -> documents.last().docNumber != docNum )
+            e -> documents.append( Document(docNum, 1 ) );
         else
-            e->documents.last().frequency++;
+            e -> documents.last().frequency++;
     } else {
         dict.insert( str, new Entry( docNum ) );
     }
@@ -169,7 +169,7 @@ QString Index::getCharsetForDocument(QFile *file)
         }
     }
 
-    file->seek(0);
+    file -> seek(0);
     if (encoding.isEmpty())
         return QLatin1String("utf-8");
     return encoding;
@@ -239,8 +239,8 @@ void Index::writeDict()
     QDataStream s( &f );
     for(QHash<QString, Entry *>::Iterator it = dict.begin(); it != dict.end(); ++it) {
         s << it.key();
-        s << it.value()->documents.count();
-        s << it.value()->documents;
+        s << it.value() -> documents.count();
+        s << it.value() -> documents;
     }
     f.close();
     writeDocumentList();
@@ -296,7 +296,7 @@ QStringList Index::query( const QStringList &terms, const QStringList &termSeq, 
             termList.append( Term(QLatin1String("dummy"), wcts.count(), wcts ) );
         } else if ( dict[ *it ] ) {
             e = dict[ *it ];
-            termList.append( Term( *it, e->documents.count(), e->documents ) );
+            termList.append( Term( *it, e -> documents.count(), e -> documents ) );
         } else {
             return QStringList();
         }
@@ -308,7 +308,7 @@ QStringList Index::query( const QStringList &terms, const QStringList &termSeq, 
     QVector<Document> minDocs = termList.takeFirst().documents;
     for(QList<Term>::Iterator it = termList.begin(); it != termList.end(); ++it) {
         Term *t = &(*it);
-        QVector<Document> docs = t->documents;
+        QVector<Document> docs = t -> documents;
         for(QVector<Document>::Iterator minDoc_it = minDocs.begin(); minDoc_it != minDocs.end(); ) {
             bool found = false;
             for (QVector<Document>::ConstIterator doc_it = docs.constBegin(); doc_it != docs.constEnd(); ++doc_it ) {
@@ -442,7 +442,7 @@ QVector<Document> Index::setupDummyTerm( const QStringList &terms )
         Entry *e = 0;
         if ( dict[ *it ] ) {
             e = dict[ *it ];
-            termList.append( Term( *it, e->documents.count(), e->documents ) );
+            termList.append( Term( *it, e -> documents.count(), e -> documents ) );
         }
     }
     QVector<Document> maxList(0);
@@ -453,7 +453,7 @@ QVector<Document> Index::setupDummyTerm( const QStringList &terms )
     maxList = termList.takeLast().documents;
     for(QList<Term>::Iterator it = termList.begin(); it != termList.end(); ++it) {
         Term *t = &(*it);
-        QVector<Document> docs = t->documents;
+        QVector<Document> docs = t -> documents;
         for (QVector<Document>::iterator docIt = docs.begin(); docIt != docs.end(); ++docIt ) {
             if ( maxList.indexOf( *docIt ) == -1 )
                 maxList.append( *docIt );
@@ -465,7 +465,7 @@ QVector<Document> Index::setupDummyTerm( const QStringList &terms )
 void Index::buildMiniDict( const QString &str )
 {
     if ( miniDict[ str ] )
-        miniDict[ str ]->positions.append( wordNum );
+        miniDict[ str ] -> positions.append( wordNum );
     ++wordNum;
 }
 
@@ -532,9 +532,9 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
     QList<uint>::iterator aIt;
     for ( ; patIt != patterns.end(); ++patIt ) {
         wordLst = (*patIt).split(QLatin1Char(' '));
-        a = miniDict[ wordLst[0] ]->positions;
+        a = miniDict[ wordLst[0] ] -> positions;
         for ( int j = 1; j < (int)wordLst.count(); ++j ) {
-            b = miniDict[ wordLst[j] ]->positions;
+            b = miniDict[ wordLst[j] ] -> positions;
             aIt = a.begin();
             while ( aIt != a.end() ) {
                 if ( b.contains( *aIt + 1 )) {

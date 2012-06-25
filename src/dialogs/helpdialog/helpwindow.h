@@ -30,7 +30,8 @@
 #include "docproperty.h"
 #include "tableproperty.h"
 #include "cellsplit.h"
-#include "imageproperty.h"
+//#include "imageproperty.h"
+
 
 class MainWindow;
 class QKeyEvent;
@@ -62,7 +63,7 @@ public:
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent *);
     
-//    bool ModeSourceHTML;
+    //    bool ModeSourceHTML;
 
 signals:
     void chooseWebBrowser();
@@ -71,26 +72,26 @@ signals:
     void updateContentsItem(QString title, QString fileName, QString iconFN);
     
 public slots:
-	void updateItem(QString title, QString fileName, QString iconFN);
-	void setTagTitle(QString title);
+    void updateItem(QString title, QString fileName, QString iconFN);
+    void setTagTitle(QString title);
     void fileNew();
     void fileOpen();
-	bool fileSave();
+    bool fileSave();
 
-	//void insertTable(int rows, int columns, const QTextTableFormat & format);
-        void imageInsert(QString html);
-	void imageUpdate(QString html);
-	//void imageInsert(int height, int width, QImage img);
-	//void imageUpdate(int height, int width, QImage img);
+    //void insertTable(int rows, int columns, const QTextTableFormat & format);
+    void imageInsert(QString html);
+    void imageUpdate(QString html);
+    //void imageInsert(int height, int width, QImage img);
+    //void imageUpdate(int height, int width, QImage img);
 
-	void insertRichText(QString text);	//insert HTML text at cursor. Used from other modules, f.e. MainWindow::setMenuSign()
-	
+    void insertRichText(QString text);	//insert HTML text at cursor. Used from other modules, f.e. MainWindow::setMenuSign()
+
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
-	//------- taken from TextEdit -------
-	virtual void closeEvent(QCloseEvent *e);
+    //------- taken from TextEdit -------
+    virtual void closeEvent(QCloseEvent *e);
 
 protected slots:
     void ensureCursorVisible();
@@ -100,12 +101,12 @@ private:
     bool hasAnchorAt(const QPoint& pos);
 
     MainWindow *mw;
-	ItemProperties *itemprop;
-	LinkProperties *linkprop;
-	DocProperties *docprop;
-	ImageProperties *imageprop;
+    ItemProperties *itemprop;
+    LinkProperties *linkprop;
+    DocProperties *docprop;
+    //	ImageProperties *imageprop;
 
-		
+
     QString lastAnchor; //url for document in helpwindow
     bool blockScroll;
     bool shiftPressed;
@@ -114,18 +115,16 @@ private:
     bool fwdAvail;
     bool backAvail;
 
-	
-	//------- taken from TextEdit -------
-	void setupFileActions();
+
+    //------- taken from TextEdit -------
+    void setupFileActions();
     void setupEditActions();
     void setupTextActions();
-
-	void setupImageActions();
     bool load(const QString &f);
     bool maybeSave();
     void setCurrentFileName(const QString fName);
-	
-	void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
+
+    void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
     void fontChanged(const QFont &f);
     void colorChanged(const QColor &c);
     void alignmentChanged(Qt::Alignment a);
@@ -139,11 +138,11 @@ private:
 private slots:
     void openLinkInNewWindow();
     void openLinkInNewPage();
-	void showLinkProperties();
-	void removeLink();
-	void updateLink(QString lText, QString lLocation);
-	void loadNewItemFile();
-	void showDocProperties();
+    void showLinkProperties();
+    void removeLink();
+    void updateLink(QString lText, QString lLocation);
+    void loadNewItemFile();
+    void showDocProperties();
 
     //------- taken from TextEdit -------
     bool fileSaveAs();
@@ -158,7 +157,7 @@ private slots:
     void textSize(const QString &p);
     void textStyle(int styleIndex);
     void textColor();
-//    void textAlign(QAction *a);
+    //    void textAlign(QAction *a);
     void textAlignLeft();
     void textAlignCenter();
     void textAlignRight();
@@ -168,11 +167,6 @@ private slots:
     void cursorPositionChanged();
     void clipboardDataChanged();
 
-
-
-
-
-	void imageNew();
 }; // class HelpWindow
 
 #endif // HELPWINDOW_H

@@ -28,7 +28,7 @@ GUIAbout::GUIAbout(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GUIAbout)
 {
-    ui->setupUi(this);
+    ui -> setupUi(this);
 }
 
 GUIAbout::~GUIAbout()
@@ -38,14 +38,14 @@ GUIAbout::~GUIAbout()
 
 void GUIAbout::retranslate()
 {
-    ui->retranslateUi(this);
+    ui -> retranslateUi(this);
 }
 
 void GUIAbout::changeEvent(QEvent *e) {
     QDialog::changeEvent(e);
-    switch (e->type()) {
+    switch (e -> type()) {
     case QEvent::LanguageChange:
-        ui->retranslateUi(this);
+        ui -> retranslateUi(this);
         break;
     default:
         break;

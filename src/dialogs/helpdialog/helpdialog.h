@@ -25,7 +25,6 @@
 #include "index.h"
 #include "helpwindow.h"
 #include "docuparser.h"
-#include "autoitems.h"
 
 #include <QList>
 #include <QPair>
@@ -42,6 +41,7 @@ class QProgressBar;
 class MainWindow;
 class raEdit;
 class IndexListModel;
+class Export;
 
 class BookAddDialog;
 
@@ -54,7 +54,7 @@ public:
 
     void addLink(const QString &link);  //adds link to linkList
     QStringList links() const { return linkList; }
-	
+
 private:
     QStringList linkList;
 }; // class HelpNavigationListItem
@@ -85,12 +85,9 @@ public:
     bool lastWindowClosed() { return lwClosed; }
 
     void timerEvent(QTimerEvent *e);
-	void saveProject(QString profileFN);  //save contents and keywords to xml
-	void enableProjectButtons();
+    void saveProject(QString profileFN);  //save contents and keywords to xml
+    void enableProjectButtons();
 
-
-    AutoItems *dialogAutoItems; 
-	
 signals:
     void showLink(const QString &s);
     void showSearchLink(const QString &s, const QStringList &terms);
@@ -115,124 +112,127 @@ public slots:
     void showContentsAVHeader(bool b);
     void saveProject(); 		//save current project
 
+    QString getTest();
+    QString getFileBibleqtName();
+    QString getFileName(int i);
+
+    int getTopLevelItemCount();
+
+    void exportModule();
+    void exportBibleBook(QString filebook, int i);
+
 private slots:
-   void newItem();
-   //	void on_listContents_itemClicked(QTreeWidgetItem* item, int column);
-   void on_BProjectAdd_clicked();
-   void on_BProjectDelete_clicked();
-   void on_buttonAdd_clicked();
-   void on_buttonRemove_clicked();
-   void on_termsEdit_returnPressed();
-   void on_searchButton_clicked();
-   void on_resultBox_itemActivated(QListWidgetItem*);
-   void updateSearchButton(const QString &txt);
-   void showResultPage(QListWidgetItem *);
-   void loadIndexFile();
-   void setupFullTextIndex();
-   void showTopic();
-   void searchInIndex(const QString &s);
-   void toggleContents();
-   void toggleIndex();
-   void toggleBookmarks();
-   void toggleSearch();
-   void lastWinClosed();
-   void setIndexingProgress(int prog);
-   void showListItemMenu(const QPoint &pos);
-   void showIndexItemMenu(const QPoint &pos);
-   void showContentsItemMenu(const QPoint &pos);
-   void showTreeItemMenu(const QPoint &pos);
-   void insertBookmarks();
-   void processEvents();
-   void loadProjectFromList(int prjIindex);
-   void fillSubList();
-   void cloneItem(QTreeWidgetItem *item, bool subItem);
-   void cloneDone();
-   void showTopic(QTreeWidgetItem *);
-   void currentItemChanged(QTreeWidgetItem* curItem, QTreeWidgetItem* prevItem);
-   void itemChanged(QTreeWidgetItem* item, int column);
-   void sortDisable();
-   void sortAscending();
-   void sortDescending();
-   void locateItemByName(QString name);
-   void nextMatchedItem();
+    void newItem();
+    //	void on_listContents_itemClicked(QTreeWidgetItem* item, int column);
+    void on_BProjectAdd_clicked();
+    void on_BProjectDelete_clicked();
+    void on_buttonAdd_clicked();
+    void on_buttonRemove_clicked();
+    void on_termsEdit_returnPressed();
+    void on_searchButton_clicked();
+    void on_resultBox_itemActivated(QListWidgetItem*);
+    void updateSearchButton(const QString &txt);
+    void showResultPage(QListWidgetItem *);
+    void loadIndexFile();
+    void setupFullTextIndex();
+    void showTopic();
+    void searchInIndex(const QString &s);
+    void toggleContents();
+    void toggleIndex();
+    void toggleBookmarks();
+    void toggleSearch();
+    void lastWinClosed();
+    void setIndexingProgress(int prog);
+    void showListItemMenu(const QPoint &pos);
+    void showIndexItemMenu(const QPoint &pos);
+    void showContentsItemMenu(const QPoint &pos);
+    void showTreeItemMenu(const QPoint &pos);
+    void insertBookmarks();
+    void processEvents();
+    void loadProjectFromList(int prjIindex);
+    void fillSubList();
+    void cloneItem(QTreeWidgetItem *item, bool subItem);
+    void cloneDone();
+    void showTopic(QTreeWidgetItem *);
+    void currentItemChanged(QTreeWidgetItem* curItem, QTreeWidgetItem* prevItem);
+    void itemChanged(QTreeWidgetItem* item, int column);
+    void sortDisable();
+    void sortAscending();
+    void sortDescending();
+    void locateItemByName(QString name);
+    void nextMatchedItem();
 
-   void exportModule();
-   void exportCreateDir(QString current_dir);
-   void exportBibleqtIni(QString path);
-   QString exportChapter (QString filename,int i,bool chapt);
-   void exportBibleBook(QString filebook,int i);
-   void exportBibleqtIniInfo(QString filebibleqt,int i);
+    QString getNameFolder(QString cur_dir);
 
-   QString getNameFolder(QString cur_dir);
-
-   void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
-  // void prevMatchedItem();
-   //void GoToMatchedItem(int n);
+    void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
+    // void prevMatchedItem();
+    //void GoToMatchedItem(int n);
     
+
+
 private:
-   void removeOldCacheFiles(bool onlyFulltextSearchIndex = false);
-   void buildKeywordDB();
-   quint32 getFileAges();
-   void showIndexTopic();
-   void showBookmarkTopic();
-   void setupTitleMap();
-   void saveBookmarks();
-   void store(QTreeWidget *tw, QTextStream &ts); 	//for saving bookmarks
-   void store(QTreeWidgetItem *i, QTextStream &ts); //for saving bookmarks
-   void showContentsTopic();
-   void showInitDoneMessage();
-   void buildContentDict();
-   QTreeWidgetItem * locateLink(QTreeWidgetItem *item, const QString &link);
-   void CreateAutoItems();
-   bool findItemByName(QString &name);
-   bool findItemByName(QTreeWidgetItem *i, QString &name);
-   void triggerAction(QTreeWidgetItem *item, QAction *action);
-
-   Ui::HelpDialog ui;
-   MainWindow *mw;
-   BookAddDialog *m_bookadddialog;
+    void removeOldCacheFiles(bool onlyFulltextSearchIndex = false);
+    void buildKeywordDB();
+    quint32 getFileAges();
+    void showIndexTopic();
+    void showBookmarkTopic();
+    void setupTitleMap();
+    void saveBookmarks();
+    void store(QTreeWidget *tw, QTextStream &ts); 	//for saving bookmarks
+    void store(QTreeWidgetItem *i, QTextStream &ts); //for saving bookmarks
+    void showContentsTopic();
+    void showInitDoneMessage();
+    void buildContentDict();
+    QTreeWidgetItem * locateLink(QTreeWidgetItem *item, const QString &link);
+    bool findItemByName(QString &name);
+    bool findItemByName(QTreeWidgetItem *i, QString &name);
+    void triggerAction(QTreeWidgetItem *item, QAction *action);
 
 
+    Ui::HelpDialog ui;
+    MainWindow *mw;
+    Export * exportf;
+    BookAddDialog *m_bookadddialog;
 
-   typedef QList<ContentItem> ContentList;	//ContentItem structure is described in docuparser.h
-       ContentList contentList;
-   IndexListModel *indexModel;
-   Index *fullTextIndex;
-   QMap<QString, QString> titleMap;
-   bool indexDone, bookmarksInserted, titleMapDone, contentsInserted;
-   bool lwClosed;
-   QString documentationPath;
-   QStringList terms, foundDocs;
-   bool initDoneMsgShown;
-   void getAllContents();	//fill up contents from profile
-   QString cacheFilesPath;	//path to store cache for search - it is user home dir
-   QStringList keywordDocuments;	//for full text search
-   int liTopLevelIndex; 			//for locate item procedures
-   int liChildIndex, curChildIndex;//for locate item procedures
-   QString str_NewItemTitle;
-   bool newSameLevelItem;	//create a new item as a subitem or on the same level
 
-   QMenu *itemPopup;
-   QMenu *itemPopupContents;
-   QMenu *itemPopupSubItems;
-   QAction *actionItemProperties;
-   QAction *actionItemInsert;
-   QAction *actionItemAddFile;
-   QAction *actionItemInsertSameLevel;
-   QAction *actionItemAddFileSameLevel;
-   QAction *actionItemRemove;
-   QAction *actionItemDelete;
-   QAction *actionItemAuto;
-   QAction *actionOpenCurrentTab;
-   QAction *actionOpenLinkInNewWindow;
-   QAction *actionOpenLinkInNewTab;
-   QAction *actionOpenLinkInExtEditor;
-   QAction *actionOpenLinkInExtBrowser;
+    typedef QList<ContentItem> ContentList;	//ContentItem structure is described in docuparser.h
+    ContentList contentList;
+    IndexListModel *indexModel;
+    Index *fullTextIndex;
+    QMap<QString, QString> titleMap;
+    bool indexDone, bookmarksInserted, titleMapDone, contentsInserted;
+    bool lwClosed;
+    QString documentationPath;
+    QStringList terms, foundDocs;
+    bool initDoneMsgShown;
+    void getAllContents();	//fill up contents from profile
+    QString cacheFilesPath;	//path to store cache for search - it is user home dir
+    QStringList keywordDocuments;	//for full text search
+    int liTopLevelIndex; 			//for locate item procedures
+    int liChildIndex, curChildIndex;//for locate item procedures
+    QString str_NewItemTitle;
+    bool newSameLevelItem;	//create a new item as a subitem or on the same level
 
-   QAction *actionItemChapterAdd;
-   QAction *actionItemVerseAdd;
-   QAction *actionItemBookAdd;
-  
+    QMenu *itemPopup;
+    QMenu *itemPopupContents;
+    QMenu *itemPopupSubItems;
+    QAction *actionItemProperties;
+    QAction *actionItemInsert;
+    QAction *actionItemAddFile;
+    QAction *actionItemInsertSameLevel;
+    QAction *actionItemAddFileSameLevel;
+    QAction *actionItemRemove;
+    QAction *actionItemDelete;
+    QAction *actionItemAuto;
+    QAction *actionOpenCurrentTab;
+    QAction *actionOpenLinkInNewWindow;
+    QAction *actionOpenLinkInNewTab;
+    QAction *actionOpenLinkInExtEditor;
+    QAction *actionOpenLinkInExtBrowser;
+    QAction *actionItemChapterAdd;
+    QAction *actionItemVerseAdd;
+    QAction *actionItemBookAdd;
+
 }; //class HelpDialog
 
 #endif // HELPDIALOG_H

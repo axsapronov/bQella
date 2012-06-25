@@ -20,7 +20,7 @@ BookAddDialog::BookAddDialog(QWidget *parent) :
     QTextCodec *codec = QTextCodec::codecForName("UTF8");  // назначаем кодировку для всех надписей
     QTextCodec::setCodecForTr(codec); //устанавливаем кодек
 
-    ui->setupUi(this);
+    ui -> setupUi(this);
 
     QStringList items;
     items << tr("Быт. Быт Бт. Бт Бытие Ge. Ge Gen. Gen Gn. Gn Genesis")
@@ -103,15 +103,11 @@ BookAddDialog::BookAddDialog(QWidget *parent) :
 
 
     typeModel = new QStringListModel(items, this);
-    ui->comboBoxShortName->setModel(typeModel);
+    ui -> comboBoxShortName -> setModel(typeModel);
 
 
-    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(clickslot(QAbstractButton *)));
-    connect(ui->buttonBox, SIGNAL(accepted()), this,SIGNAL(signalbookaddChanged()));
-//    connect(ui->buttonBox,SIGNAL(accepted()), this,SLOT(send()));
-//    connect(ui->buttonBox,SIGNAL(accepted()), this,SIGNAL(signalbookaddChanged()));
-//    connect(ui->buttonBox,SIGNAL(accepted()), this,SLOT(send()));
-
+    connect(ui -> buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(clickslot(QAbstractButton *)));
+    connect(ui -> buttonBox, SIGNAL(accepted()), this, SIGNAL(signalbookaddChanged()));
 }
 
 BookAddDialog::~BookAddDialog()
@@ -122,23 +118,23 @@ BookAddDialog::~BookAddDialog()
 
 void BookAddDialog::reject()
 {
-        QWidget::hide();  //close dialog
+    QWidget::hide();  //close dialog
 }
 
 void BookAddDialog::clickslot(QAbstractButton *AButton)
 {
-    if (ui->buttonBox->standardButton(AButton) == QDialogButtonBox::Cancel)
+    if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Cancel)
     {
         reject();
     }
 
-    if (ui->buttonBox->standardButton(AButton) == QDialogButtonBox::Ok)
+    if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Ok)
     {
         send();
         reject();
     }
     /*
-    if (ui->buttonBox->standardButton(AButton) == QDialogButtonBox::Apply)
+    if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Apply)
     {
         saveSettings();
     }
@@ -147,12 +143,12 @@ void BookAddDialog::clickslot(QAbstractButton *AButton)
 
 void BookAddDialog::send()
 {
-    bookChapterQty = ui->spinBoxChapterQty->value();
-    bookFullName = ui->lineEditFullName->text();
-    bookShortName = ui->comboBoxShortName->currentText();
-    bookCheckAutoChapterCreate = ui->checkBoxAutoCreateChapter->isChecked();
+    bookChapterQty = ui -> spinBoxChapterQty -> value();
+    bookFullName = ui -> lineEditFullName -> text();
+    bookShortName = ui -> comboBoxShortName -> currentText();
+    bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();
 
-//    qDebug();
-//    qDebug() << bookChapterQty << " " << bookFullName << " " << bookShortName;
-//    qDebug();
+    //    qDebug();
+    //    qDebug() << bookChapterQty << " " << bookFullName << " " << bookShortName;
+    //    qDebug();
 }

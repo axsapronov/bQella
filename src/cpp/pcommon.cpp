@@ -172,10 +172,10 @@ QString pFillString(QString Str, QString Chr, int Len, QString Align){
 //-------------------------------------------------
 QString FontStyleToString(TFont *FS){
   QString tmp="";
-  if (FS->Style.Contains(fsBold))       tmp  = "Bold+";
-  if (FS->Style.Contains(fsItalic))     tmp += "Italic+";
-  if (FS->Style.Contains(fsUnderline))  tmp += "Underline+";
-  if (FS->Style.Contains(fsStrikeOut))  tmp += "StrikeOut+";
+  if (FS -> Style.Contains(fsBold))       tmp  = "Bold+";
+  if (FS -> Style.Contains(fsItalic))     tmp += "Italic+";
+  if (FS -> Style.Contains(fsUnderline))  tmp += "Underline+";
+  if (FS -> Style.Contains(fsStrikeOut))  tmp += "StrikeOut+";
   if (tmp == "") tmp = "Plain";
   return tmp;
 }

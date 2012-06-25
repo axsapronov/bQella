@@ -19,6 +19,6 @@ void DialogCellSplit::reject()
 //-------------------------------------------------
 void DialogCellSplit::accept()
 {	
-	emit applySplit(ui.SBRows->value(), ui.SBColumns->value());			
+	emit applySplit(ui.SBRows -> value(), ui.SBColumns -> value());			
 	QWidget::hide();  //close dialog
 }

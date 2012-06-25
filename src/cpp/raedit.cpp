@@ -112,7 +112,7 @@ void raEdit::_q_activateAnchor(const QString &href)
         return;
 /*
 #ifndef QT_NO_CURSOR
-    viewport->setCursor(oldCursor);
+    viewport -> setCursor(oldCursor);
 #endif
 */
     const QUrl url = resolveUrl(href);
@@ -143,7 +143,7 @@ void raEdit::_q_activateAnchor(const QString &href)
 
 void raEdit::_q_highlightLink(const QString &anchor)
 {
-	//-pm- viewport->setCursor(oldCursor);
+	//-pm- viewport -> setCursor(oldCursor);
 	qDebug() << "mouse over link";
     if (anchor.isEmpty()) {
         emit highlighted(QUrl());
@@ -178,7 +178,7 @@ void raEdit::setSource(const QUrl &url)
 #ifndef QT_NO_TEXTCODEC
             QByteArray ba = data.toByteArray();
             QTextCodec *codec = Qt::codecForHtml(ba);
-            txt = codec->toUnicode(ba);
+            txt = codec -> toUnicode(ba);
 #else
          txt = data.toString();
 #endif
@@ -215,8 +215,8 @@ qDebug() << "--setPlainText";
     if (!url.fragment().isEmpty()) {
         scrollToAnchor(url.fragment());
     } else {
-//        hbar->setValue(0);
-//        vbar->setValue(0);
+//        hbar -> setValue(0);
+//        vbar -> setValue(0);
     }*/
 //    qDebug() << "--emit sourceChanged(url): " << url;
     emit sourceChanged(url);
@@ -235,7 +235,7 @@ qDebug() << "--setPlainText";
     file path. It also checks for optional anchors and scrolls the document
     accordingly
 
-!!-> If the first tag in the document is \c{<qt type=detail>}, the
+!! ->  If the first tag in the document is \c{<qt type=detail>}, the
     document is displayed as a popup rather than as new document in
     the browser window itself. Otherwise, the document is displayed
     normally in the text browser with the text set to the contents of
@@ -265,7 +265,7 @@ void raEdit::reload()
 void raEdit::mouseMoveEvent(QMouseEvent *e) 
 { 
 //qDebug() << ":: mouse move event";
-	if (e->modifiers() && Qt::ControlModifier){
+	if (e -> modifiers() && Qt::ControlModifier){
 		//!+! change cursor on hyperlink 
 		QWidget::setCursor(Qt::PointingHandCursor);
 	}else
@@ -294,8 +294,8 @@ void raEdit::mousePressEvent(QMouseEvent *e)
 void raEdit::paintEvent(QPaintEvent *e)
 {
     Q_D(raEdit);
-    QPainter p(d->viewport);
-    d->paint(&p, e);
+    QPainter p(d -> viewport);
+    d -> paint(&p, e);
 }
 */
 /*!

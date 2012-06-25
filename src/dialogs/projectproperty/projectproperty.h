@@ -34,6 +34,7 @@ typedef struct StructModuleProperties
     QString moduleCopyright;
     QString moduleBibleShortName;
     double moduleBVersion;
+//    QString moduleType;
 
 } ModuleProperties;
 
@@ -64,6 +65,7 @@ private:
 	
 	bool modeNewProject; 	
         QString prjTitle, prjFN, prjStartPage, moduleBiblename, moduleCopyright, moduleBibleShortName;
+//        QString moduleType;
         double moduleVersion;
 	bool validProperties;
 }; // class ProjectProperties

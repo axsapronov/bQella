@@ -41,29 +41,29 @@ FontSettingsDialog::FontSettingsDialog(QWidget *parent)
 
     QVBoxLayout *mainVLayout = new QVBoxLayout(this);
     QHBoxLayout *hboxLayout = new QHBoxLayout;
-    mainVLayout->addLayout(hboxLayout);
+    mainVLayout -> addLayout(hboxLayout);
 
     QLabel *label = new QLabel(tr("Font settings for:"), this);
-    label->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-    hboxLayout->addWidget(label);
+    label -> setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    hboxLayout -> addWidget(label);
     QComboBox *comboBox = new QComboBox(this);
-    comboBox->addItem(tr("Documents"));
-    comboBox->addItem(tr("Application"));
-    hboxLayout->addWidget(comboBox);
+    comboBox -> addItem(tr("Documents"));
+    comboBox -> addItem(tr("Application"));
+    hboxLayout -> addWidget(comboBox);
 
-    m_windowFontPanel->setCheckable(true);
-    m_browserFontPanel->setCheckable(true);
+    m_windowFontPanel -> setCheckable(true);
+    m_browserFontPanel -> setCheckable(true);
 
     const QString customSettings(tr("Use custom settings"));
-    m_windowFontPanel->setTitle(customSettings);
-    m_browserFontPanel->setTitle(customSettings);
+    m_windowFontPanel -> setTitle(customSettings);
+    m_browserFontPanel -> setTitle(customSettings);
 
     QStackedWidget *stackWidget = new QStackedWidget(this);
-    stackWidget->addWidget(m_browserFontPanel);
-    stackWidget->addWidget(m_windowFontPanel);
+    stackWidget -> addWidget(m_browserFontPanel);
+    stackWidget -> addWidget(m_windowFontPanel);
 
-    mainVLayout->addWidget(stackWidget);
-    mainVLayout->addWidget(m_dialogButtonBox);
+    mainVLayout -> addWidget(stackWidget);
+    mainVLayout -> addWidget(m_dialogButtonBox);
 
     connect(m_dialogButtonBox , SIGNAL(rejected()), this, SLOT(reject()));
     connect(m_dialogButtonBox , SIGNAL(accepted()), this, SLOT(accept()));
@@ -91,25 +91,25 @@ bool FontSettingsDialog::showDialog(FontSettings *settings)
 //-------------------------------------------------
 void FontSettingsDialog::updateFontSettings(FontSettings *settings)
 {
-    settings->useWindowFont = m_windowFontPanel->isChecked();
-    settings->useBrowserFont = m_browserFontPanel->isChecked();
+    settings -> useWindowFont = m_windowFontPanel -> isChecked();
+    settings -> useBrowserFont = m_browserFontPanel -> isChecked();
 
-    settings->windowFont = settings->useWindowFont ? m_windowFontPanel->selectedFont() : qApp->font();
-    settings->browserFont = settings->useBrowserFont ? m_browserFontPanel->selectedFont() : qApp->font();
+    settings -> windowFont = settings -> useWindowFont ? m_windowFontPanel -> selectedFont() : qApp -> font();
+    settings -> browserFont = settings -> useBrowserFont ? m_browserFontPanel -> selectedFont() : qApp -> font();
 
-    settings->windowWritingSystem = settings->useWindowFont ? m_windowFontPanel->writingSystem() : QFontDatabase::Latin;
-    settings->browserWritingSystem = settings->useBrowserFont ? m_browserFontPanel->writingSystem() : QFontDatabase::Latin;
+    settings -> windowWritingSystem = settings -> useWindowFont ? m_windowFontPanel -> writingSystem() : QFontDatabase::Latin;
+    settings -> browserWritingSystem = settings -> useBrowserFont ? m_browserFontPanel -> writingSystem() : QFontDatabase::Latin;
 }
 
 //-------------------------------------------------
 void FontSettingsDialog::setupFontSettingsDialog(const FontSettings *settings)
 {
-    m_windowFontPanel->setSelectedFont(settings->windowFont);
-    m_browserFontPanel->setSelectedFont(settings->browserFont);
+    m_windowFontPanel -> setSelectedFont(settings -> windowFont);
+    m_browserFontPanel -> setSelectedFont(settings -> browserFont);
 
-    m_windowFontPanel->setWritingSystem(settings->windowWritingSystem);
-    m_browserFontPanel->setWritingSystem(settings->browserWritingSystem);
+    m_windowFontPanel -> setWritingSystem(settings -> windowWritingSystem);
+    m_browserFontPanel -> setWritingSystem(settings -> browserWritingSystem);
 
-    m_windowFontPanel->setChecked(settings->useWindowFont);
-    m_browserFontPanel->setChecked(settings->useBrowserFont);
+    m_windowFontPanel -> setChecked(settings -> useWindowFont);
+    m_browserFontPanel -> setChecked(settings -> useBrowserFont);
 }

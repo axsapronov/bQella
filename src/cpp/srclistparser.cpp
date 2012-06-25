@@ -40,7 +40,7 @@ SrcListParser *SrcListParser::createParser(const QString &fileName)
         return 0;
     }
 	SrcListParser *parser = new SrcListParser;
-   	parser->setFileName(fileName);
+   	parser -> setFileName(fileName);
     return parser; 
 }
 

@@ -45,20 +45,20 @@ int main( int argc, char ** argv )
     a.setApplicationName(GL_Prog_Name);
 
     Config *conf = new Config();
-    conf->setAppDir(QDir::currentPath() + "/");
-    conf->setCacheDir(conf->AppDir() + "cache/");
-    conf->setImgDir(conf->AppDir() + "images/");
-    conf->setPrjDir(conf->AppDir() + "projects/");
-    conf->setIniFile(conf->AppDir() + "project.ini");
-    conf->setErrPage(conf->AppDir() + "last-error.html");
-    conf->setAppLogFN(conf->AppDir() + "log/project.log");
-    toLog(conf->AppLogFN(), "-------");
-    toLog(conf->AppLogFN(), "Project started.");
-    conf->loadSettings();
-    conf->loadProject(conf->CurProject());
+    conf -> setAppDir(QDir::currentPath() + "/");
+    conf -> setCacheDir(conf -> AppDir() + "cache/");
+    conf -> setImgDir(conf -> AppDir() + "images/");
+    conf -> setPrjDir(conf -> AppDir() + "projects/");
+    conf -> setIniFile(conf -> AppDir() + "project.ini");
+    conf -> setErrPage(conf -> AppDir() + "last-error.html");
+    conf -> setAppLogFN(conf -> AppDir() + "log/project.log");
+    toLog(conf -> AppLogFN(), "-------");
+    toLog(conf -> AppLogFN(), "Project started.");
+    conf -> loadSettings();
+    conf -> loadProject(conf -> CurProject());
 
     if (!conf) {
-        fprintf( stderr, "Profile '%s' does not exist!\n", conf->CurProject().toLatin1().constData() );
+        fprintf( stderr, "Profile '%s' does not exist!\n", conf -> CurProject().toLatin1().constData() );
         fflush( stderr );
         return -1;
     }
@@ -66,33 +66,33 @@ int main( int argc, char ** argv )
     //QString locale = QLocale::system().name();
     //qDebug()<< "locale = " << locale;
     QTranslator translator;
-    if (conf->Lang() == "Russian"){
+    if (conf -> Lang() == "Russian"){
 //        translator.load("resources/lang/rus"); // СДЕЛАТЬ: разобраться с переводом, что-то не работает
 //        translator.load("rus","/resources/lang");
         translator.load("lang/ra_rus");
         a.installTranslator(&translator);
     }
 
-    conf->hideSideBar( hideSidebar );
+    conf -> hideSideBar( hideSidebar );
 
     QPointer<MainWindow> mw = new MainWindow();
 
-    FontSettings settings = conf->fontSettings();
-    if (mw->font() != settings.windowFont)
+    FontSettings settings = conf -> fontSettings();
+    if (mw -> font() != settings.windowFont)
         a.setFont(settings.windowFont, "QWidget");
-    toLog(conf->AppLogFN(), "Done with setup. Show main window.");
-    mw->show();
+    toLog(conf -> AppLogFN(), "Done with setup. Show main window.");
+    mw -> show();
 
-    QStringList links = conf->source();	
+    QStringList links = conf -> source();	
     if (links.isEmpty()) //!+! or option "Remember opened files" is not set
-        mw->showLink( urlifyFileName(conf->CurFile()) );
+        mw -> showLink( urlifyFileName(conf -> CurFile()) );
     else 
-        mw->showLinks( links );
+        mw -> showLinks( links );
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
     
     int appExec = a.exec();
     delete (MainWindow*)mw;
-    toLog(conf->AppLogFN(),QString("%1 shuts down normally.").arg(GL_Prog_Name));
+    toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_Prog_Name));
     return appExec;
 }
 
@@ -119,6 +119,6 @@ MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDo
 TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
 
 To access from HelpDialog to HelpWindow functions use:
-mw->browsers()->currentBrowser()->...
+mw -> browsers() -> currentBrowser() -> ...
 
 **********************************************************************/

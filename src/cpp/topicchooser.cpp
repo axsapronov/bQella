@@ -30,18 +30,18 @@ TopicChooser::TopicChooser(QWidget *parent, const QStringList &lnkNames,
 {
     ui.setupUi(this);
 
-    ui.label->setText(tr("Choose a topic for <b>%1</b>").arg(title));
-    ui.listbox->addItems(linkNames);
-    if (ui.listbox->count() != 0)
-        ui.listbox->setCurrentRow(0);
-    ui.listbox->setFocus();
+    ui.label -> setText(tr("Choose a topic for <b>%1</b>").arg(title));
+    ui.listbox -> addItems(linkNames);
+    if (ui.listbox -> count() != 0)
+        ui.listbox -> setCurrentRow(0);
+    ui.listbox -> setFocus();
 }
 
 QString TopicChooser::link() const
 {
-    if (ui.listbox->currentRow() == -1)
+    if (ui.listbox -> currentRow() == -1)
         return QString();
-    QString s = ui.listbox->item(ui.listbox->currentRow())->text();
+    QString s = ui.listbox -> item(ui.listbox -> currentRow()) -> text();
     if (s.isEmpty())
         return s;
     int i = linkNames.indexOf(s);
@@ -53,8 +53,8 @@ QString TopicChooser::getLink(QWidget *parent, const QStringList &lnkNames,
 {
     TopicChooser *dlg = new TopicChooser(parent, lnkNames, lnks, title);
     QString lnk;
-    if (dlg->exec() == QDialog::Accepted)
-        lnk = dlg->link();
+    if (dlg -> exec() == QDialog::Accepted)
+        lnk = dlg -> link();
     delete dlg;
     return lnk;
 }

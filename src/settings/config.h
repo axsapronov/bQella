@@ -70,7 +70,7 @@ public:
     void loadSettings();
     void saveSettings();
     Profile *profile() const { return profil; }
-    QString profileName() const { return profil->props[QLatin1String("name")]; }
+    QString profileName() const { return profil -> props[QLatin1String("name")]; }
     QString profileTitle() const;
     bool validProfileName() const;
     void hideSideBar( bool b );
@@ -114,7 +114,7 @@ public:
     static Config *configuration();
     void loadProject(const QString &projectFileName);
 
-    //variables for global use via  Config::configuration()->variable()
+    //variables for global use via  Config::configuration() -> variable()
     QString AppDir()	{ return appDir; }
     QString BackupDir()	{ return backupDir; }
     QString CacheDir()	{ return cacheDir; }
@@ -213,7 +213,7 @@ private:
     bool rebuildDocs;
     FontSettings m_fontSettings;
 
-    //variables for global use via  Config::configuration()->variable()
+    //variables for global use via  Config::configuration() -> variable()
     QString appDir;
     QString backupDir;
     QString cacheDir;	//path for cache

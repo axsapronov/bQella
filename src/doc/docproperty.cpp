@@ -30,13 +30,13 @@ DocProperties::DocProperties(QWidget *parent)
 //-------------------------------------------------
 void DocProperties::setTitle(QString title)
 {
-	ui.ETitle->setText(title);
+	ui.ETitle -> setText(title);
 }
 
 //-------------------------------------------------
 void DocProperties::setFileName(QString fn)
 {
-	ui.LEFileName->setText(fn);
+	ui.LEFileName -> setText(fn);
 }
 
 //-------------------------------------------------
@@ -48,6 +48,6 @@ void DocProperties::reject()
 //-------------------------------------------------
 void DocProperties::accept()
 {
-	emit updateTitle( ui.ETitle->text() );	
+	emit updateTitle( ui.ETitle -> text() );	
 	QWidget::hide();  //close dialog		
 }

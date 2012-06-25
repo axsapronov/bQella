@@ -48,10 +48,12 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     version.setNum(pr.moduleBVersion);
     //        qDebug() << "Debug: _ProjectProperties::setProperties" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
-    ui.lineEditBibleName->setText(pr.moduleBiblename); // добавил
-    ui.lineEditBibleShortName->setText(pr.moduleBibleShortName);
-    ui.lineEditCopyright->setText(pr.moduleCopyright);
-    ui.doubleSpinBoxVersion->setValue(pr.moduleBVersion);
+    ui.lineEditBibleName -> setText(pr.moduleBiblename); // добавил
+    ui.lineEditBibleShortName -> setText(pr.moduleBibleShortName);
+    ui.lineEditCopyright -> setText(pr.moduleCopyright);
+    ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
+    // для комбокса установить значение moduletype
+
 }
 
 void ProjectProperties::reject()
@@ -65,17 +67,17 @@ void ProjectProperties::accept()
     QString s = "";  //holds list of errors
     bool er = false;
     validProperties = false;
-    if (ui.lineEditBibleName->text().isEmpty()){
+    if (ui.lineEditBibleName -> text().isEmpty()){
         s = tr("- Please enter a bible name.\n");
         er = true;
     }
-    if (ui.lineEditBibleShortName->text().isEmpty()) {
+    if (ui.lineEditBibleShortName -> text().isEmpty()) {
         s += tr("- Please enter a short bible name.\n");
         er = true;
     }
 
     //check for correct start page
-    /*if  (ui.EStartPage->text().isEmpty()){ //|| (!itemprop->valid()) )
+    /*if  (ui.EStartPage -> text().isEmpty()){ //|| (!itemprop -> valid()) )
   s += tr("- Please choose a valid start page.");
   er = true;
  }
@@ -90,46 +92,47 @@ void ProjectProperties::accept()
 
         //    qDebug() << "path = " << path <<  "last = " << path.last();
 
-        dir.mkdir(ui.lineEditBibleName->text());
+        dir.mkdir(ui.lineEditBibleName -> text());
 
         //check for valid project file name
-        //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName->text() << "biblname = " << ui.lineEditBibleName->text();
-        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File;
-        QFile filePrj(prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File);
+        //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.lineEditBibleName -> text();
+        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File;
+        QFile filePrj(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
         if (!filePrj.exists()){		//create file if it's not exist
             if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
                 QTextStream ts(&filePrj);
                 ts << "<pemproject>\n</pemproject>";
                 filePrj.close();
             }else{
-                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName->text()));
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName -> text()));
                 er = true;
             }
         }
         //check for valid start page file name
-        QFile fileSP(prjFN+ui.lineEditBibleName->text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+//        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+                QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
         if (!fileSP.exists()){		//create file if it does not exist
             if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
                 QTextStream ts(&fileSP);
                 ts.setCodec("UTF-8");
 
                 QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
-                        tr("Bibleqt.ini") + "</title></head>\n";
+                        tr("   ___Instruction") + "</title></head>\n";
 //                QString str_body = "<body>"+tr("\nBibleName = %1"
 //                                               "\nBibleShortName = %2"
 //                                               "\nCopyright = %3"
 //                                               "\nDefaultEncoding = utf-8"
 //                                               "\nChapterSign = <h4>"
 //                                               "\nVerseSign = <p>")
-//                        .arg(ui.lineEditBibleName->text())
-//                        .arg(ui.lineEditBibleShortName->text())
-//                        .arg(ui.lineEditCopyright->text());
+//                        .arg(ui.lineEditBibleName -> text())
+//                        .arg(ui.lineEditBibleShortName -> text())
+//                        .arg(ui.lineEditCopyright -> text());
                 QString str_body = "<body>"+tr("<p> добавить инструкцию для создания модулей</p>");
 
-                Config::configuration()->setModuleBiblename(ui.lineEditBibleName->text());
-                Config::configuration()->setModuleBibleShortName(ui.lineEditBibleShortName->text());
-                Config::configuration()->setModuleCopyright(ui.lineEditCopyright->text());
-                Config::configuration()->setModuleCopyright(ui.lineEditCopyright->text());
+                Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
+                Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
+                Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
+                Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
                 QString str_ender = "\n</body>\n</html>\n";
 
 
@@ -139,7 +142,7 @@ void ProjectProperties::accept()
 
 
             }else{
-                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName->text()));
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName -> text()));
                 er = true;
             }
         }
@@ -147,13 +150,14 @@ void ProjectProperties::accept()
 
         if (!er){	//project, start page and sources files do exist we can proceed with setting project properties
             ModuleProperties prop;
-            prop.prjTitle= ui.lineEditBibleName->text();//ui.ETitle->text();
-            prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName->text()+"/"+"Bibleqt"+GL_Project_Conf_File);
-            prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName->text()+"/"+ui.lineEditBibleName->text()+GL_Project_File);
-            prop.moduleBiblename = ui.lineEditBibleName->text();
-            prop.moduleBibleShortName = ui.lineEditBibleShortName->text();
-            prop.moduleCopyright = ui.lineEditCopyright->text();
-            prop.moduleBVersion = ui.doubleSpinBoxVersion->value();
+            prop.prjTitle= ui.lineEditBibleName -> text();//ui.ETitle -> text();
+            prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
+            prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
+            prop.moduleBiblename = ui.lineEditBibleName -> text();
+            prop.moduleBibleShortName = ui.lineEditBibleShortName -> text();
+            prop.moduleCopyright = ui.lineEditCopyright -> text();
+            prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
+//            prop.moduleType = ui.comboBoxTypeModule -> currentText();
 
             validProperties = true;
             if (modeNewProject){

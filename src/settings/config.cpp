@@ -90,14 +90,14 @@ void Config::loadProject(const QString &projectFileName)
     }
     DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
     QFile file(prjFN);
-    parser->parse(&file);
-    profil = profileParser->profile();
+    parser -> parse(&file);
+    profil = profileParser -> profile();
     if (!profil) {
         qWarning( (QLatin1String("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- no profile in: " + prjFN);
     }
-    profil->setDocuParser(profileParser);
-    setCurFile(profil->props["startpage"]);
+    profil -> setDocuParser(profileParser);
+    setCurFile(profil -> props["startpage"]);
     setCurPrjSrc();
     prjLogFN = AppDir() + "log/" + profileName() + ".log";
     qDebug() << " curProject = " << curProject <<", curFile = " << curFile << ", sources file = " << CurPrjSrc();
@@ -130,9 +130,9 @@ void Config::loadSettings()
     //window and font settings
     winGeometry = settings.value(QLatin1String("WindowGeometry")).toByteArray();
     mainWinState = settings.value(QLatin1String("MainWindowState")).toByteArray();
-    pointFntSize = settings.value(QLatin1String("FontSize"), qApp->font().pointSizeF()).toDouble();
-    m_fontSettings.windowFont = qVariantValue<QFont>(settings.value(QLatin1String("WindowFont"), qApp->font()));
-    m_fontSettings.browserFont = qVariantValue<QFont>(settings.value(QLatin1String("BrowserFont"), qApp->font()));
+    pointFntSize = settings.value(QLatin1String("FontSize"), qApp -> font().pointSizeF()).toDouble();
+    m_fontSettings.windowFont = qVariantValue<QFont>(settings.value(QLatin1String("WindowFont"), qApp -> font()));
+    m_fontSettings.browserFont = qVariantValue<QFont>(settings.value(QLatin1String("BrowserFont"), qApp -> font()));
     m_fontSettings.useWindowFont = settings.value(QLatin1String("UseWindowFont"), false).toBool();
     m_fontSettings.useBrowserFont = settings.value(QLatin1String("UseBrowserFont"), false).toBool();
     m_fontSettings.windowWritingSystem = static_cast<QFontDatabase::WritingSystem>(
@@ -234,7 +234,7 @@ void Config::delProject(QString prj)
 //-------------------------------------------------
 QString Config::profileTitle() const
 {
-    QString s = profil->props[QLatin1String("title")];
+    QString s = profil -> props[QLatin1String("title")];
     if (s.isEmpty())
         s = QObject::tr("[No title]");
     return s;
@@ -243,17 +243,17 @@ QString Config::profileTitle() const
 //-------------------------------------------------
 QString Config::homePage() const
 {
-    return startPage.isEmpty() ? profil->props[QLatin1String("startpage")] : startPage;
+    return startPage.isEmpty() ? profil -> props[QLatin1String("startpage")] : startPage;
 }
 
 //-------------------------------------------------
 QStringList Config::source() const
 {
-    return src.size() == 0 ? QStringList(profil->props[QLatin1String("startpage")]) : src;
+    return src.size() == 0 ? QStringList(profil -> props[QLatin1String("startpage")]) : src;
 }
 
 //-------------------------------------------------
-QStringList Config::docFiles() const //used in HelpDialog to build keyword DB. Earlier it used to return profil->docs
+QStringList Config::docFiles() const //used in HelpDialog to build keyword DB. Earlier it used to return profil -> docs
 {
     QStringList tmp;
     tmp << curProject; //probably will need to change to something else.
@@ -282,14 +282,14 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
         return "";
     }
     DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
-    parser->parse(&file);
-    profil_tmp = profileParser->profile();
+    parser -> parse(&file);
+    profil_tmp = profileParser -> profile();
     if (!profil_tmp) {
         qWarning( (QLatin1String("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
         toAppLog(1, "No profile in:" + prjFN);
         return "";
     }
-    return profil_tmp->props[prop];
+    return profil_tmp -> props[prop];
 }
 
 //-------------------------------------------------

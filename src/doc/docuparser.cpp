@@ -132,8 +132,8 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
     case StateSection:
         if(lower == QLatin1String("section")) {
             docTitle = attr.value(QLatin1String("title"));
-            contentRef = urlifyFileName(absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration()->CurPrjDir()));
-            iconFileName = absolutifyFileName(attr.value(QLatin1String("icon")),Config::configuration()->CurPrjDir());
+            contentRef = urlifyFileName(absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration() -> CurPrjDir()));
+            iconFileName = absolutifyFileName(attr.value(QLatin1String("icon")),Config::configuration() -> CurPrjDir());
 			contentList.append(ContentItem(docTitle, contentRef, iconFileName, depth));
 			depth++; 
         }
@@ -141,7 +141,7 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
 
 	case StateKeywords: 
         if (lower == QLatin1String("keyword")) {
-            indexRef = absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration()->CurPrjDir());
+            indexRef = absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration() -> CurPrjDir());
 			indexKey = attr.value(QLatin1String("key"));
 			state = StateKeyword;
         } 
@@ -178,10 +178,10 @@ bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localNam
             static const QStringList lst = QStringList()  // lst is a list of properties with file names
 				<< QLatin1String("startpage");
             if (lst.contains(propertyName)){ //see if propertyValue is a file name then convert string to full path name
-                propertyValue = absolutifyFileName(propertyValue, Config::configuration()->CurPrjDir());
+                propertyValue = absolutifyFileName(propertyValue, Config::configuration() -> CurPrjDir());
 			}
         }
-        prof->addProperty(propertyName, propertyValue);
+        prof -> addProperty(propertyName, propertyValue);
         break;
 	case StateSection:
         if(contentRef.isEmpty())  return false;

@@ -122,6 +122,14 @@
      <addaction name="actionRemoveItem"/>
      <addaction name="actionDeleteFile"/>
     </widget>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionImportModule"/>
+     <addaction name="actionImportBook"/>
+     <addaction name="actionImportChapter"/>
+    </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectOpen"/>
     <addaction name="separator"/>
@@ -130,6 +138,7 @@
     <addaction name="actionFileAdd"/>
     <addaction name="separator"/>
     <addaction name="actionExport_Module"/>
+    <addaction name="menuImport"/>
     <addaction name="separator"/>
     <addaction name="actionFilePrint"/>
     <addaction name="actionPrint_Preview"/>
@@ -794,6 +803,21 @@
    </property>
    <property name="whatsThis">
     <string>Add the currently displayed page as a new bookmark.</string>
+   </property>
+  </action>
+  <action name="actionImportModule">
+   <property name="text">
+    <string>Module</string>
+   </property>
+  </action>
+  <action name="actionImportBook">
+   <property name="text">
+    <string>Book</string>
+   </property>
+  </action>
+  <action name="actionImportChapter">
+   <property name="text">
+    <string>Chapter</string>
    </property>
   </action>
  </widget>
