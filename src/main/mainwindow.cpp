@@ -166,9 +166,9 @@ void MainWindow::setup()
 
 
     // Menu Import
-    connect(ui.actionImportChapter, SIGNAL(triggered()), importm, SLOT(importChapter(QString)));
-    connect(ui.actionImportBook, SIGNAL(triggered()), importm, SLOT(importBook(QString)));
-    connect(ui.actionImportModule, SIGNAL(triggered()), importm, SLOT(importModule(QString)));
+    connect(ui.actionImportChapter, SIGNAL(triggered()), this, SLOT(importChapter()));
+    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
+    connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
 
 
 
@@ -243,14 +243,45 @@ void MainWindow::exportModule()
 //    QString test = "mytest";
 //    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
 
-
-
 //    exportm  ->  file = "test";
 //    exportm -> setFileBibleqtName(helpDock -> ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:"));
 //    exportm -> setFileBibleqtName(helpDock->getFileBibleqtName());
 
 //    exportm -> test();
     helpDock -> exportModule();
+}
+
+void MainWindow::importModule()
+{
+//    QString beginpath = "/home/warmonger";
+//    QString fileName = QFileDialog::getOpenFileName(this,
+//                      tr("Select bibleqt.ini"),
+//                      beginpath,
+//                      tr("Bibleqt.ini (*.ini)"));
+    QString fileName = "/home/warmonger/bibleqt.ini";
+    importm->importModule(fileName);
+}
+
+void MainWindow::importChapter()
+{
+    QString beginpath = "/home/";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                      tr("Select chapter file"),
+                      beginpath,
+                      tr("Chapter file (*.html *.txt *.htm)"));
+    importm->importChapter(fileName);
+
+}
+
+void MainWindow::importBook()
+{
+    QString beginpath = "/home/";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                      tr("Select book file"),
+                      beginpath,
+                      tr("Book file (*.html *.txt *.htm)"));
+    importm->importBook(fileName);
+
 }
 
 //-------------------------------------------------

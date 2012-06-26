@@ -1207,7 +1207,7 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
     QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
     QFileInfo fi(fn);
     if (fi.exists() && fi.isFile()){
-        qDebug() << "-- opening file: " << fn << ", link = " << i -> data(0, LinkRole).toString();
+        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "-- opening file: " << fn << ", \nlink = " << i -> data(0, LinkRole).toString();
         emit showLink(i -> data(0, LinkRole).toString());
     }else{ 
         int ret = QMessageBox::warning(mw,  tr("%1").arg(GL_Prog_Name), tr("Source file could not be found:\n %1\n"

@@ -236,7 +236,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionTextBold"/>
    <addaction name="actionTextItalic"/>
@@ -809,15 +809,24 @@
    <property name="text">
     <string>Module</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="actionImportBook">
    <property name="text">
     <string>Book</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionImportChapter">
    <property name="text">
     <string>Chapter</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

@@ -100,7 +100,14 @@ private slots:
     void updateTabActions(int index);
 
 
+    // export
     void exportModule();
+
+    // import
+    void importModule();
+    void importChapter();
+    void importBook();
+
     void exitApp();
 
 protected:
