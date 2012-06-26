@@ -13,13 +13,17 @@ public:
 signals:
 
 public slots:
-    void importChapter(QString file);
-    void importBook(QString file);
+    QString importChapter(QString file);
+    void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void importModule(QString file);
 
 private slots:
     void importIni(QString file);
     QString miniparserini(QString str, QString str2);
+private:
+    int BookQty;
+    QString VerseSign;
+    QString ChapterSign;
 
 };
 

@@ -258,7 +258,7 @@ void MainWindow::importModule()
 //                      tr("Select bibleqt.ini"),
 //                      beginpath,
 //                      tr("Bibleqt.ini (*.ini)"));
-    QString fileName = "/home/warmonger/bibleqt.ini";
+    QString fileName = "/home/warmonger/Develop/git/bqella-build-desktop/build/bin/projects/rrter/export_rrter/bibleqt.ini";
     importm->importModule(fileName);
 }
 
@@ -271,17 +271,22 @@ void MainWindow::importChapter()
                       tr("Chapter file (*.html *.txt *.htm)"));
     importm->importChapter(fileName);
 
+
 }
 
 void MainWindow::importBook()
 {
     QString beginpath = "/home/";
-    QString fileName = QFileDialog::getOpenFileName(this,
+    QString path = QFileDialog::getOpenFileName(this,
                       tr("Select book file"),
                       beginpath,
                       tr("Book file (*.html *.txt *.htm)"));
-    importm->importBook(fileName);
-
+    importm->importBook(path, "", "", 0);
+// еще надо вызывать диалог с вводом данных о книге
+    //PathName
+    //FullName
+    //ShortName
+    //ChapterQty
 }
 
 //-------------------------------------------------

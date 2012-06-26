@@ -369,31 +369,10 @@ void HelpDialog::initialize()
     actionItemDelete -> setShortcut( QKeySequence(Qt::ShiftModifier + Qt::Key_Delete) );
 
     itemPopupContents = new QMenu(this);  //for Contents tab
-    //itemPopupContents -> addAction(actionItemProperties);
-    //itemPopupContents -> addSeparator();
     itemPopupContents -> addAction(actionItemBookAdd);
     itemPopupContents -> addAction(actionItemChapterAdd);
-    //itemPopupContents -> addAction(actionItemVerseAdd);
     itemPopupContents -> addSeparator();
-    /*
-    itemPopupContents -> addAction(actionItemInsert);
-    itemPopupContents -> addAction(actionItemAddFile);
-    itemPopupContents -> addAction(actionItemInsertSameLevel);
-    itemPopupContents -> addAction(actionItemAddFileSameLevel);
-    */
     itemPopupContents -> addAction(actionItemRemove);
-    /*
-    itemPopupContents -> addAction(actionItemDelete);
-    itemPopupContents -> addSeparator();
-    itemPopupContents -> addAction(actionItemAuto);
-
-    itemPopupContents -> addSeparator();
-    itemPopupContents -> addAction(actionOpenCurrentTab);
-    itemPopupContents -> addAction(actionOpenLinkInNewWindow);
-    itemPopupContents -> addAction(actionOpenLinkInNewTab);
-    itemPopupContents -> addAction(actionOpenLinkInExtEditor);
-    itemPopupContents -> addAction(actionOpenLinkInExtBrowser);
-    */
     itemPopupContents -> addSeparator();
     
     itemPopupSubItems = new QMenu(this); //for SubItems contents view
@@ -682,14 +661,6 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
     foreach (ContentItem item, contentList) {
         titleMap[item.reference] = item.title.trimmed();
     }
-    /*
-    for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
-        //ContentList lst = (*it).second;
-        ContentList lst = *it;
-        foreach (ContentItem item, lst) {
-            titleMap[item.reference] = item.title.trimmed();
-        }
-    }*/
     processEvents();
 }
 
@@ -1630,9 +1601,6 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
             newSameLevelItem = true;  //add book
             //m_bookadddialog = new BookAddDialog;
             m_bookadddialog -> show(); // вывод диалога с вводом данных о книге
-
-
-
             // newItem();
 
         }else if (action == actionItemChapterAdd){
