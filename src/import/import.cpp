@@ -27,12 +27,14 @@ Import::Import(QObject *parent) :
 void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
     qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
-    //    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
+    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
 
-
+    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
     // создаем файл книги
-
     createBookFile(pathName, FullName, ShortName, ChapterQty);
+
+
+    bool flag;
 
     // парсим
     QString line;
@@ -46,17 +48,27 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
         while (line.indexOf(ChapterSign) == -1)
             line = stream.readLine();
 
-
-        qDebug() << "BookQry = " << BookQty;
+        //        qDebug() << "BookQry = " << BookQty;
         for (int i = 1; i <= BookQty; i++)
         {
             for (int j = 1; j <= ChapterQty; j++)
             {
+                QString text ="";
                 do{
                     line = stream.readLine();
-                    QString str = importChapter(line);
+                    if (line.indexOf(ChapterSign) >=0)
+                    {
+                        line = "";
+                        flag = false;
+                    }
+                    text.append("\n"+importChapter(line));
+
                 }
-                while ((!line.isNull()) and ( line.indexOf(ChapterSign) == -1));
+                while ((!line.isNull()) and ( flag));
+
+                 flag = true;
+//                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
+                createChaterFile(pathName, text, j);
             }
         }
         file.close();
@@ -91,10 +103,8 @@ void Import::importIni(QString filename)
     qDebug() << "Debug: _Import::importIni(Q)" << "Start import ini";
     qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
 
-
     //    qDebug() << "Debug: _Import::importIni()" << "curprj" << Config::configuration()->PrjDir();
     //    qDebug() << "Debug: _Import::importIni()" << "curprj2" << filename.remove(filename.length()-11, 11);
-
     //    Config::configuration()->setCurPrjDir(filename.remove(filename.length()-11, 11));
     QFile file(filename);
     QString line;
@@ -173,9 +183,15 @@ QString Import::miniparserini(QString str, QString po)
 }
 
 
-void Import::addChapterToBook(QString file)
+void Import::createChaterFile(QString file, QString text, int i)
 {
+    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
+    QString last = file.split("/").last().split(".").last();
+    pathNameE.remove("book_");
+    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(i) + last;
 
+//    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
+    createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
 }
 
 void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)

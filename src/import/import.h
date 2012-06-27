@@ -23,8 +23,9 @@ private slots:
 
     void createImportFolder(QString path);
     void createBibleIni(QString file);
+    void createChaterFile(QString file,QString text, int i);
     void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
-    void addChapterToBook(QString file);
+
 private:
     int BookQty;
     QString VerseSign;
