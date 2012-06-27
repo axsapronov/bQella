@@ -1,8 +1,12 @@
 #ifndef IMPORT_H
 #define IMPORT_H
 
+
+#include "projectproperty.h"
+
 #include <QObject>
 #include <QDialog>
+
 
 class Import : public QObject
 {
@@ -16,6 +20,10 @@ public slots:
     QString importChapter(QString file);
     void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void importModule(QString file);
+    void addContentToProjectFile(QString text, bool tr);
+
+    QString getPrjFN();
+    QString getStartPage();
 
 private slots:
     void importIni(QString file);
@@ -28,6 +36,9 @@ private slots:
     void createChaterFile(QString file,QString text, int i);
     void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void createProjectFile();
+    void createInstructionFile();
+
+    void addContentToEndProjectFile();
 private:
     int BookQty;
     QString VerseSign;

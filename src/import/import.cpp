@@ -14,6 +14,10 @@
 
 
 
+enum { LinkRole   = Qt::UserRole + 1000, 	// reference = file name = link to source
+       IconFNRole = Qt::UserRole + 1001 };	// icon file name
+
+
 Import::Import(QObject *parent) :
     QObject(parent)
 {
@@ -30,13 +34,19 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
 
     QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    // создаем файл книги
+    QString title = pathName.split("/").last().split(".").first();
+    QString path = "../" + pathName.split("/").last();
+
+    // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
+    // add info to project file
+    QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
+    addContentToProjectFile(text2, false);
 
+
+    // parse
     bool flag;
-
-    // парсим
     QString line;
     QFile file(pathName);
     if ( file.open(QIODevice::ReadOnly) )
@@ -49,10 +59,18 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
             line = stream.readLine();
 
         //        qDebug() << "BookQry = " << BookQty;
-        for (int i = 1; i <= BookQty; i++)
-        {
+//        for (int i = 1; i <= BookQty; i++)
+//        {
             for (int j = 1; j <= ChapterQty; j++)
             {
+                QString titlechap = QString("%1").arg(j);
+                QString pathchap = pathName;
+                pathchap =  "../" + pathName.split("/").last().remove("."+last) + QString("_chapter_%1.%2").arg(j).arg(last);
+                QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
+
+//                qDebug() << "pathchap = " << pathchap;
+
+                addContentToProjectFile(textchap , true);
                 QString text ="";
                 do{
                     line = stream.readLine();
@@ -69,12 +87,18 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
                 flag = true;
                 //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
                 createChaterFile(pathName, text, j);
+                addContentToProjectFile("</section>", true);
+
             }
-        }
+//        }
         file.close();
     }
     else
         qDebug() << "Debug: _Import::importBook" << "Error: not open file";
+
+    QString text = "</section>";
+    addContentToProjectFile(text, false);
+
 
 }
 //----------------------------------------------------
@@ -96,7 +120,11 @@ void Import::importModule(QString file)
     qDebug() << "Debug: _Import::importModule(QString file)" << "Start import Module";
 
     importIni(file);
-    importProjectFile();
+
+
+    createInstructionFile();
+    addContentToEndProjectFile();
+//    qDebug() << "TEST = " << HelpDialog::ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
 }
 //----------------------------------------------------
 void Import::importIni(QString filename)
@@ -135,7 +163,12 @@ void Import::importIni(QString filename)
                 if (miniparserini(line,"Copyright") != "") Config::configuration() -> setModuleCopyright(miniparserini(line,"Copyright"));
                 if (miniparserini(line,"ChapterSign") != "") ChapterSign = miniparserini(line,"ChapterSign");
                 if (miniparserini(line,"VerseSign") != "") VerseSign = miniparserini(line,"VerseSign");
-                if (miniparserini(line,"BookQty") != "")  BookQty = miniparserini(line,"BookQty").toInt();
+                if (miniparserini(line,"BookQty") != "")
+                {
+                    BookQty = miniparserini(line,"BookQty").toInt();
+
+                        importProjectFile();
+                }
                 if (miniparserini(line,"PathName") != "")
                 {
                     //парсим инфу о книгке
@@ -253,15 +286,167 @@ void Import::createProjectFile()
     {
         file1.write(QString("").toUtf8());
     }
-
-
 }
 
 
 void Import::importProjectFile()
 {
     createProjectFile();
+
+
+    ModuleProperties pr;
+    pr.prjFN = getPrjFN();
+    pr.prjStartPage = getStartPage();
+    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
+    pr.moduleBVersion = 1.0;
+    pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+
+    QString ind1="   ";
+    QString fn = unurlifyFileName(pr.prjFN);
+    qDebug() << " fn = " << fn;
+    Config::configuration() -> toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
+    Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
+    QFile f(fn);
+    if (!f.open(QFile::WriteOnly)){
+        qDebug() << "Failed to create project: " << fn;
+//        statusBar() -> showMessage(tr("Failed to create project: %1").arg(fn), 7000);
+        Config::configuration() -> toAppLog(1, tr("- failed", "For log"));
+        return;
+    }
+
+    Config::configuration() -> toAppLog(3, tr("- project start page: %1", "For log").arg(pr.prjStartPage));
+    QFileInfo fi(fn);
+    QString name = fi.baseName();
+    QString path = fi.absolutePath();
+    Config::configuration() -> setDbName(path +"/"+ name +"-sources.db");
+    name.remove(QChar(' '));
+    QString spFN = relatifyFileName(pr.prjStartPage, path);
+    //fi.setFile(spFN);
+    QString spT = tr("   ___Instruction");//fi.baseName(); // name of first doc in project in listcontent
+    QTextStream ts(&f);
+    ts.setCodec("UTF-8");
+    ts << "<pemproject version=\"1.0\">" << endl << endl;
+
+    QString version;
+    version.setNum(pr.moduleBVersion);
+//    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+
+    ts << "<profile>" << endl;
+    ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
+    ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
+    ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
+    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(pr.moduleBiblename) << "</property>" << endl;
+    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
+    ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
+//    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
+    ts << "</profile>" << endl << endl;
+
+    ts << "<contents>" << endl;
+    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
+    ts << ind1 << "</section>" << endl;
+//    ts << "</contents>" << endl << endl;
+
+//    ts << "</pemproject>" << endl;
+    f.close();
+
+    Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
+    Config::configuration() -> toAppLog(1, tr("- done", "For log"));
+
 }
+
+void Import::createInstructionFile()
+{
+    QString text = tr("Добавить инструкцию");
+    createEmptyHtml(QString(Config::configuration()->CurPrjDir()+"/   ___Instruction"), QString("   ___Instruction"), text);
+}
+
+QString Import::getPrjFN()
+{
+     return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem");
+}
+
+QString Import::getStartPage()
+{
+     return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
+}
+
+
+
+
+void Import::addContentToProjectFile(QString text, bool tr)
+{
+    QString ind1="   ";
+    QString fn = unurlifyFileName(getPrjFN());
+    QFile f(fn);
+    f.open(QFile::Append);
+    QTextStream ts(&f);
+    ts.setCodec("UTF-8");
+
+    if (tr)
+    {
+        ts << ind1 << ind1 << text << endl;
+    }
+    else
+    {
+        ts << ind1 << text << endl;
+    }
+
+//    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
+//    ts << ind1 << "</section>" << endl;
+
+
+    f.close();
+}
+
+
+
+void Import::addContentToEndProjectFile()
+{
+    QString fn = unurlifyFileName(getPrjFN());
+    QFile f(fn);
+    f.open(QFile::Append);
+    QTextStream ts(&f);
+    ts.setCodec("UTF-8");
+    ts << "</contents>" << endl << endl;
+    ts << "</pemproject>" << endl;
+    f.close();
+
+}
+
+
+
+////for saving contents to file. Used by HelpDialog::saveContents()
+//static void store2xml(QTreeWidgetItem *i, QTextStream &ts)
+//{
+//    ts  << indent << "<section title=\"" << i -> text(0)
+//        << "\" ref=\"" << relatifyFileName(i -> data(0, LinkRole).toString(),  Config::configuration() -> CurPrjDir())
+//        << "\" icon=\"" << relatifyFileName(i -> data(0, IconFNRole).toString(),  Config::configuration() -> CurPrjDir()) + "\" >" << endl;
+
+//    for (int index = 0; index < i -> childCount(); ++index){
+//        indent += ind1;
+//        store2xml(i -> child(index), ts);
+//        indent.remove(0,ind1.length());
+//    }
+//    ts << indent << "</section>" << endl;
+//}
+
+////-------------------------------------------------
+////for saving contents to file. Used by HelpDialog::saveContents()
+//static void store2xml(QTreeWidget *tw, QTextStream &ts)
+//{
+//    ts << "<contents>" << endl;
+//    for (int index = 0; index < tw -> topLevelItemCount(); ++index){
+//        store2xml(tw -> topLevelItem(index), ts);
+//    }
+//    ts << "</contents>" << endl;
+//}
+
+
+
+
 
 //----------------------------------------------------
 //void Import::setTestValue(QString test)

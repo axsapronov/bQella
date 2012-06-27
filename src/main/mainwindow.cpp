@@ -260,33 +260,54 @@ void MainWindow::importModule()
 //                      tr("Bibleqt.ini (*.ini)"));
     QString fileName = "/home/warmonger/Develop/git/bqella-build-desktop/build/bin/projects/rrter/export_rrter/bibleqt.ini";
     importm->importModule(fileName);
+
+    ModuleProperties pr;
+    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
+    pr.moduleCopyright = Config::configuration()->ModuleCopyright();
+    pr.moduleBVersion = 1.00;
+    pr.prjFN = importm->getPrjFN();
+    pr.prjStartPage = importm->getStartPage();
+    pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+//    qDebug() << pr.moduleBiblename;
+//    qDebug() << pr.moduleBibleShortName;
+//    qDebug() << pr.moduleBVersion;
+//    qDebug() << pr.moduleCopyright;
+//    qDebug() << pr.prjFN;
+//    qDebug() << pr.prjStartPage;
+//    qDebug() << pr.prjTitle;
+
+    // не добавились автоматом ссылки на файлы книг
+//    createProject(pr);
+//    importm-> addContentToProjectFile(pr);
 }
 
 void MainWindow::importChapter()
 {
-    QString beginpath = "/home/";
-    QString fileName = QFileDialog::getOpenFileName(this,
-                      tr("Select chapter file"),
-                      beginpath,
-                      tr("Chapter file (*.html *.txt *.htm)"));
-    importm->importChapter(fileName);
+//    QString beginpath = "/home/";
+//    QString fileName = QFileDialog::getOpenFileName(this,
+//                      tr("Select chapter file"),
+//                      beginpath,
+//                      tr("Chapter file (*.html *.txt *.htm)"));
+//    importm->importChapter(fileName);
 
 
 }
 
 void MainWindow::importBook()
 {
-    QString beginpath = "/home/";
-    QString path = QFileDialog::getOpenFileName(this,
-                      tr("Select book file"),
-                      beginpath,
-                      tr("Book file (*.html *.txt *.htm)"));
-    importm->importBook(path, "", "", 0);
-// еще надо вызывать диалог с вводом данных о книге
-    //PathName
-    //FullName
-    //ShortName
-    //ChapterQty
+//    QString beginpath = "/home/";
+//    QString path = QFileDialog::getOpenFileName(this,
+//                      tr("Select book file"),
+//                      beginpath,
+//                      tr("Book file (*.html *.txt *.htm)"));
+//    importm->importBook(path, "", "", 0);
+//// еще надо вызывать диалог с вводом данных о книге
+//    //PathName
+//    //FullName
+//    //ShortName
+//    //ChapterQty
 }
 
 //-------------------------------------------------
@@ -777,6 +798,7 @@ void MainWindow::createProject(ModuleProperties pr)
 { 
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
+    qDebug() << " fn = " << fn;
     Config::configuration() -> toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
@@ -802,7 +824,7 @@ void MainWindow::createProject(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+//    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ts << "<profile>" << endl;
     ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
