@@ -1752,11 +1752,6 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
             newEntry = new QTreeWidgetItem(ui.listContents -> currentItem() -> parent(), afterItem, 0);
         }
         newEntry -> setText(0,m_bookadddialog -> bookFullName);
-
-
-
-
-
     }else{
         Config::configuration() -> toPrjLog(3," + subItem");
 
@@ -1790,10 +1785,7 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
 
     }
 
-
-
     showContentsTopic();
-
 
     QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
     if (t.isEmpty()) {
@@ -2190,7 +2182,7 @@ void HelpDialog::newItem()
                 }
                 title = QString("%1").arg(counter-1);
             }
-            qDebug() << "- fn = " << fileName << "counter = " << counter;
+            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, urlifyFileName(fileName), iconFN);// отвечает за добавление файла в список
             ui.listContents -> setFocus();

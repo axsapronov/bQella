@@ -48,7 +48,6 @@ void Export::exportCreateDir(QString current_dir)
             QFile::remove(entryAbsPath);
         }
     }
-
 }
 
 void Export::exportBibleqtIni(QString string, int count)
