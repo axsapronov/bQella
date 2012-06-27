@@ -85,16 +85,8 @@ MainWindow::MainWindow():
     dw -> setWindowTitle(tr("Project manager"));
     dw -> setObjectName(QLatin1String("sidebar"));
     helpDock = new HelpDialog(dw, this);
-
-
     exportm = new Export();
-
     importm = new Import();
-
-//    importm -> test();
-//    importm -> setTestValue("lalala");
-//    importm -> test();
-
 
     dw -> setWidget(helpDock);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
@@ -253,23 +245,31 @@ void MainWindow::exportModule()
 
 void MainWindow::importModule()
 {
-//    QString beginpath = "/home/warmonger";
-//    QString fileName = QFileDialog::getOpenFileName(this,
-//                      tr("Select bibleqt.ini"),
-//                      beginpath,
-//                      tr("Bibleqt.ini (*.ini)"));
-    QString fileName = "/home/warmonger/Develop/git/bqella-build-desktop/build/bin/projects/rrter/export_rrter/bibleqt.ini";
-    importm->importModule(fileName);
+    QString beginpath = "/home/warmonger";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                      tr("Select bibleqt.ini"),
+                      beginpath,
+                      tr("Bibleqt.ini (*.ini)"));
+//    QString fileName = "/home/warmonger/Develop/git/bqella-build-desktop/build/bin/projects/rrter/export_rrter/bibleqt.ini";
+//    QString fileName = "/home/warmonger/Downloads/bibl/NT_Russian_Kassian/Bibleqt.ini";
+//    QString fileName = "/home/warmonger/Downloads/bibl/Bible_Russian_RST_New/Bibleqt.ini";
+//    qDebug() << " FJNAISFJO " << fileName;
+    if (!fileName.isNull())
+    {
+        importm->importModule(fileName);
 
-    ModuleProperties pr;
-    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
-    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
-    pr.moduleCopyright = Config::configuration()->ModuleCopyright();
-    pr.moduleBVersion = 1.00;
-    pr.prjFN = importm->getPrjFN();
-    pr.prjStartPage = importm->getStartPage();
-    pr.prjTitle = Config::configuration()->ModuleBiblename();
+        ModuleProperties pr;
+        pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+        pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
+        pr.moduleCopyright = Config::configuration()->ModuleCopyright();
+        pr.moduleBVersion = 1.00;
+        pr.prjFN = importm->getPrjFN();
+        pr.prjStartPage = importm->getStartPage();
+        pr.prjTitle = Config::configuration()->ModuleBiblename();
 
+
+        ProjectOpen(pr.prjFN);
+    }
 //    qDebug() << pr.moduleBiblename;
 //    qDebug() << pr.moduleBibleShortName;
 //    qDebug() << pr.moduleBVersion;
@@ -278,9 +278,7 @@ void MainWindow::importModule()
 //    qDebug() << pr.prjStartPage;
 //    qDebug() << pr.prjTitle;
 
-    // не добавились автоматом ссылки на файлы книг
-//    createProject(pr);
-//    importm-> addContentToProjectFile(pr);
+
 }
 
 void MainWindow::importChapter()
@@ -381,7 +379,12 @@ void MainWindow::showLinkFromClient(const QString &link)
 // open link in active tab. Link should be in format file://<absolute path>/filename.html
 void MainWindow::showLink(const QString &link)
 {
+
     QString lnk = unurlifyFileName(link);
+//    QString test = Config::configuration()->PrjDir();
+//    QString test2 = Config::configuration()->CurPrjDir();
+
+//    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){    	
     	// don't open a new tab for the same url more then once
@@ -597,7 +600,7 @@ void MainWindow::setupPopupMenu(QMenu *m)
 
 //-------------------------------------------------
 void MainWindow::ProjectOpen()
-{//warmongeR
+{
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration() -> PrjDir(),
                                                     tr("Project bQella (*.pem)"));
     if (!fileName.isEmpty()){

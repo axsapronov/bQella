@@ -1170,17 +1170,40 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 {
     QTreeWidgetItem *i;
     i = (QTreeWidgetItem*)ui.listContents -> currentItem(); //ContCur == ContTreeView
-    if (ContCur == ContSubItems){
+    if (ContCur == ContSubItems)
+    {
         i = (QTreeWidgetItem*)ui.TWSubItems -> currentItem();
     }
     if (!i)
         return;
+
     QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
+
+
+    if ((fn.indexOf("help") ==-1) and ( fn.indexOf("   ___Instruction") ==-1))
+    {
+//        if (fn.indexOf("chapter") >=0 )
+//        {
+            QString test = "book_"+fn.split("/").last();
+            QString test2 = fn;
+            test2.remove((fn.split("/").last())).append(test);
+            fn = test2;
+//        }
+    }
     QFileInfo fi(fn);
-    if (fi.exists() && fi.isFile()){
+
+//    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;
+
+
+
+    if (fi.exists() && fi.isFile())
+    {
         qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "-- opening file: " << fn << ", \nlink = " << i -> data(0, LinkRole).toString();
-        emit showLink(i -> data(0, LinkRole).toString());
-    }else{ 
+        //emit showLink(i -> data(0, LinkRole).toString());
+        emit showLink("file:"+fn);
+    }
+    else
+    {
         int ret = QMessageBox::warning(mw,  tr("%1").arg(GL_Prog_Name), tr("Source file could not be found:\n %1\n"
                                                                            "You can create a new file or add one. Do you want to see item property?").arg(fn),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No);

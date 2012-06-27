@@ -72,7 +72,7 @@ void Config::loadProject(const QString &projectFileName)
     QFileInfo fi(prjFN);
 
     if ( !(fi.exists() && fi.isFile()) ){
-        qWarning( (QLatin1String("Project does not exist: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Project does not exist: ") + prjFN).toUtf8().constData() );
         toAppLog(2, "- project does not exist: " + prjFN); 
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
         prjFN = PrjDir() + "help/help.pem";
@@ -171,7 +171,7 @@ void Config::saveSettings()
     //miscellaneous settings
     settings.setValue(QLatin1String("Language"), lang);
     settings.setValue(QLatin1String("Projects"), relatifyFileList(profileFNs, prjDir) );
-    settings.setValue(QLatin1String("ActiveProject"), relatifyFileName(curProject, prjDir) );
+    settings.setValue(QLatin1String("ActiveProject"), curProject /*relatifyFileName(curProject, prjDir) */);
     settings.setValue(QLatin1String("Source"),src );	 //paths relatified in MainWindow::saveSettings()
     settings.setValue(QLatin1String("SideBarPage"), sideBarPage() );
     settings.setValue(QLatin1String("RebuildDocDB"), rebuildDocs );

@@ -125,7 +125,7 @@ void HelpWindow::setSource(const QUrl &name)
         }
         //Open in active window or create new window
         QFileInfo fi(name.toLocalFile());
-        if (name.scheme() == QLatin1String("file") && fi.exists() && fi.isFile() ) {        	
+        if (name.scheme() == QString("file") && fi.exists() && fi.isFile() ) {
             if (newWindow || (shiftPressed && hasFocus())) {   //open in new window
                 shiftPressed = false;
                 mw -> saveSettings();
