@@ -66,8 +66,8 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
                 }
                 while ((!line.isNull()) and ( flag));
 
-                 flag = true;
-//                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
+                flag = true;
+                //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
                 createChaterFile(pathName, text, j);
             }
         }
@@ -96,6 +96,7 @@ void Import::importModule(QString file)
     qDebug() << "Debug: _Import::importModule(QString file)" << "Start import Module";
 
     importIni(file);
+    importProjectFile();
 }
 //----------------------------------------------------
 void Import::importIni(QString filename)
@@ -190,7 +191,7 @@ void Import::createChaterFile(QString file, QString text, int i)
     pathNameE.remove("book_");
     QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(i) + last;
 
-//    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
+    //    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
     createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
 }
 
@@ -231,6 +232,35 @@ void Import::createBibleIni(QString file)
 {
 
 
+
+}
+
+
+
+void Import::createProjectFile()
+{
+    QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem";
+    qDebug() << "filename = " << filename;
+    // проверить можно ли обращаться к helpdialog по helpdilog::
+
+    QFile file1(filename);
+
+    if(!file1.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error write";
+    }
+    else
+    {
+        file1.write(QString("").toUtf8());
+    }
+
+
+}
+
+
+void Import::importProjectFile()
+{
+    createProjectFile();
 }
 
 //----------------------------------------------------

@@ -21,11 +21,13 @@ private slots:
     void importIni(QString file);
     QString miniparserini(QString str, QString str2);
 
+    void importProjectFile();
+
     void createImportFolder(QString path);
     void createBibleIni(QString file);
     void createChaterFile(QString file,QString text, int i);
     void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
-
+    void createProjectFile();
 private:
     int BookQty;
     QString VerseSign;
