@@ -41,8 +41,8 @@
         <rect>
          <x>11</x>
          <y>11</y>
-         <width>461</width>
-         <height>171</height>
+         <width>471</width>
+         <height>151</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -120,6 +120,295 @@
       <attribute name="title">
        <string>More</string>
       </attribute>
+      <widget class="QSplitter" name="splitter_10">
+       <property name="geometry">
+        <rect>
+         <x>2</x>
+         <y>8</y>
+         <width>481</width>
+         <height>381</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QWidget" name="">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>В модуле есть:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkBoxOldTestament">
+           <property name="text">
+            <string>Ветхий Завет</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBoxNewTestament">
+           <property name="text">
+            <string>Новый Завет</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="checkBoxApocrypha">
+           <property name="text">
+            <string>Второканонические материалы</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="checkBoxChapterZero">
+           <property name="text">
+            <string>Нулевая глава</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QCheckBox" name="checkBoxStrongNumber">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Номера Стронга</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLineEdit" name="lineEditStrongDir"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonStrongDir">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item row="5" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QCheckBox" name="checkBoxSound">
+             <property name="text">
+              <string>Звуки                </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLineEdit" name="lineEditSoundDir"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonSoundDir">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item row="6" column="1">
+          <widget class="QCheckBox" name="checkBoxNoForcedLineBreaks">
+           <property name="text">
+            <string>Разделение не на стихи, а на абзацы</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QSplitter" name="splitter_7">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QSplitter" name="splitter_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QCheckBox" name="checkBoxUseChapterHead">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Отображать заголовки</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="checkBoxUseRightAlignment">
+             <property name="text">
+              <string>Правое выравнивание</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QCheckBox" name="checkBoxEnglishPsalms">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Использовать английскую нумерацию  стихов</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QSplitter" name="splitter_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Привязка модуля к категориям:</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEditCategories"/>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QSplitter" name="splitter_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Язык модуля:</string>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>rus</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>eng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ukr</string>
+             </property>
+            </item>
+           </widget>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Кодировка:</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEditDefaultEncoding">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <zorder>label</zorder>
+      <zorder>checkBoxOldTestament</zorder>
+      <zorder>checkBoxNewTestament</zorder>
+      <zorder>checkBoxApocrypha</zorder>
+      <zorder>checkBoxChapterZero</zorder>
+      <zorder>label_3</zorder>
+      <zorder>comboBox</zorder>
+      <zorder>checkBoxStrongNumber</zorder>
+      <zorder>lineEditStrongDir</zorder>
+      <zorder>pushButtonStrongDir</zorder>
+      <zorder>checkBoxSound</zorder>
+      <zorder>layoutWidget_2</zorder>
+      <zorder>checkBoxNoForcedLineBreaks</zorder>
+      <zorder>label_10</zorder>
+      <zorder>lineEditCategories</zorder>
+      <zorder>label_12</zorder>
+      <zorder>lineEditDefaultEncoding</zorder>
+      <zorder>checkBoxUseChapterHead</zorder>
+      <zorder>checkBoxUseRightAlignment</zorder>
+      <zorder>checkBoxEnglishPsalms</zorder>
+      <zorder>splitter</zorder>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Fonts</string>
+      </attribute>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>10</y>
+         <width>451</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Добавление шрифтов:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEditInstallFonts"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Шрифт отображения книг:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditDesiredFontName"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Путь к нему:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEditDesiredFontPath"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Шрифт отображения заголовков:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEditDesiredUIFont"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </item>
