@@ -32,11 +32,11 @@
 #include <QtGui/QFontDatabase>
 
 #define GL_Prog_RA_VERSION_STR	"0.0"
-#define GL_Prog_BUILD_STR	"2012.06.23"
+#define GL_Prog_BUILD_STR	"2012.06.29"
 #define GL_Prog_Name "bQella"
 #define GL_Prog_Author "Alexander Sapronov"
 
-//.pjm  = project module
+//.pem  = project module
 #define GL_Project_File ".pem"
 #define GL_Project_Conf_File ".ini"
 
@@ -70,7 +70,7 @@ public:
     void loadSettings();
     void saveSettings();
     Profile *profile() const { return profil; }
-    QString profileName() const { return profil -> props[QLatin1String("name")]; }
+    QString profileName() const { return profil -> props[QString("name")]; }
     QString profileTitle() const;
     bool validProfileName() const;
     void hideSideBar( bool b );
@@ -132,10 +132,35 @@ public:
     QString IndentString()	{ return "   "; }
 
     //
-    //warmonger
+    //settings modules
     QString ModuleBiblename()  { return moduleBiblename;}
     QString ModuleCopyright()  { return moduleCopyright;}
     QString ModuleBibleShortName() { return moduleBibleShortName;}
+
+    double Version() {return version;}
+    bool ModuleType() {return moduleType;}
+    bool OldTestament() {return oldTestament;}
+    bool NewTestament() {return newTestament;}
+    bool Apocrypha() {return apocrypha;}
+    bool ChapterZero() {return chapterZero;}
+    bool EnglishPsalms() {return englishPsalms;}
+    bool StrongNumber() {return strongNumber;}
+    QString StrongsDirectory() {return strongsDirectory;}
+    QString SoundDirectory() {return soundDirectory;}
+    bool NoForcedLineBreaks() {return noForcedLineBreaks;}
+    // HTMLFilter должен автоматом создаваться
+    QString Language() {return language;}
+    QString InstallFonts() {return installFonts;}
+    QString DesiredFontName() {return desiredFontName;}
+    QString Categories() {return categories;}
+    QString DesiredFontPath() {return desiredFontPath;}
+    QString DefaultEncoding() {return defaultEncoding;}
+    QString DesiredUIFont() {return desiredUIFont;}
+    bool UseRightAlignment() {return useRightAlignment;}
+    bool UseChapterHead() {return useChapterHead;}
+
+
+
 //    double ModuleVersion() { return moduleVersion;}
 
 
@@ -155,11 +180,35 @@ public:
     void setDbName(QString fn)		{ dbName = fn; }
     void setContentsSortOrder(QString order)	{ contentsSortOrder = order; }
 
-    //warmonger
+    //Module
     void setModuleBiblename(QString fn)   { moduleBiblename = fn; }
     void setModuleCopyright(QString fn)   { moduleCopyright = fn; }
     void setModuleBibleShortName(QString fn)    { moduleBibleShortName = fn; }
-//    void setModuleVersion(double ve)    { moduleVersion = ve; }
+    void setModuleVersion(double ve)    { version = ve; }
+
+
+    void setModuleType(bool fn) { moduleType = fn; }
+    void setOldTestament(bool fn) { oldTestament = fn; }
+    void setNewTestament(bool fn) { newTestament = fn; }
+    void setApocrypha(bool fn) { apocrypha = fn; }
+    void setChapterZero(bool fn) { chapterZero = fn; }
+    void setEnglishPsalms(bool fn) { englishPsalms = fn; }
+    void setStrongNumber(bool fn) { strongNumber = fn; }
+    void setStrongsDirectory(QString fn) { strongsDirectory = fn;}
+    void setSoundDirectory(QString fn) { soundDirectory = fn;}
+    void setNoForcedLineBreaks(bool fn) {noForcedLineBreaks = fn; }
+    // HTMLFilter должен автоматом создаваться
+    void setLanguage(QString fn) { language = fn;}
+    void setInstallFonts(QString fn) { installFonts = fn;}
+    void setDesiredFontName(QString fn) { desiredFontName = fn;}
+    void setCategories(QString fn) { categories = fn;}
+    void setDesiredFontPath(QString fn) { desiredFontPath = fn;}
+    void setDefaultEncoding(QString fn) { defaultEncoding = fn;}
+    void setDesiredUIFont(QString fn) { desiredUIFont = fn;}
+    void setUseRightAlignment(bool fn) {useRightAlignment = fn; }
+    void setUseChapterHead(bool fn) {useChapterHead = fn; }
+
+
 
 
     //variables from Settings window
@@ -233,11 +282,32 @@ private:
     QString dbName;
     QString contentsSortOrder;
 
-    //warmonger
+    //module
     QString moduleBiblename;
     QString moduleCopyright;
     QString moduleBibleShortName;
 
+    bool moduleType;
+    double version;
+    bool oldTestament;
+    bool newTestament;
+    bool apocrypha;
+    bool chapterZero;
+    bool englishPsalms;
+    bool strongNumber;
+    QString strongsDirectory;
+    QString soundDirectory;
+    bool noForcedLineBreaks;
+    // HTMLFilter должен автоматом создаваться
+    QString language;
+    QString installFonts;
+    QString desiredFontName;
+    QString categories;
+    QString desiredFontPath;
+    QString defaultEncoding;
+    QString desiredUIFont;
+    bool useRightAlignment;
+    bool useChapterHead;
 
     //variables from Settings window
     bool contentsAdditionalView;

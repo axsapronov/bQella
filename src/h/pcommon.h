@@ -63,6 +63,9 @@ QString IntToRoman(int n); //переводит арабские числа в �
 int max(int x1, int x2, int x3); //возвращает максимальный из аргументов
 bool SameDigits(int x); //true если все цифры числа одинаковы, напр. 777
 double Proporsion(double x, double y);//вычисляет пропорцию
+int BooltoInt(bool foo); // возвращает true=1 false=0
+QString BooltoQString(bool foo); // возвращает true= "1" false =  "0"
+bool QStringtoBool(QString foo); // возвращает false if str.indexOf("0") else true
 
 //======= работа с файлами =======
 //--------------------------------

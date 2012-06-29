@@ -52,6 +52,8 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.lineEditBibleShortName -> setText(pr.moduleBibleShortName);
     ui.lineEditCopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
+
+
     // для комбокса установить значение moduletype
 
 }
@@ -131,6 +133,7 @@ void ProjectProperties::accept()
 
                 Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
                 Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
+
                 Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
                 Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
                 QString str_ender = "\n</body>\n</html>\n";

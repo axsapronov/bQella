@@ -796,3 +796,27 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     }
     return ret;
 }
+
+
+
+int BooltoInt(bool foo)
+{
+    if (foo == true)
+        return 1;
+    return 0;
+}
+
+QString BooltoQString(bool foo)
+{
+    if (foo == true)
+        return "1";
+    return "0";
+}
+
+// юзать только для преобразования параметров проекта
+bool QStringtoBool(QString str)
+{
+    if (str.indexOf("0"))
+        return false;
+    return true;
+}

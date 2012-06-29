@@ -232,14 +232,14 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-//    QString test = "mytest";
-//    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
+    //    QString test = "mytest";
+    //    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
 
-//    exportm  ->  file = "test";
-//    exportm -> setFileBibleqtName(helpDock -> ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:"));
-//    exportm -> setFileBibleqtName(helpDock->getFileBibleqtName());
+    //    exportm  ->  file = "test";
+    //    exportm -> setFileBibleqtName(helpDock -> ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:"));
+    //    exportm -> setFileBibleqtName(helpDock->getFileBibleqtName());
 
-//    exportm -> test();
+    //    exportm -> test();
     helpDock -> exportModule();
 }
 
@@ -247,13 +247,9 @@ void MainWindow::importModule()
 {
     QString beginpath = "/home/warmonger";
     QString fileName = QFileDialog::getOpenFileName(this,
-                      tr("Select bibleqt.ini"),
-                      beginpath,
-                      tr("Bibleqt.ini (*.ini)"));
-//    QString fileName = "/home/warmonger/Develop/git/bqella-build-desktop/build/bin/projects/rrter/export_rrter/bibleqt.ini";
-//    QString fileName = "/home/warmonger/Downloads/bibl/NT_Russian_Kassian/Bibleqt.ini";
-//    QString fileName = "/home/warmonger/Downloads/bibl/Bible_Russian_RST_New/Bibleqt.ini";
-//    qDebug() << " FJNAISFJO " << fileName;
+                                                    tr("Select bibleqt.ini"),
+                                                    beginpath,
+                                                    tr("Bibleqt.ini (*.ini)"));
     if (!fileName.isNull())
     {
         importm->importModule(fileName);
@@ -261,51 +257,48 @@ void MainWindow::importModule()
         ModuleProperties pr;
         pr.moduleBiblename = Config::configuration()->ModuleBiblename();
         pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
+
         pr.moduleCopyright = Config::configuration()->ModuleCopyright();
         pr.moduleBVersion = 1.00;
         pr.prjFN = importm->getPrjFN();
         pr.prjStartPage = importm->getStartPage();
         pr.prjTitle = Config::configuration()->ModuleBiblename();
 
+        // добавить другие параметры (дохера буленов и строк из модулепропертис)
+
 
         ProjectOpen(pr.prjFN);
     }
-//    qDebug() << pr.moduleBiblename;
-//    qDebug() << pr.moduleBibleShortName;
-//    qDebug() << pr.moduleBVersion;
-//    qDebug() << pr.moduleCopyright;
-//    qDebug() << pr.prjFN;
-//    qDebug() << pr.prjStartPage;
-//    qDebug() << pr.prjTitle;
+
 
 
 }
 
 void MainWindow::importChapter()
 {
-//    QString beginpath = "/home/";
-//    QString fileName = QFileDialog::getOpenFileName(this,
-//                      tr("Select chapter file"),
-//                      beginpath,
-//                      tr("Chapter file (*.html *.txt *.htm)"));
-//    importm->importChapter(fileName);
+    //    QString beginpath = "/home/";
+    //    QString fileName = QFileDialog::getOpenFileName(this,
+    //                      tr("Select chapter file"),
+    //                      beginpath,
+    //                      tr("Chapter file (*.html *.txt *.htm)"));
+    //    importm->importChapter(fileName);
 
 
 }
 
 void MainWindow::importBook()
 {
-//    QString beginpath = "/home/";
-//    QString path = QFileDialog::getOpenFileName(this,
-//                      tr("Select book file"),
-//                      beginpath,
-//                      tr("Book file (*.html *.txt *.htm)"));
-//    importm->importBook(path, "", "", 0);
-//// еще надо вызывать диалог с вводом данных о книге
-//    //PathName
-//    //FullName
-//    //ShortName
-//    //ChapterQty
+    //    QString beginpath = "/home/";
+    //    QString path = QFileDialog::getOpenFileName(this,
+    //                      tr("Select book file"),
+    //                      beginpath,
+    //                      tr("Book file (*.html *.txt *.htm)"));
+    //    importm->importBook(path, "", "", 0);
+    //// еще надо вызывать диалог с вводом данных о книге
+    //    //PathName
+    //    //FullName
+    //    //ShortName
+    //    //ChapterQty
 }
 
 //-------------------------------------------------
@@ -381,10 +374,10 @@ void MainWindow::showLink(const QString &link)
 {
 
     QString lnk = unurlifyFileName(link);
-//    QString test = Config::configuration()->PrjDir();
-//    QString test2 = Config::configuration()->CurPrjDir();
+    //    QString test = Config::configuration()->PrjDir();
+    //    QString test2 = Config::configuration()->CurPrjDir();
 
-//    qDebug() << "_____lnk = " << lnk;
+    //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){    	
     	// don't open a new tab for the same url more then once
@@ -755,7 +748,29 @@ void MainWindow::ProjectNew()
     pr.moduleCopyright = "";
     pr.moduleBVersion = 1.0;
     pr.prjFN = Config::configuration() -> PrjDir()+pr.moduleBiblename;
-//    pr.moduleType = "Bible";
+
+
+    pr.moduleType = true;
+    pr.oldTestament = false;
+    pr.newTestament = false;
+    pr.apocrypha = false;
+    pr.chapterZero = false;
+    pr.englishPsalms = false;
+    pr.strongNumber = false;
+    pr.strongsDirectory = "";
+    pr.soundDirectory = "";
+    pr.noForcedLineBreaks = false;
+    pr.language = "rus";
+    pr.installFonts = "";
+    pr.desiredFontName = "";
+    pr.categories = "";
+    pr.desiredFontPath = "";
+    pr.defaultEncoding = "utf-8";
+    pr.desiredUIFont = "";
+    pr.useChapterHead = false;
+    pr.useRightAlignment = false;
+
+
 
     prjprop -> setProperties(newProject, pr);
     prjprop -> show();
@@ -791,7 +806,32 @@ void MainWindow::ProjectProps()
     pr.moduleBibleShortName = Config::configuration() -> profile() -> props["bibleshortname"];
     pr.moduleCopyright = Config::configuration() -> profile() -> props["copyright"];
     pr.moduleBVersion = QString(Config::configuration() -> profile() -> props["version"]).toDouble();
-//    pr.moduleType = Config::configuration() -> profile() -> props["type"];
+
+
+
+    pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["type"]);
+    pr.oldTestament = QStringtoBool(Config::configuration() -> profile() -> props["oldtestament"]);
+    pr.newTestament = QStringtoBool(Config::configuration() -> profile() -> props["newtestament"]);
+    pr.apocrypha = QStringtoBool(Config::configuration() -> profile() -> props["apocrypha"]);
+    pr.chapterZero = QStringtoBool(Config::configuration() -> profile() -> props["chapterzero"]);
+    pr.englishPsalms = QStringtoBool(Config::configuration() -> profile() -> props["endlishPsalms"]);
+    pr.noForcedLineBreaks = QStringtoBool(Config::configuration() -> profile() -> props["noforcedlinebreaks"]);
+    pr.useChapterHead = QStringtoBool(Config::configuration() -> profile() -> props["usechapterhead"]);
+    pr.useRightAlignment = QStringtoBool(Config::configuration() -> profile() -> props["userightalignment"]);
+    pr.strongNumber = QStringtoBool(Config::configuration() -> profile() -> props["strongsnumber"]);
+    pr.strongsDirectory = Config::configuration() -> profile() -> props["strongsdirectory"];
+    pr.soundDirectory = Config::configuration() -> profile() -> props["sounddirectory"];
+    pr.language = Config::configuration() -> profile() -> props["language"];
+    pr.installFonts = Config::configuration() -> profile() -> props["installfonts"];
+    pr.desiredFontName = Config::configuration() -> profile() -> props["desiredfontname"];
+    pr.categories = Config::configuration() -> profile() -> props["categories"];
+    pr.desiredFontPath = Config::configuration() -> profile() -> props["desiredfontpath"];
+    pr.defaultEncoding = Config::configuration() -> profile() -> props["defaultencoding"];
+    pr.desiredUIFont = Config::configuration() -> profile() -> props["desireduifont"];
+
+
+
+    //    pr.moduleType = Config::configuration() -> profile() -> props["type"];
     bool newProject = false;
     prjprop -> setProperties(newProject, pr);
     prjprop -> show();
@@ -827,7 +867,7 @@ void MainWindow::createProject(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-//    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+    //    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ts << "<profile>" << endl;
     ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
@@ -837,7 +877,30 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
     ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
-//    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
+
+
+    ts << ind1 << "<property name=\"strongsDirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"soundDirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"language\">" << Qt::escape(pr.language) << "</property>" << endl;
+    ts << ind1 << "<property name=\"installFonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredFontName\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"categories\">" << Qt::escape(pr.categories) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredFontPath\">" << Qt::escape(pr.desiredFontPath) << "</property>" << endl;
+    ts << ind1 << "<property name=\"defaultEncoding\">" << Qt::escape(pr.defaultEncoding) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredUIFont\">" << Qt::escape(pr.desiredUIFont) << "</property>" << endl;
+    ts << ind1 << "<property name=\"moduleType\">" << Qt::escape(BooltoQString(pr.moduleType)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"oldTestament\">" << Qt::escape(BooltoQString(pr.oldTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"newTestament\">" << Qt::escape(BooltoQString(pr.newTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"apocrypha\">" << Qt::escape(BooltoQString(pr.apocrypha)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"chapterZero\">" << Qt::escape(BooltoQString(pr.chapterZero)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"englishPsalms\">" << Qt::escape(BooltoQString(pr.englishPsalms)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"strongNumber\">" << Qt::escape(BooltoQString(pr.strongNumber)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"noForcedLineBreaks\">" << Qt::escape(BooltoQString(pr.noForcedLineBreaks)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"useRightAlignment\">" << Qt::escape(BooltoQString(pr.useRightAlignment)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"useChapterHead\">" << Qt::escape(BooltoQString(pr.useChapterHead)) << "</property>" << endl;
+
+
+    //    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
@@ -870,8 +933,9 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> profile() -> addProperty("startpage", pr.prjStartPage);
     Config::configuration() -> profile() -> addProperty("biblename", pr.moduleBiblename);
     Config::configuration() -> profile() -> addProperty("bibleshortname", pr.moduleBibleShortName);
+
     Config::configuration() -> profile() -> addProperty("copyright", pr.moduleCopyright);
-//    Config::configuration() -> profile() -> addProperty("type", pr.moduleType);
+    //    Config::configuration() -> profile() -> addProperty("type", pr.moduleType);
 
     QString version;
     version.setNum(pr.moduleBVersion);

@@ -1,9 +1,10 @@
-<ui version="4.0" >
- <comment>*********************************************************************&#xd;
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <comment>*********************************************************************
 *********************************************************************</comment>
  <class>TabbedBrowser</class>
- <widget class="QWidget" name="TabbedBrowser" >
-  <property name="geometry" >
+ <widget class="QWidget" name="TabbedBrowser">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -11,48 +12,27 @@
     <height>664</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>TabbedBrowser</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin">
     <number>0</number>
    </property>
    <item>
-    <widget class="QTabWidget" name="tab" >
-     <widget class="QWidget" name="frontpage" >
-      <attribute name="title" >
+    <widget class="QTabWidget" name="tab">
+     <widget class="QWidget" name="frontpage">
+      <attribute name="title">
        <string>Untitled</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <property name="leftMargin" >
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>8</number>
        </property>
-       <property name="topMargin" >
-        <number>8</number>
-       </property>
-       <property name="rightMargin" >
-        <number>8</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>8</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
       </layout>
@@ -60,51 +40,43 @@
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frameFind" >
-     <property name="frameShape" >
+    <widget class="QFrame" name="frameFind">
+     <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" >
-      <property name="spacing" >
+     <layout class="QHBoxLayout">
+      <property name="spacing">
        <number>6</number>
       </property>
-      <property name="leftMargin" >
-       <number>0</number>
-      </property>
-      <property name="topMargin" >
-       <number>0</number>
-      </property>
-      <property name="rightMargin" >
-       <number>0</number>
-      </property>
-      <property name="bottomMargin" >
+      <property name="margin">
        <number>0</number>
       </property>
       <item>
-       <widget class="QToolButton" name="toolClose" >
-        <property name="text" >
+       <widget class="QToolButton" name="toolClose">
+        <property name="text">
          <string/>
         </property>
-        <property name="icon" >
-         <iconset resource="resources.qrc" >:/msc/images/close.png</iconset>
+        <property name="icon">
+         <iconset resource="../../resources/recources.qrc">
+          <normaloff>:/msc/images/close.png</normaloff>:/msc/images/close.png</iconset>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="editFind" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <widget class="QLineEdit" name="editFind">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimumSize" >
+        <property name="minimumSize">
          <size>
           <width>150</width>
           <height>0</height>
@@ -113,97 +85,99 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolPrevious" >
-        <property name="text" >
+       <widget class="QToolButton" name="toolPrevious">
+        <property name="text">
          <string>Previous</string>
         </property>
-        <property name="icon" >
-         <iconset resource="ra.qrc" >:/msc/images/searchprevious.png</iconset>
+        <property name="icon">
+         <iconset resource="../../resources/recources.qrc">
+          <normaloff>:/msc/images/searchprevious.png</normaloff>:/msc/images/searchprevious.png</iconset>
         </property>
-        <property name="toolButtonStyle" >
+        <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolNext" >
-        <property name="minimumSize" >
+       <widget class="QToolButton" name="toolNext">
+        <property name="minimumSize">
          <size>
           <width>0</width>
           <height>0</height>
          </size>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>Next</string>
         </property>
-        <property name="icon" >
-         <iconset resource="ra.qrc" >:/msc/images/searchnext.png</iconset>
+        <property name="icon">
+         <iconset resource="../../resources/recources.qrc">
+          <normaloff>:/msc/images/searchnext.png</normaloff>:/msc/images/searchnext.png</iconset>
         </property>
-        <property name="toolButtonStyle" >
+        <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
-        <property name="arrowType" >
+        <property name="arrowType">
          <enum>Qt::NoArrow</enum>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkCase" >
-        <property name="text" >
+       <widget class="QCheckBox" name="checkCase">
+        <property name="text">
          <string>Case Sensitive</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkWholeWords" >
-        <property name="text" >
+       <widget class="QCheckBox" name="checkWholeWords">
+        <property name="text">
          <string>Whole words</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelWrapped" >
-        <property name="minimumSize" >
+       <widget class="QLabel" name="labelWrapped">
+        <property name="minimumSize">
          <size>
           <width>0</width>
           <height>20</height>
          </size>
         </property>
-        <property name="maximumSize" >
+        <property name="maximumSize">
          <size>
           <width>105</width>
           <height>20</height>
          </size>
         </property>
-        <property name="text" >
+        <property name="text">
          <string/>
         </property>
-        <property name="textFormat" >
+        <property name="textFormat">
          <enum>Qt::RichText</enum>
         </property>
-        <property name="pixmap" >
+        <property name="pixmap">
          <pixmap/>
         </property>
-        <property name="scaledContents" >
+        <property name="scaledContents">
          <bool>true</bool>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item>
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>81</width>
           <height>21</height>
@@ -217,7 +191,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="ra.qrc" />
+  <include location="../../resources/recources.qrc"/>
  </resources>
  <connections/>
 </ui>

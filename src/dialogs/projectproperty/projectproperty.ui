@@ -87,15 +87,6 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QComboBox" name="comboBoxTypeModule">
-          <item>
-           <property name="text">
-            <string>Bible</string>
-           </property>
-          </item>
-         </widget>
-        </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
@@ -110,6 +101,16 @@
           </property>
           <property name="value">
            <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QCheckBox" name="checkBox">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Bible</string>
           </property>
          </widget>
         </item>
@@ -132,7 +133,7 @@
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
           <widget class="QLabel" name="label">
@@ -231,7 +232,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
           <widget class="QSplitter" name="splitter_7">
@@ -331,33 +332,12 @@
         </layout>
        </widget>
       </widget>
-      <zorder>label</zorder>
-      <zorder>checkBoxOldTestament</zorder>
-      <zorder>checkBoxNewTestament</zorder>
-      <zorder>checkBoxApocrypha</zorder>
-      <zorder>checkBoxChapterZero</zorder>
-      <zorder>label_3</zorder>
-      <zorder>comboBox</zorder>
-      <zorder>checkBoxStrongNumber</zorder>
-      <zorder>lineEditStrongDir</zorder>
-      <zorder>pushButtonStrongDir</zorder>
-      <zorder>checkBoxSound</zorder>
-      <zorder>layoutWidget_2</zorder>
-      <zorder>checkBoxNoForcedLineBreaks</zorder>
-      <zorder>label_10</zorder>
-      <zorder>lineEditCategories</zorder>
-      <zorder>label_12</zorder>
-      <zorder>lineEditDefaultEncoding</zorder>
-      <zorder>checkBoxUseChapterHead</zorder>
-      <zorder>checkBoxUseRightAlignment</zorder>
-      <zorder>checkBoxEnglishPsalms</zorder>
-      <zorder>splitter</zorder>
      </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Fonts</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>21</x>

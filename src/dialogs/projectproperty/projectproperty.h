@@ -33,7 +33,29 @@ typedef struct StructModuleProperties
     QString moduleBiblename;
     QString moduleCopyright;
     QString moduleBibleShortName;
+
     double moduleBVersion;
+    bool moduleType;
+    bool oldTestament;
+    bool newTestament;
+    bool apocrypha;
+    bool chapterZero;
+    bool englishPsalms;
+    bool strongNumber;
+    QString strongsDirectory;
+    QString soundDirectory;
+    bool noForcedLineBreaks;
+    // HTMLFilter должен автоматом создаваться
+    QString language;
+    QString installFonts;
+    QString desiredFontName;
+    QString categories;
+    QString desiredFontPath;
+    QString defaultEncoding;
+    QString desiredUIFont;
+    bool useRightAlignment;
+    bool useChapterHead;
+
 //    QString moduleType;
 
 } ModuleProperties;
@@ -64,7 +86,34 @@ private:
 	Ui::ProjectProperty ui; 
 	
 	bool modeNewProject; 	
-        QString prjTitle, prjFN, prjStartPage, moduleBiblename, moduleCopyright, moduleBibleShortName;
+        QString prjTitle;
+        QString prjFN;
+        QString prjStartPage;
+        QString moduleBiblename;
+        QString moduleCopyright;
+        QString moduleBibleShortName;
+
+        bool moduleType;
+        bool oldTestament;
+        bool newTestament;
+        bool apocrypha;
+        bool chapterZero;
+        bool englishPsalms;
+        bool strongNumber;
+        QString strongsDirectory;
+        QString soundDirectory;
+        bool noForcedLineBreaks;
+        // HTMLFilter должен автоматом создаваться
+        QString language;
+        QString installFonts;
+        QString desiredFontName;
+        QString categories;
+        QString desiredFontPath;
+        QString defaultEncoding;
+        QString desiredUIFont;
+        bool useRightAlignment;
+        bool useChapterHead;
+
 //        QString moduleType;
         double moduleVersion;
 	bool validProperties;
