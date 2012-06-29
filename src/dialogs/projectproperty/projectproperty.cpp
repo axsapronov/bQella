@@ -53,8 +53,30 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.lineEditCopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
 
+//    ui.checkBox
+    ui.cbOldTestament -> setChecked(pr.oldTestament);
+    ui.cbNewTestament -> setChecked(pr.newTestament);
+    ui.cbApocrypha -> setChecked(pr.apocrypha);
+    ui.cbChapterZero -> setChecked(pr.chapterZero);
+    ui.cbEnglishPsalms -> setChecked(pr.englishPsalms);
+    ui.cbStrongNumber -> setChecked(pr.strongNumber);
+    ui.cbUseChapterHead -> setChecked(pr.useChapterHead);
+    ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
+    ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
 
-    // для комбокса установить значение moduletype
+    ui.lECategories -> setText(pr.categories);
+    ui.lEDefaultEncoding -> setText(pr.defaultEncoding);
+    ui.lEDesiredFontName -> setText(pr.desiredFontName);
+    ui.lEDesiredFontPath -> setText(pr.desiredFontPath);
+    ui.lEStrongDir -> setText(pr.strongsDirectory);
+    ui.lESoundDir -> setText(pr.soundDirectory);
+    ui.lEInstallFonts -> setText(pr.installFonts);
+    ui.lEDesiredUIFont -> setText(pr.desiredUIFont);
+//    ui.comBLanguage ->currentText() .s
+//    установить язык
+
+//    // HTMLFilter должен автоматом создаваться
+//    QString language;
 
 }
 
@@ -120,22 +142,36 @@ void ProjectProperties::accept()
 
                 QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
                         tr("   ___Instruction") + "</title></head>\n";
-//                QString str_body = "<body>"+tr("\nBibleName = %1"
-//                                               "\nBibleShortName = %2"
-//                                               "\nCopyright = %3"
-//                                               "\nDefaultEncoding = utf-8"
-//                                               "\nChapterSign = <h4>"
-//                                               "\nVerseSign = <p>")
-//                        .arg(ui.lineEditBibleName -> text())
-//                        .arg(ui.lineEditBibleShortName -> text())
-//                        .arg(ui.lineEditCopyright -> text());
                 QString str_body = "<body>"+tr("<p> добавить инструкцию для создания модулей</p>");
 
                 Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
                 Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
 
                 Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
-                Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
+
+
+                Config::configuration() -> setDefaultEncoding(ui.lEDefaultEncoding -> text());
+
+
+                Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
+                Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
+                Config::configuration() -> setApocrypha(ui.cbApocrypha -> checkState());
+                Config::configuration() -> setChapterZero(ui.cbChapterZero -> checkState());
+                Config::configuration() -> setEnglishPsalms(ui.cbEnglishPsalms -> checkState());
+                Config::configuration() -> setStrongNumber(ui.cbStrongNumber -> checkState());
+                Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
+                Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
+                Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
+
+                Config::configuration() -> setCategories(ui.lECategories -> text());
+                Config::configuration() -> setDefaultEncoding(ui.lEDefaultEncoding -> text());
+                Config::configuration() -> setDesiredFontName(ui.lEDesiredFontName -> text());
+                Config::configuration() -> setDesiredFontPath(ui.lEDesiredFontPath -> text());
+                Config::configuration() -> setStrongsDirectory(ui.lEStrongDir -> text());
+                Config::configuration() -> setSoundDirectory(ui.lESoundDir -> text());
+                Config::configuration() -> setInstallFonts(ui.lEInstallFonts -> text());
+                Config::configuration() -> setDesiredUIFont(ui.lEDesiredUIFont -> text());
+
                 QString str_ender = "\n</body>\n</html>\n";
 
 
@@ -160,6 +196,28 @@ void ProjectProperties::accept()
             prop.moduleBibleShortName = ui.lineEditBibleShortName -> text();
             prop.moduleCopyright = ui.lineEditCopyright -> text();
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
+
+
+
+            prop.oldTestament = ui.cbOldTestament -> checkState();
+            prop.newTestament = ui.cbNewTestament -> checkState();
+            prop.apocrypha = ui.cbApocrypha -> checkState();
+            prop.chapterZero = ui.cbChapterZero -> checkState();
+            prop.englishPsalms = ui.cbEnglishPsalms -> checkState();
+            prop.strongsDirectory = ui.cbStrongNumber -> checkState();
+            prop.useChapterHead = ui.cbUseChapterHead -> checkState();
+            prop.useRightAlignment = ui.cbUseRightAlignment -> checkState();
+            prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> checkState();
+
+            prop.categories = ui.lECategories -> text();
+            prop.defaultEncoding = ui.lEDefaultEncoding -> text();
+            prop.desiredFontName = ui.lEDesiredFontName -> text();
+            prop.desiredFontPath = ui.lEDesiredFontPath -> text();
+            prop.strongsDirectory = ui.lEStrongDir -> text();
+            prop.soundDirectory = ui.lESoundDir -> text();
+            prop.installFonts = ui.lEInstallFonts -> text();
+            prop.desiredUIFont = ui.lEDesiredUIFont -> text();
+
 //            prop.moduleType = ui.comboBoxTypeModule -> currentText();
 
             validProperties = true;

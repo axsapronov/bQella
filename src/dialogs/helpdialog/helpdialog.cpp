@@ -1180,16 +1180,16 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
     QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
 
 
-    if ((fn.indexOf("help") ==-1) and ( fn.indexOf("   ___Instruction") ==-1))
-    {
-//        if (fn.indexOf("chapter") >=0 )
-//        {
-            QString test = "book_"+fn.split("/").last();
-            QString test2 = fn;
-            test2.remove((fn.split("/").last())).append(test);
-            fn = test2;
-//        }
-    }
+//    if ((fn.indexOf("help") ==-1) and ( fn.indexOf("   ___Instruction") ==-1))
+//    {
+////        if (fn.indexOf("chapter") >=0 )
+////        {
+////            QString test = "book_"+fn.split("/").last();
+////            QString test2 = fn;
+////            test2.remove((fn.split("/").last())).append(test);
+////            fn = test2;
+////        }
+//    }
     QFileInfo fi(fn);
 
 //    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;

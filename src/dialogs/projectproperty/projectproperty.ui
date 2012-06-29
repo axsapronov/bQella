@@ -105,7 +105,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="cbmoduleType">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -143,28 +143,28 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QCheckBox" name="checkBoxOldTestament">
+          <widget class="QCheckBox" name="cbOldTestament">
            <property name="text">
             <string>Ветхий Завет</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QCheckBox" name="checkBoxNewTestament">
+          <widget class="QCheckBox" name="cbNewTestament">
            <property name="text">
             <string>Новый Завет</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QCheckBox" name="checkBoxApocrypha">
+          <widget class="QCheckBox" name="cbApocrypha">
            <property name="text">
             <string>Второканонические материалы</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QCheckBox" name="checkBoxChapterZero">
+          <widget class="QCheckBox" name="cbChapterZero">
            <property name="text">
             <string>Нулевая глава</string>
            </property>
@@ -173,7 +173,7 @@
          <item row="4" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QCheckBox" name="checkBoxStrongNumber">
+            <widget class="QCheckBox" name="cbStrongNumber">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -185,7 +185,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QLineEdit" name="lineEditStrongDir"/>
+              <widget class="QLineEdit" name="lEStrongDir"/>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonStrongDir">
@@ -210,7 +210,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="lineEditSoundDir"/>
+              <widget class="QLineEdit" name="lESoundDir"/>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonSoundDir">
@@ -224,7 +224,7 @@
           </layout>
          </item>
          <item row="6" column="1">
-          <widget class="QCheckBox" name="checkBoxNoForcedLineBreaks">
+          <widget class="QCheckBox" name="cbNoForcedLineBreaks">
            <property name="text">
             <string>Разделение не на стихи, а на абзацы</string>
            </property>
@@ -243,7 +243,7 @@
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <widget class="QCheckBox" name="checkBoxUseChapterHead">
+            <widget class="QCheckBox" name="cbUseChapterHead">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -251,13 +251,13 @@
               <string>Отображать заголовки</string>
              </property>
             </widget>
-            <widget class="QCheckBox" name="checkBoxUseRightAlignment">
+            <widget class="QCheckBox" name="cbUseRightAlignment">
              <property name="text">
               <string>Правое выравнивание</string>
              </property>
             </widget>
            </widget>
-           <widget class="QCheckBox" name="checkBoxEnglishPsalms">
+           <widget class="QCheckBox" name="cbEnglishPsalms">
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -277,7 +277,7 @@
              <string>Привязка модуля к категориям:</string>
             </property>
            </widget>
-           <widget class="QLineEdit" name="lineEditCategories"/>
+           <widget class="QLineEdit" name="lECategories"/>
           </widget>
          </item>
          <item row="2" column="0">
@@ -290,7 +290,7 @@
              <string>Язык модуля:</string>
             </property>
            </widget>
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="comBLanguage">
             <item>
              <property name="text">
               <string>rus</string>
@@ -319,7 +319,7 @@
              <string>Кодировка:</string>
             </property>
            </widget>
-           <widget class="QLineEdit" name="lineEditDefaultEncoding">
+           <widget class="QLineEdit" name="lEDefaultEncoding">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -355,7 +355,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEditInstallFonts"/>
+         <widget class="QLineEdit" name="lEInstallFonts"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_9">
@@ -365,7 +365,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditDesiredFontName"/>
+         <widget class="QLineEdit" name="lEDesiredFontName"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_11">
@@ -375,7 +375,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEditDesiredFontPath"/>
+         <widget class="QLineEdit" name="lEDesiredFontPath"/>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_13">
@@ -385,7 +385,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEditDesiredUIFont"/>
+         <widget class="QLineEdit" name="lEDesiredUIFont"/>
         </item>
        </layout>
       </widget>

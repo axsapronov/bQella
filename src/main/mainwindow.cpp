@@ -877,8 +877,6 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
     ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
-
-
     ts << ind1 << "<property name=\"strongsDirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
     ts << ind1 << "<property name=\"soundDirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
     ts << ind1 << "<property name=\"language\">" << Qt::escape(pr.language) << "</property>" << endl;
