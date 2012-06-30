@@ -802,7 +802,7 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
 int BooltoInt(bool foo)
 {
     if (foo == true)
-        return 15;
+        return 1;
     return 0;
 }
 
@@ -810,7 +810,7 @@ int BooltoInt(bool foo)
 QString BooltoQString(bool foo)
 {
     if (foo == true)
-        return "10";
+        return "1";
     return "0";
 }
 

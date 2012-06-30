@@ -755,16 +755,16 @@ void MainWindow::ProjectNew()
     pr.chapterZero = false;
     pr.englishPsalms = false;
     pr.strongNumber = false;
-    pr.strongsDirectory = " ";
-    pr.soundDirectory = " ";
+    pr.strongsDirectory = "none";
+    pr.soundDirectory = "none";
     pr.noForcedLineBreaks = false;
     pr.language = "rus";
-    pr.installFonts = " ";
-    pr.desiredFontName = " ";
-    pr.categories = " ";
-    pr.desiredFontPath = " ";
+    pr.installFonts = "none";
+    pr.desiredFontName = "none";
+    pr.categories = "none";
+    pr.desiredFontPath = "none";
     pr.defaultEncoding = "utf-8";
-    pr.desiredUIFont = " ";
+    pr.desiredUIFont = "none";
     pr.useChapterHead = false;
     pr.useRightAlignment = false;
 

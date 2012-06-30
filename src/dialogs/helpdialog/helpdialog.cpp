@@ -230,14 +230,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
     ui.listContents -> setUniformRowHeights(true);
     ui.listContents -> header() -> setStretchLastSection(false);
     ui.listContents -> header() -> setResizeMode(QHeaderView::ResizeToContents);
-    ui.listBookmarks -> setUniformRowHeights(true);
-    ui.listBookmarks -> header() -> setStretchLastSection(false);
-    ui.listBookmarks -> header() -> setResizeMode(QHeaderView::ResizeToContents);
-
     indexModel = new IndexListModel(this);
-    ui.listIndex -> setModel(indexModel);
-    ui.listIndex -> setLayoutMode(QListView::Batched);
-    ui.listBookmarks -> setItemHidden(ui.listBookmarks -> headerItem(), true);
     ui.listContents -> setItemHidden(ui.listContents -> headerItem(), true);
     ui.TWSubItems -> setItemHidden(ui.TWSubItems -> headerItem(), !Config::configuration() -> ShowSubItemsTitle());
 
@@ -260,47 +253,16 @@ void HelpDialog::initialize()
     ui.TWSubItems -> viewport() -> installEventFilter(this);
     ui.TWSubItems -> installEventFilter(this);
     connect(ui.CBProjects, SIGNAL(activated(int)), this, SLOT(loadProjectFromList(int)));
-    connect(ui.PBSortAscending, SIGNAL(pressed()), this, SLOT(sortAscending()));
-    connect(ui.PBSortDescending, SIGNAL(pressed()), this, SLOT(sortDescending()));
-    connect(ui.PBSortDisable, SIGNAL(pressed()), this, SLOT(sortDisable()));
     connect(ui.LELocateItemByName, SIGNAL(textChanged(QString)), this, SLOT(locateItemByName(QString)));
     connect(ui.LELocateItemByName, SIGNAL(returnPressed()), this, SLOT(nextMatchedItem()));
-    //   connect(ui.actionItemRemove, SIGNAL(targed()), this, SLOT(removeItem()));
-    //   connect(ui.actionItemDelete, SIGNAL(targed()), this, SLOT(deleteItem()));
-    
-    connect(ui.editIndex, SIGNAL(returnPressed()), this, SLOT(showTopic()));
-    connect(ui.editIndex, SIGNAL(textEdited(QString)), this, SLOT(searchInIndex(QString)));
-
-    connect(ui.listIndex, SIGNAL(activated(QModelIndex)), this, SLOT(showTopic()));
-    connect(ui.listIndex, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showIndexItemMenu(QPoint)));
-
-    connect(ui.listBookmarks, SIGNAL(itemActivated(QTreeWidgetItem*,int)), this, SLOT(showTopic(QTreeWidgetItem*)));
-    connect(ui.listBookmarks, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTreeItemMenu(QPoint)));
-
-    connect(ui.termsEdit, SIGNAL(textChanged(const QString&)), this, SLOT(updateSearchButton(const QString&)));
-    connect(ui.resultBox, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showListItemMenu(QPoint)));
     connect(qApp, SIGNAL(lastWindowClosed()), SLOT(lastWinClosed()));
-
-    //
-    //connect(m_gui_Setting, SIGNAL(settingsChanged()), this , SLOT(mean_calculate()));
     connect(m_bookadddialog, SIGNAL(signalbookaddChanged()),this,SLOT(newItem()));
-    //  connect(m_bookadddialog, SIGNAL(signalbookaddChanged()),this,SLOT(close()));
 
+    sortAscending(); //
+    //        sortDisable();
+//        sortAscending();
 
-    if (Config::configuration() -> ContentsSortOrder().toLower() == "ascending"){
-        ui.PBSortAscending -> setChecked(true);
-        sortAscending();
-    }else if (Config::configuration() -> ContentsSortOrder().toLower() == "descending"){
-        ui.PBSortDescending -> setChecked(true);
-        sortDescending();
-    }else{
-        ui.PBSortDisable -> setChecked(true);
-        sortDisable();
-    }
-
-    ui.editIndex -> installEventFilter(this);
     ui.framePrepare -> hide();
-    ui.termsEdit -> setValidator(new SearchValidator(ui.termsEdit));
     
     //Popup menu actions
     actionOpenCurrentTab = new QAction(this);
@@ -383,6 +345,7 @@ void HelpDialog::initialize()
     itemPopupSubItems -> addAction(actionOpenLinkInNewTab);
     itemPopupSubItems -> addAction(actionOpenLinkInExtEditor);
     itemPopupSubItems -> addAction(actionOpenLinkInExtBrowser);
+
     
     //create projects list
     QString title;
@@ -746,11 +709,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
 void HelpDialog::currentTabChanged(int index)
 {
     QString s = ui.tabWidget -> widget(index) -> objectName();
-    if (s == QString("indexPage"))
-        QTimer::singleShot(0, this, SLOT(loadIndexFile()));
-    else if (s == QString("bookmarkPage"))
-        insertBookmarks();
-    else if (s == QString("contentPage"))
+    if (s == QString("contentPage"))
         QTimer::singleShot(0, this, SLOT(insertContents()));
     else if (s == QString("searchPage"))
         QTimer::singleShot(0, this, SLOT(setupFullTextIndex()));
@@ -776,11 +735,7 @@ void HelpDialog::showTopic(QTreeWidgetItem *item)
 void HelpDialog::showTopic()
 {
     QString tabName = ui.tabWidget -> currentWidget() -> objectName();
-    if (tabName == QString("indexPage"))
-        showIndexTopic();
-    else if (tabName == QString("bookmarkPage"))
-        showBookmarkTopic();
-    else if (tabName == QString("contentPage")){
+    if (tabName == QString("contentPage")){
         showContentsTopic();
         ui.listContents -> setFocus();
     }
@@ -795,80 +750,7 @@ void HelpDialog::showTopic()
         mw -> browsers() -> currentBrowser() -> setTagTitle(t);
         mw -> browsers() -> sourceChanged();
     }
-
-    /*	-pm- the following is for debug
- // display item index
- QTreeWidgetItem *parent = ui.listContents -> currentItem() -> parent();
-    int index;
-    if (parent) {
-        index = parent -> indexOfChild(ui.listContents -> currentItem());
-    } else {
-        index = ui.listContents -> indexOfTopLevelItem(ui.listContents -> currentItem());
-    }
- QString ss = ui.listContents -> currentItem() -> data(0,LinkRole).toString();
- //t = mw -> browsers() -> currentBrowser() -> getTagTitle();
- //mw -> statusBar() -> showMessage(tr("item N=%1; file=%2; title=%3").arg(index).arg(ss).arg(t), 5000);
-*/
 }
-
-//-------------------------------------------------
-void HelpDialog::showIndexTopic()
-{
-    int row = ui.listIndex -> currentIndex().row();
-    if (row == -1 || row >= indexModel -> rowCount())
-        return;
-
-    QString description = indexModel -> description(row);
-    QStringList links = indexModel -> links(row);
-
-    bool blocked = ui.editIndex -> blockSignals(true);
-    ui.editIndex -> setText(description);
-    ui.editIndex -> blockSignals(blocked);
-
-    if (links.count() == 1) {
-        emit showLink(links.first());
-    } else {
-        qSort(links);
-        QStringList::Iterator it = links.begin();
-        QStringList linkList;
-        QStringList linkNames;
-        for (; it != links.end(); ++it) {
-            linkList << *it;
-            linkNames << titleOfLink(*it);
-        }
-        QString link = TopicChooser::getLink(this, linkNames, linkList, description);
-        if (!link.isEmpty())
-            emit showLink(link);
-    }
-
-    ui.listIndex -> setCurrentIndex(indexModel -> index(indexModel -> stringList().indexOf(description)));
-    ui.listIndex -> scrollTo(ui.listIndex -> currentIndex(), QAbstractItemView::PositionAtTop);
-}
-
-//-------------------------------------------------
-void HelpDialog::searchInIndex(const QString &searchString)
-{
-    QRegExp atoz(QString("[A-Z]"));
-    int matches = searchString.count(atoz);
-    if (matches > 0 && !searchString.contains(QString(".*")))
-    {
-        int start = 0;
-        QString newSearch;
-        for (; matches > 0; --matches) {
-            int match = searchString.indexOf(atoz, start+1);
-            if (match <= start)
-                continue;
-            newSearch += searchString.mid(start, match-start);
-            newSearch += QString(".*");
-            start = match;
-        }
-        newSearch += searchString.mid(start);
-        ui.listIndex -> setCurrentIndex(indexModel -> filter(newSearch, searchString));
-    }
-    else
-        ui.listIndex -> setCurrentIndex(indexModel -> filter(searchString, searchString));
-}
-
 //-------------------------------------------------
 QString HelpDialog::titleOfLink(const QString &link)
 {
@@ -885,17 +767,7 @@ bool HelpDialog::eventFilter(QObject * o, QEvent * e)
     QString objName = o -> objectName();
     int key = static_cast<QKeyEvent*>(e) -> key();
     quint32 modifiers = QApplication::keyboardModifiers();
-    if (o == ui.editIndex && e -> type() == QEvent::KeyPress) {
-        switch (static_cast<QKeyEvent*>(e) -> key()) {
-        case Qt::Key_Up:
-        case Qt::Key_Down:
-        case Qt::Key_PageDown:
-        case Qt::Key_PageUp:
-            QApplication::sendEvent(ui.listIndex, e);
-            break;
-        default: break;
-        } 
-    } else if (objName == "qt_scrollarea_viewport") { //on mouse events, "qt_scrollarea_viewport" is an event sender for ui.listContents and ui.TWSubItems viewports
+    if (objName == "qt_scrollarea_viewport") { //on mouse events, "qt_scrollarea_viewport" is an event sender for ui.listContents and ui.TWSubItems viewports
         if (e -> type() == QEvent::MouseButtonRelease) {
             QMouseEvent *me = static_cast<QMouseEvent*>(e);
             if (ContCur == ContTreeView) { //mouse released in ui.listContents
@@ -990,87 +862,6 @@ bool HelpDialog::eventFilter(QObject * o, QEvent * e)
     }
     return QWidget::eventFilter(o, e);
 }
-
-//-------------------------------------------------
-void HelpDialog::addBookmark()
-{
-    if (!bookmarksInserted)
-        insertBookmarks();
-    QString link = relatifyFileName(mw -> browsers() -> currentBrowser() -> source().toString(), Config::configuration() -> CacheDir());
-    QString title = mw -> browsers() -> currentBrowser() -> documentTitle();
-    mw -> statusBar() -> showMessage(tr("bookmark title=%1; link=%2").arg(title).arg(link), 5000);
-    if (title.isEmpty())
-        title = titleOfLink(link);
-
-    QTreeWidgetItem *i = new QTreeWidgetItem(ui.listBookmarks, 0);
-    i -> setText(0, title);
-    i -> setData(0, LinkRole, link);
-    ui.buttonRemove -> setEnabled(true);
-    saveBookmarks();
-
-    mw -> projectModified(true);
-}
-
-//-------------------------------------------------
-void HelpDialog::on_buttonAdd_clicked()
-{
-    addBookmark();
-}
-
-//-------------------------------------------------
-void HelpDialog::on_buttonRemove_clicked()
-{
-    if (!ui.listBookmarks -> currentItem())
-        return;
-
-    delete ui.listBookmarks -> currentItem();
-    saveBookmarks();
-    if (ui.listBookmarks -> topLevelItemCount() != 0) {
-        ui.listBookmarks -> setCurrentItem(ui.listBookmarks -> topLevelItem(0));
-    }
-    ui.buttonRemove -> setEnabled(ui.listBookmarks -> topLevelItemCount() > 0);
-
-    mw -> projectModified(true);
-}
-
-//-------------------------------------------------
-void HelpDialog::insertBookmarks() //to list in Bookmarks tab. Add to Bookmark menu in  MainWindow::setupBookmarkMenu()
-{
-    if (bookmarksInserted)
-        return;
-    bookmarksInserted = true;
-
-    ui.listBookmarks -> clear();
-    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("bookmarks.") + Config::configuration() -> profileName());
-    if (!f.open(QFile::ReadOnly))
-        return;
-    QTextStream ts(&f);
-    while (!ts.atEnd()) {
-        QTreeWidgetItem *i = new QTreeWidgetItem(ui.listBookmarks, 0);
-        i -> setText(0, ts.readLine());
-        i -> setData(0, LinkRole, ts.readLine());
-    }
-    ui.buttonRemove -> setEnabled(ui.listBookmarks -> topLevelItemCount() > 0);
-
-    showInitDoneMessage();
-    mw -> projectModified(true);
-}
-
-//-------------------------------------------------
-void HelpDialog::showBookmarkTopic()
-{
-    if (!ui.listBookmarks -> currentItem())
-        return;
-
-    QTreeWidgetItem *i = (QTreeWidgetItem*)ui.listBookmarks -> currentItem();
-    //turn relative path to format file://<absolute path>/filename.html
-    //QDir dir(Config::configuration() -> cacheDir);
-    //QString lnk = dir.absoluteFilePath( i -> data(0, LinkRole).toString() );
-    //lnk = urlifyFileName( dir.cleanPath(lnk) );
-    QString lnk = urlifyFileName( absolutifyFileName( i -> data(0, LinkRole).toString(), Config::configuration() -> CacheDir() ) );
-    emit showLink(lnk);
-}
-
 //-------------------------------------------------
 //for saving bookmarks to file. Used by HelpDialog::saveBookmarks()
 void HelpDialog::store(QTreeWidgetItem *i, QTextStream &ts)
@@ -1092,19 +883,6 @@ void HelpDialog::store(QTreeWidget *tw, QTextStream &ts)
     for (int index = 0; index < tw -> topLevelItemCount(); ++index)
         store(tw -> topLevelItem(index), ts);
 }
-
-//-------------------------------------------------
-void HelpDialog::saveBookmarks()
-{
-    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("bookmarks.") + Config::configuration() -> profileName());
-    if (!f.open(QFile::WriteOnly))
-        return;
-
-    QTextStream ts(&f);
-    store(ui.listBookmarks, ts);
-    f.close();
-}
-
 //-------------------------------------------------
 void HelpDialog::insertContents()
 {
@@ -1180,23 +958,9 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
         return;
 
     QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
-
-
-//    if ((fn.indexOf("help") ==-1) and ( fn.indexOf("   ___Instruction") ==-1))
-//    {
-////        if (fn.indexOf("chapter") >=0 )
-////        {
-////            QString test = "book_"+fn.split("/").last();
-////            QString test2 = fn;
-////            test2.remove((fn.split("/").last())).append(test);
-////            fn = test2;
-////        }
-//    }
     QFileInfo fi(fn);
 
 //    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;
-
-
 
     if (fi.exists() && fi.isFile())
     {
@@ -1307,41 +1071,6 @@ void HelpDialog::toggleContents()
     else
         parentWidget() -> hide();
 }
-
-//-------------------------------------------------
-void HelpDialog::toggleIndex()
-{
-    if (!isVisible() || ui.tabWidget -> currentIndex() != 1 || !ui.editIndex -> hasFocus()) {
-        ui.tabWidget -> setCurrentIndex(1);
-        parentWidget() -> show();
-        ui.editIndex -> setFocus();
-    }
-    else
-        parentWidget() -> hide();
-}
-
-//-------------------------------------------------
-void HelpDialog::toggleBookmarks()
-{
-    if (!isVisible() || ui.tabWidget -> currentIndex() != 2) {
-        ui.tabWidget -> setCurrentIndex(2);
-        parentWidget() -> show();
-    }
-    else
-        parentWidget() -> hide();
-}
-
-//-------------------------------------------------
-void HelpDialog::toggleSearch()
-{
-    if (!isVisible() || ui.tabWidget -> currentIndex() != 3) {
-        ui.tabWidget -> setCurrentIndex(3);
-        parentWidget() -> show();
-    }
-    else
-        parentWidget() -> hide();
-}
-
 //-------------------------------------------------
 void HelpDialog::setupFullTextIndex()
 {
@@ -1410,181 +1139,6 @@ void HelpDialog::setIndexingProgress(int prog)
     ui.progressPrepare -> setValue(prog);
     processEvents();
 }
-
-//-------------------------------------------------
-void HelpDialog::startSearch()
-{
-    QString str = ui.termsEdit -> text();
-    str = str.simplified();
-    str = str.replace(QString("\'"), QString("\""));
-    str = str.replace(QString("`"), QString("\""));
-    QString buf = str;
-    str = str.replace(QString("-"), QString(" "));
-    str = str.replace(QRegExp(QString("\\s[\\S]?\\s")), QString(" "));
-    terms = str.split(QLatin1Char(' '));
-    QStringList termSeq;
-    QStringList seqWords;
-    QStringList::iterator it = terms.begin();
-    for (; it != terms.end(); ++it) {
-        (*it) = (*it).simplified();
-        (*it) = (*it).toLower();
-        (*it) = (*it).replace(QString("\""), QString(""));
-    }
-    if (str.contains(QLatin1Char('\"'))) {
-        if ((str.count(QLatin1Char('\"')))%2 == 0) {
-            int beg = 0;
-            int end = 0;
-            QString s;
-            beg = str.indexOf(QLatin1Char('\"'), beg);
-            while (beg != -1) {
-                beg++;
-                end = str.indexOf(QLatin1Char('\"'), beg);
-                s = str.mid(beg, end - beg);
-                s = s.toLower();
-                s = s.simplified();
-                if (s.contains(QLatin1Char('*'))) {
-                    QMessageBox::warning(this, tr("Full Text Search"),
-                                         tr("Using a wildcard within phrases is not allowed."));
-                    return;
-                }
-                seqWords += s.split(QLatin1Char(' '));
-                termSeq << s;
-                beg = str.indexOf(QLatin1Char('\"'), end + 1);
-            }
-        } else {
-            QMessageBox::warning(this, tr("Full Text Search"), tr("The closing quotation mark is missing."));
-            return;
-        }
-    }
-    setCursor(Qt::WaitCursor);
-    foundDocs.clear();
-    foundDocs = fullTextIndex -> query(terms, termSeq, seqWords);
-    QString msg = QString::fromLatin1("%1 documents found.").arg(foundDocs.count());
-    mw -> statusBar() -> showMessage(tr(msg.toUtf8()), 3000);
-    ui.resultBox -> clear();
-    for (it = foundDocs.begin(); it != foundDocs.end(); ++it)
-        ui.resultBox -> addItem(fullTextIndex -> getDocumentTitle(*it));
-
-    terms.clear();
-    bool isPhrase = false;
-    QString s;
-    for (int i = 0; i < (int)buf.length(); ++i) {
-        if (buf[i] == QLatin1Char('\"')) {
-            isPhrase = !isPhrase;
-            s = s.simplified();
-            if (!s.isEmpty())
-                terms << s;
-            s = QString("");
-        } else if (buf[i] == QLatin1Char(' ') && !isPhrase) {
-            s = s.simplified();
-            if (!s.isEmpty())
-                terms << s;
-            s = QString("");
-        } else
-            s += buf[i];
-    }
-    if (!s.isEmpty())
-        terms << s;
-
-    setCursor(Qt::ArrowCursor);
-}
-/*
-//-------------------------------------------------
-void HelpDialog::on_helpButton_clicked()
-{
-    emit showLink(MainWindow::urlifyFileName(
-                  Config::configuration() -> assistantDocPath() +
-                  QString("/assistant-manual.html#full-text-searching")));
-}
-*/
-
-//-------------------------------------------------
-void HelpDialog::on_resultBox_itemActivated(QListWidgetItem *item)
-{
-    showResultPage(item);
-}
-
-//-------------------------------------------------
-void HelpDialog::showResultPage(QListWidgetItem *item)
-{
-    if (item)
-        emit showSearchLink(foundDocs[ui.resultBox -> row(item)], terms);
-}
-
-//-------------------------------------------------
-void HelpDialog::showIndexItemMenu(const QPoint &pos) //on click in index (keyword) list
-{
-    QListView *listView = qobject_cast<QListView*>(sender());
-    if (!listView)
-        return;
-
-    QModelIndex idx = listView -> indexAt(pos);
-    if (!idx.isValid())
-        return;
-
-    QAction *action = itemPopup -> exec(listView -> viewport() -> mapToGlobal(pos));
-    if (action == actionOpenCurrentTab) {
-        showTopic();
-    } else if (action) {
-        HelpWindow *hw = mw -> browsers() -> currentBrowser();
-        QString itemName = idx.data().toString();
-        ui.editIndex -> setText(itemName);
-        QStringList links = indexModel -> links(idx.row());
-        if (links.count() == 1) {
-            if (action == actionOpenLinkInNewWindow)
-                hw -> openLinkInNewWindow(links.first());
-            else
-                hw -> openLinkInNewPage(links.first());
-        } else {
-            QStringList::Iterator it = links.begin();
-            QStringList linkList;
-            QStringList linkNames;
-            for (; it != links.end(); ++it) {
-                linkList << *it;
-                linkNames << titleOfLink(*it);
-            }
-            QString link = TopicChooser::getLink(this, linkNames, linkList, itemName);
-            if (!link.isEmpty()) {
-                if (action == actionOpenLinkInNewWindow)
-                    hw -> openLinkInNewWindow(link);
-                else if (action == actionOpenLinkInExtEditor) 
-                    mw -> OpenInExternalApplication(Config::configuration() -> ExternalEditor(), link);
-                else if (action == actionOpenLinkInExtBrowser)
-                    mw -> OpenInExternalApplication(Config::configuration() -> ExternalBrowser(), link);
-                else
-                    hw -> openLinkInNewPage(link);
-            }
-        }
-    }
-}
-
-//-------------------------------------------------
-void HelpDialog::showListItemMenu(const QPoint &pos) // show doc from search result list
-{
-    QListWidget *listWidget = qobject_cast<QListWidget*>(sender());
-    if (!listWidget)
-        return;
-    QListWidgetItem *item = listWidget -> itemAt(pos);
-    if (!item)
-        return;
-
-    QAction *action = itemPopup -> exec(listWidget -> viewport() -> mapToGlobal(pos));
-    if (action == actionOpenCurrentTab) {
-        showResultPage(item);
-    } else if (action) {
-        HelpWindow *hw = mw -> browsers() -> currentBrowser();
-        QString link = foundDocs[ui.resultBox -> row(item)];
-        if (action == actionOpenLinkInNewWindow)
-            hw -> openLinkInNewWindow(link);
-        else if (action == actionOpenLinkInExtEditor)
-            mw -> OpenInExternalApplication(Config::configuration() -> ExternalEditor(), link);
-        else if (action == actionOpenLinkInExtBrowser)
-            mw -> OpenInExternalApplication(Config::configuration() -> ExternalBrowser(), link);
-        else
-            hw -> openLinkInNewPage(link);
-    }
-}
-
 //-------------------------------------------------
 void HelpDialog::showContentsItemMenu(const QPoint &pos)
 {
@@ -1681,8 +1235,6 @@ void HelpDialog::showTreeItemMenu(const QPoint &pos) //bookmark popup menu
     if (action == actionOpenCurrentTab) {
         if (ui.tabWidget -> currentWidget() -> objectName() == QString("contentPage"))
             showContentsTopic();
-        else
-            showBookmarkTopic();
     } else if (action) {
         QTreeWidgetItem *i = (QTreeWidgetItem*)item;
         if (action == actionOpenLinkInNewWindow)
@@ -1709,25 +1261,6 @@ void HelpDialog::showItemProperties()
     mw -> browsers() -> currentBrowser() -> updateItem(title, fName, iconFN);
     qDebug() << "Debug: _HelpDialog::showItemProperties()" << "item prop title = " << title << ", link = " << fName;
 }
-
-//-------------------------------------------------
-void HelpDialog::on_termsEdit_returnPressed()
-{
-    startSearch();
-}
-
-//-------------------------------------------------
-void HelpDialog::updateSearchButton(const QString &txt)
-{
-    ui.searchButton -> setDisabled(txt.isEmpty());
-}
-
-//-------------------------------------------------
-void HelpDialog::on_searchButton_clicked()
-{
-    startSearch();
-}
-
 //-------------------------------------------------
 //insert new document in content
 void HelpDialog::InsertContentsItem(QString title, QString fileName, QString iconFN) 
@@ -1843,10 +1376,7 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
         }
     }
 }
-
-
-
-
+//-------------------------------------------------
 void HelpDialog::InsertChapter(QTreeWidgetItem * book, QString title, QString fileName, QString iconFN)
 {
     QTreeWidgetItem *newEntry;
@@ -1867,7 +1397,7 @@ void HelpDialog::InsertChapter(QTreeWidgetItem * book, QString title, QString fi
     }
     mw -> projectModified(true);
 }
-
+//-------------------------------------------------
 void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QString title)
 {
     title = title;
@@ -1986,7 +1516,7 @@ void HelpDialog::saveProject(QString profileFN)
             str = relatifyFileName(i.value(), Config::configuration() -> CurPrjDir());
         }else
             str = i.value();
-        qDebug() << "i.key =  " << i.key() << "  str = " << str;
+//        qDebug() << "i.key =  " << i.key() << "  str = " << str;
         ts << ind1 << "<property name=\"" << i.key() << "\">" << Qt::escape(str) << "</property>" << endl;
     }
     ts << "</profile>\n\n";
@@ -2357,44 +1887,35 @@ void HelpDialog::itemChanged(QTreeWidgetItem* item, int column)
         mw -> browsers() -> currentBrowser() -> setTagTitle( item -> text(column) );
     mw -> projectModified(true);
 }
-
-
-
-
+//-------------------------------------------------
 QString HelpDialog::getNameFolder(QString cur_dir)
 {
     QStringList path = cur_dir.split("/");
     path.removeLast();
     return path.last();
 }
-
-
+//-------------------------------------------------
 QString HelpDialog::getFileBibleqtName()
 {
     return ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
 }
-
+//-------------------------------------------------
 QString HelpDialog::getFileName(int i)
 {
     return ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString().remove("file:");
 }
-
+//-------------------------------------------------
 QString HelpDialog::getTest()
 {
-
 //    exportf -> setTopLevelItemCount(10);
     return getFileBibleqtName();
 }
-
-
-
+//-------------------------------------------------
 int HelpDialog::getTopLevelItemCount()
 {
     return ui.listContents -> topLevelItemCount();
 }
-
-
-
+//-------------------------------------------------
 void HelpDialog::exportModule()
 {
     QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
@@ -2412,9 +1933,7 @@ void HelpDialog::exportModule()
         exportBibleBook(filename, i);
     }
 }
-
-
-
+//-------------------------------------------------
 void HelpDialog::exportBibleBook(QString filenamebook, int i)
 {
     QFile filebook(filenamebook);

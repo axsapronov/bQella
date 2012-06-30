@@ -95,8 +95,6 @@ signals:
 public slots:
     void initialize();	//setup connections and actions and call initTabs()
     void initTabs();	//clear all tabs
-    void startSearch();
-    void addBookmark();
     void currentTabChanged(int index);
     void locateContents(const QString &link);  //find and select contents item corresponding to link
     void insertContents();
@@ -126,28 +124,14 @@ private slots:
     //	void on_listContents_itemClicked(QTreeWidgetItem* item, int column);
     void on_BProjectAdd_clicked();
     void on_BProjectDelete_clicked();
-    void on_buttonAdd_clicked();
-    void on_buttonRemove_clicked();
-    void on_termsEdit_returnPressed();
-    void on_searchButton_clicked();
-    void on_resultBox_itemActivated(QListWidgetItem*);
-    void updateSearchButton(const QString &txt);
-    void showResultPage(QListWidgetItem *);
     void loadIndexFile();
     void setupFullTextIndex();
     void showTopic();
-    void searchInIndex(const QString &s);
     void toggleContents();
-    void toggleIndex();
-    void toggleBookmarks();
-    void toggleSearch();
     void lastWinClosed();
     void setIndexingProgress(int prog);
-    void showListItemMenu(const QPoint &pos);
-    void showIndexItemMenu(const QPoint &pos);
     void showContentsItemMenu(const QPoint &pos);
     void showTreeItemMenu(const QPoint &pos);
-    void insertBookmarks();
     void processEvents();
     void loadProjectFromList(int prjIindex);
     void fillSubList();
@@ -175,7 +159,6 @@ private:
     void buildKeywordDB();
     quint32 getFileAges();
     void showIndexTopic();
-    void showBookmarkTopic();
     void setupTitleMap();
     void saveBookmarks();
     void store(QTreeWidget *tw, QTextStream &ts); 	//for saving bookmarks
