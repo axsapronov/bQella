@@ -128,7 +128,6 @@
      </property>
      <addaction name="actionImportModule"/>
      <addaction name="actionImportBook"/>
-     <addaction name="actionImportChapter"/>
     </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectOpen"/>
@@ -179,6 +178,7 @@
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
     <addaction name="separator"/>
+    <addaction name="actionFindAndReplace"/>
     <addaction name="actionEditFind"/>
     <addaction name="actionEditFindNext"/>
     <addaction name="actionEditFindPrev"/>
@@ -827,6 +827,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionFindAndReplace">
+   <property name="text">
+    <string>Find and replace</string>
    </property>
   </action>
  </widget>

@@ -1108,12 +1108,13 @@ void HelpDialog::saveBookmarks()
 //-------------------------------------------------
 void HelpDialog::insertContents()
 {
+    int int64 = 64;    // ? Why 64? Maximum depth of tree?
     QTreeWidgetItem *rootEntry;
     QTreeWidgetItem *childEntry;
     ContentItem item;
     QStack<QTreeWidgetItem*> stack;
     int depth = 0;
-    QTreeWidgetItem *lastItem[64];    // ? Why 64? Maximum depth of tree?
+    QTreeWidgetItem *lastItem[int64];    // ? Why 64? Maximum depth of tree?
     
     if (contentsInserted)
         return;
@@ -1125,7 +1126,7 @@ void HelpDialog::insertContents()
     ui.listContents -> clear();
     stack.clear();
     setCursor(Qt::WaitCursor);
-    for (int j = 0; j < 64; ++j)
+    for (int j = 0; j < int64; ++j)
         lastItem[j] = 0;
 
     for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {

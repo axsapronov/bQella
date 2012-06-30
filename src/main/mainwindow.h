@@ -105,7 +105,6 @@ private slots:
 
     // import
     void importModule();
-    void importChapter();
     void importBook();
 
     void exitApp();

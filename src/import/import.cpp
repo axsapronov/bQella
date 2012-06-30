@@ -1,129 +1,23 @@
 #include "import.h"
-
-
 #include "pcommon.h"
-
 #include "helpdialog.h"
 #include "mainwindow.h"
 #include "config.h"
 
 #include <QDialog>
-
 #include <QFileDialog>
 #include <QTextStream>
-
-
-
-enum { LinkRole   = Qt::UserRole + 1000, 	// reference = file name = link to source
-       IconFNRole = Qt::UserRole + 1001 };	// icon file name
-
 
 Import::Import(QObject *parent) :
     QObject(parent)
 {
-
-    //    mystr = "test1";
-    //    qDebug() << "Debug: _Import()" << "mystr =" << mystr;
-}
-
-//----------------------------------------------------
-
-void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
-{
-//    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
-//    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
-
-    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    QString title = pathName.split("/").last().split(".").first();
-    QString path = "./" + pathName.split("/").last();
-
-    // create book file
-    createBookFile(pathName, FullName, ShortName, ChapterQty);
-
-    // add info to project file
-    QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
-    addContentToProjectFile(text2, false);
-
-
-//    qDebug() << " _filename_ = " << pathName;
-
-    // parse
-    bool flag;
-    QString line;
-    QFile file(pathName);
-    if ( file.open(QIODevice::ReadOnly) )
-    {
-        // file opened successfully
-        QTextStream stream( &file );        // use a text stream
-        // until end of file...
-        line = stream.readLine();
-        while (line.indexOf(ChapterSign) == -1)
-            line = stream.readLine();
-
-        //        qDebug() << "BookQry = " << BookQty;
-        //        for (int i = 1; i <= BookQty; i++)
-        //        {
-        for (int j = 1; j <= ChapterQty; j++)
-        {
-            QString titlechap = QString("%1").arg(j);
-            QString pathchap = pathName;
-            pathchap =  "./" + pathName.split("/").last().remove("."+last) + QString("_chapter_%1.%2").arg(j).arg(last);
-            QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
-
-            //                qDebug() << "pathchap = " << pathchap;
-
-            addContentToProjectFile(textchap , true);
-            QString text ="";
-            do{
-                line = stream.readLine();
-                if (line.indexOf(ChapterSign) >=0)
-                {
-                    line = "";
-                    flag = false;
-                }
-                text.append("\n"+importChapter(line));
-
-            }
-            while ((!line.isNull()) and ( flag));
-
-            flag = true;
-            //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
-            createChaterFile(pathName, text, j);
-            addContentToProjectFile("</section>", true);
-
-        }
-        //        }
-        file.close();
-    }
-    else
-        qDebug() << "Debug: _Import::importBook" << "Error: not open file";
-
-    QString text = "</section>";
-    addContentToProjectFile(text, false);
-
-
-}
-//----------------------------------------------------
-QString Import::importChapter(QString line)
-{
-    //    qDebug() << "Debug: _Import::importChapter:" << "Start import Chapter";
-
-    line
-            .remove("<sup>")
-            .remove("</sup>");
-
-    //    qDebug() << "Debug: _Import::importChapter:" << "line " << line;
-    return line;
 
 }
 //----------------------------------------------------
 void Import::importModule(QString file)
 {
     qDebug() << "Debug: _Import::importModule(QString file)" << "Start import Module";
-
     importIni(file);
-
-
     createInstructionFile();
     addContentToEndProjectFile();
     //    qDebug() << "TEST = " << HelpDialog::ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
@@ -155,7 +49,6 @@ void Import::importIni(QString filename)
             // do something with the line
             //            qDebug() << "Debug: _Import::importIni(QString filename)" << "line = " << line;
             //            count = 0;
-
             if (line != "" and line.indexOf("//") <0)
             {
                 if (miniparserini(line,"BibleName") != "")
@@ -179,124 +72,104 @@ void Import::importIni(QString filename)
                     QString line2 = stream.readLine();
                     QString line3 = stream.readLine();
                     QString line4 = stream.readLine();
-
-                    //                    qDebug() << "line = " << line;
-                    //                    qDebug() << "line2 = " << line2;
-                    //                    qDebug() << "line3 = " << line3;
-                    //                    qDebug() << "line4 = " << line4;
-
-
                     QString path = filename + miniparserini( line, "PathName");
                     QString full = miniparserini( line2, "FullName");
                     QString shortna = miniparserini( line3, "ShortName");
                     int chapter = QString(miniparserini( line4 , "ChapterQty" )).toInt();
                     book++;
-
-                    //                    qDebug() << " pathame = " << path;
                     importBook(path, full, shortna, chapter);
 
                 }
             }
-            //             qDebug() << "Debug: _Import::importIni(QString filename)" << "line biblenae = " << line;
-
         } while ((!line.isNull()) || (BookQtyIn == book));
         // Close the file
         file.close();
     }
 }
-
-QString Import::miniparserini(QString str, QString po)
+//----------------------------------------------------
+void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
-    po.append(" = ");
-    if (str.indexOf(po) >= 0)
+//    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
+//    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
+    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
+    QString title = pathName.split("/").last().split(".").first();
+    QString path = "./book_" + pathName.split("/").last();
+
+    // create book file
+    createBookFile(pathName, FullName, ShortName, ChapterQty);
+
+
+    // add info to project file
+    QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
+    addContentToProjectFile(text2, false);
+
+//    qDebug() << " _filename_ = " << pathName;
+
+    // parse
+    bool flag;
+    QString line;
+    QFile file(pathName);
+    if ( file.open(QIODevice::ReadOnly) )
     {
-        str.remove(po);
-        if (po != "ShortName = ")
+        // file opened successfully
+        QTextStream stream( &file );        // use a text stream
+        // until end of file...
+        line = stream.readLine();
+        while (line.indexOf(ChapterSign) == -1)
+            line = stream.readLine();
+        //        qDebug() << "BookQry = " << BookQty;
+        for (int j = 1; j <= ChapterQty; j++)
         {
-            str.remove(" \0");
+            QString titlechap = QString("%1").arg(j);
+            QString pathchap = pathName;
+            pathchap =  "./book_" + pathName.split("/").last().remove("."+last) + QString("_chapter_%1.%2").arg(j).arg(last);
+            QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
+
+            //                qDebug() << "pathchap = " << pathchap;
+
+            addContentToProjectFile(textchap , true);
+            QString text ="";
+            do{
+                line = stream.readLine();
+                if (line.indexOf(ChapterSign) >=0)
+                {
+                    line = "";
+                    flag = false;
+                }
+                text.append("\n"+importChapter(line));
+            }
+            while ((!line.isNull()) and ( flag));
+
+            flag = true;
+            //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
+            createChaterFile(pathName, text, j);
+            addContentToProjectFile("</section>", true);
+
         }
-        return str;
-    }
-    return "";
-}
-
-
-void Import::createChaterFile(QString file, QString text, int i)
-{
-    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
-    QString last = file.split("/").last().split(".").last();
-    pathNameE.remove("book_");
-    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(i) + last;
-
-    //    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
-    createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
-}
-
-void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)
-{
-    QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
-    pathNameE.remove("book_");
-    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-    QString text = ""+tr("PathName = %1"
-                         "\nFullName = %2"
-                         "\nShortName = %3"
-                         "\nChapterQty = %4")
-            .arg(pathNameE)
-            .arg(FullName)
-            .arg(ShortName)
-            .arg(ChapterQty);
-    createEmptyHtml(fileimportname, "1" , text);
-}
-
-void Import::createImportFolder(QString path)
-{
-    QDir dir(path);
-//        qDebug() << "path = " << path.toLower();
-    if (!QDir(QString(path)).exists())
-    {
-        dir.mkdir(QString(path));
+        file.close();
     }
     else
-    {
-        qDebug() << "Debug: _Import::createImportFolder" << QString(tr("Такая папка импорта уже существует:")) << path;
-    }
-    Config::configuration()->setCurPrjDir(path);
-//        qDebug() << " curprg  = " << Config::configuration()->CurPrjDir();
+        qDebug() << "Debug: _Import::importBook" << "Error: not open file";
 
+    QString text = "</section>";
+    addContentToProjectFile(text, false);
 }
-
-void Import::createBibleIni(QString file)
+//----------------------------------------------------
+QString Import::importChapter(QString line)
 {
+    //    qDebug() << "Debug: _Import::importChapter:" << "Start import Chapter";
+    line
+            .remove("<sup>")
+            .remove("</sup>");
 
-
+    //    qDebug() << "Debug: _Import::importChapter:" << "line " << line;
+    return line;
 
 }
-
-
-
-void Import::createProjectFile()
-{
-    QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem";
-    qDebug() << "filename = " << filename;
-    // проверить можно ли обращаться к helpdialog по helpdilog::
-
-    QFile file1(filename);
-
-    if(!file1.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        qDebug() << "Error write";
-    }
-    else
-    {
-        file1.write(QString("").toUtf8());
-    }
-}
-
-
+//----------------------------------------------------
 void Import::importProjectFile()
 {
     createProjectFile();
-
 
     ModuleProperties pr;
     pr.prjFN = getPrjFN();
@@ -305,7 +178,6 @@ void Import::importProjectFile()
     pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
     pr.moduleBVersion = 1.0;
     pr.prjTitle = Config::configuration()->ModuleBiblename();
-
 
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
@@ -358,28 +230,75 @@ void Import::importProjectFile()
 
     Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
     Config::configuration() -> toAppLog(1, tr("- done", "For log"));
-
 }
+//----------------------------------------------------
+void Import::createImportFolder(QString path)
+{
+    QDir dir(path);
+//        qDebug() << "path = " << path.toLower();
+    if (!QDir(QString(path)).exists())
+    {
+        dir.mkdir(QString(path));
+    }
+    else
+    {
+        qDebug() << "Debug: _Import::createImportFolder" << QString(tr("Такая папка импорта уже существует:")) << path;
+    }
+    Config::configuration()->setCurPrjDir(path);
+//        qDebug() << " curprg  = " << Config::configuration()->CurPrjDir();
+}
+//----------------------------------------------------
+void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)
+{
+    QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
+    pathNameE.remove("book_");
+    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
+    QString text = ""+tr("PathName = %1"
+                         "\nFullName = %2"
+                         "\nShortName = %3"
+                         "\nChapterQty = %4")
+            .arg(pathNameE)
+            .arg(FullName)
+            .arg(ShortName)
+            .arg(ChapterQty);
+    createEmptyHtml(fileimportname, "1" , text);
+}
+//----------------------------------------------------
+void Import::createChaterFile(QString file, QString text, int i)
+{
+    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
+    QString last = file.split("/").last().split(".").last();
+    pathNameE.remove("book_");
+    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(i) + last;
 
+    //    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
+    createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
+}
+//----------------------------------------------------
+void Import::createProjectFile()
+{
+    QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem";
+    qDebug() << "filename = " << filename;
+    // проверить можно ли обращаться к helpdialog по helpdilog::
+
+    QFile file1(filename);
+
+    if(!file1.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error write";
+    }
+    else
+    {
+        file1.write(QString("").toUtf8());
+    }
+}
+//----------------------------------------------------
 void Import::createInstructionFile()
 {
     QString text = tr("Добавить инструкцию");
     createEmptyHtml(QString(Config::configuration()->CurPrjDir()+"/   ___Instruction"), QString("   ___Instruction"), text);
 }
-
-QString Import::getPrjFN()
-{
-    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem");
-}
-
-QString Import::getStartPage()
-{
-    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
-}
-
-
-
-
+//----------------------------------------------------
 void Import::addContentToProjectFile(QString text, bool tr)
 {
     QString ind1="   ";
@@ -388,7 +307,6 @@ void Import::addContentToProjectFile(QString text, bool tr)
     f.open(QFile::Append);
     QTextStream ts(&f);
     ts.setCodec("UTF-8");
-
     if (tr)
     {
         ts << ind1 << ind1 << text << endl;
@@ -397,16 +315,9 @@ void Import::addContentToProjectFile(QString text, bool tr)
     {
         ts << ind1 << text << endl;
     }
-
-    //    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
-    //    ts << ind1 << "</section>" << endl;
-
-
     f.close();
 }
-
-
-
+//----------------------------------------------------
 void Import::addContentToEndProjectFile()
 {
     QString fn = unurlifyFileName(getPrjFN());
@@ -417,53 +328,30 @@ void Import::addContentToEndProjectFile()
     ts << "</contents>" << endl << endl;
     ts << "</pemproject>" << endl;
     f.close();
-
+}
+//----------------------------------------------------
+QString Import::getPrjFN()
+{
+    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem");
+}
+//----------------------------------------------------
+QString Import::getStartPage()
+{
+    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
+}
+//----------------------------------------------------
+QString Import::miniparserini(QString str, QString po)
+{
+    po.append(" = ");
+    if (str.indexOf(po) >= 0)
+    {
+        str.remove(po);
+        if (po != "ShortName = ")
+        {
+            str.remove(" \0");
+        }
+        return str;
+    }
+    return "";
 }
 
-
-
-////for saving contents to file. Used by HelpDialog::saveContents()
-//static void store2xml(QTreeWidgetItem *i, QTextStream &ts)
-//{
-//    ts  << indent << "<section title=\"" << i -> text(0)
-//        << "\" ref=\"" << relatifyFileName(i -> data(0, LinkRole).toString(),  Config::configuration() -> CurPrjDir())
-//        << "\" icon=\"" << relatifyFileName(i -> data(0, IconFNRole).toString(),  Config::configuration() -> CurPrjDir()) + "\" >" << endl;
-
-//    for (int index = 0; index < i -> childCount(); ++index){
-//        indent += ind1;
-//        store2xml(i -> child(index), ts);
-//        indent.remove(0,ind1.length());
-//    }
-//    ts << indent << "</section>" << endl;
-//}
-
-////-------------------------------------------------
-////for saving contents to file. Used by HelpDialog::saveContents()
-//static void store2xml(QTreeWidget *tw, QTextStream &ts)
-//{
-//    ts << "<contents>" << endl;
-//    for (int index = 0; index < tw -> topLevelItemCount(); ++index){
-//        store2xml(tw -> topLevelItem(index), ts);
-//    }
-//    ts << "</contents>" << endl;
-//}
-
-
-
-
-
-//----------------------------------------------------
-//void Import::setTestValue(QString test)
-//{
-//    mystr = test;
-//}
-
-//QString Import::getTestValue()
-//{
-//    return mystr;
-//}
-
-//void Import::test()
-//{
-//    qDebug() << "Debug: _Import::test()" << "mystr = " << mystr;
-//}

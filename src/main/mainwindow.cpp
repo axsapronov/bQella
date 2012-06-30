@@ -158,7 +158,6 @@ void MainWindow::setup()
 
 
     // Menu Import
-    connect(ui.actionImportChapter, SIGNAL(triggered()), this, SLOT(importChapter()));
     connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
 
@@ -232,14 +231,6 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-    //    QString test = "mytest";
-    //    qDebug() << "Debug: _MainWindow::exportModule()" << "test = " << test;
-
-    //    exportm  ->  file = "test";
-    //    exportm -> setFileBibleqtName(helpDock -> ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:"));
-    //    exportm -> setFileBibleqtName(helpDock->getFileBibleqtName());
-
-    //    exportm -> test();
     helpDock -> exportModule();
 }
 
@@ -274,17 +265,6 @@ void MainWindow::importModule()
 
 }
 
-void MainWindow::importChapter()
-{
-    //    QString beginpath = "/home/";
-    //    QString fileName = QFileDialog::getOpenFileName(this,
-    //                      tr("Select chapter file"),
-    //                      beginpath,
-    //                      tr("Chapter file (*.html *.txt *.htm)"));
-    //    importm->importChapter(fileName);
-
-
-}
 
 void MainWindow::importBook()
 {
