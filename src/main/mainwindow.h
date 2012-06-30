@@ -28,19 +28,19 @@
 #include "raedit.h"
 #include "fontsettingsdialog.h"
 
-#include <QPointer>
 #include <QMap>
-#include <QTreeWidget>
+#include <QPointer>
 
 class QMenu;
 class QDockWidget;
-
+class QTreeWidget;
 class TabbedBrowser;
 class HelpDialog;
 class HelpWindow;
 class GUIAbout;
 class Export;
 class Import;
+class FRDialog;
 
 //====================== class MainWindow ============================
 
@@ -123,6 +123,8 @@ private:
     //ProjectSettings *prjset;
     AppSettings *appsets;
     HelpDialog *helpDock;
+    FRDialog *frdialog;
+
     Export * exportm;
     Import * importm;
     GUIAbout *m_gui_About;

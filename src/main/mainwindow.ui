@@ -178,7 +178,7 @@
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
     <addaction name="separator"/>
-    <addaction name="actionFindAndReplace"/>
+    <addaction name="actionEditFindAndReplace"/>
     <addaction name="actionEditFind"/>
     <addaction name="actionEditFindNext"/>
     <addaction name="actionEditFindPrev"/>
@@ -835,7 +835,7 @@
     <string>Ctrl+T</string>
    </property>
   </action>
-  <action name="actionFindAndReplace">
+  <action name="actionEditFindAndReplace">
    <property name="text">
     <string>Find and replace</string>
    </property>

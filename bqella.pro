@@ -21,6 +21,7 @@ INCLUDEPATH += src/h/ \
     src/dialogs/about \
     src/dialogs/fontdialog \
     src/dialogs/bookdialog \
+    src/dialogs/findandreplacedialog \
     src/dialogs/projectproperty \
     src/dialogs/itemproperty \
     src/dialogs/linkproperty \
@@ -44,7 +45,8 @@ FORMS += \
      src/tab/tableproperty.ui \
      src/ui/topicchooser.ui \
      src/ui/cellsplit.ui \
-     src/settings/settings.ui
+     src/settings/settings.ui \
+    src/dialogs/findandreplacedialog/frdialog.ui
 
 SOURCES +=  \
      src/settings/config.cpp \
@@ -72,7 +74,8 @@ SOURCES +=  \
      src/cpp/topicchooser.cpp \
      src/cpp/cellsplit.cpp \
     src/export/export.cpp \
-    src/import/import.cpp
+    src/import/import.cpp \
+    src/dialogs/findandreplacedialog/frdialog.cpp
 
 HEADERS += \     
      src/doc/docproperty.h \
@@ -99,7 +102,8 @@ HEADERS += \
      src/h/raedit.h \
      src/h/srclistparser.h \
     src/export/export.h \
-    src/import/import.h
+    src/import/import.h \
+    src/dialogs/findandreplacedialog/frdialog.h
 
 RESOURCES += \
     resources/recources.qrc

@@ -27,6 +27,8 @@
 #include "guiabout.h"
 #include "export.h"
 #include "import.h"
+#include "frdialog.h"
+
 
 
 #include <QAbstractTextDocumentLayout>
@@ -85,6 +87,7 @@ MainWindow::MainWindow():
     dw -> setWindowTitle(tr("Project manager"));
     dw -> setObjectName(QString("sidebar"));
     helpDock = new HelpDialog(dw, this);
+    frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import();
 
@@ -169,6 +172,14 @@ void MainWindow::setup()
     connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties()));
     connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
 
+    // find
+    connect(ui.actionEditFind, SIGNAL(triggered()), tabs, SLOT(find()));
+    connect(ui.actionEditFindNext, SIGNAL(triggered()), tabs, SLOT(findNext()));
+    connect(ui.actionEditFindPrev, SIGNAL(triggered()), tabs, SLOT(findPrevious()));
+    connect(ui.actionEditFindAndReplace, SIGNAL(triggered()), frdialog, SLOT(show()));
+
+
+
     // Menu Format
     connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
@@ -207,9 +218,7 @@ void MainWindow::setup()
     ui.actionEditFindNext -> setShortcut(QKeySequence::FindNext);
     ui.actionEditFindPrev -> setShortcut(QKeySequence::FindPrevious);
     
-    QObject::connect(ui.actionEditFind, SIGNAL(triggered()), tabs, SLOT(find()));
-    QObject::connect(ui.actionEditFindNext, SIGNAL(triggered()), tabs, SLOT(findNext()));
-    QObject::connect(ui.actionEditFindPrev, SIGNAL(triggered()), tabs, SLOT(findPrevious()));
+
 
     qApp -> restoreOverrideCursor();
     //    ui.actionGoPrevious -> setEnabled(false);
