@@ -839,6 +839,9 @@
    <property name="text">
     <string>Find and replace</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
   </action>
  </widget>
  <resources>
