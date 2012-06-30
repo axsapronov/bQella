@@ -746,10 +746,12 @@ void HelpWindow::fontChanged(const QFont &f)
 //-------------------------------------------------
 void HelpWindow::colorChanged(const QColor &c) //for text and background color indicators
 {
-    //!+! draw color indicator
-    /*   QPixmap pix(16, 16);
-    pix.fill(c);
-    actionTextColor -> setIcon(pix);*/
+    c.colorNames();
+
+//    //!+! draw color indicator
+//       QPixmap pix(16, 16);
+//    pix.fill(c);
+//    actionTextColor -> setIcon(pix);
 }
 
 //-------------------------------------------------
@@ -820,6 +822,7 @@ void HelpWindow::imageInsert(QString html)
 //-------------------------------------------------
 void HelpWindow::imageUpdate(QString html)
 {
+    html = html;
     //QTextCursor cursor = raEdit::textCursor();
 }
 

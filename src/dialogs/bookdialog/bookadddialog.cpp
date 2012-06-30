@@ -4,9 +4,8 @@
 
 #include <QStringListModel>
 #include <QTextCodec>
-
-
 #include <QDebug>
+
 
 BookAddDialog::BookAddDialog(QWidget *parent) :
     QDialog(parent),

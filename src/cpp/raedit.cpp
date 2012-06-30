@@ -184,7 +184,7 @@ void raEdit::setSource(const QUrl &url)
 #endif
         }
         if (txt.isEmpty())
-            qWarning("raEdit: No document for %s", url.toString().toLatin1().constData());
+            qWarning("Warning: _raEdit::setSource(): No document for %s", url.toString().toLatin1().constData());
 /*!+! Загруженный текстовый файл - это сноска (примечание)
         if (isVisible()) {
             QString firstTag = txt.left(txt.indexOf(QLatin1Char('>')) + 1);

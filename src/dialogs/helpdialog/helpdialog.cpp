@@ -748,11 +748,11 @@ void HelpDialog::currentTabChanged(int index)
     QString s = ui.tabWidget -> widget(index) -> objectName();
     if (s == QLatin1String("indexPage"))
         QTimer::singleShot(0, this, SLOT(loadIndexFile()));
-    else if (s == QLatin1String("bookmarkPage"))
+    else if (s == QString("bookmarkPage"))
         insertBookmarks();
-    else if (s == QLatin1String("contentPage"))
+    else if (s == QString("contentPage"))
         QTimer::singleShot(0, this, SLOT(insertContents()));
-    else if (s == QLatin1String("searchPage"))
+    else if (s == QString("searchPage"))
         QTimer::singleShot(0, this, SLOT(setupFullTextIndex()));
 }
 
@@ -1140,23 +1140,24 @@ void HelpDialog::insertContents()
             stack.push(rootEntry);
             depth = 1;
         }else{
-            if (item.depth > depth)  {
-                depth = item.depth;
-                stack.push(childEntry);
-            }
-            if (item.depth == depth) {
+            if (item.depth == depth)
+            {
                 childEntry = new QTreeWidgetItem(stack.top(), lastItem[ depth ]);
                 lastItem[ depth ] = childEntry;
                 childEntry -> setText(0, item.title);
                 childEntry -> setData(0, LinkRole, item.reference);
                 childEntry -> setData(0, IconFNRole, item.iconFN);
-            	if (!item.iconFN.isEmpty() )
+                if (!item.iconFN.isEmpty() )
                     childEntry -> setIcon(0, QIcon(item.iconFN));
             }
             else if (item.depth < depth) {
                 stack.pop();
                 depth--;
                 item = *(--it);
+            }
+            if (item.depth > depth)  {
+                depth = item.depth;
+                stack.push(childEntry);
             }
         }
         //processEvents(); // ? why do we need it ?
@@ -1198,7 +1199,8 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
     if (fi.exists() && fi.isFile())
     {
-        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "-- opening file: " << fn << ", \nlink = " << i -> data(0, LinkRole).toString();
+        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "opening file: " << fn ;
+        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         emit showLink("file:"+fn);
     }
@@ -1704,7 +1706,7 @@ void HelpDialog::showItemProperties()
     QString fName = unurlifyFileName(item -> data(0, LinkRole).toString());
     QString iconFN= unurlifyFileName(item -> data(0, IconFNRole).toString());
     mw -> browsers() -> currentBrowser() -> updateItem(title, fName, iconFN);
-    qDebug() << " item prop title = " << title << ", link = " << fName;
+    qDebug() << "Debug: _HelpDialog::showItemProperties()" << "item prop title = " << title << ", link = " << fName;
 }
 
 //-------------------------------------------------
@@ -1727,7 +1729,6 @@ void HelpDialog::on_searchButton_clicked()
 
 //-------------------------------------------------
 //insert new document in content
-// нужная херь
 void HelpDialog::InsertContentsItem(QString title, QString fileName, QString iconFN) 
 {
     QString strfor = fileName;
@@ -1736,8 +1737,12 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)
     {
-        //        qDebug() << "\n" << m_bookadddialog -> bookChapterQty << " " << m_bookadddialog -> bookFullName << " " << m_bookadddialog -> bookShortName;
-        //        qDebug() << "\n" << title << " " << fileName << " " << iconFN << " " << Config::configuration() -> CurPrjDir() << "\n";
+        qDebug() << "Debug: _HelpDialog::InsertContentsItem()";
+        qDebug() << "bookChapterQty = " << m_bookadddialog -> bookChapterQty << " bookFullName = " << m_bookadddialog -> bookFullName;
+        qDebug() << "bookShortName = " << m_bookadddialog -> bookShortName;
+        qDebug() << "title = " << title << " fileName = " << fileName;
+        qDebug() << "iconFN = " <<  iconFN;
+        qDebug() << "CurPrjDir = " << Config::configuration() -> CurPrjDir();
         QString fileNameFor = fileName;
         QString fileNameFor2 = fileName;
         QFile file1(fileNameFor2.remove("file:"));
@@ -1868,6 +1873,7 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
     //    qDebug() << "\nfilename" << filename << "\n";
     QFile file(filename);
     QString string;
+
 
     if(file.exists())
     {
@@ -2150,7 +2156,7 @@ void HelpDialog::cloneItem(QTreeWidgetItem *item, bool subItem)
         ui.listContents -> currentItem() -> addChild(item);
     }else //TopLevelItem
         ui.listContents -> addTopLevelItem(item);
-    qDebug() <<  "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
+    qDebug() <<  "Debug: _ HelpDialog::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
 }
 
 //-------------------------------------------------
@@ -2171,48 +2177,68 @@ void HelpDialog::currentItemChanged(QTreeWidgetItem* curItem,QTreeWidgetItem* pr
 //-------------------------------------------------
 void HelpDialog::newItem()
 {    
-    // определяем уровень дерева для нового элемента, если больше 3, то отправляет внах
+    // определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
     int depth = 1;
-    for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);
-    qDebug("level = %d", depth);
+//    qDebug() << " _ 0 ";
+
+    for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
+
+    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
     if (depth < 2)
     {
+//        qDebug() << " _ 1 ";
         if (! Config::configuration() -> ItemAutoProperties()){
             mw -> browsers() -> currentBrowser() -> fileNew();
-	}else{//autocreate all properties for new item
+//            qDebug() << " _ 2 ";
+        }
+        else
+        {
+            //autocreate all properties for new item
             QString title = str_NewItemTitle;
             QString iconFN =""; //!+! assign default item icon
             QString fileName;
             bool uniqFN = false;
             int counter = 1;
+//            qDebug() << " _ 3 ";
 
             if (newSameLevelItem)
             {
+//                qDebug() << " _ 4 ";
                 while (!uniqFN){
+                    // create book file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString::number(counter)+".htm";
+                    qDebug() << "Debug: _HelpDialog::newItem():" << "book:" << "filename = " << fileName;
                     fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+".htm";
                     uniqFN = !QFile::exists(fileName);
                     counter++;
+//                    qDebug() << " _ 5 ";
                 }
             }
             else
             {
+//                qDebug() << " _ 6 ";
                 while (!uniqFN){
+//                    qDebug() << " _ 7 ";
+                    //create chapter file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
                     fileName = Config::configuration() -> CurPrjDir() + "/book_"+ui.listContents -> currentItem() -> text(0)+"_chapter_"+QString::number(counter)+".htm";
+                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
                 title = QString("%1").arg(counter-1);
             }
+//            qDebug() << " _ 8 ";
             qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, urlifyFileName(fileName), iconFN);// отвечает за добавление файла в список
             ui.listContents -> setFocus();
             //ui.listContents -> openPersistentEditor(ui.listContents -> currentItem(),0);  // редактировать название в дереве
 	}	
+//        qDebug() << " _ 9 ";
         mw -> projectModified(true);
     }
+//    qDebug() << " _ 10 ";
 
 }
 

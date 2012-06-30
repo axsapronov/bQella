@@ -100,7 +100,9 @@ void Config::loadProject(const QString &projectFileName)
     setCurFile(profil -> props["startpage"]);
     setCurPrjSrc();
     prjLogFN = AppDir() + "log/" + profileName() + ".log";
-    qDebug() << " curProject = " << curProject <<", curFile = " << curFile << ", sources file = " << CurPrjSrc();
+    qDebug() << "Debug: _Config::loadProject()" << "curProject = " << curProject;
+    qDebug() << "Debug: _Config::loadProject()" << "curFile = " << curFile;
+    qDebug() << "Debug: _Config::loadProject()" << "sources file = " << CurPrjSrc();
     toAppLog(2, "- loaded succesfully");
 }
 

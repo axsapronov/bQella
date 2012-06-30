@@ -1,13 +1,18 @@
 #ifndef BOOKADDDIALOG_H
 #define BOOKADDDIALOG_H
 
-#include <QDialog>
-#include <QAbstractButton>
+
+#include "projectproperty.h"
+
+class QDialog;
+class QAbstractButton;
+class QStringListModel;
+
 
 namespace Ui {
     class BookAddDialog;
 }
-class QStringListModel;
+
 
 class BookAddDialog : public QDialog
 {
@@ -16,6 +21,7 @@ class BookAddDialog : public QDialog
 public:
     explicit BookAddDialog(QWidget *parent = 0);
     ~BookAddDialog();
+//    ModuleProperties pr;
     QString bookFullName;
     QString bookShortName;
     int bookChapterQty;
