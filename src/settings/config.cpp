@@ -77,7 +77,7 @@ void Config::loadProject(const QString &projectFileName)
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
         prjFN = PrjDir() + "help/help.pem";
         fi.setFile(prjFN);
-        qWarning( (QLatin1String("Open help project instead: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Open help project instead: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- open help project instead: " + prjFN);
     } 
     
@@ -85,7 +85,7 @@ void Config::loadProject(const QString &projectFileName)
     setCurPrjDir(fi.absolutePath());
     DocuParser *parser = DocuParser::createParser( prjFN );
     if (!parser) {
-        qWarning( (QLatin1String("Failed to create parser for file: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Failed to create parser for file: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- failed to create parser for file: " + prjFN);
     }
     DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
@@ -93,7 +93,7 @@ void Config::loadProject(const QString &projectFileName)
     parser -> parse(&file);
     profil = profileParser -> profile();
     if (!profil) {
-        qWarning( (QLatin1String("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- no profile in: " + prjFN);
     }
     profil -> setDocuParser(profileParser);
@@ -110,56 +110,56 @@ void Config::loadProject(const QString &projectFileName)
 void Config::loadSettings()
 {
     QSettings settings(iniFile, QSettings::IniFormat);
-    setAppLogLevel( settings.value(QLatin1String("LogLevel-Application") ).toInt() );
-    setPrjLogLevel( settings.value(QLatin1String("LogLevel-Project") ).toInt() );
+    setAppLogLevel( settings.value(QString("LogLevel-Application") ).toInt() );
+    setPrjLogLevel( settings.value(QString("LogLevel-Project") ).toInt() );
     toAppLog(2, "Load application settings");
 
     //miscellaneous settings
-    lang = settings.value(QLatin1String("Language") ).toString();
-    src = settings.value(QLatin1String("Source") ).toStringList();
+    lang = settings.value(QString("Language") ).toString();
+    src = settings.value(QString("Source") ).toStringList();
     QStringList::iterator it = src.begin();
     for (; it != src.end(); ++it) {
     	*it = urlifyFileName( absolutifyFileName(*it, prjDir) );
     }    
-    sideBar = settings.value(QLatin1String("SideBarPage") ).toInt();
-    rebuildDocs = settings.value(QLatin1String("RebuildDocDB"), true ).toBool();
-    profileFNs = settings.value(QLatin1String("Projects") ).toStringList();
+    sideBar = settings.value(QString("SideBarPage") ).toInt();
+    rebuildDocs = settings.value(QString("RebuildDocDB"), true ).toBool();
+    profileFNs = settings.value(QString("Projects") ).toStringList();
     profileFNs = absolutifyFileList(profileFNs, prjDir);	//we will load this list to widget in HelpDialog::initialize()
-    curProject = settings.value(QLatin1String("ActiveProject") ).toString();
+    curProject = settings.value(QString("ActiveProject") ).toString();
     curProject = absolutifyFileName(curProject, prjDir);	 //absolutify project file path
-    setContentsSortOrder(settings.value(QLatin1String("ContentsSortOrder") ).toString()); 
+    setContentsSortOrder(settings.value(QString("ContentsSortOrder") ).toString());
 
     //window and font settings
-    winGeometry = settings.value(QLatin1String("WindowGeometry")).toByteArray();
-    mainWinState = settings.value(QLatin1String("MainWindowState")).toByteArray();
-    pointFntSize = settings.value(QLatin1String("FontSize"), qApp -> font().pointSizeF()).toDouble();
-    m_fontSettings.windowFont = qVariantValue<QFont>(settings.value(QLatin1String("WindowFont"), qApp -> font()));
-    m_fontSettings.browserFont = qVariantValue<QFont>(settings.value(QLatin1String("BrowserFont"), qApp -> font()));
-    m_fontSettings.useWindowFont = settings.value(QLatin1String("UseWindowFont"), false).toBool();
-    m_fontSettings.useBrowserFont = settings.value(QLatin1String("UseBrowserFont"), false).toBool();
+    winGeometry = settings.value(QString("WindowGeometry")).toByteArray();
+    mainWinState = settings.value(QString("MainWindowState")).toByteArray();
+    pointFntSize = settings.value(QString("FontSize"), qApp -> font().pointSizeF()).toDouble();
+    m_fontSettings.windowFont = qVariantValue<QFont>(settings.value(QString("WindowFont"), qApp -> font()));
+    m_fontSettings.browserFont = qVariantValue<QFont>(settings.value(QString("BrowserFont"), qApp -> font()));
+    m_fontSettings.useWindowFont = settings.value(QString("UseWindowFont"), false).toBool();
+    m_fontSettings.useBrowserFont = settings.value(QString("UseBrowserFont"), false).toBool();
     m_fontSettings.windowWritingSystem = static_cast<QFontDatabase::WritingSystem>(
-                settings.value(QLatin1String("WindowWritingSystem"), QFontDatabase::Latin).toInt());
+                settings.value(QString("WindowWritingSystem"), QFontDatabase::Latin).toInt());
     m_fontSettings.browserWritingSystem = static_cast<QFontDatabase::WritingSystem>(
-                settings.value(QLatin1String("BrowserWritingSystem"), QFontDatabase::Latin).toInt());
+                settings.value(QString("BrowserWritingSystem"), QFontDatabase::Latin).toInt());
     m_fontSettings.browserFont.setPointSizeF(pointFntSize);
 
     //settings from Settings window
-    setContentsAdditionalView(	settings.value(QLatin1String("ContentsAdditionalView")).toBool() );
-    setShowSubItemsTitle(		settings.value(QLatin1String("ShowSubItemsTitle")).toBool() );
-    setAutoCollapse(			settings.value(QLatin1String("AutoCollapse")).toBool() );
-    backupDir = settings.value(QLatin1String("BackupPath") ).toString();
+    setContentsAdditionalView(	settings.value(QString("ContentsAdditionalView")).toBool() );
+    setShowSubItemsTitle(		settings.value(QString("ShowSubItemsTitle")).toBool() );
+    setAutoCollapse(			settings.value(QString("AutoCollapse")).toBool() );
+    backupDir = settings.value(QString("BackupPath") ).toString();
     backupDir = absolutifyFileName(backupDir, prjDir);		//absolutify path to backup dir
-    externalEditor = settings.value(QLatin1String("ExternalEditor") ).toString();
+    externalEditor = settings.value(QString("ExternalEditor") ).toString();
     externalEditor = absolutifyFileName(externalEditor, prjDir); //absolutify file path to editor
-    externalBrowser = settings.value(QLatin1String("ExternalBrowser") ).toString();
+    externalBrowser = settings.value(QString("ExternalBrowser") ).toString();
     externalBrowser = absolutifyFileName(externalBrowser, prjDir);	//absolutify file path to browser
-    externalArchiver = settings.value(QLatin1String("ExternalArchiver") ).toString();
+    externalArchiver = settings.value(QString("ExternalArchiver") ).toString();
     externalArchiver = absolutifyFileName(externalArchiver, prjDir);	//absolutify file path to archiver
-    externalArchiverOptions = settings.value(QLatin1String("ExternalArchiverOptions") ).toString();  
-    setItemAutoProperties(settings.value(QLatin1String("ItemAutoProperties")).toBool() );  
+    externalArchiverOptions = settings.value(QString("ExternalArchiverOptions") ).toString();
+    setItemAutoProperties(settings.value(QString("ItemAutoProperties")).toBool() );
 
     //settings from Signature window
-    setDefaultSignatureID(		settings.value(QLatin1String("DefaultSignatureID")).toInt() );
+    setDefaultSignatureID(		settings.value(QString("DefaultSignatureID")).toInt() );
 
     toAppLog(2, "- done");
 }//loadSettings()
@@ -171,40 +171,40 @@ void Config::saveSettings()
     QSettings settings(iniFile, QSettings::IniFormat);
     
     //miscellaneous settings
-    settings.setValue(QLatin1String("Language"), lang);
-    settings.setValue(QLatin1String("Projects"), relatifyFileList(profileFNs, prjDir) );
-    settings.setValue(QLatin1String("ActiveProject"), curProject /*relatifyFileName(curProject, prjDir) */);
-    settings.setValue(QLatin1String("Source"),src );	 //paths relatified in MainWindow::saveSettings()
-    settings.setValue(QLatin1String("SideBarPage"), sideBarPage() );
-    settings.setValue(QLatin1String("RebuildDocDB"), rebuildDocs );
-    settings.setValue(QLatin1String("ContentsSortOrder"), contentsSortOrder );
+    settings.setValue(QString("Language"), lang);
+    settings.setValue(QString("Projects"), relatifyFileList(profileFNs, prjDir) );
+    settings.setValue(QString("ActiveProject"), curProject /*relatifyFileName(curProject, prjDir) */);
+    settings.setValue(QString("Source"),src );	 //paths relatified in MainWindow::saveSettings()
+    settings.setValue(QString("SideBarPage"), sideBarPage() );
+    settings.setValue(QString("RebuildDocDB"), rebuildDocs );
+    settings.setValue(QString("ContentsSortOrder"), contentsSortOrder );
 
     //window and font settings
-    settings.setValue(QLatin1String("WindowGeometry"), winGeometry);
-    settings.setValue(QLatin1String("MainWindowState"), mainWinState );
-    settings.setValue(QLatin1String("FontSize"), pointFntSize);
-    settings.setValue(QLatin1String("WindowFont"), m_fontSettings.windowFont);
-    settings.setValue(QLatin1String("BrowserFont"), m_fontSettings.browserFont);
-    settings.setValue(QLatin1String("UseWindowFont"), m_fontSettings.useWindowFont);
-    settings.setValue(QLatin1String("UseBrowserFont"), m_fontSettings.useBrowserFont);
-    settings.setValue(QLatin1String("WindowWritingSystem"), m_fontSettings.windowWritingSystem);
-    settings.setValue(QLatin1String("BrowserWritingSystem"), m_fontSettings.browserWritingSystem);
+    settings.setValue(QString("WindowGeometry"), winGeometry);
+    settings.setValue(QString("MainWindowState"), mainWinState );
+    settings.setValue(QString("FontSize"), pointFntSize);
+    settings.setValue(QString("WindowFont"), m_fontSettings.windowFont);
+    settings.setValue(QString("BrowserFont"), m_fontSettings.browserFont);
+    settings.setValue(QString("UseWindowFont"), m_fontSettings.useWindowFont);
+    settings.setValue(QString("UseBrowserFont"), m_fontSettings.useBrowserFont);
+    settings.setValue(QString("WindowWritingSystem"), m_fontSettings.windowWritingSystem);
+    settings.setValue(QString("BrowserWritingSystem"), m_fontSettings.browserWritingSystem);
 
     //settings from Settings window
-    settings.setValue(QLatin1String("ExternalEditor"), relatifyFileName(externalEditor, prjDir) );
-    settings.setValue(QLatin1String("ExternalBrowser"), relatifyFileName(externalBrowser, prjDir) );
-    settings.setValue(QLatin1String("ExternalArchiver"), relatifyFileName(externalArchiver, prjDir) );
-    settings.setValue(QLatin1String("ExternalArchiverOptions"), ExternalArchiverOptions());
-    settings.setValue(QLatin1String("BackupPath"), relatifyFileName(backupDir, prjDir) );
-    settings.setValue(QLatin1String("ContentsAdditionalView"), contentsAdditionalView);
-    settings.setValue(QLatin1String("ShowSubItemsTitle"), showSubItemsTitle);
-    settings.setValue(QLatin1String("AutoCollapse"),autoCollapse);
-    settings.setValue(QLatin1String("LogLevel-Application"),AppLogLevel());
-    settings.setValue(QLatin1String("LogLevel-Project"),PrjLogLevel());
-    settings.setValue(QLatin1String("ItemAutoProperties"),ItemAutoProperties());
+    settings.setValue(QString("ExternalEditor"), relatifyFileName(externalEditor, prjDir) );
+    settings.setValue(QString("ExternalBrowser"), relatifyFileName(externalBrowser, prjDir) );
+    settings.setValue(QString("ExternalArchiver"), relatifyFileName(externalArchiver, prjDir) );
+    settings.setValue(QString("ExternalArchiverOptions"), ExternalArchiverOptions());
+    settings.setValue(QString("BackupPath"), relatifyFileName(backupDir, prjDir) );
+    settings.setValue(QString("ContentsAdditionalView"), contentsAdditionalView);
+    settings.setValue(QString("ShowSubItemsTitle"), showSubItemsTitle);
+    settings.setValue(QString("AutoCollapse"),autoCollapse);
+    settings.setValue(QString("LogLevel-Application"),AppLogLevel());
+    settings.setValue(QString("LogLevel-Project"),PrjLogLevel());
+    settings.setValue(QString("ItemAutoProperties"),ItemAutoProperties());
     
     //settings from Signature window
-    settings.setValue(QLatin1String("DefaultSignatureID"),DefaultSignatureID());
+    settings.setValue(QString("DefaultSignatureID"),DefaultSignatureID());
     
     toAppLog(2, "- done");
 }//saveSettings()
@@ -236,7 +236,7 @@ void Config::delProject(QString prj)
 //-------------------------------------------------
 QString Config::profileTitle() const
 {
-    QString s = profil -> props[QLatin1String("title")];
+    QString s = profil -> props[QString("title")];
     if (s.isEmpty())
         s = QObject::tr("[No title]");
     return s;
@@ -245,13 +245,13 @@ QString Config::profileTitle() const
 //-------------------------------------------------
 QString Config::homePage() const
 {
-    return startPage.isEmpty() ? profil -> props[QLatin1String("startpage")] : startPage;
+    return startPage.isEmpty() ? profil -> props[QString("startpage")] : startPage;
 }
 
 //-------------------------------------------------
 QStringList Config::source() const
 {
-    return src.size() == 0 ? QStringList(profil -> props[QLatin1String("startpage")]) : src;
+    return src.size() == 0 ? QStringList(profil -> props[QString("startpage")]) : src;
 }
 
 //-------------------------------------------------
@@ -273,13 +273,13 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
 {
     QFile file(prjFN);
     if (!file.exists()) {
-        qWarning( (QLatin1String("Project does not exist: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Project does not exist: ") + prjFN).toAscii().constData() );
         toAppLog(1, "Failed to get property for project:" + prjFN);
         return ""; 
     }
     DocuParser *parser = DocuParser::createParser( prjFN );
     if (!parser) {
-        qWarning( (QLatin1String("Failed to create parser for project: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Failed to create parser for project: ") + prjFN).toAscii().constData() );
         toAppLog(1, "Failed to create parser for project:" + prjFN);
         return "";
     }
@@ -287,7 +287,7 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
     parser -> parse(&file);
     profil_tmp = profileParser -> profile();
     if (!profil_tmp) {
-        qWarning( (QLatin1String("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
         toAppLog(1, "No profile in:" + prjFN);
         return "";
     }

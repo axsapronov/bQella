@@ -446,14 +446,14 @@ void HelpDialog::removeOldCacheFiles(bool onlyFulltextSearchIndex)
         qWarning("Failed to create assistant directory");
         return;
     }
-    QString pname = QLatin1String(".") + Config::configuration() -> profileName();
+    QString pname = QString(".") + Config::configuration() -> profileName();
 
     QStringList fileList;
-    fileList << QLatin1String("indexdb40.dict")
-             << QLatin1String("indexdb40.doc");
+    fileList << QString("indexdb40.dict")
+             << QString("indexdb40.doc");
 
     if (!onlyFulltextSearchIndex)
-        fileList << QLatin1String("indexdb40") << QLatin1String("contentdb40");
+        fileList << QString("indexdb40") << QString("contentdb40");
 
     QStringList::iterator it = fileList.begin();
     for (; it != fileList.end(); ++it) {
@@ -493,7 +493,7 @@ void HelpDialog::loadIndexFile()
 
     keywordDocuments.clear();
     QList<IndexKeyword> lst;
-    QString iFileName = Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("indexdb40.") +
+    QString iFileName = Config::configuration() -> CacheDir() + QDir::separator() + QString("indexdb40.") +
             Config::configuration() -> profileName();
     QFile indexFile(iFileName);
     if (!indexFile.open(QFile::ReadOnly)) {
@@ -617,7 +617,7 @@ void HelpDialog::buildKeywordDB()
     if (!lst.isEmpty())
         qSort(lst);
 
-    QFile indexout(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("indexdb40.")
+    QFile indexout(Config::configuration() -> CacheDir() + QDir::separator() + QString("indexdb40.")
                    + Config::configuration() -> profileName());
     if (verifyDirectory(Config::configuration() -> CacheDir()) && indexout.open(QFile::WriteOnly)) {
         QDataStream s(&indexout);
@@ -634,7 +634,7 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
         return;
 
     bool needRebuild = false;
-    if (Config::configuration() -> profileName() == QLatin1String("default")) {
+    if (Config::configuration() -> profileName() == QString("default")) {
         const QStringList docuFiles = Config::configuration() -> docFiles();
         for (QStringList::ConstIterator it = docuFiles.begin(); it != docuFiles.end(); ++it) {
             qDebug() << "setupTitleMap: " << *it;
@@ -731,7 +731,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
         }
     }
 
-    QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("contentdb40.") + Config::configuration() -> profileName());
+    QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName());
     if (contentOut.open(QFile::WriteOnly)) {
         QDataStream s(&contentOut);
         s << fileAges;
@@ -746,7 +746,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
 void HelpDialog::currentTabChanged(int index)
 {
     QString s = ui.tabWidget -> widget(index) -> objectName();
-    if (s == QLatin1String("indexPage"))
+    if (s == QString("indexPage"))
         QTimer::singleShot(0, this, SLOT(loadIndexFile()));
     else if (s == QString("bookmarkPage"))
         insertBookmarks();
@@ -776,11 +776,11 @@ void HelpDialog::showTopic(QTreeWidgetItem *item)
 void HelpDialog::showTopic()
 {
     QString tabName = ui.tabWidget -> currentWidget() -> objectName();
-    if (tabName == QLatin1String("indexPage"))
+    if (tabName == QString("indexPage"))
         showIndexTopic();
-    else if (tabName == QLatin1String("bookmarkPage"))
+    else if (tabName == QString("bookmarkPage"))
         showBookmarkTopic();
-    else if (tabName == QLatin1String("contentPage")){
+    else if (tabName == QString("contentPage")){
         showContentsTopic();
         ui.listContents -> setFocus();
     }
@@ -848,9 +848,9 @@ void HelpDialog::showIndexTopic()
 //-------------------------------------------------
 void HelpDialog::searchInIndex(const QString &searchString)
 {
-    QRegExp atoz(QLatin1String("[A-Z]"));
+    QRegExp atoz(QString("[A-Z]"));
     int matches = searchString.count(atoz);
-    if (matches > 0 && !searchString.contains(QLatin1String(".*")))
+    if (matches > 0 && !searchString.contains(QString(".*")))
     {
         int start = 0;
         QString newSearch;
@@ -859,7 +859,7 @@ void HelpDialog::searchInIndex(const QString &searchString)
             if (match <= start)
                 continue;
             newSearch += searchString.mid(start, match-start);
-            newSearch += QLatin1String(".*");
+            newSearch += QString(".*");
             start = match;
         }
         newSearch += searchString.mid(start);
@@ -1041,7 +1041,7 @@ void HelpDialog::insertBookmarks() //to list in Bookmarks tab. Add to Bookmark m
     bookmarksInserted = true;
 
     ui.listBookmarks -> clear();
-    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("bookmarks.") + Config::configuration() -> profileName());
+    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("bookmarks.") + Config::configuration() -> profileName());
     if (!f.open(QFile::ReadOnly))
         return;
     QTextStream ts(&f);
@@ -1096,7 +1096,7 @@ void HelpDialog::store(QTreeWidget *tw, QTextStream &ts)
 //-------------------------------------------------
 void HelpDialog::saveBookmarks()
 {
-    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("bookmarks.") + Config::configuration() -> profileName());
+    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("bookmarks.") + Config::configuration() -> profileName());
     if (!f.open(QFile::WriteOnly))
         return;
 
@@ -1256,11 +1256,11 @@ void HelpDialog::locateContents(const QString &link)
     //and the contents in the TOC will be <file:C:/xxx>.
     //But on others the 'link' of format <file:///root/xxx>
     //and the contents in the TOC will be <file:/root/xxx>.
-    if (findLink.contains(QLatin1String("file:///"))) {
+    if (findLink.contains(QString("file:///"))) {
         if (findLink[9] == QLatin1Char(':')) //on windows drives
-            findLink.replace(0, 8, QLatin1String("file:"));
+            findLink.replace(0, 8, QString("file:"));
         else
-            findLink.replace(0, 8, QLatin1String("file:/"));
+            findLink.replace(0, 8, QString("file:/"));
     }
 
     bool topLevel = false;
@@ -1356,12 +1356,12 @@ void HelpDialog::setupFullTextIndex()
                              tr("Failed to save fulltext search index to path: %1").arg(Config::configuration() -> CacheDir()));
         return;
     }
-    fullTextIndex -> setDictionaryFile(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("indexdb40.dict.") + pname);
-    fullTextIndex -> setDocListFile(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("indexdb40.doc.") + pname);
+    fullTextIndex -> setDictionaryFile(Config::configuration() -> CacheDir() + QDir::separator() + QString("indexdb40.dict.") + pname);
+    fullTextIndex -> setDocListFile(Config::configuration() -> CacheDir() + QDir::separator() + QString("indexdb40.doc.") + pname);
     processEvents();
 
     connect(fullTextIndex, SIGNAL(indexingProgress(int)), this, SLOT(setIndexingProgress(int)));
-    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QLatin1String("indexdb40.dict.") + pname);
+    QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("indexdb40.dict.") + pname);
     if (!f.exists()) {
         QString doc;
         QSet<QString> documentSet;
@@ -1416,11 +1416,11 @@ void HelpDialog::startSearch()
 {
     QString str = ui.termsEdit -> text();
     str = str.simplified();
-    str = str.replace(QLatin1String("\'"), QLatin1String("\""));
-    str = str.replace(QLatin1String("`"), QLatin1String("\""));
+    str = str.replace(QString("\'"), QString("\""));
+    str = str.replace(QString("`"), QString("\""));
     QString buf = str;
-    str = str.replace(QLatin1String("-"), QLatin1String(" "));
-    str = str.replace(QRegExp(QLatin1String("\\s[\\S]?\\s")), QLatin1String(" "));
+    str = str.replace(QString("-"), QString(" "));
+    str = str.replace(QRegExp(QString("\\s[\\S]?\\s")), QString(" "));
     terms = str.split(QLatin1Char(' '));
     QStringList termSeq;
     QStringList seqWords;
@@ -1428,7 +1428,7 @@ void HelpDialog::startSearch()
     for (; it != terms.end(); ++it) {
         (*it) = (*it).simplified();
         (*it) = (*it).toLower();
-        (*it) = (*it).replace(QLatin1String("\""), QLatin1String(""));
+        (*it) = (*it).replace(QString("\""), QString(""));
     }
     if (str.contains(QLatin1Char('\"'))) {
         if ((str.count(QLatin1Char('\"')))%2 == 0) {
@@ -1474,12 +1474,12 @@ void HelpDialog::startSearch()
             s = s.simplified();
             if (!s.isEmpty())
                 terms << s;
-            s = QLatin1String("");
+            s = QString("");
         } else if (buf[i] == QLatin1Char(' ') && !isPhrase) {
             s = s.simplified();
             if (!s.isEmpty())
                 terms << s;
-            s = QLatin1String("");
+            s = QString("");
         } else
             s += buf[i];
     }
@@ -1494,7 +1494,7 @@ void HelpDialog::on_helpButton_clicked()
 {
     emit showLink(MainWindow::urlifyFileName(
                   Config::configuration() -> assistantDocPath() +
-                  QLatin1String("/assistant-manual.html#full-text-searching")));
+                  QString("/assistant-manual.html#full-text-searching")));
 }
 */
 
@@ -1679,7 +1679,7 @@ void HelpDialog::showTreeItemMenu(const QPoint &pos) //bookmark popup menu
 
     QAction *action = itemPopup -> exec(treeWidget -> viewport() -> mapToGlobal(pos));
     if (action == actionOpenCurrentTab) {
-        if (ui.tabWidget -> currentWidget() -> objectName() == QLatin1String("contentPage"))
+        if (ui.tabWidget -> currentWidget() -> objectName() == QString("contentPage"))
             showContentsTopic();
         else
             showBookmarkTopic();

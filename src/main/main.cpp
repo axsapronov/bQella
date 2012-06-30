@@ -84,10 +84,16 @@ int main( int argc, char ** argv )
     mw -> show();
 
 
+//    qDebug() << " curfile" << conf->CurFile();
 //    qDebug() << "CurFile = " << conf->CurFile();
+//    qDebug() << "source = " << conf -> source();
     QStringList links = conf -> source();
-    if (links.isEmpty()) //!+! or option "Remember opened files" is not set
+    if (links.isEmpty())
+    {
+        //!+! or option "Remember opened files" is not set
+
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
+    }
     else 
         mw -> showLinks( links );
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );

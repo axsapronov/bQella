@@ -90,10 +90,10 @@ DocuParserRAP::DocuParserRAP()
 bool DocuParserRAP::startDocument()
 {
     state = StateInit;
-    errorProt = QLatin1String("");
-    contentRef = QLatin1String("");
-    indexRef = QLatin1String("");
-	indexKey = QLatin1String("");
+    errorProt = QString("");
+    contentRef = QString("");
+    indexRef = QString("");
+	indexKey = QString("");
     depth = 0;
     contentList.clear();
     indexList.clear();
@@ -110,14 +110,14 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
     switch(state) {
 
     case StateInit:
-        if(lower == QLatin1String("pemproject"))
+        if(lower == QString("pemproject"))
 			state = StateProfile;
         break;
 
 	case StateProfile:
-        if(lower == QLatin1String("property")) {
+        if(lower == QString("property")) {
             state = StateProperty;
-            propertyName = attr.value(QLatin1String("name"));
+            propertyName = attr.value(QString("name"));
         }
         break;
 
@@ -125,24 +125,24 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
         break;
 
 	case StateContents: 
-		if(lower == QLatin1String("contents")) 
+		if(lower == QString("contents")) 
 			state = StateSection;
         break;
 
     case StateSection:
-        if(lower == QLatin1String("section")) {
-            docTitle = attr.value(QLatin1String("title"));
-            contentRef = urlifyFileName(absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration() -> CurPrjDir()));
-            iconFileName = absolutifyFileName(attr.value(QLatin1String("icon")),Config::configuration() -> CurPrjDir());
+        if(lower == QString("section")) {
+            docTitle = attr.value(QString("title"));
+            contentRef = urlifyFileName(absolutifyFileName(attr.value(QString("ref")), Config::configuration() -> CurPrjDir()));
+            iconFileName = absolutifyFileName(attr.value(QString("icon")),Config::configuration() -> CurPrjDir());
 			contentList.append(ContentItem(docTitle, contentRef, iconFileName, depth));
 			depth++; 
         }
         break;
 
 	case StateKeywords: 
-        if (lower == QLatin1String("keyword")) {
-            indexRef = absolutifyFileName(attr.value(QLatin1String("ref")), Config::configuration() -> CurPrjDir());
-			indexKey = attr.value(QLatin1String("key"));
+        if (lower == QString("keyword")) {
+            indexRef = absolutifyFileName(attr.value(QString("ref")), Config::configuration() -> CurPrjDir());
+			indexKey = attr.value(QString("key"));
 			state = StateKeyword;
         } 
         break;
@@ -176,7 +176,7 @@ bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localNam
             return false;
         }else{
             static const QStringList lst = QStringList()  // lst is a list of properties with file names
-				<< QLatin1String("startpage");
+				<< QString("startpage");
             if (lst.contains(propertyName)){ //see if propertyValue is a file name then convert string to full path name
                 propertyValue = absolutifyFileName(propertyValue, Config::configuration() -> CurPrjDir());
 			}

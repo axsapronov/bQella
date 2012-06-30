@@ -113,10 +113,10 @@ void HelpWindow::setSource(const QUrl &name)
 {
     if (name.isValid()) {
         // pass URL to OS
-        if (name.scheme() == QLatin1String("http") 
-                || name.scheme() == QLatin1String("ftp")
-                || name.scheme() == QLatin1String("mailto")
-                || name.path().endsWith(QLatin1String("pdf"))) {
+        if (name.scheme() == QString("http")
+                || name.scheme() == QString("ftp")
+                || name.scheme() == QString("mailto")
+                || name.path().endsWith(QString("pdf"))) {
             bool launched = QDesktopServices::openUrl(name);
             if (!launched) {
                 QMessageBox::information(mw, tr("Help"), tr("Unable to launch web browser.\n"), tr("OK"));
@@ -464,7 +464,7 @@ bool HelpWindow::maybeSave()
 {
     if (!raEdit::document() -> isModified())
         return true;
-    if (Config::configuration() -> CurFile().startsWith(QLatin1String(":/")))
+    if (Config::configuration() -> CurFile().startsWith(QString(":/")))
         return true;
     QMessageBox::StandardButton ret;
     ret = QMessageBox::warning(this, tr("Application"),

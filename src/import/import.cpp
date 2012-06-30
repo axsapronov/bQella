@@ -89,8 +89,8 @@ void Import::importIni(QString filename)
 //----------------------------------------------------
 void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
-//    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
-//    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
+    //    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
+    //    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
     QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
     QString title = pathName.split("/").last().split(".").first();
     QString path = "./book_" + pathName.split("/").last();
@@ -103,7 +103,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
     addContentToProjectFile(text2, false);
 
-//    qDebug() << " _filename_ = " << pathName;
+    //    qDebug() << " _filename_ = " << pathName;
 
     // parse
     bool flag;
@@ -235,7 +235,7 @@ void Import::importProjectFile()
 void Import::createImportFolder(QString path)
 {
     QDir dir(path);
-//        qDebug() << "path = " << path.toLower();
+    //        qDebug() << "path = " << path.toLower();
     if (!QDir(QString(path)).exists())
     {
         dir.mkdir(QString(path));
@@ -245,7 +245,7 @@ void Import::createImportFolder(QString path)
         qDebug() << "Debug: _Import::createImportFolder" << QString(tr("Такая папка импорта уже существует:")) << path;
     }
     Config::configuration()->setCurPrjDir(path);
-//        qDebug() << " curprg  = " << Config::configuration()->CurPrjDir();
+    //        qDebug() << " curprg  = " << Config::configuration()->CurPrjDir();
 }
 //----------------------------------------------------
 void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)

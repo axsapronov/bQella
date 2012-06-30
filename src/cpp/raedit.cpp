@@ -36,7 +36,7 @@ static bool isAbsoluteFileName(const QString &name)
     return !name.isEmpty()
            && (name[0] == QLatin1Char('/')
 				#if defined(Q_WS_WIN)
-               || (name[0].isLetter() && name[1] == QLatin1Char(':')) || name.startsWith(QLatin1String("\\\\"))
+               || (name[0].isLetter() && name[1] == QLatin1Char(':')) || name.startsWith(QString("\\\\"))
 				#endif
                || (name[0]  == QLatin1Char(':') && name[1] == QLatin1Char('/'))
               );
@@ -61,8 +61,8 @@ raEdit::~raEdit()
 QString raEdit::findFile(const QUrl &name) const
 {
     QString fileName;
-    if (name.scheme() == QLatin1String("qrc"))
-        fileName = QLatin1String(":/") + name.path();
+    if (name.scheme() == QString("qrc"))
+        fileName = QString(":/") + name.path();
     else
         fileName = name.toLocalFile();
 
@@ -88,7 +88,7 @@ QUrl raEdit::resolveUrl(const QUrl &url) const
     // For the second case QUrl can merge "#someanchor" with "foo.html"
     // correctly to "foo.html#someanchor"
     if (!(currentURL.isRelative()
-          || (currentURL.scheme() == QLatin1String("file")
+          || (currentURL.scheme() == QString("file")
               && !isAbsoluteFileName(currentURL.toLocalFile())))
           || (url.hasFragment() && url.path().isEmpty())) {
         return currentURL.resolved(url);
@@ -126,8 +126,8 @@ void raEdit::_q_activateAnchor(const QString &href)
 
 #ifndef QT_NO_DESKTOPSERVICES
     if (openExternalLinks
-        && url.scheme() != QLatin1String("file")
-        && url.scheme() != QLatin1String("qrc")) {
+        && url.scheme() != QString("file")
+        && url.scheme() != QString("qrc")) {
         QDesktopServices::openUrl(url);
         return;
     }
@@ -188,7 +188,7 @@ void raEdit::setSource(const QUrl &url)
 /*!+! Загруженный текстовый файл - это сноска (примечание)
         if (isVisible()) {
             QString firstTag = txt.left(txt.indexOf(QLatin1Char('>')) + 1);
-            if (firstTag.left(3) == QLatin1String("<qt") && firstTag.contains(QLatin1String("type")) && firstTag.contains(QLatin1String("detail"))) {
+            if (firstTag.left(3) == QString("<qt") && firstTag.contains(QString("type")) && firstTag.contains(QString("detail"))) {
 #ifndef QT_NO_WHATSTHIS
                 QWhatsThis::showText(QCursor::pos(), txt, q);
 #endif

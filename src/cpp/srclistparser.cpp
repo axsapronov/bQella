@@ -59,9 +59,9 @@ bool SrcListParser::parse()
 //-------------------------------------------------
 bool SrcListParser::startDocument()
 {
-    errorString = QLatin1String("");
-    srcID = 0;	srcTitle = QLatin1String("");	srcAuthor = QLatin1String("");	srcComment = QLatin1String("");
-    lnkID = 0;	lnkComment = QLatin1String("");	lnkRef = QLatin1String("");
+    errorString = QString("");
+    srcID = 0;	srcTitle = QString("");	srcAuthor = QString("");	srcComment = QString("");
+    lnkID = 0;	lnkComment = QString("");	lnkRef = QString("");
     srcList.clear();
     lnkList.clear();
 
@@ -73,15 +73,15 @@ bool SrcListParser::startElement(const QString &, const QString &, const QString
 {
     QString lower = qname.toLower();
 	curTag = lower;
-	if(lower == QLatin1String("source")) {
+	if(lower == QString("source")) {
 		srcID++;
-        srcTitle = attr.value(QLatin1String("title"));
-		srcAuthor = attr.value(QLatin1String("author"));
-		srcComment = attr.value(QLatin1String("comment"));
+        srcTitle = attr.value(QString("title"));
+		srcAuthor = attr.value(QString("author"));
+		srcComment = attr.value(QString("comment"));
 //		qDebug() << "title = " << srcTitle << ", author= " << srcAuthor << ", comment= " << srcComment << ", ID= " << srcID;
-	}else if(lower == QLatin1String("link")) {
+	}else if(lower == QString("link")) {
 		lnkID++;
-		lnkComment = attr.value(QLatin1String("comment"));
+		lnkComment = attr.value(QString("comment"));
 	}
 	
     return true;
@@ -94,7 +94,7 @@ bool SrcListParser::endElement(const QString &nameSpace, const QString &localNam
     Q_UNUSED(localName);// So tell compiler to not warn about this.
 
     QString lower = qName.toLower();
-	if(lower == QLatin1String("source")) {
+	if(lower == QString("source")) {
 		srcList.append(SrcItem(srcID, srcTitle, srcAuthor, srcComment));
 	}
     return true;
@@ -107,7 +107,7 @@ bool SrcListParser::characters(const QString& ch)
     if (str.isEmpty())  //ignore link if it is empty
         return true;
 
-	if(curTag == QLatin1String("link")){
+	if(curTag == QString("link")){
 			lnkRef = str;
 			lnkList.append(LnkItem(lnkID, srcID, lnkComment, lnkRef));			
 //			qDebug() << "link comment = " << lnkComment << ", ref= " << lnkRef << ", srcID= " << srcID;

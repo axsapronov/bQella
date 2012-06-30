@@ -190,7 +190,7 @@ void TabbedBrowser::init()
     ui.tab -> setCornerWidget(newTabButton, Qt::TopLeftCorner);
     newTabButton -> setCursor(Qt::ArrowCursor);
     newTabButton -> setAutoRaise(true);
-    newTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QLatin1String("tab_add.png")));
+    newTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QString("tab_add.png")));
     QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(newTab()));
     newTabButton -> setToolTip(tr("Add page"));
 
@@ -199,7 +199,7 @@ void TabbedBrowser::init()
     ui.tab -> setCornerWidget(closeTabButton, Qt::TopRightCorner);
     closeTabButton -> setCursor(Qt::ArrowCursor);
     closeTabButton -> setAutoRaise(true);
-    closeTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QLatin1String("tab_close.png")));
+    closeTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QString("tab_close.png")));
     QObject::connect(closeTabButton, SIGNAL(clicked()), this, SLOT(closeTab()));
     closeTabButton -> setToolTip(tr("Close page"));
     closeTabButton -> setEnabled(false);
@@ -233,7 +233,7 @@ void TabbedBrowser::transferFocus()
         currentBrowser() -> setFocus();
     }
     mainWindow() -> setWindowTitle(Config::configuration() -> profileTitle()
-                             + QLatin1String(" - ")
+                             + QString(" - ")
                              + currentBrowser() -> documentTitle());
 }
 
@@ -310,10 +310,10 @@ void TabbedBrowser::sourceChanged()
     Q_ASSERT(win);
     QString docTitle(win -> documentTitle());
     if (docTitle.isEmpty())
-        docTitle = QLatin1String("[- no title -]");
+        docTitle = QString("[- no title -]");
     // Make the classname in the title a bit more visible (otherwise
     // we just see the "Qt 4.0 : Q..." which isn't really helpful ;-)
-/*    QString qtTitle = QLatin1String("RA : ");
+/*    QString qtTitle = QString("RA : ");
     if (docTitle.startsWith(qtTitle))
         docTitle = docTitle.mid(qtTitle.length());*/
     setAppTitle(win, docTitle);
@@ -327,7 +327,7 @@ void TabbedBrowser::setAppTitle(HelpWindow *win, const QString &title)
     const QString tt = title.trimmed();
     ui.tab -> setTabText(ui.tab -> indexOf(win), tt);
     if (win == currentBrowser())
-        mainWindow() -> setWindowTitle(Config::configuration() -> profileTitle() + QLatin1String(" - ") + tt);
+        mainWindow() -> setWindowTitle(Config::configuration() -> profileTitle() + QString(" - ") + tt);
 }
 
 void TabbedBrowser::keyPressEvent(QKeyEvent *e)

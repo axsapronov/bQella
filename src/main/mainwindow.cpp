@@ -83,7 +83,7 @@ MainWindow::MainWindow():
     dw = new QDockWidget(this);
     dw -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     dw -> setWindowTitle(tr("Project manager"));
-    dw -> setObjectName(QLatin1String("sidebar"));
+    dw -> setObjectName(QString("sidebar"));
     helpDock = new HelpDialog(dw, this);
     exportm = new Export();
     importm = new Import();
@@ -353,9 +353,23 @@ void MainWindow::showLinkFromClient(const QString &link)
 void MainWindow::showLink(const QString &link)
 {
 
+    QString mylink;
+    if (link.indexOf(Config::configuration()->CurPrjDir() <=0))
+    {
+        QString nameoffile = link.split("/").last();
+        mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
+    }
+
+//    qDebug() << "link " << link;
     QString lnk = unurlifyFileName(link);
-    //    QString test = Config::configuration()->PrjDir();
-    //    QString test2 = Config::configuration()->CurPrjDir();
+//    qDebug() << "lnk " << lnk;
+//    qDebug() << "mylink " << mylink;
+//    QString test = Config::configuration()->PrjDir();
+//    QString test2 = Config::configuration()->CurPrjDir();
+//    QString test3 = Config::configuration()->CurFile();
+//    qDebug() << "test = " << test;
+//    qDebug() << "test2 = " << test2;
+//    qDebug() << "test3 = " << test3;
 
     //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
@@ -365,12 +379,12 @@ void MainWindow::showLink(const QString &link)
     	    return;
         if (ui.actionSaveFile -> isEnabled()) //i.e. document was modified
             emit saveOpenedLink();
-    	QUrl url(link);
+        QUrl url(link);
         //qDebug() << "down!";
         tabs -> setSource(url.toString()); // w
         tabs -> currentBrowser() -> setFocus();
     }else{
-        qWarning() << "Failed to open link: " << link;
+        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
         QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
     }
 }
@@ -468,8 +482,9 @@ void MainWindow::saveSettings()
     QStringList lst;
     QList<HelpWindow*> browsers = tabs -> browsers();
     foreach (HelpWindow *browser, browsers){
-        qDebug() << "src = " << browser -> source().toString();
+//        qDebug() << "src = " << browser -> source().toString();
         lst << relatifyFileName(browser -> source().toString(), config -> PrjDir());
+//        qDebug() << "lst = " << lst;
     }
     config -> setSource(lst);
     config -> saveSettings();
@@ -643,7 +658,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
     int i = fn.lastIndexOf(QLatin1Char('.'));
     if (i > -1)
         fn = fn.left(i);
-    QString relativeDestPath = fn + QLatin1String("_images");
+    QString relativeDestPath = fn + QString("_images");
     QDir destDir(fi.absolutePath() + QDir::separator() + relativeDestPath);
     bool imgDirAvailable = destDir.exists();
     if (!imgDirAvailable)
@@ -672,7 +687,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
                             if (!QFile::copy(from, destDir.absolutePath()
                                              + QDir::separator() + destName))
                                 continue;
-                            fm.setName(QLatin1String("./") + relativeDestPath + QLatin1String("/") + destName);
+                            fm.setName(QString("./") + relativeDestPath + QString("/") + destName);
                             QTextCursor cursor(doc);
                             cursor.setPosition(fragment.position());
                             cursor.setPosition(fragment.position() + fragment.length(),

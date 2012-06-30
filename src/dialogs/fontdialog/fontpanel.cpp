@@ -221,7 +221,7 @@ void FontPanel::updateFamily(const QString &family)
     m_styleComboBox -> setEnabled(hasStyles);
 
     int normalIndex = -1;
-    const QString normalStyle = QLatin1String("Normal");
+    const QString normalStyle = QString("Normal");
 
     if (hasStyles) {
         foreach (QString style, styles) {

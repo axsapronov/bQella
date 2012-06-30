@@ -568,7 +568,7 @@ QString urlifyFileName(const QString &fileName)
     QString name = fileName;
     QUrl url(name);
 #if defined(Q_OS_WIN32)
-    if (!url.isValid() || url.scheme().isEmpty() || url.scheme().toLower() != QLatin1String("file:")) {
+    if (!url.isValid() || url.scheme().isEmpty() || url.scheme().toLower() != QString("file:")) {
         int i = name.indexOf(QLatin1Char('#'));
         QString anchor = name.mid(i);
         name = name.toLower();
@@ -577,14 +577,14 @@ QString urlifyFileName(const QString &fileName)
         name.replace(QLatin1Char('\\'), QLatin1Char('/'));
         foreach (QFileInfo drive, QDir::drives()) {
             if (name.startsWith(drive.absolutePath().toLower())) {
-                name = QLatin1String("file:") + name;
+                name = QString("file:") + name;
                 break;
             }
         }
     }
 #else
     if (!url.isValid() || url.scheme().isEmpty())
-        name.prepend(QLatin1String("file:"));
+        name.prepend(QString("file:"));
 #endif
     return name;
 }
@@ -614,8 +614,8 @@ QString relatifyFileName(QString url, QString path)
 	//we assume that the passing paths have "/" as a dir separator, since that's how Qt stores paths
 	if (!path.endsWith("/")) path = path + "/";
 	QFileInfo fi(str);
-	QString path1 = fi.absolutePath()  + "/"; path1 = path1.trimmed().toLower();
-	QString path2 = path.trimmed().toLower();
+        QString path1 = fi.absolutePath()  + "/"; path1 = path1.trimmed();
+        QString path2 = path.trimmed();
 	//Now we have two correct defined paths, let's make "str" relative to path1
 	//For Windows we need to be sure that both paths are on the same drive
 	if (path1[0] == path2[0]) { 

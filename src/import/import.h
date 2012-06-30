@@ -29,7 +29,7 @@ private slots:
 
     void importProjectFile();
 
-        QString importChapter(QString file);
+    QString importChapter(QString file);
 
     void createImportFolder(QString path);
     void createChaterFile(QString file,QString text, int i);

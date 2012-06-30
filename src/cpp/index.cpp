@@ -127,16 +127,16 @@ void Index::setupDocumentList()
 {
     QDir d( docPath );
     QStringList filters;
-    filters.append(QLatin1String("*.html"));
+    filters.append(QString("*.html"));
     QStringList lst = d.entryList(filters);
     QStringList::ConstIterator it = lst.constBegin();
     for ( ; it != lst.constEnd(); ++it )
-        docList.append( QLatin1String("file:") + docPath + QLatin1String("/") + *it );
+        docList.append( QString("file:") + docPath + QString("/") + *it );
 }
 
 void Index::insertInDict( const QString &str, int docNum )
 {
-    if ( str == QLatin1String("amp") || str == QLatin1String("nbsp"))
+    if ( str == QString("amp") || str == QString("nbsp"))
         return;
     Entry *e = 0;
     if ( dict.count() )
@@ -158,12 +158,12 @@ QString Index::getCharsetForDocument(QFile *file)
     QString contents = s.readAll();
 
     QString encoding;
-    int start = contents.indexOf(QLatin1String("<meta"), 0, Qt::CaseInsensitive);
+    int start = contents.indexOf(QString("<meta"), 0, Qt::CaseInsensitive);
     if (start > 0) {
-        int end = contents.indexOf(QLatin1String(">"), start);
+        int end = contents.indexOf(QString(">"), start);
         QString meta = contents.mid(start+5, end-start);
         meta = meta.toLower();
-        QRegExp r(QLatin1String("charset=([^\"\\s]+)"));
+        QRegExp r(QString("charset=([^\"\\s]+)"));
         if (r.indexIn(meta) != -1) {
             encoding = r.cap(1);
         }
@@ -171,7 +171,7 @@ QString Index::getCharsetForDocument(QFile *file)
 
     file -> seek(0);
     if (encoding.isEmpty())
-        return QLatin1String("utf-8");
+        return QString("utf-8");
     return encoding;
 }
 
@@ -180,7 +180,7 @@ void Index::parseDocument( const QString &filename, int docNum )
     QFile file( filename );
     qDebug() << "opening file parseDocument: " << filename;
     if ( !file.open(QFile::ReadOnly) ) {
-        qWarning( (QLatin1String("can not open file ") + filename).toAscii().constData() );
+        qWarning( (QString("can not open file ") + filename).toAscii().constData() );
         return;
     }
 
@@ -293,7 +293,7 @@ QStringList Index::query( const QStringList &terms, const QStringList &termSeq, 
         Entry *e = 0;
         if ( (*it).contains(QLatin1Char('*')) ) {
             QVector<Document> wcts = setupDummyTerm( getWildcardTerms( *it ) );
-            termList.append( Term(QLatin1String("dummy"), wcts.count(), wcts ) );
+            termList.append( Term(QString("dummy"), wcts.count(), wcts ) );
         } else if ( dict[ *it ] ) {
             e = dict[ *it ];
             termList.append( Term( *it, e -> documents.count(), e -> documents ) );
@@ -353,14 +353,14 @@ QString Index::getDocumentTitle( const QString &fullFileName )
     QFile file( fileName );
     qDebug() << "opening file getDocumentTitle: " << fileName;	
 	if ( !file.open( QFile::ReadOnly ) ) {
-        qWarning( (QLatin1String("cannot open file ") + fileName).toAscii().constData() );
+        qWarning( (QString("cannot open file ") + fileName).toAscii().constData() );
         return fileName;
     }
     QTextStream s( &file );
     QString text = s.readAll();
 
-    int start = text.indexOf(QLatin1String("<title>"), 0, Qt::CaseInsensitive) + 7;
-    int end = text.indexOf(QLatin1String("</title>"), 0, Qt::CaseInsensitive);
+    int start = text.indexOf(QString("<title>"), 0, Qt::CaseInsensitive) + 7;
+    int end = text.indexOf(QString("</title>"), 0, Qt::CaseInsensitive);
 
     QString title = ( end - start <= 0 ? tr("Untitled") : text.mid( start, end - start ) );
     documentTitleCache.insert(fileName, title);
@@ -378,7 +378,7 @@ QStringList Index::getWildcardTerms( const QString &term )
         bool found = false;
         QString text( it.key() );
         for ( iter = terms.begin(); iter != terms.end(); ++iter ) {
-            if ( *iter == QLatin1String("*") ) {
+            if ( *iter == QString("*") ) {
                 found = true;
                 continue;
             }
@@ -416,13 +416,13 @@ QStringList Index::split( const QString &str )
     int j = 0;
     int i = str.indexOf(QLatin1Char('*'), j );
 
-    if (str.startsWith(QLatin1String("*")))
-        lst << QLatin1String("*");
+    if (str.startsWith(QString("*")))
+        lst << QString("*");
 
     while ( i != -1 ) {
         if ( i > j && i <= (int)str.length() ) {
             lst << str.mid( j, i - j );
-            lst << QLatin1String("*");
+            lst << QString("*");
         }
         j = i + 1;
         i = str.indexOf(QLatin1Char('*'), j );
@@ -476,7 +476,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
     QFile file( fName );
 	qDebug() << "opening file searchForPattern: " << fName;
     if ( !file.open( QFile::ReadOnly ) ) {
-        qWarning( (QLatin1String("cannot open file ") + fName).toAscii().constData() );
+        qWarning( (QString("cannot open file ") + fName).toAscii().constData() );
         return false;
     }
 
