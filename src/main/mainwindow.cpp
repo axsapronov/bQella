@@ -255,6 +255,9 @@ void MainWindow::importModule()
         pr.prjStartPage = importm->getStartPage();
         pr.prjTitle = Config::configuration()->ModuleBiblename();
 
+
+
+
         // добавить другие параметры (дохера буленов и строк из модулепропертис)
 
 
@@ -752,16 +755,16 @@ void MainWindow::ProjectNew()
     pr.chapterZero = false;
     pr.englishPsalms = false;
     pr.strongNumber = false;
-    pr.strongsDirectory = "";
-    pr.soundDirectory = "";
+    pr.strongsDirectory = " ";
+    pr.soundDirectory = " ";
     pr.noForcedLineBreaks = false;
     pr.language = "rus";
-    pr.installFonts = "";
-    pr.desiredFontName = "";
-    pr.categories = "";
-    pr.desiredFontPath = "";
+    pr.installFonts = " ";
+    pr.desiredFontName = " ";
+    pr.categories = " ";
+    pr.desiredFontPath = " ";
     pr.defaultEncoding = "utf-8";
-    pr.desiredUIFont = "";
+    pr.desiredUIFont = " ";
     pr.useChapterHead = false;
     pr.useRightAlignment = false;
 
@@ -803,6 +806,7 @@ void MainWindow::ProjectProps()
     pr.moduleBVersion = QString(Config::configuration() -> profile() -> props["version"]).toDouble();
 
 
+    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
 
     pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["type"]);
     pr.oldTestament = QStringtoBool(Config::configuration() -> profile() -> props["oldtestament"]);
@@ -824,7 +828,7 @@ void MainWindow::ProjectProps()
     pr.defaultEncoding = Config::configuration() -> profile() -> props["defaultencoding"];
     pr.desiredUIFont = Config::configuration() -> profile() -> props["desireduifont"];
 
-
+    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
 
     //    pr.moduleType = Config::configuration() -> profile() -> props["type"];
     bool newProject = false;
@@ -872,25 +876,26 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
     ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
-    ts << ind1 << "<property name=\"strongsDirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
-    ts << ind1 << "<property name=\"soundDirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
-    ts << ind1 << "<property name=\"language\">" << Qt::escape(pr.language) << "</property>" << endl;
-    ts << ind1 << "<property name=\"installFonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desiredFontName\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"language\">" << pr.language << "</property>" << endl;
+    ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
     ts << ind1 << "<property name=\"categories\">" << Qt::escape(pr.categories) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desiredFontPath\">" << Qt::escape(pr.desiredFontPath) << "</property>" << endl;
-    ts << ind1 << "<property name=\"defaultEncoding\">" << Qt::escape(pr.defaultEncoding) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desiredUIFont\">" << Qt::escape(pr.desiredUIFont) << "</property>" << endl;
-    ts << ind1 << "<property name=\"moduleType\">" << Qt::escape(BooltoQString(pr.moduleType)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"oldTestament\">" << Qt::escape(BooltoQString(pr.oldTestament)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"newTestament\">" << Qt::escape(BooltoQString(pr.newTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontpath\">" << Qt::escape(pr.desiredFontPath) << "</property>" << endl;
+    ts << ind1 << "<property name=\"defaultencoding\">" << Qt::escape(pr.defaultEncoding) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desireduifont\">" << Qt::escape(pr.desiredUIFont) << "</property>" << endl;
+
+    ts << ind1 << "<property name=\"moduletype\">" << Qt::escape(BooltoQString(pr.moduleType)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"oldtestament\">" << Qt::escape(BooltoQString(pr.oldTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"newtestament\">" << Qt::escape(BooltoQString(pr.newTestament)) << "</property>" << endl;
     ts << ind1 << "<property name=\"apocrypha\">" << Qt::escape(BooltoQString(pr.apocrypha)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"chapterZero\">" << Qt::escape(BooltoQString(pr.chapterZero)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"englishPsalms\">" << Qt::escape(BooltoQString(pr.englishPsalms)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"strongNumber\">" << Qt::escape(BooltoQString(pr.strongNumber)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"noForcedLineBreaks\">" << Qt::escape(BooltoQString(pr.noForcedLineBreaks)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"useRightAlignment\">" << Qt::escape(BooltoQString(pr.useRightAlignment)) << "</property>" << endl;
-    ts << ind1 << "<property name=\"useChapterHead\">" << Qt::escape(BooltoQString(pr.useChapterHead)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"chapterzero\">" << Qt::escape(BooltoQString(pr.chapterZero)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"englishpsalms\">" << Qt::escape(BooltoQString(pr.englishPsalms)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"strongnumber\">" << Qt::escape(BooltoQString(pr.strongNumber)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"noforcedlinebreaks\">" << Qt::escape(BooltoQString(pr.noForcedLineBreaks)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"userightalignment\">" << Qt::escape(BooltoQString(pr.useRightAlignment)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"usechapterhead\">" << Qt::escape(BooltoQString(pr.useChapterHead)) << "</property>" << endl;
 
 
     //    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
@@ -921,13 +926,35 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> toPrjLog(3, tr("- module name      = %1", "For log").arg(pr.moduleBiblename));
     Config::configuration() -> toPrjLog(3, tr("- module short name  = %1", "For log").arg(pr.moduleBibleShortName));
     Config::configuration() -> toPrjLog(3, tr("- module copyright = %1", "For log").arg(pr.moduleCopyright));
+    // потом логирование остальных пунктов добавить
 
     Config::configuration() -> profile() -> addProperty("title", pr.prjTitle);
     Config::configuration() -> profile() -> addProperty("startpage", pr.prjStartPage);
     Config::configuration() -> profile() -> addProperty("biblename", pr.moduleBiblename);
     Config::configuration() -> profile() -> addProperty("bibleshortname", pr.moduleBibleShortName);
-
     Config::configuration() -> profile() -> addProperty("copyright", pr.moduleCopyright);
+
+
+    Config::configuration() -> profile() -> addProperty("type", BooltoQString(pr.moduleType));
+    Config::configuration() -> profile() -> addProperty("oldtestament", BooltoQString(pr.oldTestament));
+    Config::configuration() -> profile() -> addProperty("newtestament", BooltoQString(pr.newTestament));
+    Config::configuration() -> profile() -> addProperty("apocrypha", BooltoQString(pr.apocrypha));
+    Config::configuration() -> profile() -> addProperty("chapterzero", BooltoQString(pr.chapterZero));
+    Config::configuration() -> profile() -> addProperty("endlishpsalms", BooltoQString(pr.englishPsalms));
+    Config::configuration() -> profile() -> addProperty("noforcedlinebreaks", BooltoQString(pr.noForcedLineBreaks));
+    Config::configuration() -> profile() -> addProperty("usechapterhead", BooltoQString(pr.useChapterHead));
+    Config::configuration() -> profile() -> addProperty("userightalignment", BooltoQString(pr.useRightAlignment));
+    Config::configuration() -> profile() -> addProperty("strongsnumber", BooltoQString(pr.strongNumber));
+
+    Config::configuration() -> profile() -> addProperty("strongsdirectory", pr.strongsDirectory);
+    Config::configuration() -> profile() -> addProperty("sounddirectory", pr.soundDirectory);
+    Config::configuration() -> profile() -> addProperty("language", pr.language);
+    Config::configuration() -> profile() -> addProperty("installfonts", pr.installFonts);
+    Config::configuration() -> profile() -> addProperty("desiredfontname", pr.desiredFontName);
+    Config::configuration() -> profile() -> addProperty("categories", pr.categories);
+    Config::configuration() -> profile() -> addProperty("desiredfontpath", pr.desiredFontPath);
+    Config::configuration() -> profile() -> addProperty("defaultencoding", pr.defaultEncoding);
+    Config::configuration() -> profile() -> addProperty("desireduifont", pr.desiredUIFont);
     //    Config::configuration() -> profile() -> addProperty("type", pr.moduleType);
 
     QString version;

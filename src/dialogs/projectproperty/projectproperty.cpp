@@ -53,13 +53,17 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.lineEditCopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
 
-//    ui.checkBox
+    //    ui.checkBox
+
     ui.cbOldTestament -> setChecked(pr.oldTestament);
     ui.cbNewTestament -> setChecked(pr.newTestament);
+
     ui.cbApocrypha -> setChecked(pr.apocrypha);
     ui.cbChapterZero -> setChecked(pr.chapterZero);
     ui.cbEnglishPsalms -> setChecked(pr.englishPsalms);
+    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbStrongNumber -> setChecked(pr.strongNumber);
+    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbUseChapterHead -> setChecked(pr.useChapterHead);
     ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
@@ -72,11 +76,11 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.lESoundDir -> setText(pr.soundDirectory);
     ui.lEInstallFonts -> setText(pr.installFonts);
     ui.lEDesiredUIFont -> setText(pr.desiredUIFont);
-//    ui.comBLanguage ->currentText() .s
-//    установить язык
+    //    ui.comBLanguage ->currentText() .s
+    //    установить язык
 
-//    // HTMLFilter должен автоматом создаваться
-//    QString language;
+    //    // HTMLFilter должен автоматом создаваться
+    //    QString language;
 
 }
 
@@ -109,11 +113,7 @@ void ProjectProperties::accept()
     if (er){
         QMessageBox::critical(this, tr("Project property error"), s);
     }else{
-
-        // если папки export нету, то создаем, если есть, то удаляем содержимое
         QDir dir(prjFN);
-
-
         //    qDebug() << "path = " << path <<  "last = " << path.last();
 
         dir.mkdir(ui.lineEditBibleName -> text());
@@ -122,7 +122,8 @@ void ProjectProperties::accept()
         //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.lineEditBibleName -> text();
         //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File;
         QFile filePrj(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
-        if (!filePrj.exists()){		//create file if it's not exist
+        if (!filePrj.exists())
+        {		//create file if it's not exist
             if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
                 QTextStream ts(&filePrj);
                 ts << "<pemproject>\n</pemproject>";
@@ -133,8 +134,8 @@ void ProjectProperties::accept()
             }
         }
         //check for valid start page file name
-//        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
-                QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
+        //        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
         if (!fileSP.exists()){		//create file if it does not exist
             if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
                 QTextStream ts(&fileSP);
@@ -146,12 +147,8 @@ void ProjectProperties::accept()
 
                 Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
                 Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
-
                 Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
-
-
                 Config::configuration() -> setDefaultEncoding(ui.lEDefaultEncoding -> text());
-
 
                 Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
                 Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
@@ -173,7 +170,6 @@ void ProjectProperties::accept()
                 Config::configuration() -> setDesiredUIFont(ui.lEDesiredUIFont -> text());
 
                 QString str_ender = "\n</body>\n</html>\n";
-
 
                 ts << str_header << str_body << str_ender;
                 //ts << str_conf;
@@ -198,16 +194,17 @@ void ProjectProperties::accept()
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
 
-
-            prop.oldTestament = ui.cbOldTestament -> checkState();
-            prop.newTestament = ui.cbNewTestament -> checkState();
-            prop.apocrypha = ui.cbApocrypha -> checkState();
-            prop.chapterZero = ui.cbChapterZero -> checkState();
-            prop.englishPsalms = ui.cbEnglishPsalms -> checkState();
-            prop.strongsDirectory = ui.cbStrongNumber -> checkState();
-            prop.useChapterHead = ui.cbUseChapterHead -> checkState();
-            prop.useRightAlignment = ui.cbUseRightAlignment -> checkState();
-            prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> checkState();
+            qDebug() << "before old = " << prop.oldTestament;
+            prop.oldTestament = ui.cbOldTestament -> isChecked();
+            qDebug() << "after old = " << prop.oldTestament;
+            prop.newTestament = ui.cbNewTestament -> isChecked();
+            prop.apocrypha = ui.cbApocrypha -> isChecked();
+            prop.chapterZero = ui.cbChapterZero -> isChecked();
+            prop.englishPsalms = ui.cbEnglishPsalms -> isChecked();
+            prop.strongsDirectory = ui.cbStrongNumber -> isChecked();
+            prop.useChapterHead = ui.cbUseChapterHead -> isChecked();
+            prop.useRightAlignment = ui.cbUseRightAlignment -> isChecked();
+            prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
 
             prop.categories = ui.lECategories -> text();
             prop.defaultEncoding = ui.lEDefaultEncoding -> text();
@@ -218,7 +215,7 @@ void ProjectProperties::accept()
             prop.installFonts = ui.lEInstallFonts -> text();
             prop.desiredUIFont = ui.lEDesiredUIFont -> text();
 
-//            prop.moduleType = ui.comboBoxTypeModule -> currentText();
+            //            prop.moduleType = ui.comboBoxTypeModule -> currentText();
 
             validProperties = true;
             if (modeNewProject){

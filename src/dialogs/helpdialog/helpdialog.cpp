@@ -1200,8 +1200,8 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
     if (fi.exists() && fi.isFile())
     {
-        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "opening file: " << fn ;
-        qDebug() << "Debug: _ HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
+        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
+        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         emit showLink("file:"+fn);
     }
@@ -1986,6 +1986,7 @@ void HelpDialog::saveProject(QString profileFN)
             str = relatifyFileName(i.value(), Config::configuration() -> CurPrjDir());
         }else
             str = i.value();
+        qDebug() << "i.key =  " << i.key() << "  str = " << str;
         ts << ind1 << "<property name=\"" << i.key() << "\">" << Qt::escape(str) << "</property>" << endl;
     }
     ts << "</profile>\n\n";

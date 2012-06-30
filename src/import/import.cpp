@@ -210,13 +210,13 @@ void Import::importProjectFile()
     //    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ts << "<profile>" << endl;
-    ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
-    ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
-    ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
-    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(pr.moduleBiblename) << "</property>" << endl;
-    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
-    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
-    ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
+    ts << ind1 << "<property name= \"title\" > " << Qt::escape(pr.prjTitle) << " </property>" << endl;
+    ts << ind1 << "<property name= \"name\" > " << Qt::escape(name) << " </property>" << endl;
+    ts << ind1 << "<property name= \"startpage\" > " << Qt::escape(spFN) << " </property>" << endl;
+    ts << ind1 << "<property name= \"biblename\" > " << Qt::escape(pr.moduleBiblename) << " </property>" << endl;
+    ts << ind1 << "<property name= \"bibleshortname\" > " << Qt::escape(pr.moduleBibleShortName) << " </property>" << endl;
+    ts << ind1 << "<property name= \"copyright\" > " << Qt::escape(pr.moduleCopyright) << " </property>" << endl;
+    ts << ind1 << "<property name= \"version\" > " << pr.moduleBVersion << " </property>" << endl;
     //    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 

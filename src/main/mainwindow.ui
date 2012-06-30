@@ -467,6 +467,9 @@
    <property name="text">
     <string>Project properties...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
   </action>
   <action name="actionProjectStatistics">
    <property name="icon">
@@ -514,6 +517,9 @@
    </property>
    <property name="toolTip">
     <string>Save project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionFileAdd">

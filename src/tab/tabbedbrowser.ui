@@ -161,9 +161,6 @@
         <property name="textFormat">
          <enum>Qt::RichText</enum>
         </property>
-        <property name="pixmap">
-         <pixmap/>
-        </property>
         <property name="scaledContents">
          <bool>true</bool>
         </property>

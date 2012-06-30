@@ -802,21 +802,22 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
 int BooltoInt(bool foo)
 {
     if (foo == true)
-        return 1;
+        return 15;
     return 0;
 }
+
 
 QString BooltoQString(bool foo)
 {
     if (foo == true)
-        return "1";
+        return "10";
     return "0";
 }
 
 // юзать только для преобразования параметров проекта
 bool QStringtoBool(QString str)
 {
-    if (str.indexOf("0"))
+    if (str == "0" or str.isEmpty() or str == " ")
         return false;
     return true;
 }
