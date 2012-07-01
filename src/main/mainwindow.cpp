@@ -35,11 +35,9 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
-#include <QPrinter>
 #include <QDockWidget>
 #include <QStatusBar>
 #include <QShortcut>
-#include <QPrintDialog>
 #include <QCloseEvent>
 
 
@@ -106,9 +104,6 @@ MainWindow::MainWindow():
     }
 
     //выключаем ненужный функционал
-    ui.actionInsertImage -> setVisible(!ui.actionInsertImage -> isVisible());
-    ui.actionFilePrint -> setVisible(false);
-    ui.actionPrint_Preview -> setVisible(false);
     ui.toolBarTabs -> setVisible(false);
     ui.actionEditFind -> setVisible(false);
     ui.actionImportBook->setVisible(false);
@@ -327,22 +322,6 @@ void MainWindow::on_actionAboutAssistant_triggered()
 {
     about();
 }
-
-//-------------------------------------------------
-void MainWindow::on_actionFilePrint_triggered()
-{
-    QPrinter printer(QPrinter::HighResolution);
-    printer.setFullPage(true);
-
-    QPrintDialog *dlg = new QPrintDialog(&printer, this);
-
-    if (dlg -> exec() == QDialog::Accepted) {
-        tabs -> currentBrowser() -> document() -> print(&printer);
-    }
-
-    delete dlg;
-}
-
 //-------------------------------------------------
 void MainWindow::showLinkFromClient(const QString &link)
 {

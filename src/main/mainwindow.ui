@@ -139,8 +139,6 @@
     <addaction name="actionExport_Module"/>
     <addaction name="menuImport"/>
     <addaction name="separator"/>
-    <addaction name="actionFilePrint"/>
-    <addaction name="actionPrint_Preview"/>
     <addaction name="menuProperties"/>
     <addaction name="menuRemove"/>
     <addaction name="actionProjectBackup"/>
@@ -182,8 +180,6 @@
     <addaction name="actionEditFind"/>
     <addaction name="actionEditFindNext"/>
     <addaction name="actionEditFindPrev"/>
-    <addaction name="separator"/>
-    <addaction name="actionInsertImage"/>
    </widget>
    <widget class="QMenu" name="menuFormat">
     <property name="title">

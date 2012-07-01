@@ -92,7 +92,6 @@ private slots:
     void showAppSettings();
     void globalShortcut_CtrlShiftInsert();    
     void on_actionNewWindow_triggered();
-    void on_actionFilePrint_triggered();
     void on_actionAboutAssistant_triggered();
     void on_actionSaveFileAs_triggered();
     void about();

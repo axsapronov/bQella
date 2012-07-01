@@ -43,7 +43,6 @@ FORMS += \
      src/main/mainwindow.ui \
      src/tab/tabbedbrowser.ui \
      src/tab/tableproperty.ui \
-     src/ui/topicchooser.ui \
      src/ui/cellsplit.ui \
      src/settings/settings.ui \
     src/dialogs/findandreplacedialog/frdialog.ui
@@ -71,7 +70,6 @@ SOURCES +=  \
      src/cpp/pcommon.cpp \
      src/cpp/raedit.cpp \
      src/cpp/srclistparser.cpp \
-     src/cpp/topicchooser.cpp \
      src/cpp/cellsplit.cpp \
     src/export/export.cpp \
     src/import/import.cpp \
@@ -95,7 +93,6 @@ HEADERS += \
      src/settings/config.h \
      src/tab/tabbedbrowser.h \
      src/tab/tableproperty.h \
-     src/h/topicchooser.h \
      src/h/cellsplit.h \
      src/h/pcommon.h \
      src/h/index.h \

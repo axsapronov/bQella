@@ -33,7 +33,6 @@
 #include "docproperty.h"
 #include "tableproperty.h"
 #include "cellsplit.h"
-//#include "imageproperty.h"
 
 
 class MainWindow;
@@ -81,12 +80,6 @@ public slots:
     void fileOpen();
     bool fileSave();
 
-    //void insertTable(int rows, int columns, const QTextTableFormat & format);
-    void imageInsert(QString html);
-    void imageUpdate(QString html);
-    //void imageInsert(int height, int width, QImage img);
-    //void imageUpdate(int height, int width, QImage img);
-
     void insertRichText(QString text);	//insert HTML text at cursor. Used from other modules, f.e. MainWindow::setMenuSign()
 
 protected:
@@ -107,8 +100,6 @@ private:
     ItemProperties *itemprop;
     LinkProperties *linkprop;
     DocProperties *docprop;
-    //	ImageProperties *imageprop;
-
 
     QString lastAnchor; //url for document in helpwindow
     bool blockScroll;
@@ -149,10 +140,6 @@ private slots:
 
     //------- taken from TextEdit -------
     bool fileSaveAs();
-    void filePrint();
-    void filePrintPreview();
-
-
     void textBold();
     void textUnderline();
     void textItalic();

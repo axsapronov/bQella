@@ -39,15 +39,12 @@
 #include <QClipboard>
 
 //------- taken from TextEdit -------
-//#include "printpreview.h"
 #include <QContextMenuEvent>
 #include <QMoveEvent>
 #include <QCloseEvent>
 #include <QFontComboBox>
 #include <QToolBar>
 #include <QFileDialog>
-#include <QPrinter>
-#include <QPrintDialog>
 #include <QColorDialog>
 #include <QTextList>
 //------- end of TextEdit section -------
@@ -357,12 +354,9 @@ void HelpWindow::setupFileActions()
     connect(mw -> ui.actionSaveFile, 		SIGNAL(triggered()), this, SLOT(fileSave()));
     connect(mw -> ui.actionSaveFileAs, 	SIGNAL(triggered()), this, SLOT(fileSaveAs()));
 
-    connect(mw -> ui.actionFilePrint, 	SIGNAL(triggered()), this, SLOT(filePrint()));
-    connect(mw -> ui.actionPrint_Preview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
     connect(mw -> ui.actionItemProperties,SIGNAL(triggered()), mw -> helpDialog(), SLOT(showItemProperties()));
     mw -> ui.actionFileAdd -> setShortcut(QKeySequence::Open);
     mw -> ui.actionSaveFile -> setShortcut(QKeySequence::Save);
-    mw -> ui.actionFilePrint -> setShortcut(QKeySequence::Print);
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 
     connect(raEdit::document(), SIGNAL(modificationChanged(bool)), mw -> ui.actionSaveFile, SLOT(setEnabled(bool)));
@@ -548,35 +542,6 @@ bool HelpWindow::fileSaveAs()
 }
 
 //-------------------------------------------------
-void HelpWindow::filePrint()
-{
-#ifndef QT_NO_PRINTER
-    QPrinter printer(QPrinter::HighResolution);
-    printer.setFullPage(true);
-    QPrintDialog *dlg = new QPrintDialog(&printer, this);
-    if (raEdit::textCursor().hasSelection())
-        dlg -> addEnabledOption(QAbstractPrintDialog::PrintSelection);
-    dlg -> setWindowTitle(tr("Print Document"));
-    if (dlg -> exec() == QDialog::Accepted) {
-        raEdit::print(&printer);
-    }
-    delete dlg;
-#endif
-}
-
-//-------------------------------------------------
-void HelpWindow::filePrintPreview()
-{
-    /*    PrintPreview *preview = new PrintPreview(raEdit::document(), this);
-    preview -> setWindowModality(Qt::WindowModal);
-    preview -> setAttribute(Qt::WA_DeleteOnClose);
-    preview -> show();*/
-}
-
-//-------------------------------------------------
-
-
-//-------------------------------------------------
 void HelpWindow::textBold()
 {
     QTextCharFormat fmt;
@@ -755,7 +720,6 @@ void HelpWindow::alignmentChanged(Qt::Alignment a)
         mw -> ui.actionTextJustify -> setChecked(true);
     }
 }
-
 //-------------------------------------------------
 void HelpWindow::setTagTitle(QString title) 
 { 
@@ -763,12 +727,8 @@ void HelpWindow::setTagTitle(QString title)
     fileSave();
     mw -> browsers() -> updateTitle(title);
 }
-
 //-------------------------------------------------
 QString HelpWindow::getTagTitle() { return raEdit::documentTitle(); }
-
-//-------------------------------------------------
-
 //-------------------------------------------------
 void HelpWindow::showDocProperties()
 {
@@ -776,42 +736,11 @@ void HelpWindow::showDocProperties()
     docprop -> setFileName(raEdit::source().toString());
     docprop -> show();
 }
-
-//-------------------------------------------------
-
 //-------------------------------------------------
 void HelpWindow::insertRichText(QString text)
 {	//!+! reimplement procedures in reEdit to work with HTML comment, since QTextEdit does not understand it
     QTextCursor cursor = raEdit::textCursor();
     cursor.insertHtml(text);
-}
-
-//-------------------------------------------------
-
-//-------------------------------------------------
-//void HelpWindow::imageNew()
-//{
-//	//imageprop -> setProperties(0, 0, QImage());
-////    imageprop -> show();
-//}
-
-//-------------------------------------------------
-void HelpWindow::imageInsert(QString html)
-{
-    QTextCursor cursor = raEdit::textCursor();
-    Config::configuration() -> toPrjLog(3,"Image code: "+html);
-    cursor.insertHtml(html);
-    //QImage img = QImage("D:/copy.png");
-    //QTextDocument *document = this -> document();
-    //document -> addResource(QTextDocument::ImageResource, QUrl("myimage"), img);
-    //cursor.insertImage("myimage");
-}
-
-//-------------------------------------------------
-void HelpWindow::imageUpdate(QString html)
-{
-    html = html;
-    //QTextCursor cursor = raEdit::textCursor();
 }
 
 

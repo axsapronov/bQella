@@ -21,10 +21,8 @@
  */
 
 
-
 #include "helpdialog.h"
 #include "helpwindow.h"
-#include "topicchooser.h"
 #include "docuparser.h"
 #include "mainwindow.h"
 #include "config.h"
