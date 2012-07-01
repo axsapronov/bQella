@@ -14,23 +14,21 @@
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *
- *    Author: Alexander Sapronov/WarmongeR
- *    E-Mail: warmonger72@gmail.com
- *    Years: 2011
+ *    Author: Sapronov Alexander/WarmongeR
+ *    E-Mail: sapronov.alexander92@.gmail.com
+ *    Years: 2011, 2012
+ *    WebSite: https://github.com/WarmongeR1/bQella
  */
+
 #include "index.h"
 
-#include <QFile>
-#include <QDir>
-#include <QStringList>
 #include <QApplication>
-#include <QByteArray>
-#include <QTextStream>
-#include <QtAlgorithms>
+#include <QStringList>
 #include <QUrl>
+#include <QDir>
+#include <QDebug>
+#include <QTextStream>
 #include <QTextCodec>
-#include <ctype.h>
-#include <QtDebug> //to use qWarning and qDebug messages
 
 
 struct Term {

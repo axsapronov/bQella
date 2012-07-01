@@ -14,10 +14,12 @@
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *
- *    Author: Alexander Sapronov/WarmongeR
- *    E-Mail: warmonger72@gmail.com
- *    Years: 2011
+ *    Author: Sapronov Alexander/WarmongeR
+ *    E-Mail: sapronov.alexander92@.gmail.com
+ *    Years: 2011, 2012
+ *    WebSite: https://github.com/WarmongeR1/bQella
  */
+
 #ifndef DOCUPARSER_H
 #define DOCUPARSER_H
 

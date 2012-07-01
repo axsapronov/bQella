@@ -14,10 +14,14 @@
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *
- *    Author: Alexander Sapronov/WarmongeR
- *    E-Mail: warmonger72@gmail.com
- *    Years: 2011
+ *    Author: Sapronov Alexander/WarmongeR
+ *    E-Mail: sapronov.alexander92@.gmail.com
+ *    Years: 2011, 2012
+ *    WebSite: https://github.com/WarmongeR1/bQella
  */
+
+
+
 #include "helpdialog.h"
 #include "helpwindow.h"
 #include "topicchooser.h"
@@ -27,17 +31,13 @@
 #include "tabbedbrowser.h"
 #include "pcommon.h"
 
-
 #include "export.h"
 #include "bookadddialog.h"
 
-
-#include <QtGui>
-#include <QtDebug>
-#include <QFile>   		
-#include <QTextStream>	
-#include <stdlib.h>
-#include <limits.h>
+#include <QMessageBox>
+#include <QMoveEvent>
+#include <QStatusBar>
+#include <QStringListModel>
 
 //The roles are used by the view to indicate to the model which type of data it needs.
 // Qt::UserRole =  32; The first role that can be used for application-specific purposes.

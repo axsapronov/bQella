@@ -14,23 +14,19 @@
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *
- *    Author: Alexander Sapronov/WarmongeR
- *    E-Mail: warmonger72@gmail.com
- *    Years: 2011
+ *    Author: Sapronov Alexander/WarmongeR
+ *    E-Mail: sapronov.alexander92@.gmail.com
+ *    Years: 2011, 2012
+ *    WebSite: https://github.com/WarmongeR1/bQella
  */
+
+
 #include "mainwindow.h"
 #include "config.h"
 #include "pcommon.h"
 
 #include <QApplication>
-#include <QStringList>
-#include <QDir>
-#include <QPointer>
-#include <QTranslator>
-//#include <QLocale>
-#include <QtDebug> //to use qWarning and qDebug messages
-#include <stdlib.h>
-#include <stdio.h>
+
 
 int main( int argc, char ** argv )
 {

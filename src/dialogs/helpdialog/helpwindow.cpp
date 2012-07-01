@@ -14,33 +14,14 @@
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *
- *    Author: Alexander Sapronov/WarmongeR
- *    E-Mail: warmonger72@gmail.com
- *    Years: 2011
+ *    Author: Sapronov Alexander/WarmongeR
+ *    E-Mail: sapronov.alexander92@.gmail.com
+ *    Years: 2011, 2012
+ *    WebSite: https://github.com/WarmongeR1/bQella
  */
-#include <QAction>
-#include <QApplication>
-#include <QClipboard>
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QFont>
-#include <QMenu>
-#include <QMessageBox>
-#include <QProcess>
-#include <QStatusBar>
-#include <QTextCodec>
-#include <QTextCursor>
-#include <QTextLayout>
-#include <QTextObject>
-#include <QTextStream>
-#include <QTextCursor>
-#include <QTextTable>
-#include <QUrl>
-#include <QtDebug>
-#include <QtEvents>
-#include <QTextDocumentFragment>
-#include <qdesktopservices.h>
+
+
+
 
 #include "helpwindow.h"
 #include "mainwindow.h"
@@ -49,19 +30,26 @@
 #include "config.h"
 #include "pcommon.h"
 
+
+#include <QMessageBox>
+#include <QStatusBar>
+#include <QDesktopServices>
+#include <QTextDocument>
+#include <QTextDocumentFragment>
+#include <QClipboard>
+
 //------- taken from TextEdit -------
 //#include "printpreview.h"
+#include <QContextMenuEvent>
+#include <QMoveEvent>
 #include <QCloseEvent>
-#include <QColorDialog>
-#include <QComboBox>
-#include <QFileDialog>
 #include <QFontComboBox>
-#include <QFontDatabase>
-#include <QMenuBar>
-#include <QPrintDialog>
-#include <QPrinter>
-#include <QTextList>
 #include <QToolBar>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QColorDialog>
+#include <QTextList>
 //------- end of TextEdit section -------
 
 #if defined(Q_OS_WIN32)
