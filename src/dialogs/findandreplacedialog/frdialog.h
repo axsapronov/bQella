@@ -30,16 +30,24 @@ private slots:
     void find();
     void replace();
     void updateCBChapter(QString path);
-        void updateinfo();
+    void updateinfo();
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
+
 private:
     Ui::FRDialog *ui;
 
     void updateCBBook();
+    void removeItemListChapter(QStringList &list);
+    void removeItemListBook(QStringList &list);
 
+    void updateItemforTable(QStringList &list, QStringList &list2);
     QStringList findFiles(const QStringList &files, const QString &text);
-    void showFiles(const QStringList &files);
+    void showFiles(const QStringList &files, const QStringList &files2 );
 
     QDir currentDir;
+//    QString stringforfoldername;
 };
 
 #endif // FRDIALOG_H

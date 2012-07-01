@@ -797,7 +797,36 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     return ret;
 }
 
+void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext)
+{
+    QFile file(filepath);
 
+    file.open(QIODevice::ReadWrite | QIODevice::Text);
+    file.reset();
+
+    QTextStream stream(&file);
+    QStringList str;
+    QString line;
+    do
+    {
+        line = stream.readLine();
+        line.replace(beforetext, replacetext);
+        str.append(line);
+
+    } while (!stream.atEnd());
+
+    str.removeOne("");
+//    qDebug() << "\nstrlist = " << str;
+    file.close();
+    file.remove();
+    file.open(QIODevice::WriteOnly);
+    QString writelist;
+    for (int i = 0; i < str.size(); i++)
+    {
+        writelist.append(QString(str.at(i))+"\n");
+    }
+    file.write(writelist.toUtf8());
+}
 
 int BooltoInt(bool foo)
 {

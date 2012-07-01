@@ -2,19 +2,11 @@
 #include "ui_frdialog.h"
 
 #include "config.h"
+#include "pcommon.h"
 
-#include <QComboBox>
-#include <QTableWidget>
-#include <QDesktopServices>
-#include <QPushButton>
-#include <QStringList>
-#include <QUrl>
-#include <QtGui>
-#include <QString>
+#include <QProgressDialog>
 #include <QStringListModel>
-#include <QRegExp>
 
-// ПЕРЕДЕЛАТЬ (библиотеки)
 
 FRDialog::FRDialog(QWidget *parent) :
     QDialog(parent),
@@ -22,57 +14,99 @@ FRDialog::FRDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->tableFiles->horizontalHeader()->setResizeMode(0, QHeaderView::Interactive);
+    ui->tableFiles->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
     ui->tableFiles->verticalHeader()->hide();
     ui->tableFiles->setShowGrid(false);
 
+    ui->lEFind->setText("");
+    ui->lEReplace->setText("");
+    ui->tableFiles->clearContents();
+
     connect(ui->pBFind, SIGNAL(clicked()), this, SLOT(find()));
     connect(ui->pBReplace, SIGNAL(clicked()), this, SLOT(replace()));
-
-//    connect(ui->cBBook, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateCBChapter(QString)));
     connect(ui->cBBook, SIGNAL(activated(QString)), this, SLOT(updateinfo()));
 
+//    stringforfoldername = "";
+//    ui->lEFind->setText("<"); // закоментить
     updateCBChapter(Config::configuration()->PrjDir());
     updateCBBook();
+
 }
 //---------------------------------------
 FRDialog::~FRDialog()
 {
     delete ui;
-};
+}
 //---------------------------------------
 void FRDialog::replace()
 {
+
     // файлы найдены
     // получаем список файлов
     // открываем файлы и делаем QString.replace
+
+    for (int row = 0; row < ui->tableFiles->rowCount(); row++)
+    {
+        // составляем путь до файла
+//        qDebug() << "\ncurrent row = " << row << "item ij = " <<  ui->tableFiles->item(row,1)->text() << "item ji = " << ui->tableFiles->item(row,0)->text();
+        QString filepath = Config::configuration()->CurPrjDir() + "/book_" + ui->tableFiles->item(row,0)->text() + "_chapter_" + QString(ui->tableFiles->item(row,1)->text()).remove(tr("Глава "))+".htm";
+//        qDebug() << "filepath = " << filepath;
+
+        // заменяем в файлах
+        replaceTextOfFile(filepath, ui->lEFind->text(), ui->lEReplace->text());
+
+    }
 }
+
 //---------------------------------------
 void FRDialog::find()
 {
     ui->tableFiles->setRowCount(0);
-
-//    QString fileName = fileComboBox->currentText();
-//    QString text = textComboBox->currentText();
-//    QString path = directoryComboBox->currentText();
-
     QString fileName = "";
     QString text = ui->lEFind->text();
+    QString path;
 
-    QString path = Config::configuration()->CurPrjDir();
-    // path должен составляться из комбобокса
+    if (ui->cBBook->currentIndex() == 0) // and ui->cBChapter->currentText() == "Все главы")
+        path = Config::configuration()->CurPrjDir();
 
-
+//    qDebug() << "if1 = " << path;
+    if (ui->cBBook->currentIndex() != 0)
+    {
+//        qDebug() << "1";
+        if (ui->cBChapter->currentIndex() == 0)
+        {
+            path = Config::configuration()->CurPrjDir() + "/"  + ui->cBBook->currentText();
+//            qDebug() << "2";
+        }
+        else
+        {
+//            qDebug() << "3";
+            QString str = ui->cBChapter->currentText();
+            QString str2 = ui->cBBook->currentText();
+//            qDebug() << "___" << str2.split("_").first();
+//            qDebug() << "---" << str.replace(tr("Глава "), tr("book_%1_chapter_").arg(str2));
+            path = Config::configuration()->CurPrjDir() + "/" + str.replace(tr("Глава "), tr("book_%1_chapter_").arg(str2)) +".htm";
+//            qDebug() << "path = " <<  path /*<< "string " << stringforfoldername*/;
+        }
+    }
+//    qDebug() << "4";
+//    qDebug() << "Debug: _FRDialog::find()" << "_path = " << path;
     currentDir = Config::configuration()->CurPrjDir();/*QDir(path);*/
     QStringList files;
     if (fileName.isEmpty())
         fileName = "*";
-    files = currentDir.entryList(QStringList(fileName),
-                                 QDir::Files | QDir::NoSymLinks);
-
+    files = currentDir.entryList(QStringList(fileName), QDir::Files | QDir::NoSymLinks);
     if (!text.isEmpty())
         files = findFiles(files, text);
-    showFiles(files);
+
+    QStringList bookList = files;
+    QStringList chapterList = files;
+
+    updateItemforTable(bookList, chapterList);
+//    updateItemforTableChapter(chapterList);
+//    showFiles(files);
+//    qDebug() << " test " << bookList << chapterList;
+    showFiles(bookList, chapterList);
 }
 //---------------------------------------
 QStringList FRDialog::findFiles(const QStringList &files, const QString &text)
@@ -81,23 +115,17 @@ QStringList FRDialog::findFiles(const QStringList &files, const QString &text)
     progressDialog.setCancelButtonText(tr("&Cancel"));
     progressDialog.setRange(0, files.size());
     progressDialog.setWindowTitle(tr("Find Files"));
-
-
     QStringList foundFiles;
-
     for (int i = 0; i < files.size(); ++i) {
         progressDialog.setValue(i);
         progressDialog.setLabelText(tr("Searching file number %1 of %2...")
                                     .arg(i).arg(files.size()));
         qApp->processEvents();
 
-
         if (progressDialog.wasCanceled())
             break;
 
-
         QFile file(currentDir.absoluteFilePath(files[i]));
-
         if (file.open(QIODevice::ReadOnly)) {
             QString line;
             QTextStream in(&file);
@@ -112,77 +140,164 @@ QStringList FRDialog::findFiles(const QStringList &files, const QString &text)
             }
         }
     }
+    foundFiles.removeOne("   ___Instruction");
+    foundFiles.removeOne(Config::configuration()->CurProject().split("/").last());
     return foundFiles;
 }
 //---------------------------------------
 void FRDialog::updateinfo()
 {
     QString str;
-    str = Config::configuration()->PrjDir() + ui->cBBook->currentText();
-    qDebug() << "str = " << str;
+//    qDebug() << "Debug: _FRDialog::updateinfo()" << "currenttext = " << ui->cBBook->currentText() << "currentindex = " << ui->cBBook->currentIndex();
+    if (ui->cBBook->currentIndex() == 0)
+        str = Config::configuration()->PrjDir();
+    else
+        str = Config::configuration()->CurPrjDir();
+//    qDebug() << "str = " << str;
     updateCBChapter(str);
 }
-//---------------------------------------
-void FRDialog::updateCBChapter(QString path)
-{
-    qDebug() << "path = " << path;
-    QStringList items;
-    items << tr("Все главы");
 
-    QDir dir(path);
-    QStringList list = dir.entryList();
-    list.removeFirst();
-    list.removeFirst();
-    list.removeFirst();
-
-    // убрать из списка .pem файлы
-    // и book файлы
-//    qDebug() << "Debug: _FRDialog::updateCBChapter()" << "list = " << list << "prj = " << Config::configuration()->PrjDir();
-    items.append(list);
-
-    QStringListModel * typeModel2 = new QStringListModel(items, this);
-    ui -> cBChapter -> setModel(typeModel2);
-}
 //---------------------------------------
 void FRDialog::updateCBBook()
 {
     QStringList items;
     items << tr("Все книги");
 
-    QDir dir(Config::configuration()->PrjDir());
+    QDir dir(Config::configuration()->CurPrjDir());
     QStringList list = dir.entryList();
-    list.removeFirst();
-    list.removeFirst();
+    removeItemListBook(list);
 //    qDebug() << "Debug: _FRDialog::updateCBBook()" << "list = " << list << "prj = " << Config::configuration()->PrjDir();
-    // в цикле менять главы при выборе книг
+    items.append(list);
+    QStringListModel * typeModel2 = new QStringListModel(items, this);
+    ui -> cBBook -> setModel(typeModel2);
+}
+//---------------------------------------
+void FRDialog::updateCBChapter(QString path)
+{
+//    qDebug() << "Debug: _FRDialog::updateCBChapter()" << "path = " << path;
+    QStringList items;
+    items << tr("Все главы");
+    QDir dir(path);
+    QStringList list = dir.entryList();
+    removeItemListChapter(list);
+//    qDebug() << "Debug: _FRDialog::updateCBChapter()" << "list = " << list ;
     items.append(list);
 
     QStringListModel * typeModel2 = new QStringListModel(items, this);
-    ui -> cBBook -> setModel(typeModel2);
-
+    ui -> cBChapter -> setModel(typeModel2);
 }
 //---------------------------------------
-void FRDialog::showFiles(const QStringList &files)
+void FRDialog::removeItemListChapter(QStringList &list)
 {
-    for (int i = 0; i < files.size(); ++i) {
-        QFile file(currentDir.absoluteFilePath(files[i]));
-        qint64 size = QFileInfo(file).size();
-
-        QTableWidgetItem *fileNameItem = new QTableWidgetItem(files[i]);
-        fileNameItem->setFlags(fileNameItem->flags() ^ Qt::ItemIsEditable);
-        QTableWidgetItem *sizeItem = new QTableWidgetItem(tr("%1 KB")
-                                             .arg(int((size + 1023) / 1024)));
-        sizeItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-        sizeItem->setFlags(sizeItem->flags() ^ Qt::ItemIsEditable);
-
-        int row = ui->tableFiles->rowCount();
-        ui->tableFiles->insertRow(row);
-        ui->tableFiles->setItem(row, 0, fileNameItem);
-        ui->tableFiles->setItem(row, 1, sizeItem);
+    list.removeOne(QString("export_%1")
+                   .arg( QString(list.at(3)).remove(".pem")));
+//    qDebug() << "Debug: _FRDialog::removeItemList()" << "list = " << list;
+    QStringList listb;
+    QString bookname;
+    int i = 4;
+    while (i < list.size())
+    {
+        if ( list.at(i).indexOf(".pem") >= 0  or (  list.at(i).indexOf(ui->cBBook->currentText()) <=0 and
+                   list.at(i).indexOf("chapter") <= -1)  )
+        {
+//            qDebug() << "Debug: _FRDialog::removeItemList()" << "if = " << list.at(i);
+            bookname = list.at(i);
+            list.removeAt(i);
+            --i;
+        }
+        QString app = QString(list.at(i)).remove(bookname.split(".").first()).replace(tr("book_%1_chapter_").arg(ui->cBBook->currentText()), tr("Глава ")).remove(".htm");
+        listb << app;
+//        qDebug() << "Debug: _FRDialog::removeItemList()" << "listb = " << listb << "app = " << app;
+        ++i;
     }
-    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(files.size()) +
-                             (" (Double click on a file to open it)"));
+    listb.removeOne(QString(Config::configuration()->CurProject().split("/").last()));
+    listb.removeOne("book_"+ui->cBBook->currentText());
+    listb.removeOne("");
+
+    list = listb;
+//    qDebug() << "Debug: _FRDialog::removeItemList()" << "list = " << listb;
 }
 
+//---------------------------------------
+void FRDialog::removeItemListBook(QStringList &list)
+{
+    QStringList listb;
+    int i = 4;
+    while (i < list.size())
+    {
+        if (
+                ( list.at(i).indexOf(".pem") >= 0 ) or
+                ( list.at(i).indexOf("chapter") >= 0) or
+                ( list.at(i).indexOf("export") >= 0 )
+           )
+        {
+            list.removeAt(i);
+            --i;
+        }
+        else
+        {
+            QString app = QString(list.at(i)).remove("book_").remove(".htm");
+            listb << app;
+        }
+        ++i;
+    }
+    listb.removeOne(".pem");
+    listb.removeOne("");
+    listb.removeOne("help");
+    listb.removeDuplicates();
+    list = listb;
+//    qDebug() << "Debug: _FRDialog::removeItemList()" << "list = " << listb;
+}
+//---------------------------------------
+void FRDialog::updateItemforTable(QStringList &list, QStringList &list2)
+{
+    QStringList lib, lib2;
+    QString app, app2;
 
+    for (int i = 0; i < list.size(); i++)
+    {
+        QRegExp rx("_chapter_\\d{1,3}");
+        app = QString(list.at(i)).remove(rx).remove("book_").remove(".htm");
+        lib << app;
+        QStringList str;
+        QString st = QString(list.at(i));
+        (str << st.split("_")).removeFirst();
+        app2 = QString(list.at(i)).remove(tr("book_%1").arg(str.first())).replace("_chapter_", tr("Глава ")).remove(".htm");
+        lib2 << app2;
+    }
+//    qDebug() << " lib = " << lib;
+//    qDebug() << " lib2 = " << lib2;
+    list = lib;
+    list2 = lib2;
+}
+//---------------------------------------
+void FRDialog::showFiles(const QStringList &bookList, const QStringList &chapterList)
+{
 
+    for (int i = 0; i < bookList.size(); ++i)
+    {
+        QTableWidgetItem *bookItem = new QTableWidgetItem(bookList[i]);
+        QTableWidgetItem *chapterItem = new QTableWidgetItem(chapterList[i]);
+        int row = ui->tableFiles->rowCount();
+        ui->tableFiles->insertRow(row);
+        ui->tableFiles->setItem(row, 0, bookItem);
+        ui->tableFiles->setItem(row, 1, chapterItem);
+    }
+    ui->filesFoundLabel->setText(tr("%1 файл(а) найдено").arg(bookList.size()) /*+
+                             (" (Double click on a file to open it)")*/);
+}
+//---------------------------------------
+void FRDialog::on_buttonBox_accepted()
+{
+    ui->lEFind->setText("");
+    ui->lEReplace->setText("");
+    ui->tableFiles->clearContents();
+}
+//---------------------------------------
+void FRDialog::on_buttonBox_rejected()
+{
+    ui->lEFind->setText("");
+    ui->lEReplace->setText("");
+    ui->tableFiles->clearContents();
+}
+//---------------------------------------

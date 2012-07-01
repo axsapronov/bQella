@@ -82,6 +82,6 @@ QString CreateValidWebFileName(QString str); //выбирает из строк�
 bool toLog(QString logFN, QString logMessage); //добавляет в журнал строку в формате "Дата Время Сообщение"
 bool createEmptyHtml(QString fileName, QString title); 
 bool createEmptyHtml(QString fileName, QString title, QString text);
-
+void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 
 #endif // __PCOMMON_H__
