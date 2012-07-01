@@ -30,25 +30,15 @@
 #include "frdialog.h"
 
 
-
-#include <QAbstractTextDocumentLayout>
-#include <QDir>
-#include <QDockWidget>
-#include <QEventLoop>
-#include <QFileDialog>
-#include <QFontDatabase>
 #include <QMessageBox>
-#include <QPainter>
-#include <QPrintDialog>
+#include <QFileDialog>
 #include <QPrinter>
-#include <QShortcut>
+#include <QDockWidget>
 #include <QStatusBar>
-#include <QTextDocument>
-#include <QTextDocumentFragment>
-#include <QTextObject>
-#include <QTimer>
-#include <QtDebug> //to use qWarning and qDebug messages
-#include <QtEvents>
+#include <QShortcut>
+#include <QPrintDialog>
+#include <QCloseEvent>
+
 
 QList<MainWindow*> MainWindow::windows;
 
@@ -118,8 +108,10 @@ MainWindow::MainWindow():
     ui.actionPrint_Preview -> setVisible(false);
     ui.toolBarTabs -> setVisible(false);
     ui.actionEditFind -> setVisible(false);
+    ui.actionImportBook->setVisible(false);
     //    ui.menuNew_with_pattern -> setVisible(false);
     ui.actionProjectBackup -> setVisible(false);
+
 
 }
 
@@ -815,7 +807,7 @@ void MainWindow::ProjectProps()
     pr.moduleBVersion = QString(Config::configuration() -> profile() -> props["version"]).toDouble();
 
 
-    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
+//    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
 
     pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["type"]);
     pr.oldTestament = QStringtoBool(Config::configuration() -> profile() -> props["oldtestament"]);
@@ -837,7 +829,8 @@ void MainWindow::ProjectProps()
     pr.defaultEncoding = Config::configuration() -> profile() -> props["defaultencoding"];
     pr.desiredUIFont = Config::configuration() -> profile() -> props["desireduifont"];
 
-    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
+//    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
+
 
     //    pr.moduleType = Config::configuration() -> profile() -> props["type"];
     bool newProject = false;

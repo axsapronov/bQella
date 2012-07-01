@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>517</width>
-    <height>481</height>
+    <width>513</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabBasic">
       <attribute name="title">
@@ -124,19 +124,8 @@
       <attribute name="title">
        <string>More</string>
       </attribute>
-      <widget class="QSplitter" name="splitter_10">
-       <property name="geometry">
-        <rect>
-         <x>2</x>
-         <y>8</y>
-         <width>481</width>
-         <height>381</height>
-        </rect>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <widget class="QWidget" name="layoutWidget">
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
           <widget class="QLabel" name="label">
@@ -234,8 +223,8 @@
           </widget>
          </item>
         </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
+       </item>
+       <item row="1" column="0">
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
           <widget class="QSplitter" name="splitter_7">
@@ -322,19 +311,18 @@
              <string>Кодировка:</string>
             </property>
            </widget>
-           <widget class="QLineEdit" name="lEDefaultEncoding">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
+           <widget class="QComboBox" name="comBEncoding">
+            <item>
+             <property name="text">
+              <string>Utf-8</string>
+             </property>
+            </item>
            </widget>
           </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -343,10 +331,10 @@
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>21</x>
-         <y>10</y>
-         <width>451</width>
-         <height>151</height>
+         <x>9</x>
+         <y>9</y>
+         <width>471</width>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">

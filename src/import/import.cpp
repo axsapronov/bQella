@@ -4,9 +4,6 @@
 #include "mainwindow.h"
 #include "config.h"
 
-#include <QDialog>
-#include <QFileDialog>
-#include <QTextStream>
 
 Import::Import(QObject *parent) :
     QObject(parent)
@@ -60,10 +57,30 @@ void Import::importIni(QString filename)
                 if (miniparserini(line,"Copyright") != "") Config::configuration() -> setModuleCopyright(miniparserini(line,"Copyright"));
                 if (miniparserini(line,"ChapterSign") != "") ChapterSign = miniparserini(line,"ChapterSign");
                 if (miniparserini(line,"VerseSign") != "") VerseSign = miniparserini(line,"VerseSign");
+
+                if (miniparserini(line,"Bible") != "") Config::configuration() -> setModuleType(QStringtoBool(miniparserini(line,"Bible")));
+                if (miniparserini(line,"OldTestament") != "") Config::configuration() -> setOldTestament(QStringtoBool(miniparserini(line,"OldTestament")));
+                if (miniparserini(line,"NewTestament") != "") Config::configuration() -> setNewTestament(QStringtoBool(miniparserini(line,"NewTestament")));
+                if (miniparserini(line,"Apocrypha") != "") Config::configuration() -> setApocrypha(QStringtoBool(miniparserini(line,"Apocrypha")));
+                if (miniparserini(line,"ChapterZero") != "") Config::configuration() -> setChapterZero(QStringtoBool(miniparserini(line,"ChapterZero")));
+                if (miniparserini(line,"EnglishPsalms") != "") Config::configuration() -> setEnglishPsalms(QStringtoBool(miniparserini(line,"EnglishPsalms")));
+                if (miniparserini(line,"StrongNumber") != "") Config::configuration() -> setStrongNumber(QStringtoBool(miniparserini(line,"StrongNumber")));
+                if (miniparserini(line,"NoForcedLineBreaks") != "") Config::configuration() -> setNoForcedLineBreaks(QStringtoBool(miniparserini(line,"NoForcedLineBreaks")));
+                if (miniparserini(line,"UseChapterHead") != "") Config::configuration() -> setUseChapterHead(QStringtoBool(miniparserini(line,"UseChapterHead")));
+                if (miniparserini(line,"UseRightAlignment") != "") Config::configuration() -> setUseRightAlignment(QStringtoBool(miniparserini(line,"UseRightAlignment")));
+
+                if (miniparserini(line,"StrongsDirectory") != "") Config::configuration() -> setStrongsDirectory(miniparserini(line,"StrongsDirectory"));
+                if (miniparserini(line,"SoundDirectory") != "") Config::configuration() -> setSoundDirectory(miniparserini(line,"SoundDirectory"));
+                if (miniparserini(line,"Language") != "") Config::configuration() -> setLanguage(miniparserini(line,"Language"));
+                if (miniparserini(line,"InstallFonts") != "") Config::configuration() -> setInstallFonts(miniparserini(line,"InstallFonts"));
+                if (miniparserini(line,"DesiredFontName") != "") Config::configuration() -> setDesiredFontName(miniparserini(line,"DesiredFontName"));
+                if (miniparserini(line,"Categories") != "") Config::configuration() -> setCategories(miniparserini(line,"Categories"));
+                if (miniparserini(line,"DesiredFontPath") != "") Config::configuration() -> setDesiredFontPath(miniparserini(line,"DesiredFontPath"));
+                if (miniparserini(line,"DefaultEncoding") != "") Config::configuration() -> setDefaultEncoding(miniparserini(line,"DefaultEncoding"));
+                if (miniparserini(line,"DesiredUIFont") != "") Config::configuration() -> setDesiredUIFont(miniparserini(line,"DesiredUIFont"));
                 if (miniparserini(line,"BookQty") != "")
                 {
                     BookQty = miniparserini(line,"BookQty").toInt();
-
                     importProjectFile();
                 }
                 if (miniparserini(line,"PathName") != "")
@@ -210,13 +227,37 @@ void Import::importProjectFile()
     //    qDebug() << "Debug: _MainWindow::createProject" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ts << "<profile>" << endl;
-    ts << ind1 << "<property name= \"title\" > " << Qt::escape(pr.prjTitle) << " </property>" << endl;
-    ts << ind1 << "<property name= \"name\" > " << Qt::escape(name) << " </property>" << endl;
-    ts << ind1 << "<property name= \"startpage\" > " << Qt::escape(spFN) << " </property>" << endl;
-    ts << ind1 << "<property name= \"biblename\" > " << Qt::escape(pr.moduleBiblename) << " </property>" << endl;
-    ts << ind1 << "<property name= \"bibleshortname\" > " << Qt::escape(pr.moduleBibleShortName) << " </property>" << endl;
-    ts << ind1 << "<property name= \"copyright\" > " << Qt::escape(pr.moduleCopyright) << " </property>" << endl;
-    ts << ind1 << "<property name= \"version\" > " << pr.moduleBVersion << " </property>" << endl;
+    ts << ind1 << "<property name=\"title\">" << Qt::escape(pr.prjTitle) << "</property>" << endl;
+    ts << ind1 << "<property name=\"name\">" << Qt::escape(name) << "</property>" << endl;
+    ts << ind1 << "<property name=\"startpage\">" << Qt::escape(spFN) << "</property>" << endl;
+    ts << ind1 << "<property name=\"biblename\">" << Qt::escape(pr.moduleBiblename) << "</property>" << endl;
+    ts << ind1 << "<property name=\"bibleshortname\">" << Qt::escape(pr.moduleBibleShortName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
+    ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
+
+
+    ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"language\">" << pr.language << "</property>" << endl;
+    ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
+    ts << ind1 << "<property name=\"categories\">" << Qt::escape(pr.categories) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontpath\">" << Qt::escape(pr.desiredFontPath) << "</property>" << endl;
+    ts << ind1 << "<property name=\"defaultencoding\">" << Qt::escape(pr.defaultEncoding) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desireduifont\">" << Qt::escape(pr.desiredUIFont) << "</property>" << endl;
+
+    ts << ind1 << "<property name=\"moduletype\">" << Qt::escape(BooltoQString(pr.moduleType)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"oldtestament\">" << Qt::escape(BooltoQString(pr.oldTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"newtestament\">" << Qt::escape(BooltoQString(pr.newTestament)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"apocrypha\">" << Qt::escape(BooltoQString(pr.apocrypha)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"chapterzero\">" << Qt::escape(BooltoQString(pr.chapterZero)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"englishpsalms\">" << Qt::escape(BooltoQString(pr.englishPsalms)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"strongnumber\">" << Qt::escape(BooltoQString(pr.strongNumber)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"noforcedlinebreaks\">" << Qt::escape(BooltoQString(pr.noForcedLineBreaks)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"userightalignment\">" << Qt::escape(BooltoQString(pr.useRightAlignment)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"usechapterhead\">" << Qt::escape(BooltoQString(pr.useChapterHead)) << "</property>" << endl;
+
+
     //    ts << ind1 << "<property name=\"type\">" << pr.moduleType << "</property>" << endl;
     ts << "</profile>" << endl << endl;
 
@@ -350,6 +391,8 @@ QString Import::miniparserini(QString str, QString po)
         {
             str.remove(" \0");
         }
+        if (str == "")
+            return "none";
         return str;
     }
     return "";

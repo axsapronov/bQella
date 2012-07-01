@@ -1,27 +1,16 @@
 #include "export.h"
-
 #include "helpdialog.h"
 #include "config.h"
-
-#include <QTextCodec>
-#include <QString>
-#include <QTransform>
-#include <QTextStream>
-#include <QDebug>
+#include "pcommon.h"
 
 
-
-enum { LinkRole   = Qt::UserRole + 1000, 	// reference = file name = link to source
-       IconFNRole = Qt::UserRole + 1001 };	// icon file name
 
 Export::Export(QObject *parent) :
     QObject(parent)
 {
 
-    file = tr("gjsdkg");
+    file = tr(""); // Что за херь?
 }
-
-
 
 void Export::exportCreateDir(QString current_dir)
 {
@@ -61,20 +50,61 @@ void Export::exportBibleqtIni(QString string, int count)
     }
     else
     {
+
+        // сделать QStringList?
         QString stru =""+tr("BibleName = %1"
                             "\nBibleShortName = %2"
                             "\nCopyright = %3"
                             "\nDefaultEncoding = utf-8"
                             "\nChapterSign = <h4>"
                             "\nVerseSign = <p>"
-                            "\nBookQty = %4")
-                .arg(Config::configuration() -> profile() -> props["biblename"])
-                .arg(Config::configuration() -> profile() -> props["bibleshortname"])
-                .arg(Config::configuration() -> profile() -> props["copyright"])
-                .arg(count);
+                            "\nBookQty = %4"
+                            "\nBible = %5"
+                            "\nOldTestament = %6"
+                            "\nNewTestament = %7"
+                            "\nApocrypha = %8"
+                            "\nChapterZero = %9"
+                            "\nEnglishPsalms = %10"
+                            "\nStrongNumber = %11"
+                            "\nNoForcedLineBreaks = %12"
+                            "\nUseChapterHead = %13"
+                            "\nUseRightAlignment = %14"
+                            "\nStrongsDirectory = %15"
+                            "\nSoundDirectory = %16"
+                            "\nLanguage = %17"
+                            "\nInstallFonts = %18"
+                            "\nDesiredFontName = %19"
+                            "\nCategories  = %20"
+                            "\nDesiredFontPath = %21"
+                            "\nDefaultEncoding = %22"
+                            "\nDesiredUIFont = %23"
+                            )
+                .arg(Config::configuration() -> profile() -> props["biblename"])  /*1*/
+                .arg(Config::configuration() -> profile() -> props["bibleshortname"]) /*2*/
+                .arg(Config::configuration() -> profile() -> props["copyright"]) /*3*/
+                .arg(count) /*4*/
+                .arg(Config::configuration() -> profile() -> props["moduletype"]) /*5*/
+                .arg(Config::configuration() -> profile() -> props["oldtestament"]) /*6*/
+                .arg(Config::configuration() -> profile() -> props["newtestament"])/*7*/
+                .arg(Config::configuration() -> profile() -> props["apocrypha"]) /*8*/
+                .arg(Config::configuration() -> profile() -> props["chapterzero"])/*9*/
+                .arg(Config::configuration() -> profile() -> props["englishpsalms"]) /*10*/
+                .arg(Config::configuration() -> profile() -> props["strongnumber"]) /*11*/
+                .arg(Config::configuration() -> profile() -> props["noforcedlinebreaks"]) /*12*/
+                .arg(Config::configuration() -> profile() -> props["usechapterhead"]) /*13*/
+                .arg(Config::configuration() -> profile() -> props["userightalignment"]) /*14*/
+                .arg(Config::configuration() -> profile() -> props["strongsdirectory"]) /*15*/
+                .arg(Config::configuration() -> profile() -> props["sounddirectory"]) /*16*/
+                .arg(Config::configuration() -> profile() -> props["language"]) /*17*/
+                .arg(Config::configuration() -> profile() -> props["installfonts"]) /*18*/
+                .arg(Config::configuration() -> profile() -> props["desiredfontname"]) /*19*/
+                .arg(Config::configuration() -> profile() -> props["categories"]) /*20*/
+                .arg(Config::configuration() -> profile() -> props["desiredfontpath"]) /*21*/
+                .arg(Config::configuration() -> profile() -> props["defaultencoding"]) /*22*/
+                .arg(Config::configuration() -> profile() -> props["desireduifont"]); /*23*/
 
         //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
-
+        stru.replace("none", "");
 
         file.write(QString("%1").arg(stru).toUtf8());
     }

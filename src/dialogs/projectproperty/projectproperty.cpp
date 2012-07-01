@@ -69,13 +69,15 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
 
     ui.lECategories -> setText(pr.categories);
-    ui.lEDefaultEncoding -> setText(pr.defaultEncoding);
+    ui.comBEncoding -> setCurrentIndex( ui.comBEncoding->findText(pr.defaultEncoding));
+//    ui.lEDefaultEncoding -> setText(pr.defaultEncoding);
     ui.lEDesiredFontName -> setText(pr.desiredFontName);
     ui.lEDesiredFontPath -> setText(pr.desiredFontPath);
     ui.lEStrongDir -> setText(pr.strongsDirectory);
     ui.lESoundDir -> setText(pr.soundDirectory);
     ui.lEInstallFonts -> setText(pr.installFonts);
     ui.lEDesiredUIFont -> setText(pr.desiredUIFont);
+    ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
     //    ui.comBLanguage ->currentText() .s
     //    установить язык
 
@@ -148,7 +150,6 @@ void ProjectProperties::accept()
                 Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
                 Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
                 Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
-                Config::configuration() -> setDefaultEncoding(ui.lEDefaultEncoding -> text());
 
                 Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
                 Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
@@ -161,13 +162,14 @@ void ProjectProperties::accept()
                 Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
 
                 Config::configuration() -> setCategories(ui.lECategories -> text());
-                Config::configuration() -> setDefaultEncoding(ui.lEDefaultEncoding -> text());
+                Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
                 Config::configuration() -> setDesiredFontName(ui.lEDesiredFontName -> text());
                 Config::configuration() -> setDesiredFontPath(ui.lEDesiredFontPath -> text());
                 Config::configuration() -> setStrongsDirectory(ui.lEStrongDir -> text());
                 Config::configuration() -> setSoundDirectory(ui.lESoundDir -> text());
                 Config::configuration() -> setInstallFonts(ui.lEInstallFonts -> text());
                 Config::configuration() -> setDesiredUIFont(ui.lEDesiredUIFont -> text());
+                Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
 
                 QString str_ender = "\n</body>\n</html>\n";
 
@@ -194,9 +196,9 @@ void ProjectProperties::accept()
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
 
-            qDebug() << "before old = " << prop.oldTestament;
+//            qDebug() << "before old = " << prop.oldTestament;
             prop.oldTestament = ui.cbOldTestament -> isChecked();
-            qDebug() << "after old = " << prop.oldTestament;
+//            qDebug() << "after old = " << prop.oldTestament;
             prop.newTestament = ui.cbNewTestament -> isChecked();
             prop.apocrypha = ui.cbApocrypha -> isChecked();
             prop.chapterZero = ui.cbChapterZero -> isChecked();
@@ -207,7 +209,8 @@ void ProjectProperties::accept()
             prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
 
             prop.categories = ui.lECategories -> text();
-            prop.defaultEncoding = ui.lEDefaultEncoding -> text();
+            prop.defaultEncoding = ui.comBEncoding->currentText();
+            prop.language = ui.comBLanguage->currentText();
             prop.desiredFontName = ui.lEDesiredFontName -> text();
             prop.desiredFontPath = ui.lEDesiredFontPath -> text();
             prop.strongsDirectory = ui.lEStrongDir -> text();

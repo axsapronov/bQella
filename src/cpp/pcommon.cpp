@@ -19,6 +19,9 @@
  *    Years: 2011
  */
 #include "pcommon.h"
+
+#include "config.h" // для строчек аля toUtf8 // если отдельно пользоваться, то свитчи убрать
+
 #include <QDebug>
 #include <QtGui/QApplication> //для translate()
 #include <QUrl>
@@ -820,12 +823,18 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
     file.close();
     file.remove();
     file.open(QIODevice::WriteOnly);
+
     QString writelist;
     for (int i = 0; i < str.size(); i++)
     {
         writelist.append(QString(str.at(i))+"\n");
     }
-    file.write(writelist.toUtf8());
+
+    if (Config::configuration()->Language() == "Utf-8") file.write(writelist.toUtf8());
+//    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
+//    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
+
+
 }
 
 int BooltoInt(bool foo)
@@ -839,14 +848,14 @@ int BooltoInt(bool foo)
 QString BooltoQString(bool foo)
 {
     if (foo == true)
-        return "1";
-    return "0";
+        return "Y";
+    return "N";
 }
 
 // юзать только для преобразования параметров проекта
 bool QStringtoBool(QString str)
 {
-    if (str == "0" or str.isEmpty() or str == " ")
+    if (str == "0" or str.isEmpty() or str == " " or str == "N")
         return false;
     return true;
 }
