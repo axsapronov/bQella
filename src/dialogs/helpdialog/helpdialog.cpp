@@ -1288,11 +1288,13 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
             }
             else
             {
+                QString str = fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/");
+                qDebug() << "\n ----- str = " << str; //
                 file1.write(QString("\nPathName = %1"
                                     "\nFullName = %2"
                                     "\nShortName = %3"
                                     "\nChapterQty = %4")
-                            .arg(fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/"))
+                            .arg(str)
                             .arg(m_bookadddialog -> bookFullName)
                             .arg(m_bookadddialog -> bookShortName)
                             .arg(m_bookadddialog -> bookChapterQty)
@@ -1358,17 +1360,17 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName, QString ico
     {
         for (int i=1; i<=m_bookadddialog -> bookChapterQty; ++i)
         {
+            // создаем файлы для глав
             QString title = tr("%1").arg(i);
+
+
+            QString chaptervalue = incstr(title, GL_LengtItemString, "_");
+            title = incstr(title, GL_LengtItemString, " ");
+
             QString iconFN =""; //!+! assign default item icon
             QString fileName;
-            bool uniqFN = false;
-            int counter = 1;
-            while (!uniqFN){
-                fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
-                uniqFN = !QFile::exists(fileName);
-                counter++;
-            }
-            qDebug() << "- fn = " << fileName << "counter = " << counter;
+            fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+chaptervalue+".htm";
+//            qDebug() << "- fn = " << fileName << "counter = " << i;
             createEmptyHtml(fileName, title);
             InsertChapter(newEntry,title, urlifyFileName(fileName), iconFN);// отвечает за добавление файла в список
         }
@@ -1383,7 +1385,8 @@ void HelpDialog::InsertChapter(QTreeWidgetItem * book, QString title, QString fi
     newEntry = new QTreeWidgetItem(book, afterItem, 0);
     if (!iconFN.isEmpty())
         newEntry -> setIcon(0, QIcon(iconFN));
-    newEntry -> setText(0,title);
+    newEntry -> setText(0, title);
+    //    qDebug() << "__title" << title;
     newEntry -> setData(0, LinkRole, fileName);
     newEntry -> setData(0, IconFNRole, iconFN);
     ui.listContents -> setCurrentItem(newEntry/*,2*/); // размещение по колонкам. Колонки колонками, а результат фигня
@@ -1425,11 +1428,11 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                     int stint = str.indexOf("ChapterQty =");
                     if (stint >0)
                     {
-                        qDebug() << "str do  " << str;
+//                        qDebug() << "str do  " << str;
                         str.remove(stint, str.length()-stint);
-                        qDebug() << "str remove " << str;
+//                        qDebug() << "str remove " << str;
                         str.append(QString("ChapterQty = %1</p></body></html>").arg(item -> childCount()));
-                        qDebug() << "str append " << str;
+//                        qDebug() << "str append " << str;
                     }
                 }
                 if (str.left(13) == "ChapterQty = ")
@@ -1441,7 +1444,7 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                 }
                 string.append(str+"\n");
             }
-            qDebug() << "\nstring = " << string;
+//            qDebug() << "\nstring = " << string;
         }
     }
     else
@@ -1916,10 +1919,12 @@ int HelpDialog::getTopLevelItemCount()
 //-------------------------------------------------
 void HelpDialog::exportModule()
 {
+//                    int999(123);
+//                    int999(000);
     QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
     QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
     exportf -> exportCreateDir(curdir); // создается
-    exportf -> exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)),ui.listContents -> topLevelItemCount()-1);
+    exportf -> exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), QString("%1").arg(ui.listContents -> topLevelItemCount()-1));
 
 //    int topLevelItemCount  = hd->getTopLevelItemCount();
 
@@ -1927,12 +1932,13 @@ void HelpDialog::exportModule()
     {
         QString filename = ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString().remove("file:");;
         filename = curdir+"export_"+ getNameFolder(curdir) +  "/"+filename.split("/").last();
-        exportf -> exportBibleqtIniInfo(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:"),  ui.listContents -> topLevelItem(i) -> childCount()  );
-        exportBibleBook(filename, i);
+//        qDebug() << "\n ----" <<  QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)) <<  ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:") << QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  );
+        exportf -> exportBibleqtIniInfo(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:"),  QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  ));
+        exportBibleBook(filename, QString("%1").arg(i));
     }
 }
 //-------------------------------------------------
-void HelpDialog::exportBibleBook(QString filenamebook, int i)
+void HelpDialog::exportBibleBook(QString filenamebook, QString i)
 {
     QFile filebook(filenamebook);
     filebook.remove();
@@ -1945,11 +1951,11 @@ void HelpDialog::exportBibleBook(QString filenamebook, int i)
         filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
 
 
-        for (int j=1; j <= ui.listContents -> topLevelItem(i) -> childCount(); j++)
+        for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
         {
-            QString filenamechapter = ui.listContents -> topLevelItem(i) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
+            QString filenamechapter = ui.listContents -> topLevelItem(i.toInt()) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
             int icount = j;
-            filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, icount, true)).toUtf8());
+            filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true)).toUtf8());
         }
         filebook.write(QString("\n\n</body>\n</html>").toUtf8());
     }

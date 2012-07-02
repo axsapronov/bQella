@@ -32,6 +32,8 @@
 #include <QTextStream>
 #include <QDateTime>
 
+
+
 //-------------------------------------------------
 //======== процедуры и функции общего назначения ============================
 //-------------------------------------------------
@@ -832,11 +834,20 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
         writelist.append(QString(str.at(i))+"\n");
     }
 
-    if (Config::configuration()->Language() == "Utf-8") file.write(writelist.toUtf8());
+    if (Config::configuration()->Language() == "utf-8") file.write(writelist.toUtf8());
 //    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
 //    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
+}
 
 
+
+QString ist(QString str)
+{
+    if (str == "")
+    {
+        return "none";
+    }
+    return str;
 }
 
 int BooltoInt(bool foo)
@@ -857,7 +868,19 @@ QString BooltoQString(bool foo)
 // юзать только для преобразования параметров проекта
 bool QStringtoBool(QString str)
 {
+    if (str == "Y")
+        return true;
     if (str == "0" or str.isEmpty() or str == " " or str == "N")
         return false;
     return true;
+}
+
+
+QString incstr(QString str, int n, QString mychar)
+{
+    while (str.length() != n)
+    {
+        str = mychar + str;
+    }
+    return str;
 }

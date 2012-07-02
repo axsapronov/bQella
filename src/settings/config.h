@@ -43,6 +43,8 @@
 #define GL_Project_File ".pem"
 #define GL_Project_Conf_File ".ini"
 
+#define GL_LengtItemString 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
+
 
 class Profile;
 

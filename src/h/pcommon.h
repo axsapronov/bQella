@@ -69,6 +69,8 @@ double Proporsion(double x, double y);//вычисляет пропорцию
 int BooltoInt(bool foo); // возвращает true=1 false=0
 QString BooltoQString(bool foo); // возвращает true= "1" false =  "0"
 bool QStringtoBool(QString foo); // возвращает false if str.indexOf("0") else true
+QString ist(QString str); // возвращает "none" если строка "", если нет, то возвращает саму строку
+QString incstr(QString str, int n, QString mychar);  // increase the line, увеличивает строку добавляя символ в начале строки
 
 //======= работа с файлами =======
 //--------------------------------

@@ -30,7 +30,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabBasic">
       <attribute name="title">
@@ -314,7 +314,7 @@
            <widget class="QComboBox" name="comBEncoding">
             <item>
              <property name="text">
-              <string>Utf-8</string>
+              <string>utf-8</string>
              </property>
             </item>
            </widget>

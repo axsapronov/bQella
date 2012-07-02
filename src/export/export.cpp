@@ -60,8 +60,9 @@ void Export::exportCreateDir(QString current_dir)
     }
 }
 //---------------------------------
-void Export::exportBibleqtIni(QString string, int count)
+void Export::exportBibleqtIni(QString string, QString count)
 {
+
     //экспортируем ini файл
     QFile file(string);
     //    qDebug() << string;
@@ -132,10 +133,13 @@ void Export::exportBibleqtIni(QString string, int count)
     file.close();
 }
 //---------------------------------
-void Export::exportBibleqtIniInfo(QString file, QString filename, int count)
+void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
 {
 //    QString filename = helpDock -> ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:");
+//    qDebug() << "\n-------str = " << filename;
     QString string = exportChapter(filename, count ,false);
+
+//    qDebug() << "\n-------str = " << string;
 
     QFile filebibleqt(file);
     if(!filebibleqt.open(QIODevice::Append))
@@ -149,8 +153,9 @@ void Export::exportBibleqtIniInfo(QString file, QString filename, int count)
     filebibleqt.close();
 }
 //---------------------------------
-QString Export::exportChapter (QString filename, int i, bool chapt)
+QString Export::exportChapter (QString filename, QString i, bool chapt)
 {
+//    qDebug() << "--- i " << i;
     // подготавливаем главы
     // мега индия
     QFile file(filename);
@@ -167,6 +172,8 @@ QString Export::exportChapter (QString filename, int i, bool chapt)
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
             str = stream.readAll();
 
+//            qDebug() << "\n --------str = " << str;
+
             QRegExp title("<title>[1]</title>");
             QRegExp rx("(<[^>]*>)");
             QRegExp rxp("(<p.*?>)");
@@ -174,15 +181,16 @@ QString Export::exportChapter (QString filename, int i, bool chapt)
 
             if (chapt)
             {
-                qDebug() << "************ Export: chapter-file";
+//                qDebug() << "************ Export: chapter-file";
                 QString title = QString("<title>%1</title>").arg(i);
                 QString chapter = tr("\n?h4?Глава %1?/h4?").arg(i);
+//                qDebug() << "___int  = " << i << "str = "<< str;
                 str.replace(title,chapter);
             }
             else
             {
                 str.remove(title);
-                qDebug() << "************ Export: book-file";
+//                qDebug() << "************ Export: book-file";
             }
 
             str.remove("p, li { white-space: pre-wrap; }")
@@ -192,10 +200,11 @@ QString Export::exportChapter (QString filename, int i, bool chapt)
                     .remove(rxi)
                     .replace("<p>", "?p?")
                     .remove(rx)
-                    .replace("\n\n?p?PathName","PathName")
-                    .replace("FullName", "\nFullName")
-                    .replace("ShortName", "\nShortName")
-                    .replace("ChapterQty", "\nChapterQty")
+                    .remove("")
+                    .replace("?p?PathName","PathName")
+                    .replace("FullName", "FullName")
+                    .replace("ShortName", "ShortName")
+                    .replace("ChapterQty", "ChapterQty")
                     .replace("?h4?", "<h4>")
                     .replace("?/h4?\n\n", "</h4>")
                     .replace("?p?", "<p>");

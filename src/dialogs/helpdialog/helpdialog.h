@@ -120,7 +120,7 @@ public slots:
     int getTopLevelItemCount();
 
     void exportModule();
-    void exportBibleBook(QString filebook, int i);
+    void exportBibleBook(QString filebook, QString i);
 
 private slots:
     void newItem();

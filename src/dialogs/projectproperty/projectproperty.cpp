@@ -66,9 +66,9 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.cbApocrypha -> setChecked(pr.apocrypha);
     ui.cbChapterZero -> setChecked(pr.chapterZero);
     ui.cbEnglishPsalms -> setChecked(pr.englishPsalms);
-    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
+//    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbStrongNumber -> setChecked(pr.strongNumber);
-    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
+//    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbUseChapterHead -> setChecked(pr.useChapterHead);
     ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);

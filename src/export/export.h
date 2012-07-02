@@ -32,9 +32,9 @@ public:
 
 public slots:
     void exportCreateDir(QString current_dir);
-    void exportBibleqtIni(QString path, int count);
-    QString exportChapter (QString filename, int count, bool chapt);
-    void exportBibleqtIniInfo(QString filebibleqt, QString filename, int count);
+    void exportBibleqtIni(QString path, QString count);
+    QString exportChapter (QString filename, QString count, bool chapt);
+    void exportBibleqtIniInfo(QString filebibleqt, QString filename, QString count);
 private slots:
     QString getNameFolder(QString cur_dir);
 private:

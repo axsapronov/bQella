@@ -37,6 +37,8 @@ Import::Import(QObject *parent) :
 void Import::importModule(QString file)
 {
     qDebug() << "Debug: _Import::importModule(QString file)" << "Start import Module";
+
+    Config::configuration()->setLanguage("rus");
     importIni(file);
     createInstructionFile();
     addContentToEndProjectFile();
@@ -46,7 +48,7 @@ void Import::importModule(QString file)
 void Import::importIni(QString filename)
 {
     qDebug() << "Debug: _Import::importIni(Q)" << "Start import ini";
-    qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
+//    qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
 
     //    qDebug() << "Debug: _Import::importIni()" << "curprj" << Config::configuration()->PrjDir();
     //    qDebug() << "Debug: _Import::importIni()" << "curprj2" << filename.remove(filename.length()-11, 11);
@@ -99,7 +101,7 @@ void Import::importIni(QString filename)
                 if (miniparserini(line,"DesiredFontName") != "") Config::configuration() -> setDesiredFontName(miniparserini(line,"DesiredFontName"));
                 if (miniparserini(line,"Categories") != "") Config::configuration() -> setCategories(miniparserini(line,"Categories"));
                 if (miniparserini(line,"DesiredFontPath") != "") Config::configuration() -> setDesiredFontPath(miniparserini(line,"DesiredFontPath"));
-                if (miniparserini(line,"DefaultEncoding") != "") Config::configuration() -> setDefaultEncoding(miniparserini(line,"DefaultEncoding"));
+                if (miniparserini(line,"DefaultEncoding") != "")  Config::configuration() -> setDefaultEncoding(miniparserini(line,"DefaultEncoding"));
                 if (miniparserini(line,"DesiredUIFont") != "") Config::configuration() -> setDesiredUIFont(miniparserini(line,"DesiredUIFont"));
                 if (miniparserini(line,"BookQty") != "")
                 {
@@ -161,12 +163,18 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
+//            qDebug() << " _ titlechap = " << titlechap;
+            QString chapterfile = incstr(titlechap, GL_LengtItemString, "_");
+            titlechap = incstr(titlechap, GL_LengtItemString, " ");
+
+//            qDebug() << " __ titlechap = " << titlechap;
             QString pathchap = pathName;
-            pathchap =  "./book_" + pathName.split("/").last().remove("."+last) + QString("_chapter_%1.%2").arg(j).arg(last);
+//            pathchap.replace( QString("_chapter_%1").arg(j), QString("_chapter_"+chapterfile) );
+
+//            qDebug() << "\n----- pathchap = " << pathchap;
+            pathchap =  "./book_" + pathName.split("/").last().remove("."+last) + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
-
-            //                qDebug() << "pathchap = " << pathchap;
-
+//            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
             addContentToProjectFile(textchap , true);
             QString text ="";
             do{
@@ -182,6 +190,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
 
             flag = true;
             //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
+            QString test = pathName;
             createChaterFile(pathName, text, j);
             addContentToProjectFile("</section>", true);
 
@@ -218,6 +227,27 @@ void Import::importProjectFile()
     pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
     pr.moduleBVersion = 1.0;
     pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+    pr.oldTestament = Config::configuration()->OldTestament();
+    pr.newTestament = Config::configuration()->NewTestament();
+    pr.apocrypha = Config::configuration()->Apocrypha();
+    pr.chapterZero = Config::configuration()->ChapterZero();
+    pr.englishPsalms = Config::configuration()->EnglishPsalms();
+    pr.strongNumber = Config::configuration()->StrongNumber();
+    pr.noForcedLineBreaks = Config::configuration()->NoForcedLineBreaks();
+    pr.useChapterHead = Config::configuration()->UseChapterHead();
+    pr.useRightAlignment = Config::configuration()->UseRightAlignment();
+
+    pr.strongsDirectory = Config::configuration()->StrongsDirectory();
+    pr.soundDirectory = Config::configuration()->SoundDirectory();
+    pr.language = Config::configuration()->Language();
+    pr.installFonts = Config::configuration()->InstallFonts();
+    pr.desiredFontName = Config::configuration()->DesiredFontName();
+    pr.categories = Config::configuration()->Categories();
+    pr.desiredFontPath = Config::configuration()->DesiredFontName();
+    pr.defaultEncoding = Config::configuration()->DefaultEncoding();
+    pr.desiredUIFont = Config::configuration()->DesiredUIFont();
+
 
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
@@ -258,16 +288,15 @@ void Import::importProjectFile()
     ts << ind1 << "<property name=\"copyright\">" << Qt::escape(pr.moduleCopyright) << "</property>" << endl;
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
 
-
-    ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
-    ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
-    ts << ind1 << "<property name=\"language\">" << pr.language << "</property>" << endl;
-    ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
-    ts << ind1 << "<property name=\"categories\">" << Qt::escape(pr.categories) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desiredfontpath\">" << Qt::escape(pr.desiredFontPath) << "</property>" << endl;
-    ts << ind1 << "<property name=\"defaultencoding\">" << Qt::escape(pr.defaultEncoding) << "</property>" << endl;
-    ts << ind1 << "<property name=\"desireduifont\">" << Qt::escape(pr.desiredUIFont) << "</property>" << endl;
+    ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(ist(pr.strongsDirectory)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(ist(pr.soundDirectory)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"language\">" << Qt::escape(pr.language) << "</property>" << endl;
+    ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(ist(pr.installFonts)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(ist(pr.desiredFontName)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"categories\">" << Qt::escape(ist(pr.categories)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desiredfontpath\">" << Qt::escape(ist(pr.desiredFontPath)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"defaultencoding\">" << Qt::escape(ist(pr.defaultEncoding)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"desireduifont\">" << Qt::escape(ist(pr.desiredUIFont)) << "</property>" << endl;
 
     ts << ind1 << "<property name=\"moduletype\">" << Qt::escape(BooltoQString(pr.moduleType)) << "</property>" << endl;
     ts << ind1 << "<property name=\"oldtestament\">" << Qt::escape(BooltoQString(pr.oldTestament)) << "</property>" << endl;
@@ -317,6 +346,9 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
     pathNameE.remove("book_");
     QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
+    qDebug() << " \n ------- pathname = " << pathNameE;
+    if (pathNameE.indexOf("book_") < 0)
+        pathNameE = "book_" + pathNameE;
     QString text = ""+tr("PathName = %1"
                          "\nFullName = %2"
                          "\nShortName = %3"
@@ -330,10 +362,16 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
 //----------------------------------------------------
 void Import::createChaterFile(QString file, QString text, int i)
 {
+    /*
+    qDebug() << "\n---test = " << test;
+    test.replace( QString("_chapter_%1").arg(j), chapterfile );
+    qDebug() << "--------test = " << test;*/
+
+    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LengtItemString, "_");
     QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
     QString last = file.split("/").last().split(".").last();
     pathNameE.remove("book_");
-    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(i) + last;
+    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(chapterfilecount) + last;
 
     //    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
     createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
@@ -407,6 +445,7 @@ QString Import::getStartPage()
 QString Import::miniparserini(QString str, QString po)
 {
     po.append(" = ");
+//    qDebug() << "_str " << str;
     if (str.indexOf(po) >= 0)
     {
         str.remove(po);
@@ -415,7 +454,19 @@ QString Import::miniparserini(QString str, QString po)
             str.remove(" \0");
         }
         if (str == "")
+        {
+//               qDebug() << "po = " << po;
+            if ( po == "Language = ")
+            {
+//                qDebug() << "po = " << po;
+                return "rus";
+            }
+            if ( po == "DefaultEncoding = ")
+                return "utf-8";
             return "none";
+        }
+
+//        qDebug() << "__str = " << str;
         return str;
     }
     return "";

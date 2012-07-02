@@ -6,7 +6,7 @@ CONFIG += qt warn_on release
 
 win32 {
     LIBS +=  -lshell32
-    RC_FILE =  project.rc
+    RC_FILE =  resources/resources-win.rc
 }
 
 PROJECTNAME = bQella
@@ -103,7 +103,7 @@ HEADERS += \
     src/dialogs/findandreplacedialog/frdialog.h
 
 RESOURCES += \
-    resources/recources.qrc
+    resources/resources.qrc
 
 TRANSLATIONS += \
     lang/ra_rus.ts
