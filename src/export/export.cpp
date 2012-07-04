@@ -174,7 +174,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
 
 //            qDebug() << "\n --------str = " << str;
 
-            QRegExp title("<title>[1]</title>");
+            QRegExp title("<title>  [1]</title>");
             QRegExp rx("(<[^>]*>)");
             QRegExp rxp("(<p.*?>)");
             QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
@@ -182,8 +182,8 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             if (chapt)
             {
 //                qDebug() << "************ Export: chapter-file";
-                QString title = QString("<title>%1</title>").arg(i);
-                QString chapter = tr("\n?h4?Глава %1?/h4?").arg(i);
+                QString title = QString("<title>%1</title>").arg(incstr(i,3," "));
+                QString chapter = tr("\n?h4?Глава %1?/h4?").arg(incstr(i,3," "));
 //                qDebug() << "___int  = " << i << "str = "<< str;
                 str.replace(title,chapter);
             }
@@ -202,9 +202,9 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     .remove(rx)
                     .remove("")
                     .replace("?p?PathName","PathName")
-                    .replace("FullName", "FullName")
-                    .replace("ShortName", "ShortName")
-                    .replace("ChapterQty", "ChapterQty")
+                    .replace("FullName", "\nFullName")
+                    .replace("ShortName", "\nShortName")
+                    .replace("ChapterQty", "\nChapterQty")
                     .replace("?h4?", "<h4>")
                     .replace("?/h4?\n\n", "</h4>")
                     .replace("?p?", "<p>");
