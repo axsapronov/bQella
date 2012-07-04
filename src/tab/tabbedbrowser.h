@@ -79,6 +79,7 @@ public slots:
     void closeAllTabs();
     void sourceChanged();
 
+
     void find();
     void findNext();
     void findPrevious();

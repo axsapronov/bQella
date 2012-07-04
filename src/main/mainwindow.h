@@ -69,6 +69,9 @@ signals:
 public slots:
     MainWindow *newWindow();
 
+
+    void modifededitor(bool my);
+
     void setup();
     void showLink(const QString &link);
     void showLinks(const QStringList &links);

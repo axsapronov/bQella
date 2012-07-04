@@ -123,11 +123,12 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     win -> setPalette(palette());
     win -> setSearchPaths(Config::configuration() -> mimePaths());
     ui.tab -> addTab(win, tr("..."));
-    connect(win, SIGNAL(highlighted(QString)),
-             (const QObject*) (mainWin -> statusBar()), SLOT(showMessage(QString)));
+    connect(win, SIGNAL(highlighted(QString)),  (const QObject*) (mainWin -> statusBar()), SLOT(showMessage(QString)));
     //connect(win, SIGNAL(backwardAvailable(bool)),  mainWin, SLOT(backwardAvailable(bool)));
     //connect(win, SIGNAL(forwardAvailable(bool)),   mainWin, SLOT(forwardAvailable(bool)));
     connect(win, SIGNAL(sourceChanged(QUrl)), this, SLOT(sourceChanged()));
+
+    connect(win, SIGNAL(modifed(bool)), mainWindow(), SLOT(modifededitor(bool)));
 
     ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(ui.tab -> count() > 1);
         win -> installEventFilter(this);
@@ -135,6 +136,8 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     ui.editFind -> installEventFilter(this);
     return win;
 }
+
+
 
 HelpWindow *TabbedBrowser::newBackgroundTab()
 {

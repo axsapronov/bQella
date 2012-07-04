@@ -223,6 +223,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
       lwClosed(false)
 {
 
+    autosavestart = false;
     exportf = new Export(0);
     ui.setupUi(this);
     ui.listContents -> setUniformRowHeights(true);
@@ -966,6 +967,7 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
         qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         emit showLink("file:"+fn);
+        autosavestart = true;
     }
     else
     {
@@ -1770,6 +1772,7 @@ void HelpDialog::newItem()
 	}	
 //        qDebug() << " _ 9 ";
         mw -> projectModified(true);
+        saveProject();
     }
 //    qDebug() << " _ 10 ";
 
@@ -1887,6 +1890,7 @@ void HelpDialog::itemChanged(QTreeWidgetItem* item, int column)
     if (mw -> browsers() -> currentBrowser() -> getTagTitle() == str_NewItemTitle)
         mw -> browsers() -> currentBrowser() -> setTagTitle( item -> text(column) );
     mw -> projectModified(true);
+    saveProject();
 }
 //-------------------------------------------------
 QString HelpDialog::getNameFolder(QString cur_dir)
@@ -1919,6 +1923,8 @@ int HelpDialog::getTopLevelItemCount()
 //-------------------------------------------------
 void HelpDialog::exportModule()
 {
+
+    saveProject();
 //                    int999(123);
 //                    int999(000);
     QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");

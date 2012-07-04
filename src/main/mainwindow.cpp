@@ -230,11 +230,13 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
+    helpDock->autosavestart = false;
     helpDock -> exportModule();
 }
 
 void MainWindow::importModule()
 {
+    helpDock->autosavestart = false;
     QString beginpath = "/home/warmonger";
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select bibleqt.ini"),
@@ -372,6 +374,15 @@ void MainWindow::showLink(const QString &link)
     }else{
         qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
         QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
+    }
+}
+
+void MainWindow::modifededitor(bool my)
+{
+//    if (my)
+    if (my and helpDock->autosavestart)
+    {
+        browsers() -> currentBrowser() -> fileSave();
     }
 }
 
@@ -575,6 +586,7 @@ void MainWindow::setupPopupMenu(QMenu *m)
 //-------------------------------------------------
 void MainWindow::ProjectOpen()
 {
+    helpDock->autosavestart = false;
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration() -> PrjDir(),
                                                     tr("Project bQella (*.pem)"));
     if (!fileName.isEmpty()){
@@ -718,6 +730,7 @@ void MainWindow::exitApp()
 //-------------------------------------------------
 void MainWindow::ProjectNew()
 {
+    helpDock->autosavestart = false;
     ModuleProperties pr;
     //    qDebug() << "Debug: _MainWindow::ProjectNew()" << " prjdir = " <<  Config::configuration() -> PrjDir();
 

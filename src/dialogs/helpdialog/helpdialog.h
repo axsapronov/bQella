@@ -91,6 +91,7 @@ public:
     void saveProject(QString profileFN);  //save contents and keywords to xml
     void enableProjectButtons();
 
+    bool autosavestart;
 signals:
     void showLink(const QString &s);
     void showSearchLink(const QString &s, const QStringList &terms);
@@ -173,6 +174,8 @@ private:
     bool findItemByName(QString &name);
     bool findItemByName(QTreeWidgetItem *i, QString &name);
     void triggerAction(QTreeWidgetItem *item, QAction *action);
+
+
 
 
     Ui::HelpDialog ui;

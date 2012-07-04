@@ -27,6 +27,7 @@
 #include <QtGui/qtextedit.h>
 #include <QtCore/qurl.h>
 
+
 QT_MODULE(Gui)
 //====================== class raEdit ============================
 class raEdit : public QTextEdit  //this is a remake of QTextBrowser
@@ -80,6 +81,7 @@ signals:
     void highlighted(const QUrl &);
     void highlighted(const QString &);
     void anchorClicked(const QUrl &);
+    void modifed(const bool &);
 
 public slots:
    // virtual void setSource(const QUrl &name);
@@ -87,6 +89,7 @@ public slots:
     inline void _q_documentModified()
     {
         textOrSourceChanged = true;
+        emit modifed(textOrSourceChanged);
         forceLoadOnSourceChange = !currentURL.path().isEmpty();
     }
 
