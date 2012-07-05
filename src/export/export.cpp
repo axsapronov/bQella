@@ -172,12 +172,13 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
             str = stream.readAll();
 
-//            qDebug() << "\n --------str = " << str;
+            qDebug() << "\n --------str = " << str;
 
             QRegExp title("<title>  [1]</title>");
             QRegExp title2("<title>[1]</title>");
             QRegExp rx("(<[^>]*>)");
-            QRegExp rxp("(<p.*?>)");
+            str.replace("<P>","<p>");
+            QRegExp rxp("(<[Pp].*?>)");
             QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
 
             if (chapt)
@@ -208,17 +209,15 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     .replace("<p>", "?p?")
                     .remove(rx)
                     .remove("")
-                    .replace("\n\n?p?PathName","PathName")
-                    .replace("?h4?", "<h4>")
-                    .replace("?/h4?\n\n", "</h4>")
-                    .replace("?p?", "<p>");
-
-            if (str.indexOf("\nFullName") < 0)
-            {
-                str.replace("FullName", "\nFullName")
-                .replace("ShortName", "\nShortName")
-                .replace("ChapterQty", "\nChapterQty");
-            }
+                    .remove("\n")
+                    .replace("?p?PathName","\nPathName")
+                    .replace("PathName", "\n\nPathName")
+                    .replace("FullName", "\nFullName")
+                    .replace("ShortName", "\nShortName")
+                    .replace("ChapterQty", "\nChapterQty")
+                    .replace("?h4?", "\n<h4>")
+                    .replace("?/h4?", "</h4>")
+                    .replace("?p?", "\n<p>");
         }
     }
     else
