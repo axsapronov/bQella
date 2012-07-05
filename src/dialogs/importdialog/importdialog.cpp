@@ -38,7 +38,10 @@ Import::Import(QWidget *parent)
     : QDialog(parent)
 {
 
+
     ui.setupUi(this);
+
+    ui.lEImportFile->setText("");
     connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
 }
 //----------------------------------------------------
@@ -60,7 +63,10 @@ void Import::on_buttonBox_accepted()
     if (!ui.lEImportFile->text().isEmpty())
     {
         importModule(ui.lEImportFile->text());
+        encoding = ui.cBEncoding->currentText();
+        encoding.replace("CP", "Windows");
         emit SuccessfulImport();
+
     }
 
     QWidget::hide();  //close dialog
@@ -96,6 +102,35 @@ void Import::importIni(QString filename)
         //        int count;
         // file opened successfully
         QTextStream stream( &file );        // use a text stream
+
+
+        if (encoding == "utf-8") stream.setCodec("UTF-8");
+        if (encoding == "utf-16") stream.setCodec("UTF-16");
+        if (encoding == "utf-32") stream.setCodec("UTF-32");
+        if (encoding == "Windows-1251") stream.setCodec("Windows-1251");
+        if (encoding == "Windows-1252") stream.setCodec("Windows-1252");
+        if (encoding == "Windows-1253") stream.setCodec("Windows-1253");
+        if (encoding == "Windows-1254") stream.setCodec("Windows-1254");
+        if (encoding == "Windows-1255") stream.setCodec("Windows-1255");
+        if (encoding == "Windows-1256") stream.setCodec("Windows-1256");
+        if (encoding == "Windows-1257") stream.setCodec("Windows-1257");
+        if (encoding == "Windows-1258") stream.setCodec("Windows-1258");
+
+//        MuleLao-1
+//        ROMAN8
+//        Shift-JIS
+//        TIS-620
+//        TSCII
+//        UTF-8
+//        UTF-16
+//        UTF-16BE
+//        UTF-16LE
+//        UTF-32
+//        UTF-32BE
+//        UTF-32LE
+//        Windows-1250 to 1258
+//        WINSAMI2
+
         // until end of file...
         do {
             // read and parse the command line

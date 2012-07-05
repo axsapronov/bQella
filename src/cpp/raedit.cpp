@@ -48,7 +48,7 @@ static bool isAbsoluteFileName(const QString &name)
 //====================== class raEdit ============================
 raEdit::raEdit(QWidget *parent)
 {
-	doc = new QTextDocument();
+    doc = new QTextDocument();
     setTextInteractionFlags(Qt::TextEditorInteraction);
     setReadOnly(false);
     setModeHtml(true);

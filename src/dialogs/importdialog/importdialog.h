@@ -75,6 +75,8 @@ private:
     QString VerseSign;
     QString ChapterSign;
 
+    QString encoding;
+
 };
 
 #endif // IMPORT_H
