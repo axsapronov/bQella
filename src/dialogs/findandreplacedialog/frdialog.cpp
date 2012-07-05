@@ -211,8 +211,11 @@ void FRDialog::updateCBChapter(QString path)
 //---------------------------------------
 void FRDialog::removeItemListChapter(QStringList &list)
 {
-    list.removeOne(QString("export_%1")
-                   .arg( QString(list.at(3)).remove(".pem")));
+#ifdef Q_OS_WIN
+    list.removeOne(QString("export_%1").arg( QString(list.at(2)).remove(".pem")));
+#else
+    list.removeOne(QString("export_%1").arg( QString(list.at(3)).remove(".pem")));
+#endif
 //    qDebug() << "Debug: _FRDialog::removeItemList()" << "list = " << list;
     QStringList listb;
     QString bookname;

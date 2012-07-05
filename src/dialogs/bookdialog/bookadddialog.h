@@ -58,8 +58,6 @@ private slots:
 signals:
     void signalbookaddChanged();
 
-
-
 };
 
 #endif // BOOKADDDIALOG_H

@@ -27,17 +27,17 @@
      <widget class="QComboBox" name="cBEncoding">
       <item>
        <property name="text">
-        <string>utf-8</string>
+        <string>UTF-8</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>utf-16</string>
+        <string>UTF-16</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>utf-32</string>
+        <string>UTF-32</string>
        </property>
       </item>
       <item>

@@ -160,7 +160,7 @@ QString Index::getCharsetForDocument(QFile *file)
     if (start > 0) {
         int end = contents.indexOf(QString(">"), start);
         QString meta = contents.mid(start+5, end-start);
-        meta = meta.toLower();
+        meta = meta;
         QRegExp r(QString("charset=([^\"\\s]+)"));
         if (r.indexIn(meta) != -1) {
             encoding = r.cap(1);
@@ -215,7 +215,7 @@ void Index::parseDocument( const QString &filename, int docNum )
             continue;
         }
         if ( ( c.isLetterOrNumber() || c == QLatin1Char('_') ) && i < 63 ) {
-            str[i] = c.toLower();
+            str[i] = c;
             ++i;
         } else {
             if ( i > 1 )
@@ -511,7 +511,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
             continue;
         }
         if ( ( c.isLetterOrNumber() || c == QLatin1Char('_') ) && i < 63 ) {
-            str[i] = c.toLower();
+            str[i] = c;
             ++i;
         } else {
             if ( i > 1 )

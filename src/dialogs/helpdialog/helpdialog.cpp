@@ -1900,7 +1900,8 @@ void HelpDialog::exportModule()
 //                    int999(123);
 //                    int999(000);
     QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
-    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
+//    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
+    QString curdir = Config::configuration()->CurPrjDir() + "/";
     exportf -> exportCreateDir(curdir); // создается
     exportf -> exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), QString("%1").arg(ui.listContents -> topLevelItemCount()-1));
 

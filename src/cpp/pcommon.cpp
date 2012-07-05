@@ -134,7 +134,7 @@ QString pBoolToStr(bool B){
 //--------------------------------
 bool pStrToBool(QString S){
     bool B;
-    QString str = S.toLower().trimmed();
+    QString str = S.trimmed();
     if ((str == "true") || (str == "1"))
         B = true;
     else

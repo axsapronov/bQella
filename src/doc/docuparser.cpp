@@ -97,7 +97,8 @@ bool DocuParserRAP::startDocument()
 bool DocuParserRAP::startElement(const QString &, const QString &, 
 								 const QString &qname, const QXmlAttributes &attr)
 {
-    QString lower = qname.toLower();
+//    QString lower = qname.toLower();
+    QString lower = qname;
 
     switch(state) {
 
