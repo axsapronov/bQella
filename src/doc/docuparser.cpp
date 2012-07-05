@@ -32,7 +32,6 @@ QDataStream &operator>>(QDataStream &s, ContentItem &ci)
 {
     s >> ci.title;
     s >> ci.reference;
-    s >> ci.iconFN;
     s >> ci.depth;
     return s;
 }
@@ -42,7 +41,6 @@ QDataStream &operator<<(QDataStream &s, const ContentItem &ci)
 {
     s << ci.title;
     s << ci.reference;
-    s << ci.iconFN;
     s << ci.depth;
     return s;
 }

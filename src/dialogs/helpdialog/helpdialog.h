@@ -102,10 +102,10 @@ public slots:
     void currentTabChanged(int index);
     void locateContents(const QString &link);  //find and select contents item corresponding to link
     void insertContents();
-    void InsertContentsItem(QString title, QString fileName, QString iconFN); //insert new document in contents
-    void InsertChapter(QTreeWidgetItem * book, QString title, QString fileName, QString iconFN); //
+    void InsertContentsItem(QString title, QString fileName); //insert new document in contents
+    void InsertChapter(QTreeWidgetItem * book, QString title, QString fileName); //
 
-    void updateItemProperties(QString title, QString fileName, QString iconFN); //update current item properties
+    void updateItemProperties(QString title, QString fileName); //update current item properties
     void showItemProperties();  //open item property dialog
     void removeItem(); 			//remove item from contents, ask for sure
     void removeItemDontAsk();	//remove item without asking

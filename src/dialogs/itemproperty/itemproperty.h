@@ -36,24 +36,23 @@ public:
 	bool valid() { return validProperties; }
 
 signals:
-	void insertContentsItem(QString title, QString fileName, QString iconFN);
-	void updateContentsItem(QString title, QString fileName, QString iconFN);
+        void insertContentsItem(QString title, QString fileName);
+        void updateContentsItem(QString title, QString fileName);
      
 public slots:
 	void chooseIcon();
 	void chooseFile();
 	void accept();
 	void reject();
-	void setProperties(QString title, QString fileName, QString iconFN, bool mode);
+        void setProperties(QString title, QString fileName, bool mode);
 	QString title()		{ return itemTitle; }	
 	QString filename()	{ return itemFile; }
-	QString iconFN()	{ return itemIconFN; }
 	
 private:
 	Ui::ItemProperty ui;
 	
 	bool insertMode; 	
-	QString itemTitle, itemFile, itemIconFN;
+        QString itemTitle, itemFile;
 	bool validProperties;
 
 }; // class ItemProperties

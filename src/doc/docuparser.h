@@ -31,12 +31,12 @@ class Profile;
 
 struct ContentItem {
     ContentItem() 
-	: title( QString() ), reference( QString() ), iconFN( QString() ), depth( 0 ) {}
+        : title( QString() ), reference( QString()  ), depth( 0 ) {}
     ContentItem( const QString &t, const QString &r, const QString &i, int d )
-	: title( t ), reference( r ), iconFN( i ), depth( d ) {}
+        : title( t ), reference( r ), depth( d ) {}
     QString title;
     QString reference;
-	QString iconFN;
+
     int depth;
     Q_DUMMY_COMPARISON_OPERATOR(ContentItem)
 };

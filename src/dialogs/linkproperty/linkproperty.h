@@ -35,7 +35,7 @@ public:
 	QString LinkLocation() { return linkLocation; }
 
 signals:
-	void removeLink();//(QString title, QString fileName, QString iconFN);
+        void removeLink();
 	void updateLink(QString lText, QString lLocation);
      
 public slots:

@@ -70,11 +70,11 @@ public:
 signals:
     void chooseWebBrowser();
     void choosePDFReader();
-    void insertContentsItem(QString title, QString fileName, QString iconFN);
-    void updateContentsItem(QString title, QString fileName, QString iconFN);
+    void insertContentsItem(QString title, QString fileName);
+    void updateContentsItem(QString title, QString fileName);
     
 public slots:
-    void updateItem(QString title, QString fileName, QString iconFN);
+    void updateItem(QString title, QString fileName);
     void setTagTitle(QString title);
     void fileNew();
     void fileOpen();

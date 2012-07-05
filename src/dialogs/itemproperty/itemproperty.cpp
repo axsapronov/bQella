@@ -86,12 +86,11 @@ void ItemProperties::accept()
 		if (file.exists()){	//file does exist we can proceed with setting item properties
 			itemTitle= ui.ETitle -> text(); 	//!+! get title from document
 			itemFile = urlifyFileName(ui.EFile -> text());
-			itemIconFN = ui.EIcon -> text();
 			validProperties = true;
 			if (insertMode){
-				emit insertContentsItem(itemTitle, itemFile, itemIconFN);
+                                emit insertContentsItem(itemTitle, itemFile);
 			}else{
-				emit updateContentsItem(itemTitle, itemFile, itemIconFN);
+                                emit updateContentsItem(itemTitle, itemFile);
 			}
 			QWidget::hide();  //close dialog
 		}
@@ -104,18 +103,12 @@ void ItemProperties::reject()
 	QWidget::hide();  //close dialog
 }
 
-void ItemProperties::setProperties(QString title, QString fileName, QString iconFN, bool mode)
+void ItemProperties::setProperties(QString title, QString fileName, bool mode)
 {
 	itemTitle= title;
 	itemFile = fileName;
-	itemIconFN = iconFN;
 	insertMode = mode; 
 	
 	ui.ETitle -> setText(title);
 	ui.EFile -> setText(fileName);
-	ui.EIcon -> setText(iconFN);
-	if (!iconFN.isEmpty())
-		ui.BIcon -> setIcon(QIcon(iconFN));
-	else 
-		ui.BIcon -> setIcon(QIcon());
 }

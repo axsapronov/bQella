@@ -78,9 +78,9 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
 
         connect(this, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)), this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
         connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-        connect(itemprop, SIGNAL(insertContentsItem(QString, QString, QString)), this, SLOT(loadNewItemFile()));  //open file of edited contents item
-        connect(itemprop, SIGNAL(insertContentsItem(QString, QString, QString)), mw -> helpDialog(), SLOT(InsertContentsItem(QString, QString, QString)));  //add item to contents
-        connect(itemprop, SIGNAL(updateContentsItem(QString, QString, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString, QString)));
+        connect(itemprop, SIGNAL(insertContentsItem(QString, QString)), this, SLOT(loadNewItemFile()));  //open file of edited contents item
+        connect(itemprop, SIGNAL(insertContentsItem(QString, QString)), mw -> helpDialog(), SLOT(InsertContentsItem(QString, QString)));  //add item to contents
+        connect(itemprop, SIGNAL(updateContentsItem(QString, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString)));
         connect(linkprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(linkprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
         connect(mw -> browsers(), SIGNAL(showDocProperties()), this, SLOT(showDocProperties()));
@@ -474,9 +474,9 @@ void HelpWindow::loadNewItemFile()
 }
 
 //-------------------------------------------------
-void HelpWindow::updateItem(QString title, QString fileName, QString iconFN)
+void HelpWindow::updateItem(QString title, QString fileName)
 {
-    itemprop -> setProperties(title,fileName,iconFN,false);
+    itemprop -> setProperties(title, fileName, false);
     itemprop -> show();
 }
 
@@ -489,7 +489,7 @@ void HelpWindow::fileNew()
         QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 
             fn += ".html";
-        itemprop -> setProperties("",fn,"",true);
+        itemprop -> setProperties("",fn,true);
         itemprop -> show();
     }
 }
@@ -503,7 +503,7 @@ void HelpWindow::fileOpen()
         QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 
             fn += ".html";
-        itemprop -> setProperties("",fn,"",true);
+        itemprop -> setProperties("",fn, true);
         itemprop -> show();
     }
 }
