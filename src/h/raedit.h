@@ -81,7 +81,7 @@ signals:
     void highlighted(const QUrl &);
     void highlighted(const QString &);
     void anchorClicked(const QUrl &);
-    void modifed(const bool &);
+//    void modifed(const bool &);
 
 public slots:
    // virtual void setSource(const QUrl &name);
@@ -89,7 +89,7 @@ public slots:
     inline void _q_documentModified()
     {
         textOrSourceChanged = true;
-        emit modifed(textOrSourceChanged);
+//        emit modifed(textOrSourceChanged);
         forceLoadOnSourceChange = !currentURL.path().isEmpty();
     }
 

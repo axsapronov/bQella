@@ -36,7 +36,7 @@ Import::Import(QObject *parent) :
 //----------------------------------------------------
 void Import::importModule(QString file)
 {
-    qDebug() << "Debug: _Import::importModule(QString file)" << "Start import Module";
+    qDebug() << "Debug: _Import::importModule()" << "Start import Module";
 
     Config::configuration()->setLanguage("rus");
     importIni(file);
@@ -47,7 +47,7 @@ void Import::importModule(QString file)
 //----------------------------------------------------
 void Import::importIni(QString filename)
 {
-    qDebug() << "Debug: _Import::importIni(Q)" << "Start import ini";
+    qDebug() << "Debug: _Import::importIni()" << "Start import ini";
 //    qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
 
     //    qDebug() << "Debug: _Import::importIni()" << "curprj" << Config::configuration()->PrjDir();
@@ -177,7 +177,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
 //            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
             addContentToProjectFile(textchap , true);
             QString text ="";
-            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
+//            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
             do{
                 line = stream.readLine();
                 if (line.indexOf(ChapterSign) >=0)
@@ -347,7 +347,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
     pathNameE.remove("book_");
     QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-    qDebug() << " \n ------- pathname = " << pathNameE;
+//    qDebug() << " \n ------- pathname = " << pathNameE;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
     QString text = ""+tr("PathName = %1"
@@ -450,10 +450,21 @@ QString Import::miniparserini(QString str, QString po)
     if (str.indexOf(po) >= 0)
     {
         str.remove(po);
-        if (po != "ShortName = ")
+
+
+        if (po == "BibleName = ")
+        {
+            str.replace(" ", "_")
+                    .remove(str.length()-1, 1);
+        }
+
+        if (po != "ShortName = " and
+                po != "FullName = " and
+                po != "ChapterSign = ")
         {
             str.remove(" \0");
         }
+
         if (str == "")
         {
 //               qDebug() << "po = " << po;
@@ -466,6 +477,7 @@ QString Import::miniparserini(QString str, QString po)
                 return "utf-8";
             return "none";
         }
+        str.remove("\n");
 
 //        qDebug() << "__str = " << str;
         return str;

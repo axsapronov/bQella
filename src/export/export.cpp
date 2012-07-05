@@ -209,12 +209,16 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     .remove(rx)
                     .remove("")
                     .replace("\n\n?p?PathName","PathName")
-                    .replace("FullName", "\nFullName")
-                    .replace("ShortName", "\nShortName")
-                    .replace("ChapterQty", "\nChapterQty")
                     .replace("?h4?", "<h4>")
                     .replace("?/h4?\n\n", "</h4>")
                     .replace("?p?", "<p>");
+
+            if (str.indexOf("\nFullName") < 0)
+            {
+                str.replace("FullName", "\nFullName")
+                .replace("ShortName", "\nShortName")
+                .replace("ChapterQty", "\nChapterQty");
+            }
         }
     }
     else

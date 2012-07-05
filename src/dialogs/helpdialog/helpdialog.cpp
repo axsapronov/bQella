@@ -223,7 +223,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
       lwClosed(false)
 {
 
-    autosavestart = false;
+//    autosavestart = false;
     exportf = new Export(0);
     ui.setupUi(this);
     ui.listContents -> setUniformRowHeights(true);
@@ -967,7 +967,7 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
         qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         emit showLink("file:"+fn);
-        autosavestart = true;
+//        autosavestart = true;
     }
     else
     {

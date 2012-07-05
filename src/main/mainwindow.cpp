@@ -230,14 +230,14 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-    helpDock->autosavestart = false;
+//    helpDock->autosavestart = false;
     browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
 
 void MainWindow::importModule()
 {
-    helpDock->autosavestart = false;
+//    helpDock->autosavestart = false;
 
     QString beginpath = "/home/warmonger";
     QString fileName = QFileDialog::getOpenFileName(this,
@@ -382,11 +382,11 @@ void MainWindow::modifededitor(bool my)
 {
 //    if (my)
 
-    if (my and helpDock->autosavestart)
-    {
-        qDebug() << "teeest" ;
-        browsers() -> currentBrowser() -> fileSave();
-    }
+//    if (my and helpDock->autosavestart)
+//    {
+//        qDebug() << "teeest" ;
+//        browsers() -> currentBrowser() -> fileSave();
+//    }
 }
 
 //-------------------------------------------------
