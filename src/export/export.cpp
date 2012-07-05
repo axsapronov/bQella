@@ -172,7 +172,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
             str = stream.readAll();
 
-            qDebug() << "\n --------str = " << str;
+//            qDebug() << "\n --------str = " << str;
 
             QRegExp title("<title>  [1]</title>");
             QRegExp title2("<title>[1]</title>");
@@ -184,10 +184,9 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             if (chapt)
             {
 //                qDebug() << "************ Export: chapter-file";
-                QString title = QString("<title>%1</title>").arg(incstr(i,3," "));
+                QString title = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
                 QString title2 = QString("<title>%1</title>").arg(i);
-
-                QString chapter = tr("\n?h4?Глава %1?/h4?").arg(incstr(i,3," "));
+                QString chapter = tr("\n?h4?Глава %1?/h4?").arg(incstr(i,GL_LengtItemString," "));
 
 //                qDebug() << "___int  = " << i << "str = "<< str;
                 str.replace(title,chapter)

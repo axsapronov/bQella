@@ -1761,7 +1761,7 @@ void HelpDialog::newItem()
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
-                title = incstr(QString("%1").arg(counter-1),3, " ");
+                title = incstr(QString("%1").arg(counter-1),GL_LengtItemString, " ");
             }
 //            qDebug() << " _ 8 ";
             qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;

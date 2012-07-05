@@ -33,6 +33,9 @@ AppSettings::AppSettings(QWidget *parent)
      : QDialog(parent)
 {
      ui.setupUi(this);
+
+     ui.CBItemAutoProperties->setChecked(true);
+     ui.CBItemAutoProperties->setVisible(false);
      connect(ui.PBExternalEditor, SIGNAL(clicked()), this, SLOT(chooseEditor()));    
      connect(ui.PBExternalBrowser, SIGNAL(clicked()), this, SLOT(chooseBrowser()));    
      connect(ui.PBExternalArchiver, SIGNAL(clicked()), this, SLOT(chooseArchiver()));    
