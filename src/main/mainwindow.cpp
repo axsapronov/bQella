@@ -29,7 +29,7 @@
 #include "settings.h"
 #include "guiabout.h"
 #include "export.h"
-#include "import.h"
+#include "importdialog.h"
 #include "frdialog.h"
 
 
@@ -80,7 +80,7 @@ MainWindow::MainWindow():
     helpDock = new HelpDialog(dw, this);
     frdialog = new FRDialog();
     exportm = new Export();
-    importm = new Import();
+    importm = new Import(this);
 
     dw -> setWidget(helpDock);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
@@ -143,6 +143,8 @@ void MainWindow::setup()
     //connect(prjprop, SIGNAL(createDB(QString)), prjsrc, SLOT(newDb(QString)));
     connect(prjprop, SIGNAL(createProject(ModuleProperties)), this, SLOT(createProject(ModuleProperties)));
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
+
+    connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -239,37 +241,28 @@ void MainWindow::importModule()
 {
 //    helpDock->autosavestart = false;
 
-    QString beginpath = "/home/warmonger";
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Select bibleqt.ini"),
-                                                    beginpath,
-                                                    tr("Bibleqt.ini (*.ini)"));
-    if (!fileName.isNull())
-    {
-        importm->importModule(fileName);
-
-        ModuleProperties pr;
-        pr.moduleBiblename = Config::configuration()->ModuleBiblename();
-        pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
-
-        pr.moduleCopyright = Config::configuration()->ModuleCopyright();
-        pr.moduleBVersion = 1.00;
-        pr.prjFN = importm->getPrjFN();
-        pr.prjStartPage = importm->getStartPage();
-        pr.prjTitle = Config::configuration()->ModuleBiblename();
-
-
-        // добавить другие параметры (дохера буленов и строк из модулепропертис)
-        ProjectOpen(pr.prjFN);
-        browsers() -> currentBrowser() -> fileSave();
-        helpDock->saveProject();
-
-    }
-
-
+    importm->show();
 
 }
 
+void MainWindow::importModuleSuccessful()
+{
+    ModuleProperties pr;
+    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
+
+    pr.moduleCopyright = Config::configuration()->ModuleCopyright();
+    pr.moduleBVersion = 1.00;
+    pr.prjFN = importm -> getPrjFN();
+    pr.prjStartPage = importm -> getStartPage();
+    pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+
+    // добавить другие параметры (дохера буленов и строк из модулепропертис)
+    ProjectOpen(pr.prjFN);
+    browsers() -> currentBrowser() -> fileSave();
+    helpDock->saveProject();
+}
 
 void MainWindow::importBook()
 {

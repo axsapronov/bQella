@@ -25,12 +25,13 @@ INCLUDEPATH += src/h/ \
     src/dialogs/projectproperty \
     src/dialogs/itemproperty \
     src/dialogs/linkproperty \
+    src/dialogs/importdialog \
     src/tab \
     src/settings \
     src/main \
     src/doc \
-    src/export \
-    src/import
+    src/export
+
 
 FORMS += \
      src/doc/docproperty.ui \
@@ -45,7 +46,8 @@ FORMS += \
      src/tab/tableproperty.ui \
      src/ui/cellsplit.ui \
      src/settings/settings.ui \
-    src/dialogs/findandreplacedialog/frdialog.ui
+     src/dialogs/findandreplacedialog/frdialog.ui \
+     src/dialogs/importdialog/importdialog.ui
 
 SOURCES +=  \
      src/settings/config.cpp \
@@ -62,6 +64,8 @@ SOURCES +=  \
      src/dialogs/helpdialog/helpdialog.cpp \
      src/dialogs/helpdialog/helpwindow.cpp \
      src/dialogs/fontdialog/fontpanel.cpp \
+     src/dialogs/importdialog/importdialog.cpp \
+     src/dialogs/findandreplacedialog/frdialog.cpp \
      src/dialogs/bookdialog/bookadddialog.cpp \
      src/dialogs/about/guiabout.cpp \
      src/dialogs/itemproperty/itemproperty.cpp \
@@ -71,9 +75,8 @@ SOURCES +=  \
      src/cpp/raedit.cpp \
      src/cpp/srclistparser.cpp \
      src/cpp/cellsplit.cpp \
-    src/export/export.cpp \
-    src/import/import.cpp \
-    src/dialogs/findandreplacedialog/frdialog.cpp
+     src/export/export.cpp
+
 
 HEADERS += \     
      src/doc/docproperty.h \
@@ -82,6 +85,8 @@ HEADERS += \
      src/dialogs/helpdialog/helpdialog.h \
      src/dialogs/helpdialog/helpwindow.h \
      src/dialogs/fontdialog/fontpanel.h \
+     src/dialogs/importdialog/importdialog.h \
+     src/dialogs/findandreplacedialog/frdialog.h \
      src/dialogs/bookdialog/bookadddialog.h \
      src/dialogs/itemproperty/itemproperty.h \
      src/dialogs/linkproperty/linkproperty.h \
@@ -98,12 +103,11 @@ HEADERS += \
      src/h/index.h \
      src/h/raedit.h \
      src/h/srclistparser.h \
-    src/export/export.h \
-    src/import/import.h \
-    src/dialogs/findandreplacedialog/frdialog.h
+     src/export/export.h
+
 
 RESOURCES += \
     resources/resources.qrc
 
 TRANSLATIONS += \
-    lang/ra_rus.ts
+    lang/rus.ts

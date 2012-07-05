@@ -350,12 +350,12 @@ void HelpWindow::closeEvent(QCloseEvent *e)
 void HelpWindow::setupFileActions()
 {
 
-    connect(mw -> ui.actionFileAdd, 		SIGNAL(triggered()), this, SLOT(fileOpen()));
+//    connect(mw -> ui.actionFileAdd, 		SIGNAL(triggered()), this, SLOT(fileOpen()));
     connect(mw -> ui.actionSaveFile, 		SIGNAL(triggered()), this, SLOT(fileSave()));
     connect(mw -> ui.actionSaveFileAs, 	SIGNAL(triggered()), this, SLOT(fileSaveAs()));
 
     connect(mw -> ui.actionItemProperties,SIGNAL(triggered()), mw -> helpDialog(), SLOT(showItemProperties()));
-    mw -> ui.actionFileAdd -> setShortcut(QKeySequence::Open);
+//    mw -> ui.actionFileAdd -> setShortcut(QKeySequence::Open);
     mw -> ui.actionSaveFile -> setShortcut(QKeySequence::Save);
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 

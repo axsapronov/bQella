@@ -105,12 +105,15 @@ private slots:
     void updateTabActions(int index);
 
 
+
+
     // export
     void exportModule();
 
     // import
     void importModule();
     void importBook();
+    void importModuleSuccessful();
 
     void exitApp();
 

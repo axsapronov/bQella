@@ -25,16 +25,22 @@
 
 #include "projectproperty.h"
 
+
+#include "ui_importdialog.h"
+
 class QDialog;
 class QOBject;
 
-class Import : public QObject
+class Import : public QDialog
 {
     Q_OBJECT
 public:
-    explicit Import(QObject *parent = 0);
+    explicit Import(QWidget *parent = 0);
+
+
 
 signals:
+    void SuccessfulImport();
 
 public slots:
 
@@ -46,12 +52,12 @@ public slots:
     QString getStartPage();
 
 private slots:
+    void selectImportFile();
+
     void importIni(QString file);
-    QString miniparserini(QString str, QString str2);
-
     void importProjectFile();
-
     QString importChapter(QString file);
+    QString miniparserini(QString str, QString str2);
 
     void createImportFolder(QString path);
     void createChaterFile(QString file,QString text, int i);
@@ -60,7 +66,11 @@ private slots:
     void createInstructionFile();
 
     void addContentToEndProjectFile();
+    void on_buttonBox_accepted();
+
+
 private:
+    Ui::ImportDialog ui;
     int BookQty;
     QString VerseSign;
     QString ChapterSign;

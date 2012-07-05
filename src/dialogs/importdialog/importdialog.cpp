@@ -21,17 +21,49 @@
  */
 
 
-#include "import.h"
+#include "importdialog.h"
 #include "pcommon.h"
 #include "helpdialog.h"
 #include "mainwindow.h"
 #include "config.h"
 
 
-Import::Import(QObject *parent) :
-    QObject(parent)
+
+#include <QFileDialog>
+
+
+
+
+Import::Import(QWidget *parent)
+    : QDialog(parent)
 {
 
+    ui.setupUi(this);
+    connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
+}
+//----------------------------------------------------
+void Import::selectImportFile()
+{
+    QString beginpath = "/home/warmonger";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Select bibleqt.ini"),
+                                                    beginpath,
+                                                    tr("Bibleqt.ini (*.ini)"));
+    if (!fileName.isNull())
+    {
+        ui.lEImportFile->setText(fileName);
+    }
+}
+//----------------------------------------------------
+void Import::on_buttonBox_accepted()
+{
+    if (!ui.lEImportFile->text().isEmpty())
+    {
+        importModule(ui.lEImportFile->text());
+        emit SuccessfulImport();
+    }
+
+    QWidget::hide();  //close dialog
 }
 //----------------------------------------------------
 void Import::importModule(QString file)
@@ -48,7 +80,7 @@ void Import::importModule(QString file)
 void Import::importIni(QString filename)
 {
     qDebug() << "Debug: _Import::importIni()" << "Start import ini";
-//    qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
+    //    qDebug() << "Debug: _Import::importIni()" << "file = " << filename;
 
     //    qDebug() << "Debug: _Import::importIni()" << "curprj" << Config::configuration()->PrjDir();
     //    qDebug() << "Debug: _Import::importIni()" << "curprj2" << filename.remove(filename.length()-11, 11);
@@ -163,21 +195,21 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
-//            qDebug() << " _ titlechap = " << titlechap;
+            //            qDebug() << " _ titlechap = " << titlechap;
             QString chapterfile = incstr(titlechap, GL_LengtItemString, "_");
             titlechap = incstr(titlechap, GL_LengtItemString, " ");
 
-//            qDebug() << " __ titlechap = " << titlechap;
+            //            qDebug() << " __ titlechap = " << titlechap;
             QString pathchap = pathName;
-//            pathchap.replace( QString("_chapter_%1").arg(j), QString("_chapter_"+chapterfile) );
+            //            pathchap.replace( QString("_chapter_%1").arg(j), QString("_chapter_"+chapterfile) );
 
-//            qDebug() << "\n----- pathchap = " << pathchap;
+            //            qDebug() << "\n----- pathchap = " << pathchap;
             pathchap =  "./book_" + pathName.split("/").last().remove("."+last) + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
-//            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
+            //            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
             addContentToProjectFile(textchap , true);
             QString text ="";
-//            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
+            //            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
             do{
                 line = stream.readLine();
                 if (line.indexOf(ChapterSign) >=0)
@@ -347,7 +379,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
     pathNameE.remove("book_");
     QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-//    qDebug() << " \n ------- pathname = " << pathNameE;
+    //    qDebug() << " \n ------- pathname = " << pathNameE;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
     QString text = ""+tr("PathName = %1"
@@ -446,7 +478,7 @@ QString Import::getStartPage()
 QString Import::miniparserini(QString str, QString po)
 {
     po.append(" = ");
-//    qDebug() << "_str " << str;
+    //    qDebug() << "_str " << str;
     if (str.indexOf(po) >= 0)
     {
         str.remove(po);
@@ -467,10 +499,10 @@ QString Import::miniparserini(QString str, QString po)
 
         if (str == "")
         {
-//               qDebug() << "po = " << po;
+            //               qDebug() << "po = " << po;
             if ( po == "Language = ")
             {
-//                qDebug() << "po = " << po;
+                //                qDebug() << "po = " << po;
                 return "rus";
             }
             if ( po == "DefaultEncoding = ")
@@ -479,9 +511,10 @@ QString Import::miniparserini(QString str, QString po)
         }
         str.remove("\n");
 
-//        qDebug() << "__str = " << str;
+        //        qDebug() << "__str = " << str;
         return str;
     }
     return "";
 }
+
 

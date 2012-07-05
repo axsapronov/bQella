@@ -71,9 +71,10 @@ void Config::loadProject(const QString &projectFileName)
     toAppLog(2, "Load project: " + projectFileName);
     QString prjFN = projectFileName;
     QFileInfo fi(prjFN);
+//    qDebug() << "Debug: Config::loadProject() " << "prjfn = " << prjFN;
 
     if ( !(fi.exists() && fi.isFile()) ){
-        qWarning( (QString("Project does not exist: ") + prjFN).toUtf8().constData() );
+        qWarning( (QString("Project does not exist2: ") + prjFN).toUtf8().constData() );
         toAppLog(2, "- project does not exist: " + prjFN); 
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
         prjFN = PrjDir() + "help/help.pem";
@@ -272,15 +273,16 @@ bool Config::sideBarHidden() const {  return hideSidebar; }
 //-------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN) 
 {
+    qDebug() << "Debug: _Config::getProjectProperty()" << "prjfn = " << prjFN;
     QFile file(prjFN);
     if (!file.exists()) {
-        qWarning( (QString("Project does not exist: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Project does not exist1: ") + prjFN).toUtf8().constData() );
         toAppLog(1, "Failed to get property for project:" + prjFN);
         return ""; 
     }
     DocuParser *parser = DocuParser::createParser( prjFN );
     if (!parser) {
-        qWarning( (QString("Failed to create parser for project: ") + prjFN).toAscii().constData() );
+        qWarning( (QString("Failed to create parser for project: ") + prjFN).toUtf8().constData() );
         toAppLog(1, "Failed to create parser for project:" + prjFN);
         return "";
     }
