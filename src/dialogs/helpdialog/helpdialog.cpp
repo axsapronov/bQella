@@ -1756,12 +1756,12 @@ void HelpDialog::newItem()
 //                    qDebug() << " _ 7 ";
                     //create chapter file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
-                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+ui.listContents -> currentItem() -> text(0)+"_chapter_"+QString::number(counter)+".htm";
+                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+ui.listContents -> currentItem() -> text(0)+"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
                     qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
-                title = QString("%1").arg(counter-1);
+                title = incstr(QString("%1").arg(counter-1),3, " ");
             }
 //            qDebug() << " _ 8 ";
             qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
@@ -1923,7 +1923,6 @@ int HelpDialog::getTopLevelItemCount()
 //-------------------------------------------------
 void HelpDialog::exportModule()
 {
-
     saveProject();
 //                    int999(123);
 //                    int999(000);

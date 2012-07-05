@@ -128,7 +128,8 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     //connect(win, SIGNAL(forwardAvailable(bool)),   mainWin, SLOT(forwardAvailable(bool)));
     connect(win, SIGNAL(sourceChanged(QUrl)), this, SLOT(sourceChanged()));
 
-    connect(win, SIGNAL(modifed(bool)), mainWindow(), SLOT(modifededitor(bool)));
+//    connect(win, SIGNAL(modifed(bool)), mainWindow(), SLOT(modifededitor(bool)));
+    // автосейв, очень частый
 
     ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(ui.tab -> count() > 1);
         win -> installEventFilter(this);

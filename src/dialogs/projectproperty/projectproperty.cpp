@@ -123,6 +123,9 @@ void ProjectProperties::accept()
         QDir dir(prjFN);
         //    qDebug() << "path = " << path <<  "last = " << path.last();
 
+        QString str = ui.lineEditBibleName ->text();
+        str.replace(" ", "_");
+        ui.lineEditBibleName->setText(str);
         dir.mkdir(ui.lineEditBibleName -> text());
 
         //check for valid project file name

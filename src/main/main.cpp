@@ -92,6 +92,7 @@ int main( int argc, char ** argv )
     }
     else 
         mw -> showLinks( links );
+
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
     
     int appExec = a.exec();

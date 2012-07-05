@@ -177,6 +177,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
 //            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
             addContentToProjectFile(textchap , true);
             QString text ="";
+            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
             do{
                 line = stream.readLine();
                 if (line.indexOf(ChapterSign) >=0)

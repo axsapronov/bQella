@@ -231,12 +231,14 @@ void MainWindow::setup()
 void MainWindow::exportModule()
 {
     helpDock->autosavestart = false;
+    browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
 
 void MainWindow::importModule()
 {
     helpDock->autosavestart = false;
+
     QString beginpath = "/home/warmonger";
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select bibleqt.ini"),
@@ -257,12 +259,11 @@ void MainWindow::importModule()
         pr.prjTitle = Config::configuration()->ModuleBiblename();
 
 
-
-
         // добавить другие параметры (дохера буленов и строк из модулепропертис)
-
-
         ProjectOpen(pr.prjFN);
+        browsers() -> currentBrowser() -> fileSave();
+        helpDock->saveProject();
+
     }
 
 
@@ -380,8 +381,10 @@ void MainWindow::showLink(const QString &link)
 void MainWindow::modifededitor(bool my)
 {
 //    if (my)
+
     if (my and helpDock->autosavestart)
     {
+        qDebug() << "teeest" ;
         browsers() -> currentBrowser() -> fileSave();
     }
 }
@@ -610,6 +613,8 @@ void MainWindow::ProjectOpen(QString fileName)
     	projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
+
+
     }
 }
 
