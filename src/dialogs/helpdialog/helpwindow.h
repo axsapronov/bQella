@@ -33,7 +33,7 @@
 #include "docproperty.h"
 #include "tableproperty.h"
 #include "cellsplit.h"
-
+#include "tagdialog.h"
 
 class MainWindow;
 class QKeyEvent;
@@ -100,6 +100,7 @@ private:
     ItemProperties *itemprop;
     LinkProperties *linkprop;
     DocProperties *docprop;
+    TagDialog *tagprop;
 
     QString lastAnchor; //url for document in helpwindow
     bool blockScroll;
@@ -133,6 +134,8 @@ private slots:
     void openLinkInNewWindow();
     void openLinkInNewPage();
     void showLinkProperties();
+    void showTagProperties();
+    void addTag(QString tag);
     void removeLink();
     void updateLink(QString lText, QString lLocation);
     void loadNewItemFile();

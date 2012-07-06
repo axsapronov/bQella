@@ -71,6 +71,7 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         itemprop = new ItemProperties(this);
         linkprop = new LinkProperties(this);
         docprop  = new DocProperties(this);
+        tagprop = new TagDialog(this);
 
         setupFileActions();
         setupEditActions();
@@ -83,6 +84,11 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         connect(itemprop, SIGNAL(updateContentsItem(QString, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString)));
         connect(linkprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(linkprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
+
+//        connect(tagprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
+        connect(tagprop, SIGNAL(addTag(QString)), this, SLOT(addTag(QString)));
+
+
         connect(mw -> browsers(), SIGNAL(showDocProperties()), this, SLOT(showDocProperties()));
         connect(docprop, SIGNAL(updateTitle(QString)), this, SLOT(setTagTitle(QString)));
 
@@ -195,9 +201,11 @@ void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
         m -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
         m -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
         m -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
+        m -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
     }else{
     	if ( textCursor().hasSelection() )
             m -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
+            m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
     }
     m -> addSeparator();
     mw -> setupPopupMenu(m);
@@ -241,6 +249,44 @@ void HelpWindow::showLinkProperties()
  */
 }
 
+
+
+//-------------------------------------------------
+void HelpWindow::showTagProperties()
+{
+    QString s = "";
+    QTextCursor cursor = raEdit::textCursor();
+    QTextCharFormat cf = cursor.charFormat();
+    selCur = cursor.position();
+    if (cf.isAnchor()){		//select whole text of the link.
+        while (cf.isAnchor()){	//move anchor to the start of hypertext link
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor);
+            cf = cursor.charFormat();
+        }
+        cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+        cf = cursor.charFormat();
+        while (cf.isAnchor()){ //move cursor to the end of hypertext link
+            cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+            cf = cursor.charFormat();
+        }
+        cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor);
+    }
+    if (!cursor.hasSelection())//if there is no selection, select the word under cursor
+        cursor.select(QTextCursor::WordUnderCursor);
+    // Выделение текста остаётся только в этой процедуре, поэтому используем глоб переменные.
+    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на raEdit::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
+    selStart = cursor.selectionStart();
+    selEnd = cursor.selectionEnd();
+    s = cursor.selectedText();
+    tagprop -> setProperties(s);
+    tagprop -> show();
+    /*
+ QTextCharFormat::setAnchor ( bool anchor )
+ QTextCharFormat::setAnchorHref ( const QString & value )
+ QTextCharFormat::setAnchorNames ( const QStringList & names )
+ */
+}
+
 //-------------------------------------------------
 void HelpWindow::removeLink()
 {
@@ -270,6 +316,23 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
     	cursor.insertFragment(fragment);
     	raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
     }
+}
+
+//-------------------------------------------------
+void HelpWindow::addTag(QString tag)
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QString s =	tag;
+
+//    s = "<a href=\" fff \">"+ tag +"</a>";
+    s = tag;
+    qDebug() << "s = " << s;
+    QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
+    cursor.setPosition(selStart, QTextCursor::MoveAnchor);
+    cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
+    cursor.removeSelectedText();
+    cursor.insertFragment(fragment);
+    raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 }
 
 //-------------------------------------------------

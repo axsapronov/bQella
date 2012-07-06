@@ -162,6 +162,8 @@ void MainWindow::setup()
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
     connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties()));
+    connect(ui.actionAddTag, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+
     connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
 
     // find

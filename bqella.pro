@@ -26,6 +26,7 @@ INCLUDEPATH += src/h/ \
     src/dialogs/itemproperty \
     src/dialogs/linkproperty \
     src/dialogs/importdialog \
+    src/dialogs/tagdialog \
     src/tab \
     src/settings \
     src/main \
@@ -47,7 +48,8 @@ FORMS += \
      src/ui/cellsplit.ui \
      src/settings/settings.ui \
      src/dialogs/findandreplacedialog/frdialog.ui \
-     src/dialogs/importdialog/importdialog.ui
+     src/dialogs/importdialog/importdialog.ui \
+    src/dialogs/tagdialog/tagdialog.ui
 
 SOURCES +=  \
      src/settings/config.cpp \
@@ -75,7 +77,8 @@ SOURCES +=  \
      src/cpp/raedit.cpp \
      src/cpp/srclistparser.cpp \
      src/cpp/cellsplit.cpp \
-     src/export/export.cpp
+     src/export/export.cpp \
+    src/dialogs/tagdialog/tagdialog.cpp
 
 
 HEADERS += \     
@@ -103,7 +106,8 @@ HEADERS += \
      src/h/index.h \
      src/h/raedit.h \
      src/h/srclistparser.h \
-     src/export/export.h
+     src/export/export.h \
+    src/dialogs/tagdialog/tagdialog.h
 
 
 RESOURCES += \

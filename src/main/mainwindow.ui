@@ -245,6 +245,7 @@
    <addaction name="separator"/>
    <addaction name="actionHyperlink"/>
    <addaction name="actionTextColor"/>
+   <addaction name="actionAddTag"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBarFile">
@@ -840,6 +841,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionAddTag">
+   <property name="text">
+    <string>AddTag</string>
+   </property>
+   <property name="iconText">
+    <string>AT</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

@@ -71,7 +71,8 @@ void AppSettings::apply()
 	Config::configuration() -> setBackupDir(ui.LEBackupDir -> text());
 	Config::configuration() -> setAppLogLevel(ui.SBAppLogLevel -> value());
 	Config::configuration() -> setPrjLogLevel(ui.SBPrjLogLevel -> value());
-	Config::configuration() -> setItemAutoProperties(ui.CBItemAutoProperties -> isChecked());
+//	Config::configuration() -> setItemAutoProperties(ui.CBItemAutoProperties -> isChecked());
+        Config::configuration() -> setItemAutoProperties(true);
 }
 
 //-------------------------------------------------
@@ -80,7 +81,8 @@ void AppSettings::set()
 	ui.CBContentsAdditionalView -> setChecked(Config::configuration() -> ContentsAdditionalView());
 	ui.CBShowSubItemsTitle -> setChecked(Config::configuration() -> ShowSubItemsTitle());
 	ui.CBAutoCollapse -> setChecked(Config::configuration() -> AutoCollapse());
-	ui.CBItemAutoProperties -> setChecked(Config::configuration() -> ItemAutoProperties());
+//	ui.CBItemAutoProperties -> setChecked(Config::configuration() -> ItemAutoProperties());
+        ui.CBItemAutoProperties -> setChecked(true);
 	ui.LEExternalEditor -> setText(Config::configuration() -> ExternalEditor());
 	ui.LEExternalBrowser -> setText(Config::configuration() -> ExternalBrowser());
 	ui.LEExternalArchiver -> setText(Config::configuration() -> ExternalArchiver());
