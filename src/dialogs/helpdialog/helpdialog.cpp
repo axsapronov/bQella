@@ -1282,8 +1282,11 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName)
             }
             else
             {
+                //                QString str = fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/");
                 QString str = fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/");
-                qDebug() << "\n ----- str = " << str; //
+                str.remove(Config::configuration() -> CurPrjDir().toLower())
+                        .remove("file:/");
+//                qDebug() << "\n ----- str = " << str; //
                 file1.write(QString("\nPathName = %1"
                                     "\nFullName = %2"
                                     "\nShortName = %3"

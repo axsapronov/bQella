@@ -170,7 +170,7 @@ void BookAddDialog::send()
 {
     bookChapterQty = ui -> spinBoxChapterQty -> value();
     bookFullName = ui -> lineEditFullName -> text();
-    bookFullName.replace("_", " ");
+//    bookFullName.replace("_", " ");
     bookShortName = ui -> comboBoxShortName -> currentText();
     bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();
 

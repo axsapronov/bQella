@@ -72,7 +72,10 @@ void Export::exportBibleqtIni(QString string, QString count)
     }
     else
     {
-
+        QString htmlfilter = "<br> <pre> </pre>"
+                " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
+                " <em> </em> <table </table>"
+                " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
         // сделать QStringList?
         QString stru =""+tr("BibleName = %1"
                             "\nBibleShortName = %2"
@@ -100,6 +103,7 @@ void Export::exportBibleqtIni(QString string, QString count)
                             "\nDesiredFontPath = %21"
                             "\nDefaultEncoding = %22"
                             "\nDesiredUIFont = %23"
+                            "\nHTMLFilter = %24"
                             )
                 .arg(Config::configuration() -> profile() -> props["biblename"])  /*1*/
                 .arg(Config::configuration() -> profile() -> props["bibleshortname"]) /*2*/
@@ -123,8 +127,8 @@ void Export::exportBibleqtIni(QString string, QString count)
                 .arg(Config::configuration() -> profile() -> props["categories"]) /*20*/
                 .arg(Config::configuration() -> profile() -> props["desiredfontpath"]) /*21*/
                 .arg(Config::configuration() -> profile() -> props["defaultencoding"]) /*22*/
-                .arg(Config::configuration() -> profile() -> props["desireduifont"]); /*23*/
-
+                .arg(Config::configuration() -> profile() -> props["desireduifont"]) /*23*/
+                .arg(htmlfilter);
         //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
         stru.replace("none", "");
 
@@ -206,6 +210,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     .remove("</p>")
                     .remove(rxi)
                     .replace("<p>", "?p?")
+                    .replace("<br \>", "?br \?")
                     .remove(rx)
                     .remove("")
                     .remove("\n")
@@ -216,6 +221,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     .replace("ChapterQty", "\nChapterQty")
                     .replace("?h4?", "\n<h4>")
                     .replace("?/h4?", "</h4>")
+                    .replace("?br \?", "<br \>")
                     .replace("?p?", "\n<p>");
         }
     }
