@@ -190,7 +190,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                 //                qDebug() << "************ Export: chapter-file";
                 QString title = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
                 QString title2 = QString("<title>%1</title>").arg(i);
-                QString chapter = tr("\n?h4_.Глава %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
+                QString chapter = tr("\n?h4_.Chapter %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
 
                 //                qDebug() << "___int  = " << i << "str = "<< str;
                 str.replace(title,chapter)

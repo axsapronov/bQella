@@ -106,8 +106,8 @@ void Import::on_buttonBox_accepted()
     {
         encoding = ui.cBEncoding->currentText();
         encoding.replace("CP", "Windows");
-        QTextCodec * codec;
-        //        codec->
+        QTextCodec * codec = QTextCodec::codecForName("UTF-8");
+
         if (encoding == "UTF-8") codec = QTextCodec::codecForName("UTF-8");
         if (encoding == "UTF-16") codec = QTextCodec::codecForName("UTF-16");
         if (encoding == "UTF-32") codec = QTextCodec::codecForName("UTF-32");
@@ -435,7 +435,7 @@ void Import::createImportFolder(QString path)
     }
     else
     {
-        qDebug() << "Debug: _Import::createImportFolder" << QString(tr("Такая папка импорта уже существует:")) << path;
+        qDebug() << "Debug: _Import::createImportFolder" << QString(tr("This folder is imported already exists:")) << path;
     }
     Config::configuration()->setCurPrjDir(path);
     //        qDebug() << " curprg  = " << Config::configuration()->CurPrjDir();
@@ -497,7 +497,7 @@ void Import::createProjectFile()
 //----------------------------------------------------
 void Import::createInstructionFile()
 {
-    QString text = tr("Добавить инструкцию");
+    QString text = tr("Add a manual");
     createEmptyHtml(QString(Config::configuration()->CurPrjDir()+"/   ___Instruction"), QString("   ___Instruction"), text);
 }
 //----------------------------------------------------

@@ -114,4 +114,6 @@ RESOURCES += \
     resources/resources.qrc
 
 TRANSLATIONS += \
-    lang/rus.ts
+    resources/lang/ru.ts \
+    resources/lang/de.ts \
+    resources/lang/fr.ts

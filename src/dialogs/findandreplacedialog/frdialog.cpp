@@ -107,7 +107,7 @@ void FRDialog::find()
             QString str2 = ui->cBBook->currentText();
 //            qDebug() << "___" << str2.split("_").first();
 //            qDebug() << "---" << str.replace(tr("Глава "), tr("book_%1_chapter_").arg(str2));
-            path = Config::configuration()->CurPrjDir() + "/" + str.replace(tr("Глава "), tr("book_%1_chapter_").arg(str2)) +".htm";
+            path = Config::configuration()->CurPrjDir() + "/" + str.replace(tr("Chapter "), tr("book_%1_chapter_").arg(str2)) +".htm";
 //            qDebug() << "path = " <<  path /*<< "string " << stringforfoldername*/;
         }
     }
@@ -183,7 +183,7 @@ void FRDialog::updateinfo()
 void FRDialog::updateCBBook()
 {
     QStringList items;
-    items << tr("Все книги");
+    items << tr("All books");
 
     QDir dir(Config::configuration()->CurPrjDir());
     QStringList list = dir.entryList();
@@ -198,7 +198,7 @@ void FRDialog::updateCBChapter(QString path)
 {
 //    qDebug() << "Debug: _FRDialog::updateCBChapter()" << "path = " << path;
     QStringList items;
-    items << tr("Все главы");
+    items << tr("All chapters");
     QDir dir(path);
     QStringList list = dir.entryList();
     removeItemListChapter(list);
@@ -230,7 +230,7 @@ void FRDialog::removeItemListChapter(QStringList &list)
             list.removeAt(i);
             --i;
         }
-        QString app = QString(list.at(i)).remove(bookname.split(".").first()).replace(tr("book_%1_chapter_").arg(ui->cBBook->currentText()), tr("Глава ")).remove(".htm");
+        QString app = QString(list.at(i)).remove(bookname.split(".").first()).replace(tr("book_%1_chapter_").arg(ui->cBBook->currentText()), tr("Chapter ")).remove(".htm");
         listb << app;
 //        qDebug() << "Debug: _FRDialog::removeItemList()" << "listb = " << listb << "app = " << app;
         ++i;
@@ -287,7 +287,7 @@ void FRDialog::updateItemforTable(QStringList &list, QStringList &list2)
         QStringList str;
         QString st = QString(list.at(i));
         (str << st.split("_")).removeFirst();
-        app2 = QString(list.at(i)).remove(tr("book_%1").arg(str.first())).replace("_chapter_", tr("Глава ")).remove(".htm");
+        app2 = QString(list.at(i)).remove(tr("book_%1").arg(str.first())).replace("_chapter_", tr("Chapter ")).remove(".htm");
         lib2 << app2;
     }
 //    qDebug() << " lib = " << lib;
@@ -308,7 +308,7 @@ void FRDialog::showFiles(const QStringList &bookList, const QStringList &chapter
         ui->tableFiles->setItem(row, 0, bookItem);
         ui->tableFiles->setItem(row, 1, chapterItem);
     }
-    ui->filesFoundLabel->setText(tr("%1 файл(а) найдено").arg(bookList.size()) /*+
+    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(bookList.size()) /*+
                              (" (Double click on a file to open it)")*/);
 }
 //---------------------------------------
