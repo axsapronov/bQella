@@ -203,46 +203,30 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
 
                 //                qDebug() << "************ Export: book-file";
             }
-
             str.remove("p, li { white-space: pre-wrap; }")
                     .remove(title)
                     .replace(rxp, "?p_.")
                     .remove("</p>")
                     .remove(rxi);
 
-
             QStringList tags;
-            tags << "p" << "br \\" << "h4" << "/h4";
-//            test[2] = "br \\";
 
-//            QString str2 = str;
+            tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "span"
+                 << "/span" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+                 << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
+                 << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
 
-//            qDebug() << "\n\n======begin=====\nDebug: _Export::exportChapter" << " str2 = " << str2 << " test = " << test << "\n=========center-begin========\n";
-
-//            str2 = editStringList(str2, test, true);
-//            qDebug() << "Debug: _Export::exportChapter" << " str2 = " << str2 << " \n=========center-end====";
-//            str2 = editStringList(str2, test, false);
-//            qDebug() << "Debug: _Export::exportChapter" << " str2 = " << str2 << " \n=========end====";
-
-            str = editStringList(str, tags, true);
-//            str.replace("<p>", "?p?")
-//                    .replace("<br />", "?br /?");
-
+            str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
             str.remove(rx)
                     .remove("")
                     .remove("\n");
-
             str.replace("?p?PathName","\nPathName")
                     .replace("PathName", "\n\nPathName")
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty");
+            str = editStringList(str, tags, false); // возвращаем нужные теги
 
-//            str.replace("?h4?", "\n<h4>")
-//                    .replace("?/h4?", "</h4>")
-//                    .replace("?br /?", "<br />")
-            str = editStringList(str, tags, false);
-//                    str.replace("?p?", "\n<p>");
         }
     }
     else
