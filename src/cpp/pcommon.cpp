@@ -780,8 +780,7 @@ bool createEmptyHtml(QString fileName, QString title)
     }
     return ret;
 }
-
-
+//-------------------------------------------------
 bool createEmptyHtml(QString fileName, QString title, QString text)
 {
     bool ret = true;
@@ -803,7 +802,7 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     }
     return ret;
 }
-
+//-------------------------------------------------
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext)
 {
     QFile file(filepath);
@@ -838,9 +837,7 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
 //    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
 //    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
 }
-
-
-
+//-------------------------------------------------
 QString ist(QString str)
 {
     if (str == "")
@@ -849,22 +846,21 @@ QString ist(QString str)
     }
     return str;
 }
-
+//-------------------------------------------------
 int BooltoInt(bool foo)
 {
     if (foo == true)
         return 1;
     return 0;
 }
-
-
+//-------------------------------------------------
 QString BooltoQString(bool foo)
 {
     if (foo == true)
         return "Y";
     return "N";
 }
-
+//-------------------------------------------------
 // юзать только для преобразования параметров проекта
 bool QStringtoBool(QString str)
 {
@@ -874,8 +870,7 @@ bool QStringtoBool(QString str)
         return false;
     return true;
 }
-
-
+//-------------------------------------------------
 QString incstr(QString str, int n, QString mychar)
 {
     while (str.length() != n)
@@ -883,4 +878,37 @@ QString incstr(QString str, int n, QString mychar)
         str = mychar + str;
     }
     return str;
+}
+//-------------------------------------------------
+QString tagToQuestion(QString tag)
+{
+    tag = "<" + tag + ">";
+    return tag.replace("<","?").replace(">","_.");
+}
+//-------------------------------------------------
+QString questionToTag(QString question)
+{
+    question = "?" + question + "_.";
+    if (question == "?p_." or question == "?h4_.")
+    {
+        return question.replace("?","\n<").replace("_.",">");
+    }
+    return question.replace("?","<").replace("_.",">");
+}
+//-----------------------------------------------------
+QString editStringList(QString list, QStringList tags, bool f)
+{
+    for (int i = 0; i < tags.size(); i++)
+    {
+        if (f)
+        {
+            list.replace( QString("<"+tags.at(i)+">"), tagToQuestion(tags.at(i)) );
+        }
+        else
+        {
+            list.replace( QString("?"+tags.at(i)+"_."), questionToTag(tags.at(i)) );
+        }
+
+    }
+    return list;
 }

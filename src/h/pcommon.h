@@ -71,6 +71,9 @@ QString BooltoQString(bool foo); // возвращает true= "1" false =  "0"
 bool QStringtoBool(QString foo); // возвращает false if str.indexOf("0") else true
 QString ist(QString str); // возвращает "none" если строка "", если нет, то возвращает саму строку
 QString incstr(QString str, int n, QString mychar);  // increase the line, увеличивает строку добавляя символ в начале строки
+QString tagToQuestion(QString tag); // функции, которые делают из <p>  ?p? и обратно.
+QString questionToTag(QString question);
+QString editStringList(QString list, QStringList tags, bool f); // функция нужная для экспорта, в зависимости от bool меняет теги на ?*_? или <*>
 
 //======= работа с файлами =======
 //--------------------------------

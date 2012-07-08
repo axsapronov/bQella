@@ -139,11 +139,11 @@ void Export::exportBibleqtIni(QString string, QString count)
 //---------------------------------
 void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
 {
-//    QString filename = helpDock -> ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:");
-//    qDebug() << "\n-------str = " << filename;
+    //    QString filename = helpDock -> ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:");
+    //    qDebug() << "\n-------str = " << filename;
     QString string = exportChapter(filename, count ,false);
 
-//    qDebug() << "\n-------str = " << string;
+    //    qDebug() << "\n-------str = " << string;
 
     QFile filebibleqt(file);
     if(!filebibleqt.open(QIODevice::Append))
@@ -159,7 +159,7 @@ void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
 //---------------------------------
 QString Export::exportChapter (QString filename, QString i, bool chapt)
 {
-//    qDebug() << "--- i " << i;
+    //    qDebug() << "--- i " << i;
     // подготавливаем главы
     // мега индия
     QFile file(filename);
@@ -176,7 +176,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             stream.setCodec(QTextCodec::codecForName("UTF-8"));
             str = stream.readAll();
 
-//            qDebug() << "\n --------str = " << str;
+            //            qDebug() << "\n --------str = " << str;
 
             QRegExp title("<title>  [1]</title>");
             QRegExp title2("<title>[1]</title>");
@@ -187,12 +187,12 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
 
             if (chapt)
             {
-//                qDebug() << "************ Export: chapter-file";
+                //                qDebug() << "************ Export: chapter-file";
                 QString title = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
                 QString title2 = QString("<title>%1</title>").arg(i);
-                QString chapter = tr("\n?h4?Глава %1?/h4?").arg(incstr(i,GL_LengtItemString," "));
+                QString chapter = tr("\n?h4_.Глава %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
 
-//                qDebug() << "___int  = " << i << "str = "<< str;
+                //                qDebug() << "___int  = " << i << "str = "<< str;
                 str.replace(title,chapter)
                         .replace(title2,chapter);
             }
@@ -201,28 +201,48 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                 str.remove(title)
                         .remove(title2);
 
-//                qDebug() << "************ Export: book-file";
+                //                qDebug() << "************ Export: book-file";
             }
 
             str.remove("p, li { white-space: pre-wrap; }")
                     .remove(title)
-                    .replace(rxp, "?p?")
+                    .replace(rxp, "?p_.")
                     .remove("</p>")
-                    .remove(rxi)
-                    .replace("<p>", "?p?")
-                    .replace("<br \>", "?br \?")
-                    .remove(rx)
+                    .remove(rxi);
+
+
+            QStringList tags;
+            tags << "p" << "br \\" << "h4" << "/h4";
+//            test[2] = "br \\";
+
+//            QString str2 = str;
+
+//            qDebug() << "\n\n======begin=====\nDebug: _Export::exportChapter" << " str2 = " << str2 << " test = " << test << "\n=========center-begin========\n";
+
+//            str2 = editStringList(str2, test, true);
+//            qDebug() << "Debug: _Export::exportChapter" << " str2 = " << str2 << " \n=========center-end====";
+//            str2 = editStringList(str2, test, false);
+//            qDebug() << "Debug: _Export::exportChapter" << " str2 = " << str2 << " \n=========end====";
+
+            str = editStringList(str, tags, true);
+//            str.replace("<p>", "?p?")
+//                    .replace("<br />", "?br /?");
+
+            str.remove(rx)
                     .remove("")
-                    .remove("\n")
-                    .replace("?p?PathName","\nPathName")
+                    .remove("\n");
+
+            str.replace("?p?PathName","\nPathName")
                     .replace("PathName", "\n\nPathName")
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
-                    .replace("ChapterQty", "\nChapterQty")
-                    .replace("?h4?", "\n<h4>")
-                    .replace("?/h4?", "</h4>")
-                    .replace("?br \?", "<br \>")
-                    .replace("?p?", "\n<p>");
+                    .replace("ChapterQty", "\nChapterQty");
+
+//            str.replace("?h4?", "\n<h4>")
+//                    .replace("?/h4?", "</h4>")
+//                    .replace("?br /?", "<br />")
+            str = editStringList(str, tags, false);
+//                    str.replace("?p?", "\n<p>");
         }
     }
     else
