@@ -30,7 +30,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabBasic">
       <attribute name="title">
@@ -130,35 +130,35 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>В модуле есть:</string>
+            <string>In module:</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
           <widget class="QCheckBox" name="cbOldTestament">
            <property name="text">
-            <string>Ветхий Завет</string>
+            <string>Old Testament</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
           <widget class="QCheckBox" name="cbNewTestament">
            <property name="text">
-            <string>Новый Завет</string>
+            <string>New Testament</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
           <widget class="QCheckBox" name="cbApocrypha">
            <property name="text">
-            <string>Второканонические материалы</string>
+            <string>Apocrypha</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
           <widget class="QCheckBox" name="cbChapterZero">
            <property name="text">
-            <string>Нулевая глава</string>
+            <string>Chapter zero</string>
            </property>
           </widget>
          </item>
@@ -170,7 +170,7 @@
               <enum>Qt::LeftToRight</enum>
              </property>
              <property name="text">
-              <string>Номера Стронга</string>
+              <string>Strong numbers</string>
              </property>
             </widget>
            </item>
@@ -195,7 +195,7 @@
            <item>
             <widget class="QCheckBox" name="checkBoxSound">
              <property name="text">
-              <string>Звуки                </string>
+              <string>Sound</string>
              </property>
             </widget>
            </item>
@@ -218,7 +218,7 @@
          <item row="6" column="1">
           <widget class="QCheckBox" name="cbNoForcedLineBreaks">
            <property name="text">
-            <string>Разделение не на стихи, а на абзацы</string>
+            <string>Noforced line breaks</string>
            </property>
           </widget>
          </item>
@@ -240,12 +240,12 @@
               <enum>Qt::LeftToRight</enum>
              </property>
              <property name="text">
-              <string>Отображать заголовки</string>
+              <string>Use chapter head</string>
              </property>
             </widget>
             <widget class="QCheckBox" name="cbUseRightAlignment">
              <property name="text">
-              <string>Правое выравнивание</string>
+              <string>Use right alignment</string>
              </property>
             </widget>
            </widget>
@@ -254,7 +254,7 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="text">
-             <string>Использовать английскую нумерацию  стихов</string>
+             <string>English Psalms</string>
             </property>
            </widget>
           </widget>
@@ -266,7 +266,7 @@
            </property>
            <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>Привязка модуля к категориям:</string>
+             <string>Categories:</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="lECategories"/>
@@ -279,7 +279,7 @@
            </property>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>Язык модуля:</string>
+             <string>Language:</string>
             </property>
            </widget>
            <widget class="QComboBox" name="comBLanguage">
@@ -308,7 +308,7 @@
            </property>
            <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>Кодировка:</string>
+             <string>Encoding:</string>
             </property>
            </widget>
            <widget class="QComboBox" name="comBEncoding">
@@ -341,7 +341,7 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Добавление шрифтов:</string>
+           <string>Install fonts:</string>
           </property>
          </widget>
         </item>
@@ -351,7 +351,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_9">
           <property name="text">
-           <string>Шрифт отображения книг:</string>
+           <string>Desired font name:</string>
           </property>
          </widget>
         </item>
@@ -361,7 +361,7 @@
         <item row="2" column="0">
          <widget class="QLabel" name="label_11">
           <property name="text">
-           <string>Путь к нему:</string>
+           <string>Desired font path:</string>
           </property>
          </widget>
         </item>
@@ -371,7 +371,7 @@
         <item row="3" column="0">
          <widget class="QLabel" name="label_13">
           <property name="text">
-           <string>Шрифт отображения заголовков:</string>
+           <string>Desired UI font:</string>
           </property>
          </widget>
         </item>

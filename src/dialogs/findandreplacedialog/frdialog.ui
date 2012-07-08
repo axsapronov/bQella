@@ -19,7 +19,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Искать в:</string>
+        <string>Search:</string>
        </property>
       </widget>
      </item>
@@ -27,7 +27,7 @@
       <widget class="QComboBox" name="cBBook">
        <item>
         <property name="text">
-         <string>Все книги</string>
+         <string>All book</string>
         </property>
        </item>
       </widget>
@@ -36,7 +36,7 @@
       <widget class="QComboBox" name="cBChapter">
        <item>
         <property name="text">
-         <string>Все главы</string>
+         <string>All chapters</string>
         </property>
        </item>
       </widget>
@@ -44,28 +44,28 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Ищи:</string>
+        <string>Text:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="lEFind">
        <property name="text">
-        <string>Введите текст</string>
+        <string/>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="pBFind">
        <property name="text">
-        <string>Искать</string>
+        <string>Find</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0" colspan="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Найдено в файлах:</string>
+        <string>Found in the files:</string>
        </property>
       </widget>
      </item>
@@ -79,12 +79,12 @@
        </attribute>
        <column>
         <property name="text">
-         <string>Книга</string>
+         <string>Book</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Глава</string>
+         <string>Chapter</string>
         </property>
        </column>
       </widget>
@@ -92,7 +92,7 @@
      <item row="4" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Заменить на:</string>
+        <string>Replace:</string>
        </property>
       </widget>
      </item>
@@ -102,7 +102,7 @@
      <item row="4" column="2">
       <widget class="QPushButton" name="pBReplace">
        <property name="text">
-        <string>Заменить</string>
+        <string>Replace</string>
        </property>
       </widget>
      </item>
