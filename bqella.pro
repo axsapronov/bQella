@@ -49,7 +49,7 @@ FORMS += \
      src/settings/settings.ui \
      src/dialogs/findandreplacedialog/frdialog.ui \
      src/dialogs/importdialog/importdialog.ui \
-    src/dialogs/tagdialog/tagdialog.ui
+     src/dialogs/tagdialog/tagdialog.ui
 
 SOURCES +=  \
      src/settings/config.cpp \
@@ -78,7 +78,7 @@ SOURCES +=  \
      src/cpp/srclistparser.cpp \
      src/cpp/cellsplit.cpp \
      src/export/export.cpp \
-    src/dialogs/tagdialog/tagdialog.cpp
+     src/dialogs/tagdialog/tagdialog.cpp
 
 
 HEADERS += \     
@@ -107,13 +107,13 @@ HEADERS += \
      src/h/raedit.h \
      src/h/srclistparser.h \
      src/export/export.h \
-    src/dialogs/tagdialog/tagdialog.h
+     src/dialogs/tagdialog/tagdialog.h
 
 
 RESOURCES += \
     resources/resources.qrc
 
 TRANSLATIONS += \
-    resources/lang/ru.ts \
-    resources/lang/de.ts \
-    resources/lang/fr.ts
+    resources/lang/bqella_ru.ts \
+    resources/lang/bqella_de.ts \
+    resources/lang/bqella_fr.ts

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AppSettings</name>
     <message>
@@ -697,14 +697,14 @@ HTMLFilter = %24</source>
     <message>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="110"/>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="233"/>
-        <source>book_%1_chapter_</source>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
+        <source>Chapter </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="110"/>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="233"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
-        <source>Chapter </source>
+        <source>book_%1_chapter_</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -728,13 +728,13 @@ HTMLFilter = %24</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="311"/>
-        <source>%1 file(s) found</source>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
+        <source>book_%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
-        <source>book_%1</source>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="311"/>
+        <source>%1 file(s) found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1510,16 +1510,16 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="500"/>
-        <source>Add a manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="452"/>
         <source>PathName = %1
 FullName = %2
 ShortName = %3
 ChapterQty = %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="500"/>
+        <source>Add a manual</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

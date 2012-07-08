@@ -62,15 +62,13 @@ int main( int argc, char ** argv )
     //QString locale = QLocale::system().name();
     //qDebug()<< "locale = " << locale;
     QTranslator translator;
-    if (conf -> Lang() == "Russian"){
-//        translator.load("resources/lang/rus"); // СДЕЛАТЬ: разобраться с переводом, что-то не работает
-//        translator.load("rus","/resources/lang");
-        translator.load("lang/ra_rus");
-        a.installTranslator(&translator);
-    }
 
+    //            translator.load("bqella_ru","/home/files/Develop/git/next/bQella/resources/lang");
+    if (conf -> Lang() == "Russian") translator.load("bqella_ru","lang");
+    if (conf -> Lang() == "Deutch") translator.load("bqella_de","lang");
+    if (conf -> Lang() == "France") translator.load("bqella_fr","lang");
+    a.installTranslator(&translator);
     conf -> hideSideBar( hideSidebar );
-
     QPointer<MainWindow> mw = new MainWindow();
 
     FontSettings settings = conf -> fontSettings();
