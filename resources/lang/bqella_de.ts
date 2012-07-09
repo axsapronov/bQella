@@ -139,24 +139,24 @@ For 7Zip: &quot;a -t7z&quot;</source>
         <source>Add book</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../src/dialogs/bookdialog/bookadddialog.ui" line="27"/>
-        <source>Полное имя книги:</source>
+        <source>Full name book:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../src/dialogs/bookdialog/bookadddialog.ui" line="37"/>
-        <source>Количество глав:</source>
+        <source>Chapters:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../src/dialogs/bookdialog/bookadddialog.ui" line="51"/>
-        <source>Коротко название:</source>
+        <source>Short name:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../src/dialogs/bookdialog/bookadddialog.ui" line="89"/>
-        <source>Автоматически создать главы</source>
+        <source>Auto create chapters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -691,10 +691,6 @@ HTMLFilter = %24</source>
     </message>
     <message>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="74"/>
-        <source>ÐÐ»Ð°Ð²Ð° </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="110"/>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="233"/>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
@@ -796,12 +792,8 @@ HTMLFilter = %24</source>
 </context>
 <context>
     <name>GUIAbout</name>
-    <message utf8="true">
-        <location filename="../../src/dialogs/about/guiabout.ui" line="14"/>
-        <source>О программе</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
+        <location filename="../../src/dialogs/about/guiabout.ui" line="14"/>
         <location filename="../../src/dialogs/about/guiabout.ui" line="24"/>
         <source>About</source>
         <translation type="unfinished"></translation>
@@ -962,6 +954,7 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;

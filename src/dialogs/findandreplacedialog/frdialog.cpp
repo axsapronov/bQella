@@ -71,7 +71,7 @@ void FRDialog::replace()
     {
         // составляем путь до файла
 //        qDebug() << "\ncurrent row = " << row << "item ij = " <<  ui->tableFiles->item(row,1)->text() << "item ji = " << ui->tableFiles->item(row,0)->text();
-        QString filepath = Config::configuration()->CurPrjDir() + "/book_" + ui->tableFiles->item(row,0)->text() + "_chapter_" + QString(ui->tableFiles->item(row,1)->text()).remove(tr("Глава "))+".htm";
+        QString filepath = Config::configuration()->CurPrjDir() + "/book_" + ui->tableFiles->item(row,0)->text() + "_chapter_" + QString(ui->tableFiles->item(row,1)->text()).remove(tr("Chapter "))+".htm";
 //        qDebug() << "filepath = " << filepath;
 
         // заменяем в файлах
@@ -106,7 +106,7 @@ void FRDialog::find()
             QString str = ui->cBChapter->currentText();
             QString str2 = ui->cBBook->currentText();
 //            qDebug() << "___" << str2.split("_").first();
-//            qDebug() << "---" << str.replace(tr("Глава "), tr("book_%1_chapter_").arg(str2));
+//            qDebug() << "---" << str.replace(tr("Chapter "), tr("book_%1_chapter_").arg(str2));
             path = Config::configuration()->CurPrjDir() + "/" + str.replace(tr("Chapter "), tr("book_%1_chapter_").arg(str2)) +".htm";
 //            qDebug() << "path = " <<  path /*<< "string " << stringforfoldername*/;
         }

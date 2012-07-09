@@ -24,7 +24,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Полное имя книги:</string>
+          <string>Full name book:</string>
          </property>
         </widget>
        </item>
@@ -34,7 +34,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Количество глав:</string>
+          <string>Chapters:</string>
          </property>
         </widget>
        </item>
@@ -48,7 +48,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Коротко название:</string>
+          <string>Short name:</string>
          </property>
         </widget>
        </item>
@@ -86,7 +86,7 @@
      <item>
       <widget class="QCheckBox" name="checkBoxAutoCreateChapter">
        <property name="text">
-        <string>Автоматически создать главы</string>
+        <string>Auto create chapters</string>
        </property>
       </widget>
      </item>
