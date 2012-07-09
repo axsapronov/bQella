@@ -53,9 +53,6 @@ Config::Config()
     } else {
         qWarning( "Multiple configurations not allowed!" );
     }
-
-
-
 }
 
 //-------------------------------------------------

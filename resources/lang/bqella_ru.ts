@@ -1449,7 +1449,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="483"/>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="968"/>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1078"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1359"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1361"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
@@ -1532,7 +1532,7 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation type="obsolete">Пропущены закрывающие кавычки.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1573"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1575"/>
         <source>Delete contents item AND source file?</source>
         <translation>Удалить пункт меню И файл-источник?</translation>
     </message>
@@ -1719,12 +1719,12 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Вставить файл новым подпунктом...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1520"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1522"/>
         <source>Project has been saved</source>
         <translation>Проект был сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1541"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1543"/>
         <source>Delete just contents item? Source file will be untouched.</source>
         <translation>Убрать пункт (не удаляя файл)</translation>
     </message>
@@ -3263,151 +3263,183 @@ Changes will be applied after application reload.</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="52"/>
+        <source>The full name of the module</source>
+        <translation>Полное название модуля</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="55"/>
         <source>Module name:</source>
         <translation>Название модуля:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="62"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="65"/>
+        <source>The short name of the module (reduction).</source>
+        <translation>Короткое название модуля (сокращение).</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="68"/>
         <source>Short module name:</source>
         <translation>Короткое название модуля:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="76"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="82"/>
+        <source>Copyright</source>
+        <translation>Авторские права</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="85"/>
         <source>Author:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="86"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="95"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Module Type (Bible or comments or a book).&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Y &lt;/span&gt;if it is put to the Bible or commentary, &lt;span style=&quot; font-weight:600;&quot;&gt;N&lt;/span&gt; if it is a book.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тип модуля (Библия, комментарий, книга).&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ставится &lt;span style=&quot; font-weight:600;&quot;&gt;Y &lt;/span&gt;если это Библия или комментарий, &lt;span style=&quot; font-weight:600;&quot;&gt;N&lt;/span&gt; если это книга.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="104"/>
         <source>Type Module:</source>
         <translation>Тип модуля:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="93"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="111"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="113"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="131"/>
         <source>Bible</source>
         <translation>Библия</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="125"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="143"/>
         <source>More</source>
         <translation>Продвинутые</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="133"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="151"/>
         <source>In module:</source>
         <translation>В модуле:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="140"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="158"/>
         <source>Old Testament</source>
         <translation>Ветхий Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="147"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="165"/>
         <source>New Testament</source>
         <translation>Новый Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="154"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="172"/>
         <source>Apocrypha</source>
         <translation>Апокрифы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="161"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="179"/>
         <source>Chapter zero</source>
         <translation>Нулевая глава</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="173"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="191"/>
         <source>Strong numbers</source>
         <translation>Номера Стронга</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="198"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="216"/>
         <source>Sound</source>
         <translation>Звук</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="221"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="239"/>
         <source>Noforced line breaks</source>
         <translation>Разделение на абзацы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="243"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="261"/>
         <source>Use chapter head</source>
         <translation>Отображение заголовков глав</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="248"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="266"/>
         <source>Use right alignment</source>
         <translation>Правое выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="257"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="275"/>
         <source>English Psalms</source>
         <translation>Английская нумерация</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="269"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="287"/>
         <source>Categories:</source>
         <translation>Категории:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="282"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="300"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="288"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="306"/>
         <source>rus</source>
         <translation>rus</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="293"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="311"/>
         <source>eng</source>
         <translation>eng</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="298"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="316"/>
         <source>ukr</source>
         <translation>ukr</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="311"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="329"/>
         <source>Encoding:</source>
         <translation>Кодировка:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="317"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="335"/>
         <source>utf-8</source>
         <translation>utf-8</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="329"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="347"/>
         <source>Fonts</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="344"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="362"/>
         <source>Install fonts:</source>
         <translation>Добавить шрифты:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="354"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="372"/>
         <source>Desired font name:</source>
         <translation>Шрифт для текста:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="364"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="382"/>
         <source>Desired font path:</source>
         <translation>Путь к нему:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="374"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="392"/>
         <source>Desired UI font:</source>
         <translation>Шрифт заголовков:</translation>
     </message>
@@ -3505,7 +3537,7 @@ Changes will be applied after application reload.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/settings/config.cpp" line="243"/>
+        <location filename="../../src/settings/config.cpp" line="240"/>
         <source>[No title]</source>
         <translation>[Без имени]</translation>
     </message>
