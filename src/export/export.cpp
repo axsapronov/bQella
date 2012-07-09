@@ -220,12 +220,13 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             str.remove(rx)
                     .remove("")
                     .remove("\n");
-            str.replace("?p?PathName","\nPathName")
+            str.replace("?p_.PathName","\nPathName")
                     .replace("PathName", "\n\nPathName")
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty");
             str = editStringList(str, tags, false); // возвращаем нужные теги
+
 
         }
     }

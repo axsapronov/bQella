@@ -150,8 +150,8 @@ void BookAddDialog::clickslot(QAbstractButton *AButton)
     if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Ok)
     {
         QString str = ui->lineEditFullName->text();
-                str.replace(" ","_")
-                .remove(str.length(),1);
+//                str.replace(" ","_")
+//                .remove(str.length(),1);
 //        qDebug() << " str = " << str << " strreplace " << str.replace(" ", "_") << " strremove = " << str.remove(str.length()-1,1);
 //                ui->lineEditFullName->setText(ui->lineEditFullName->text().replace(" ","_").remove(ui->lineEditFullName->text().length(),"1"));
         ui->lineEditFullName->setText(str);
@@ -170,6 +170,7 @@ void BookAddDialog::send()
 {
     bookChapterQty = ui -> spinBoxChapterQty -> value();
     bookFullName = ui -> lineEditFullName -> text();
+
 //    bookFullName.replace("_", " ");
     bookShortName = ui -> comboBoxShortName -> currentText();
     bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();

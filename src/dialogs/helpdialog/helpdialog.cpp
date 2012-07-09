@@ -1264,11 +1264,11 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName)
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)
     {
-        qDebug() << "Debug: _HelpDialog::InsertContentsItem()";
-        qDebug() << "bookChapterQty = " << m_bookadddialog -> bookChapterQty << " bookFullName = " << m_bookadddialog -> bookFullName;
-        qDebug() << "bookShortName = " << m_bookadddialog -> bookShortName;
-        qDebug() << "title = " << title << " fileName = " << fileName;
-        qDebug() << "CurPrjDir = " << Config::configuration() -> CurPrjDir();
+//        qDebug() << "Debug: _HelpDialog::InsertContentsItem()";
+//        qDebug() << "bookChapterQty = " << m_bookadddialog -> bookChapterQty << " bookFullName = " << m_bookadddialog -> bookFullName;
+//        qDebug() << "bookShortName = " << m_bookadddialog -> bookShortName;
+//        qDebug() << "title = " << title << " fileName = " << fileName;
+//        qDebug() << "CurPrjDir = " << Config::configuration() -> CurPrjDir();
         QString fileNameFor = fileName;
         QString fileNameFor2 = fileName;
         QFile file1(fileNameFor2.remove("file:"));
@@ -1286,6 +1286,8 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName)
                 QString str = fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/");
                 str.remove(Config::configuration() -> CurPrjDir().toLower())
                         .remove("file:/");
+                str.replace(" ","_")
+                                .remove(str.length(),1);
 //                qDebug() << "\n ----- str = " << str; //
                 file1.write(QString("\nPathName = %1"
                                     "\nFullName = %2"
@@ -1671,7 +1673,7 @@ void HelpDialog::cloneItem(QTreeWidgetItem *item, bool subItem)
         ui.listContents -> currentItem() -> addChild(item);
     }else //TopLevelItem
         ui.listContents -> addTopLevelItem(item);
-    qDebug() <<  "Debug: _ HelpDialog::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
+//    qDebug() <<  "Debug: _ HelpDialog::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
 }
 
 //-------------------------------------------------
@@ -1698,7 +1700,7 @@ void HelpDialog::newItem()
 
     for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
 
-    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
+//    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
     if (depth < 2)
     {
 //        qDebug() << " _ 1 ";
@@ -1721,7 +1723,7 @@ void HelpDialog::newItem()
                 while (!uniqFN){
                     // create book file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString::number(counter)+".htm";
-                    qDebug() << "Debug: _HelpDialog::newItem():" << "book:" << "filename = " << fileName;
+//                    qDebug() << "Debug: _HelpDialog::newItem():" << "book:" << "filename = " << fileName;
                     fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+".htm";
                     uniqFN = !QFile::exists(fileName);
                     counter++;
@@ -1736,14 +1738,14 @@ void HelpDialog::newItem()
                     //create chapter file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
                     fileName = Config::configuration() -> CurPrjDir() + "/book_"+ui.listContents -> currentItem() -> text(0)+"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
-                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
+//                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
                 title = incstr(QString("%1").arg(counter-1),GL_LengtItemString, " ");
             }
 //            qDebug() << " _ 8 ";
-            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
+//            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, urlifyFileName(fileName));// отвечает за добавление файла в список
@@ -1930,20 +1932,18 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
     filebook.remove();
     if(!filebook.open(QIODevice::Append))
     {
-        qDebug() << "Error write";
+        qDebug() << "Debug: _HelpDialog::exportBibleBook" <<"Error write";
     }
     else
     {
-        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
-
-
+//        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
         for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
         {
             QString filenamechapter = ui.listContents -> topLevelItem(i.toInt()) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
             int icount = j;
             filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true)).toUtf8());
         }
-        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
+//        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
     }
     filebook.close();
 }
