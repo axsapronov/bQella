@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Research Assistant by Pavel Malakhov</string>
+   <string>bQella</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../resources/images/project.ico</normaloff>../../resources/images/project.ico</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -288,7 +292,7 @@
   </action>
   <action name="actionAppExit">
    <property name="icon">
-    <iconset resource="../../resources/resources.qrc">
+    <iconset>
      <normaloff>:/app/images/app_exit.png</normaloff>:/app/images/app_exit.png</iconset>
    </property>
    <property name="text">
@@ -352,7 +356,7 @@
   </action>
   <action name="actionAboutAssistant">
    <property name="icon">
-    <iconset resource="../../resources/resources.qrc">
+    <iconset>
      <normaloff>:/app/images/app_about.png</normaloff>:/app/images/app_about.png</iconset>
    </property>
    <property name="text">
@@ -747,7 +751,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="../../resources/resources.qrc">
+    <iconset>
      <normaloff>:/app/images/app_settings.png</normaloff>:/app/images/app_settings.png</iconset>
    </property>
    <property name="text">
