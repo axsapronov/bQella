@@ -929,15 +929,13 @@ QString getCenterTag(QString str)
 //------------------------------------------------------
 QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
 {
-//    QStringList list = strlist;
-    QStringList list;
     QStringList strlist = strinput.split("\n");
     QString teststr = "";
 
     QRegExp title("<title>  [1]</title>");
     QRegExp title2("<title>[1]</title>");
     QRegExp rx("(<[^>]*>)");
-//    str.replace("<P>","<p>");
+
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
 
@@ -951,21 +949,53 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
 
     QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
-    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
+    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LengtItemString," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
     for (int i = 0; i < strlist.size(); i++)
     {
         str = strlist.at(i);
-        str.replace(titlec,chapter)
-                .replace(titlec2,chapter);
 
-        str.remove(title)
+        // title and Chapter replace
+        str.replace(titlec,chapter)
+                .replace(titlec2,chapter)
+                .remove(title)
                 .remove(title2);
 
         str.remove("p, li { white-space: pre-wrap; }")
-                .remove(title)
-                .replace(rxp, "?p_.")
+                .replace("<P>","<p>")
+                .remove(title);
+
+        // переписать это убожество
+        if (str.indexOf("<p align=\"center\"") >= 0)
+        {
+            str.replace("<p align=\"center\"","<center><p")
+                    .replace("</p>","</center>");
+        }
+
+        while (str.indexOf("vertical-align:super;") >= 0)
+        {
+            qDebug() << "\n\n str = " << str;
+            // определяем гле находится наша строка
+            // определяем где находится следующая >
+            // определяем где находится </span>
+            // за > ставим <sup>
+            // перед </span> ставим </sup>
+            QString search = "vertical-align:super;";
+            QString tag = "<sup>";
+            QString span = "<span>";
+            QString spanend = "</span>";
+            QString tagend = tag.replace("<","</");
+            int posOfOurLine = str.indexOf(search);
+                str.replace(posOfOurLine, search.length(), "");
+            int posOf = str.indexOf(">",posOfOurLine);
+                str.replace(posOf,1,">"+tag);
+            int posOfEnd = str.indexOf(spanend,posOf);
+                str.replace(posOfEnd,span.length(),tagend+spanend);
+
+//            qDebug() << "Debug: _getHtmlCoolCode" << "str = " << str << "posOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
+        }
+                str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi);
 
@@ -980,9 +1010,9 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
                 .replace("ChapterQty", "\nChapterQty");
         str = editStringList(str, tags, false); // возвращаем нужные теги
 
+
         if (!str.isEmpty())
         {
-            list << str;
             teststr.append(str);
         }
     }

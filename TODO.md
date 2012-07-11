@@ -9,6 +9,8 @@ TODO
 ** <sup  достать из этой <span style=" vertical-align:super;">f</span>
 ** <sub достать из <span style=" vertical-align:sub;">kl</span>
 
+*** Косяк с добавлением тега <center> (принимает более 1 строки)
+
 
 Добавить:
 * Все файлы для запуска (help.pem and project.ini)

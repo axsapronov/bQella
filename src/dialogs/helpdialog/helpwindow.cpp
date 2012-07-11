@@ -338,8 +338,8 @@ void HelpWindow::addTag(QString tag)
     cursor.insertFragment(fragment);
     raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 
-    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
-    qDebug() << "=======end========\n\n";
+//    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
+//    qDebug() << "=======end========\n\n";
 }
 
 //-------------------------------------------------
