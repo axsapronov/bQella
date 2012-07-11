@@ -957,8 +957,8 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
     if (fi.exists() && fi.isFile())
     {
-        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
-        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
+//        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
+//        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         emit showLink("file:"+fn);
 //        autosavestart = true;

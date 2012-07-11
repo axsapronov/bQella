@@ -942,10 +942,10 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
 
     QStringList tags;
 
-    tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" /*<< "span"*/
-         /*<< "/span"*/ << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+    tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
          << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
-         << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
+         << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
+            /*<< "/span"*/
 
     QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
@@ -981,8 +981,9 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
 
         str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
         str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
-        str = getParseTagSpan(str, "font-weight:600;", "<b>");
-        str = getParseTagSpan(str, "font-style:italic;", "<i>");
+        str = getParseTagSpan(str, "font-weight:600;", "<strong>");
+        str = getParseTagSpan(str, "font-style:italic;", "<em>");
+//        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
 
         str.replace(rxp, "?p_.")
                 .remove("</p>")
