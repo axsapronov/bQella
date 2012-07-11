@@ -185,9 +185,9 @@ bool HelpWindow::hasAnchorAt(const QPoint& pos)
     if (lastAnchor.isEmpty()) 
         return false;
     lastAnchor = source().resolved(lastAnchor).toString();
-    if (lastAnchor.at(0) == QLatin1Char('#')) {
+    if (lastAnchor.at(0) == QChar('#')) {
         QString src = source().toString();
-        int hsh = src.indexOf(QLatin1Char('#'));
+        int hsh = src.indexOf(QChar('#'));
         lastAnchor = (hsh>=0 ? src.left(hsh) : src) + lastAnchor;
     }
     return true;
@@ -326,13 +326,20 @@ void HelpWindow::addTag(QString tag)
 
 //    s = "<a href=\" fff \">"+ tag +"</a>";
     s = tag;
-    qDebug() << "s = " << s;
+
+//    QTextDocument test;
+//    test.setHtml(s);
+//    qDebug() << "s = " << s << " s.toHtML = " << test.toPlainText();
+//    QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
     QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
     cursor.setPosition(selStart, QTextCursor::MoveAnchor);
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
     cursor.insertFragment(fragment);
     raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+
+    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
+    qDebug() << "=======end========\n\n";
 }
 
 //-------------------------------------------------

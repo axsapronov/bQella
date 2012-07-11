@@ -368,7 +368,7 @@ void TabbedBrowser::keyPressEvent(QKeyEvent *e)
                         QWidget::keyPressEvent(e);
                         return;
                 }
-        if (text.startsWith(QLatin1Char('/'))) {
+        if (text.startsWith(QChar('/'))) {
             ui.editFind -> clear();
             find();
             return;

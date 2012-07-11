@@ -37,11 +37,11 @@
 static bool isAbsoluteFileName(const QString &name)
 {
     return !name.isEmpty()
-           && (name[0] == QLatin1Char('/')
+           && (name[0] == QChar('/')
 				#if defined(Q_WS_WIN)
-               || (name[0].isLetter() && name[1] == QLatin1Char(':')) || name.startsWith(QString("\\\\"))
+               || (name[0].isLetter() && name[1] == QChar(':')) || name.startsWith(QString("\\\\"))
 				#endif
-               || (name[0]  == QLatin1Char(':') && name[1] == QLatin1Char('/'))
+               || (name[0]  == QChar(':') && name[1] == QChar('/'))
               );
 }
 
@@ -73,8 +73,8 @@ QString raEdit::findFile(const QUrl &name) const
         return fileName;
 
     foreach (QString path, searchPaths) {
-        if (!path.endsWith(QLatin1Char('/')))
-            path.append(QLatin1Char('/'));
+        if (!path.endsWith(QChar('/')))
+            path.append(QChar('/'));
         path.append(fileName);
         if (QFileInfo(path).isReadable())
             return path;
@@ -187,10 +187,10 @@ void raEdit::setSource(const QUrl &url)
 #endif
         }
         if (txt.isEmpty())
-            qWarning("Warning: _raEdit::setSource(): No document for %s", url.toString().toLatin1().constData());
+            qWarning("Warning: _raEdit::setSource(): No document for %s", url.toString().toUtf8().constData());
 /*!+! Загруженный текстовый файл - это сноска (примечание)
         if (isVisible()) {
-            QString firstTag = txt.left(txt.indexOf(QLatin1Char('>')) + 1);
+            QString firstTag = txt.left(txt.indexOf(QChar('>')) + 1);
             if (firstTag.left(3) == QString("<qt") && firstTag.contains(QString("type")) && firstTag.contains(QString("detail"))) {
 #ifndef QT_NO_WHATSTHIS
                 QWhatsThis::showText(QCursor::pos(), txt, q);

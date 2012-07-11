@@ -21,6 +21,7 @@
  */
 
 
+
 #include "pcommon.h"
 #include "config.h" // для строчек аля toUtf8 // если отдельно пользоваться, то свитчи убрать
 
@@ -31,6 +32,10 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDateTime>
+
+#include <QString>
+#include <QTextCodec>
+
 
 
 
@@ -576,12 +581,12 @@ QString urlifyFileName(const QString &fileName)
     QUrl url(name);
 #if defined(Q_OS_WIN32)
     if (!url.isValid() || url.scheme().isEmpty() || url.scheme().toLower() != QString("file:")) {
-        int i = name.indexOf(QLatin1Char('#'));
+        int i = name.indexOf(QChar('#'));
         QString anchor = name.mid(i);
         name = name.toLower();
         if (i > -1)
             name.replace(i, anchor.length(), anchor);
-        name.replace(QLatin1Char('\\'), QLatin1Char('/'));
+        name.replace(QChar('\\'), QChar('/'));
         foreach (QFileInfo drive, QDir::drives()) {
             if (name.startsWith(drive.absolutePath().toLower())) {
                 name = QString("file:") + name;
@@ -693,13 +698,13 @@ QStringList absolutifyFileList(QStringList fns, QString path)
 QString removeAnchorFromLink(const QString &link)
 {
     int i = link.length();
-    int j = link.lastIndexOf(QLatin1Char('/'));
+    int j = link.lastIndexOf(QChar('/'));
     int l = link.lastIndexOf(QDir::separator());
     if (l > j)
         j = l;
     if (j > -1) {
         QString fileName = link.mid(j+1);
-        int k = fileName.lastIndexOf(QLatin1Char('#'));
+        int k = fileName.lastIndexOf(QChar('#'));
         if (k > -1)
             i = j + k + 1;
     }
@@ -713,7 +718,7 @@ bool verifyDirectory(const QString &str)
     if (!dirInfo.exists())
         return QDir().mkdir(str);
     if (!dirInfo.isDir()) {
-        qWarning("'%s' exists but is not a directory", str.toLatin1().constData());
+        qWarning("'%s' exists but is not a directory", str.toUtf8().constData());
         return false;
     }
     return true;
@@ -911,4 +916,78 @@ QString editStringList(QString list, QStringList tags, bool f)
 
     }
     return list;
+}
+//-----------------------------------------------------
+QString getCenterTag(QString str)
+{
+    QRegExp rxp("<p align=\"center\".*?>");
+
+    str.remove(" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"")
+            .replace(rxp, "<p><center>");
+    return str;
+}
+//------------------------------------------------------
+QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
+{
+//    QStringList list = strlist;
+    QStringList list;
+    QStringList strlist = strinput.split("\n");
+    QString teststr = "";
+
+    QRegExp title("<title>  [1]</title>");
+    QRegExp title2("<title>[1]</title>");
+    QRegExp rx("(<[^>]*>)");
+//    str.replace("<P>","<p>");
+    QRegExp rxp("(<[Pp].*?>)");
+    QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
+
+
+    QStringList tags;
+
+    tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "span"
+         << "/span" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+         << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
+         << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
+
+    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
+    QString titlec2 = QString("<title>%1</title>").arg(i);
+    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
+
+    QString str;
+    for (int i = 0; i < strlist.size(); i++)
+    {
+        str = strlist.at(i);
+        str.replace(titlec,chapter)
+                .replace(titlec2,chapter);
+
+        str.remove(title)
+                .remove(title2);
+
+        str.remove("p, li { white-space: pre-wrap; }")
+                .remove(title)
+                .replace(rxp, "?p_.")
+                .remove("</p>")
+                .remove(rxi);
+
+        str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
+        str.remove(rx)
+                .remove("")
+                .remove("\n");
+        str.replace("?p_.PathName","\nPathName")
+                .replace("PathName", "\n\nPathName")
+                .replace("FullName", "\nFullName")
+                .replace("ShortName", "\nShortName")
+                .replace("ChapterQty", "\nChapterQty");
+        str = editStringList(str, tags, false); // возвращаем нужные теги
+
+        if (!str.isEmpty())
+        {
+            list << str;
+            teststr.append(str);
+        }
+    }
+
+//    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
+
+    return teststr;
 }

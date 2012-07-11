@@ -177,55 +177,67 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             str = stream.readAll();
 
             //            qDebug() << "\n --------str = " << str;
+            QStringList strlist;
+            strlist << str.split("\n");
 
-            QRegExp title("<title>  [1]</title>");
-            QRegExp title2("<title>[1]</title>");
-            QRegExp rx("(<[^>]*>)");
-            str.replace("<P>","<p>");
-            QRegExp rxp("(<[Pp].*?>)");
-            QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
 
-            if (chapt)
-            {
-                //                qDebug() << "************ Export: chapter-file";
-                QString title = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
-                QString title2 = QString("<title>%1</title>").arg(i);
-                QString chapter = tr("\n?h4_.Chapter %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
+            str = getHtmlCoolCode(str, i, tr("Chapter"));
+//            qDebug() << "\n\nDebug: _Export::exportChapter" << " strlist = " << strlist;
 
-                //                qDebug() << "___int  = " << i << "str = "<< str;
-                str.replace(title,chapter)
-                        .replace(title2,chapter);
-            }
-            else
-            {
-                str.remove(title)
-                        .remove(title2);
+//            QRegExp title("<title>  [1]</title>");
+//            QRegExp title2("<title>[1]</title>");
+//            QRegExp rx("(<[^>]*>)");
+//            str.replace("<P>","<p>");
+//            QRegExp rxp("(<[Pp].*?>)");
+//            QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
 
-                //                qDebug() << "************ Export: book-file";
-            }
-            str.remove("p, li { white-space: pre-wrap; }")
-                    .remove(title)
-                    .replace(rxp, "?p_.")
-                    .remove("</p>")
-                    .remove(rxi);
+////            if (chapt)
+////            {
+//                //                qDebug() << "************ Export: chapter-file";
+//                QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
+//                QString titlec2 = QString("<title>%1</title>").arg(i);
+//                QString chapter = tr("\n?h4_.Chapter %1?/h4_.").arg(incstr(i,GL_LengtItemString," "));
 
-            QStringList tags;
+//                //                qDebug() << "___int  = " << i << "str = "<< str;
+//                str.replace(titlec,chapter)
+//                        .replace(titlec2,chapter);
+////            }
+////            else
+////            {
+//                str.remove(title)
+//                        .remove(title2);
 
-            tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "span"
-                 << "/span" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
-                 << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
-                 << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
+//                //                qDebug() << "************ Export: book-file";
+////            }
 
-            str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
-            str.remove(rx)
-                    .remove("")
-                    .remove("\n");
-            str.replace("?p_.PathName","\nPathName")
-                    .replace("PathName", "\n\nPathName")
-                    .replace("FullName", "\nFullName")
-                    .replace("ShortName", "\nShortName")
-                    .replace("ChapterQty", "\nChapterQty");
-            str = editStringList(str, tags, false); // возвращаем нужные теги
+//            // перед rxp надо достать <center>
+
+////            str = getCenterTag(str);
+//            str.remove("p, li { white-space: pre-wrap; }")
+//                    .remove(title)
+//                    .replace(rxp, "?p_.")
+//                    .remove("</p>")
+//                    .remove(rxi);
+
+//            QStringList tags;
+
+//            tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "span"
+//                 << "/span" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+//                 << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
+//                 << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
+
+//            str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
+//            str.remove(rx)
+//                    .remove("")
+//                    .remove("\n");
+//            str.replace("?p_.PathName","\nPathName")
+//                    .replace("PathName", "\n\nPathName")
+//                    .replace("FullName", "\nFullName")
+//                    .replace("ShortName", "\nShortName")
+//                    .replace("ChapterQty", "\nChapterQty");
+//            str = editStringList(str, tags, false); // возвращаем нужные теги
+
+
         }
     }
     else

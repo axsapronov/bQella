@@ -653,7 +653,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
 
     QFileInfo fi(fileName);
     QString fn = fi.fileName();
-    int i = fn.lastIndexOf(QLatin1Char('.'));
+    int i = fn.lastIndexOf(QChar('.'));
     if (i > -1)
         fn = fn.left(i);
     QString relativeDestPath = fn + QString("_images");
@@ -677,7 +677,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
                             continue;
                         QString from = imagePath.toLocalFile();
                         QString destName = fm.name();
-                        int j = destName.lastIndexOf(QLatin1Char('/'));
+                        int j = destName.lastIndexOf(QChar('/'));
                         if (j > -1)
                             destName = destName.mid(j+1);
                         QFileInfo info(from);

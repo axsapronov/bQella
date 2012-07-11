@@ -2,8 +2,6 @@ QT += xml sql
 TARGET = bQella
 TEMPLATE = app
 
-CONFIG += qt warn_on release
-
 win32 {
     LIBS +=  -lshell32
     RC_FILE =  resources/resources-win.rc

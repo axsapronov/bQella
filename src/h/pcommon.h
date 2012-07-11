@@ -74,6 +74,8 @@ QString incstr(QString str, int n, QString mychar);  // increase the line, ув�
 QString tagToQuestion(QString tag); // функции, которые делают из <p>  ?p? и обратно.
 QString questionToTag(QString question);
 QString editStringList(QString list, QStringList tags, bool f); // функция нужная для экспорта, в зависимости от bool меняет теги на ?*_? или <*>
+QString getCenterTag(QString str); // заменяет <p align="center" на <center
+QString getHtmlCoolCode(QString str, QString i, QString chapter);
 
 //======= работа с файлами =======
 //--------------------------------

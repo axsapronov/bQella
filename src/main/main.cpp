@@ -36,7 +36,6 @@ int main( int argc, char ** argv )
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
-    //a.setOrganizationName("Pavel Malakhov");
     a.setOrganizationName(GL_Prog_Author);
     a.setApplicationName(GL_Prog_Name);
 
@@ -54,7 +53,7 @@ int main( int argc, char ** argv )
     conf -> loadProject(conf -> CurProject());
 
     if (!conf) {
-        fprintf( stderr, "Profile '%s' does not exist!\n", conf -> CurProject().toLatin1().constData() );
+        fprintf( stderr, "Profile '%s' does not exist!\n", conf -> CurProject().toUtf8().constData() );
         fflush( stderr );
         return -1;
     }

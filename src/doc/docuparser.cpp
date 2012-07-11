@@ -223,7 +223,7 @@ bool DocuParserRAP::characters(const QString& ch)
 //-------------------------------------------------
 bool DocuParserRAP::fatalError(const QXmlParseException& exception)
 {
-    errorProt += QString::fromLatin1("fatal parsing error: %1 in line %2, column %3\n")
+    errorProt += QString::fromUtf8("fatal parsing error: %1 in line %2, column %3\n")
         .arg(exception.message())
         .arg(exception.lineNumber())
         .arg(exception.columnNumber());

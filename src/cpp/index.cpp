@@ -184,7 +184,7 @@ void Index::parseDocument( const QString &filename, int docNum )
 
     QTextStream s(&file);
     QString en = getCharsetForDocument(&file);
-    s.setCodec(QTextCodec::codecForName(en.toLatin1().constData()));
+    s.setCodec(QTextCodec::codecForName(en.toUtf8().constData()));
 
     QString text = s.readAll();
     if (text.isNull())
@@ -197,7 +197,7 @@ void Index::parseDocument( const QString &filename, int docNum )
     int j = 0;
     int i = 0;
     while ( j < text.length() ) {
-        if ( c == QLatin1Char('<') || c == QLatin1Char('&') ) {
+        if ( c == QChar('<') || c == QChar('&') ) {
             valid = false;
             if ( i > 1 )
                 insertInDict( QString(str,i), docNum );
@@ -205,7 +205,7 @@ void Index::parseDocument( const QString &filename, int docNum )
             c = buf[++j];
             continue;
         }
-        if ( ( c == QLatin1Char('>') || c == QLatin1Char(';') ) && !valid ) {
+        if ( ( c == QChar('>') || c == QChar(';') ) && !valid ) {
             valid = true;
             c = buf[++j];
             continue;
@@ -214,7 +214,7 @@ void Index::parseDocument( const QString &filename, int docNum )
             c = buf[++j];
             continue;
         }
-        if ( ( c.isLetterOrNumber() || c == QLatin1Char('_') ) && i < 63 ) {
+        if ( ( c.isLetterOrNumber() || c == QChar('_') ) && i < 63 ) {
             str[i] = c;
             ++i;
         } else {
@@ -289,7 +289,7 @@ QStringList Index::query( const QStringList &terms, const QStringList &termSeq, 
     QList<Term> termList;
     for (QStringList::ConstIterator it = terms.begin(); it != terms.end(); ++it ) {
         Entry *e = 0;
-        if ( (*it).contains(QLatin1Char('*')) ) {
+        if ( (*it).contains(QChar('*')) ) {
             QVector<Document> wcts = setupDummyTerm( getWildcardTerms( *it ) );
             termList.append( Term(QString("dummy"), wcts.count(), wcts ) );
         } else if ( dict[ *it ] ) {
@@ -412,7 +412,7 @@ QStringList Index::split( const QString &str )
 {
     QStringList lst;
     int j = 0;
-    int i = str.indexOf(QLatin1Char('*'), j );
+    int i = str.indexOf(QChar('*'), j );
 
     if (str.startsWith(QString("*")))
         lst << QString("*");
@@ -423,7 +423,7 @@ QStringList Index::split( const QString &str )
             lst << QString("*");
         }
         j = i + 1;
-        i = str.indexOf(QLatin1Char('*'), j );
+        i = str.indexOf(QChar('*'), j );
     }
 
     int l = str.length() - 1;
@@ -493,7 +493,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
     int j = 0;
     int i = 0;
     while ( j < text.length() ) {
-        if ( c == QLatin1Char('<') || c == QLatin1Char('&') ) {
+        if ( c == QChar('<') || c == QChar('&') ) {
             valid = false;
             if ( i > 1 )
                 buildMiniDict( QString(str,i) );
@@ -501,7 +501,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
             c = buf[++j];
             continue;
         }
-        if ( ( c == QLatin1Char('>') || c == QLatin1Char(';') ) && !valid ) {
+        if ( ( c == QChar('>') || c == QChar(';') ) && !valid ) {
             valid = true;
             c = buf[++j];
             continue;
@@ -510,7 +510,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
             c = buf[++j];
             continue;
         }
-        if ( ( c.isLetterOrNumber() || c == QLatin1Char('_') ) && i < 63 ) {
+        if ( ( c.isLetterOrNumber() || c == QChar('_') ) && i < 63 ) {
             str[i] = c;
             ++i;
         } else {
@@ -529,7 +529,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
     QList<uint> a, b;
     QList<uint>::iterator aIt;
     for ( ; patIt != patterns.end(); ++patIt ) {
-        wordLst = (*patIt).split(QLatin1Char(' '));
+        wordLst = (*patIt).split(QChar(' '));
         a = miniDict[ wordLst[0] ] -> positions;
         for ( int j = 1; j < (int)wordLst.count(); ++j ) {
             b = miniDict[ wordLst[j] ] -> positions;

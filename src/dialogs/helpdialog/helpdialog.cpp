@@ -194,9 +194,9 @@ QValidator::State SearchValidator::validate(QString &str, int &) const
 {
     for (int i = 0; i < (int) str.length(); ++i) {
         QChar c = str[i];
-        if (!c.isLetterOrNumber() && c != QLatin1Char('\'') && c != QLatin1Char('`')
-                && c != QLatin1Char('\"') && c != QLatin1Char(' ') && c != QLatin1Char('-') && c != QLatin1Char('_')
-                && c!= QLatin1Char('*'))
+        if (!c.isLetterOrNumber() && c != QChar('\'') && c != QChar('`')
+                && c != QChar('\"') && c != QChar(' ') && c != QChar('-') && c != QChar('_')
+                && c!= QChar('*'))
             return QValidator::Invalid;
     }
     return QValidator::Acceptable;
@@ -551,7 +551,7 @@ void HelpDialog::buildKeywordDB()
         bool ok = handler -> parse(&file);
         file.close();
         if (!ok){
-            QString msg = QString::fromLatin1("In file %1:\n%2")
+            QString msg = QString::fromUtf8("In file %1:\n%2")
                     .arg(QFileInfo(file).absoluteFilePath())
                     .arg(handler -> errorProtocol());
             QMessageBox::critical(this, tr("Parse Error"), tr(msg.toUtf8()));
@@ -685,7 +685,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
             contentList += handler -> getContentItems();
             delete handler;
         } else {
-            QString msg = QString::fromLatin1("In file %1:\n%2")
+            QString msg = QString::fromUtf8("In file %1:\n%2")
                     .arg(QFileInfo(file).absoluteFilePath())
                     .arg(handler -> errorProtocol());
             QMessageBox::critical(this, tr("Parse Error"), tr(msg.toUtf8()));
@@ -1015,7 +1015,7 @@ void HelpDialog::locateContents(const QString &link)
     //But on others the 'link' of format <file:///root/xxx>
     //and the contents in the TOC will be <file:/root/xxx>.
     if (findLink.contains(QString("file:///"))) {
-        if (findLink[9] == QLatin1Char(':')) //on windows drives
+        if (findLink[9] == QChar(':')) //on windows drives
             findLink.replace(0, 8, QString("file:"));
         else
             findLink.replace(0, 8, QString("file:/"));

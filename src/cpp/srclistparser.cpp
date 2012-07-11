@@ -122,7 +122,7 @@ bool SrcListParser::characters(const QString& ch)
 //-------------------------------------------------
 bool SrcListParser::fatalError(const QXmlParseException& exception)
 {
-    errorString += QString::fromLatin1("Fatal error encountered during parsing sources list: %1 in line %2, column %3")
+    errorString += QString::fromUtf8("Fatal error encountered during parsing sources list: %1 in line %2, column %3")
         .arg(exception.message())
         .arg(exception.lineNumber())
         .arg(exception.columnNumber());
