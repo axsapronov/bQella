@@ -73,9 +73,13 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         docprop  = new DocProperties(this);
         tagprop = new TagDialog(this);
 
+        tableprop = new TableProperties(this);
+        cellsplit = new DialogCellSplit(this);
+
         setupFileActions();
         setupEditActions();
         setupTextActions();
+        setupTableActions();
 
         connect(this, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)), this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
         connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
@@ -84,8 +88,9 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         connect(itemprop, SIGNAL(updateContentsItem(QString, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString)));
         connect(linkprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(linkprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
-
-//        connect(tagprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
+        connect(tableprop, SIGNAL(createTable(int, int, QTextTableFormat)), this, SLOT(tableInsert(int, int, QTextTableFormat)));
+        connect(tableprop, SIGNAL(updateTable(int, int, QTextTableFormat)), this, SLOT(tableUpdate(int, int, QTextTableFormat)));
+        //        connect(tagprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(tagprop, SIGNAL(addTag(QString)), this, SLOT(addTag(QString)));
 
 
@@ -205,7 +210,7 @@ void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
     }else{
     	if ( textCursor().hasSelection() )
             m -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
-            m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
+        m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
     }
     m -> addSeparator();
     mw -> setupPopupMenu(m);
@@ -324,13 +329,13 @@ void HelpWindow::addTag(QString tag)
     QTextCursor cursor = raEdit::textCursor();
     QString s =	tag;
 
-//    s = "<a href=\" fff \">"+ tag +"</a>";
+    //    s = "<a href=\" fff \">"+ tag +"</a>";
     s = tag;
 
-//    QTextDocument test;
-//    test.setHtml(s);
-//    qDebug() << "s = " << s << " s.toHtML = " << test.toPlainText();
-//    QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
+    //    QTextDocument test;
+    //    test.setHtml(s);
+    //    qDebug() << "s = " << s << " s.toHtML = " << test.toPlainText();
+    //    QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
     QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
     cursor.setPosition(selStart, QTextCursor::MoveAnchor);
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
@@ -338,8 +343,8 @@ void HelpWindow::addTag(QString tag)
     cursor.insertFragment(fragment);
     raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 
-//    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
-//    qDebug() << "=======end========\n\n";
+    //    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
+    //    qDebug() << "=======end========\n\n";
 }
 
 //-------------------------------------------------
@@ -420,12 +425,12 @@ void HelpWindow::closeEvent(QCloseEvent *e)
 void HelpWindow::setupFileActions()
 {
 
-//    connect(mw -> ui.actionFileAdd, 		SIGNAL(triggered()), this, SLOT(fileOpen()));
+    //    connect(mw -> ui.actionFileAdd, 		SIGNAL(triggered()), this, SLOT(fileOpen()));
     connect(mw -> ui.actionSaveFile, 		SIGNAL(triggered()), this, SLOT(fileSave()));
     connect(mw -> ui.actionSaveFileAs, 	SIGNAL(triggered()), this, SLOT(fileSaveAs()));
 
     connect(mw -> ui.actionItemProperties,SIGNAL(triggered()), mw -> helpDialog(), SLOT(showItemProperties()));
-//    mw -> ui.actionFileAdd -> setShortcut(QKeySequence::Open);
+    //    mw -> ui.actionFileAdd -> setShortcut(QKeySequence::Open);
     mw -> ui.actionSaveFile -> setShortcut(QKeySequence::Save);
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 
@@ -496,8 +501,21 @@ void HelpWindow::setupTextActions()
     connect(comboSize, SIGNAL(activated(const QString &)), this, SLOT(textSize(const QString &)));
     comboSize -> setCurrentIndex(comboSize -> findText(QString::number(QApplication::font().pointSize())));
 }
-
 //-------------------------------------------------
+void HelpWindow::setupTableActions()
+{
+    connect(mw->ui.menuTable, SIGNAL(aboutToShow()), this, SLOT(setupTableMenu()));
+    connect(mw->ui.actionInsertTable, SIGNAL(triggered()), this, SLOT(tableNew()));
+    connect(mw->ui.actionTableProperty, SIGNAL(triggered()), this, SLOT(tableProperties()));
+    connect(mw->ui.actionDeleteTable, SIGNAL(triggered()), this, SLOT(tableDelete()));
+    connect(mw->ui.actionInsertRowAbove, SIGNAL(triggered()), this, SLOT(rowInsertAbove()));
+    connect(mw->ui.actionInsertRowBelow, SIGNAL(triggered()), this, SLOT(rowInsertBelow()));
+    connect(mw->ui.actionDeleteRow, SIGNAL(triggered()), this, SLOT(rowDelete()));
+    connect(mw->ui.actionInsertColumnLeft, SIGNAL(triggered()), this, SLOT(columnInsertLeft()));
+    connect(mw->ui.actionInsertColumnRight, SIGNAL(triggered()), this, SLOT(columnInsertRight()));
+    connect(mw->ui.actionDeleteColumn, SIGNAL(triggered()), this, SLOT(columnDelete()));
+}
+//------------------------------------------------------
 bool HelpWindow::load(const QString &f)
 {
     if (!QFile::exists(f))
@@ -771,10 +789,10 @@ void HelpWindow::colorChanged(const QColor &c) //for text and background color i
 {
     c.colorNames();
 
-//    //!+! draw color indicator
-//       QPixmap pix(16, 16);
-//    pix.fill(c);
-//    actionTextColor -> setIcon(pix);
+    //    //!+! draw color indicator
+    //       QPixmap pix(16, 16);
+    //    pix.fill(c);
+    //    actionTextColor -> setIcon(pix);
 }
 
 //-------------------------------------------------
@@ -812,6 +830,125 @@ void HelpWindow::insertRichText(QString text)
     QTextCursor cursor = raEdit::textCursor();
     cursor.insertHtml(text);
 }
+//-------------------------------------------------
 
+void HelpWindow::setupTableMenu()
+{
+    bool state = false;
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    if ( table != 0) state = true;
 
-
+    mw->ui.actionTableProperty->setEnabled(state);
+    mw->ui.actionInsertRowAbove->setEnabled(state);
+    mw->ui.actionInsertRowBelow->setEnabled(state);
+    mw->ui.actionInsertColumnLeft->setEnabled(state);
+    mw->ui.actionInsertColumnRight->setEnabled(state);
+    mw->ui.menuDelete->setEnabled(state);
+}
+//-------------------------------------------------
+void HelpWindow::tableNew()
+{
+    tableprop->setProperties(2, 2, QTextTableFormat(), true);
+    tableprop->show();
+}
+//-------------------------------------------------
+void HelpWindow::tableProperties()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    tableprop->setProperties(table->rows(), table->columns(), table->format(), false);
+    tableprop->show();
+}
+//-------------------------------------------------
+void HelpWindow::tableDelete()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    table->removeRows(0, table->rows());
+}
+//-------------------------------------------------
+void HelpWindow::rowInsertAbove()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->insertRows(cell.row(), 1);
+}
+//-------------------------------------------------
+void HelpWindow::rowInsertBelow()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->insertRows(cell.row()+1, 1);
+}
+//-------------------------------------------------
+void HelpWindow::rowDelete()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->removeRows(cell.row(), 1);
+}
+//-------------------------------------------------
+void HelpWindow::columnInsertLeft()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->insertColumns(cell.column(), 1);
+}
+//-------------------------------------------------
+void HelpWindow::columnInsertRight()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->insertColumns(cell.column()+1, 1);
+}
+//-------------------------------------------------
+void HelpWindow::columnDelete()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    table->removeColumns(cell.column(), 1);
+}
+//-------------------------------------------------
+void HelpWindow::cellMerge()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    table->mergeCells(cursor);
+}
+//-------------------------------------------------
+void HelpWindow::cellSplit()
+{
+    cellsplit->show();
+}
+//-------------------------------------------------
+void HelpWindow::cellSplit(int rows, int columns)
+{
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    QTextTableCell cell = table->cellAt(cursor);
+    Config::configuration()->toPrjLog(3,"Cell Split: cell.row()="+QString::number(cell.row())+", cell.column()="+QString::number(cell.column())+", rows="+QString::number(rows)+", columns="+QString::number(columns));
+    table->splitCell(cell.row(), cell.column(), rows, columns);
+}
+//-------------------------------------------------
+void HelpWindow::tableInsert(int rows, int columns, QTextTableFormat format)
+{
+        QTextCursor cursor = raEdit::textCursor();
+        QTextTable *table = cursor.insertTable(rows, columns);
+        table->setFormat(format);
+}
+//-------------------------------------------------
+void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
+{
+        QTextCursor cursor = raEdit::textCursor();
+        QTextTable *table = cursor.currentTable();
+        table->resize(rows, colums);
+        table->setFormat(tableFormat);
+}
+//-------------------------------------------------

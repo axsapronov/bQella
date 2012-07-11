@@ -215,10 +215,46 @@
     <addaction name="menuLanguage"/>
     <addaction name="actionSettings"/>
    </widget>
+   <widget class="QMenu" name="menuTable">
+    <property name="title">
+     <string>&amp;Table</string>
+    </property>
+    <widget class="QMenu" name="menuInsert">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Insert</string>
+     </property>
+     <addaction name="actionInsertTable"/>
+     <addaction name="separator"/>
+     <addaction name="actionInsertRowAbove"/>
+     <addaction name="actionInsertRowBelow"/>
+     <addaction name="separator"/>
+     <addaction name="actionInsertColumnRight"/>
+     <addaction name="actionInsertColumnLeft"/>
+    </widget>
+    <widget class="QMenu" name="menuDelete">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Delete</string>
+     </property>
+     <addaction name="actionDeleteTable"/>
+     <addaction name="actionDeleteRow"/>
+     <addaction name="actionDeleteColumn"/>
+    </widget>
+    <addaction name="menuInsert"/>
+    <addaction name="menuDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionTableProperty"/>
+   </widget>
    <addaction name="fileMenu"/>
    <addaction name="editMenu"/>
    <addaction name="menuFormat"/>
    <addaction name="viewMenu"/>
+   <addaction name="menuTable"/>
    <addaction name="menuSettings"/>
    <addaction name="helpMenu"/>
   </widget>
@@ -856,6 +892,69 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionTableProperty">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Table Property...</string>
+   </property>
+  </action>
+  <action name="actionInsertRowAbove">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Row Above</string>
+   </property>
+  </action>
+  <action name="actionInsertRowBelow">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Row Below</string>
+   </property>
+  </action>
+  <action name="actionInsertTable">
+   <property name="text">
+    <string>New Table</string>
+   </property>
+  </action>
+  <action name="actionInsertColumnLeft">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Column Left</string>
+   </property>
+  </action>
+  <action name="actionInsertColumnRight">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Column Right</string>
+   </property>
+  </action>
+  <action name="actionDeleteTable">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Table</string>
+   </property>
+  </action>
+  <action name="actionDeleteRow">
+   <property name="text">
+    <string>Row</string>
+   </property>
+  </action>
+  <action name="actionDeleteColumn">
+   <property name="text">
+    <string>Column</string>
    </property>
   </action>
  </widget>

@@ -79,6 +79,8 @@ public slots:
     void fileNew();
     void fileOpen();
     bool fileSave();
+    void tableInsert(int rows, int columns, QTextTableFormat format);
+    void tableUpdate(int rows, int columns, QTextTableFormat tableFormat);
 
     void insertRichText(QString text);	//insert HTML text at cursor. Used from other modules, f.e. MainWindow::setMenuSign()
 
@@ -101,6 +103,8 @@ private:
     LinkProperties *linkprop;
     DocProperties *docprop;
     TagDialog *tagprop;
+    TableProperties *tableprop;
+    DialogCellSplit *cellsplit;
 
     QString lastAnchor; //url for document in helpwindow
     bool blockScroll;
@@ -115,6 +119,7 @@ private:
     void setupFileActions();
     void setupEditActions();
     void setupTextActions();
+    void setupTableActions();
     bool load(const QString &f);
     bool maybeSave();
     void setCurrentFileName(const QString fName);
@@ -159,6 +164,22 @@ private slots:
     void currentCharFormatChanged(const QTextCharFormat &format); 
     void cursorPositionChanged();
     void clipboardDataChanged();
+
+
+    void setupTableMenu();
+    void tableNew();
+    void tableProperties();
+    void tableDelete();
+    void rowInsertAbove();
+    void rowInsertBelow();
+    void rowDelete();
+    void columnInsertLeft();
+    void columnInsertRight();
+    void columnDelete();
+    void cellMerge();
+    void cellSplit();
+    void cellSplit(int rows, int columns);
+
 
 }; // class HelpWindow
 

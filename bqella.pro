@@ -1,7 +1,11 @@
 QT += xml sql
 TARGET = bQella
 TEMPLATE = app
+LANGUAGE = C++
 
+CONFIG += qt \
+    warn_on 
+    
 win32 {
     LIBS +=  -lshell32
     RC_FILE =  resources/resources-win.rc
@@ -28,6 +32,8 @@ DEPENDPATH += \
     src/dialogs/linkproperty \
     src/dialogs/importdialog \
     src/dialogs/tagdialog \
+    src/dialogs/tableproperty \
+    src/dialogs/cellsplit \
     src/tab \
     src/settings \
     src/main \
@@ -47,6 +53,8 @@ INCLUDEPATH += \
     src/dialogs/linkproperty \
     src/dialogs/importdialog \
     src/dialogs/tagdialog \
+    src/dialogs/tableproperty\
+    src/dialogs/cellsplit \
     src/tab \
     src/settings \
     src/main \
