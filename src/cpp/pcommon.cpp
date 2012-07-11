@@ -973,29 +973,10 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
                     .replace("</p>","</center>");
         }
 
-        while (str.indexOf("vertical-align:super;") >= 0)
-        {
-            qDebug() << "\n\n str = " << str;
-            // определяем гле находится наша строка
-            // определяем где находится следующая >
-            // определяем где находится </span>
-            // за > ставим <sup>
-            // перед </span> ставим </sup>
-            QString search = "vertical-align:super;";
-            QString tag = "<sup>";
-            QString span = "<span>";
-            QString spanend = "</span>";
-            QString tagend = tag.replace("<","</");
-            int posOfOurLine = str.indexOf(search);
-                str.replace(posOfOurLine, search.length(), "");
-            int posOf = str.indexOf(">",posOfOurLine);
-                str.replace(posOf,1,">"+tag);
-            int posOfEnd = str.indexOf(spanend,posOf);
-                str.replace(posOfEnd,span.length(),tagend+spanend);
+        str = getParseTag(str, "vertical-align:super;", "<sup>");
+        str = getParseTag(str, "vertical-align:sub;"  , "<sub>");
 
-//            qDebug() << "Debug: _getHtmlCoolCode" << "str = " << str << "posOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
-        }
-                str.replace(rxp, "?p_.")
+        str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi);
 
@@ -1020,4 +1001,30 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
 //    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
 
     return teststr;
+}
+
+QString getParseTag(QString str, QString text, QString tag)
+{
+    QString span = "<span>";
+    QString spanend = "</span>";
+    QString ta = tag;
+    QString tagend = ta.replace("<","</");
+
+    while (str.indexOf(text) >= 0)
+    {
+        // определяем гле находится наша строка
+        // определяем где находится следующая >
+        // определяем где находится spanend
+        // за > ставим tag
+        // перед spanend ставим tagend
+
+        int posOfOurLine = str.indexOf(text);
+            str.replace(posOfOurLine, text.length(), "");
+        int posOf = str.indexOf(">",posOfOurLine);
+            str.replace(posOf,1,">"+tag);
+        int posOfEnd = str.indexOf(spanend,posOf);
+            str.replace(posOfEnd-1,span.length(),tagend+spanend);
+//            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
+    }
+    return str;
 }
