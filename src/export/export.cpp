@@ -181,7 +181,7 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
             strlist << str.split("\n");
 
 
-            str = getHtmlCoolCode(str, i, tr("Chapter"));
+            str = getHtmlCoolCode(str, i, tr("Chapter"), chapt);
 //            qDebug() << "\n\nDebug: _Export::exportChapter" << " strlist = " << strlist;
 
 //            QRegExp title("<title>  [1]</title>");

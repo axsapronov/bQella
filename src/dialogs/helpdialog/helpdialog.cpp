@@ -1294,7 +1294,7 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName)
                                     "\nShortName = %3"
                                     "\nChapterQty = %4")
                             .arg(str)
-                            .arg(m_bookadddialog -> bookFullName)
+                            .arg(m_bookadddialog -> bookFullNameWithSpace)
                             .arg(m_bookadddialog -> bookShortName)
                             .arg(m_bookadddialog -> bookChapterQty)
                             .toUtf8());
@@ -1364,7 +1364,7 @@ void HelpDialog::InsertContentsItem(QString title, QString fileName)
             QString chaptervalue = incstr(title, GL_LengtItemString, "_");
             title = incstr(title, GL_LengtItemString, " ");
             QString fileName;
-            fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+chaptervalue+".htm";
+            fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(m_bookadddialog -> bookFullName).replace(" ","_") +"_chapter_"+chaptervalue+".htm";
 //            qDebug() << "- fn = " << fileName << "counter = " << i;
             createEmptyHtml(fileName, title);
             InsertChapter(newEntry,title, urlifyFileName(fileName));// отвечает за добавление файла в список
@@ -1737,7 +1737,7 @@ void HelpDialog::newItem()
 //                    qDebug() << " _ 7 ";
                     //create chapter file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
-                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+ui.listContents -> currentItem() -> text(0)+"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
+                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(ui.listContents -> currentItem() -> text(0)).replace(" ","_") +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
 //                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
                     uniqFN = !QFile::exists(fileName);
                     counter++;

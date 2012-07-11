@@ -45,6 +45,7 @@ public:
     ~BookAddDialog();
 //    ModuleProperties pr;
     QString bookFullName;
+    QString bookFullNameWithSpace;
     QString bookShortName;
     int bookChapterQty;
     bool bookCheckAutoChapterCreate;

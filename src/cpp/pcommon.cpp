@@ -927,7 +927,7 @@ QString getCenterTag(QString str)
     return str;
 }
 //------------------------------------------------------
-QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
+QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool chap)
 {
     QStringList strlist = strinput.split("\n");
     QString teststr = "";
@@ -942,8 +942,8 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
 
     QStringList tags;
 
-    tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "span"
-         << "/span" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+    tags << "p" << "br /" << "h4" << "/h4" << "pre" << "/pre" /*<< "span"*/
+         /*<< "/span"*/ << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
          << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
          << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;
 
@@ -957,10 +957,16 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
         str = strlist.at(i);
 
         // title and Chapter replace
+        if (chap)
+        {
         str.replace(titlec,chapter)
-                .replace(titlec2,chapter)
-                .remove(title)
+                .replace(titlec2,chapter);
+        }
+        else
+        {
+                str.remove(title)
                 .remove(title2);
+        }
 
         str.remove("p, li { white-space: pre-wrap; }")
                 .replace("<P>","<p>")
@@ -973,8 +979,10 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
                     .replace("</p>","</center>");
         }
 
-        str = getParseTag(str, "vertical-align:super;", "<sup>");
-        str = getParseTag(str, "vertical-align:sub;"  , "<sub>");
+        str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
+        str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
+        str = getParseTagSpan(str, "font-weight:600;", "<b>");
+        str = getParseTagSpan(str, "font-style:italic;", "<i>");
 
         str.replace(rxp, "?p_.")
                 .remove("</p>")
@@ -1003,7 +1011,7 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter)
     return teststr;
 }
 
-QString getParseTag(QString str, QString text, QString tag)
+QString getParseTagSpan(QString str, QString text, QString tag)
 {
     QString span = "<span>";
     QString spanend = "</span>";
@@ -1023,7 +1031,7 @@ QString getParseTag(QString str, QString text, QString tag)
         int posOf = str.indexOf(">",posOfOurLine);
             str.replace(posOf,1,">"+tag);
         int posOfEnd = str.indexOf(spanend,posOf);
-            str.replace(posOfEnd-1,span.length(),tagend+spanend);
+            str.replace(posOfEnd,spanend.length(),tagend+spanend);
 //            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
     }
     return str;

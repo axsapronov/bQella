@@ -149,6 +149,7 @@ void BookAddDialog::clickslot(QAbstractButton *AButton)
 
     if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Ok)
     {
+        bookFullNameWithSpace = ui->lineEditFullName->text();
         QString str = ui->lineEditFullName->text();
                 str.replace(" ","_")
                 .remove(str.length(),1);

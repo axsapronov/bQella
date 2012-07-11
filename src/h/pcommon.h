@@ -75,8 +75,8 @@ QString tagToQuestion(QString tag); // функции, которые делаю
 QString questionToTag(QString question);
 QString editStringList(QString list, QStringList tags, bool f); // функция нужная для экспорта, в зависимости от bool меняет теги на ?*_? или <*>
 QString getCenterTag(QString str); // заменяет <p align="center" на <center
-QString getHtmlCoolCode(QString str, QString i, QString chapter);
-QString getParseTag(QString str, QString text, QString tag);
+QString getHtmlCoolCode(QString str, QString i, QString chapter, bool chap);
+QString getParseTagSpan(QString str, QString text, QString tag);
 
 //======= работа с файлами =======
 //--------------------------------
