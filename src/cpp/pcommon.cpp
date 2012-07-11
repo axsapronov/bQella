@@ -983,6 +983,7 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
         str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
         str = getParseTagSpan(str, "font-weight:600;", "<strong>");
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
+        str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
 //        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
 
         str.replace(rxp, "?p_.")
