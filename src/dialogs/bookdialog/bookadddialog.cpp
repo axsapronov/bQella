@@ -73,13 +73,20 @@ void BookAddDialog::clickslot(QAbstractButton *AButton)
     {
         bookFullNameWithSpace = ui->lineEditFullName->text();
         QString str = ui->lineEditFullName->text();
-                str.replace(" ","_")
-                .remove(str.length(),1);
+//                str.replace(" ","_")
+//                str.remove(str.length(),1);
 //        qDebug() << " str = " << str << " strreplace " << str.replace(" ", "_") << " strremove = " << str.remove(str.length()-1,1);
         ui->lineEditFullName->setText(str);
         send();
         reject();
     }
+    ui->lineEditFullName->setText("");
+    ui->spinBoxChapterQty->setValue(0);
+    ui->checkBoxAutoCreateChapter->setChecked(false);
+
+    QStringList items = getFillShortName();
+    typeModel = new QStringListModel(items, this);
+    ui -> comboBoxShortName -> setModel(typeModel);
 }
 
 
@@ -87,7 +94,7 @@ void BookAddDialog::send()
 {
 
     bookChapterQty = ui -> spinBoxChapterQty -> value();
-    bookFullName = ui -> lineEditFullName -> text();
+    bookFullName = QString(ui -> lineEditFullName -> text()).replace(" ", "_").remove(bookFullName.length(),1);
     bookShortName = ui -> comboBoxShortName -> currentText();
     bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();
 
