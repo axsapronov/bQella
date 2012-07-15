@@ -27,6 +27,7 @@
 #include <QTextCodec>
 #include <QStringListModel>
 #include <QDebug>
+#include <QMessageBox>
 
 BookAddDialog::BookAddDialog(QWidget *parent) :
     QDialog(parent),
@@ -46,9 +47,7 @@ BookAddDialog::BookAddDialog(QWidget *parent) :
     typeModel = new QStringListModel(items, this);
     ui -> comboBoxShortName -> setModel(typeModel);
 
-
-    connect(ui -> buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(clickslot(QAbstractButton *)));
-    connect(ui -> buttonBox, SIGNAL(accepted()), this, SIGNAL(signalbookaddChanged()));
+//    connect(ui -> buttonBox, SIGNAL(accepted()), this, SIGNAL(signalbookaddChanged()));
 }
 
 BookAddDialog::~BookAddDialog()
@@ -62,39 +61,49 @@ void BookAddDialog::reject()
     QWidget::hide();  //close dialog
 }
 
-void BookAddDialog::clickslot(QAbstractButton *AButton)
+void BookAddDialog::accept()
 {
-    if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Cancel)
+    QString s = "";  //holds list of errors
+    bool er = false;
+
+    if (ui->lineEditFullName -> text().isEmpty())
     {
-        reject();
+        s = tr("- Please enter a full name.\n");
+        er = true;
     }
 
-    if (ui -> buttonBox -> standardButton(AButton) == QDialogButtonBox::Ok)
+    if (er)
     {
+        QMessageBox::critical(this, tr("Item property error"), s);
+    }
+    else
+    {
+        // добавить возможность изменить full name, short name
         bookFullNameWithSpace = ui->lineEditFullName->text();
         QString str = ui->lineEditFullName->text();
-//                str.replace(" ","_")
-//                str.remove(str.length(),1);
-//        qDebug() << " str = " << str << " strreplace " << str.replace(" ", "_") << " strremove = " << str.remove(str.length()-1,1);
+        //                str.replace(" ","_")
+        //                str.remove(str.length(),1);
+        //        qDebug() << " str = " << str << " strreplace " << str.replace(" ", "_") << " strremove = " << str.remove(str.length()-1,1);
         ui->lineEditFullName->setText(str);
         send();
-        reject();
+
+        ui->lineEditFullName->setText("");
+        ui->spinBoxChapterQty->setValue(0);
+        ui->checkBoxAutoCreateChapter->setChecked(false);
+
+        QStringList items = getFillShortName();
+        typeModel = new QStringListModel(items, this);
+        ui -> comboBoxShortName -> setModel(typeModel);
+        emit signalbookaddChanged();
+        QWidget::hide();  //close dialog
     }
-    ui->lineEditFullName->setText("");
-    ui->spinBoxChapterQty->setValue(0);
-    ui->checkBoxAutoCreateChapter->setChecked(false);
-
-    QStringList items = getFillShortName();
-    typeModel = new QStringListModel(items, this);
-    ui -> comboBoxShortName -> setModel(typeModel);
 }
-
 
 void BookAddDialog::send()
 {
 
     bookChapterQty = ui -> spinBoxChapterQty -> value();
-    bookFullName = QString(ui -> lineEditFullName -> text()).replace(" ", "_").remove(bookFullName.length(),1);
+    bookFullName = QString(ui -> lineEditFullName -> text()).replace(" ", "_").remove(ui->lineEditFullName->text().length(),1);
     bookShortName = ui -> comboBoxShortName -> currentText();
     bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();
 

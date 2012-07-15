@@ -239,7 +239,7 @@ void TabbedBrowser::transferFocus()
     if(currentBrowser()) {
         currentBrowser() -> setFocus();
     }
-    mainWindow() -> setWindowTitle(Config::configuration() -> profileTitle()
+    mainWindow() -> setWindowTitle("bQella  " + Config::configuration() -> profileTitle()
                              + QString(" - ")
                              + currentBrowser() -> documentTitle());
 }
@@ -334,7 +334,7 @@ void TabbedBrowser::setAppTitle(HelpWindow *win, const QString &title)
     const QString tt = title.trimmed();
     ui.tab -> setTabText(ui.tab -> indexOf(win), tt);
     if (win == currentBrowser())
-        mainWindow() -> setWindowTitle(Config::configuration() -> profileTitle() + QString(" - ") + tt);
+        mainWindow() -> setWindowTitle("bQella  " + Config::configuration() -> profileTitle() + QString(" - ") + tt);
 }
 
 void TabbedBrowser::keyPressEvent(QKeyEvent *e)

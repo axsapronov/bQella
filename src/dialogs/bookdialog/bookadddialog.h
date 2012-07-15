@@ -52,10 +52,12 @@ public:
 private:
     Ui::BookAddDialog *ui;
     QStringListModel *typeModel;
-private slots:
-    void clickslot(QAbstractButton *AButton);
-    void send();
+public slots:
+    void accept();
     void reject();
+private slots:
+
+    void send();
 signals:
     void signalbookaddChanged();
 
