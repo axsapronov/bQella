@@ -26,6 +26,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QTreeWidgetItem>
 
 //======== процедуры и функции общего назначения ============================
 //---------------------------------------------------------------------------
@@ -77,6 +78,7 @@ QString editStringList(QString list, QStringList tags, bool f); // функци�
 QString getCenterTag(QString str); // заменяет <p align="center" на <center
 QString getHtmlCoolCode(QString str, QString i, QString chapter, bool chap);
 QString getParseTagSpan(QString str, QString text, QString tag);
+int getDepthTreeWidgetItem(QTreeWidgetItem *item); // вернуть глубину QTreeWidgetItem
 
 //======= работа с файлами =======
 //--------------------------------

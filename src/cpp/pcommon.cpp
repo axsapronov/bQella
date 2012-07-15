@@ -1038,3 +1038,15 @@ QString getParseTagSpan(QString str, QString text, QString tag)
     }
     return str;
 }
+
+
+int getDepthTreeWidgetItem(QTreeWidgetItem *item)
+{
+    int depth = 0;
+    while(item != 0)
+    {
+      depth++;
+      item = item->parent();
+    }
+    return depth;
+}
