@@ -79,7 +79,7 @@ QString getCenterTag(QString str); // заменяет <p align="center" на <c
 QString getHtmlCoolCode(QString str, QString i, QString chapter, bool chap);
 QString getParseTagSpan(QString str, QString text, QString tag);
 int getDepthTreeWidgetItem(QTreeWidgetItem *item); // вернуть глубину QTreeWidgetItem
-
+QStringList getFillShortName(); // возвращает заполнение для combobox базовых коротких названий
 //======= работа с файлами =======
 //--------------------------------
 QString unurlifyFileName(const QString &fileName);		//remove "file:"

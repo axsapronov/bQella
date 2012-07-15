@@ -104,9 +104,9 @@ MainWindow::MainWindow():
     }
 
     //выключаем ненужный функционал
-    ui.toolBarTabs -> setVisible(false);
-    ui.actionEditFind -> setVisible(false);
-    ui.actionImportBook->setVisible(false);
+//    ui.toolBarTabs -> setVisible(false);
+//    ui.actionEditFind -> setVisible(false);
+//    ui.actionImportBook->setVisible(false);
 
 
 
@@ -152,7 +152,7 @@ void MainWindow::setup()
 
 
     // Menu Import
-    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
+//    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
 
 
@@ -376,6 +376,7 @@ void MainWindow::modifededitor(bool my)
 {
 //    if (my)
 
+    my = my;
 //    if (my and helpDock->autosavestart)
 //    {
 //        qDebug() << "teeest" ;
@@ -602,6 +603,7 @@ void MainWindow::ProjectOpen(QString fileName)
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
+        helpDock -> on_BProjectAdd_clicked();
         //Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
     	projectModified(false);
@@ -614,7 +616,7 @@ void MainWindow::ProjectOpen(QString fileName)
 
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
-{//warmonger
+{
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())

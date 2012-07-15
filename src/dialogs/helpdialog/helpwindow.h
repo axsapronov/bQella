@@ -74,7 +74,7 @@ signals:
     void updateContentsItem(QString title, QString fileName);
     
 public slots:
-    void updateItem(QString title, QString fileName);
+    void updateItem(QString full, QString shortname, int count, QString path);
     void setTagTitle(QString title);
     void fileNew();
     void fileOpen();

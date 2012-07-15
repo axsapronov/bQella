@@ -25,6 +25,7 @@
 #include "pcommon.h"
 #include "config.h" // для строчек аля toUtf8 // если отдельно пользоваться, то свитчи убрать
 
+
 #include <QDebug>
 #include <QtGui/QApplication> //для translate()
 #include <QUrl>
@@ -33,9 +34,9 @@
 #include <QTextStream>
 #include <QDateTime>
 
+
 #include <QString>
 #include <QTextCodec>
-
 
 
 
@@ -1049,4 +1050,95 @@ int getDepthTreeWidgetItem(QTreeWidgetItem *item)
       item = item->parent();
     }
     return depth;
+}
+
+QStringList getFillShortName()
+{
+
+
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForTr(codec);
+
+    QStringList items;
+    items << QString("Быт. Быт Бт. Бт Бытие Ge. Ge Gen. Gen Gn. Gn Genesis")
+          << QString("Исх. Исх Исход Ex. Ex Exo. Exo Exod. Exod Exodus")
+          << QString("Лев. Лев Лв. Лв Левит Lev. Lev Le. Le Lv. Lv Levit. Levit Leviticus")
+          << QString("Чис. Чис Чс. Чс Числ. Числ Числа Nu. Nu Num. Num Nm. Nm Numb. Numb Numbers")
+          << QString("Втор. Втор Вт. Вт Втрзк. Втрзк Второзаконие De. De Deut. Deut Deu. Deu Dt. Dt Deuteron. Deuteron Deuteronomy")
+          << QString("Иис.Нав. Иис.Нав Нав. Нав Иисус Навин Jos. Jos Josh. Josh Joshua")
+          << QString("Суд. Суд Сд. Сд Судьи Jdg. Jdg Judg. Judg Judge. Judge Judges")
+          << QString("Руф. Руф Рф. Рф Руфь Ru. Ru Ruth Rth. Rth Rt. Rt")
+          << QString("1Цар. 1Цар 1Цр. 1Цр 1Ц 1Царств. 1Царств 1Sa. 1Sa 1S. 1S 1Sam. 1Sam 1Sm. 1Sm 1Sml. 1Sml 1Samuel")
+          << QString("2Цар. 2Цар 2Цр. 2Цр 2Ц 2Царств. 2Царств 2Sa. 2Sa 2S. 2S 2Sam. 2Sam 2Sm. 2Sm 2Sml. 2Sml 2Samuel")
+          << QString("3Цар. 3Цар 3Цр. 3Цр 3Ц 3Царств. 3Царств 1Ki. 1Ki 1K. 1K 1Kn. 1Kn 1Kg. 1Kg 1King. 1King 1Kng. 1Kng 1Kings")
+          << QString("4Цар. 4Цар 4Цр. 4Цр 4Ц 4Царств. 4Царств 2Ki. 2Ki 2K. 2K 2Kn. 2Kn 2Kg. 2Kg 2King. 2King 2Kng. 2Kng 2Kings")
+          << QString("1Пар. 1Пар 1Пр. 1Пр 1Chr. 1Chr 1Ch. 1Ch 1Chron. 1Chron")
+          << QString("2Пар. 2Пар 2Пр. 2Пр 2Chr. 2Chr 2Ch. 2Ch 2Chron. 2Chron")
+          << QString("Ездр. Ездр Езд. Езд Ез. Ез Ездра Ezr. Ezr Ezra")
+          << QString("Неем. Неем. Нм. Нм Неемия Ne. Ne Neh. Neh Nehem. Nehem Nehemiah")
+          << QString("Есф. Есф Ес. Ес Есфирь Esth. Esth Est. Est Esther")
+          << QString("Иов. Иов Ив. Ив Job. Job Jb. Jb")
+          << QString("Пс. Пс Псалт. Псалт Псал. Псал Псл. Псл Псалом Псалтирь Псалмы Ps. Ps Psa. Psa Psal. Psal Psalm Psalms")
+          << QString("Прит. Прит Притч. Притч Пр. Пр Притчи Притча Pr. Pr Prov. Prov Pro. Pro Proverb Proverbs")
+          << QString("Еккл. Еккл Ек. Ек Екк. Екк Екклесиаст Ec. Ec Eccl. Eccl Ecc. Ecc Ecclesia. Ecclesia")
+          << QString("Песн. Песн Пес. Пес Псн. Псн Песн.Песней Песни Song. Song Songs SS. SS Sol. Sol")
+          << QString("Ис. Ис Иса. Иса Исаия Исайя Isa. Isa Is. Is Isaiah")
+          << QString("Иер. Иер Иерем. Иерем Иеремия Je. Je Jer. Jer Jerem. Jerem Jeremiah")
+          << QString("Плач. Плач Плч. Плч Пл. Пл Пл.Иер. Пл.Иер Плач Иеремии La. La Lam. Lam Lament. Lament Lamentation")
+          << QString("Иез. Иез Из. Из Иезек. Иезек Иезекииль Ez. Ez Eze. Eze Ezek. Ezek Ezekiel")
+          << QString("Дан. Дан Дн. Дн Днл. Днл Даниил Da. Da Dan. Dan Daniel")
+          << QString("Ос. Ос Осия Hos. Hos Ho. Ho Hosea")
+          << QString("Иоил. Иоил Ил. Ил Иоиль Joel. Joel Joe. Joe")
+          << QString("Ам. Ам Амс. Амс Амос Am. Am Amos Amo. Amo")
+          << QString("Авд. Авд Авдий Ob. Ob Obad. Obad. Obadiah Oba. Oba")
+          << QString("Ион. Ион. Иона Jon. Jon Jnh. Jnh. Jona. Jona Jonah")
+          << QString("Мих. Мих Мх. Мх Михей Mi. Mi Mic. Mic Micah")
+          << QString("Наум. Наум Na. Na Nah. Nah Nahum")
+          << QString("Авв. Авв Аввак. Аввак Аввакум Hab. Hab Habak. Habak Habakkuk")
+          << QString("Соф. Соф Софон. Софон Софония Zeph. Zeph Zep. Zep Zephaniah")
+          << QString("Агг. Агг Аггей Hag. Hag Haggai")
+          << QString("Зах. Зах Зхр. Зхр Захар. Захар Захария Ze. Ze Zec. Zec Zech. Zech Zechariah")
+          << QString("Мал. Мал Малах. Малах Млх. Млх Малахия Mal. Mal Malachi")
+          << QString("Матф. Матф Мтф. Мтф Мф. Мф Мт. Мт Матфея Матфей Мат Мат. Mt. Mt Ma. Ma Matt. Matt Mat. Mat Matthew")
+          << QString("Мар. Мар Марк. Марк Мрк. Мрк Мр. Мр Марка Мк Мк. Mk. Mk Mar. Mar Mr. Mr Mrk. Mrk Mark")
+          << QString("Лук. Лук Лк. Лк Лукa Луки Lk. Lk Lu. Lu Luk. Luk Luke")
+          << QString("Иоан. Иоан Ин. Ин Иоанн Иоанна Jn. Jn Jno. Jno Joh. Joh John")
+          << QString("Деян. Деян Дея. Дея Д.А. Деяния Ac. Ac Act. Act Acts")
+          << QString("Иак. Иак Ик. Ик Иаков Иакова Jas. Jas Ja. Ja Jam. Jam Jms. Jms James")
+          << QString("1Пет. 1Пет 1Пт. 1Пт 1Птр. 1Птр 1Петр. 1Петр 1Петра 1Pe. 1Pe 1Pet. 1Pet 1Peter")
+          << QString("2Пет. 2Пет 2Пт. 2Пт 2Птр. 2Птр 2Петр. 2Петр 2Петра 2Pe. 2Pe 2Pet. 2Pet 2Peter")
+          << QString("1Иоан. 1Иоан 1Ин. 1Ин 1Иоанн 1Иоанна 1Jn. 1Jn 1Jo. 1Jo 1Joh. 1Joh 1Jno. 1Jno 1John")
+          << QString("2Иоан. 2Иоан 2Ин. 2Ин 2Иоанн 2Иоанна 2Jn. 2Jn 2Jo. 2Jo 2Joh. 2Joh 2Jno. 2Jno 2John")
+          << QString("3Иоан. 3Иоан 3Ин. 3Ин 3Иоанн 3Иоанна 3Jn. 3Jn 3Jo. 3Jo 3Joh. 3Joh 3Jno. 3Jno 3John")
+          << QString("Иуд. Иуд Ид. Ид Иуда Иуды Jud. Jud Jude Jd. Jd")
+          << QString("Рим. Рим Римл. Римл Римлянам Ro. Ro Rom. Rom Romans")
+          << QString("1Кор. 1Кор 1Коринф. 1Коринф 1Коринфянам 1Коринфянам 1Co. 1Co 1Cor. 1Cor 1Corinth. 1Corinth 1Corinthians")
+          << QString("2Кор. 2Кор 2Коринф. 2Коринф 2Коринфянам 2Коринфянам 2Co. 2Co 2Cor. 2Cor 2Corinth. 2Corinth 2Corinthians")
+          << QString("Гал. Гал Галат. Галат Галатам Ga. Ga Gal. Gal Galat. Galat Galatians")
+          << QString("Еф. Еф Ефес. Ефес Ефесянам Eph. Eph Ep. Ep Ephes. Ephes Ephesians")
+          << QString("Фил. Фил Флп. Флп Филип. Филип Филиппийцам Php. Php Ph. Ph Phil. Phil Phi. Phi. Philip. Philip Philippians")
+          << QString("Кол. Кол Колос. Колос Колоссянам Col. Col Colos. Colos Colossians")
+          << QString("1Фесс. 1Фесс 1Фес. 1Фес 1Фессалоникийцам 1Сол. 1Сол 1Солунянам 1Th. 1Th 1Thes. 1Thes 1Thess. 1Thess")
+          << QString("2Фесс. 2Фесс 2Фес. 2Фес 2Фессалоникийцам 2Сол. 2Сол 2Солунянам 2Th. 2Th 2Thes. 2Thes 2Thess. 2Thess")
+          << QString("1Тим. 1Тим 1Тимоф. 1Тимоф 1Тимофею 1Ti. 1Ti 1Tim. 1Tim 1Timothy")
+          << QString("2Тим. 2Тим 2Тимоф. 2Тимоф 2Тимофею 2Ti. 2Ti 2Tim. 2Tim 2Timothy")
+          << QString("Тит. Тит Титу Tit. Tit Ti. Ti Titus")
+          << QString("Флм. Флм Филимон. Филимон Филимону Phm. Phm Phile. Phile Phlm. Phlm Philemon")
+          << QString("Евр. Евр Евреям He. He Heb. Heb Hebr. Hebr Hebrews")
+          << QString("Откр. Откр Отк. Отк Откровен. Откровен Апок. Апок Откровение Апокалипсис Rev. Rev Re. Re Rv. Rv Revelation")
+          << QString("2Ездр. 2Ездр 2Езд. 2Езд 2Ездра 2Ездры 2Ез 2Ез. 2Esdras 2Es. 2Es")
+          << QString("Тов. Тов Товит Tobit Tob. Tob")
+          << QString("Иудиф. Иудиф Иудифь Judith Jdt. Jdt")
+          << QString("Прем.Сол. Премудр.Соломон. Премудр.Сол. Премудр. Премудр.Соломона Премудрость Премудрости Прем. Прем Wisdom Wis. Wis")
+          << QString("Сир. Сир Сирах SirachSip Sirach SirSip Sir.Sip SirSip Sir. Sir")
+          << QString("Посл.Иер. Посл.Иер Посл.Иерем. Посл.Иерем Посл.Иеремии Ep.Jer. EpJer Epj. Epj")
+          << QString("Вар. Вар Варух Baruch Bar. Bar")
+          << QString("1Макк. 1Макк. 1Маккав. 1Маккав 1Мак. 1Мак 1Маккавейская 1Maccabees 1Macc. 1Macc 1Mac. 1Mac 1Ma. 1Ma")
+          << QString("2Макк. 2Макк. 2Маккав. 2Маккав 2Мак. 2Мак 2Маккавейская 2Maccabees 2Macc. 2Macc 2Mac. 2Mac 2Ma. 2Ma")
+          << QString("3Макк. 3Макк. 3Маккав. 3Маккав 3Мак. 3Мак 3Маккавейская 3Maccabees 3Macc. 3Macc 3Mac. 3Mac 3Ma. 3Ma")
+          << QString("3Ездр. 3Ездр 3Езд. 3Езд 3Ездра 3Ездры 3Ез 3Ез. 3Esdras 3Es. 3Es");
+    return items;
+
 }

@@ -1273,12 +1273,13 @@ void HelpDialog::showItemProperties()
         item = ui.TWSubItems -> currentItem();
     QString title = item -> text(0);
     QString fName = unurlifyFileName(item -> data(0, LinkRole).toString());
-    mw -> browsers() -> currentBrowser() -> updateItem(title, fName);
+    mw -> browsers() -> currentBrowser() -> updateItem(title, fName, 5, "llllol");
+
     qDebug() << "Debug: _HelpDialog::showItemProperties()" << "item prop title = " << title << ", link = " << fName;
 }
 //-------------------------------------------------
 //insert new document in content
-void HelpDialog::InsertContentsItem(QString title, QString fileName)
+void HelpDialog::InsertContentsItem(QString title, QString fileName, int count, QString path)
 {
     QString strfor = fileName;
     strfor.remove("file:");
@@ -1545,7 +1546,7 @@ void HelpDialog::saveProject(QString profileFN)
 }
 
 //-------------------------------------------------
-void HelpDialog::updateItemProperties(QString title, QString fileName) //update item properties
+void HelpDialog::updateItemProperties(QString title, QString fileName, int count, QString path) //update item properties
 {
     QTreeWidgetItem *item;
     item = ui.listContents -> currentItem(); //ContCur == ContTreeView
@@ -1627,7 +1628,14 @@ void HelpDialog::on_BProjectDelete_clicked()
   QString title = tr("<Not in the list>");
      ui.CBProjects -> insertItem(0, title );
   ui.CBProjects -> setItemData(0, "Empty link", LinkRole); */
-        ui.CBProjects -> setCurrentIndex(-1);
+        if (ui.CBProjects->count() != 0)
+        {
+            loadProjectFromList(0);
+        }
+        else
+        {
+            ui.CBProjects -> setCurrentIndex(-1);
+        }
         enableProjectButtons();
         mw -> projectModified(true);
     }
@@ -1766,7 +1774,7 @@ void HelpDialog::newItem()
 //            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
-            InsertContentsItem(title, urlifyFileName(fileName));// отвечает за добавление файла в список
+            InsertContentsItem(title, urlifyFileName(fileName), 5, fileName);// отвечает
             ui.listContents -> setFocus();
             //ui.listContents -> openPersistentEditor(ui.listContents -> currentItem(),0);  // редактировать название в дереве
 	}	

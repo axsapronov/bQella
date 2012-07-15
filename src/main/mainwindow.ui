@@ -144,7 +144,7 @@
      <addaction name="menuInsert"/>
      <addaction name="menuDelete"/>
      <addaction name="separator"/>
-     <addaction name="actionTableProperty_2"/>
+     <addaction name="actionTableProperty"/>
     </widget>
     <widget class="QMenu" name="menuFind">
      <property name="title">
@@ -971,7 +971,7 @@
     <string>f</string>
    </property>
   </action>
-  <action name="actionTableProperty_2">
+  <action name="actionTableProperty">
    <property name="text">
     <string>Table Property...</string>
    </property>

@@ -83,9 +83,9 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
 
         connect(this, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)), this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
         connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-        connect(itemprop, SIGNAL(insertContentsItem(QString, QString)), this, SLOT(loadNewItemFile()));  //open file of edited contents item
-        connect(itemprop, SIGNAL(insertContentsItem(QString, QString)), mw -> helpDialog(), SLOT(InsertContentsItem(QString, QString)));  //add item to contents
-        connect(itemprop, SIGNAL(updateContentsItem(QString, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString)));
+        connect(itemprop, SIGNAL(insertContentsItem(QString, QString, int, QString)), this, SLOT(loadNewItemFile()));  //open file of edited contents item
+        connect(itemprop, SIGNAL(insertContentsItem(QString, QString, int, QString)), mw -> helpDialog(), SLOT(InsertContentsItem(QString, QString, int, QString)));  //add item to contents
+        connect(itemprop, SIGNAL(updateContentsItem(QString, QString, int, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString, int, QString)));
         connect(linkprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(linkprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
         connect(tableprop, SIGNAL(createTable(int, int, QTextTableFormat)), this, SLOT(tableInsert(int, int, QTextTableFormat)));
@@ -435,9 +435,9 @@ void HelpWindow::setupFileActions()
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 
     connect(raEdit::document(), SIGNAL(modificationChanged(bool)), mw -> ui.actionSaveFile, SLOT(setEnabled(bool)));
-    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
+//    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
 
-    setWindowModified(raEdit::document() -> isModified());
+//    setWindowModified(raEdit::document() -> isModified());
     mw -> ui.actionSaveFile -> setEnabled(raEdit::document() -> isModified());
 }
 
@@ -558,13 +558,13 @@ void HelpWindow::setCurrentFileName(const QString fName)
 //-------------------------------------------------
 void HelpWindow::loadNewItemFile()
 {
-    load(itemprop -> filename());
+    load(itemprop -> getFilename());
 }
 
 //-------------------------------------------------
-void HelpWindow::updateItem(QString title, QString fileName)
+void HelpWindow::updateItem(QString fullname, QString shName, int count, QString path)
 {
-    itemprop -> setProperties(title, fileName, false);
+    itemprop -> setProperties(fullname, shName, count, path );
     itemprop -> show();
 }
 
@@ -577,7 +577,8 @@ void HelpWindow::fileNew()
         QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 
             fn += ".html";
-        itemprop -> setProperties("",fn,true);
+//        itemprop -> setProperties("",fn,true);
+        itemprop ->setProperties("", "", 0, fn);
         itemprop -> show();
     }
 }
@@ -591,7 +592,8 @@ void HelpWindow::fileOpen()
         QFileInfo fi(fn);
     	if (fi.suffix().isEmpty()) 
             fn += ".html";
-        itemprop -> setProperties("",fn, true);
+//        itemprop -> setProperties("",fn, true);
+        itemprop ->setProperties("", "", 0, fn);
         itemprop -> show();
     }
 }
