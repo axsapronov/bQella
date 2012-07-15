@@ -329,21 +329,35 @@ void HelpDialog::initialize()
     actionItemDelete -> setText(tr("Delete item and source file"));
     actionItemDelete -> setShortcut( QKeySequence(Qt::ShiftModifier + Qt::Key_Delete) );
 
+    actionItemDelete = new QAction(this);
+    actionItemDelete -> setText(tr("Delete item and source file"));
+    actionItemDelete -> setShortcut( QKeySequence(Qt::ShiftModifier + Qt::Key_Delete) );
+
     itemPopupContents = new QMenu(this);  //for Contents tab
     itemPopupContents -> addAction(actionItemBookAdd);
     itemPopupContents -> addAction(actionItemChapterAdd);
     itemPopupContents -> addSeparator();
-    itemPopupContents -> addAction(actionItemRemove);
+    itemPopupContents -> addAction(actionItemProperties);
     itemPopupContents -> addSeparator();
+    itemPopupContents -> addAction(actionItemRemove);
+    itemPopupContents -> addAction(actionItemDelete);
     
+    itemPopupContentsChapter = new QMenu(this);  //for Contents tab
+    itemPopupContentsChapter -> addAction(actionOpenCurrentTab);
+    itemPopupContentsChapter -> addAction(actionOpenLinkInNewWindow);
+    itemPopupContentsChapter -> addAction(actionOpenLinkInNewTab);
+    itemPopupContentsChapter -> addSeparator();
+    itemPopupContentsChapter -> addAction(actionItemRemove);
+    itemPopupContentsChapter -> addAction(actionItemDelete);
+
     itemPopupSubItems = new QMenu(this); //for SubItems contents view
     itemPopupSubItems -> addAction(actionItemProperties);
     itemPopupSubItems -> addSeparator();
     itemPopupSubItems -> addAction(actionOpenCurrentTab);
     itemPopupSubItems -> addAction(actionOpenLinkInNewWindow);
     itemPopupSubItems -> addAction(actionOpenLinkInNewTab);
-    itemPopupSubItems -> addAction(actionOpenLinkInExtEditor);
-    itemPopupSubItems -> addAction(actionOpenLinkInExtBrowser);
+//    itemPopupSubItems -> addAction(actionOpenLinkInExtEditor);
+//    itemPopupSubItems -> addAction(actionOpenLinkInExtBrowser);
 
     
     //create projects list
@@ -943,6 +957,9 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 {
     QTreeWidgetItem *i;
     i = (QTreeWidgetItem*)ui.listContents -> currentItem(); //ContCur == ContTreeView
+
+    int depth = getDepthTreeWidgetItem(i);
+
     if (ContCur == ContSubItems)
     {
         i = (QTreeWidgetItem*)ui.TWSubItems -> currentItem();
@@ -960,7 +977,8 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
 //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
-        emit showLink("file:"+fn);
+        if (depth > 1)
+            emit showLink("file:"+fn);  //  если не глава, то не показываем
 //        autosavestart = true;
     }
     else
@@ -1145,8 +1163,12 @@ void HelpDialog::showContentsItemMenu(const QPoint &pos)
         return;
 
     QAction *action;
-    action = itemPopupContents -> exec(treeWidget -> viewport() -> mapToGlobal(pos)); //ContCur == ContTreeView
-    if (ContCur == ContSubItems) 
+    if (getDepthTreeWidgetItem(item) == 1)
+        action = itemPopupContents -> exec(treeWidget -> viewport() -> mapToGlobal(pos)); //ContCur == ContTreeView
+    else
+        action = itemPopupContentsChapter -> exec(treeWidget -> viewport() -> mapToGlobal(pos)); //ContCur == ContTreeView
+
+    if (ContCur == ContSubItems)
         action = itemPopupSubItems -> exec(treeWidget -> viewport() -> mapToGlobal(pos));
     triggerAction(item, action);
 }
@@ -1157,7 +1179,7 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
     if (action) {
 
         if (action == actionItemProperties){
-            showItemProperties();
+           showItemProperties();
         }else if (action == actionItemInsert){
             newSameLevelItem = false;
             newItem();
@@ -1695,12 +1717,8 @@ void HelpDialog::currentItemChanged(QTreeWidgetItem* curItem,QTreeWidgetItem* pr
 void HelpDialog::newItem()
 {    
     // определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
-    int depth = 1;
-//    qDebug() << " _ 0 ";
-
-    for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
-
-//    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
+    int depth = getDepthTreeWidgetItem(ui.listContents -> currentItem());
+    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
     if (depth < 2)
     {
 //        qDebug() << " _ 1 ";

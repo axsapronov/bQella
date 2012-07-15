@@ -105,50 +105,80 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
     <addaction name="actionAboutAssistant"/>
-    <addaction name="separator"/>
+    <addaction name="actionAbout_Qt"/>
    </widget>
-   <widget class="QMenu" name="fileMenu">
+   <widget class="QMenu" name="editMenu">
     <property name="title">
-     <string>&amp;File</string>
+     <string>&amp;Edit</string>
     </property>
-    <widget class="QMenu" name="menuProperties">
+    <widget class="QMenu" name="menuTable">
      <property name="title">
-      <string>Properties</string>
+      <string>Table</string>
      </property>
-     <addaction name="actionProjectProperties"/>
-     <addaction name="actionItemProperties"/>
+     <widget class="QMenu" name="menuInsert">
+      <property name="title">
+       <string>Insert</string>
+      </property>
+      <addaction name="actionInsertTable"/>
+      <addaction name="separator"/>
+      <addaction name="actionInsertRowAbove"/>
+      <addaction name="actionInsertRowBelow"/>
+      <addaction name="separator"/>
+      <addaction name="actionInsertColumnRight"/>
+      <addaction name="actionInsertColumnLeft"/>
+     </widget>
+     <widget class="QMenu" name="menuDelete">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="title">
+       <string>Delete</string>
+      </property>
+      <addaction name="actionDeleteTable"/>
+      <addaction name="actionDeleteRow"/>
+      <addaction name="actionDeleteColumn"/>
+     </widget>
+     <addaction name="menuInsert"/>
+     <addaction name="menuDelete"/>
+     <addaction name="separator"/>
+     <addaction name="actionTableProperty_2"/>
     </widget>
-    <widget class="QMenu" name="menuRemove">
+    <widget class="QMenu" name="menuFind">
      <property name="title">
-      <string>Remove</string>
+      <string>Find</string>
      </property>
-     <addaction name="actionRemoveItem"/>
-     <addaction name="actionDeleteFile"/>
+     <addaction name="actionEditFindAndReplace"/>
+     <addaction name="actionEditFind"/>
+     <addaction name="actionEditFindNext"/>
+     <addaction name="actionEditFindPrev"/>
     </widget>
-    <widget class="QMenu" name="menuImport">
+    <addaction name="menuTable"/>
+    <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="menuFind"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>&amp;Settings</string>
+    </property>
+    <widget class="QMenu" name="menuLanguage">
      <property name="title">
-      <string>Import</string>
+      <string>Language</string>
      </property>
-     <addaction name="actionImportModule"/>
-     <addaction name="actionImportBook"/>
+     <addaction name="actionLang_en"/>
+     <addaction name="actionLang_ru"/>
     </widget>
-    <addaction name="actionProjectNew"/>
-    <addaction name="actionProjectOpen"/>
-    <addaction name="separator"/>
-    <addaction name="actionProjectSave"/>
-    <addaction name="actionProjectSaveAs"/>
-    <addaction name="actionFileAdd"/>
-    <addaction name="separator"/>
-    <addaction name="actionExport_Module"/>
-    <addaction name="menuImport"/>
-    <addaction name="separator"/>
-    <addaction name="menuProperties"/>
-    <addaction name="menuRemove"/>
-    <addaction name="actionProjectBackup"/>
-    <addaction name="separator"/>
-    <addaction name="actionAppExit"/>
-    <addaction name="separator"/>
+    <addaction name="menuLanguage"/>
+    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="viewMenu">
     <property name="title">
@@ -168,95 +198,55 @@
     <addaction name="separator"/>
     <addaction name="goMenu"/>
    </widget>
-   <widget class="QMenu" name="editMenu">
+   <widget class="QMenu" name="menuProject">
     <property name="title">
-     <string>&amp;Edit</string>
+     <string>&amp;Project</string>
     </property>
+    <addaction name="actionProjectNew"/>
+    <addaction name="actionProjectOpen"/>
     <addaction name="separator"/>
-    <addaction name="actionUndo"/>
-    <addaction name="actionRedo"/>
+    <addaction name="actionProjectSave"/>
+    <addaction name="actionProjectSaveAs"/>
     <addaction name="separator"/>
-    <addaction name="actionCut"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionPaste"/>
+    <addaction name="actionProjectProperties"/>
     <addaction name="separator"/>
-    <addaction name="actionEditFindAndReplace"/>
-    <addaction name="actionEditFind"/>
-    <addaction name="actionEditFindNext"/>
-    <addaction name="actionEditFindPrev"/>
+    <addaction name="actionExport_Module"/>
+    <addaction name="actionImportModule"/>
+    <addaction name="separator"/>
+    <addaction name="actionAppExit"/>
+    <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuFormat">
-    <property name="title">
-     <string>F&amp;ormat</string>
-    </property>
-    <addaction name="actionTextBold"/>
-    <addaction name="actionTextItalic"/>
-    <addaction name="actionTextUnderline"/>
-    <addaction name="separator"/>
-    <addaction name="actionTextLeft"/>
-    <addaction name="actionTextCenter"/>
-    <addaction name="actionTextRight"/>
-    <addaction name="actionTextJustify"/>
-    <addaction name="separator"/>
-    <addaction name="actionHyperlink"/>
-    <addaction name="actionTextColor"/>
-   </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Settings</string>
-    </property>
-    <widget class="QMenu" name="menuLanguage">
-     <property name="title">
-      <string>Language</string>
-     </property>
-     <addaction name="actionLang_en"/>
-     <addaction name="actionLang_ru"/>
-    </widget>
-    <addaction name="menuLanguage"/>
-    <addaction name="actionSettings"/>
-   </widget>
-   <widget class="QMenu" name="menuTable">
-    <property name="title">
-     <string>&amp;Table</string>
-    </property>
-    <widget class="QMenu" name="menuInsert">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="title">
-      <string>Insert</string>
-     </property>
-     <addaction name="actionInsertTable"/>
-     <addaction name="separator"/>
-     <addaction name="actionInsertRowAbove"/>
-     <addaction name="actionInsertRowBelow"/>
-     <addaction name="separator"/>
-     <addaction name="actionInsertColumnRight"/>
-     <addaction name="actionInsertColumnLeft"/>
-    </widget>
-    <widget class="QMenu" name="menuDelete">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="title">
-      <string>Delete</string>
-     </property>
-     <addaction name="actionDeleteTable"/>
-     <addaction name="actionDeleteRow"/>
-     <addaction name="actionDeleteColumn"/>
-    </widget>
-    <addaction name="menuInsert"/>
-    <addaction name="menuDelete"/>
-    <addaction name="separator"/>
-    <addaction name="actionTableProperty"/>
-   </widget>
-   <addaction name="fileMenu"/>
+   <addaction name="menuProject"/>
    <addaction name="editMenu"/>
-   <addaction name="menuFormat"/>
    <addaction name="viewMenu"/>
-   <addaction name="menuTable"/>
    <addaction name="menuSettings"/>
    <addaction name="helpMenu"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarFile">
+   <property name="windowTitle">
+    <string>File</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFileAdd"/>
+   <addaction name="actionRemoveItem"/>
+   <addaction name="actionSaveFile"/>
+   <addaction name="actionFilePrint"/>
+   <addaction name="separator"/>
+   <addaction name="actionEditFind"/>
   </widget>
   <widget class="QToolBar" name="toolBarFormat">
    <property name="windowTitle">
@@ -287,32 +277,6 @@
    <addaction name="actionTextColor"/>
    <addaction name="actionAddTag"/>
    <addaction name="separator"/>
-  </widget>
-  <widget class="QToolBar" name="toolBarFile">
-   <property name="windowTitle">
-    <string>File</string>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionFileAdd"/>
-   <addaction name="actionRemoveItem"/>
-   <addaction name="actionSaveFile"/>
-   <addaction name="actionFilePrint"/>
-   <addaction name="separator"/>
-   <addaction name="actionEditFind"/>
   </widget>
   <action name="actionFilePrint">
    <property name="icon">
@@ -611,6 +575,9 @@
    <property name="text">
     <string>Paste</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
   </action>
   <action name="actionCut">
    <property name="icon">
@@ -619,6 +586,9 @@
    </property>
    <property name="text">
     <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="actionRemoveItem">
@@ -853,7 +823,7 @@
   </action>
   <action name="actionImportModule">
    <property name="text">
-    <string>Module</string>
+    <string>Import Module</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -880,7 +850,7 @@
     <string>Find and replace</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+J</string>
+    <string>Ctrl+Shift+F</string>
    </property>
   </action>
   <action name="actionAddTag">
@@ -892,14 +862,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
-   </property>
-  </action>
-  <action name="actionTableProperty">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Table Property...</string>
    </property>
   </action>
   <action name="actionInsertRowAbove">
@@ -940,6 +902,9 @@
    </property>
   </action>
   <action name="actionDeleteTable">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -955,6 +920,60 @@
   <action name="actionDeleteColumn">
    <property name="text">
     <string>Column</string>
+   </property>
+  </action>
+  <action name="actionProjectNew2">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/project/images/prj_new.png</normaloff>:/project/images/prj_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionProjectOpen2">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/project/images/prj_open.png</normaloff>:/project/images/prj_open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_project">
+   <property name="text">
+    <string>Save project</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionM">
+   <property name="text">
+    <string>m</string>
+   </property>
+  </action>
+  <action name="actionF_2">
+   <property name="text">
+    <string>f</string>
+   </property>
+  </action>
+  <action name="actionTableProperty_2">
+   <property name="text">
+    <string>Table Property...</string>
    </property>
   </action>
  </widget>

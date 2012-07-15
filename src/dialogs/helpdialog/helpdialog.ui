@@ -48,8 +48,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>images/prj_delete.png</normaloff>images/prj_delete.png</iconset>
+        <iconset resource="../../../resources/resources.qrc">
+         <normaloff>:/project/images/prj_delete.png</normaloff>:/project/images/prj_delete.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -80,8 +80,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>images/prj_add.png</normaloff>images/prj_add.png</iconset>
+        <iconset resource="../../../resources/resources.qrc">
+         <normaloff>:/project/images/prj_add.png</normaloff>:/project/images/prj_add.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -234,6 +234,8 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>listContents</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

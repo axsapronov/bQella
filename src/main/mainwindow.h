@@ -88,7 +88,6 @@ private slots:
     void updateProjectProperties(ModuleProperties);
     void ProjectOpen();
     void ProjectSaveAs();
-    void ProjectBackup();
     void ProjectProps();
     void setLangEn();
     void setLangRu();
@@ -103,9 +102,6 @@ private slots:
     void updateProfileSettings();
     void browserTabChanged();
     void updateTabActions(int index);
-
-
-
 
     // export
     void exportModule();

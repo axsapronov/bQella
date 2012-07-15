@@ -107,8 +107,7 @@ MainWindow::MainWindow():
     ui.toolBarTabs -> setVisible(false);
     ui.actionEditFind -> setVisible(false);
     ui.actionImportBook->setVisible(false);
-    //    ui.menuNew_with_pattern -> setVisible(false);
-    ui.actionProjectBackup -> setVisible(false);
+
 
 
 }
@@ -137,9 +136,9 @@ void MainWindow::setup()
     connect(ui.actionProjectOpen, SIGNAL(triggered()), this, SLOT(ProjectOpen()));
     connect(ui.actionProjectSave, SIGNAL(triggered()), helpDock, SLOT(saveProject()));
     connect(ui.actionProjectSaveAs, SIGNAL(triggered()), this, SLOT(ProjectSaveAs()));
-    connect(ui.actionProjectBackup, SIGNAL(triggered()), this, SLOT(ProjectBackup()));
     connect(ui.actionProjectProperties, SIGNAL(triggered()), this, SLOT(ProjectProps()));
     connect(ui.actionAppExit, SIGNAL(triggered()), this, SLOT(exitApp()));
+    connect(ui.actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     //connect(prjprop, SIGNAL(createDB(QString)), prjsrc, SLOT(newDb(QString)));
     connect(prjprop, SIGNAL(createProject(ModuleProperties)), this, SLOT(createProject(ModuleProperties)));
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
@@ -1008,27 +1007,10 @@ void MainWindow::OpenInExternalApplication(QString app, QString FileName)
     Config::configuration() -> toPrjLog(2, tr("Open file in external application: %1 %2", "For log").arg(app).arg(FileName));
 }
 
-
-
-//-------------------------------------------------
-void MainWindow::ProjectBackup()
-{
-    QDateTime dt = QDateTime::currentDateTime();
-    QString archiveFN = Config::configuration() -> BackupDir() + "/" + Config::configuration() -> profileName()+ dt.toString(" yyyy-MM-dd-hh-mm")+ ".7z";
-    QString cmd =	"\"" + Config::configuration() -> ExternalArchiver() +"\" "+
-            Config::configuration() -> ExternalArchiverOptions() +
-            " \""+ archiveFN +"\" \""+
-            Config::configuration() -> CurPrjDir() + "/\"";
-    QProcess *extApp = new QProcess(this);
-    extApp -> start(cmd);
-    Config::configuration() -> toPrjLog(1,tr("Creating backup archive: %1", "For log").arg(cmd));
-    QMessageBox::information(this, tr("Backup"), tr("Backup is in\n%1").arg(archiveFN), tr("OK"));
-}
-
 //-------------------------------------------------
 void MainWindow::globalShortcut_CtrlShiftInsert()
 {
-    if (QApplication::focusWidget() -> objectName() == "raWorkArea"){
+    if (QApplication::focusWidget() -> objectName() == "WorkArea"){
         //  insertDefaultSignature();
     }
 

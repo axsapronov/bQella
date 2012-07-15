@@ -48,6 +48,8 @@
         <file>images/prj_property.png</file>
         <file>images/prj_save.png</file>
         <file>images/prj_statistics.png</file>
+        <file>images/prj_add.png</file>
+        <file>images/prj_delete.png</file>
     </qresource>
     <qresource prefix="/tabs">
         <file>images/tab_add.png</file>

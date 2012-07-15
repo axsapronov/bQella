@@ -156,7 +156,7 @@ void TabbedBrowser::newTab(const QString &lnk)
             link = w -> source().toString();
     }
 	HelpWindow *win = createHelpWindow();
-	win -> setObjectName("raWorkArea");
+        win -> setObjectName("WorkArea");
     ui.tab -> setCurrentIndex(ui.tab -> indexOf(win));
     if(!link.isNull()) {
          win -> setSource(link);

@@ -205,6 +205,7 @@ private:
     QMenu *itemPopup;
     QMenu *itemPopupContents;
     QMenu *itemPopupSubItems;
+    QMenu *itemPopupContentsChapter;
     QAction *actionItemProperties;
     QAction *actionItemInsert;
     QAction *actionItemAddFile;
