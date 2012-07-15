@@ -63,8 +63,14 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
          <property name="maxVisibleItems">
-          <number>5</number>
+          <number>10</number>
+         </property>
+         <property name="duplicatesEnabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>

@@ -57,7 +57,6 @@ private slots:
     void importIni(QString file);
     void importProjectFile();
     QString importChapter(QString file);
-    QString miniparserini(QString str, QString str2);
 
     void createImportFolder(QString path);
     void createChaterFile(QString file,QString text, int i);

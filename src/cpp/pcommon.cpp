@@ -1054,8 +1054,6 @@ int getDepthTreeWidgetItem(QTreeWidgetItem *item)
 
 QStringList getFillShortName()
 {
-
-
     QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForLocale(codec);
@@ -1140,5 +1138,86 @@ QStringList getFillShortName()
           << QString("3Макк. 3Макк. 3Маккав. 3Маккав 3Мак. 3Мак 3Маккавейская 3Maccabees 3Macc. 3Macc 3Mac. 3Mac 3Ma. 3Ma")
           << QString("3Ездр. 3Ездр 3Езд. 3Езд 3Ездра 3Ездры 3Ез 3Ез. 3Esdras 3Es. 3Es");
     return items;
+}
 
+
+QString getShortName(QString filename)
+{
+    // translate to hindi
+    QString str= "";
+    QString line;
+    QString shortma = "ShortName = ";
+    QFile file(filename);
+
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream( &file );
+        do {
+            line = stream.readLine();
+            if (line.indexOf("ShortName = ") >= 0)
+            {
+//                str = getTextInStr(line);
+                str = line.remove("ShortName = ");
+            }
+        } while (str.isEmpty() and !line.isNull());
+        file.close();
+    }
+
+    return str;
+}
+
+
+
+QString miniparserini(QString str, QString po)
+{
+    po.append(" = ");
+    //    qDebug() << "_str " << str;
+    if (str.indexOf(po) >= 0)
+    {
+        str.remove(po);
+        if (po == "BibleName = ")
+        {
+            str.replace(" ", "_")
+                    .remove(str.length()-1, 1);
+        }
+
+        if (po != "ShortName = " and
+                po != "FullName = " and
+                po != "ChapterSign = ")
+        {
+            str.remove(" \0");
+        }
+
+        if (str == "")
+        {
+            //               qDebug() << "po = " << po;
+            if ( po == "Language = ")
+            {
+                //                qDebug() << "po = " << po;
+                return "rus";
+            }
+            if ( po == "DefaultEncoding = ")
+                return "utf-8";
+            return "none";
+        }
+        str.remove("\n");
+
+        //        qDebug() << "__str = " << str;
+        return str;
+    }
+    return "";
+}
+
+QString getTextInStr(QString strf, int begin, int end)
+{
+//    qDebug() << " str before = " << strf;
+//    QString str = strf.section(" = ", 3, 4);
+////    str.remove(str.indexOf(" ChapterQty"),strf.length()-str.indexOf(" ChapterQty"));
+////    str.remove
+
+//    qDebug() << " str = " << str;
+    return strf;
+    strf = strf;
+    begin = begin;
+    end = end;
 }

@@ -80,6 +80,8 @@ QString getHtmlCoolCode(QString str, QString i, QString chapter, bool chap);
 QString getParseTagSpan(QString str, QString text, QString tag);
 int getDepthTreeWidgetItem(QTreeWidgetItem *item); // вернуть глубину QTreeWidgetItem
 QStringList getFillShortName(); // возвращает заполнение для combobox базовых коротких названий
+QString getTextInStr(QString str, int begin = 5, int end = 9); // возвращает текст от begin до end символа ( не реализована, работает чтобы доставать shortname)
+
 //======= работа с файлами =======
 //--------------------------------
 QString unurlifyFileName(const QString &fileName);		//remove "file:"
@@ -96,5 +98,6 @@ bool toLog(QString logFN, QString logMessage); //добавляет в журн�
 bool createEmptyHtml(QString fileName, QString title); 
 bool createEmptyHtml(QString fileName, QString title, QString text);
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
-
+QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
+QString miniparserini(QString str, QString po);
 #endif // __PCOMMON_H__

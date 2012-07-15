@@ -95,7 +95,10 @@ void ItemProperties::setProperties(QString full, QString shortname, int counts, 
     QStringListModel *typeModel = new QStringListModel(items, this);
     ui.comboBoxShortName -> setModel(typeModel);
 
-    ui.comboBoxShortName->insertItem(ui.comboBoxShortName->count(), shortname);
+    if (ui.comboBoxShortName->findText(shortname) == -1)
+        ui.comboBoxShortName->addItem(shortname);
+    ui.comboBoxShortName->setCurrentIndex(ui.comboBoxShortName->findText(shortname));
+
     ui.laCountOfChapter->setText(QString::number(counts));
     ui.laPathToBook->setText(path);
     ui.lineEditFullName->setText(full);

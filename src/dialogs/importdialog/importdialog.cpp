@@ -542,46 +542,5 @@ QString Import::getStartPage()
     return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
 }
 //----------------------------------------------------
-QString Import::miniparserini(QString str, QString po)
-{
-    po.append(" = ");
-    //    qDebug() << "_str " << str;
-    if (str.indexOf(po) >= 0)
-    {
-        str.remove(po);
-
-
-        if (po == "BibleName = ")
-        {
-            str.replace(" ", "_")
-                    .remove(str.length()-1, 1);
-        }
-
-        if (po != "ShortName = " and
-                po != "FullName = " and
-                po != "ChapterSign = ")
-        {
-            str.remove(" \0");
-        }
-
-        if (str == "")
-        {
-            //               qDebug() << "po = " << po;
-            if ( po == "Language = ")
-            {
-                //                qDebug() << "po = " << po;
-                return "rus";
-            }
-            if ( po == "DefaultEncoding = ")
-                return "utf-8";
-            return "none";
-        }
-        str.remove("\n");
-
-        //        qDebug() << "__str = " << str;
-        return str;
-    }
-    return "";
-}
 
 

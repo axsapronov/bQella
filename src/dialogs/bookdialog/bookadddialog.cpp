@@ -85,8 +85,15 @@ void BookAddDialog::clickslot(QAbstractButton *AButton)
 
 void BookAddDialog::send()
 {
+
     bookChapterQty = ui -> spinBoxChapterQty -> value();
     bookFullName = ui -> lineEditFullName -> text();
     bookShortName = ui -> comboBoxShortName -> currentText();
     bookCheckAutoChapterCreate = ui -> checkBoxAutoCreateChapter -> isChecked();
+
+    if (ui->comboBoxShortName->findText(bookShortName) == -1)
+    {
+        ui->comboBoxShortName->addItem(bookShortName);
+        ui->comboBoxShortName->setCurrentIndex(ui->comboBoxShortName->findText(bookShortName));
+    }
 }
