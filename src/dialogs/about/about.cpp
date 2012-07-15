@@ -20,27 +20,36 @@
  *    WebSite: https://github.com/WarmongeR1/bQella
  */
 
-#ifndef GUIAbout_H
-#define GUIAbout_H
 
-#include <QDialog>
 
-namespace Ui {
-    class GUIAbout;
+#include "about.h"
+#include "ui_about.h"
+
+
+AboutDialog::AboutDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AboutDialog)
+{
+    ui -> setupUi(this);
 }
 
-class GUIAbout : public QDialog
+AboutDialog::~AboutDialog()
 {
-    Q_OBJECT
-public:
-    explicit GUIAbout(QWidget *parent = 0);
-    ~GUIAbout();
-protected:
-    void changeEvent(QEvent *);
-public slots:
-    void retranslate();
-private:
-    Ui::GUIAbout *ui;
-};
+    delete ui;
+}
 
-#endif // GUIAbout_H
+void AboutDialog::retranslate()
+{
+    ui -> retranslateUi(this);
+}
+
+void AboutDialog::changeEvent(QEvent *e) {
+    QDialog::changeEvent(e);
+    switch (e -> type()) {
+    case QEvent::LanguageChange:
+        ui -> retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}

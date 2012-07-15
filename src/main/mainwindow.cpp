@@ -8,7 +8,7 @@
  *    but WITHOUT ANY WARRANTY; without even the implied warranty of
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *    GNU General Public License for more details.
- *
+*
  *    You should have received a copy of the GNU General Public License
  *    along with this program; if not, write to the Free Software
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -27,11 +27,11 @@
 #include "config.h"
 #include "pcommon.h"
 #include "settings.h"
-#include "guiabout.h"
+#include "about.h"
 #include "export.h"
 #include "importdialog.h"
 #include "frdialog.h"
-
+#include "helpbrowser.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -49,7 +49,8 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 
 //-------------------------------------------------
 MainWindow::MainWindow():
-    m_gui_About(new GUIAbout(this))
+    aboutd(new AboutDialog(this)),
+    helpBr (new HelpBrowser(this, ":doc/doc", "index.htm"))
 {
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
@@ -82,6 +83,9 @@ MainWindow::MainWindow():
     exportm = new Export();
     importm = new Import(this);
 
+//    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
+//    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
+
     dw -> setWidget(helpDock);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
     
@@ -108,6 +112,7 @@ MainWindow::MainWindow():
 //    ui.actionEditFind -> setVisible(false);
 //    ui.actionImportBook->setVisible(false);
 
+    ui.actionPrint_Preview ->setVisible(false);
 
 
 }
@@ -128,6 +133,7 @@ void MainWindow::setup()
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar() -> showMessage(tr("Initializing %1...").arg(GL_Prog_Name));
     helpDock -> initialize();
+
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -194,6 +200,12 @@ void MainWindow::setup()
     connect(new QShortcut(tr("Ctrl+]"), this), SIGNAL(activated()), tabs, SLOT(nextTab()));
     connect(new QShortcut(tr("Ctrl+["), this), SIGNAL(activated()), tabs, SLOT(previousTab()));
     connect(new QShortcut(tr("Ctrl+Shift+Insert"), this), SIGNAL(activated()), this, SLOT(globalShortcut_CtrlShiftInsert()));//!+! move to browsers() -> currentBrowser()
+
+
+    // Menu about
+    connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(helpshow()));
+
+
 
     Config *config = Config::configuration();
 
@@ -311,9 +323,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
 //-------------------------------------------------
 void MainWindow::about()
 {
-    m_gui_About -> show();
+    aboutd -> show();
 }
-
+//-------------------------------------------------
+void MainWindow::helpshow()
+{
+    helpBr->show();
+}
 //-------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()
 {

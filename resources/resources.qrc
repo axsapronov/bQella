@@ -68,4 +68,13 @@
         <file>images/textright.png</file>
         <file>images/textunder.png</file>
     </qresource>
+    <qresource prefix="/doc">
+        <file>doc/close.htm</file>
+        <file>doc/exit.htm</file>
+        <file>doc/index.htm</file>
+        <file>doc/logo.jpg</file>
+        <file>doc/new.htm</file>
+        <file>doc/open.htm</file>
+        <file>doc/save_as.htm</file>
+    </qresource>
 </RCC>

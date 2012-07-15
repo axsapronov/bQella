@@ -34,6 +34,7 @@ DEPENDPATH += \
     src/dialogs/tagdialog \
     src/dialogs/tableproperty \
     src/dialogs/cellsplit \
+    src/help \
     src/tab \
     src/settings \
     src/main \
@@ -58,6 +59,7 @@ INCLUDEPATH += \
     src/tab \
     src/settings \
     src/main \
+    src/help \
     src/doc \
     src/export
 
@@ -67,7 +69,7 @@ FORMS += \
      itemproperty.ui \
      linkproperty.ui \
      bookadddialog.ui \
-     guiabout.ui \
+     about.ui \
      projectproperty.ui \
      mainwindow.ui \
      tabbedbrowser.ui \
@@ -76,7 +78,8 @@ FORMS += \
      settings.ui \
      frdialog.ui \
      importdialog.ui \
-     tagdialog.ui
+     tagdialog.ui \
+    src/help/helpbrowser.ui
 
 SOURCES +=  \
      config.cpp \
@@ -96,7 +99,7 @@ SOURCES +=  \
      importdialog.cpp \
      frdialog.cpp \
      bookadddialog.cpp \
-     guiabout.cpp \
+     about.cpp \
      itemproperty.cpp \
      linkproperty.cpp \
      index.cpp \
@@ -105,10 +108,10 @@ SOURCES +=  \
      srclistparser.cpp \
      cellsplit.cpp \
      export.cpp \
-     tagdialog.cpp
+     tagdialog.cpp \
+    src/help/helpbrowser.cpp
 
-
-HEADERS += \     
+HEADERS += \
      docproperty.h \
      docuparser.h \
      fontsettingsdialog.h \
@@ -120,7 +123,7 @@ HEADERS += \
      bookadddialog.h \
      itemproperty.h \
      linkproperty.h \
-     guiabout.h \
+     about.h \
      projectproperty.h \
      mainwindow.h \
      settings.h \
@@ -134,7 +137,9 @@ HEADERS += \
      raedit.h \
      srclistparser.h \
      export.h \
-     tagdialog.h
+     tagdialog.h \
+    src/help/helpbrowser.h
+
 
 RESOURCES += \
     resources/resources.qrc
