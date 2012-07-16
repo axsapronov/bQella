@@ -53,8 +53,11 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="editable">
+        <bool>true</bool>
+       </property>
        <property name="maxVisibleItems">
-        <number>5</number>
+        <number>10</number>
        </property>
       </widget>
      </item>
@@ -122,9 +125,7 @@
  <tabstops>
   <tabstop>buttonBox</tabstop>
  </tabstops>
- <resources>
-  <include location="../../../resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

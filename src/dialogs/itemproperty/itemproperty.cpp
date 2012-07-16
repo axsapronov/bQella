@@ -62,19 +62,25 @@ void ItemProperties::accept()
         {
 
             // добавить возможность изменить full name, short name
-//                createEmptyHtml(ui.EFile -> text(), ui.ETitle -> text());
-//                QFile file(ui.EFile -> text());
-//                if (file.exists()){	//file does exist we can proceed with setting item properties
-//                        itemTitle= ui.ETitle -> text(); 	//!+! get title from document
-//                        itemFile = urlifyFileName(ui.EFile -> text());
-//                        validProperties = true;
-//                        if (insertMode){
-//                                emit insertContentsItem(itemTitle, itemFile);
-//                        }else{
-//                                emit updateContentsItem(itemTitle, itemFile);
-//                        }
-                        QWidget::hide();  //close dialog
-//                }
+
+//            itemTitle = ui.ETitle -> text(); 	//!+! get title from document
+
+            itemFullName = ui.lineEditFullName->text();
+            itemShortName = ui.comboBoxShortName->currentText();
+            itemFile = urlifyFileName(ui.laPathToBook->text());
+            int count = ui.laCountOfChapter->text().toInt();
+
+            validProperties = true;
+            insertMode = false;
+            if (insertMode)
+            {
+                emit insertContentsItem(itemFullName, itemShortName, count, itemFile);
+
+            }else{
+                emit updateContentsItem(itemFullName, itemShortName, count, itemFile);
+            }
+            QWidget::hide();  //close dialog
+
         }
 }
 

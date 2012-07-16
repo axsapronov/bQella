@@ -79,7 +79,6 @@ FORMS += \
      frdialog.ui \
      importdialog.ui \
      tagdialog.ui \
-    src/help/helpbrowser.ui
 
 SOURCES +=  \
      config.cpp \
@@ -109,7 +108,7 @@ SOURCES +=  \
      cellsplit.cpp \
      export.cpp \
      tagdialog.cpp \
-    src/help/helpbrowser.cpp
+    assistant.cpp
 
 HEADERS += \
      docproperty.h \
@@ -138,7 +137,7 @@ HEADERS += \
      srclistparser.h \
      export.h \
      tagdialog.h \
-    src/help/helpbrowser.h
+    assistant.h
 
 
 RESOURCES += \

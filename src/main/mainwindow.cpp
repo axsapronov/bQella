@@ -31,7 +31,7 @@
 #include "export.h"
 #include "importdialog.h"
 #include "frdialog.h"
-#include "helpbrowser.h"
+#include "assistant.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -49,8 +49,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 
 //-------------------------------------------------
 MainWindow::MainWindow():
-    aboutd(new AboutDialog(this)),
-    helpBr (new HelpBrowser(this, ":doc/doc", "index.htm"))
+    aboutd(new AboutDialog(this))
 {
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
@@ -82,6 +81,7 @@ MainWindow::MainWindow():
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
+    assistant = new Assistant;
 
 //    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
 //    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
@@ -203,7 +203,7 @@ void MainWindow::setup()
 
 
     // Menu about
-    connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(helpshow()));
+    connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(showDocumentation()));
 
 
 
@@ -326,9 +326,9 @@ void MainWindow::about()
     aboutd -> show();
 }
 //-------------------------------------------------
-void MainWindow::helpshow()
+void MainWindow::showDocumentation()
 {
-    helpBr->show();
+    assistant->showDocumentation("index.html");
 }
 //-------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()

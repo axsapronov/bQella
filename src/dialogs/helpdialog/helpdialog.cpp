@@ -1382,8 +1382,6 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
         {
             // создаем файлы для глав
             QString title = tr("%1").arg(i);
-
-
             QString chaptervalue = incstr(title, GL_LengtItemString, "_");
             title = incstr(title, GL_LengtItemString, " ");
             QString fileName;
@@ -1392,6 +1390,7 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
             createEmptyHtml(fileName, title);
             InsertChapter(newEntry,title, urlifyFileName(fileName));// отвечает за добавление файла в список
         }
+        fixedBookConfFile(strfor, newEntry, title);
     }
 }
 //-------------------------------------------------
@@ -1452,9 +1451,9 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                 }
                 if (str.left(13) == "ChapterQty = ")
                 {
-                    //qDebug() << "\n" << "find!";
+//                    qDebug() << "\n" << "find!";
                     //str = QString("ChapterQty = %1").arg(m_bookadddialog -> bookChapterQty);
-                    //qDebug() << "\n" << ui.listContents -> currentItem() << " " << ui.listContents -> currentItem() -> childCount();
+//                    qDebug() << "\n" << ui.listContents -> currentItem() << " " << ui.listContents -> currentItem() -> childCount();
                     str = QString("ChapterQty = %1\n").arg(item -> childCount());
                 }
                 string.append(str+"\n");
@@ -1555,6 +1554,31 @@ void HelpDialog::updateItemProperties(QString fullname, QString shortname, int c
     QString oldFN = item -> data(0, LinkRole).toString();
     item -> setText(0, fullname);
     item -> setData(0, LinkRole, fileName);
+
+
+    // заменяем в файле сменившиеся параметры
+//    qDebug() << "Debug: _HelpDialog::updateItemProperties" << "fullname = " << fullname << " shortname = " << shortname << " count = " << count;
+    QFile file(unurlifyFileName(fileName));
+//    qDebug() << " filename = " << fileName;
+    QString line;
+    QStringList list;
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        do
+        {
+            line = stream.readLine();
+//            qDebug() << "line = " << line;
+            line = replaceFullShortName(line, fullname, "FullName = ");
+            line = replaceFullShortName(line, shortname, "ShortName = ");
+            list << line;
+        } while (!stream.atEnd());
+    }
+//    qDebug() << "Debug: _HelpDialog::updateItemProperties" << " list = " << list;
+    file.close();
+    file.remove();
+    writeQStringList(fileName, list);
+
     if (oldFN != fileName) //reload 
     	showContentsTopic();
     mw -> projectModified(true);

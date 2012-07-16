@@ -44,7 +44,7 @@ class AboutDialog;
 class Export;
 class Import;
 class FRDialog;
-class HelpBrowser;
+class Assistant;
 
 //====================== class MainWindow ============================
 
@@ -64,6 +64,7 @@ public:
     void msgReloadRequest();
     void OpenInExternalApplication(QString app, QString FileName);
 
+    void showDocumentation(const QString &file);
 signals:
     void saveOpenedLink(); //used to save opened file before open a new one
 
@@ -104,7 +105,7 @@ private slots:
     void browserTabChanged();
     void updateTabActions(int index);
 
-    void helpshow();
+    void showDocumentation();
     // export
     void exportModule();
 
@@ -130,7 +131,7 @@ private:
     AppSettings *appsets;
     HelpDialog *helpDock;
     FRDialog *frdialog;
-    HelpBrowser *helpBr;
+    Assistant *assistant;
 
     Export * exportm;
     Import * importm;

@@ -995,6 +995,8 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
         str.remove(rx)
                 .remove("")
                 .remove("\n");
+        str.remove("Новый пункт")
+            .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
         str.replace("?p_.PathName","\nPathName")
                 .replace("PathName", "\n\nPathName")
                 .replace("FullName", "\nFullName")
@@ -1166,8 +1168,6 @@ QString getShortName(QString filename)
     return str;
 }
 
-
-
 QString miniparserini(QString str, QString po)
 {
     po.append(" = ");
@@ -1220,4 +1220,30 @@ QString getTextInStr(QString strf, int begin, int end)
     strf = strf;
     begin = begin;
     end = end;
+}
+
+QString replaceFullShortName(QString line, QString text, QString name)
+{
+    QString str;
+    if (line.indexOf(name) >= 0)
+    {
+        str = QString(line).remove(name);
+        if (str != text)
+        {
+            line = name + text;
+        }
+    }
+    return line;
+}
+
+
+void writeQStringList(QString filename, QStringList list)
+{
+    QFile file(unurlifyFileName(filename));
+    if (file.open(QIODevice::WriteOnly))
+    {
+        for (int i = 0; i < list.size(); i++)
+            file.write(QString(list.at(i)+"\n").toUtf8());
+    }
+//    qDebug() << " list = " << list;
 }

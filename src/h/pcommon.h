@@ -100,4 +100,6 @@ bool createEmptyHtml(QString fileName, QString title, QString text);
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
 QString miniparserini(QString str, QString po);
+QString replaceFullShortName(QString line, QString text, QString name); // возвращает строку с заменой текста в fullname и shortname
+void writeQStringList(QString file, QStringList list); // записывает QStringList в файл ( обычный цикл)
 #endif // __PCOMMON_H__
