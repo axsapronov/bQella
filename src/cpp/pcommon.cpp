@@ -1177,8 +1177,8 @@ QString miniparserini(QString str, QString po)
         str.remove(po);
         if (po == "BibleName = ")
         {
-            str.replace(" ", "_")
-                    .remove(str.length()-1, 1);
+            str.replace(" ", "_");
+//                    .remove(str.length()-1, 1);
         }
 
         if (po != "ShortName = " and
