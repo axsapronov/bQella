@@ -224,7 +224,7 @@
   </widget>
   <widget class="QToolBar" name="toolBarFormat">
    <property name="windowTitle">
-    <string>Format</string>
+    <string>Add tag</string>
    </property>
    <property name="iconSize">
     <size>
@@ -665,6 +665,9 @@
    </property>
   </action>
   <action name="actionTextColor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
      <normaloff>:/text/images/textcolor.png</normaloff>:/text/images/textcolor.png</iconset>
@@ -825,11 +828,15 @@
    </property>
   </action>
   <action name="actionAddTag">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/file/images/tag.png</normaloff>:/file/images/tag.png</iconset>
+   </property>
    <property name="text">
     <string>AddTag</string>
    </property>
    <property name="iconText">
-    <string>AT</string>
+    <string>AddTag</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
@@ -923,6 +930,9 @@
    </property>
   </action>
   <action name="actionHelp">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Help</string>
    </property>

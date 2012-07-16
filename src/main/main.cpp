@@ -63,9 +63,10 @@ int main( int argc, char ** argv )
     QTranslator translator;
 
     //            translator.load("bqella_ru","/home/files/Develop/git/next/bQella/resources/lang");
-    if (conf -> Lang() == "Russian") translator.load("bqella_ru","lang");
-    if (conf -> Lang() == "Deutch") translator.load("bqella_de","lang");
-    if (conf -> Lang() == "France") translator.load("bqella_fr","lang");
+//    if (conf -> Lang() == "Russian") translator.load("bqella_ru","lang");
+    if (conf -> Lang() == "Russian") translator.load("bqella_ru",":lang/lang");
+    if (conf -> Lang() == "Deutch") translator.load("bqella_de",":lang/lang");
+    if (conf -> Lang() == "France") translator.load("bqella_fr",":lang/lang");
     a.installTranslator(&translator);
     conf -> hideSideBar( hideSidebar );
     QPointer<MainWindow> mw = new MainWindow();

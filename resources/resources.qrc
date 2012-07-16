@@ -26,6 +26,7 @@
         <file>images/item_property.png</file>
         <file>images/item_remove.png</file>
         <file>images/link.png</file>
+        <file>images/tag.png</file>
     </qresource>
     <qresource prefix="/flags">
         <file>images/flag_gb.png</file>
@@ -69,12 +70,11 @@
         <file>images/textunder.png</file>
     </qresource>
     <qresource prefix="/doc">
-        <file>doc/close.htm</file>
-        <file>doc/exit.htm</file>
-        <file>doc/index.htm</file>
-        <file>doc/logo.jpg</file>
-        <file>doc/new.htm</file>
-        <file>doc/open.htm</file>
-        <file>doc/save_as.htm</file>
+        <file>doc/simpletextviewer.qhc</file>
+    </qresource>
+    <qresource prefix="/lang">
+        <file>lang/bqella_ru.qm</file>
+        <file>lang/bqella_fr.qm</file>
+        <file>lang/bqella_de.qm</file>
     </qresource>
 </RCC>

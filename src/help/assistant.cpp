@@ -44,9 +44,11 @@
 #include <QtCore/QLibraryInfo>
 #include <QtCore/QProcess>
 
+#include <QDebug>
 #include <QtGui/QMessageBox>
 
 #include "assistant.h"
+#include "config.h"
 
 Assistant::Assistant()
     : proc(0)
@@ -72,6 +74,7 @@ void Assistant::showDocumentation(const QString &page)
 
     QByteArray ba("SetSource ");
     ba.append("qthelp://com.trolltech.examples.simpletextviewer/doc/");
+//    ba.append(":doc/doc");
     
     proc->write(ba + page.toLocal8Bit() + '\0');
 }
@@ -86,21 +89,26 @@ bool Assistant::startAssistant()
     if (proc->state() != QProcess::Running) {
         QString app = QLibraryInfo::location(QLibraryInfo::BinariesPath) + QDir::separator();
 #if !defined(Q_OS_MAC)
-        app += QLatin1String("assistant");
+        app += QString("assistant");
 #else
-        app += QLatin1String("Assistant.app/Contents/MacOS/Assistant");    
+        app += QString("Assistant.app/Contents/MacOS/Assistant");
 #endif
 
         QStringList args;
-        args << QLatin1String("-collectionFile")
-            << QLibraryInfo::location(QLibraryInfo::ExamplesPath)
-            + QLatin1String("/help/simpletextviewer/documentation/simpletextviewer.qhc")
-            << QLatin1String("-enableRemoteControl");
+        args << QString("-collectionFile")
+//            << QLibraryInfo::location(QLibraryInfo::ExamplesPath)
+//               + QString("/help/simpletextviewer/documentation/simpletextviewer.qhc")
+        << Config::configuration()->AppDir() + QString("/doc/simpletextviewer.qhc")
+            << QString("-enableRemoteControl");
 
+//        + QString(":/doc/doc/simpletextviewer.qhc")
+//            + QString("/help/simpletextviewer/documentation/simpletextviewer.qhc")
+
+        qDebug() << "args = " << args;
         proc->start(app, args);
 
         if (!proc->waitForStarted()) {
-            QMessageBox::critical(0, QObject::tr("Simple Text Viewer"),
+            QMessageBox::critical(0, QObject::tr("bQella"),
                 QObject::tr("Unable to launch Qt Assistant (%1)").arg(app));
             return false;
         }    

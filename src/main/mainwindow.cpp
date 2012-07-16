@@ -111,10 +111,7 @@ MainWindow::MainWindow():
 //    ui.toolBarTabs -> setVisible(false);
 //    ui.actionEditFind -> setVisible(false);
 //    ui.actionImportBook->setVisible(false);
-
     ui.actionPrint_Preview ->setVisible(false);
-
-
 }
 
 //-------------------------------------------------

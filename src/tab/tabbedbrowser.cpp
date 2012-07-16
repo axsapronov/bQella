@@ -196,7 +196,7 @@ void TabbedBrowser::init()
     QToolButton *newTabButton = new QToolButton(this);
     ui.tab -> setCornerWidget(newTabButton, Qt::TopLeftCorner);
     newTabButton -> setCursor(Qt::ArrowCursor);
-    newTabButton -> setAutoRaise(true);
+//    newTabButton -> setAutoRaise(true);
     newTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QString("tab_add.png")));
     QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(newTab()));
     newTabButton -> setToolTip(tr("Add page"));
