@@ -77,7 +77,16 @@ void Export::exportBibleqtIni(QString string, QString count)
                 " <em> </em> <table </table>"
                 " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
         // сделать QStringList?
-        QString stru =""+tr("BibleName = %1"
+        QString stru ="";
+        stru.append(tr("\\\\ Этот модуль создан в программе bQella."
+                            "\n\\\\ Разработчик программы: Сапронов Александр - sapronov.alexander92[@]gmail.com"
+                            "\n\\\\ Git программы: https://github.com/WarmongeR1/bQella"
+                            "\n\\\\ Блог разработчика: http://warmonger72.blogspot.com/"
+                            "\n\\\\ Свежая версия программы доступна по ссылкам: "
+                            "\n\\\\ win:   "
+                            "\n\\\\ source: \n\n\n"));
+
+        stru.append(tr("\nBibleName = %1"
                             "\nBibleShortName = %2"
                             "\nCopyright = %3"
                             "\nChapterSign = <h4>"
@@ -127,7 +136,7 @@ void Export::exportBibleqtIni(QString string, QString count)
                 .arg(Config::configuration() -> profile() -> props["desiredfontpath"]) /*21*/
                 .arg(Config::configuration() -> profile() -> props["defaultencoding"]) /*22*/
                 .arg(Config::configuration() -> profile() -> props["desireduifont"]) /*23*/
-                .arg(htmlfilter);
+                .arg(htmlfilter));
         //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
         stru.replace("none", "");
 

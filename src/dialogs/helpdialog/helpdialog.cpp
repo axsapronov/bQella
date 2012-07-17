@@ -1626,8 +1626,19 @@ void HelpDialog::deleteItem()
     if (QFile::exists(fName)){
         int ret = QMessageBox::warning(this, GL_Prog_Name, tr("Delete contents item AND source file?"),
                                        QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);
-        if (ret == QMessageBox::Yes){
+        if (ret == QMessageBox::Yes)
+        {
             QFile::remove(fName);
+            for (int i = 0; i < item->childCount(); i++)
+            {
+                // удаляем файлы глав
+                // получаем названия файлов глав и удаляем их
+                QString str = fName;
+                QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LengtItemString, "_");
+                str = str.replace(getFileNameAbs(fName), getFileNameAbs(fName)+ replace);
+//                qDebug() << " str = " << str;
+                QFile::remove(str);
+            }
             removeItemDontAsk();
         }
     }

@@ -1327,7 +1327,7 @@ QString checkTag(QString tag)
     return tag;
 }
 //-------------------------------------------------------
-QString getFileName(QString file)
+QString getFileNameAbs(QString file)
 {
     QStringList list;
     list << file.split("/");

@@ -105,6 +105,6 @@ QString miniparserini(QString str, QString po);
 QString replaceFullShortName(QString line, QString text, QString name); // возвращает строку с заменой текста в fullname и shortname
 void writeQStringList(QString file, QStringList list); // записывает QStringList в файл ( обычный цикл)
 QString checkExistenceFile(QString file); // проверяет существует файл, если существует, то добавляет к нему символ _ в конце. Происходит в цикле
-QString getFileName(QString file); // возвращает название файла без разрешения и пути. Т.е. /home/warmonger/develop/чтони-ть там еще/ файл.py  вернет файл
+QString getFileNameAbs(QString file); // возвращает название файла без разрешения и пути. Т.е. /home/warmonger/develop/чтони-ть там еще/ файл.py  вернет файл
 void removeStringInFile(QString file, QStringList strings); // удаляет из файла строки из qstringlist
 #endif // __PCOMMON_H__
