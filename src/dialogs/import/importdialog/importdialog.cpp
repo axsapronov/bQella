@@ -40,44 +40,7 @@ Import::Import(QWidget *parent)
 {
     ui.setupUi(this);
     QStringListModel *typeModel;
-    QStringList items;
-    items << tr("KOI8-R")
-          << tr("KOI8-U")
-          << tr("UTF-8")
-          << tr("UTF-16")
-          << tr("UTF-16BE")
-          << tr("UTF-16LE")
-          << tr("UTF-32")
-          << tr("UTF-32BE")
-          << tr("UTF-32LE")
-          << tr("Windows-1251")
-          << tr("Windows-1252")
-          << tr("Windows-1253")
-          << tr("Windows-1254")
-          << tr("Windows-1255")
-          << tr("Windows-1256")
-          << tr("Windows-1257")
-          << tr("Windows-1258");
-
-//            << tr("MuleLao-1")
-//            << tr("ROMAN8")
-//            << tr("Shift-JIS")
-//            << tr("TIS-620")
-//            << tr("TSCII")
-//            << tr("Apple Roman")
-//            << tr("Big5")
-//            << tr("Big5-HKSCS")
-//            << tr("CP949")
-//            << tr("EUC-JP")
-//            << tr("EUC-KR")
-//            << tr("GB18030-0")
-//            << tr("IBM 850")
-//            << tr("IBM 866")
-//            << tr("IBM 874")
-//            << tr("ISO 2022-JP")
-//            << tr("JIS X 0201")
-//            << tr("JIS X 0208")
-
+    QStringList items = getFillEncoding();
     typeModel = new QStringListModel(items, this);
     ui.cBEncoding -> setModel(typeModel);
 

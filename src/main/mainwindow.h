@@ -45,6 +45,7 @@ class Export;
 class Import;
 class FRDialog;
 class Assistant;
+class ImportBookDialog;
 
 //====================== class MainWindow ============================
 
@@ -134,7 +135,11 @@ private:
     Assistant *assistant;
 
     Export * exportm;
+
+    // import
     Import * importm;
+    ImportBookDialog * importdi;
+
     AboutDialog *aboutd;    // about dialog
 
 

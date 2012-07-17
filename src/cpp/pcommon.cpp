@@ -1142,6 +1142,56 @@ QStringList getFillShortName()
     return items;
 }
 //-----------------------------------------------------
+
+QStringList getFillEncoding()
+{
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForTr(codec);
+
+    QStringList items;
+
+    items << QString("UTF-8")
+          << QString("Windows-1251")
+          << QString("KOI8-R")
+          << QString("KOI8-U")
+          << QString("UTF-16")
+          << QString("UTF-16BE")
+          << QString("UTF-16LE")
+          << QString("UTF-32")
+          << QString("UTF-32BE")
+          << QString("UTF-32LE")
+          << QString("Windows-1252")
+          << QString("Windows-1253")
+          << QString("Windows-1254")
+          << QString("Windows-1255")
+          << QString("Windows-1256")
+          << QString("Windows-1257")
+          << QString("Windows-1258");
+    //            << tr("MuleLao-1")
+    //            << tr("ROMAN8")
+    //            << tr("Shift-JIS")
+    //            << tr("TIS-620")
+    //            << tr("TSCII")
+    //            << tr("Apple Roman")
+    //            << tr("Big5")
+    //            << tr("Big5-HKSCS")
+    //            << tr("CP949")
+    //            << tr("EUC-JP")
+    //            << tr("EUC-KR")
+    //            << tr("GB18030-0")
+    //            << tr("IBM 850")
+    //            << tr("IBM 866")
+    //            << tr("IBM 874")
+    //            << tr("ISO 2022-JP")
+    //            << tr("JIS X 0201")
+    //            << tr("JIS X 0208")
+    return items;
+
+}
+
+//-----------------------------------------------------
 QString getShortName(QString filename)
 {
     // translate to hindi
@@ -1256,4 +1306,23 @@ QString getCheckShortNameForFile(QString str, QString full)
             return QString::number(i+1);
     }
     return full;
+}
+//-----------------------------------------------------
+QString checkExistenceFile(QString filename)
+{
+    while (QFile::exists(filename))
+    {
+        filename.append("_");
+    }
+    return filename;
+}
+//-------------------------------------------------------
+QString checkTag(QString tag)
+{
+//    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
+    if ((tag.indexOf("<", 0) != -1) and (tag.indexOf(">", tag.length()-2) != -1))
+    {
+        tag = "<" + tag + ">";
+    }
+    return tag;
 }

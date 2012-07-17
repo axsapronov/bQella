@@ -30,6 +30,7 @@
 #include "about.h"
 #include "export.h"
 #include "importdialog.h"
+#include "importbookdialog.h"
 #include "frdialog.h"
 #include "assistant.h"
 
@@ -81,6 +82,7 @@ MainWindow::MainWindow():
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
+    importdi = new ImportBookDialog();
     assistant = new Assistant;
 
 //    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
@@ -155,7 +157,7 @@ void MainWindow::setup()
 
 
     // Menu Import
-//    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
+    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
 
 
@@ -276,6 +278,7 @@ void MainWindow::importModuleSuccessful()
 
 void MainWindow::importBook()
 {
+    importdi->show();
     //    QString beginpath = "/home/";
     //    QString path = QFileDialog::getOpenFileName(this,
     //                      tr("Select book file"),
