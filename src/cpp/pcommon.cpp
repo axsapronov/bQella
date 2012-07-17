@@ -1062,7 +1062,22 @@ QStringList getFillShortName()
 
     QStringList items;
 
-    items << QString ("Неем. Неем. Неемія Нм. Нм Неемия Ne. Ne Neh. Neh Nehem. Nehem Nehemiah")
+    items << QString ("Бут. Бут 1M. 1M Буття Быт. Быт Бт. Бт Бытие Ge. Ge Gen. Gen Gn. Gn Genesis")
+          << QString ("Вих. Вих 2М. 2М Вихід Исх. Исх Исход Ex. Ex Exo. Exo Exod. Exod Exodus")
+          << QString ("Лев. Лев 3М. 3М Лв. Лв Левит Lev. Lev Le. Le Lv. Lv Levit. Levit Leviticus")
+          << QString ("Чис. Чис 4М. 4М Чс. Чс Числ. Числ Числа Nu. Nu Num. Num Nm. Nm Numb. Numb Numbers")
+          << QString ("Повт. Повт Повтор. Повтор Повторення 5М. 5М Втор. Втор Вт. Вт Втрзк. Втрзк Второзаконие De. De Deut. Deut Deu. Deu Dt. Dt  Deuteron. Deuteron Deuteronomy ")
+          << QString ("Iс.Нав. Iсус Єг Єг. Иис.Нав. Иис.Нав Нав. Нав Иисус Навин Jos. Jos Josh. Josh Joshua")
+          << QString ("Суд. Суд Суддiв Сд. Сд Судьи Jdg. Jdg Judg. Judg Judge. Judge Judges")
+          << QString ("Рут. Рут Руф. Руф Рф. Рф Руфь Ru. Ru Ruth Rth. Rth Rt. Rt")
+          << QString ("1Сам. 1Сам 1См 1См. 1С 1С. 1Царств. 1Царств 1Sa. 1Sa 1S. 1S 1Sam. 1Sam 1Sm. 1Sm 1Sml. 1Sml 1Samuel ")
+          << QString ("2Сам. 2Сам 2См 2См. 2С 2С. 2Царств. 2Царств 2Sa. 2Sa 2S. 2S 2Sam. 2Sam 2Sm. 2Sm 2Sml. 2Sml 2Samuel")
+          << QString ("1Цар. 1Цар 1Царiв 1Цр. 1Цр 1Ц. 1Ц 1Царей 3Цар. 3Цар 3Царiв 3Цр. 3Цр 3Ц. 3Ц 3Царств. 3Царств 1Ki. 1Ki 1K. 1K 1Kn. 1Kn 1Kg. 1Kg 1King. 1King 1Kng. 1Kng 1Kings")
+          << QString ("2Цар. 2Цар 2Царiв 2Цр. 2Цр 2Ц. 2Ц 2Царей 4Цар. 4Цар 4Царiв 4Цр. 4Цр 4Ц. 4Ц 4Царств. 4Царств 2Ki. 2Ki 2K. 2K 2Kn. 2Kn 2Kg. 2Kg 2King. 2King 2Kng. 2Kng 2Kings")
+          << QString ("1Хр. 1Хр 1Хрон. 1Хрон 1Хронiки 1Пар. 1Пар 1Пр. 1Пр 1Chr. 1Chr 1Ch. 1Ch 1Chron. 1Chron")
+          << QString ("2Хр. 2Хр 2Хрон. 2Хрон 2Хронiки 2Пар. 2Пар 2Пр. 2Пр 2Chr. 2Chr 2Ch. 2Ch 2Chron. 2Chron")
+          << QString ("Езд. Езд Ездр. Ездр Ез. Ез Ездра Ezr. Ezr Ezra")
+          << QString ("Неем. Неем. Неемія Нм. Нм Неемия Ne. Ne Neh. Neh Nehem. Nehem Nehemiah")
           << QString ("Ест. Ест Естер Есф. Есф Ес. Ес Есфирь Esth. Esth Est. Est Esther")
           << QString ("Йов. Йов Иов. Иов Ив. Ив Job. Job Jb. Jb")
           << QString ("Пс. Пс Псалт. Псалт Псал. Псал Псл. Псл Псалми Псалом Псалтирь Псалмы Ps. Ps Psa. Psa Psal. Psal Psalm Psalms")
@@ -1230,3 +1245,15 @@ void writeQStringList(QString filename, QStringList list)
 //    qDebug() << " list = " << list;
 }
 //-----------------------------------------------------
+QString getCheckShortNameForFile(QString str, QString full)
+{
+    // если нету в short неймах такого названия, то юзаем все полное название книги
+    // если есть, то берем номер шорт нейма и называем файл его номером.
+    QStringList list = getFillShortName();
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (str == list.at(i))
+            return QString::number(i+1);
+    }
+    return full;
+}

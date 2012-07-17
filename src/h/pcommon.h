@@ -81,6 +81,7 @@ QString getParseTagSpan(QString str, QString text, QString tag);
 int getDepthTreeWidgetItem(QTreeWidgetItem *item); // вернуть глубину QTreeWidgetItem
 QStringList getFillShortName(); // возвращает заполнение для combobox базовых коротких названий
 QString getTextInStr(QString str, int begin = 5, int end = 9); // возвращает текст от begin до end символа ( не реализована, работает чтобы доставать shortname)
+QString getCheckShortNameForFile(QString str, QString full); // возвращает порядковый номер shortname(str) или полное название книги. Работает для уменьшения длины названия файла
 
 //======= работа с файлами =======
 //--------------------------------

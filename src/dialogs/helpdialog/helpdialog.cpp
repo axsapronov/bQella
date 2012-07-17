@@ -1779,7 +1779,8 @@ void HelpDialog::newItem()
                     // create book file
                     //fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString::number(counter)+".htm";
 //                    qDebug() << "Debug: _HelpDialog::newItem():" << "book:" << "filename = " << fileName;
-                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+".htm";
+                    //                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+".htm";
+                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName)+".htm";
                     uniqFN = !QFile::exists(fileName);
                     counter++;
 //                    qDebug() << " _ 5 ";
@@ -1800,7 +1801,7 @@ void HelpDialog::newItem()
                 title = incstr(QString("%1").arg(counter-1),GL_LengtItemString, " ");
             }
 //            qDebug() << " _ 8 ";
-//            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << "counter = " << counter;
+            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, getShortName(fileName), counter-1, urlifyFileName(fileName));// отвечает за добавление файла в список
