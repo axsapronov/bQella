@@ -283,7 +283,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
         QTextStream stream( &file );        // use a text stream
         // until end of file...
         line = stream.readLine();
-        while (line.indexOf(myChapterSign) == -1)
+        while ((line.indexOf(myChapterSign) == -1) and (!stream.atEnd()))
             line = stream.readLine();
 //        qDebug() << " test = ";
         for (int j = 1; j <= ChapterQty; j++)
@@ -494,6 +494,10 @@ void Import::createChaterFile(QString file, QString text, int i)
     QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(chapterfilecount) + last;
 
     //    qDebug() << "Debug: _Import::createChaterFile()" << fileimportname;
+    if (QFile::exists(fileimportname))
+    {
+        QFile::remove(fileimportname);
+    }
     createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
 }
 //----------------------------------------------------
