@@ -149,6 +149,7 @@ void MainWindow::setup()
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
 
     connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
+    connect(importdi, SIGNAL(SuccessfulImportBook()), this, SLOT(importBookSuccessful()));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -248,15 +249,12 @@ void MainWindow::exportModule()
     browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
-
+//-------------------------------------------------
 void MainWindow::importModule()
 {
-//    helpDock->autosavestart = false;
-
     importm->show();
-
 }
-
+//-------------------------------------------------
 void MainWindow::importModuleSuccessful()
 {
     ModuleProperties pr;
@@ -275,7 +273,28 @@ void MainWindow::importModuleSuccessful()
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
 }
+//-------------------------------------------------
+void MainWindow::importBookSuccessful()
+{
+    ModuleProperties pr;
+    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
 
+    pr.moduleCopyright = Config::configuration()->ModuleCopyright();
+    pr.moduleBVersion = 1.00;
+    pr.prjFN = Config::configuration()->CurProject();
+    pr.prjStartPage = importm -> getStartPage();
+
+//    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
+    pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+
+    // добавить другие параметры (дохера буленов и строк из модулепропертис)
+    ProjectOpen(pr.prjFN);
+    browsers() -> currentBrowser() -> fileSave();
+    helpDock->saveProject();
+}
+//-------------------------------------------------
 void MainWindow::importBook()
 {
     importdi->show();
@@ -291,7 +310,6 @@ void MainWindow::importBook()
     //    //ShortName
     //    //ChapterQty
 }
-
 //-------------------------------------------------
 void MainWindow::browserTabChanged()
 {

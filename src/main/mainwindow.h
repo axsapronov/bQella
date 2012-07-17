@@ -114,6 +114,7 @@ private slots:
     void importModule();
     void importBook();
     void importModuleSuccessful();
+    void importBookSuccessful();
 
     void exitApp();
 

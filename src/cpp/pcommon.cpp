@@ -1320,9 +1320,53 @@ QString checkExistenceFile(QString filename)
 QString checkTag(QString tag)
 {
 //    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
-    if ((tag.indexOf("<", 0) != -1) and (tag.indexOf(">", tag.length()-2) != -1))
+    if ((tag.indexOf("<", 0) == -1) and (tag.indexOf(">", tag.length()-2) == -1))
     {
         tag = "<" + tag + ">";
     }
     return tag;
+}
+//-------------------------------------------------------
+QString getFileName(QString file)
+{
+    QStringList list;
+    list << file.split("/");
+    QString str = list.last();
+    list = str.split(".");
+    str = list.first();
+
+    return str;
+}
+//----------------------------------------------------
+void removeStringInFile(QString filename, QStringList list)
+{
+    QFile file(filename);
+    QString output = "";
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QString line;
+        QTextStream stream(&file);
+        do
+        {
+            line = stream.readLine();
+            for (int i = 0; i < list.size(); i++)
+            {
+                if (line == list.at(i))
+                {
+                    line = "";
+                }
+            }
+
+            if (!line.isEmpty())
+            {
+                output.append(line+"\n");
+            }
+        } while (!stream.atEnd());
+    }
+    file.close();
+    file.remove();
+    if(file.open(QIODevice::WriteOnly))
+    {
+        file.write(output.toUtf8());
+    }
 }

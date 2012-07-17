@@ -359,8 +359,13 @@ void HelpDialog::initialize()
     //create projects list
     QString title;
     QStringList sl = Config::configuration() -> ProfileFNs();
+    sl.removeOne("");
+    sl.removeOne(".pem");
+//    qDebug() << " list = " << sl;
     QStringList::iterator it = sl.begin();
-    for (; it != sl.end(); ++it) {
+    for (; it != sl.end(); ++it)
+    {
+
         title = Config::configuration() -> getProjectProperty("title", *it);
     	if (!title.isEmpty()){ //it is empty when it's something wrong with project
             ui.CBProjects -> insertItem(0, title );

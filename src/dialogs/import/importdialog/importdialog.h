@@ -38,18 +38,21 @@ public:
     explicit Import(QWidget *parent = 0);
 
 
-
+    void addContentToEndProjectFile(QString filename); // для импорта отдельно книги
+    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign); // для импорта книги
 signals:
     void SuccessfulImport();
 
 public slots:
 
-    void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
+    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void importModule(QString file);
     void addContentToProjectFile(QString text, bool tr);
+    void addContentToProjectFile(QString filename, QString text, bool tr); // filename чтобы работал с импортом отдельно книги
 
     QString getPrjFN();
     QString getStartPage();
+
 
 private slots:
     void selectImportFile();
@@ -60,11 +63,12 @@ private slots:
 
     void createImportFolder(QString path);
     void createChaterFile(QString file,QString text, int i);
-    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
+
     void createProjectFile();
     void createInstructionFile();
 
     void addContentToEndProjectFile();
+    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void on_buttonBox_accepted();
 
 
