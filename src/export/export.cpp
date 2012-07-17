@@ -80,7 +80,6 @@ void Export::exportBibleqtIni(QString string, QString count)
         QString stru =""+tr("BibleName = %1"
                             "\nBibleShortName = %2"
                             "\nCopyright = %3"
-                            "\nDefaultEncoding = utf-8"
                             "\nChapterSign = <h4>"
                             "\nVerseSign = <p>"
                             "\nBookQty = %4"
