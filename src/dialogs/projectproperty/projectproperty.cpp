@@ -88,6 +88,7 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 
     //    // HTMLFilter должен автоматом создаваться
     //    QString language;
+    setToolTipLabels();
 
 }
 
@@ -237,4 +238,138 @@ void ProjectProperties::accept()
             QWidget::hide();  //close dialog
         }
     }
+}
+
+
+void ProjectProperties::setToolTipLabels()
+{
+    QString str;
+
+    // module name
+    str = QString(tr("<i>The full name of the module</i><br><br>"
+                     "Must be in the language module, as far as possible according to the printed edition.<br>"
+                     "Must be unique for each module."));
+    ui.sModuleName->setToolTip(str);
+
+    // copyright
+    str = QString(tr("<i>Copyright</i><br><br>"
+                     "Must be in the language module, as far as possible according to the printed edition.<br>"
+                     "Must be unique for each module."));
+    ui.sAuthor->setToolTip(str);
+
+    // categories
+    str = QString(tr("<i>Binding to the module category</i><br><br>"
+                     "By default, the program divides the Bible into the category OT, NT, Apocrypha.<br>"
+                     "You must specify additional parameters for the Bible:<br>"
+                     "| Language | Translation Type | Denomination |<br>"
+                     "For books, specify the subject, keywords (tags)."
+                     ));
+    ui.sCategories->setToolTip(str);
+
+    // desiredfontname
+    str = QString(tr("<i>The font, which will use the program to display the text of books (parts) in the main window.</i><br><br>"
+                     "If <b>DesiredFontName</b> coincides not only with the name of the font, "
+                     "but also with the name of the font file (no file extension TTF), "
+                     "the program will automatically upload it when referring to the module. Therefore, "
+                     "a file with special characters when creating the module should be called by the name of "
+                     "the font (with the extension TTF). Specifies the font supports Unicode: Arial, "
+                     "Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman."
+                     "We recommend using Times New Roman for Vista and 7, and Microsoft Sans Serif for XP."
+                     ));
+    ui.sDesiredfontName->setToolTip(str);
+
+    // desiredfontpath
+    str = QString(tr("<i>The path to font file</i><br><br>"));
+    ui.sDesiredFontPath->setToolTip(str);
+
+    // desireuifont
+    str = QString(tr("<i>Specifies the font header titles</i><br><br>"));
+    ui.sDesiredUIfont->setToolTip(str);
+
+    // encoding
+    str = QString(tr("<i>Encoding module by default</i><br><br>"
+                     "This parameter defaults to <b>utf-8</b>.<br>"
+                     "Windows-1250 for Central European languages ​​that use Latin script letters "
+                     "(Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)"
+                     "<b>Windows-1251</b> for Cyrillic alphabets<br>"
+                     "<b>Windows-1252</b> for Western languages<br>"
+                     "<b>Windows-1253</b> for the Greek Language<br>"
+                     "<b>Windows-1254</b> for the Turkish language<br>"
+                     "<b>Windows-1255</b> Hebrew<br>"
+                     "<b>Windows-1256</b> for the Arabic language<br>"
+                     "<b>Windows-1257</b> for the Baltic languages<br>"
+                     "<b>Windows-1258</b> for Vietnamese Language<br>"
+                     "<b>Utf-8</b>, <b>Utf-16</b> and <b>Utf-32</b> Unicode character set"
+
+                     ));
+    ui.sEncoding->setToolTip(str);
+
+    // installfonts
+    str = QString(tr("<i>Embedding fonts from a folder in the program module without having to install them in OS<br><b>Fonts Install Pending</b><i><br><br>"
+                    "Font files to load must lie at the root of the module. "
+                    "Listed separated by commas with no spaces, indicating expansion. "
+                    "In the file names spaces are allowed. Cloudy. <br>"
+                     "<b>InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf</b>"
+                     ));
+    ui.sInstallFonts->setToolTip(str);
+
+    // shortname
+    str = QString(tr("<i>The short name of the module (reduction).</i><br><br>"
+                     "Must be unique for each module.<br>"
+                     "Option only English characters (if possible - see below).<br>"
+                     "Coincides with the module name of the folder \ backup (optional).<br>"
+                     "Language through an underscore in those modules "
+                     "that exist in multiple languages​​, and then a year after "
+                     "an underscore where there are several different editions."
+                     "If there is a well-established literary abbreviation for the translation,"
+                     "it is used, such as the "
+                     "Septuagint - LXX, <br>"
+                     "Russian Synodal Version - RSV, <br>"
+                     "Translation Kuznetsova - TK, <br>"
+                     "the Byzantine text-type (Majority Text) is denoted by the letter []."
+                     ));
+    ui.sShortName->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+
+                     ));
+    ui.sVersion->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+
+                     ));
+    ui.cbApocrypha->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+                    ));
+    ui.cbChapterZero->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+                    ));
+    ui.cbEnglishPsalms->setToolTip(str);
+
+    str = QString(tr("<i>Module Type (Bible or comments or a book).</i><br><br>"
+                     "<b>Y</b> if it is put to the Bible or commentary, <b>N</b> if it is a book."));
+    ui.cbmoduleType->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+                    ));
+    ui.cbNewTestament->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module<i><br>"
+                    ));
+    ui.cbNoForcedLineBreaks->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+                    ));
+    ui.cbStrongNumber->setToolTip(str);
+
+    str = QString(tr("<i>The full name of the module</i><br>"
+                    ));
+    ui.cbUseChapterHead->setToolTip(str);
+
+    // userightalignment
+    str = QString(tr("<i>Support for right alignment</i><br><br>"
+                     "Put <b>Y</b> if the module you want to display the entire text to the right"));
+    ui.cbUseRightAlignment->setToolTip(str);
 }

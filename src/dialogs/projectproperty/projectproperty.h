@@ -96,6 +96,9 @@ private:
         QString moduleCopyright;
         QString moduleBibleShortName;
 
+
+        void setToolTipLabels();
+
         bool moduleType;
         bool oldTestament;
         bool newTestament;
