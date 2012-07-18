@@ -447,7 +447,7 @@
     <string>Project properties...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Ctrl+Shift+T</string>
    </property>
   </action>
   <action name="actionProjectStatistics">

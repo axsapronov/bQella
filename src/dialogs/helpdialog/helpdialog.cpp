@@ -232,8 +232,8 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
     indexModel = new IndexListModel(this);
     ui.listContents -> setItemHidden(ui.listContents -> headerItem(), true);
     ui.TWSubItems -> setItemHidden(ui.TWSubItems -> headerItem(), !Config::configuration() -> ShowSubItemsTitle());
-
     str_NewItemTitle = tr("New item");
+
 }
 
 //-------------------------------------------------
@@ -385,6 +385,7 @@ void HelpDialog::initialize()
 
     initTabs();
 
+    ui.CBProjects ->setCurrentIndex(0);
     //ui.listContents -> setColumnCount(3);
 }
 
@@ -1518,10 +1519,13 @@ void HelpDialog::saveProject()
 //-------------------------------------------------
 void HelpDialog::saveProject(QString profileFN)
 {
+//    qDebug() << "profileFN" << profileFN;
+
     QString str;
     QMap<QString, QString>::iterator i;
     //QFile f(Config::configuration() -> curprjDir + QDir::separator() + Config::configuration() -> profileName() + "2.pem");
     QFile f(profileFN);
+    f.close();
     if (!f.open(QFile::WriteOnly))
         return;
 
@@ -1541,6 +1545,7 @@ void HelpDialog::saveProject(QString profileFN)
     }
     ts << "</profile>\n\n";
 
+//    qDebug();
     // save contents
     store2xml(ui.listContents, ts);
     ts << "\n</pemproject>\n";
@@ -1817,7 +1822,7 @@ void HelpDialog::newItem()
                 title = incstr(QString("%1").arg(counter-1),GL_LengtItemString, " ");
             }
 //            qDebug() << " _ 8 ";
-            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
+//            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, getShortName(fileName), counter-1, urlifyFileName(fileName));// отвечает за добавление файла в список

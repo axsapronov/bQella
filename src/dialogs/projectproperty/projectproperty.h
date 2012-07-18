@@ -71,6 +71,7 @@ class ProjectProperties : public QDialog
 public:
 	ProjectProperties(QWidget *parent = 0);
 	bool valid() { return validProperties; }
+        void showUpdate();
 
 signals:
         void createProject(ModuleProperties propert);
@@ -84,6 +85,7 @@ public slots:
 //	QString Title()			{ return prjTitle; }	
 	QString FileName()		{ return prjFN; }
 //	QString StartPage()		{ return prjStartPage; } 
+        void setModeNewProject(bool t)  { modeNewProject = t;}
 	
 private:
 	Ui::ProjectProperty ui; 

@@ -39,6 +39,7 @@ ProjectProperties::ProjectProperties(QWidget *parent)
     : QDialog(parent)
 {
     ui.setupUi(this);
+    modeNewProject = false;
 }
 
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
@@ -85,6 +86,20 @@ void ProjectProperties::reject()
     validProperties = false;
     QWidget::hide();  //close dialog
 }
+
+
+void ProjectProperties::showUpdate()
+{
+    if(!modeNewProject)
+    {
+        ui.lineEditBibleName->setEnabled(false);
+    }
+    else
+    {
+        ui.lineEditBibleName->setEnabled(true);
+    }
+}
+
 
 void ProjectProperties::accept()
 {
@@ -190,17 +205,18 @@ void ProjectProperties::accept()
             ModuleProperties prop;
             prop.prjTitle= ui.lineEditBibleName -> text();//ui.ETitle -> text();
             prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
-            prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
+
             prop.moduleBiblename = ui.lineEditBibleName -> text();
             prop.moduleBibleShortName = ui.lineEditBibleShortName -> text();
             prop.moduleCopyright = ui.lineEditCopyright -> text();
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
+            prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
 
             prop.moduleType = ui.cbmoduleType ->isChecked();
-//            qDebug() << "before old = " << prop.oldTestament;
+            //            qDebug() << "before old = " << prop.oldTestament;
             prop.oldTestament = ui.cbOldTestament -> isChecked();
-//            qDebug() << "after old = " << prop.oldTestament;
+            //            qDebug() << "after old = " << prop.oldTestament;
             prop.newTestament = ui.cbNewTestament -> isChecked();
             prop.apocrypha = ui.cbApocrypha -> isChecked();
             prop.chapterZero = ui.cbChapterZero -> isChecked();
@@ -221,9 +237,16 @@ void ProjectProperties::accept()
             prop.desiredUIFont = ui.lEDesiredUIFont -> text();
 
             validProperties = true;
-            if (modeNewProject){
+            if (modeNewProject)
+            {
+
+                modeNewProject = false;
                 emit createProject(prop);
-            }else{
+            }
+            else
+            {
+                prop.prjFN = Config::configuration()->CurProject();
+                //                qDebug() << "Debug: _update info in project file";
                 emit updateProjectProperties(prop);
             }
             QWidget::hide();  //close dialog
@@ -297,9 +320,9 @@ void ProjectProperties::setToolTipLabels()
 
     // installfonts
     str = QString(tr("<i>Embedding fonts from a folder in the program module without having to install them in OS<br><b>Fonts Install Pending</b><i><br><br>"
-                    "Font files to load must lie at the root of the module. "
-                    "Listed separated by commas with no spaces, indicating expansion. "
-                    "In the file names spaces are allowed. Cloudy. <br>"
+                     "Font files to load must lie at the root of the module. "
+                     "Listed separated by commas with no spaces, indicating expansion. "
+                     "In the file names spaces are allowed. Cloudy. <br>"
                      "<b>InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf</b>"
                      ));
     ui.sInstallFonts->setToolTip(str);
@@ -332,11 +355,11 @@ void ProjectProperties::setToolTipLabels()
     ui.cbApocrypha->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module</i><br>"
-                    ));
+                     ));
     ui.cbChapterZero->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module</i><br>"
-                    ));
+                     ));
     ui.cbEnglishPsalms->setToolTip(str);
 
     str = QString(tr("<i>Module Type (Bible or comments or a book).</i><br><br>"
@@ -344,19 +367,19 @@ void ProjectProperties::setToolTipLabels()
     ui.cbmoduleType->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module</i><br>"
-                    ));
+                     ));
     ui.cbNewTestament->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module<i><br>"
-                    ));
+                     ));
     ui.cbNoForcedLineBreaks->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module</i><br>"
-                    ));
+                     ));
     ui.cbStrongNumber->setToolTip(str);
 
     str = QString(tr("<i>The full name of the module</i><br>"
-                    ));
+                     ));
     ui.cbUseChapterHead->setToolTip(str);
 
     // userightalignment

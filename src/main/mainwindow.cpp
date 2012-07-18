@@ -85,8 +85,8 @@ MainWindow::MainWindow():
     importdi = new ImportBookDialog();
     assistant = new Assistant;
 
-//    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
-//    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
+    //    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
+    //    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
 
     dw -> setWidget(helpDock);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
@@ -110,13 +110,13 @@ MainWindow::MainWindow():
     }
 
     //выключаем ненужный функционал
-//    ui.toolBarTabs -> setVisible(false);
-//    ui.actionEditFind -> setVisible(false);
-//    ui.actionImportBook->setVisible(false);
-     ui.actionPrint_Preview ->setVisible(false);
+    //    ui.toolBarTabs -> setVisible(false);
+    //    ui.actionEditFind -> setVisible(false);
+    //    ui.actionImportBook->setVisible(false);
+    ui.actionPrint_Preview ->setVisible(false);
 
-//     importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
-//ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    //     importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    //ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }
 
 //-------------------------------------------------
@@ -248,7 +248,7 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-//    helpDock->autosavestart = false;
+    //    helpDock->autosavestart = false;
     browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
@@ -288,7 +288,7 @@ void MainWindow::importBookSuccessful()
     pr.prjFN = Config::configuration()->CurProject();
     pr.prjStartPage = importm -> getStartPage();
 
-//    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
+    //    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
     pr.prjTitle = Config::configuration()->ModuleBiblename();
 
 
@@ -380,16 +380,16 @@ void MainWindow::showLink(const QString &link)
         mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
     }
 
-//    qDebug() << "link " << link;
+    //    qDebug() << "link " << link;
     QString lnk = unurlifyFileName(link);
-//    qDebug() << "lnk " << lnk;
-//    qDebug() << "mylink " << mylink;
-//    QString test = Config::configuration()->PrjDir();
-//    QString test2 = Config::configuration()->CurPrjDir();
-//    QString test3 = Config::configuration()->CurFile();
-//    qDebug() << "test = " << test;
-//    qDebug() << "test2 = " << test2;
-//    qDebug() << "test3 = " << test3;
+    //    qDebug() << "lnk " << lnk;
+    //    qDebug() << "mylink " << mylink;
+    //    QString test = Config::configuration()->PrjDir();
+    //    QString test2 = Config::configuration()->CurPrjDir();
+    //    QString test3 = Config::configuration()->CurFile();
+    //    qDebug() << "test = " << test;
+    //    qDebug() << "test2 = " << test2;
+    //    qDebug() << "test3 = " << test3;
 
     //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
@@ -411,14 +411,14 @@ void MainWindow::showLink(const QString &link)
 
 void MainWindow::modifededitor(bool my)
 {
-//    if (my)
+    //    if (my)
 
     my = my;
-//    if (my and helpDock->autosavestart)
-//    {
-//        qDebug() << "teeest" ;
-//        browsers() -> currentBrowser() -> fileSave();
-//    }
+    //    if (my and helpDock->autosavestart)
+    //    {
+    //        qDebug() << "teeest" ;
+    //        browsers() -> currentBrowser() -> fileSave();
+    //    }
 }
 
 //-------------------------------------------------
@@ -514,9 +514,9 @@ void MainWindow::saveSettings()
     QStringList lst;
     QList<HelpWindow*> browsers = tabs -> browsers();
     foreach (HelpWindow *browser, browsers){
-//        qDebug() << "src = " << browser -> source().toString();
+        //        qDebug() << "src = " << browser -> source().toString();
         lst << relatifyFileName(browser -> source().toString(), config -> PrjDir());
-//        qDebug() << "lst = " << lst;
+        //        qDebug() << "lst = " << lst;
     }
     config -> setSource(lst);
     config -> saveSettings();
@@ -646,8 +646,6 @@ void MainWindow::ProjectOpen(QString fileName)
     	projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
-
-
     }
 }
 
@@ -774,6 +772,8 @@ void MainWindow::ProjectNew()
 
     bool newProject = true;
 
+    prjprop->setModeNewProject(true);
+
     pr.prjTitle = tr("New Project", "Default project name");
     pr.moduleBiblename = "";
     pr.moduleBibleShortName = "";
@@ -802,7 +802,8 @@ void MainWindow::ProjectNew()
     pr.useRightAlignment = false;
 
 
-
+    prjprop->setModeNewProject(true);
+    prjprop->showUpdate();
     prjprop -> setProperties(newProject, pr);
     prjprop -> show();
 }
@@ -839,14 +840,14 @@ void MainWindow::ProjectProps()
     pr.moduleBVersion = QString(Config::configuration() -> profile() -> props["version"]).toDouble();
 
 
-//    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
+    //    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
 
-    pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["type"]);
+    pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["moduletype"]);
     pr.oldTestament = QStringtoBool(Config::configuration() -> profile() -> props["oldtestament"]);
     pr.newTestament = QStringtoBool(Config::configuration() -> profile() -> props["newtestament"]);
     pr.apocrypha = QStringtoBool(Config::configuration() -> profile() -> props["apocrypha"]);
     pr.chapterZero = QStringtoBool(Config::configuration() -> profile() -> props["chapterzero"]);
-    pr.englishPsalms = QStringtoBool(Config::configuration() -> profile() -> props["endlishPsalms"]);
+    pr.englishPsalms = QStringtoBool(Config::configuration() -> profile() -> props["endlishpsalms"]);
     pr.noForcedLineBreaks = QStringtoBool(Config::configuration() -> profile() -> props["noforcedlinebreaks"]);
     pr.useChapterHead = QStringtoBool(Config::configuration() -> profile() -> props["usechapterhead"]);
     pr.useRightAlignment = QStringtoBool(Config::configuration() -> profile() -> props["userightalignment"]);
@@ -861,12 +862,13 @@ void MainWindow::ProjectProps()
     pr.defaultEncoding = Config::configuration() -> profile() -> props["defaultencoding"];
     pr.desiredUIFont = Config::configuration() -> profile() -> props["desireduifont"];
 
-//    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
+    //    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
 
 
     //    pr.moduleType = Config::configuration() -> profile() -> props["type"];
     bool newProject = false;
     prjprop -> setProperties(newProject, pr);
+    prjprop -> showUpdate();
     prjprop -> show();
 }
 //-------------------------------------------------
@@ -945,14 +947,20 @@ void MainWindow::createProject(ModuleProperties pr)
 
     Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
     Config::configuration() -> toAppLog(1, tr("- done", "For log"));
+
+    //    Config::configuration() -> setCurProject(fn);
+    //    Config::configuration() -> setCurPrjDir(fi.absolutePath());
+    //    Config::configuration() -> setCurPrjSrc();
+    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
     ProjectOpen(fn);
 }
 
 //-------------------------------------------------
 void MainWindow::updateProjectProperties(ModuleProperties pr)
 {
-    QString p = unurlifyFileName(pr.prjFN);
-    QFileInfo fi(p);
+    QString fn = unurlifyFileName(pr.prjFN);
+    //    fn = Config::configuration()->AppDir()+"/projects/"+fn;
+    QFileInfo fi(fn);
     Config::configuration() -> toPrjLog(1, tr("Update project properties:", "For log"));
     Config::configuration() -> toPrjLog(3, tr("- title      = %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toPrjLog(3, tr("- file name  = %1", "For log").arg(pr.prjFN));
@@ -968,8 +976,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> profile() -> addProperty("bibleshortname", pr.moduleBibleShortName);
     Config::configuration() -> profile() -> addProperty("copyright", pr.moduleCopyright);
 
-
-    Config::configuration() -> profile() -> addProperty("type", BooltoQString(pr.moduleType));
+    Config::configuration() -> profile() -> addProperty("moduletype", BooltoQString(pr.moduleType));
     Config::configuration() -> profile() -> addProperty("oldtestament", BooltoQString(pr.oldTestament));
     Config::configuration() -> profile() -> addProperty("newtestament", BooltoQString(pr.newTestament));
     Config::configuration() -> profile() -> addProperty("apocrypha", BooltoQString(pr.apocrypha));
@@ -993,14 +1000,17 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+//    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion << "bibletype = " << pr.moduleType;
+//    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "path = " << fn << " test = " << Config::configuration()->AppDir()+fn;
     Config::configuration() -> profile() -> addProperty("version", version);
 
 
-    Config::configuration() -> setCurProject(p);
+    Config::configuration() -> setCurProject(fn);
     Config::configuration() -> setCurPrjDir(fi.absolutePath());
     Config::configuration() -> setCurPrjSrc();
     Config::configuration() -> toPrjLog(1, tr("- done", "For log"));
+    helpDock->saveProject(fn);
+    //    ProjectOpen(fn);
 }
 
 //-------------------------------------------------
