@@ -113,7 +113,10 @@ MainWindow::MainWindow():
 //    ui.toolBarTabs -> setVisible(false);
 //    ui.actionEditFind -> setVisible(false);
 //    ui.actionImportBook->setVisible(false);
-    ui.actionPrint_Preview ->setVisible(false);
+     ui.actionPrint_Preview ->setVisible(false);
+
+//     importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }
 
 //-------------------------------------------------

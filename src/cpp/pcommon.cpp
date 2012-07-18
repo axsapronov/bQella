@@ -38,6 +38,7 @@
 #include <QString>
 #include <QTextCodec>
 
+#include "math.h"
 
 
 //-------------------------------------------------
@@ -1369,4 +1370,59 @@ void removeStringInFile(QString filename, QStringList list)
     {
         file.write(output.toUtf8());
     }
+}
+//---------------------------------------------------
+QString checkProcentRol(QString str, int procent, QString out)
+{
+    QStringList liststr = QString(str).split(" ");
+    QStringList list = getFillShortName();
+
+//    for (int i = 0; i < liststr.size(); i++)
+//    {
+//        qDebug() << " listat = " << liststr.at(i);
+//        if (list.indexOf(liststr.at(i)) !=-1)
+//        {
+//            qDebug() << " find !" << " int i = " << i;
+//        }
+//    }
+//    qDebug() << "liststr = " << liststr;
+    int pr = 0;
+    //how  optimised?
+
+    for (int j = 0; j < list.size(); j++)
+    {
+        pr = 0;
+        QStringList listup = QString(list.at(j)).split(" ");
+//        qDebug() << "\nlistup = " << listup;
+        for (int foo = 0; foo < listup.size(); foo++)
+        {
+//            qDebug() << " ttest[1]";
+            for (int i = 0; i < liststr.size(); i++)
+            {
+//                qDebug() << " ttest[2]" << "list = " << listup.at(foo) << " listg =" << liststr.at(i);
+                if (listup.at(foo) == liststr.at(i))
+                {
+                    pr++;
+//                    qDebug() << "lsitatfoo = " <<  listup.at(foo) << " liststrati = " << liststr.at(i);
+                }
+            }
+        }
+//        qDebug() << " ttest[3]";
+//        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
+        double test = double(pr) / double(listup.size()) * 100;
+        if ( pr != 0 )
+        {
+//             qDebug() << " role = " << pr << " procent = " << procent << " lastyp.size = " << listup.size() << " testprocent = " << test;
+        }
+        if (test >= procent )
+        {
+//            qDebug() << " ttest[4]";
+            return QString::number(j+1);
+        }
+
+    }
+
+//    qDebug() << " ttest[6]";
+    return out;
+
 }
