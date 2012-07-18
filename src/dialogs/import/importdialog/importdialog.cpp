@@ -181,7 +181,7 @@ void Import::importIni(QString filename)
                     QString shortna = miniparserini( line3, "ShortName");
                     int chapter = QString(miniparserini( line4 , "ChapterQty" )).toInt();
                     book++;
-                    importBook(getPrjFN() ,path, full, shortna, chapter);
+                    importBook(path, full, shortna, chapter);
 
                 }
             }
@@ -191,7 +191,7 @@ void Import::importIni(QString filename)
     }
 }
 //----------------------------------------------------
-void Import::importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty)
+void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
@@ -202,9 +202,12 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
+
     // add info to project file
     QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
     addContentToProjectFile(text2, false);
+
+    //    qDebug() << " _filename_ = " << pathName;
 
     // parse
     bool flag;
@@ -218,21 +221,27 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
         line = stream.readLine();
         while (line.indexOf(ChapterSign) == -1)
             line = stream.readLine();
+        //        qDebug() << "BookQry = " << BookQty;
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
+            //            qDebug() << " _ titlechap = " << titlechap;
             QString chapterfile = incstr(titlechap, GL_LengtItemString, "_");
             titlechap = incstr(titlechap, GL_LengtItemString, " ");
+
+            //            qDebug() << " __ titlechap = " << titlechap;
             QString pathchap = pathName;
+            //            pathchap.replace( QString("_chapter_%1").arg(j), QString("_chapter_"+chapterfile) );
+
+            //            qDebug() << "\n----- pathchap = " << pathchap;
             pathchap =  "./book_" + pathName.split("/").last().remove("."+last) + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
+            //            qDebug() << "--textchap = " << textchap << " pathchap = " << pathchap;
             addContentToProjectFile(textchap , true);
             QString text ="";
-            do
-            {
-//                qDebug() << " chaptersign = " << ChapterSign;
+            //            qDebug() << "Debug: _Import::importBook()" << "chaptersign = " << ChapterSign;
+            do{
                 line = stream.readLine();
-//                qDebug() << " line = " << line;
                 if (line.indexOf(ChapterSign) >=0)
                 {
                     line = "";
@@ -242,8 +251,9 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
             }
             while ((!line.isNull()) and ( flag));
 
-//            qDebug() << " text = " << text << " path = " << pathName;
             flag = true;
+            //                qDebug() << "\n\n pathnamec = " << pathNameC << "pathname = " << pathName;
+            QString test = pathName;
             createChaterFile(pathName, text, j);
             addContentToProjectFile("</section>", true);
 
@@ -371,7 +381,7 @@ void Import::importProjectFile()
 
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
-    qDebug() << " fn = " << fn;
+//    qDebug() << " fn = " << fn;
     Config::configuration() -> toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
@@ -447,12 +457,12 @@ void Import::importProjectFile()
 //----------------------------------------------------
 void Import::createImportFolder(QString path)
 {
-    path.toUtf8();
+//    path.toUtf8();
     QDir dir(path);
     //        qDebug() << "path = " << path.toLower();
     if (!QDir(QString(path)).exists())
     {
-        dir.mkdir(QString(path).toUtf8());
+        dir.mkdir(QString(path));
     }
     else
     {
@@ -531,10 +541,10 @@ void Import::addContentToProjectFile(QString text, bool tr)
     QString ind1="   ";
     QString fn = unurlifyFileName(getPrjFN());
     QFile f(fn);
+    f.close();
+
     f.open(QFile::Append);
-    QTextStream ts(&f);
-    ts.setCodec("UTF-8");
-    if (f.open(QFile::Append))
+    if (f.isOpen())
     {
         QTextStream ts(&f);
         ts.setCodec("UTF-8");
@@ -549,7 +559,7 @@ void Import::addContentToProjectFile(QString text, bool tr)
     }
     else
     {
-        qDebug() << "Debug: _Import::addContentToProjectFile" << " not open project file for add info";
+        qDebug() << "Debug: _Import::addContentToProjectFile" << " not open project file for add info" << " projectfile = " << getPrjFN();
     }
     f.close();
 }
@@ -562,14 +572,14 @@ void Import::addContentToProjectFile(QString filename, QString text, bool tr)
         removestring << "</contents>"
                      << "</pemproject>";
 
-        removeStringInFile(filename, removestring);
-    }
+        removeStringInFile(filename, removestring);    }
 //    qDebug() << " text tut = " << text << " file = " << filename;
     QString ind1="   ";
     QString fn = unurlifyFileName(filename);
     QFile f(fn);
     f.close();
-    if (f.open(QFile::Append))
+    f.open(QFile::Append);
+    if (f.isOpen())
     {
         QTextStream ts(&f);
         ts.setCodec("UTF-8");
@@ -615,12 +625,12 @@ void Import::addContentToEndProjectFile(QString filename)
 //----------------------------------------------------
 QString Import::getPrjFN()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem").toUtf8(); // Нахера если Config::configuration->CurProject тоже самое? =)
+    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem"); // Нахера если Config::configuration->CurProject тоже самое? =)
 }
 //----------------------------------------------------
 QString Import::getStartPage()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction").toUtf8();
+    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
 }
 //----------------------------------------------------
 

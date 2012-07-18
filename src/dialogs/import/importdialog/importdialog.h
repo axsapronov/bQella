@@ -45,7 +45,7 @@ signals:
 
 public slots:
 
-    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty);
+    void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     void importModule(QString file);
     void addContentToProjectFile(QString text, bool tr);
     void addContentToProjectFile(QString filename, QString text, bool tr); // filename чтобы работал с импортом отдельно книги
