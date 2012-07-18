@@ -48,34 +48,27 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     prjStartPage = pr.prjStartPage;
     modeNewProject = newPrj;
 
-
     QString version;
     version.setNum(pr.moduleBVersion);
-    //        qDebug() << "Debug: _ProjectProperties::setProperties" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
 
     ui.lineEditBibleName -> setText(pr.moduleBiblename); // добавил
     ui.lineEditBibleShortName -> setText(pr.moduleBibleShortName);
     ui.lineEditCopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
 
-    //    ui.checkBox
-
     ui.cbOldTestament -> setChecked(pr.oldTestament);
     ui.cbNewTestament -> setChecked(pr.newTestament);
-
+    ui.cbmoduleType -> setChecked(pr.moduleType);
     ui.cbApocrypha -> setChecked(pr.apocrypha);
     ui.cbChapterZero -> setChecked(pr.chapterZero);
     ui.cbEnglishPsalms -> setChecked(pr.englishPsalms);
-//    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbStrongNumber -> setChecked(pr.strongNumber);
-//    qDebug() << "old = " << pr.oldTestament << "cb = " << ui.cbStrongNumber->isChecked();
     ui.cbUseChapterHead -> setChecked(pr.useChapterHead);
     ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
 
     ui.lECategories -> setText(pr.categories);
     ui.comBEncoding -> setCurrentIndex( ui.comBEncoding->findText(pr.defaultEncoding));
-//    ui.lEDefaultEncoding -> setText(pr.defaultEncoding);
     ui.lEDesiredFontName -> setText(pr.desiredFontName);
     ui.lEDesiredFontPath -> setText(pr.desiredFontPath);
     ui.lEStrongDir -> setText(pr.strongsDirectory);
@@ -83,13 +76,8 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.lEInstallFonts -> setText(pr.installFonts);
     ui.lEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
-    //    ui.comBLanguage ->currentText() .s
-    //    установить язык
-
     //    // HTMLFilter должен автоматом создаваться
-    //    QString language;
     setToolTipLabels();
-
 }
 
 void ProjectProperties::reject()
@@ -120,7 +108,9 @@ void ProjectProperties::accept()
         */
     if (er){
         QMessageBox::critical(this, tr("Project property error"), s);
-    }else{
+    }
+    else
+    {
         QDir dir(prjFN);
         //    qDebug() << "path = " << path <<  "last = " << path.last();
 
@@ -169,6 +159,7 @@ void ProjectProperties::accept()
                 Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
                 Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
                 Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
+                Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
 
                 Config::configuration() -> setCategories(ui.lECategories -> text());
                 Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
@@ -194,7 +185,8 @@ void ProjectProperties::accept()
         }
 
 
-        if (!er){	//project, start page and sources files do exist we can proceed with setting project properties
+        if (!er)
+        {	//project, start page and sources files do exist we can proceed with setting project properties
             ModuleProperties prop;
             prop.prjTitle= ui.lineEditBibleName -> text();//ui.ETitle -> text();
             prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
@@ -205,6 +197,7 @@ void ProjectProperties::accept()
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
 
+            prop.moduleType = ui.cbmoduleType ->isChecked();
 //            qDebug() << "before old = " << prop.oldTestament;
             prop.oldTestament = ui.cbOldTestament -> isChecked();
 //            qDebug() << "after old = " << prop.oldTestament;
@@ -212,7 +205,7 @@ void ProjectProperties::accept()
             prop.apocrypha = ui.cbApocrypha -> isChecked();
             prop.chapterZero = ui.cbChapterZero -> isChecked();
             prop.englishPsalms = ui.cbEnglishPsalms -> isChecked();
-            prop.strongsDirectory = ui.cbStrongNumber -> isChecked();
+            prop.strongNumber = ui.cbStrongNumber -> isChecked();
             prop.useChapterHead = ui.cbUseChapterHead -> isChecked();
             prop.useRightAlignment = ui.cbUseRightAlignment -> isChecked();
             prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
@@ -226,8 +219,6 @@ void ProjectProperties::accept()
             prop.soundDirectory = ui.lESoundDir -> text();
             prop.installFonts = ui.lEInstallFonts -> text();
             prop.desiredUIFont = ui.lEDesiredUIFont -> text();
-
-            //            prop.moduleType = ui.comboBoxTypeModule -> currentText();
 
             validProperties = true;
             if (modeNewProject){

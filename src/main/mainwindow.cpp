@@ -778,8 +778,7 @@ void MainWindow::ProjectNew()
     pr.moduleBVersion = 1.0;
     pr.prjFN = Config::configuration() -> PrjDir()+pr.moduleBiblename;
 
-
-    pr.moduleType = true;
+    pr.moduleType = false;
     pr.oldTestament = false;
     pr.newTestament = false;
     pr.apocrypha = false;
