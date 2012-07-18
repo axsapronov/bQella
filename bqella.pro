@@ -35,7 +35,7 @@ DEPENDPATH += \
     src/dialogs/tagdialog \
     src/dialogs/tableproperty \
     src/dialogs/cellsplit \
-    src/help \
+    src/dialogs/help \
     src/tab \
     src/settings \
     src/main \
@@ -58,10 +58,10 @@ INCLUDEPATH += \
     src/dialogs/tagdialog \
     src/dialogs/tableproperty\
     src/dialogs/cellsplit \
+    src/dialogs/help \
     src/tab \
     src/settings \
     src/main \
-    src/help \
     src/doc \
     src/export
 

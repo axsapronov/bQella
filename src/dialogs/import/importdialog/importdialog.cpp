@@ -45,8 +45,8 @@ Import::Import(QWidget *parent)
     ui.cBEncoding -> setModel(typeModel);
 
 
-//    ui.lEImportFile->setText("");
-    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    ui.LEImportFile->setText("");
+    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 
     connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
 }
@@ -60,13 +60,13 @@ void Import::selectImportFile()
                                                     tr("Bibleqt.ini (*.ini)"));
     if (!fileName.isNull())
     {
-        ui.lEImportFile->setText(fileName);
+        ui.LEImportFile->setText(fileName);
     }
 }
 //----------------------------------------------------
 void Import::on_buttonBox_accepted()
 {
-    if (!ui.lEImportFile->text().isEmpty())
+    if (!ui.LEImportFile->text().isEmpty())
     {
         encoding = ui.cBEncoding->currentText();
         encoding.replace("CP", "Windows");
@@ -88,7 +88,7 @@ void Import::on_buttonBox_accepted()
         QTextCodec::setCodecForLocale(codec);
         QTextCodec::setCodecForTr(codec);
 
-        importModule(ui.lEImportFile->text());
+        importModule(ui.LEImportFile->text());
 
         emit SuccessfulImport();
 

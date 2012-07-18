@@ -40,8 +40,8 @@ FRDialog::FRDialog(QWidget *parent) :
     ui->tableFiles->verticalHeader()->hide();
     ui->tableFiles->setShowGrid(false);
 
-    ui->lEFind->setText("");
-    ui->lEReplace->setText("");
+    ui->LEFind->setText("");
+    ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
 
     connect(ui->pBFind, SIGNAL(clicked()), this, SLOT(find()));
@@ -49,7 +49,7 @@ FRDialog::FRDialog(QWidget *parent) :
     connect(ui->cBBook, SIGNAL(activated(QString)), this, SLOT(updateinfo()));
 
 //    stringforfoldername = "";
-//    ui->lEFind->setText("<"); // закоментить
+//    ui->LEFind->setText("<"); // закоментить
     updateCBChapter(Config::configuration()->PrjDir());
     updateCBBook();
 
@@ -75,7 +75,7 @@ void FRDialog::replace()
 //        qDebug() << "filepath = " << filepath;
 
         // заменяем в файлах
-        replaceTextOfFile(filepath, ui->lEFind->text(), ui->lEReplace->text());
+        replaceTextOfFile(filepath, ui->LEFind->text(), ui->LEReplace->text());
 
     }
 }
@@ -85,7 +85,7 @@ void FRDialog::find()
 {
     ui->tableFiles->setRowCount(0);
     QString fileName = "";
-    QString text = ui->lEFind->text();
+    QString text = ui->LEFind->text();
     QString path;
 
     if (ui->cBBook->currentIndex() == 0) // and ui->cBChapter->currentText() == "Все главы")
@@ -314,15 +314,15 @@ void FRDialog::showFiles(const QStringList &bookList, const QStringList &chapter
 //---------------------------------------
 void FRDialog::on_buttonBox_accepted()
 {
-    ui->lEFind->setText("");
-    ui->lEReplace->setText("");
+    ui->LEFind->setText("");
+    ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
 }
 //---------------------------------------
 void FRDialog::on_buttonBox_rejected()
 {
-    ui->lEFind->setText("");
-    ui->lEReplace->setText("");
+    ui->LEFind->setText("");
+    ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
 }
 //---------------------------------------

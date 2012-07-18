@@ -30,7 +30,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabBasic">
       <attribute name="title">
@@ -54,7 +54,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEditBibleName"/>
+         <widget class="QLineEdit" name="LEBibleName"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="sShortName">
@@ -64,7 +64,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditBibleShortName">
+         <widget class="QLineEdit" name="LEBibleShortName">
           <property name="maxLength">
            <number>15</number>
           </property>
@@ -78,7 +78,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEditCopyright"/>
+         <widget class="QLineEdit" name="LECopyright"/>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="sTypeModule">
@@ -180,7 +180,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QLineEdit" name="lEStrongDir"/>
+              <widget class="QLineEdit" name="LEStrongDir"/>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonStrongDir">
@@ -205,7 +205,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="lESoundDir"/>
+              <widget class="QLineEdit" name="LESoundDir"/>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonSoundDir">
@@ -272,7 +272,7 @@
              <string>Categories:</string>
             </property>
            </widget>
-           <widget class="QLineEdit" name="lECategories"/>
+           <widget class="QLineEdit" name="LECategories"/>
           </widget>
          </item>
          <item row="2" column="0">
@@ -349,7 +349,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lEInstallFonts"/>
+         <widget class="QLineEdit" name="LEInstallFonts"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="sDesiredfontName">
@@ -359,7 +359,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lEDesiredFontName"/>
+         <widget class="QLineEdit" name="LEDesiredFontName"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="sDesiredFontPath">
@@ -369,7 +369,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lEDesiredFontPath"/>
+         <widget class="QLineEdit" name="LEDesiredFontPath"/>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="sDesiredUIfont">
@@ -379,7 +379,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="lEDesiredUIFont"/>
+         <widget class="QLineEdit" name="LEDesiredUIFont"/>
         </item>
        </layout>
       </widget>

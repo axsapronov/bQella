@@ -1774,6 +1774,7 @@ void HelpDialog::newItem()
     int depth = 1;
 //    qDebug() << " _ 0 ";
 
+
     for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
 
 //    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;

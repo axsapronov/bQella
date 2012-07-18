@@ -52,9 +52,9 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     QString version;
     version.setNum(pr.moduleBVersion);
 
-    ui.lineEditBibleName -> setText(pr.moduleBiblename); // добавил
-    ui.lineEditBibleShortName -> setText(pr.moduleBibleShortName);
-    ui.lineEditCopyright -> setText(pr.moduleCopyright);
+    ui.LEBibleName -> setText(pr.moduleBiblename); // добавил
+    ui.LEBibleShortName -> setText(pr.moduleBibleShortName);
+    ui.LECopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
 
     ui.cbOldTestament -> setChecked(pr.oldTestament);
@@ -68,14 +68,14 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
 
-    ui.lECategories -> setText(pr.categories);
+    ui.LECategories -> setText(pr.categories);
     ui.comBEncoding -> setCurrentIndex( ui.comBEncoding->findText(pr.defaultEncoding));
-    ui.lEDesiredFontName -> setText(pr.desiredFontName);
-    ui.lEDesiredFontPath -> setText(pr.desiredFontPath);
-    ui.lEStrongDir -> setText(pr.strongsDirectory);
-    ui.lESoundDir -> setText(pr.soundDirectory);
-    ui.lEInstallFonts -> setText(pr.installFonts);
-    ui.lEDesiredUIFont -> setText(pr.desiredUIFont);
+    ui.LEDesiredFontName -> setText(pr.desiredFontName);
+    ui.LEDesiredFontPath -> setText(pr.desiredFontPath);
+    ui.LEStrongDir -> setText(pr.strongsDirectory);
+    ui.LESoundDir -> setText(pr.soundDirectory);
+    ui.LEInstallFonts -> setText(pr.installFonts);
+    ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
     //    // HTMLFilter должен автоматом создаваться
     setToolTipLabels();
@@ -92,11 +92,11 @@ void ProjectProperties::showUpdate()
 {
     if(!modeNewProject)
     {
-        ui.lineEditBibleName->setEnabled(false);
+        ui.LEBibleName->setEnabled(false);
     }
     else
     {
-        ui.lineEditBibleName->setEnabled(true);
+        ui.LEBibleName->setEnabled(true);
     }
 }
 
@@ -106,11 +106,11 @@ void ProjectProperties::accept()
     QString s = "";  //holds list of errors
     bool er = false;
     validProperties = false;
-    if (ui.lineEditBibleName -> text().isEmpty()){
+    if (ui.LEBibleName -> text().isEmpty()){
         s = tr("- Please enter a bible name.\n");
         er = true;
     }
-    if (ui.lineEditBibleShortName -> text().isEmpty()) {
+    if (ui.LEBibleShortName -> text().isEmpty()) {
         s += tr("- Please enter a short bible name.\n");
         er = true;
     }
@@ -129,15 +129,15 @@ void ProjectProperties::accept()
         QDir dir(prjFN);
         //    qDebug() << "path = " << path <<  "last = " << path.last();
 
-        QString str = ui.lineEditBibleName ->text();
+        QString str = ui.LEBibleName ->text();
         str.replace(" ", "_");
-        ui.lineEditBibleName->setText(str);
-        dir.mkdir(ui.lineEditBibleName -> text());
+        ui.LEBibleName->setText(str);
+        dir.mkdir(ui.LEBibleName -> text());
 
         //check for valid project file name
-        //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.lineEditBibleName -> text();
-        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File;
-        QFile filePrj(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
+        //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.LEBibleName -> text();
+        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File;
+        QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File);
         if (!filePrj.exists())
         {		//create file if it's not exist
             if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
@@ -145,13 +145,13 @@ void ProjectProperties::accept()
                 ts << "<pemproject>\n</pemproject>";
                 filePrj.close();
             }else{
-                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName -> text()));
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
                 er = true;
             }
         }
         //check for valid start page file name
-        //        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
-        QFile fileSP(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
+        //        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
         if (!fileSP.exists()){		//create file if it does not exist
             if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
                 QTextStream ts(&fileSP);
@@ -161,9 +161,9 @@ void ProjectProperties::accept()
                         tr("   ___Instruction") + "</title></head>\n";
                 QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
 
-                Config::configuration() -> setModuleBiblename(ui.lineEditBibleName -> text());
-                Config::configuration() -> setModuleBibleShortName(ui.lineEditBibleShortName -> text());
-                Config::configuration() -> setModuleCopyright(ui.lineEditCopyright -> text());
+                Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
+                Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());
+                Config::configuration() -> setModuleCopyright(ui.LECopyright -> text());
 
                 Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
                 Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
@@ -176,14 +176,14 @@ void ProjectProperties::accept()
                 Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
                 Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
 
-                Config::configuration() -> setCategories(ui.lECategories -> text());
+                Config::configuration() -> setCategories(ui.LECategories -> text());
                 Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
-                Config::configuration() -> setDesiredFontName(ui.lEDesiredFontName -> text());
-                Config::configuration() -> setDesiredFontPath(ui.lEDesiredFontPath -> text());
-                Config::configuration() -> setStrongsDirectory(ui.lEStrongDir -> text());
-                Config::configuration() -> setSoundDirectory(ui.lESoundDir -> text());
-                Config::configuration() -> setInstallFonts(ui.lEInstallFonts -> text());
-                Config::configuration() -> setDesiredUIFont(ui.lEDesiredUIFont -> text());
+                Config::configuration() -> setDesiredFontName(ui.LEDesiredFontName -> text());
+                Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
+                Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
+                Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
+                Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
+                Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
                 Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
 
                 QString str_ender = "\n</body>\n</html>\n";
@@ -194,7 +194,7 @@ void ProjectProperties::accept()
 
 
             }else{
-                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.lineEditBibleName -> text()));
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
                 er = true;
             }
         }
@@ -203,15 +203,15 @@ void ProjectProperties::accept()
         if (!er)
         {	//project, start page and sources files do exist we can proceed with setting project properties
             ModuleProperties prop;
-            prop.prjTitle= ui.lineEditBibleName -> text();//ui.ETitle -> text();
-            prop.prjStartPage = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+"   ___Instruction");
+            prop.prjTitle= ui.LEBibleName -> text();//ui.ETitle -> text();
+            prop.prjStartPage = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
 
-            prop.moduleBiblename = ui.lineEditBibleName -> text();
-            prop.moduleBibleShortName = ui.lineEditBibleShortName -> text();
-            prop.moduleCopyright = ui.lineEditCopyright -> text();
+            prop.moduleBiblename = ui.LEBibleName -> text();
+            prop.moduleBibleShortName = ui.LEBibleShortName -> text();
+            prop.moduleCopyright = ui.LECopyright -> text();
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
-            prop.prjFN = urlifyFileName(prjFN+ui.lineEditBibleName -> text()+"/"+ui.lineEditBibleName -> text()+GL_Project_File);
+            prop.prjFN = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File);
 
             prop.moduleType = ui.cbmoduleType ->isChecked();
             //            qDebug() << "before old = " << prop.oldTestament;
@@ -226,15 +226,15 @@ void ProjectProperties::accept()
             prop.useRightAlignment = ui.cbUseRightAlignment -> isChecked();
             prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
 
-            prop.categories = ui.lECategories -> text();
+            prop.categories = ui.LECategories -> text();
             prop.defaultEncoding = ui.comBEncoding->currentText();
             prop.language = ui.comBLanguage->currentText();
-            prop.desiredFontName = ui.lEDesiredFontName -> text();
-            prop.desiredFontPath = ui.lEDesiredFontPath -> text();
-            prop.strongsDirectory = ui.lEStrongDir -> text();
-            prop.soundDirectory = ui.lESoundDir -> text();
-            prop.installFonts = ui.lEInstallFonts -> text();
-            prop.desiredUIFont = ui.lEDesiredUIFont -> text();
+            prop.desiredFontName = ui.LEDesiredFontName -> text();
+            prop.desiredFontPath = ui.LEDesiredFontPath -> text();
+            prop.strongsDirectory = ui.LEStrongDir -> text();
+            prop.soundDirectory = ui.LESoundDir -> text();
+            prop.installFonts = ui.LEInstallFonts -> text();
+            prop.desiredUIFont = ui.LEDesiredUIFont -> text();
 
             validProperties = true;
             if (modeNewProject)
