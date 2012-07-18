@@ -230,9 +230,9 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
             QString text ="";
             do
             {
-                qDebug() << " chaptersign = " << ChapterSign;
+//                qDebug() << " chaptersign = " << ChapterSign;
                 line = stream.readLine();
-                qDebug() << " line = " << line;
+//                qDebug() << " line = " << line;
                 if (line.indexOf(ChapterSign) >=0)
                 {
                     line = "";
@@ -242,7 +242,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
             }
             while ((!line.isNull()) and ( flag));
 
-            qDebug() << " text = " << text << " path = " << pathName;
+//            qDebug() << " text = " << text << " path = " << pathName;
             flag = true;
             createChaterFile(pathName, text, j);
             addContentToProjectFile("</section>", true);
@@ -447,11 +447,12 @@ void Import::importProjectFile()
 //----------------------------------------------------
 void Import::createImportFolder(QString path)
 {
+    path.toUtf8();
     QDir dir(path);
     //        qDebug() << "path = " << path.toLower();
     if (!QDir(QString(path)).exists())
     {
-        dir.mkdir(QString(path));
+        dir.mkdir(QString(path).toUtf8());
     }
     else
     {
@@ -614,12 +615,12 @@ void Import::addContentToEndProjectFile(QString filename)
 //----------------------------------------------------
 QString Import::getPrjFN()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem"); // Нахера если Config::configuration->CurProject тоже самое? =)
+    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem").toUtf8(); // Нахера если Config::configuration->CurProject тоже самое? =)
 }
 //----------------------------------------------------
 QString Import::getStartPage()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
+    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction").toUtf8();
 }
 //----------------------------------------------------
 

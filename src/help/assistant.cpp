@@ -98,13 +98,13 @@ bool Assistant::startAssistant()
         args << QString("-collectionFile")
 //            << QLibraryInfo::location(QLibraryInfo::ExamplesPath)
 //               + QString("/help/simpletextviewer/documentation/simpletextviewer.qhc")
-        << Config::configuration()->AppDir() + QString("/doc/simpletextviewer.qhc")
+        << Config::configuration()->AppDir() + QString("/doc/bQella-doc.qhc")
             << QString("-enableRemoteControl");
 
 //        + QString(":/doc/doc/simpletextviewer.qhc")
 //            + QString("/help/simpletextviewer/documentation/simpletextviewer.qhc")
 
-        qDebug() << "args = " << args;
+//        qDebug() << "args = " << args;
         proc->start(app, args);
 
         if (!proc->waitForStarted()) {

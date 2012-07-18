@@ -48,8 +48,8 @@ void ImportBookDialog::setData()
     ui->LETagVerse->setText("<p>");
 
     //test
-    ui->LEFullName->setText("test12");
-    ui->SBCount->setValue(3);
+//    ui->LEFullName->setText("test12");
+//    ui->SBCount->setValue(3);
 }
 
 void ImportBookDialog::browse()
@@ -117,13 +117,6 @@ void ImportBookDialog::accept()
         bookPathFile = ui->LEFilePath->text();
         bookCount = ui->SBCount->value();
 
-//        qDebug() << " checktag = " << checkTag(ui->LETagChapter->text()) << " getfilename = " << getFileName(ui->LEFilePath->text());
-
-//        importBook(bookPathFile, bookFullName, bookShortName, bookCount);
-        //        importm->importBook(bookPathFile, bookFullName, bookShortName, bookCount);
-
-
-//        QString projectfile = "/home/files/Develop/git/next/bqella-build-desktop/build/bin/projects/importbook/importbook2.pem";
         QString projectfile = Config::configuration()->CurProject();
         qDebug() << " project file = " << projectfile;
 
@@ -136,17 +129,3 @@ void ImportBookDialog::accept()
     }
 }
 
-
-void ImportBookDialog::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
-{
-//    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-//    QString title = pathName.split("/").last().split(".").first();
-//    QString path = "./book_" + pathName.split("/").last();
-
-//    importm->createBookFile(pathName, FullName, ShortName, ChapterQty);
-
-//    QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
-//    QString projectfile = "/home/files/Develop/git/next/bqella-build-desktop/build/bin/projects/test1/test2.pem";
-//    importm->addContentToProjectFile(projectfile, text2, false);
-
-}

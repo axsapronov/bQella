@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QHelpCollectionProject version="1.0">
     <assistant>
-        <title>Simple Text Viewer</title>
+		<title>bQella </title>
         <applicationIcon>images/handbook.png</applicationIcon>
-        <cacheDirectory>Trolltech/SimpleTextViewer</cacheDirectory>
-        <startPage>qthelp://com.trolltech.examples.simpletextviewer/doc/index.html</startPage>
+		<cacheDirectory>WarmongeR/bQella</cacheDirectory>
+		<startPage>qthelp://com.trolltech.examples.simpletextviewer/doc/index.html</startPage>
         <aboutMenuText>
-            <text>About Simple Text Viewer</text>
+            <text>About bQella</text>
         </aboutMenuText>
         <aboutDialog>
             <file>about.txt</file>
@@ -19,12 +19,12 @@
     <docFiles>
         <generate>
             <file>
-                <input>simpletextviewer.qhp</input>
-                <output>simpletextviewer.qch</output>
+                <input>bQella-doc.qhp</input>
+                <output>bQella-doc.qch</output>
                 </file>
             </generate>
         <register>
-            <file>simpletextviewer.qch</file>
+            <file>bQella-doc.qch</file>
             </register>
         </docFiles>
     </QHelpCollectionProject>

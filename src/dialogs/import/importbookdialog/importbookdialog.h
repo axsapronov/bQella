@@ -30,10 +30,6 @@ private:
     void setData();
     void accept();
 
-    void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
-
-//    void addInfoInProjectFile(QString filename, QString text, bool chapter );
-
     QString bookShortName, bookFullName, bookHtmlFilter;
     QString bookEncoding, bookTagChapter, bookTagVerse, bookPathFile;
     int bookCount;
