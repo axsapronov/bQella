@@ -136,8 +136,8 @@ void ProjectProperties::accept()
 
         //check for valid project file name
         //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.LEBibleName -> text();
-        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File;
-        QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File);
+        //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE;
+        QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
         if (!filePrj.exists())
         {		//create file if it's not exist
             if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
@@ -150,7 +150,7 @@ void ProjectProperties::accept()
             }
         }
         //check for valid start page file name
-        //        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"Bibleqt"+GL_Project_Conf_File);
+        //        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"Bibleqt"+GL_PROJECT_CONF_FILE);
         QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
         if (!fileSP.exists()){		//create file if it does not exist
             if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
@@ -211,7 +211,7 @@ void ProjectProperties::accept()
             prop.moduleCopyright = ui.LECopyright -> text();
             prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
 
-            prop.prjFN = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_Project_File);
+            prop.prjFN = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
 
             prop.moduleType = ui.cbmoduleType ->isChecked();
             //            qDebug() << "before old = " << prop.oldTestament;

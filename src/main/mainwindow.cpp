@@ -133,7 +133,7 @@ void MainWindow::setup()
         return;
 
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
-    statusBar() -> showMessage(tr("Initializing %1...").arg(GL_Prog_Name));
+    statusBar() -> showMessage(tr("Initializing %1...").arg(GL_PROG_NAME));
     helpDock -> initialize();
 
 
@@ -405,7 +405,7 @@ void MainWindow::showLink(const QString &link)
         tabs -> currentBrowser() -> setFocus();
     }else{
         qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-        QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
+        QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
 }
 
@@ -655,7 +655,7 @@ void MainWindow::ProjectSaveAs()
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
-            fileName.append(GL_Project_File);
+            fileName.append(GL_PROJECT_FILE);
         helpDock -> saveProject(fileName);
     }
 }

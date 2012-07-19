@@ -118,8 +118,7 @@ void ImportBookDialog::accept()
         bookCount = ui->SBCount->value();
 
         QString projectfile = Config::configuration()->CurProject();
-        qDebug() << " project file = " << projectfile;
-
+//        qDebug() << " project file = " << projectfile;
         importm->importBook(projectfile, bookPathFile, bookFullName, bookShortName, bookCount, bookTagChapter);
         importm->addContentToEndProjectFile(projectfile);
 

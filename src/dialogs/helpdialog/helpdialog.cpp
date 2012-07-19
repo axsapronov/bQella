@@ -480,7 +480,7 @@ void HelpDialog::loadIndexFile()
         if (lwClosed)
             return;
         if (!indexFile.open(QFile::ReadOnly)) {
-            QMessageBox::warning(mw, tr("%1").arg(GL_Prog_Name), tr("Failed to load keyword index file from:\n%1").arg(iFileName));
+            QMessageBox::warning(mw, tr("%1").arg(GL_PROG_NAME), tr("Failed to load keyword index file from:\n%1").arg(iFileName));
 
 #if defined Q_WS_WIN || defined Q_WS_MACX
             startTimer(50);
@@ -496,7 +496,7 @@ void HelpDialog::loadIndexFile()
         indexFile.close();
         buildKeywordDB();
         if (!indexFile.open(QFile::ReadOnly)) {
-            QMessageBox::warning(mw, tr("%1").arg(GL_Prog_Name), tr("Cannot open the index file %1").arg(iFileName));
+            QMessageBox::warning(mw, tr("%1").arg(GL_PROG_NAME), tr("Cannot open the index file %1").arg(iFileName));
             return;
         }
         ds.setDevice(&indexFile);
@@ -985,7 +985,7 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
     }
     else
     {
-        int ret = QMessageBox::warning(mw,  tr("%1").arg(GL_Prog_Name), tr("Source file could not be found:\n %1\n"
+        int ret = QMessageBox::warning(mw,  tr("%1").arg(GL_PROG_NAME), tr("Source file could not be found:\n %1\n"
                                                                            "You can create a new file or add one. Do you want to see item property?").arg(fn),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         if (ret == QMessageBox::Yes)
@@ -1095,7 +1095,7 @@ void HelpDialog::setupFullTextIndex()
     //fullTextIndex = new Index(QStringList(), QDir::homePath()); // ### Is this correct ?
     fullTextIndex = new Index(QStringList(), Config::configuration() -> CacheDir());
     if (!verifyDirectory(Config::configuration() -> CacheDir())) {
-        QMessageBox::warning(mw, tr("%1").arg(GL_Prog_Name),
+        QMessageBox::warning(mw, tr("%1").arg(GL_PROG_NAME),
                              tr("Failed to save fulltext search index to path: %1").arg(Config::configuration() -> CacheDir()));
         return;
     }
@@ -1290,6 +1290,7 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
     QString strfor = fileName;
     strfor.remove("file:");
 
+    qDebug() << " filename = " << fileName;
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)
     {
@@ -1365,10 +1366,10 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
     }
     else
     {
-        qDebug() << "\nchapter!";
-        qDebug() << newEntry -> parent() -> data(0,LinkRole);
-        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString();
-        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
+        qDebug() << "\nchapter!"  << "newentry " <<  newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
+//        qDebug() << newEntry -> parent() -> data(0,LinkRole);
+//        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString();
+//        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
         fixedBookConfFile(newEntry -> parent() -> data(0,LinkRole).toString().remove("file:"),newEntry -> parent(), title);
 
     }
@@ -1388,13 +1389,16 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
         {
             // создаем файлы для глав
             QString title = tr("%1").arg(i);
-            QString chaptervalue = incstr(title, GL_LengtItemString, "_");
-            title = incstr(title, GL_LengtItemString, " ");
-            QString fileName;
-            fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(m_bookadddialog -> bookFullName).replace(" ","_") +"_chapter_"+chaptervalue+".htm";
-//            qDebug() << "- fn = " << fileName << "counter = " << i;
-            createEmptyHtml(fileName, title);
-            InsertChapter(newEntry,title, urlifyFileName(fileName));// отвечает за добавление файла в список
+            QString chaptervalue = incstr(title, GL_LENGTITEMSTRING, "_");
+            title = incstr(title, GL_LENGTITEMSTRING, " ");
+            QString fileNamechapter;
+//            QString bookname = checkProcentRol(shortname,50,QString(m_bookadddialog -> bookFullName).replace(" ","_"));
+            QString bookname = getFileNameAbs(fileName).remove("book_");
+
+            fileNamechapter = Config::configuration() -> CurPrjDir() + "/book_"+ bookname +"_chapter_"+chaptervalue+".htm";
+//            qDebug() << " bookname = " << bookname << "- fn = " << fileNamechapter << "counter = " << i << " shortname = " << shortname;
+            createEmptyHtml(fileNamechapter, title);
+            InsertChapter(newEntry,title, urlifyFileName(fileNamechapter));// отвечает за добавление файла в список
         }
         fixedBookConfFile(strfor, newEntry, title);
     }
@@ -1597,7 +1601,7 @@ void HelpDialog::updateItemProperties(QString fullname, QString shortname, int c
 //-------------------------------------------------
 void HelpDialog::removeItem()
 {
-    int ret = QMessageBox::warning(this, GL_Prog_Name, tr("Delete just contents item? Source file will be untouched."),
+    int ret = QMessageBox::warning(this, GL_PROG_NAME, tr("Delete just contents item? Source file will be untouched."),
                                    QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);
     if (ret == QMessageBox::Yes){
         removeItemDontAsk();
@@ -1629,7 +1633,7 @@ void HelpDialog::deleteItem()
         fName.remove(0,5);
     }
     if (QFile::exists(fName)){
-        int ret = QMessageBox::warning(this, GL_Prog_Name, tr("Delete contents item AND source file?"),
+        int ret = QMessageBox::warning(this, GL_PROG_NAME, tr("Delete contents item AND source file?"),
                                        QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);
         if (ret == QMessageBox::Yes)
         {
@@ -1639,7 +1643,7 @@ void HelpDialog::deleteItem()
                 // удаляем файлы глав
                 // получаем названия файлов глав и удаляем их
                 QString str = fName;
-                QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LengtItemString, "_");
+                QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LENGTITEMSTRING, "_");
                 str = str.replace(getFileNameAbs(fName), getFileNameAbs(fName)+ replace);
 //                qDebug() << " str = " << str;
                 QFile::remove(str);
@@ -1774,16 +1778,14 @@ void HelpDialog::newItem()
     int depth = 1;
 //    qDebug() << " _ 0 ";
 
-
     for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
+//    depth = getDepthTreeWidgetItem(ui.listContents -> currentItem());
 
 //    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
     if (depth < 2)
     {
-//        qDebug() << " _ 1 ";
         if (! Config::configuration() -> ItemAutoProperties()){
             mw -> browsers() -> currentBrowser() -> fileNew();
-//            qDebug() << " _ 2 ";
         }
         else
         {
@@ -1792,50 +1794,46 @@ void HelpDialog::newItem()
             QString fileName;
             bool uniqFN = false;
             int counter = 1;
-//            qDebug() << " _ 3 ";
-
             if (newSameLevelItem)
             {
-//                qDebug() << " _ 4 ";
-                while (!uniqFN){
+                while (!uniqFN)
+                {
                     // create book file
-                    //fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString::number(counter)+".htm";
-//                    qDebug() << "Debug: _HelpDialog::newItem():" << "book:" << "filename = " << fileName;
-                    //                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+".htm";
-                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName)+".htm";
+                    QString bookname = checkProcentRol(m_bookadddialog->bookShortName, m_bookadddialog -> bookFullName);
+                    qDebug() << " bookname = " << bookname;
+                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+ bookname + ".htm";
+                    fileName = checkExistenceFile(fileName);
                     uniqFN = !QFile::exists(fileName);
                     counter++;
-//                    qDebug() << " _ 5 ";
                 }
             }
             else
             {
-//                qDebug() << " _ 6 ";
                 while (!uniqFN){
-//                    qDebug() << " _ 7 ";
                     //create chapter file
-                    //fileName = Config::configuration() -> CurPrjDir() + "/book_"+m_bookadddialog -> bookFullName+"_chapter_"+QString::number(counter)+".htm";
-                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(ui.listContents -> currentItem() -> text(0)).replace(" ","_") +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
-//                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
+                    QString bookname = getFileNameAbs(ui.listContents -> currentItem() -> data(0, LinkRole).toString().remove("file:")).remove("book_");
+                    qDebug() << "bookname = " << bookname;
+//                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(ui.listContents -> currentItem() -> text(0)).replace(" ","_") +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
+                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+ bookname +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
+
+//                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;                    
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
-                title = incstr(QString("%1").arg(counter-1),GL_LengtItemString, " ");
+                title = incstr(QString("%1").arg(counter-1),GL_LENGTITEMSTRING, " ");
             }
-//            qDebug() << " _ 8 ";
 //            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
+//            qDebug() << "Debug: _HelpDialog::newItem()"  << " filename = " << checkProcentRol(getShortName(fileName), 50, fileName) << " shrotname " << getShortName(fileName);
+
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
             InsertContentsItem(title, getShortName(fileName), counter-1, urlifyFileName(fileName));// отвечает за добавление файла в список
             ui.listContents -> setFocus();
             //ui.listContents -> openPersistentEditor(ui.listContents -> currentItem(),0);  // редактировать название в дереве
         }
-//        qDebug() << " _ 9 ";
         mw -> projectModified(true);
         saveProject();
     }
-//    qDebug() << " _ 10 ";
-
 }
 
 
@@ -1992,8 +1990,6 @@ void HelpDialog::exportModule()
     QString curdir = Config::configuration()->CurPrjDir() + "/";
     exportf -> exportCreateDir(curdir); // создается
     exportf -> exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), QString("%1").arg(ui.listContents -> topLevelItemCount()-1));
-
-//    int topLevelItemCount  = hd->getTopLevelItemCount();
 
     for (int i = 1; i < ui.listContents -> topLevelItemCount() ; ++i)  //0 это       ___Instruction
     {

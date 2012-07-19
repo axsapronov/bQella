@@ -64,7 +64,7 @@ void Import::selectImportFile()
     }
 }
 //----------------------------------------------------
-void Import::on_buttonBox_accepted()
+void Import::accept()
 {
     if (!ui.LEImportFile->text().isEmpty())
     {
@@ -72,9 +72,9 @@ void Import::on_buttonBox_accepted()
         encoding.replace("CP", "Windows");
         QTextCodec * codec = QTextCodec::codecForName("UTF-8");
 
-        if (encoding == "UTF-8") codec = QTextCodec::codecForName("UTF-8");
-        if (encoding == "UTF-16") codec = QTextCodec::codecForName("UTF-16");
-        if (encoding == "UTF-32") codec = QTextCodec::codecForName("UTF-32");
+        if (encoding == "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
+        if (encoding == "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
+        if (encoding == "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
         if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
         if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
         if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
@@ -83,6 +83,9 @@ void Import::on_buttonBox_accepted()
         if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
         if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
         if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
+        if (encoding == "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
+        if (encoding == "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
+
 
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
@@ -202,7 +205,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
     QString title = FullName; /*pathName.split("/").last().split(".").first();*/
 //    QString path = "./book_" + pathName.split("/").last();
-    QString path = "./book_" + checkProcentRol(ShortName, 50, pathName.split("/").last())+".htm";
+    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
 
 //    qDebug() << " path = " << path << " pathname = " << pathName;
     // create book file
@@ -235,8 +238,8 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
         {
             QString titlechap = QString("%1").arg(j);
             //            qDebug() << " _ titlechap = " << titlechap;
-            QString chapterfile = incstr(titlechap, GL_LengtItemString, "_");
-            titlechap = incstr(titlechap, GL_LengtItemString, " ");
+            QString chapterfile = incstr(titlechap, GL_LENGTITEMSTRING, "_");
+            titlechap = incstr(titlechap, GL_LENGTITEMSTRING, " ");
 
             //            qDebug() << " __ titlechap = " << titlechap;
             QString pathchap = pathName;
@@ -283,7 +286,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
     QString title = pathName.split("/").last().split(".").first();
 //    QString path = "./book_" + pathName.split("/").last();
 
-    QString path = "./book_" + checkProcentRol(ShortName, 50, pathName.split("/").last())+".htm";
+    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
@@ -313,8 +316,8 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
-            QString chapterfile = incstr(titlechap, GL_LengtItemString, "_");
-            titlechap = incstr(titlechap, GL_LengtItemString, " ");
+            QString chapterfile = incstr(titlechap, GL_LENGTITEMSTRING, "_");
+            titlechap = incstr(titlechap, GL_LENGTITEMSTRING, " ");
             QString pathchap = pathName;
             pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
@@ -491,7 +494,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
     pathNameE.remove("book_");
 //    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + checkProcentRol(ShortName, 50, pathName.split("/").last())+".htm";
+    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
 //    qDebug() << " \n ------- pathname = " << pathNameE << " filenamef = " << fileimportname;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
@@ -513,7 +516,7 @@ void Import::createChaterFile(QString file, QString text, int i)
     test.replace( QString("_chapter_%1").arg(j), chapterfile );
     qDebug() << "--------test = " << test;*/
 
-    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LengtItemString, "_");
+    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGTITEMSTRING, "_");
     QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
     QString last = file.split("/").last().split(".").last();
     pathNameE.remove("book_");

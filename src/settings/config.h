@@ -34,17 +34,18 @@
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 
-#define GL_Prog_RA_VERSION_STR	"0.0"
-#define GL_Prog_BUILD_STR	"2012.06.29"
-#define GL_Prog_Name "bQella"
-#define GL_Prog_Author "Alexander Sapronov"
+#define GL_PROG_VERSION_STR	"0.0"
+#define GL_PROG_BUILD_STR	"2012.07.19"
+#define GL_PROG_NAME "bQella"
+#define GL_PROG_AUTHOR "Alexander Sapronov"
+
 
 //.pem  = project module
-#define GL_Project_File ".pem"
-#define GL_Project_Conf_File ".ini"
+#define GL_PROJECT_FILE ".pem"
+#define GL_PROJECT_CONF_FILE ".ini"
 
-#define GL_LengtItemString 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
-
+#define GL_LENGTITEMSTRING 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
+#define GL_PROCENT_OF_MATCHES 50 // процент совпадения shortname из файла и из списка, чтобы сократить название файлов
 
 class Profile;
 

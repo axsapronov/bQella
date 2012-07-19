@@ -33,12 +33,8 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDateTime>
-
-
 #include <QString>
 #include <QTextCodec>
-
-#include "math.h"
 
 
 //-------------------------------------------------
@@ -949,9 +945,9 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
          << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
             /*<< "/span"*/
 
-    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
+    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGTITEMSTRING," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
-    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LengtItemString," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
+    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGTITEMSTRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
     for (int i = 0; i < strlist.size(); i++)
@@ -1158,11 +1154,11 @@ QStringList getFillEncoding()
           << QString("KOI8-R")
           << QString("KOI8-U")
           << QString("UTF-16")
-          << QString("UTF-16BE")
-          << QString("UTF-16LE")
+//          << QString("UTF-16BE")
+//          << QString("UTF-16LE")
           << QString("UTF-32")
-          << QString("UTF-32BE")
-          << QString("UTF-32LE")
+//          << QString("UTF-32BE")
+//          << QString("UTF-32LE")
           << QString("Windows-1252")
           << QString("Windows-1253")
           << QString("Windows-1254")
@@ -1311,11 +1307,14 @@ QString getCheckShortNameForFile(QString str, QString full)
 //-----------------------------------------------------
 QString checkExistenceFile(QString filename)
 {
-    while (QFile::exists(filename))
+    QString end = QString(filename).split(".").last();
+    filename.remove("."+end);
+    while (QFile::exists(filename+"."+end))
     {
         filename.append("_");
     }
-    return filename;
+    qDebug() << "filename = " << filename;
+    return filename+"."+end;
 }
 //-------------------------------------------------------
 QString checkTag(QString tag)
@@ -1372,7 +1371,7 @@ void removeStringInFile(QString filename, QStringList list)
     }
 }
 //---------------------------------------------------
-QString checkProcentRol(QString str, int procent, QString out)
+QString checkProcentRol(QString str, QString out, int procent)
 {
     QStringList liststr = QString(str).split(" ");
     QStringList list = getFillShortName();

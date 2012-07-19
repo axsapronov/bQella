@@ -36,8 +36,8 @@ int main( int argc, char ** argv )
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
-    a.setOrganizationName(GL_Prog_Author);
-    a.setApplicationName(GL_Prog_Name);
+    a.setOrganizationName(GL_PROG_AUTHOR);
+    a.setApplicationName(GL_PROG_NAME);
 
     Config *conf = new Config();
     conf -> setAppDir(QDir::currentPath() + "/");
@@ -95,7 +95,7 @@ int main( int argc, char ** argv )
     
     int appExec = a.exec();
     delete (MainWindow*)mw;
-    toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_Prog_Name));
+    toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_PROG_NAME));
     return appExec;
 }
 
