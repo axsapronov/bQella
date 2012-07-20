@@ -817,36 +817,36 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
     QStringList str;
     QString line;
     do
-    {
-        line = stream.readLine();
-        line.replace(beforetext, replacetext);
-        str.append(line);
+        {
+            line = stream.readLine();
+            line.replace(beforetext, replacetext);
+            str.append(line);
 
-    } while (!stream.atEnd());
+        } while (!stream.atEnd());
 
     str.removeOne("");
-//    qDebug() << "\nstrlist = " << str;
+    //    qDebug() << "\nstrlist = " << str;
     file.close();
     file.remove();
     file.open(QIODevice::WriteOnly);
 
     QString writelist;
     for (int i = 0; i < str.size(); i++)
-    {
-        writelist.append(QString(str.at(i))+"\n");
-    }
+        {
+            writelist.append(QString(str.at(i))+"\n");
+        }
 
     if (Config::configuration()->Language() == "utf-8") file.write(writelist.toUtf8());
-//    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
-//    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
+    //    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
+    //    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
 }
 //-------------------------------------------------
 QString ist(QString str)
 {
     if (str == "")
-    {
-        return "none";
-    }
+        {
+            return "none";
+        }
     return str;
 }
 //-------------------------------------------------
@@ -877,9 +877,9 @@ bool QStringtoBool(QString str)
 QString incstr(QString str, int n, QString mychar)
 {
     while (str.length() != n)
-    {
-        str = mychar + str;
-    }
+        {
+            str = mychar + str;
+        }
     return str;
 }
 //-------------------------------------------------
@@ -893,26 +893,32 @@ QString questionToTag(QString question)
 {
     question = "?" + question + "_.";
     if (question == "?p_." or question == "?h4_.")
-    {
-        return question.replace("?","\n<").replace("_.",">");
-    }
+        {
+            return question.replace("?","\n<").replace("_.",">");
+        }
     return question.replace("?","<").replace("_.",">");
 }
 //-----------------------------------------------------
 QString editStringList(QString list, QStringList tags, bool f)
 {
+    QString tag;
     for (int i = 0; i < tags.size(); i++)
-    {
-        if (f)
         {
-            list.replace( QString("<"+tags.at(i)+">"), tagToQuestion(tags.at(i)) );
-        }
-        else
-        {
-            list.replace( QString("?"+tags.at(i)+"_."), questionToTag(tags.at(i)) );
-        }
+            tag = tags.at (i);
+            if (tag.indexOf ("hr") != -1)
+                tag = "hr /";
 
-    }
+            if (f)
+                {
+                    list.replace( QString(checkTag (tag)), tagToQuestion(uncheckTag(tag)) );
+//                    qDebug() << " list = " << list << " tags,at i = " << tags.at (i) << " ?tag = " << tagToQuestion(uncheckTag(tags.at(i))) << " orig tag = " << checkTag (tags.at (i));
+                }
+            else
+                {
+                    list.replace( QString("?"+uncheckTag (tag)+"_."), questionToTag(tag) );
+                }
+
+        }
     return list;
 }
 //-----------------------------------------------------
@@ -925,7 +931,7 @@ QString getCenterTag(QString str)
     return str;
 }
 //------------------------------------------------------
-QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool chap)
+QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool chap)
 {
     QStringList strlist = strinput.split("\n");
     QString teststr = "";
@@ -939,11 +945,14 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
 
 
     QStringList tags;
+    tags << "p" << "i" << "b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
 
-    tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
-         << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
-         << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
-            /*<< "/span"*/
+
+//        qDebug() << "tags = " << tags << " strtags = " << Config::configuration ()->HtmlFilter ().toUtf8 ();
+//        tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+//             << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
+//             << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
+                /*<< "/span"*/
 
     QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGTITEMSTRING," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
@@ -951,64 +960,66 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
 
     QString str;
     for (int i = 0; i < strlist.size(); i++)
-    {
-        str = strlist.at(i);
-
-        // title and Chapter replace
-        if (chap)
         {
-        str.replace(titlec,chapter)
-                .replace(titlec2,chapter);
+            str = strlist.at(i);
+
+            // title and Chapter replace
+            if (chap)
+                {
+                    str.replace(titlec,chapter)
+                            .replace(titlec2,chapter);
+                }
+            else
+                {
+                    str.remove(title)
+                            .remove(title2);
+                }
+
+            str.remove("p, li { white-space: pre-wrap; }")
+                    .replace("<P>","<p>")
+                    .remove(title);
+
+            // переписать это убожество
+            if (str.indexOf("<p align=\"center\"") >= 0)
+                {
+                    str.replace("<p align=\"center\"","<center><p")
+                            .replace("</p>","</center>");
+                }
+
+            str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
+            str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
+            str = getParseTagSpan(str, "font-weight:600;", "<strong>");
+            str = getParseTagSpan(str, "font-style:italic;", "<em>");
+            str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
+            //        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
+
+            str.replace(rxp, "?p_.")
+                    .remove("</p>")
+                    .remove(rxi);
+
+//            qDebug() << "\nstr = " << str;
+            str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
+            str.remove(rx)
+                    .remove("")
+                    .remove("\n");
+            str.remove("Новый пункт")
+                    .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
+            str.replace("?p_.PathName","\nPathName")
+                    .replace("PathName", "\n\nPathName")
+                    .replace("FullName", "\nFullName")
+                    .replace("ShortName", "\nShortName")
+                    .replace("ChapterQty", "\nChapterQty");
+            str = editStringList(str, tags, false); // возвращаем нужные теги
+//            qDebug() << "str after " << str;
+
+
+            if (!str.isEmpty())
+                {
+                    teststr.append(str);
+                }
         }
-        else
-        {
-                str.remove(title)
-                .remove(title2);
-        }
 
-        str.remove("p, li { white-space: pre-wrap; }")
-                .replace("<P>","<p>")
-                .remove(title);
-
-        // переписать это убожество
-        if (str.indexOf("<p align=\"center\"") >= 0)
-        {
-            str.replace("<p align=\"center\"","<center><p")
-                    .replace("</p>","</center>");
-        }
-
-        str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
-        str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
-        str = getParseTagSpan(str, "font-weight:600;", "<strong>");
-        str = getParseTagSpan(str, "font-style:italic;", "<em>");
-        str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
-//        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
-
-        str.replace(rxp, "?p_.")
-                .remove("</p>")
-                .remove(rxi);
-
-        str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
-        str.remove(rx)
-                .remove("")
-                .remove("\n");
-        str.remove("Новый пункт")
-            .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
-        str.replace("?p_.PathName","\nPathName")
-                .replace("PathName", "\n\nPathName")
-                .replace("FullName", "\nFullName")
-                .replace("ShortName", "\nShortName")
-                .replace("ChapterQty", "\nChapterQty");
-        str = editStringList(str, tags, false); // возвращаем нужные теги
-
-
-        if (!str.isEmpty())
-        {
-            teststr.append(str);
-        }
-    }
-
-//    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
+    //    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
 
     return teststr;
 }
@@ -1021,21 +1032,21 @@ QString getParseTagSpan(QString str, QString text, QString tag)
     QString tagend = ta.replace("<","</");
 
     while (str.indexOf(text) >= 0)
-    {
-        // определяем гле находится наша строка
-        // определяем где находится следующая >
-        // определяем где находится spanend
-        // за > ставим tag
-        // перед spanend ставим tagend
+        {
+            // определяем гле находится наша строка
+            // определяем где находится следующая >
+            // определяем где находится spanend
+            // за > ставим tag
+            // перед spanend ставим tagend
 
-        int posOfOurLine = str.indexOf(text);
+            int posOfOurLine = str.indexOf(text);
             str.replace(posOfOurLine, text.length(), "");
-        int posOf = str.indexOf(">",posOfOurLine);
+            int posOf = str.indexOf(">",posOfOurLine);
             str.replace(posOf,1,">"+tag);
-        int posOfEnd = str.indexOf(spanend,posOf);
+            int posOfEnd = str.indexOf(spanend,posOf);
             str.replace(posOfEnd,spanend.length(),tagend+spanend);
-//            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
-    }
+            //            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
+        }
     return str;
 }
 //-----------------------------------------------------
@@ -1043,10 +1054,10 @@ int getDepthTreeWidgetItem(QTreeWidgetItem *item)
 {
     int depth = 0;
     while(item != 0)
-    {
-      depth++;
-      item = item->parent();
-    }
+        {
+            depth++;
+            item = item->parent();
+        }
     return depth;
 }
 //-----------------------------------------------------
@@ -1154,11 +1165,11 @@ QStringList getFillEncoding()
           << QString("KOI8-R")
           << QString("KOI8-U")
           << QString("UTF-16")
-//          << QString("UTF-16BE")
-//          << QString("UTF-16LE")
+             //          << QString("UTF-16BE")
+             //          << QString("UTF-16LE")
           << QString("UTF-32")
-//          << QString("UTF-32BE")
-//          << QString("UTF-32LE")
+             //          << QString("UTF-32BE")
+             //          << QString("UTF-32LE")
           << QString("Windows-1252")
           << QString("Windows-1253")
           << QString("Windows-1254")
@@ -1198,18 +1209,18 @@ QString getShortName(QString filename)
     QFile file(filename);
 
     if (file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream( &file );
-        do {
-            line = stream.readLine();
-            if (line.indexOf("ShortName = ") >= 0)
-            {
-//                str = getTextInStr(line);
-                str = line.remove("ShortName = ");
-            }
-        } while (str.isEmpty() and !line.isNull());
-        file.close();
-    }
+        {
+            QTextStream stream( &file );
+            do {
+                line = stream.readLine();
+                if (line.indexOf("ShortName = ") >= 0)
+                    {
+                        //                str = getTextInStr(line);
+                        str = line.remove("ShortName = ");
+                    }
+            } while (str.isEmpty() and !line.isNull());
+            file.close();
+        }
     return str;
 }
 //-----------------------------------------------------
@@ -1218,49 +1229,49 @@ QString miniparserini(QString str, QString po)
     po.append(" = ");
     //    qDebug() << "_str " << str;
     if (str.indexOf(po) >= 0)
-    {
-        str.remove(po);
-        if (po == "BibleName = ")
         {
-            str.replace(" ", "_");
-//                    .remove(str.length()-1, 1);
-        }
+            str.remove(po);
+            if (po == "BibleName = ")
+                {
+                    str.replace(" ", "_");
+                    //                    .remove(str.length()-1, 1);
+                }
 
-        if (po != "ShortName = " and
-                po != "FullName = " and
-                po != "ChapterSign = ")
-        {
-            str.remove(" \0");
-        }
+            if (po != "ShortName = " and
+                    po != "FullName = " and
+                    po != "ChapterSign = ")
+                {
+                    str.remove(" \0");
+                }
 
-        if (str == "")
-        {
-            //               qDebug() << "po = " << po;
-            if ( po == "Language = ")
-            {
-                //                qDebug() << "po = " << po;
-                return "rus";
-            }
-            if ( po == "DefaultEncoding = ")
-                return "utf-8";
-            return "none";
-        }
-        str.remove("\n");
+            if (str == "")
+                {
+                    //               qDebug() << "po = " << po;
+                    if ( po == "Language = ")
+                        {
+                            //                qDebug() << "po = " << po;
+                            return "rus";
+                        }
+                    if ( po == "DefaultEncoding = ")
+                        return "utf-8";
+                    return "none";
+                }
+            str.remove("\n");
 
-        //        qDebug() << "__str = " << str;
-        return str;
-    }
+            //        qDebug() << "__str = " << str;
+            return str;
+        }
     return "";
 }
 //-----------------------------------------------------
 QString getTextInStr(QString strf, int begin, int end)
 {
-//    qDebug() << " str before = " << strf;
-//    QString str = strf.section(" = ", 3, 4);
-////    str.remove(str.indexOf(" ChapterQty"),strf.length()-str.indexOf(" ChapterQty"));
-////    str.remove
+    //    qDebug() << " str before = " << strf;
+    //    QString str = strf.section(" = ", 3, 4);
+    ////    str.remove(str.indexOf(" ChapterQty"),strf.length()-str.indexOf(" ChapterQty"));
+    ////    str.remove
 
-//    qDebug() << " str = " << str;
+    //    qDebug() << " str = " << str;
     return strf;
     strf = strf;
     begin = begin;
@@ -1271,13 +1282,13 @@ QString replaceFullShortName(QString line, QString text, QString name)
 {
     QString str;
     if (line.indexOf(name) >= 0)
-    {
-        str = QString(line).remove(name);
-        if (str != text)
         {
-            line = name + text;
+            str = QString(line).remove(name);
+            if (str != text)
+                {
+                    line = name + text;
+                }
         }
-    }
     return line;
 }
 //-----------------------------------------------------
@@ -1285,11 +1296,11 @@ void writeQStringList(QString filename, QStringList list)
 {
     QFile file(unurlifyFileName(filename));
     if (file.open(QIODevice::WriteOnly))
-    {
-        for (int i = 0; i < list.size(); i++)
-            file.write(QString(list.at(i)+"\n").toUtf8());
-    }
-//    qDebug() << " list = " << list;
+        {
+            for (int i = 0; i < list.size(); i++)
+                file.write(QString(list.at(i)+"\n").toUtf8());
+        }
+    //    qDebug() << " list = " << list;
 }
 //-----------------------------------------------------
 QString getCheckShortNameForFile(QString str, QString full)
@@ -1298,10 +1309,10 @@ QString getCheckShortNameForFile(QString str, QString full)
     // если есть, то берем номер шорт нейма и называем файл его номером.
     QStringList list = getFillShortName();
     for (int i = 0; i < list.size(); i++)
-    {
-        if (str == list.at(i))
-            return QString::number(i+1);
-    }
+        {
+            if (str == list.at(i))
+                return QString::number(i+1);
+        }
     return full;
 }
 //-----------------------------------------------------
@@ -1310,21 +1321,26 @@ QString checkExistenceFile(QString filename)
     QString end = QString(filename).split(".").last();
     filename.remove("."+end);
     while (QFile::exists(filename+"."+end))
-    {
-        filename.append("_");
-    }
-//    qDebug() << "filename = " << filename;
+        {
+            filename.append("_");
+        }
+    //    qDebug() << "filename = " << filename;
     return filename+"."+end;
 }
 //-------------------------------------------------------
 QString checkTag(QString tag)
 {
-//    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
+    //    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
     if ((tag.indexOf("<", 0) == -1) and (tag.indexOf(">", tag.length()-2) == -1))
-    {
-        tag = "<" + tag + ">";
-    }
+        {
+            tag = "<" + tag + ">";
+        }
     return tag;
+}
+//--------------------------------------------------------
+QString uncheckTag(QString tag)
+{
+    return tag.remove ("<").remove (">");
 }
 //-------------------------------------------------------
 QString getFileNameAbs(QString file)
@@ -1343,32 +1359,32 @@ void removeStringInFile(QString filename, QStringList list)
     QFile file(filename);
     QString output = "";
     if (file.open(QIODevice::ReadOnly))
-    {
-        QString line;
-        QTextStream stream(&file);
-        do
         {
-            line = stream.readLine();
-            for (int i = 0; i < list.size(); i++)
-            {
-                if (line == list.at(i))
+            QString line;
+            QTextStream stream(&file);
+            do
                 {
-                    line = "";
-                }
-            }
+                    line = stream.readLine();
+                    for (int i = 0; i < list.size(); i++)
+                        {
+                            if (line == list.at(i))
+                                {
+                                    line = "";
+                                }
+                        }
 
-            if (!line.isEmpty())
-            {
-                output.append(line+"\n");
-            }
-        } while (!stream.atEnd());
-    }
+                    if (!line.isEmpty())
+                        {
+                            output.append(line+"\n");
+                        }
+                } while (!stream.atEnd());
+        }
     file.close();
     file.remove();
     if(file.open(QIODevice::WriteOnly))
-    {
-        file.write(output.toUtf8());
-    }
+        {
+            file.write(output.toUtf8());
+        }
 }
 //---------------------------------------------------
 QString checkProcentRol(QString str, QString out, int procent)
@@ -1376,47 +1392,47 @@ QString checkProcentRol(QString str, QString out, int procent)
     QStringList liststr = QString(str).split(" ");
     QStringList list = getFillShortName();
 
-//    for (int i = 0; i < liststr.size(); i++)
-//    {
-//        qDebug() << " listat = " << liststr.at(i);
-//        if (list.indexOf(liststr.at(i)) !=-1)
-//        {
-//            qDebug() << " find !" << " int i = " << i;
-//        }
-//    }
-//    qDebug() << "liststr = " << liststr;
+    //    for (int i = 0; i < liststr.size(); i++)
+    //    {
+    //        qDebug() << " listat = " << liststr.at(i);
+    //        if (list.indexOf(liststr.at(i)) !=-1)
+    //        {
+    //            qDebug() << " find !" << " int i = " << i;
+    //        }
+    //    }
+    //    qDebug() << "liststr = " << liststr;
     int pr = 0;
     //how  optimised?
 
     for (int j = 0; j < list.size(); j++)
-    {
-        pr = 0;
-        QStringList listup = QString(list.at(j)).split(" ");
-//        qDebug() << "\nlistup = " << listup;
-        for (int foo = 0; foo < listup.size(); foo++)
         {
-            for (int i = 0; i < liststr.size(); i++)
-            {
-//                qDebug() << " ttest[2]" << "list = " << listup.at(foo) << " listg =" << liststr.at(i);
-                if (listup.at(foo) == liststr.at(i))
+            pr = 0;
+            QStringList listup = QString(list.at(j)).split(" ");
+            //        qDebug() << "\nlistup = " << listup;
+            for (int foo = 0; foo < listup.size(); foo++)
                 {
-                    pr++;
-//                    qDebug() << "lsitatfoo = " <<  listup.at(foo) << " liststrati = " << liststr.at(i);
+                    for (int i = 0; i < liststr.size(); i++)
+                        {
+                            //                qDebug() << " ttest[2]" << "list = " << listup.at(foo) << " listg =" << liststr.at(i);
+                            if (listup.at(foo) == liststr.at(i))
+                                {
+                                    pr++;
+                                    //                    qDebug() << "lsitatfoo = " <<  listup.at(foo) << " liststrati = " << liststr.at(i);
+                                }
+                        }
                 }
-            }
-        }
-//        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
-        double test = double(pr) / double(listup.size()) * 100;
-        if ( pr != 0 )
-        {
-//             qDebug() << " role = " << pr << " procent = " << procent << " lastyp.size = " << listup.size() << " testprocent = " << test;
-        }
-        if (test >= procent )
-        {
-            return QString::number(j+1);
-        }
+            //        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
+            double test = double(pr) / double(listup.size()) * 100;
+            if ( pr != 0 )
+                {
+                    //             qDebug() << " role = " << pr << " procent = " << procent << " lastyp.size = " << listup.size() << " testprocent = " << test;
+                }
+            if (test >= procent )
+                {
+                    return QString::number(j+1);
+                }
 
-    }
+        }
     return out;
 
 }

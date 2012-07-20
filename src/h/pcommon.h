@@ -86,6 +86,7 @@ QStringList getFillEncoding(); // возвращает заполнение дл
 QString getTextInStr(QString str, int begin = 5, int end = 9); // возвращает текст от begin до end символа ( не реализована, работает чтобы доставать shortname)
 QString getCheckShortNameForFile(QString str, QString full); // возвращает порядковый номер shortname(str) или полное название книги. Работает для уменьшения длины названия файла
 QString checkTag(QString tag); // проверяет строку, начинается и заканчивается ли она на < и >
+QString uncheckTag(QString tag); // обратная операция
 QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT_OF_MATCHES); // разбивает shortname на части и проверяет насколько совпадает с getFillShortName()
 //если с точностью до процента совпадает, то возвращает номер в shortname, а если нету такого, то out Применяется для импорта книги
 
@@ -94,15 +95,15 @@ QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT
 QString unurlifyFileName(const QString &fileName);		//remove "file:"
 QString urlifyFileName(const QString &fileName);		//add "file:"
 QString relatifyFileName(QString url, QString path);	//returns path like ../../images/pict.jpg Difference from QDir::relativeFilePath() in: it adds "./" and removes "file:"
-QStringList relatifyFileList(QStringList urls, QString path); 
+QStringList relatifyFileList(QStringList urls, QString path);
 QString absolutifyFileName(QString fn, QString path);	//returns absolute file path
-QStringList absolutifyFileList(QStringList fns, QString path);	
+QStringList absolutifyFileList(QStringList fns, QString path);
 QString removeAnchorFromLink(const QString &link);		//returns link without anchor
 bool verifyDirectory(const QString &str);	//create dir if not exist and if there is no such file name
 bool pathIsRelative(QString path);	//return true if path starts with ./ or ../
 QString CreateValidWebFileName(QString str); //выбирает из строки только разрешённые символы
 bool toLog(QString logFN, QString logMessage); //добавляет в журнал строку в формате "Дата Время Сообщение"
-bool createEmptyHtml(QString fileName, QString title); 
+bool createEmptyHtml(QString fileName, QString title);
 bool createEmptyHtml(QString fileName, QString title, QString text);
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)

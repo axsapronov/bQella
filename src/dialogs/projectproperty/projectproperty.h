@@ -49,6 +49,7 @@ typedef struct StructModuleProperties
     QString soundDirectory;
     bool noForcedLineBreaks;
     // HTMLFilter должен автоматом создаваться
+    QString htmlFilter;
     QString language;
     QString installFonts;
     QString desiredFontName;
@@ -69,28 +70,28 @@ class ProjectProperties : public QDialog
      Q_OBJECT
 
 public:
-	ProjectProperties(QWidget *parent = 0);
-	bool valid() { return validProperties; }
+        ProjectProperties(QWidget *parent = 0);
+        bool valid() { return validProperties; }
         void showUpdate();
 
 signals:
         void createProject(ModuleProperties propert);
         void updateProjectProperties(ModuleProperties propert);
-	//void createDb(QString dbFileName);
-     
+        //void createDb(QString dbFileName);
+
 public slots:
-	void accept();
-	void reject();
+        void accept();
+        void reject();
         void setProperties(bool newPrj, ModuleProperties pr);
-//	QString Title()			{ return prjTitle; }	
-	QString FileName()		{ return prjFN; }
-//	QString StartPage()		{ return prjStartPage; } 
+//	QString Title()			{ return prjTitle; }
+        QString FileName()		{ return prjFN; }
+//	QString StartPage()		{ return prjStartPage; }
         void setModeNewProject(bool t)  { modeNewProject = t;}
-	
+
 private:
-	Ui::ProjectProperty ui; 
-	
-	bool modeNewProject; 	
+        Ui::ProjectProperty ui;
+
+        bool modeNewProject;
         QString prjTitle;
         QString prjFN;
         QString prjStartPage;
@@ -111,9 +112,9 @@ private:
         QString strongsDirectory;
         QString soundDirectory;
         bool noForcedLineBreaks;
-        // HTMLFilter должен автоматом создаваться
         QString language;
         QString installFonts;
+        QString htmlFilter;
         QString desiredFontName;
         QString categories;
         QString desiredFontPath;
@@ -124,7 +125,7 @@ private:
 
 //        QString moduleType;
         double moduleVersion;
-	bool validProperties;
+        bool validProperties;
 }; // class ProjectProperties
 
 #endif // __PROJECTPROPERTY_H__

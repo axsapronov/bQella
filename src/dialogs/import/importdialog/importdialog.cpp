@@ -175,6 +175,7 @@ void Import::importIni(QString filename)
                 if (miniparserini(line,"SoundDirectory") != "") Config::configuration() -> setSoundDirectory(miniparserini(line,"SoundDirectory"));
                 if (miniparserini(line,"Language") != "") Config::configuration() -> setLanguage(miniparserini(line,"Language"));
                 if (miniparserini(line,"InstallFonts") != "") Config::configuration() -> setInstallFonts(miniparserini(line,"InstallFonts"));
+                if (miniparserini(line,"HTMLFilter") != "") Config::configuration() -> setHtmlFilter(miniparserini(line,"HTMLFilter"));
                 if (miniparserini(line,"DesiredFontName") != "") Config::configuration() -> setDesiredFontName(miniparserini(line,"DesiredFontName"));
                 if (miniparserini(line,"Categories") != "") Config::configuration() -> setCategories(miniparserini(line,"Categories"));
                 if (miniparserini(line,"DesiredFontPath") != "") Config::configuration() -> setDesiredFontPath(miniparserini(line,"DesiredFontPath"));
@@ -404,6 +405,7 @@ void Import::importProjectFile()
     pr.strongsDirectory = Config::configuration()->StrongsDirectory();
     pr.soundDirectory = Config::configuration()->SoundDirectory();
     pr.language = Config::configuration()->Language();
+    pr.htmlFilter = Config::configuration()->HtmlFilter();
     pr.installFonts = Config::configuration()->InstallFonts();
     pr.desiredFontName = Config::configuration()->DesiredFontName();
     pr.categories = Config::configuration()->Categories();
@@ -453,6 +455,7 @@ void Import::importProjectFile()
 
     ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(ist(pr.strongsDirectory)) << "</property>" << endl;
     ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(ist(pr.soundDirectory)) << "</property>" << endl;
+    ts << ind1 << "<property name=\"htmlfilter\">" << Qt::escape(ist(pr.htmlFilter)) << "</property>" << endl;
     ts << ind1 << "<property name=\"language\">" << Qt::escape(pr.language) << "</property>" << endl;
     ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(ist(pr.installFonts)) << "</property>" << endl;
     ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(ist(pr.desiredFontName)) << "</property>" << endl;

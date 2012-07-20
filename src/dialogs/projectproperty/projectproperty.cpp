@@ -75,6 +75,7 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.LEStrongDir -> setText(pr.strongsDirectory);
     ui.LESoundDir -> setText(pr.soundDirectory);
     ui.LEInstallFonts -> setText(pr.installFonts);
+    ui.LEHtmlFilter ->setText (pr.htmlFilter);
     ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
     //    // HTMLFilter должен автоматом создаваться
@@ -182,6 +183,7 @@ void ProjectProperties::accept()
                 Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
                 Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
                 Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
+                Config::configuration() -> setHtmlFilter(ui.LEHtmlFilter -> text());
                 Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
                 Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
                 Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
@@ -232,6 +234,7 @@ void ProjectProperties::accept()
             prop.desiredFontName = ui.LEDesiredFontName -> text();
             prop.desiredFontPath = ui.LEDesiredFontPath -> text();
             prop.strongsDirectory = ui.LEStrongDir -> text();
+            prop.htmlFilter = ui.LEHtmlFilter -> text();
             prop.soundDirectory = ui.LESoundDir -> text();
             prop.installFonts = ui.LEInstallFonts -> text();
             prop.desiredUIFont = ui.LEDesiredUIFont -> text();

@@ -9,25 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>513</width>
-    <height>460</height>
+    <width>527</width>
+    <height>433</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Project property</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="1" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
+   <item row="0" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
@@ -36,294 +26,303 @@
       <attribute name="title">
        <string>Basic</string>
       </attribute>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>11</x>
-         <y>11</y>
-         <width>471</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="sModuleName">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="sModuleName">
+         <property name="text">
+          <string>Module name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="LEBibleName"/>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="sShortName">
+         <property name="text">
+          <string>Short module name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="LEBibleShortName">
+         <property name="maxLength">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="sAuthor">
+         <property name="text">
+          <string>Author:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="LECopyright"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="sTypeModule">
+         <property name="text">
+          <string>Type Module:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QCheckBox" name="cbmoduleType">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Bible</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="sVersion">
+         <property name="text">
+          <string>Version:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QDoubleSpinBox" name="doubleSpinBoxVersion">
+         <property name="maximum">
+          <double>150.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="sLanguage">
+         <property name="text">
+          <string>Language:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QComboBox" name="comBLanguage">
+         <item>
           <property name="text">
-           <string>Module name:</string>
+           <string>rus</string>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="LEBibleName"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="sShortName">
+         </item>
+         <item>
           <property name="text">
-           <string>Short module name:</string>
+           <string>eng</string>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="LEBibleShortName">
-          <property name="maxLength">
-           <number>15</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="sAuthor">
+         </item>
+         <item>
           <property name="text">
-           <string>Author:</string>
+           <string>ukr</string>
           </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="LECopyright"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="sTypeModule">
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="sEncoding">
+         <property name="text">
+          <string>Encoding:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="comBEncoding">
+         <item>
           <property name="text">
-           <string>Type Module:</string>
+           <string>utf-8</string>
           </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="sVersion">
-          <property name="text">
-           <string>Version:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxVersion">
-          <property name="maximum">
-           <double>150.000000000000000</double>
-          </property>
-          <property name="value">
-           <double>1.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QCheckBox" name="cbmoduleType">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Bible</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>110</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabMore">
       <attribute name="title">
        <string>More</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_6">
+      <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>In module:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbOldTestament">
+         <property name="text">
+          <string>Old Testament</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbNewTestament">
+         <property name="text">
+          <string>New Testament</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbApocrypha">
+         <property name="text">
+          <string>Apocrypha</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbChapterZero">
+         <property name="text">
+          <string>Chapter zero</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QCheckBox" name="cbStrongNumber">
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
            <property name="text">
-            <string>In module:</string>
+            <string>Strong numbers</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="cbOldTestament">
-           <property name="text">
-            <string>Old Testament</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="cbNewTestament">
-           <property name="text">
-            <string>New Testament</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QCheckBox" name="cbApocrypha">
-           <property name="text">
-            <string>Apocrypha</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QCheckBox" name="cbChapterZero">
-           <property name="text">
-            <string>Chapter zero</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QCheckBox" name="cbStrongNumber">
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
+            <widget class="QLineEdit" name="LEStrongDir"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonStrongDir">
              <property name="text">
-              <string>Strong numbers</string>
+              <string/>
              </property>
             </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QLineEdit" name="LEStrongDir"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonStrongDir">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
           </layout>
-         </item>
-         <item row="5" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QCheckBox" name="checkBoxSound">
-             <property name="text">
-              <string>Sound</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QLineEdit" name="LESoundDir"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonSoundDir">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item row="6" column="1">
-          <widget class="QCheckBox" name="cbNoForcedLineBreaks">
-           <property name="text">
-            <string>Noforced line breaks</string>
-           </property>
-          </widget>
          </item>
         </layout>
        </item>
-       <item row="1" column="0">
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QSplitter" name="splitter_7">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+       <item row="5" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QCheckBox" name="checkBoxSound">
+           <property name="text">
+            <string>Sound</string>
            </property>
-           <widget class="QSplitter" name="splitter_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <widget class="QCheckBox" name="cbUseChapterHead">
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLineEdit" name="LESoundDir"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonSoundDir">
              <property name="text">
-              <string>Use chapter head</string>
+              <string/>
              </property>
             </widget>
-            <widget class="QCheckBox" name="cbUseRightAlignment">
-             <property name="text">
-              <string>Use right alignment</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QCheckBox" name="cbEnglishPsalms">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="text">
-             <string>English Psalms</string>
-            </property>
-           </widget>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QSplitter" name="splitter_9">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QLabel" name="sCategories">
-            <property name="text">
-             <string>Categories:</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="LECategories"/>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QSplitter" name="splitter_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QLabel" name="sLanguage">
-            <property name="text">
-             <string>Language:</string>
-            </property>
-           </widget>
-           <widget class="QComboBox" name="comBLanguage">
-            <item>
-             <property name="text">
-              <string>rus</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>eng</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ukr</string>
-             </property>
-            </item>
-           </widget>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QSplitter" name="splitter">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QLabel" name="sEncoding">
-            <property name="text">
-             <string>Encoding:</string>
-            </property>
-           </widget>
-           <widget class="QComboBox" name="comBEncoding">
-            <item>
-             <property name="text">
-              <string>utf-8</string>
-             </property>
-            </item>
-           </widget>
-          </widget>
+           </item>
+          </layout>
          </item>
         </layout>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="cbNoForcedLineBreaks">
+         <property name="text">
+          <string>Noforced line breaks</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QSplitter" name="splitter_7">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QSplitter" name="splitter_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QCheckBox" name="cbUseChapterHead">
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Use chapter head</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="cbUseRightAlignment">
+           <property name="text">
+            <string>Use right alignment</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QCheckBox" name="cbEnglishPsalms">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>English Psalms</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="sCategories">
+         <property name="text">
+          <string>Categories:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="LECategories"/>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Html filter:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLineEdit" name="LEHtmlFilter"/>
+       </item>
+       <item row="10" column="1">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -331,59 +330,85 @@
       <attribute name="title">
        <string>Fonts</string>
       </attribute>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>471</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QLabel" name="sInstallFonts">
-          <property name="text">
-           <string>Install fonts:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="LEInstallFonts"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="sDesiredfontName">
-          <property name="text">
-           <string>Desired font name:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="LEDesiredFontName"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="sDesiredFontPath">
-          <property name="text">
-           <string>Desired font path:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="LEDesiredFontPath"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="sDesiredUIfont">
-          <property name="text">
-           <string>Desired UI font:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="LEDesiredUIFont"/>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="sInstallFonts">
+         <property name="text">
+          <string>Install fonts:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="LEInstallFonts"/>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="sDesiredfontName">
+         <property name="text">
+          <string>Desired font name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="LEDesiredFontName"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="sDesiredFontPath">
+         <property name="text">
+          <string>Desired font path:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="LEDesiredFontPath"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="sDesiredUIfont">
+         <property name="text">
+          <string>Desired UI font:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="LEDesiredUIFont"/>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>199</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
     </widget>
    </item>
   </layout>

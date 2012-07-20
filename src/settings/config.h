@@ -157,6 +157,7 @@ public:
     // HTMLFilter должен автоматом создаваться
     QString Language() {return language;}
     QString InstallFonts() {return installFonts;}
+    QString HtmlFilter() {return htmlFilter;}
     QString DesiredFontName() {return desiredFontName;}
     QString Categories() {return categories;}
     QString DesiredFontPath() {return desiredFontPath;}
@@ -203,8 +204,9 @@ public:
     void setStrongsDirectory(QString fn) { strongsDirectory = fn;}
     void setSoundDirectory(QString fn) { soundDirectory = fn;}
     void setNoForcedLineBreaks(bool fn) {noForcedLineBreaks = fn; }
-    // HTMLFilter должен автоматом создаваться
+
     void setLanguage(QString fn) { language = fn;}
+    void setHtmlFilter(QString fn) { htmlFilter = fn;}
     void setInstallFonts(QString fn) { installFonts = fn;}
     void setDesiredFontName(QString fn) { desiredFontName = fn;}
     void setCategories(QString fn) { categories = fn;}
@@ -256,7 +258,7 @@ private:
 
     Profile *profil;
     Profile *profil_tmp; //to build project list
-    
+
     QStringList profileFNs;	//list of projects
     QString startPage;  //show this page when application is started.  Should be last veiwed page before app close
     QStringList src;    //opened files in tab browser
@@ -304,7 +306,7 @@ private:
     QString strongsDirectory;
     QString soundDirectory;
     bool noForcedLineBreaks;
-    // HTMLFilter должен автоматом создаваться
+    QString htmlFilter;
     QString language;
     QString installFonts;
     QString desiredFontName;

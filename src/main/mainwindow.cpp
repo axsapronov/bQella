@@ -52,7 +52,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 MainWindow::MainWindow():
     aboutd(new AboutDialog(this))
 {
-//    qDebug() << "[9]";
+    //    qDebug() << "[9]";
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
 
@@ -130,14 +130,14 @@ MainWindow::~MainWindow()
 //-------------------------------------------------
 void MainWindow::setup()
 {
-//    qDebug() << "[7]";
+    //    qDebug() << "[7]";
     if(setupCompleted)
         return;
 
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar() -> showMessage(tr("Initializing %1...").arg(GL_PROG_NAME));
     helpDock -> initialize();
-//    qDebug() << "[14]";
+    //    qDebug() << "[14]";
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -242,7 +242,7 @@ void MainWindow::setup()
 
     // set the current selected item in the treeview
 
-//    qDebug() << "[31]";
+    //    qDebug() << "[31]";
     helpDialog() -> locateContents(tabs -> currentBrowser() -> source().toString());
     connect(tabs, SIGNAL(browserUrlChanged(QString)), helpDock, SLOT(locateContents(QString)));
     projectModified(false);
@@ -379,10 +379,10 @@ void MainWindow::showLink(const QString &link)
 
     QString mylink;
     if (link.indexOf(Config::configuration()->CurPrjDir() <=0))
-    {
-        QString nameoffile = link.split("/").last();
-        mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
-    }
+        {
+            QString nameoffile = link.split("/").last();
+            mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
+        }
 
     //    qDebug() << "link " << link;
     QString lnk = unurlifyFileName(link);
@@ -405,19 +405,19 @@ void MainWindow::showLink(const QString &link)
             emit saveOpenedLink();
         QUrl url(link);
         //qDebug() << "down!";
-//        qDebug() << "[48]";
+        //        qDebug() << "[48]";
         tabs -> setSource(url.toString()); // w
 
-//        qDebug() << "[49]";
+        //        qDebug() << "[49]";
 
         tabs -> currentBrowser() -> setFocus();
 
     }
     else
-    {
-        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-        QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
-    }
+        {
+            qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
+            QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
+        }
 
 }
 
@@ -443,31 +443,31 @@ void MainWindow::showLinks(const QStringList &links)
     }
 
     if (links.size() == 1)
-    {
-        showLink(urlifyFileName(links.first()));
-        return;
-    }
+        {
+            showLink(urlifyFileName(links.first()));
+            return;
+        }
 
     QStringList::ConstIterator it = links.begin();
     /// Initial showing, The tab is empty so update that without creating it first
     if (!tabs -> currentBrowser() -> source().isValid())
-    {
-        QPair<HelpWindow*, QString> browser;
-        browser.first = tabs -> currentBrowser();
-        browser.second = links.first();
-        pendingBrowsers.append(browser);
-        tabs -> setAppTitle(tabs -> currentBrowser(), tr("..."));
-    }
+        {
+            QPair<HelpWindow*, QString> browser;
+            browser.first = tabs -> currentBrowser();
+            browser.second = links.first();
+            pendingBrowsers.append(browser);
+            tabs -> setAppTitle(tabs -> currentBrowser(), tr("..."));
+        }
     ++it;
 
     while(it != links.end())
-    {
-        QPair<HelpWindow*, QString> browser;
-        browser.first = tabs -> newBackgroundTab();
-        browser.second = *it;
-        pendingBrowsers.append(browser);
-        ++it;
-    }
+        {
+            QPair<HelpWindow*, QString> browser;
+            browser.first = tabs -> newBackgroundTab();
+            browser.second = *it;
+            pendingBrowsers.append(browser);
+            ++it;
+        }
 
     startTimer(50);
     return;
@@ -647,22 +647,23 @@ void MainWindow::ProjectOpen()
 //-------------------------------------------------
 void MainWindow::ProjectOpen(QString fileName)
 {
-    if (!fileName.isEmpty()){
-        //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
-        browsers() -> currentBrowser() -> fileSave();
-        Config::configuration() -> loadProject(fileName);
-        helpDock -> enableProjectButtons();
-        helpDock -> initTabs();
-        browsers() -> closeAllTabs();
-        helpDock -> insertContents();
-//        qDebug() << "[5]";
-        helpDock -> on_BProjectAdd_clicked();
-        Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
-        showLink(urlifyFileName(Config::configuration() -> CurFile()));
-        projectModified(false);
-        Config::configuration() -> toPrjLog(1, "-------");
-        Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
-    }
+    if (!fileName.isEmpty())
+        {
+            //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
+            browsers() -> currentBrowser() -> fileSave();
+            Config::configuration() -> loadProject(fileName);
+            helpDock -> enableProjectButtons();
+            helpDock -> initTabs();
+            browsers() -> closeAllTabs();
+            helpDock -> insertContents();
+            //        qDebug() << "[5]";
+            helpDock -> on_BProjectAdd_clicked();
+            Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+            showLink(urlifyFileName(Config::configuration() -> CurFile()));
+            projectModified(false);
+            Config::configuration() -> toPrjLog(1, "-------");
+            Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
+        }
 }
 
 //-------------------------------------------------
@@ -809,6 +810,10 @@ void MainWindow::ProjectNew()
     pr.noForcedLineBreaks = false;
     pr.language = "rus";
     pr.installFonts = "none";
+    pr.htmlFilter = "<br> <pre> </pre>"
+            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
+            " <em> </em> <table </table>"
+            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
     pr.desiredFontName = "none";
     pr.categories = "none";
     pr.desiredFontPath = "none";
@@ -871,6 +876,7 @@ void MainWindow::ProjectProps()
     pr.strongsDirectory = Config::configuration() -> profile() -> props["strongsdirectory"];
     pr.soundDirectory = Config::configuration() -> profile() -> props["sounddirectory"];
     pr.language = Config::configuration() -> profile() -> props["language"];
+    pr.htmlFilter = Config::configuration() -> profile() -> props["htmlfilter"];
     pr.installFonts = Config::configuration() -> profile() -> props["installfonts"];
     pr.desiredFontName = Config::configuration() -> profile() -> props["desiredfontname"];
     pr.categories = Config::configuration() -> profile() -> props["categories"];
@@ -930,6 +936,7 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
     ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
     ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"htmlfilter\">" << Qt::escape(pr.htmlFilter) << "</property>" << endl;
     ts << ind1 << "<property name=\"language\">" << pr.language << "</property>" << endl;
     ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
     ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
@@ -1004,6 +1011,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> profile() -> addProperty("strongsnumber", BooltoQString(pr.strongNumber));
 
     Config::configuration() -> profile() -> addProperty("strongsdirectory", pr.strongsDirectory);
+    Config::configuration() -> profile() -> addProperty("htmlfilter", pr.htmlFilter);
     Config::configuration() -> profile() -> addProperty("sounddirectory", pr.soundDirectory);
     Config::configuration() -> profile() -> addProperty("language", pr.language);
     Config::configuration() -> profile() -> addProperty("installfonts", pr.installFonts);
@@ -1016,8 +1024,8 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-//    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion << "bibletype = " << pr.moduleType;
-//    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "path = " << fn << " test = " << Config::configuration()->AppDir()+fn;
+    //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion << "bibletype = " << pr.moduleType;
+    //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "path = " << fn << " test = " << Config::configuration()->AppDir()+fn;
     Config::configuration() -> profile() -> addProperty("version", version);
 
 
