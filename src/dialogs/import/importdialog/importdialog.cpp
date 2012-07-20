@@ -92,6 +92,7 @@ void Import::accept()
         QTextCodec::setCodecForTr(codec);
 
         importModule(ui.LEImportFile->text());
+        htmlfilter = ui.LEHtmlFilter->text();
 
         emit SuccessfulImport();
 

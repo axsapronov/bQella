@@ -1,0 +1,689 @@
+\hypertarget{classConfig}{
+\section{Config Class Reference}
+\label{classConfig}\index{Config@{Config}}
+}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classConfig_a1756a954a692bd53c314ec51c983f167}{
+void {\bfseries setContentsAdditionalView} (bool checked)}
+\label{classConfig_a1756a954a692bd53c314ec51c983f167}
+
+\item 
+\hypertarget{classConfig_a26d246caff51b482a49c6fc14caed0da}{
+void {\bfseries setShowSubItemsTitle} (bool checked)}
+\label{classConfig_a26d246caff51b482a49c6fc14caed0da}
+
+\item 
+\hypertarget{classConfig_a2cb33678342e5aec9d64ba1c8439264d}{
+void {\bfseries setAutoCollapse} (bool checked)}
+\label{classConfig_a2cb33678342e5aec9d64ba1c8439264d}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classConfig_a96f704d539d03eb0cfd5ccc642b68468}{
+void {\bfseries loadSettings} ()}
+\label{classConfig_a96f704d539d03eb0cfd5ccc642b68468}
+
+\item 
+\hypertarget{classConfig_adbd02ecc097a3d86d0b340e5d5aef5e0}{
+void {\bfseries saveSettings} ()}
+\label{classConfig_adbd02ecc097a3d86d0b340e5d5aef5e0}
+
+\item 
+\hypertarget{classConfig_a9214ebe51049542c212cb478bfc8597f}{
+\hyperlink{classProfile}{Profile} $\ast$ {\bfseries profile} () const }
+\label{classConfig_a9214ebe51049542c212cb478bfc8597f}
+
+\item 
+\hypertarget{classConfig_a7f5bce56d51841d2181c370f5e804955}{
+QString {\bfseries profileName} () const }
+\label{classConfig_a7f5bce56d51841d2181c370f5e804955}
+
+\item 
+\hypertarget{classConfig_a79c27078d3f1aaf9fc9d3ee5754acad2}{
+QString {\bfseries profileTitle} () const }
+\label{classConfig_a79c27078d3f1aaf9fc9d3ee5754acad2}
+
+\item 
+\hypertarget{classConfig_ab0f34d50af9af1976856c32fe660f321}{
+bool {\bfseries validProfileName} () const }
+\label{classConfig_ab0f34d50af9af1976856c32fe660f321}
+
+\item 
+\hypertarget{classConfig_aa30063e16faa15c5dcbf20f0cd3643ab}{
+void {\bfseries hideSideBar} (bool b)}
+\label{classConfig_aa30063e16faa15c5dcbf20f0cd3643ab}
+
+\item 
+\hypertarget{classConfig_ac10d155df1462f849ceb287cc13e5bf0}{
+bool {\bfseries sideBarHidden} () const }
+\label{classConfig_ac10d155df1462f849ceb287cc13e5bf0}
+
+\item 
+\hypertarget{classConfig_adad178c421511aae1454dd2494387437}{
+QStringList {\bfseries mimePaths} ()}
+\label{classConfig_adad178c421511aae1454dd2494387437}
+
+\item 
+\hypertarget{classConfig_a51f56dd9bc09c163f9d9d1bbc67ff607}{
+QString {\bfseries getProjectProperty} (QString prop, QString prjFN)}
+\label{classConfig_a51f56dd9bc09c163f9d9d1bbc67ff607}
+
+\item 
+\hypertarget{classConfig_ac18f456b34f405ed23baf93c23e25159}{
+void {\bfseries toAppLog} (int logLevel, QString msg)}
+\label{classConfig_ac18f456b34f405ed23baf93c23e25159}
+
+\item 
+\hypertarget{classConfig_a5dd4006d2077665b1b0d2b383148f259}{
+void {\bfseries toPrjLog} (int logLevel, QString msg)}
+\label{classConfig_a5dd4006d2077665b1b0d2b383148f259}
+
+\item 
+\hypertarget{classConfig_abe591008bafcd67b20393b520e1a7db9}{
+QStringList {\bfseries docFiles} () const }
+\label{classConfig_abe591008bafcd67b20393b520e1a7db9}
+
+\item 
+\hypertarget{classConfig_a2e2260fa4d22c041325c0513d1b6bac4}{
+QStringList {\bfseries ProfileFNs} () const }
+\label{classConfig_a2e2260fa4d22c041325c0513d1b6bac4}
+
+\item 
+\hypertarget{classConfig_aa48c7a278276275a40a71e6d0ac5aaaf}{
+void {\bfseries addProject} (QString prj)}
+\label{classConfig_aa48c7a278276275a40a71e6d0ac5aaaf}
+
+\item 
+\hypertarget{classConfig_ac3979616b541d76831e5f34378835c0c}{
+void {\bfseries delProject} (QString prj)}
+\label{classConfig_ac3979616b541d76831e5f34378835c0c}
+
+\item 
+\hypertarget{classConfig_a302078a51b4e9279ddfb7b9b8731a64a}{
+QString {\bfseries homePage} () const }
+\label{classConfig_a302078a51b4e9279ddfb7b9b8731a64a}
+
+\item 
+\hypertarget{classConfig_a521374a79dd57c675dac912e26aff596}{
+QStringList {\bfseries source} () const }
+\label{classConfig_a521374a79dd57c675dac912e26aff596}
+
+\item 
+\hypertarget{classConfig_a0f41a55bd243d4691bb4f492ab072e57}{
+void {\bfseries setHomePage} (const QString \&hom)}
+\label{classConfig_a0f41a55bd243d4691bb4f492ab072e57}
+
+\item 
+\hypertarget{classConfig_a2cbec495bf45f1887170923bea54126b}{
+void {\bfseries setSource} (const QStringList \&s)}
+\label{classConfig_a2cbec495bf45f1887170923bea54126b}
+
+\item 
+\hypertarget{classConfig_a3412baae9ea55f42be76191777a98b9b}{
+int {\bfseries sideBarPage} () const }
+\label{classConfig_a3412baae9ea55f42be76191777a98b9b}
+
+\item 
+\hypertarget{classConfig_a7f5dd0a0fe91bffe00fb654e9305ee60}{
+void {\bfseries setSideBarPage} (int sbp)}
+\label{classConfig_a7f5dd0a0fe91bffe00fb654e9305ee60}
+
+\item 
+\hypertarget{classConfig_a594f346ab59c8fe83769aa7fe7039c2f}{
+QByteArray {\bfseries windowGeometry} () const }
+\label{classConfig_a594f346ab59c8fe83769aa7fe7039c2f}
+
+\item 
+\hypertarget{classConfig_a44214113cd4770955746c31be04486b7}{
+void {\bfseries setWindowGeometry} (const QByteArray \&geometry)}
+\label{classConfig_a44214113cd4770955746c31be04486b7}
+
+\item 
+\hypertarget{classConfig_a92e909818cde5a40b661299a9932c595}{
+QByteArray {\bfseries mainWindowState} () const }
+\label{classConfig_a92e909818cde5a40b661299a9932c595}
+
+\item 
+\hypertarget{classConfig_ad14c9b7e76a4ec2129acdf968f0376f6}{
+void {\bfseries setMainWindowState} (const QByteArray \&state)}
+\label{classConfig_ad14c9b7e76a4ec2129acdf968f0376f6}
+
+\item 
+\hypertarget{classConfig_ab262f5ec517fc82dfb602eb0d7817769}{
+qreal {\bfseries fontPointSize} () const }
+\label{classConfig_ab262f5ec517fc82dfb602eb0d7817769}
+
+\item 
+\hypertarget{classConfig_a5e3cb6ccc01f9bd580d35e820eae9702}{
+void {\bfseries setFontPointSize} (qreal size)}
+\label{classConfig_a5e3cb6ccc01f9bd580d35e820eae9702}
+
+\item 
+\hypertarget{classConfig_adcbbe3ea5bea7c22b776c88c90b7bae5}{
+\hyperlink{structFontSettings}{FontSettings} {\bfseries fontSettings} ()}
+\label{classConfig_adcbbe3ea5bea7c22b776c88c90b7bae5}
+
+\item 
+\hypertarget{classConfig_af85535967937755ae87bb18dffc5d837}{
+void {\bfseries setFontSettings} (const \hyperlink{structFontSettings}{FontSettings} \&settings)}
+\label{classConfig_af85535967937755ae87bb18dffc5d837}
+
+\item 
+\hypertarget{classConfig_a0a3602d5c0e627b4cfe1b9cdd751809c}{
+bool {\bfseries docRebuild} () const }
+\label{classConfig_a0a3602d5c0e627b4cfe1b9cdd751809c}
+
+\item 
+\hypertarget{classConfig_ad0c5f895ea515bf64d88697c59fc91ad}{
+void {\bfseries setDocRebuild} (bool rb)}
+\label{classConfig_ad0c5f895ea515bf64d88697c59fc91ad}
+
+\item 
+\hypertarget{classConfig_aef1300c347a555abbc5971d03b558c6b}{
+void {\bfseries loadProject} (const QString \&projectFileName)}
+\label{classConfig_aef1300c347a555abbc5971d03b558c6b}
+
+\item 
+\hypertarget{classConfig_a43989a61b97bf8a825892ffe01d6586f}{
+QString {\bfseries AppDir} ()}
+\label{classConfig_a43989a61b97bf8a825892ffe01d6586f}
+
+\item 
+\hypertarget{classConfig_a5873a0c82f9dd33ae3dc108a6db351c0}{
+QString {\bfseries BackupDir} ()}
+\label{classConfig_a5873a0c82f9dd33ae3dc108a6db351c0}
+
+\item 
+\hypertarget{classConfig_a5f20554f016e6f2952376cc373ae3345}{
+QString {\bfseries CacheDir} ()}
+\label{classConfig_a5f20554f016e6f2952376cc373ae3345}
+
+\item 
+\hypertarget{classConfig_a671ebf708cbc7b01ce0a61a0b6ff827e}{
+QString {\bfseries PrjDir} ()}
+\label{classConfig_a671ebf708cbc7b01ce0a61a0b6ff827e}
+
+\item 
+\hypertarget{classConfig_aa70f6cced73d5dda4f2a3e4603992608}{
+QString {\bfseries ImgDir} ()}
+\label{classConfig_aa70f6cced73d5dda4f2a3e4603992608}
+
+\item 
+\hypertarget{classConfig_ade4aa796455fbdabd927bce06e58b8fb}{
+QString {\bfseries CurPrjDir} ()}
+\label{classConfig_ade4aa796455fbdabd927bce06e58b8fb}
+
+\item 
+\hypertarget{classConfig_a27ab8b999c3d0fd2199581b21089f93f}{
+QString {\bfseries CurProject} ()}
+\label{classConfig_a27ab8b999c3d0fd2199581b21089f93f}
+
+\item 
+\hypertarget{classConfig_a5763c8f37e98213b9780a854ea6f78a7}{
+QString {\bfseries CurFile} ()}
+\label{classConfig_a5763c8f37e98213b9780a854ea6f78a7}
+
+\item 
+\hypertarget{classConfig_a51c8e3808dc5f537be4c673adbcf8abc}{
+QString {\bfseries CurPrjSrc} ()}
+\label{classConfig_a51c8e3808dc5f537be4c673adbcf8abc}
+
+\item 
+\hypertarget{classConfig_a4f84e0cb299e3bae32639699e0608291}{
+QString {\bfseries Lang} ()}
+\label{classConfig_a4f84e0cb299e3bae32639699e0608291}
+
+\item 
+\hypertarget{classConfig_a1c1795fa09eefa3d03f65dc736ba2e70}{
+QString {\bfseries ErrPage} ()}
+\label{classConfig_a1c1795fa09eefa3d03f65dc736ba2e70}
+
+\item 
+\hypertarget{classConfig_aa68bb878f2b454634c998ec351c296b9}{
+QString {\bfseries IniFile} ()}
+\label{classConfig_aa68bb878f2b454634c998ec351c296b9}
+
+\item 
+\hypertarget{classConfig_ad1784d8a691070c95cb207d13f91d0d0}{
+QString {\bfseries DbName} ()}
+\label{classConfig_ad1784d8a691070c95cb207d13f91d0d0}
+
+\item 
+\hypertarget{classConfig_a8a55bd545f7423b3e49ee67727fa2df5}{
+QString {\bfseries ContentsSortOrder} ()}
+\label{classConfig_a8a55bd545f7423b3e49ee67727fa2df5}
+
+\item 
+\hypertarget{classConfig_aeb0dea31991b81181f421a8c621e2708}{
+QString {\bfseries IndentString} ()}
+\label{classConfig_aeb0dea31991b81181f421a8c621e2708}
+
+\item 
+\hypertarget{classConfig_ab1b2551ec54727800734df5c3e210e45}{
+QString {\bfseries ModuleBiblename} ()}
+\label{classConfig_ab1b2551ec54727800734df5c3e210e45}
+
+\item 
+\hypertarget{classConfig_ab714a80890339910477edf5ed730c92b}{
+QString {\bfseries ModuleCopyright} ()}
+\label{classConfig_ab714a80890339910477edf5ed730c92b}
+
+\item 
+\hypertarget{classConfig_a4d4c411f52407e1989fac1c59c27e1f6}{
+QString {\bfseries ModuleBibleShortName} ()}
+\label{classConfig_a4d4c411f52407e1989fac1c59c27e1f6}
+
+\item 
+\hypertarget{classConfig_ae97a701aa46a7a86d610f0995167d09b}{
+double {\bfseries Version} ()}
+\label{classConfig_ae97a701aa46a7a86d610f0995167d09b}
+
+\item 
+\hypertarget{classConfig_a79d6093ee7fc3d8c1924dcdc5802b73f}{
+bool {\bfseries ModuleType} ()}
+\label{classConfig_a79d6093ee7fc3d8c1924dcdc5802b73f}
+
+\item 
+\hypertarget{classConfig_ab5dcb60f5e5b32b50c502a672f401915}{
+bool {\bfseries OldTestament} ()}
+\label{classConfig_ab5dcb60f5e5b32b50c502a672f401915}
+
+\item 
+\hypertarget{classConfig_ac5cf9b379db5d5aaefd8af0e437e96e5}{
+bool {\bfseries NewTestament} ()}
+\label{classConfig_ac5cf9b379db5d5aaefd8af0e437e96e5}
+
+\item 
+\hypertarget{classConfig_aa2388ca5215d80c85ee239840fbd8b7b}{
+bool {\bfseries Apocrypha} ()}
+\label{classConfig_aa2388ca5215d80c85ee239840fbd8b7b}
+
+\item 
+\hypertarget{classConfig_a1b916e322d8d3dd50d97308acb2cfcb7}{
+bool {\bfseries ChapterZero} ()}
+\label{classConfig_a1b916e322d8d3dd50d97308acb2cfcb7}
+
+\item 
+\hypertarget{classConfig_a38a428d6bb73ed99beda8b53224f743e}{
+bool {\bfseries EnglishPsalms} ()}
+\label{classConfig_a38a428d6bb73ed99beda8b53224f743e}
+
+\item 
+\hypertarget{classConfig_afb2b8b37e0d32422011b25b62d54801c}{
+bool {\bfseries StrongNumber} ()}
+\label{classConfig_afb2b8b37e0d32422011b25b62d54801c}
+
+\item 
+\hypertarget{classConfig_a4cbb7de46c99cf0cf2cb2718b89c8ed8}{
+QString {\bfseries StrongsDirectory} ()}
+\label{classConfig_a4cbb7de46c99cf0cf2cb2718b89c8ed8}
+
+\item 
+\hypertarget{classConfig_a0a7dd2ea21d8864e959ff3d2ae6a4640}{
+QString {\bfseries SoundDirectory} ()}
+\label{classConfig_a0a7dd2ea21d8864e959ff3d2ae6a4640}
+
+\item 
+\hypertarget{classConfig_a52b180d668bc70a7f61db5a56605b8c0}{
+bool {\bfseries NoForcedLineBreaks} ()}
+\label{classConfig_a52b180d668bc70a7f61db5a56605b8c0}
+
+\item 
+\hypertarget{classConfig_a9b6ce017d4d5d86b8ef7ff1d7334d6d9}{
+QString {\bfseries Language} ()}
+\label{classConfig_a9b6ce017d4d5d86b8ef7ff1d7334d6d9}
+
+\item 
+\hypertarget{classConfig_a6e378a0ffab9ee5786ea5e6f6b98bf89}{
+QString {\bfseries InstallFonts} ()}
+\label{classConfig_a6e378a0ffab9ee5786ea5e6f6b98bf89}
+
+\item 
+\hypertarget{classConfig_a8f222a8be08c59aaa8dad1e310d0bb36}{
+QString {\bfseries DesiredFontName} ()}
+\label{classConfig_a8f222a8be08c59aaa8dad1e310d0bb36}
+
+\item 
+\hypertarget{classConfig_aac5577c014fa342d5de8b3285034ecd5}{
+QString {\bfseries Categories} ()}
+\label{classConfig_aac5577c014fa342d5de8b3285034ecd5}
+
+\item 
+\hypertarget{classConfig_a02d3674b0ca4af069139d4e3730da552}{
+QString {\bfseries DesiredFontPath} ()}
+\label{classConfig_a02d3674b0ca4af069139d4e3730da552}
+
+\item 
+\hypertarget{classConfig_adfc6f949d85c29bbe689fa25bf79b5d1}{
+QString {\bfseries DefaultEncoding} ()}
+\label{classConfig_adfc6f949d85c29bbe689fa25bf79b5d1}
+
+\item 
+\hypertarget{classConfig_ae62fcb05c3a6aeb4cc4186a8bec1f807}{
+QString {\bfseries DesiredUIFont} ()}
+\label{classConfig_ae62fcb05c3a6aeb4cc4186a8bec1f807}
+
+\item 
+\hypertarget{classConfig_a80a54686d050e50228403a90f1c8c626}{
+bool {\bfseries UseRightAlignment} ()}
+\label{classConfig_a80a54686d050e50228403a90f1c8c626}
+
+\item 
+\hypertarget{classConfig_acaea7051a3fe96d766b59fdc1099019a}{
+bool {\bfseries UseChapterHead} ()}
+\label{classConfig_acaea7051a3fe96d766b59fdc1099019a}
+
+\item 
+\hypertarget{classConfig_a8b5709d811a93a9a4438da8896ce120c}{
+void {\bfseries setAppDir} (QString dir)}
+\label{classConfig_a8b5709d811a93a9a4438da8896ce120c}
+
+\item 
+\hypertarget{classConfig_a329afd7a2466b77a236e4538e05fa2b3}{
+void {\bfseries setBackupDir} (QString dir)}
+\label{classConfig_a329afd7a2466b77a236e4538e05fa2b3}
+
+\item 
+\hypertarget{classConfig_ac17cc70d543501b8efc51d7bfcf002d3}{
+void {\bfseries setCacheDir} (QString dir)}
+\label{classConfig_ac17cc70d543501b8efc51d7bfcf002d3}
+
+\item 
+\hypertarget{classConfig_a09892dbb77af485991f99ab446319cd5}{
+void {\bfseries setPrjDir} (QString dir)}
+\label{classConfig_a09892dbb77af485991f99ab446319cd5}
+
+\item 
+\hypertarget{classConfig_a0f4bf5165d5abc3762b770772da568ce}{
+void {\bfseries setImgDir} (QString dir)}
+\label{classConfig_a0f4bf5165d5abc3762b770772da568ce}
+
+\item 
+\hypertarget{classConfig_a313d02dd58f9f9fe973a287bb831b9ef}{
+void {\bfseries setCurPrjDir} (QString dir)}
+\label{classConfig_a313d02dd58f9f9fe973a287bb831b9ef}
+
+\item 
+\hypertarget{classConfig_af68f5fa366fb23a0139db52c0803e303}{
+void {\bfseries setCurProject} (QString prjFN)}
+\label{classConfig_af68f5fa366fb23a0139db52c0803e303}
+
+\item 
+\hypertarget{classConfig_aa0a59c988b8603c947886e8f74bdf3fb}{
+void {\bfseries setCurFile} (QString fn)}
+\label{classConfig_aa0a59c988b8603c947886e8f74bdf3fb}
+
+\item 
+\hypertarget{classConfig_ab4f09a3e974634518128e363e86e253c}{
+void {\bfseries setCurPrjSrc} ()}
+\label{classConfig_ab4f09a3e974634518128e363e86e253c}
+
+\item 
+\hypertarget{classConfig_a106b46916fca3c6cb2494349262ebeb2}{
+void {\bfseries setLang} (QString lng)}
+\label{classConfig_a106b46916fca3c6cb2494349262ebeb2}
+
+\item 
+\hypertarget{classConfig_af7601b1f60d77b78d2ede52d671eeb6a}{
+void {\bfseries setErrPage} (QString fn)}
+\label{classConfig_af7601b1f60d77b78d2ede52d671eeb6a}
+
+\item 
+\hypertarget{classConfig_abec65e9205ce71821edbebd62edf98ad}{
+void {\bfseries setIniFile} (QString fn)}
+\label{classConfig_abec65e9205ce71821edbebd62edf98ad}
+
+\item 
+\hypertarget{classConfig_a716200e88a22ef7138f6670f93b314a3}{
+void {\bfseries setDbName} (QString fn)}
+\label{classConfig_a716200e88a22ef7138f6670f93b314a3}
+
+\item 
+\hypertarget{classConfig_a47451584970944df67213e8ef747086d}{
+void {\bfseries setContentsSortOrder} (QString order)}
+\label{classConfig_a47451584970944df67213e8ef747086d}
+
+\item 
+\hypertarget{classConfig_ae04e190b01ce7694439dd06f69e28830}{
+void {\bfseries setModuleBiblename} (QString fn)}
+\label{classConfig_ae04e190b01ce7694439dd06f69e28830}
+
+\item 
+\hypertarget{classConfig_ac24bb69bba15ada7bc4bc031bd3e50f3}{
+void {\bfseries setModuleCopyright} (QString fn)}
+\label{classConfig_ac24bb69bba15ada7bc4bc031bd3e50f3}
+
+\item 
+\hypertarget{classConfig_a7501cd0b3b1dc7acc3e83472b73b7e95}{
+void {\bfseries setModuleBibleShortName} (QString fn)}
+\label{classConfig_a7501cd0b3b1dc7acc3e83472b73b7e95}
+
+\item 
+\hypertarget{classConfig_a4ed505f285b3da43a5ce5c7a97adf38e}{
+void {\bfseries setModuleVersion} (double ve)}
+\label{classConfig_a4ed505f285b3da43a5ce5c7a97adf38e}
+
+\item 
+\hypertarget{classConfig_a312d91925755d15b61859c4029c313d8}{
+void {\bfseries setModuleType} (bool fn)}
+\label{classConfig_a312d91925755d15b61859c4029c313d8}
+
+\item 
+\hypertarget{classConfig_a66fcacdcec861a4ffa084636b4e0fb50}{
+void {\bfseries setOldTestament} (bool fn)}
+\label{classConfig_a66fcacdcec861a4ffa084636b4e0fb50}
+
+\item 
+\hypertarget{classConfig_adc179a8e2125214efd4702962cac5f04}{
+void {\bfseries setNewTestament} (bool fn)}
+\label{classConfig_adc179a8e2125214efd4702962cac5f04}
+
+\item 
+\hypertarget{classConfig_a04074ed327d6ccd9b99f9bf515ab9c6f}{
+void {\bfseries setApocrypha} (bool fn)}
+\label{classConfig_a04074ed327d6ccd9b99f9bf515ab9c6f}
+
+\item 
+\hypertarget{classConfig_ae97824eec255ab7ac35f1e4134e1f70d}{
+void {\bfseries setChapterZero} (bool fn)}
+\label{classConfig_ae97824eec255ab7ac35f1e4134e1f70d}
+
+\item 
+\hypertarget{classConfig_a18aab8a61037e8feaafb2b4a7926d40a}{
+void {\bfseries setEnglishPsalms} (bool fn)}
+\label{classConfig_a18aab8a61037e8feaafb2b4a7926d40a}
+
+\item 
+\hypertarget{classConfig_a1d2ab525cc8d8cdbbecdcaedb813adca}{
+void {\bfseries setStrongNumber} (bool fn)}
+\label{classConfig_a1d2ab525cc8d8cdbbecdcaedb813adca}
+
+\item 
+\hypertarget{classConfig_aa3ef95f5c702ef726d15fe9e40334c81}{
+void {\bfseries setStrongsDirectory} (QString fn)}
+\label{classConfig_aa3ef95f5c702ef726d15fe9e40334c81}
+
+\item 
+\hypertarget{classConfig_a679e76e920aa53e67bde7cda6cd7356a}{
+void {\bfseries setSoundDirectory} (QString fn)}
+\label{classConfig_a679e76e920aa53e67bde7cda6cd7356a}
+
+\item 
+\hypertarget{classConfig_a775dfb23e90e1620e39af94e3b70dc69}{
+void {\bfseries setNoForcedLineBreaks} (bool fn)}
+\label{classConfig_a775dfb23e90e1620e39af94e3b70dc69}
+
+\item 
+\hypertarget{classConfig_aaa7a9747725a99a8cc67f0f3cbbfd7de}{
+void {\bfseries setLanguage} (QString fn)}
+\label{classConfig_aaa7a9747725a99a8cc67f0f3cbbfd7de}
+
+\item 
+\hypertarget{classConfig_af14f17e898c0cac9459b2a74d65b66a2}{
+void {\bfseries setInstallFonts} (QString fn)}
+\label{classConfig_af14f17e898c0cac9459b2a74d65b66a2}
+
+\item 
+\hypertarget{classConfig_a649288329caf696e5307160b577ce2d5}{
+void {\bfseries setDesiredFontName} (QString fn)}
+\label{classConfig_a649288329caf696e5307160b577ce2d5}
+
+\item 
+\hypertarget{classConfig_aa69da2760d3e0216b74f2035133a6e75}{
+void {\bfseries setCategories} (QString fn)}
+\label{classConfig_aa69da2760d3e0216b74f2035133a6e75}
+
+\item 
+\hypertarget{classConfig_ac0a7f8843703be9824973538506e2092}{
+void {\bfseries setDesiredFontPath} (QString fn)}
+\label{classConfig_ac0a7f8843703be9824973538506e2092}
+
+\item 
+\hypertarget{classConfig_a3983eb93f9cd62a4ab7296f7d3f2652b}{
+void {\bfseries setDefaultEncoding} (QString fn)}
+\label{classConfig_a3983eb93f9cd62a4ab7296f7d3f2652b}
+
+\item 
+\hypertarget{classConfig_af34d507b3533ab833d68994900a2b3dc}{
+void {\bfseries setDesiredUIFont} (QString fn)}
+\label{classConfig_af34d507b3533ab833d68994900a2b3dc}
+
+\item 
+\hypertarget{classConfig_a704a986ae96439559c55eeaa12b7aeb0}{
+void {\bfseries setUseRightAlignment} (bool fn)}
+\label{classConfig_a704a986ae96439559c55eeaa12b7aeb0}
+
+\item 
+\hypertarget{classConfig_ad57a8bde0b3a92840f341f1f902ff19c}{
+void {\bfseries setUseChapterHead} (bool fn)}
+\label{classConfig_ad57a8bde0b3a92840f341f1f902ff19c}
+
+\item 
+\hypertarget{classConfig_a3cfd66219765c8b85864fa7e5c5fb755}{
+QString {\bfseries AppLogFN} ()}
+\label{classConfig_a3cfd66219765c8b85864fa7e5c5fb755}
+
+\item 
+\hypertarget{classConfig_a29e7bc799ca77942d52ce2f53dc22eb1}{
+QString {\bfseries PrjLogFN} ()}
+\label{classConfig_a29e7bc799ca77942d52ce2f53dc22eb1}
+
+\item 
+\hypertarget{classConfig_a9c84e77bd8ff25e3108587a0422eda6a}{
+int {\bfseries AppLogLevel} ()}
+\label{classConfig_a9c84e77bd8ff25e3108587a0422eda6a}
+
+\item 
+\hypertarget{classConfig_a7733a2196d72dbcfa1a22969e8eb35e9}{
+int {\bfseries PrjLogLevel} ()}
+\label{classConfig_a7733a2196d72dbcfa1a22969e8eb35e9}
+
+\item 
+\hypertarget{classConfig_aff79f9198f2139d28bd356f21308133a}{
+QString {\bfseries ExternalEditor} ()}
+\label{classConfig_aff79f9198f2139d28bd356f21308133a}
+
+\item 
+\hypertarget{classConfig_a394efa8dae02479f1b77aed136fce9a4}{
+QString {\bfseries ExternalBrowser} ()}
+\label{classConfig_a394efa8dae02479f1b77aed136fce9a4}
+
+\item 
+\hypertarget{classConfig_a37d4376b28bab63d4d2cbef0cd15732b}{
+QString {\bfseries ExternalArchiver} ()}
+\label{classConfig_a37d4376b28bab63d4d2cbef0cd15732b}
+
+\item 
+\hypertarget{classConfig_ace7d0feb3fe0358f631c36f688dca9b2}{
+QString {\bfseries ExternalArchiverOptions} ()}
+\label{classConfig_ace7d0feb3fe0358f631c36f688dca9b2}
+
+\item 
+\hypertarget{classConfig_a10a5ed939eca0c8380d31fd4fafd2d03}{
+bool {\bfseries ContentsAdditionalView} ()}
+\label{classConfig_a10a5ed939eca0c8380d31fd4fafd2d03}
+
+\item 
+\hypertarget{classConfig_a26d65cc7522f38541fc6b79dd0a16faf}{
+bool {\bfseries ShowSubItemsTitle} ()}
+\label{classConfig_a26d65cc7522f38541fc6b79dd0a16faf}
+
+\item 
+\hypertarget{classConfig_a349ea9d582084804fafe1797e9606802}{
+bool {\bfseries AutoCollapse} ()}
+\label{classConfig_a349ea9d582084804fafe1797e9606802}
+
+\item 
+\hypertarget{classConfig_a285978e37f46bf3b82d6114869db3112}{
+bool {\bfseries ItemAutoProperties} ()}
+\label{classConfig_a285978e37f46bf3b82d6114869db3112}
+
+\item 
+\hypertarget{classConfig_a22fcd4a3f446d35b84944668f7aaf349}{
+void {\bfseries setAppLogFN} (QString fn)}
+\label{classConfig_a22fcd4a3f446d35b84944668f7aaf349}
+
+\item 
+\hypertarget{classConfig_a1d65e2c0c5a4c6b572ac061daa1d9c3b}{
+void {\bfseries setAppLogLevel} (int n)}
+\label{classConfig_a1d65e2c0c5a4c6b572ac061daa1d9c3b}
+
+\item 
+\hypertarget{classConfig_a718aa123488877b175872bffe7a9fc98}{
+void {\bfseries setPrjLogLevel} (int n)}
+\label{classConfig_a718aa123488877b175872bffe7a9fc98}
+
+\item 
+\hypertarget{classConfig_ae1079fafbf60797e4077373a5a3e4c39}{
+void {\bfseries setItemAutoProperties} (bool b)}
+\label{classConfig_ae1079fafbf60797e4077373a5a3e4c39}
+
+\item 
+\hypertarget{classConfig_af6e2cad1005339094cd77ac6ed0ac051}{
+void {\bfseries setExternalEditor} (QString fn)}
+\label{classConfig_af6e2cad1005339094cd77ac6ed0ac051}
+
+\item 
+\hypertarget{classConfig_a851583241ac424bde9e2175c6b8035c1}{
+void {\bfseries setExternalBrowser} (QString fn)}
+\label{classConfig_a851583241ac424bde9e2175c6b8035c1}
+
+\item 
+\hypertarget{classConfig_a035453e4020d11d0bb84746848db1d84}{
+void {\bfseries setExternalArchiver} (QString fn)}
+\label{classConfig_a035453e4020d11d0bb84746848db1d84}
+
+\item 
+\hypertarget{classConfig_a2a4cdfea3bd2d337ac915efbd7b1f156}{
+void {\bfseries setExternalArchiverOptions} (QString opts)}
+\label{classConfig_a2a4cdfea3bd2d337ac915efbd7b1f156}
+
+\item 
+\hypertarget{classConfig_a0673f105c48227ed8abd56006e0d9cbf}{
+int {\bfseries DefaultSignatureID} ()}
+\label{classConfig_a0673f105c48227ed8abd56006e0d9cbf}
+
+\item 
+\hypertarget{classConfig_a12a8660f7cc3a1e6bc380c90fab75264}{
+void {\bfseries setDefaultSignatureID} (int id)}
+\label{classConfig_a12a8660f7cc3a1e6bc380c90fab75264}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classConfig_ac7077976241b21ad495ea9e4c8c120ab}{
+static \hyperlink{classConfig}{Config} $\ast$ {\bfseries configuration} ()}
+\label{classConfig_ac7077976241b21ad495ea9e4c8c120ab}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+/home/files/Develop/git/bQella/next/bQella/src/settings/config.h\item 
+/home/files/Develop/git/bQella/next/bQella/src/settings/config.cpp\end{DoxyCompactItemize}

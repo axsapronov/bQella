@@ -24,21 +24,37 @@
 #define IMPORT_H
 
 #include "projectproperty.h"
-
-
 #include "ui_importdialog.h"
 
 class QDialog;
 class QOBject;
 
+
+/**
+@class Import
+class required to import modules.
+It also contains three features that are needed for the class importbookdialog (Import book separately)
+*/
 class Import : public QDialog
 {
     Q_OBJECT
 public:
+    /// The default constructor
     explicit Import(QWidget *parent = 0);
 
+
     void addContentToEndProjectFile(QString filename); // для импорта отдельно книги
+
+    /// The import feature of the book separately. In contrast to the usual import of the book takes another project file
+    /// @param  projectfile – path to project file
+    /// @param  pathName – path to book file
+    /// @param  FullName – full name for book (bibleqt param)
+    /// @param  ShortName – short name for book (bibleqt param)
+    /// @param  ChapterQty – count chapters in book (bibleqt param)
+    /// @param  myChapterSign – tag for chapters (bibleqt param)
+    /// @return void
     void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign); // для импорта книги
+
     void addContentToProjectFile(QString filename, QString text, bool tr); // filename чтобы работал с импортом отдельно книги
 
     QString getPrjFN();
@@ -58,8 +74,7 @@ private:
     QString ChapterSign;
 
     QString encoding;
-
-
+    QString htmlfilter;
 
     void accept();
     void importIni(QString file);
