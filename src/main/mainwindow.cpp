@@ -52,6 +52,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 MainWindow::MainWindow():
     aboutd(new AboutDialog(this))
 {
+//    qDebug() << "[9]";
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
 
@@ -129,13 +130,14 @@ MainWindow::~MainWindow()
 //-------------------------------------------------
 void MainWindow::setup()
 {
+//    qDebug() << "[7]";
     if(setupCompleted)
         return;
 
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar() -> showMessage(tr("Initializing %1...").arg(GL_PROG_NAME));
     helpDock -> initialize();
-
+//    qDebug() << "[14]";
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -239,6 +241,8 @@ void MainWindow::setup()
     appsets -> apply();
 
     // set the current selected item in the treeview
+
+//    qDebug() << "[31]";
     helpDialog() -> locateContents(tabs -> currentBrowser() -> source().toString());
     connect(tabs, SIGNAL(browserUrlChanged(QString)), helpDock, SLOT(locateContents(QString)));
     projectModified(false);
@@ -393,20 +397,28 @@ void MainWindow::showLink(const QString &link)
 
     //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
-    if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){    	
-    	// don't open a new tab for the same url more then once
+    if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){
+        // don't open a new tab for the same url more then once
         if (link == tabs -> currentBrowser() -> source().toString())
-    	    return;
+            return;
         if (ui.actionSaveFile -> isEnabled()) //i.e. document was modified
             emit saveOpenedLink();
         QUrl url(link);
         //qDebug() << "down!";
+//        qDebug() << "[48]";
         tabs -> setSource(url.toString()); // w
+
+//        qDebug() << "[49]";
+
         tabs -> currentBrowser() -> setFocus();
-    }else{
+
+    }
+    else
+    {
         qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
         QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
+
 }
 
 void MainWindow::modifededitor(bool my)
@@ -640,10 +652,11 @@ void MainWindow::ProjectOpen(QString fileName)
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
+//        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
         //Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
-    	projectModified(false);
+        projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
     }

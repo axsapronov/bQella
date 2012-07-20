@@ -223,7 +223,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
       lwClosed(false)
 {
 
-//    autosavestart = false;
+    //    autosavestart = false;
     exportf = new Export(0);
     ui.setupUi(this);
     ui.listContents -> setUniformRowHeights(true);
@@ -239,6 +239,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
 //-------------------------------------------------
 void HelpDialog::initialize()
 {
+//    qDebug() << "[15]";
     connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
     ui.tabWidget -> setElideMode(Qt::ElideNone);	//show tab titles, do not elide them by placing "..."
     ui.tabWidget -> removeTab(1); //hide Index tab
@@ -259,7 +260,7 @@ void HelpDialog::initialize()
 
     sortAscending(); //
     //        sortDisable();
-//        sortAscending();
+    //        sortAscending();
 
     ui.framePrepare -> hide();
     
@@ -352,8 +353,8 @@ void HelpDialog::initialize()
     itemPopupSubItems -> addAction(actionOpenCurrentTab);
     itemPopupSubItems -> addAction(actionOpenLinkInNewWindow);
     itemPopupSubItems -> addAction(actionOpenLinkInNewTab);
-//    itemPopupSubItems -> addAction(actionOpenLinkInExtEditor);
-//    itemPopupSubItems -> addAction(actionOpenLinkInExtBrowser);
+    //    itemPopupSubItems -> addAction(actionOpenLinkInExtEditor);
+    //    itemPopupSubItems -> addAction(actionOpenLinkInExtBrowser);
 
     
     //create projects list
@@ -361,17 +362,22 @@ void HelpDialog::initialize()
     QStringList sl = Config::configuration() -> ProfileFNs();
     sl.removeOne("");
     sl.removeOne(".pem");
-//    qDebug() << " list = " << sl;
+    //    qDebug() << " list = " << sl;
     QStringList::iterator it = sl.begin();
     for (; it != sl.end(); ++it)
     {
 
+//        qDebug() << "[18]";
         title = Config::configuration() -> getProjectProperty("title", *it);
-    	if (!title.isEmpty()){ //it is empty when it's something wrong with project
+        if (!title.isEmpty())
+        {
+            //it is empty when it's something wrong with project
+//            qDebug() << "[20]";
             ui.CBProjects -> insertItem(0, title );
             ui.CBProjects -> setItemData(0, *it, LinkRole);
         }
     }
+//    qDebug() << "[16]";
 
     int ind = sl.indexOf(Config::configuration() -> CurProject());	//!+! stores index in unsorted list
     ui.CBProjects -> setCurrentIndex(ind);
@@ -383,6 +389,7 @@ void HelpDialog::initialize()
     enableProjectButtons();
     newSameLevelItem = false;	// This should be set in create-item functions. Init here just in case
 
+//    qDebug() << "[17]";
     initTabs();
 
     ui.CBProjects ->setCurrentIndex(0);
@@ -394,6 +401,7 @@ void HelpDialog::initTabs()
 {
     contentList.clear();
 
+//    qDebug() << "[22]";
     initDoneMsgShown = false;
     fullTextIndex = 0;
     indexDone = false;
@@ -456,6 +464,7 @@ void HelpDialog::timerEvent(QTimerEvent *e)
 //-------------------------------------------------
 void HelpDialog::loadIndexFile()
 {
+//    qDebug() << "[2]";
     if (indexDone)
         return;
 
@@ -611,6 +620,7 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
     if (titleMapDone)
         return;
 
+//    qDebug() << "[23]";
     bool needRebuild = false;
     if (Config::configuration() -> profileName() == QString("default")) {
         const QStringList docuFiles = Config::configuration() -> docFiles();
@@ -645,9 +655,12 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
 //-------------------------------------------------
 void HelpDialog::getAllContents()
 {
+//    qDebug() << "[24]";
     QFile contentFile(Config::configuration() -> profileName());
     contentList.clear();
-    if (!contentFile.open(QFile::ReadOnly)) {
+    if (!contentFile.open(QFile::ReadOnly))
+    {
+//        qDebug() << "[25]";
         buildContentDict();
         return;
     }
@@ -655,7 +668,9 @@ void HelpDialog::getAllContents()
     QDataStream ds(&contentFile);
     quint32 fileAges;
     ds >> fileAges;
-    if (fileAges != getFileAges()) {
+    if (fileAges != getFileAges())
+    {
+//        qDebug() << "[26]";
         contentFile.close();
         removeOldCacheFiles(true);
         buildContentDict();
@@ -663,7 +678,9 @@ void HelpDialog::getAllContents()
     }
     QString key;
     QList<ContentItem> lst;
-    while (!ds.atEnd()) {
+    while (!ds.atEnd())
+    {
+//        qDebug() << "[27]";
         ds >> key;
         ds >> lst;
         //contentList += qMakePair(key, QList<ContentItem>(lst));
@@ -676,10 +693,13 @@ void HelpDialog::getAllContents()
 //-------------------------------------------------
 void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes (TreeWidgetItems)
 {
+//    qDebug() << "[28]";
     QStringList docuFiles = Config::configuration() -> docFiles();
 
     quint32 fileAges = 0;
-    for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it) {
+    for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it)
+    {
+//        qDebug() << "[29]";
         QFile file(*it);
         //        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pem file. Should we remove 'for' cycle and docuFiles
 
@@ -710,7 +730,9 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
     }
 
     QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName());
-    if (contentOut.open(QFile::WriteOnly)) {
+    if (contentOut.open(QFile::WriteOnly))
+    {
+//        qDebug() << "[30]";
         QDataStream s(&contentOut);
         s << fileAges;
         for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
@@ -733,6 +755,7 @@ void HelpDialog::currentTabChanged(int index)
 //-------------------------------------------------
 void HelpDialog::showInitDoneMessage()
 {
+//    qDebug() << "[1]";
     if (initDoneMsgShown)
         return;
     initDoneMsgShown = true;
@@ -901,6 +924,7 @@ void HelpDialog::store(QTreeWidget *tw, QTextStream &ts)
 //-------------------------------------------------
 void HelpDialog::insertContents()
 {
+//    qDebug() << "[3]";
     int int64 = 64;    // ? Why 64? Maximum depth of tree?
     QTreeWidgetItem *rootEntry;
     QTreeWidgetItem *childEntry;
@@ -922,15 +946,19 @@ void HelpDialog::insertContents()
     for (int j = 0; j < int64; ++j)
         lastItem[j] = 0;
 
-    for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
+    for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it)
+    {
         item = *it;
-        if (item.depth == 0) {
+        if (item.depth == 0)
+        {
             rootEntry = new QTreeWidgetItem(ui.listContents, 0);
             rootEntry -> setText(0, item.title);
             rootEntry -> setData(0, LinkRole, item.reference);
             stack.push(rootEntry);
             depth = 1;
-        }else{
+        }
+        else
+        {
             if (item.depth == depth)
             {
                 childEntry = new QTreeWidgetItem(stack.top(), lastItem[ depth ]);
@@ -938,20 +966,31 @@ void HelpDialog::insertContents()
                 childEntry -> setText(0, item.title);
                 childEntry -> setData(0, LinkRole, item.reference);
             }
-            else if (item.depth < depth) {
+            else if (item.depth < depth)
+            {
                 stack.pop();
                 depth--;
                 item = *(--it);
             }
-            if (item.depth > depth)  {
+            if (item.depth > depth)
+            {
                 depth = item.depth;
                 stack.push(childEntry);
             }
         }
         //processEvents(); // ? why do we need it ?
     }
+
+    qDebug();
+
+
     setCursor(Qt::ArrowCursor);
+
+
+
     showInitDoneMessage();
+
+
 }
 
 //-------------------------------------------------
@@ -972,16 +1011,16 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
     QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
     QFileInfo fi(fn);
 
-//    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;
+    //    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;
 
     if (fi.exists() && fi.isFile())
     {
-//        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
-//        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
+        //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
+        //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
         //emit showLink(i -> data(0, LinkRole).toString());
         if (depth > 1)
             emit showLink("file:"+fn);  //  если не глава, то не показываем
-//        autosavestart = true;
+        //        autosavestart = true;
     }
     else
     {
@@ -1015,12 +1054,14 @@ QTreeWidgetItem * HelpDialog::locateLink(QTreeWidgetItem *item, const QString &l
         }
         child = 0;
     }
+
     return child;
 }
 
 //-------------------------------------------------
 void HelpDialog::locateContents(const QString &link)
 {
+//    qDebug() << "[6]";
     //ensure the TOC is filled
     if (!contentsInserted)
         insertContents();
@@ -1030,21 +1071,27 @@ void HelpDialog::locateContents(const QString &link)
     Qt::CaseSensitivity checkCase = Qt::CaseSensitive;
 #endif
     QString findLink(link);
+
+//    qDebug() << "[50]";
     //Installations on a windows local drive will give the 'link' as <file:///C:/xxx>
     //and the contents in the TOC will be <file:C:/xxx>.
     //But on others the 'link' of format <file:///root/xxx>
     //and the contents in the TOC will be <file:/root/xxx>.
-    if (findLink.contains(QString("file:///"))) {
+    if (findLink.contains(QString("file:///")))
+    {
+//        qDebug() << "[51]";
         if (findLink[9] == QChar(':')) //on windows drives
             findLink.replace(0, 8, QString("file:"));
         else
             findLink.replace(0, 8, QString("file:/"));
     }
 
+//    qDebug() << "[52]";
     bool topLevel = false;
     QTreeWidgetItem *item = 0;
     int totalItems = ui.listContents -> topLevelItemCount();
 
+//    qDebug() << "[53]";
     for (int i = 0; i < totalItems; i++ ) {
         // first see if we are one of the top level items
         item = (QTreeWidgetItem*)ui.listContents -> topLevelItem(i);
@@ -1054,6 +1101,7 @@ void HelpDialog::locateContents(const QString &link)
         }
     }
 
+//    qDebug() << "[54]";
     if (!topLevel) {
         // now try to find it in the sublevel items
         for (int n = 0; n < totalItems; ++n) {
@@ -1063,12 +1111,14 @@ void HelpDialog::locateContents(const QString &link)
                 break;
         }
     }
+//    qDebug() << "[55]";
 
     //remove the old selection
     QList<QTreeWidgetItem *> selected = ui.listContents -> selectedItems();
     foreach(QTreeWidgetItem *sel, selected)
         ui.listContents -> setItemSelected(sel, false);
 
+//    qDebug() << "[56]";
     //set the TOC item and show
     ui.listContents -> setCurrentItem(item);
     ui.listContents -> setItemSelected(item, true);
@@ -1091,6 +1141,7 @@ void HelpDialog::setupFullTextIndex()
     if (fullTextIndex)
         return;
 
+//    qDebug() << "[4]";
     QString pname = Config::configuration() -> profileName();
     //fullTextIndex = new Index(QStringList(), QDir::homePath()); // ### Is this correct ?
     fullTextIndex = new Index(QStringList(), Config::configuration() -> CacheDir());
@@ -1181,7 +1232,7 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
     if (action) {
 
         if (action == actionItemProperties){
-           showItemProperties();
+            showItemProperties();
         }else if (action == actionItemInsert){
             newSameLevelItem = false;
             newItem();
@@ -1276,7 +1327,7 @@ void HelpDialog::showItemProperties()
     QString title = item -> text(0);
     QString fName = unurlifyFileName(item -> data(0, LinkRole).toString());
 
-//    QString fullname = getFullName(fName);
+    //    QString fullname = getFullName(fName);
     QString shortname = getShortName(fName);
 
     mw -> browsers() -> currentBrowser() -> updateItem(title, shortname, item->childCount(), fName);
@@ -1294,11 +1345,11 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)
     {
-//        qDebug() << "Debug: _HelpDialog::InsertContentsItem()";
-//        qDebug() << "bookChapterQty = " << m_bookadddialog -> bookChapterQty << " bookFullName = " << m_bookadddialog -> bookFullName;
-//        qDebug() << "bookShortName = " << m_bookadddialog -> bookShortName;
-//        qDebug() << "fullname = " << fullname << " fileName = " << fileName;
-//        qDebug() << "CurPrjDir = " << Config::configuration() -> CurPrjDir();
+        //        qDebug() << "Debug: _HelpDialog::InsertContentsItem()";
+        //        qDebug() << "bookChapterQty = " << m_bookadddialog -> bookChapterQty << " bookFullName = " << m_bookadddialog -> bookFullName;
+        //        qDebug() << "bookShortName = " << m_bookadddialog -> bookShortName;
+        //        qDebug() << "fullname = " << fullname << " fileName = " << fileName;
+        //        qDebug() << "CurPrjDir = " << Config::configuration() -> CurPrjDir();
         QString fileNameFor = fileName;
         QString fileNameFor2 = fileName;
         QFile file1(fileNameFor2.remove("file:"));
@@ -1316,9 +1367,9 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
                 QString str = fileNameFor.remove(Config::configuration() -> CurPrjDir()).remove("file:/");
                 str.remove(Config::configuration() -> CurPrjDir().toLower())
                         .remove("file:/");
-//                str.replace(" ","_")
-//                                .remove(str.length(),1);
-//                qDebug() << "\n ----- str = " << str; //
+                //                str.replace(" ","_")
+                //                                .remove(str.length(),1);
+                //                qDebug() << "\n ----- str = " << str; //
                 file1.write(QString("\nPathName = %1"
                                     "\nFullName = %2"
                                     "\nShortName = %3"
@@ -1345,7 +1396,7 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
         QString title2 = m_bookadddialog->bookFullName;
         title2.replace("_", " ");
         newEntry -> setText(0, title2);
-//        newEntry -> setText(0,m_bookadddialog -> bookFullName);
+        //        newEntry -> setText(0,m_bookadddialog -> bookFullName);
     }else{
         Config::configuration() -> toPrjLog(3," + subItem");
 
@@ -1367,9 +1418,9 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
     else
     {
         qDebug() << "\nchapter!"  << "newentry " <<  newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
-//        qDebug() << newEntry -> parent() -> data(0,LinkRole);
-//        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString();
-//        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
+        //        qDebug() << newEntry -> parent() -> data(0,LinkRole);
+        //        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString();
+        //        qDebug() << newEntry -> parent() -> data(0,LinkRole).toString().remove("file:");
         fixedBookConfFile(newEntry -> parent() -> data(0,LinkRole).toString().remove("file:"),newEntry -> parent(), title);
 
     }
@@ -1392,11 +1443,11 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
             QString chaptervalue = incstr(title, GL_LENGTITEMSTRING, "_");
             title = incstr(title, GL_LENGTITEMSTRING, " ");
             QString fileNamechapter;
-//            QString bookname = checkProcentRol(shortname,50,QString(m_bookadddialog -> bookFullName).replace(" ","_"));
+            //            QString bookname = checkProcentRol(shortname,50,QString(m_bookadddialog -> bookFullName).replace(" ","_"));
             QString bookname = getFileNameAbs(fileName).remove("book_");
 
             fileNamechapter = Config::configuration() -> CurPrjDir() + "/book_"+ bookname +"_chapter_"+chaptervalue+".htm";
-//            qDebug() << " bookname = " << bookname << "- fn = " << fileNamechapter << "counter = " << i << " shortname = " << shortname;
+            //            qDebug() << " bookname = " << bookname << "- fn = " << fileNamechapter << "counter = " << i << " shortname = " << shortname;
             createEmptyHtml(fileNamechapter, title);
             InsertChapter(newEntry,title, urlifyFileName(fileNamechapter));// отвечает за добавление файла в список
         }
@@ -1452,23 +1503,23 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                     int stint = str.indexOf("ChapterQty =");
                     if (stint >0)
                     {
-//                        qDebug() << "str do  " << str;
+                        //                        qDebug() << "str do  " << str;
                         str.remove(stint, str.length()-stint);
-//                        qDebug() << "str remove " << str;
+                        //                        qDebug() << "str remove " << str;
                         str.append(QString("ChapterQty = %1</p></body></html>").arg(item -> childCount()));
-//                        qDebug() << "str append " << str;
+                        //                        qDebug() << "str append " << str;
                     }
                 }
                 if (str.left(13) == "ChapterQty = ")
                 {
-//                    qDebug() << "\n" << "find!";
+                    //                    qDebug() << "\n" << "find!";
                     //str = QString("ChapterQty = %1").arg(m_bookadddialog -> bookChapterQty);
-//                    qDebug() << "\n" << ui.listContents -> currentItem() << " " << ui.listContents -> currentItem() -> childCount();
+                    //                    qDebug() << "\n" << ui.listContents -> currentItem() << " " << ui.listContents -> currentItem() -> childCount();
                     str = QString("ChapterQty = %1\n").arg(item -> childCount());
                 }
                 string.append(str+"\n");
             }
-//            qDebug() << "\nstring = " << string;
+            //            qDebug() << "\nstring = " << string;
         }
     }
     else
@@ -1523,7 +1574,7 @@ void HelpDialog::saveProject()
 //-------------------------------------------------
 void HelpDialog::saveProject(QString profileFN)
 {
-//    qDebug() << "profileFN" << profileFN;
+    //    qDebug() << "profileFN" << profileFN;
 
     QString str;
     QMap<QString, QString>::iterator i;
@@ -1544,12 +1595,12 @@ void HelpDialog::saveProject(QString profileFN)
             str = relatifyFileName(i.value(), Config::configuration() -> CurPrjDir());
         }else
             str = i.value();
-//        qDebug() << "i.key =  " << i.key() << "  str = " << str;
+        //        qDebug() << "i.key =  " << i.key() << "  str = " << str;
         ts << ind1 << "<property name=\"" << i.key() << "\">" << Qt::escape(str) << "</property>" << endl;
     }
     ts << "</profile>\n\n";
 
-//    qDebug();
+    //    qDebug();
     // save contents
     store2xml(ui.listContents, ts);
     ts << "\n</pemproject>\n";
@@ -1571,9 +1622,9 @@ void HelpDialog::updateItemProperties(QString fullname, QString shortname, int c
 
 
     // заменяем в файле сменившиеся параметры
-//    qDebug() << "Debug: _HelpDialog::updateItemProperties" << "fullname = " << fullname << " shortname = " << shortname << " count = " << count;
+    //    qDebug() << "Debug: _HelpDialog::updateItemProperties" << "fullname = " << fullname << " shortname = " << shortname << " count = " << count;
     QFile file(unurlifyFileName(fileName));
-//    qDebug() << " filename = " << fileName;
+    //    qDebug() << " filename = " << fileName;
     QString line;
     QStringList list;
     if (file.open(QIODevice::ReadOnly))
@@ -1582,13 +1633,13 @@ void HelpDialog::updateItemProperties(QString fullname, QString shortname, int c
         do
         {
             line = stream.readLine();
-//            qDebug() << "line = " << line;
+            //            qDebug() << "line = " << line;
             line = replaceFullShortName(line, fullname, "FullName = ");
             line = replaceFullShortName(line, shortname, "ShortName = ");
             list << line;
         } while (!stream.atEnd());
     }
-//    qDebug() << "Debug: _HelpDialog::updateItemProperties" << " list = " << list;
+    //    qDebug() << "Debug: _HelpDialog::updateItemProperties" << " list = " << list;
     file.close();
     file.remove();
     writeQStringList(fileName, list);
@@ -1645,7 +1696,7 @@ void HelpDialog::deleteItem()
                 QString str = fName;
                 QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LENGTITEMSTRING, "_");
                 str = str.replace(getFileNameAbs(fName), getFileNameAbs(fName)+ replace);
-//                qDebug() << " str = " << str;
+                //                qDebug() << " str = " << str;
                 QFile::remove(str);
             }
             removeItemDontAsk();
@@ -1701,6 +1752,7 @@ void HelpDialog::loadProjectFromList(int prjIndex)
 //-------------------------------------------------
 void HelpDialog::enableProjectButtons()
 {
+//    qDebug() << "[21]";
     int i;
     int n = ui.CBProjects -> count();
     int ind = -1;
@@ -1752,7 +1804,7 @@ void HelpDialog::cloneItem(QTreeWidgetItem *item, bool subItem)
         ui.listContents -> currentItem() -> addChild(item);
     }else //TopLevelItem
         ui.listContents -> addTopLevelItem(item);
-//    qDebug() <<  "Debug: _ HelpDialog::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
+    //    qDebug() <<  "Debug: _ HelpDialog::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
 }
 
 //-------------------------------------------------
@@ -1776,12 +1828,12 @@ void HelpDialog::newItem()
 {
     // определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
     int depth = 1;
-//    qDebug() << " _ 0 ";
+    //    qDebug() << " _ 0 ";
 
     for(QTreeWidgetItem *parent = NULL, *cur = ui.listContents -> currentItem(); parent = cur -> parent(); cur = parent, ++depth);  //warning
-//    depth = getDepthTreeWidgetItem(ui.listContents -> currentItem());
+    //    depth = getDepthTreeWidgetItem(ui.listContents -> currentItem());
 
-//    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
+    //    qDebug() << "Debug: _HelpDialog::newItem()" << "depthlevel = " <<  depth;
     if (depth < 2)
     {
         if (! Config::configuration() -> ItemAutoProperties()){
@@ -1813,17 +1865,17 @@ void HelpDialog::newItem()
                     //create chapter file
                     QString bookname = getFileNameAbs(ui.listContents -> currentItem() -> data(0, LinkRole).toString().remove("file:")).remove("book_");
                     qDebug() << "bookname = " << bookname;
-//                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(ui.listContents -> currentItem() -> text(0)).replace(" ","_") +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
+                    //                    fileName = Config::configuration() -> CurPrjDir() + "/book_"+QString(ui.listContents -> currentItem() -> text(0)).replace(" ","_") +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
                     fileName = Config::configuration() -> CurPrjDir() + "/book_"+ bookname +"_chapter_"+ incstr(QString::number(counter),3, "_")+".htm";
 
-//                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;                    
+                    //                    qDebug() << "Debug: _HelpDialog::newItem():" << "chapter:" << "filename = " << fileName;
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
                 title = incstr(QString("%1").arg(counter-1),GL_LENGTITEMSTRING, " ");
             }
-//            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
-//            qDebug() << "Debug: _HelpDialog::newItem()"  << " filename = " << checkProcentRol(getShortName(fileName), 50, fileName) << " shrotname " << getShortName(fileName);
+            //            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
+            //            qDebug() << "Debug: _HelpDialog::newItem()"  << " filename = " << checkProcentRol(getShortName(fileName), 50, fileName) << " shrotname " << getShortName(fileName);
 
             title.replace("_", " ");
             createEmptyHtml(fileName, title);
@@ -1892,8 +1944,8 @@ bool HelpDialog::findItemByName(QTreeWidgetItem *i, QString &name) //for buildin
         if (i -> text(0).contains(name, Qt::CaseInsensitive) ){
             ui.listContents -> setCurrentItem(i);
             Config::configuration() -> toPrjLog(3,"item found. liTopLevelIndex=" + QString::number(liTopLevelIndex)+
-                                              " liChildIndex=" + QString::number(liChildIndex)+
-                                              " curChildIndex=" + QString::number(curChildIndex) );
+                                                " liChildIndex=" + QString::number(liChildIndex)+
+                                                " curChildIndex=" + QString::number(curChildIndex) );
             liChildIndex = curChildIndex;
             return true;
         }
@@ -1971,7 +2023,7 @@ QString HelpDialog::getFileName(int i)
 //-------------------------------------------------
 QString HelpDialog::getTest()
 {
-//    exportf -> setTopLevelItemCount(10);
+    //    exportf -> setTopLevelItemCount(10);
     return getFileBibleqtName();
 }
 //-------------------------------------------------
@@ -1983,10 +2035,10 @@ int HelpDialog::getTopLevelItemCount()
 void HelpDialog::exportModule()
 {
     saveProject();
-//                    int999(123);
-//                    int999(000);
+    //                    int999(123);
+    //                    int999(000);
     QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
-//    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
+    //    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
     QString curdir = Config::configuration()->CurPrjDir() + "/";
     exportf -> exportCreateDir(curdir); // создается
     exportf -> exportBibleqtIni(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), QString("%1").arg(ui.listContents -> topLevelItemCount()-1));
@@ -1995,7 +2047,7 @@ void HelpDialog::exportModule()
     {
         QString filename = ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString().remove("file:");;
         filename = curdir+"export_"+ getNameFolder(curdir) +  "/"+filename.split("/").last();
-//        qDebug() << "\n ----" <<  QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)) <<  ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:") << QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  );
+        //        qDebug() << "\n ----" <<  QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)) <<  ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:") << QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  );
         exportf -> exportBibleqtIniInfo(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:"),  QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  ));
         exportBibleBook(filename, QString("%1").arg(i));
     }
@@ -2011,14 +2063,14 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
     }
     else
     {
-//        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
+        //        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
         for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
         {
             QString filenamechapter = ui.listContents -> topLevelItem(i.toInt()) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
             int icount = j;
             filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true)).toUtf8());
         }
-//        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
+        //        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
     }
     filebook.close();
 }

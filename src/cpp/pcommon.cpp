@@ -1395,7 +1395,6 @@ QString checkProcentRol(QString str, QString out, int procent)
 //        qDebug() << "\nlistup = " << listup;
         for (int foo = 0; foo < listup.size(); foo++)
         {
-//            qDebug() << " ttest[1]";
             for (int i = 0; i < liststr.size(); i++)
             {
 //                qDebug() << " ttest[2]" << "list = " << listup.at(foo) << " listg =" << liststr.at(i);
@@ -1406,7 +1405,6 @@ QString checkProcentRol(QString str, QString out, int procent)
                 }
             }
         }
-//        qDebug() << " ttest[3]";
 //        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
         double test = double(pr) / double(listup.size()) * 100;
         if ( pr != 0 )
@@ -1415,13 +1413,10 @@ QString checkProcentRol(QString str, QString out, int procent)
         }
         if (test >= procent )
         {
-//            qDebug() << " ttest[4]";
             return QString::number(j+1);
         }
 
     }
-
-//    qDebug() << " ttest[6]";
     return out;
 
 }

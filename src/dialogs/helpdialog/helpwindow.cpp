@@ -107,12 +107,16 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
 // open link in this window or pass url to OS
 void HelpWindow::setSource(const QUrl &name)
 {
+// qDebug() << "[8]";
     if (name.isValid()) {
+//        qDebug() << "[32]";
         // pass URL to OS
         if (name.scheme() == QString("http")
                 || name.scheme() == QString("ftp")
                 || name.scheme() == QString("mailto")
-                || name.path().endsWith(QString("pdf"))) {
+                || name.path().endsWith(QString("pdf")))
+        {
+//            qDebug() << "[33]";
             bool launched = QDesktopServices::openUrl(name);
             if (!launched) {
                 QMessageBox::information(mw, tr("Help"), tr("Unable to launch web browser.\n"), tr("OK"));
@@ -121,33 +125,50 @@ void HelpWindow::setSource(const QUrl &name)
         }
         //Open in active window or create new window
         QFileInfo fi(name.toLocalFile());
-        if (name.scheme() == QString("file") && fi.exists() && fi.isFile() ) {
+        if (name.scheme() == QString("file") && fi.exists() && fi.isFile() )
+        {
+//            qDebug() << "[34]";
             if (newWindow || (shiftPressed && hasFocus())) {   //open in new window
                 shiftPressed = false;
                 mw -> saveSettings();
                 MainWindow *nmw = new MainWindow;
                 nmw -> move(mw -> geometry().topLeft());
                 nmw -> show();
-                
+//                qDebug() << "[35]";
                 if (mw -> isMaximized())
                     nmw -> showMaximized();
                 
                 nmw -> setup();
+//                qDebug() << "[36]";
                 nmw -> showLink(name.toString());
-            } else {   // open in active window
-                raEdit::setSource(name);
-                raEdit::scrollToAnchor(name.fragment());
+//                qDebug() << "[37]";
             }
+            else
+            {   // open in active window
+//                qDebug() << "[38]";
+                raEdit::setSource(name);
+//                qDebug() << "[39]";
+                raEdit::scrollToAnchor(name.fragment());
+//                qDebug() << "[40]";
+            }
+//            qDebug() << "[41]";
             setCurrentFileName(name.toLocalFile());		//? do we need it?
+//            qDebug() << "[42]";
             mw -> statusBar() -> showMessage(tr("Source: %1").arg(raEdit::source().toString()), 5000);
             return;
         }
     }
     //display error
+//    qDebug() << "[43]";
     mw -> statusBar() -> showMessage(tr("Failed to open link: '%1'").arg(name.toString()), 5000);
+//    qDebug() << "[44]";
     raEdit::setSource( Config::configuration() -> ErrPage() );
-    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
+//    qDebug() << "[45]";
+//    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
+    setHtml(tr("").arg(name.toString()));
+//    qDebug() << "[46]";
     mw -> browsers() -> updateTitle(tr("Error..."));
+//    qDebug() << "[47]";
 }
 
 //-------------------------------------------------

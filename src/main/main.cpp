@@ -69,8 +69,10 @@ int main( int argc, char ** argv )
     if (conf -> Lang() == "France") translator.load("bqella_fr",":lang/lang");
     a.installTranslator(&translator);
     conf -> hideSideBar( hideSidebar );
+//    qDebug() << "[10]";
     QPointer<MainWindow> mw = new MainWindow();
 
+//    qDebug() << "[11]";
     FontSettings settings = conf -> fontSettings();
     if (mw -> font() != settings.windowFont)
         a.setFont(settings.windowFont, "QWidget");
@@ -78,6 +80,7 @@ int main( int argc, char ** argv )
     mw -> show();
 
 
+//    qDebug() << "[12]";
 //    qDebug() << " curfile" << conf->CurFile();
 //    qDebug() << "CurFile = " << conf->CurFile();
 //    qDebug() << "source = " << conf -> source();
@@ -85,12 +88,13 @@ int main( int argc, char ** argv )
     if (links.isEmpty())
     {
         //!+! or option "Remember opened files" is not set
-
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
     }
     else 
+    {
+//        qDebug() << "[13]";
         mw -> showLinks( links );
-
+    }
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
     
     int appExec = a.exec();

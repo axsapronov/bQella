@@ -158,7 +158,8 @@ void TabbedBrowser::newTab(const QString &lnk)
 	HelpWindow *win = createHelpWindow();
         win -> setObjectName("WorkArea");
     ui.tab -> setCurrentIndex(ui.tab -> indexOf(win));
-    if(!link.isNull()) {
+    if(!link.isNull())
+    {
          win -> setSource(link);
     }
     emit tabCountChanged(ui.tab -> count());
