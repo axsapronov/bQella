@@ -290,22 +290,38 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     addContentToProjectFile(text, false);
 }
 //----------------------------------------------------
-void Import::importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign)
+void Import::importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding)
 {
+
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8");
+
+    if (encoding == "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
+    if (encoding == "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
+    if (encoding == "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
+    if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
+    if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
+    if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
+    if (encoding == "Windows-1254") codec = QTextCodec::codecForName("Windows-1254");
+    if (encoding == "Windows-1255") codec = QTextCodec::codecForName("Windows-1255");
+    if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
+    if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
+    if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
+    if (encoding == "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
+    if (encoding == "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
+
+//    QTextCodec::setCodecForCStrings(codec);
+//    QTextCodec::setCodecForLocale(codec);
+//    QTextCodec::setCodecForTr(codec);
+
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
     QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    QString title = pathName.split("/").last().split(".").first();
-//    QString path = "./book_" + pathName.split("/").last();
-
-    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
+    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last()).remove (".htm")+".htm";
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
     QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
     QString filenameforchapter = QString(pathName).replace(getFileNameAbs(pathName), chunksnameforchapter);
-//    qDebug() << " chunk 1 = " << chunksnameforchapter << " chunkk = " << filenameforchapter;
-
 
     // add info to project file
     QString text2 = QString("<section title=\"" + Qt::escape(FullName) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
@@ -320,6 +336,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
     {
         // file opened successfully
         QTextStream stream( &file );        // use a text stream
+        stream.setCodec (codec);
         // until end of file...
         line = stream.readLine();
         while ((line.indexOf(myChapterSign) == -1) and (!stream.atEnd()))
@@ -337,9 +354,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
             QString text ="";
             do
             {
-//                qDebug() << " chaptersign = " << myChapterSign;
                 line = stream.readLine();
-//                qDebug() << " line = " << line;
                 if (line.indexOf(myChapterSign) >=0)
                 {
                     line = "";
@@ -513,7 +528,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
     pathNameE.remove("book_");
 //    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
+    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + checkProcentRol(ShortName, pathName.split("/").last()).remove (".htm")+".htm";
 //    qDebug() << " \n ------- pathname = " << pathNameE << " filenamef = " << fileimportname;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;

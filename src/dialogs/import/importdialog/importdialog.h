@@ -61,8 +61,9 @@ public:
     @param  ShortName  short name for book (bibleqt param)
     @param  ChapterQty  count chapters in book (bibleqt param)
     @param  myChapterSign  tag for chapters (bibleqt param)
+    @param  encoding  encoding
     */
-    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign); // для импорта книги
+    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding); // для импорта книги
 
     /**
     @function

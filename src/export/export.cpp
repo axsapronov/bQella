@@ -80,7 +80,7 @@ void Export::exportBibleqtIni(QString string, QString count)
             QString stru ="";
             stru.append(tr("\\\\ Этот модуль создан в программе bQella."
                            "\n\\\\ Разработчик программы: Сапронов Александр - sapronov.alexander92[@]gmail.com"
-                           "\n\\\\ Git программы: https://github.com/WarmongeR1/bQella"
+                           "\n\\\\ Github программы: http://warmonger1.github.com/bQella/"
                            "\n\\\\ Блог разработчика: http://warmonger72.blogspot.com/"
                            "\n\\\\ Свежая версия программы доступна по ссылкам: "
                            "\n\\\\ win:   "

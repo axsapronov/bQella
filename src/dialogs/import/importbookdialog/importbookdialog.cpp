@@ -125,7 +125,8 @@ void ImportBookDialog::accept()
         QString projectfile = Config::configuration()->CurProject();
 //        qDebug() << " project file = " << projectfile;
         importm->setHtmlFilter (ui->LEHtmlFilter->text ());
-        importm->importBook(projectfile, bookPathFile, bookFullName, bookShortName, bookCount, bookTagChapter);
+
+        importm->importBook(projectfile, bookPathFile, bookFullName, bookShortName, bookCount, bookTagChapter, bookEncoding);
         importm->addContentToEndProjectFile(projectfile);
 
         emit SuccessfulImportBook();

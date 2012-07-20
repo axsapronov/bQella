@@ -87,6 +87,7 @@ QString getTextInStr(QString str, int begin = 5, int end = 9); // возвращ
 QString getCheckShortNameForFile(QString str, QString full); // возвращает порядковый номер shortname(str) или полное название книги. Работает для уменьшения длины названия файла
 QString checkTag(QString tag); // проверяет строку, начинается и заканчивается ли она на < и >
 QString uncheckTag(QString tag); // обратная операция
+QString checkEndTag(QString tag); // возвращает из тега <tag> </tag>
 QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT_OF_MATCHES); // разбивает shortname на части и проверяет насколько совпадает с getFillShortName()
 //если с точностью до процента совпадает, то возвращает номер в shortname, а если нету такого, то out Применяется для импорта книги
 

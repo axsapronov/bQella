@@ -912,11 +912,14 @@ QString editStringList(QString list, QStringList tags, bool f)
                 {
                     list.replace( QString(checkTag (tag)), tagToQuestion(uncheckTag(tag)) );
 //                    qDebug() << " list = " << list << " tags,at i = " << tags.at (i) << " ?tag = " << tagToQuestion(uncheckTag(tags.at(i))) << " orig tag = " << checkTag (tags.at (i));
+//                    qDebug() << " list = " << list;
                 }
             else
                 {
-                    list.replace( QString("?"+uncheckTag (tag)+"_."), questionToTag(tag) );
+                    list.replace( QString("?"+uncheckTag (tag)+"_."), questionToTag(uncheckTag (tag) ));
                 }
+
+
 
         }
     return list;
@@ -945,7 +948,7 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
 
 
     QStringList tags;
-    tags << "p" << "i" << "b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
+    tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
 
 
 //        qDebug() << "tags = " << tags << " strtags = " << Config::configuration ()->HtmlFilter ().toUtf8 ();
@@ -995,6 +998,7 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
 
             str.replace(rxp, "?p_.")
                     .remove("</p>")
+
                     .remove(rxi);
 
 //            qDebug() << "\nstr = " << str;
@@ -1009,9 +1013,10 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
                     .replace("FullName", "\nFullName")
                     .replace("ShortName", "\nShortName")
                     .replace("ChapterQty", "\nChapterQty");
-            str = editStringList(str, tags, false); // возвращаем нужные теги
-//            qDebug() << "str after " << str;
 
+            str = editStringList(str, tags, false); // возвращаем нужные теги
+            str.remove ("<span>>")
+                    .remove ("</span>");
 
             if (!str.isEmpty())
                 {
@@ -1341,6 +1346,13 @@ QString checkTag(QString tag)
 QString uncheckTag(QString tag)
 {
     return tag.remove ("<").remove (">");
+}
+//-------------------------------------------------------
+QString checkEndTag(QString tag)
+{
+    tag = checkTag (tag);
+    tag.replace ("<","</");
+    return tag;
 }
 //-------------------------------------------------------
 QString getFileNameAbs(QString file)
