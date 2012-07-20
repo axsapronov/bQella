@@ -58,13 +58,8 @@ int main( int argc, char ** argv )
         return -1;
     }
     //!+! load language based on locale on first startup or if it was not set directly
-    //QString locale = QLocale::system().name();
-    //qDebug()<< "locale = " << locale;
     QTranslator translator;
-
-    //            translator.load("bqella_ru","/home/files/Develop/git/next/bQella/resources/lang");
-//    if (conf -> Lang() == "Russian") translator.load("bqella_ru","lang");
-    if (conf -> Lang() == "Russian") translator.load("bqella_ru",":lang/lang");
+    if (conf -> Lang() == "Russian" or conf->Lang().isEmpty()) translator.load("bqella_ru",":lang/lang");
     if (conf -> Lang() == "Deutch") translator.load("bqella_de",":lang/lang");
     if (conf -> Lang() == "France") translator.load("bqella_fr",":lang/lang");
     a.installTranslator(&translator);
@@ -81,9 +76,6 @@ int main( int argc, char ** argv )
 
 
 //    qDebug() << "[12]";
-//    qDebug() << " curfile" << conf->CurFile();
-//    qDebug() << "CurFile = " << conf->CurFile();
-//    qDebug() << "source = " << conf -> source();
     QStringList links = conf -> source();
     if (links.isEmpty())
     {
@@ -91,8 +83,7 @@ int main( int argc, char ** argv )
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
     }
     else 
-    {
-//        qDebug() << "[13]";
+    {//        qDebug() << "[13]";
         mw -> showLinks( links );
     }
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
