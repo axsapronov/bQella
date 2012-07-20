@@ -399,11 +399,25 @@ For 7Zip: &quot;a -t7z&quot;</source>
 <context>
     <name>Export</name>
     <message>
-        <location filename="../../src/export/export.cpp" line="80"/>
-        <source>BibleName = %1
+        <location filename="../../src/export/export.cpp" line="81"/>
+        <source>\\ Ð­ÑÐ¾Ñ Ð¼Ð¾Ð´ÑÐ»Ñ ÑÐ¾Ð·Ð´Ð°Ð½ Ð² Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ðµ bQella.
+\\ Ð Ð°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸Ðº Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: Ð¡Ð°Ð¿ÑÐ¾Ð½Ð¾Ð² ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ - sapronov.alexander92[@]gmail.com
+\\ Git Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: https://github.com/WarmongeR1/bQella
+\\ ÐÐ»Ð¾Ð³ ÑÐ°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸ÐºÐ°: http://warmonger72.blogspot.com/
+\\ Ð¡Ð²ÐµÐ¶Ð°Ñ Ð²ÐµÑÑÐ¸Ñ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ Ð´Ð¾ÑÑÑÐ¿Ð½Ð° Ð¿Ð¾ ÑÑÑÐ»ÐºÐ°Ð¼: 
+\\ win:   
+\\ source: 
+
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/export/export.cpp" line="89"/>
+        <source>
+BibleName = %1
 BibleShortName = %2
 Copyright = %3
-DefaultEncoding = utf-8
 ChapterSign = &lt;h4&gt;
 VerseSign = &lt;p&gt;
 BookQty = %4
@@ -430,7 +444,7 @@ HTMLFilter = %24</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/export/export.cpp" line="184"/>
+        <location filename="../../src/export/export.cpp" line="193"/>
         <source>Chapter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -653,187 +667,187 @@ HTMLFilter = %24</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="236"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="235"/>
         <source>New item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="268"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="269"/>
         <source>Open in Current Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="271"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="272"/>
         <source>Open in New Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="274"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="275"/>
         <source>Open in New Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="277"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="278"/>
         <source>Open in External Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="279"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="280"/>
         <source>Open in External Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="289"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="290"/>
         <source>Item properties...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="293"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="294"/>
         <source>Add book</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="297"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="298"/>
         <source>Add chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="301"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="302"/>
         <source>Add verse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="305"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="306"/>
         <source>Insert new subitem (and create source file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="309"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="310"/>
         <source>Insert file as new subitem...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="313"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="314"/>
         <source>Insert new item (and create source file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="317"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="318"/>
         <source>Insert file as new item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="321"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="322"/>
         <source>Automaticly create items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="325"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="326"/>
         <source>Remove item (do not touch source file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="329"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="330"/>
         <source>Delete item and source file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="458"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="542"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="473"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="557"/>
         <source>Prepare...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="477"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="493"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="982"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1092"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1384"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="492"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="508"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1025"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1148"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1448"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="477"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="492"/>
         <source>Failed to load keyword index file from:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="493"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="508"/>
         <source>Cannot open the index file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="555"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="681"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="688"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="570"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="707"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="714"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="555"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="570"/>
         <source>Documentation file %1 does not exist!
 Skipping file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="567"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="701"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="582"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="727"/>
         <source>Parse Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="682"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="708"/>
         <source>Project file %1 does not exist!
 Skipping file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="689"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="715"/>
         <source>Project file %1 is not compatible!
 Skipping file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="733"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1138"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="762"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1194"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="982"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1025"/>
         <source>Source file could not be found:
  %1
 You can create a new file or add one. Do you want to see item property?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1093"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1149"/>
         <source>Failed to save fulltext search index to path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1120"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1176"/>
         <source>Indexing files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1135"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1191"/>
         <source>Reading dictionary...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1544"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1616"/>
         <source>Project has been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1590"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1662"/>
         <source>Delete just contents item? Source file will be untouched.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1622"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1694"/>
         <source>Delete contents item AND source file?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -841,146 +855,141 @@ You can create a new file or add one. Do you want to see item property?</source>
 <context>
     <name>HelpWindow</name>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="118"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="118"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
         <source>Unable to launch web browser.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="118"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="142"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="157"/>
         <source>Source: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="147"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="163"/>
         <source>Failed to open link: &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="149"/>
-        <source>&lt;div align=&quot;center&quot;&gt;&lt;h1&gt;The page could not be found&lt;/h1&gt;&lt;br&gt;&lt;h3&gt;&apos;%1&apos;&lt;/h3&gt;&lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="150"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="170"/>
         <source>Error...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="206"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="227"/>
         <source>Open Link in New Window	Shift+LMB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="207"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="228"/>
         <source>Open Link in New Tab	MMB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="208"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="229"/>
         <source>Link properties...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="209"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="230"/>
         <source>Tag properties...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="212"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="233"/>
         <source>Create link...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="213"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="234"/>
         <source>Add tag...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="479"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="500"/>
         <source>Standard</source>
         <comment>Text style (paragraph layout)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="480"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="501"/>
         <source>Bullet List (Disc)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="481"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="502"/>
         <source>Bullet List (Circle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="482"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="503"/>
         <source>Bullet List (Square)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="483"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="504"/>
         <source>Ordered List (Decimal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="484"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="505"/>
         <source>Ordered List (Alpha lower)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="485"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="506"/>
         <source>Ordered List (Alpha upper)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="540"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="561"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="541"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="562"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="574"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="595"/>
         <source>New File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="575"/>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="590"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="596"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="611"/>
         <source>HTML (*.htm *.html);;Text (*.txt);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="589"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="610"/>
         <source>Open File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="623"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="644"/>
         <source>Save file as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="624"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="645"/>
         <source>HTML (*.htm *.html);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="670"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="691"/>
         <source>It does not work yet! Set font size to: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -988,148 +997,74 @@ Do you want to save your changes?</source>
 <context>
     <name>Import</name>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="44"/>
-        <source>KOI8-R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="45"/>
-        <source>KOI8-U</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="46"/>
-        <source>UTF-8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="47"/>
-        <source>UTF-16</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="48"/>
-        <source>UTF-16BE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="49"/>
-        <source>UTF-16LE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="50"/>
-        <source>UTF-32</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="51"/>
-        <source>UTF-32BE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="52"/>
-        <source>UTF-32LE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="53"/>
-        <source>Windows-1251</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="54"/>
-        <source>Windows-1252</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="55"/>
-        <source>Windows-1253</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="56"/>
-        <source>Windows-1254</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="57"/>
-        <source>Windows-1255</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="58"/>
-        <source>Windows-1256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="59"/>
-        <source>Windows-1257</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="60"/>
-        <source>Windows-1258</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="94"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="55"/>
         <source>Select bibleqt.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="96"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="57"/>
         <source>Bibleqt.ini (*.ini)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="355"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="71"/>
+        <source>- Please browse bibleqt.ini file.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="77"/>
+        <source>Import book error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="420"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="356"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="421"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="361"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="426"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="365"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="430"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="373"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="438"/>
         <source>   ___Instruction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="424"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="490"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="425"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="491"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="438"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="505"/>
         <source>This folder is imported already exists:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="452"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="520"/>
         <source>PathName = %1
 FullName = %2
 ShortName = %3
@@ -1137,81 +1072,212 @@ ChapterQty = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.cpp" line="500"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="572"/>
         <source>Add a manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImportBookDialog</name>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="14"/>
+        <source>Import book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="22"/>
+        <source>Book: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="32"/>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="41"/>
+        <source>Full name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="51"/>
+        <source>Short name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="74"/>
+        <source>Tag division chapters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="84"/>
+        <source>Tag division verses:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="94"/>
+        <source>Number of chapters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="104"/>
+        <source>Encoding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="118"/>
+        <source>Remove tags*:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="151"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* - enter a space&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic; color:#000000;&quot;&gt;hr &amp;lt;br&amp;gt; b text &amp;lt;i&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="60"/>
+        <source>Select book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="62"/>
+        <source>Html Files (*.html *.htm);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="76"/>
+        <source>- Please enter a file.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="81"/>
+        <source>- Please enter a correct short name.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="86"/>
+        <source>- Please enter a full name.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="96"/>
+        <source>- Please enter a tag chapter.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="101"/>
+        <source>- Please enter a count chapters.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="106"/>
+        <source>- Please enter a tag verse.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="112"/>
+        <source>Import book error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="14"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="14"/>
         <source>Import module</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="24"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="20"/>
         <source>Source encoding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="30"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="28"/>
         <source>UTF-8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="35"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="33"/>
         <source>UTF-16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="40"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="38"/>
         <source>UTF-32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="45"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="43"/>
         <source>CP-1251</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="50"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="48"/>
         <source>CP-1252</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="55"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="53"/>
         <source>CP-1253</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="60"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="58"/>
         <source>CP-1254</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="65"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="63"/>
         <source>CP-1255</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="70"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="68"/>
         <source>CP-1256</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="75"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="73"/>
         <source>CP-1257</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="80"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="78"/>
         <source>CP-1258</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/importdialog/importdialog.ui" line="93"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="86"/>
         <source>What is import?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="107"/>
+        <source>Remove tags*:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="117"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* - enter a space&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic; color:#000000;&quot;&gt;hr &amp;lt;br&amp;gt; b text &amp;lt;i&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1362,7 +1428,7 @@ ChapterQty = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="738"/>
+        <location filename="../../src/main/mainwindow.ui" line="748"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1373,7 +1439,7 @@ ChapterQty = %4</source>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="119"/>
-        <location filename="../../src/main/mainwindow.ui" line="890"/>
+        <location filename="../../src/main/mainwindow.ui" line="892"/>
         <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1403,712 +1469,728 @@ ChapterQty = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="261"/>
+        <location filename="../../src/main/mainwindow.ui" line="268"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="264"/>
+        <location filename="../../src/main/mainwindow.ui" line="271"/>
         <source>Print the currently displayed page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="273"/>
+        <location filename="../../src/main/mainwindow.ui" line="280"/>
         <source>E&amp;xit Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="276"/>
+        <location filename="../../src/main/mainwindow.ui" line="283"/>
         <source>Exit Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="279"/>
+        <location filename="../../src/main/mainwindow.ui" line="286"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="291"/>
+        <location filename="../../src/main/mainwindow.ui" line="298"/>
         <source>&amp;Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="294"/>
+        <location filename="../../src/main/mainwindow.ui" line="301"/>
         <source>Copy the selected text to the clipboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="297"/>
+        <location filename="../../src/main/mainwindow.ui" line="304"/>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="306"/>
+        <location filename="../../src/main/mainwindow.ui" line="313"/>
         <source>&amp;Find in Text...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="309"/>
+        <location filename="../../src/main/mainwindow.ui" line="316"/>
         <source>Open the Find dialog. This will search the currently displayed page for the text you enter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="312"/>
+        <location filename="../../src/main/mainwindow.ui" line="319"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="317"/>
+        <location filename="../../src/main/mainwindow.ui" line="324"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="320"/>
+        <location filename="../../src/main/mainwindow.ui" line="327"/>
         <source>F3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="325"/>
+        <location filename="../../src/main/mainwindow.ui" line="332"/>
         <source>Find &amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="328"/>
+        <location filename="../../src/main/mainwindow.ui" line="335"/>
         <source>Shift+F3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="337"/>
+        <location filename="../../src/main/mainwindow.ui" line="344"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="348"/>
+        <location filename="../../src/main/mainwindow.ui" line="355"/>
         <source>New Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="351"/>
+        <location filename="../../src/main/mainwindow.ui" line="358"/>
         <source>Open a new window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="912"/>
+        <location filename="../../src/main/mainwindow.ui" line="474"/>
+        <location filename="../../src/main/mainwindow.ui" line="914"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="360"/>
+        <location filename="../../src/main/mainwindow.ui" line="367"/>
         <source>&amp;Delete Item and File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="227"/>
+        <location filename="../../src/main/mainwindow.ui" line="234"/>
         <source>Add tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="363"/>
+        <location filename="../../src/main/mainwindow.ui" line="370"/>
         <source>Close the current window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="372"/>
+        <location filename="../../src/main/mainwindow.ui" line="379"/>
         <source>Add tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="375"/>
+        <location filename="../../src/main/mainwindow.ui" line="382"/>
         <source>Ctrl+Alt+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="384"/>
+        <location filename="../../src/main/mainwindow.ui" line="391"/>
         <source>Next Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="387"/>
+        <location filename="../../src/main/mainwindow.ui" line="394"/>
         <source>Ctrl+Alt+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="396"/>
+        <location filename="../../src/main/mainwindow.ui" line="403"/>
         <source>Previous Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="399"/>
+        <location filename="../../src/main/mainwindow.ui" line="406"/>
         <source>Ctrl+Alt+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="408"/>
+        <location filename="../../src/main/mainwindow.ui" line="415"/>
         <source>Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="411"/>
+        <location filename="../../src/main/mainwindow.ui" line="418"/>
         <source>Ctrl+Alt+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="416"/>
-        <location filename="../../src/main/mainwindow.ui" line="690"/>
+        <location filename="../../src/main/mainwindow.ui" line="423"/>
+        <location filename="../../src/main/mainwindow.ui" line="700"/>
         <source>Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="419"/>
+        <location filename="../../src/main/mainwindow.ui" line="426"/>
         <source>Ctrl+Alt+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="428"/>
+        <location filename="../../src/main/mainwindow.ui" line="435"/>
         <source>Font Settings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="440"/>
+        <location filename="../../src/main/mainwindow.ui" line="447"/>
         <source>Project properties...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="443"/>
-        <location filename="../../src/main/mainwindow.ui" line="819"/>
-        <location filename="../../src/main/mainwindow.ui" line="842"/>
+        <location filename="../../src/main/mainwindow.ui" line="810"/>
+        <source>Module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="813"/>
+        <source>Ctrl+Shift+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="821"/>
+        <location filename="../../src/main/mainwindow.ui" line="844"/>
         <source>Ctrl+T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="452"/>
+        <location filename="../../src/main/mainwindow.ui" line="459"/>
         <source>Statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="461"/>
+        <location filename="../../src/main/mainwindow.ui" line="207"/>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="450"/>
+        <source>Ctrl+Shift+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="468"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="464"/>
-        <location filename="../../src/main/mainwindow.ui" line="909"/>
+        <location filename="../../src/main/mainwindow.ui" line="471"/>
+        <location filename="../../src/main/mainwindow.ui" line="911"/>
         <source>New project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="473"/>
+        <location filename="../../src/main/mainwindow.ui" line="483"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="476"/>
-        <location filename="../../src/main/mainwindow.ui" line="921"/>
+        <location filename="../../src/main/mainwindow.ui" line="486"/>
+        <location filename="../../src/main/mainwindow.ui" line="923"/>
         <source>Open project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="479"/>
-        <location filename="../../src/main/mainwindow.ui" line="924"/>
+        <location filename="../../src/main/mainwindow.ui" line="489"/>
+        <location filename="../../src/main/mainwindow.ui" line="926"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="491"/>
-        <location filename="../../src/main/mainwindow.ui" line="515"/>
+        <location filename="../../src/main/mainwindow.ui" line="501"/>
+        <location filename="../../src/main/mainwindow.ui" line="525"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="494"/>
-        <location filename="../../src/main/mainwindow.ui" line="929"/>
+        <location filename="../../src/main/mainwindow.ui" line="504"/>
+        <location filename="../../src/main/mainwindow.ui" line="931"/>
         <source>Save project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="497"/>
+        <location filename="../../src/main/mainwindow.ui" line="507"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="506"/>
+        <location filename="../../src/main/mainwindow.ui" line="516"/>
         <source>Add...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="520"/>
+        <location filename="../../src/main/mainwindow.ui" line="530"/>
         <source>Print Preview...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="529"/>
+        <location filename="../../src/main/mainwindow.ui" line="539"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="538"/>
+        <location filename="../../src/main/mainwindow.ui" line="548"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="547"/>
+        <location filename="../../src/main/mainwindow.ui" line="557"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="550"/>
+        <location filename="../../src/main/mainwindow.ui" line="560"/>
         <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="559"/>
+        <location filename="../../src/main/mainwindow.ui" line="569"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="562"/>
+        <location filename="../../src/main/mainwindow.ui" line="572"/>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="571"/>
+        <location filename="../../src/main/mainwindow.ui" line="581"/>
         <source>Remove Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="583"/>
+        <location filename="../../src/main/mainwindow.ui" line="593"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="586"/>
+        <location filename="../../src/main/mainwindow.ui" line="596"/>
         <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="598"/>
+        <location filename="../../src/main/mainwindow.ui" line="608"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="601"/>
+        <location filename="../../src/main/mainwindow.ui" line="611"/>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="613"/>
+        <location filename="../../src/main/mainwindow.ui" line="623"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="616"/>
+        <location filename="../../src/main/mainwindow.ui" line="626"/>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="628"/>
+        <location filename="../../src/main/mainwindow.ui" line="638"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="640"/>
+        <location filename="../../src/main/mainwindow.ui" line="650"/>
         <source>Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="652"/>
+        <location filename="../../src/main/mainwindow.ui" line="662"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="664"/>
+        <location filename="../../src/main/mainwindow.ui" line="674"/>
         <source>Justify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="676"/>
+        <location filename="../../src/main/mainwindow.ui" line="686"/>
         <source>Text color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="685"/>
+        <location filename="../../src/main/mainwindow.ui" line="695"/>
         <source>Item properties...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="693"/>
+        <location filename="../../src/main/mainwindow.ui" line="703"/>
         <source>Save project as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="708"/>
+        <location filename="../../src/main/mainwindow.ui" line="718"/>
         <source>English</source>
         <comment>Name on your language (in English)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="720"/>
+        <location filename="../../src/main/mainwindow.ui" line="730"/>
         <source>Russian</source>
         <comment>Name on your language (in English)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="729"/>
+        <location filename="../../src/main/mainwindow.ui" line="739"/>
         <source>Hyperlink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="743"/>
+        <location filename="../../src/main/mainwindow.ui" line="753"/>
         <source>Sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="746"/>
+        <location filename="../../src/main/mainwindow.ui" line="756"/>
         <source>F11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="751"/>
+        <location filename="../../src/main/mainwindow.ui" line="761"/>
         <source>Diary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="759"/>
+        <location filename="../../src/main/mainwindow.ui" line="769"/>
         <source>Notebook</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="767"/>
+        <location filename="../../src/main/mainwindow.ui" line="777"/>
         <source>Backup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="772"/>
+        <location filename="../../src/main/mainwindow.ui" line="782"/>
         <source>Export Module</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="775"/>
+        <location filename="../../src/main/mainwindow.ui" line="785"/>
         <source>Ctrl+E</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="783"/>
+        <location filename="../../src/main/mainwindow.ui" line="793"/>
         <source>Insert Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="792"/>
+        <location filename="../../src/main/mainwindow.ui" line="802"/>
         <source>&amp;Add to bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="795"/>
+        <location filename="../../src/main/mainwindow.ui" line="805"/>
         <source>Add the currently displayed page as a new bookmark.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="800"/>
-        <source>Import Module</source>
+        <location filename="../../src/main/mainwindow.ui" line="970"/>
+        <source>Ctrl+Shift+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="827"/>
+        <location filename="../../src/main/mainwindow.ui" line="829"/>
         <source>Ctrl+Shift+F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="850"/>
+        <location filename="../../src/main/mainwindow.ui" line="852"/>
         <source>Row Above</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="858"/>
+        <location filename="../../src/main/mainwindow.ui" line="860"/>
         <source>Row Below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="863"/>
+        <location filename="../../src/main/mainwindow.ui" line="865"/>
         <source>New Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="871"/>
+        <location filename="../../src/main/mainwindow.ui" line="873"/>
         <source>Column Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="879"/>
+        <location filename="../../src/main/mainwindow.ui" line="881"/>
         <source>Column Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="895"/>
+        <location filename="../../src/main/mainwindow.ui" line="897"/>
         <source>Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="900"/>
+        <location filename="../../src/main/mainwindow.ui" line="902"/>
         <source>Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="937"/>
+        <location filename="../../src/main/mainwindow.ui" line="939"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="940"/>
+        <location filename="../../src/main/mainwindow.ui" line="942"/>
         <source>F1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="945"/>
+        <location filename="../../src/main/mainwindow.ui" line="947"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="950"/>
+        <location filename="../../src/main/mainwindow.ui" line="952"/>
         <source>m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="955"/>
+        <location filename="../../src/main/mainwindow.ui" line="957"/>
         <source>f</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="960"/>
+        <location filename="../../src/main/mainwindow.ui" line="962"/>
         <source>Table Property...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="803"/>
-        <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/main/mainwindow.ui" line="808"/>
+        <location filename="../../src/main/mainwindow.ui" line="967"/>
         <source>Book</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="811"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/main/mainwindow.ui" line="816"/>
+        <location filename="../../src/main/mainwindow.ui" line="818"/>
         <source>Chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="824"/>
+        <location filename="../../src/main/mainwindow.ui" line="826"/>
         <source>Find and replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="836"/>
-        <location filename="../../src/main/mainwindow.ui" line="839"/>
+        <location filename="../../src/main/mainwindow.ui" line="838"/>
+        <location filename="../../src/main/mainwindow.ui" line="841"/>
         <source>AddTag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="78"/>
+        <location filename="../../src/main/mainwindow.cpp" line="80"/>
         <source>Project manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="94"/>
+        <location filename="../../src/main/mainwindow.cpp" line="97"/>
         <source>Insert Sign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="131"/>
+        <location filename="../../src/main/mainwindow.cpp" line="138"/>
         <source>Initializing %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="196"/>
+        <location filename="../../src/main/mainwindow.cpp" line="204"/>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="197"/>
+        <location filename="../../src/main/mainwindow.cpp" line="205"/>
         <source>Ctrl+]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="198"/>
+        <location filename="../../src/main/mainwindow.cpp" line="206"/>
         <source>Ctrl+[</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="199"/>
+        <location filename="../../src/main/mainwindow.cpp" line="207"/>
         <source>Ctrl+Shift+Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="210"/>
+        <location filename="../../src/main/mainwindow.cpp" line="218"/>
         <source>Toolbars &amp; panels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="384"/>
+        <location filename="../../src/main/mainwindow.cpp" line="419"/>
         <source>failed to open file:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="421"/>
+        <location filename="../../src/main/mainwindow.cpp" line="459"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="601"/>
+        <location filename="../../src/main/mainwindow.cpp" line="640"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="602"/>
+        <location filename="../../src/main/mainwindow.cpp" line="641"/>
         <source>Project bQella (*.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="624"/>
+        <location filename="../../src/main/mainwindow.cpp" line="661"/>
+        <source>- show start page: %1</source>
+        <comment>For log</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.cpp" line="665"/>
         <source>Project is opened.</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="633"/>
+        <location filename="../../src/main/mainwindow.cpp" line="672"/>
         <source>Save Project As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="633"/>
+        <location filename="../../src/main/mainwindow.cpp" line="672"/>
         <source>Project bQella (*.pep)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="657"/>
-        <location filename="../../src/main/mainwindow.cpp" line="664"/>
+        <location filename="../../src/main/mainwindow.cpp" line="696"/>
+        <location filename="../../src/main/mainwindow.cpp" line="703"/>
         <source>Save Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="664"/>
+        <location filename="../../src/main/mainwindow.cpp" line="703"/>
         <source>Cannot open file for writing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="753"/>
+        <location filename="../../src/main/mainwindow.cpp" line="794"/>
         <source>New Project</source>
         <comment>Default project name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="855"/>
+        <location filename="../../src/main/mainwindow.cpp" line="902"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="856"/>
+        <location filename="../../src/main/mainwindow.cpp" line="903"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="860"/>
+        <location filename="../../src/main/mainwindow.cpp" line="907"/>
         <source>Failed to create project: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="861"/>
+        <location filename="../../src/main/mainwindow.cpp" line="908"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="865"/>
+        <location filename="../../src/main/mainwindow.cpp" line="912"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="873"/>
+        <location filename="../../src/main/mainwindow.cpp" line="920"/>
         <source>   ___Instruction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="923"/>
+        <location filename="../../src/main/mainwindow.cpp" line="971"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="924"/>
-        <location filename="../../src/main/mainwindow.cpp" line="980"/>
+        <location filename="../../src/main/mainwindow.cpp" line="972"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1035"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="933"/>
+        <location filename="../../src/main/mainwindow.cpp" line="987"/>
         <source>Update project properties:</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="934"/>
+        <location filename="../../src/main/mainwindow.cpp" line="988"/>
         <source>- title      = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="935"/>
+        <location filename="../../src/main/mainwindow.cpp" line="989"/>
         <source>- file name  = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="936"/>
+        <location filename="../../src/main/mainwindow.cpp" line="990"/>
         <source>- start page = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="937"/>
+        <location filename="../../src/main/mainwindow.cpp" line="991"/>
         <source>- module name      = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="938"/>
+        <location filename="../../src/main/mainwindow.cpp" line="992"/>
         <source>- module short name  = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="939"/>
+        <location filename="../../src/main/mainwindow.cpp" line="993"/>
         <source>- module copyright = %1</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1005"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1062"/>
         <source>Reload application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1005"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1062"/>
         <source>Changes will be applied after application reload.</source>
         <comment>Append this warning in English after translation</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1022"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1079"/>
         <source>Open file in external application: %1 %2</source>
         <comment>For log</comment>
         <translation type="unfinished"></translation>
@@ -2117,39 +2199,134 @@ ChapterQty = %4</source>
 <context>
     <name>ProjectProperties</name>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="106"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="111"/>
         <source>- Please enter a bible name.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="110"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="115"/>
         <source>- Please enter a short bible name.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="121"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="142"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="190"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="126"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="149"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="199"/>
         <source>Project property error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="142"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="190"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="149"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="199"/>
         <source>Can not create file:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="155"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="162"/>
         <source>   ___Instruction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="156"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="163"/>
         <source>&lt;p&gt;add a user to create modules&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="266"/>
+        <source>&lt;i&gt;The full name of the module&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be in the language module, as far as possible according to the printed edition.&lt;br&gt;Must be unique for each module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="272"/>
+        <source>&lt;i&gt;Copyright&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be in the language module, as far as possible according to the printed edition.&lt;br&gt;Must be unique for each module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="278"/>
+        <source>&lt;i&gt;Binding to the module category&lt;/i&gt;&lt;br&gt;&lt;br&gt;By default, the program divides the Bible into the category OT, NT, Apocrypha.&lt;br&gt;You must specify additional parameters for the Bible:&lt;br&gt;| Language | Translation Type | Denomination |&lt;br&gt;For books, specify the subject, keywords (tags).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="287"/>
+        <source>&lt;i&gt;The font, which will use the program to display the text of books (parts) in the main window.&lt;/i&gt;&lt;br&gt;&lt;br&gt;If &lt;b&gt;DesiredFontName&lt;/b&gt; coincides not only with the name of the font, but also with the name of the font file (no file extension TTF), the program will automatically upload it when referring to the module. Therefore, a file with special characters when creating the module should be called by the name of the font (with the extension TTF). Specifies the font supports Unicode: Arial, Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman.We recommend using Times New Roman for Vista and 7, and Microsoft Sans Serif for XP.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="299"/>
+        <source>&lt;i&gt;The path to font file&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="303"/>
+        <source>&lt;i&gt;Specifies the font header titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="307"/>
+        <source>&lt;i&gt;Encoding module by default&lt;/i&gt;&lt;br&gt;&lt;br&gt;This parameter defaults to &lt;b&gt;utf-8&lt;/b&gt;.&lt;br&gt;Windows-1250 for Central European languages ââthat use Latin script letters (Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)&lt;b&gt;Windows-1251&lt;/b&gt; for Cyrillic alphabets&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; for Western languages&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; for the Greek Language&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; for the Turkish language&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; Hebrew&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; for the Arabic language&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; for the Baltic languages&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; for Vietnamese Language&lt;br&gt;&lt;b&gt;Utf-8&lt;/b&gt;, &lt;b&gt;Utf-16&lt;/b&gt; and &lt;b&gt;Utf-32&lt;/b&gt; Unicode character set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="325"/>
+        <source>&lt;i&gt;Embedding fonts from a folder in the program module without having to install them in OS&lt;br&gt;&lt;b&gt;Fonts Install Pending&lt;/b&gt;&lt;i&gt;&lt;br&gt;&lt;br&gt;Font files to load must lie at the root of the module. Listed separated by commas with no spaces, indicating expansion. In the file names spaces are allowed. Cloudy. &lt;br&gt;&lt;b&gt;InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="334"/>
+        <source>&lt;i&gt;The short name of the module (reduction).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be unique for each module.&lt;br&gt;Option only English characters (if possible - see below).&lt;br&gt;Coincides with the module name of the folder  backup (optional).&lt;br&gt;Language through an underscore in those modules that exist in multiple languagesââ, and then a year after an underscore where there are several different editions.If there is a well-established literary abbreviation for the translation,it is used, such as the Septuagint - LXX, &lt;br&gt;Russian Synodal Version - RSV, &lt;br&gt;Translation Kuznetsova - TK, &lt;br&gt;the Byzantine text-type (Majority Text) is denoted by the letter [].</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="350"/>
+        <source>&lt;i&gt;Version&lt;/i&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="355"/>
+        <source>&lt;i&gt;&lt;/i&gt;Use aprocrypha&lt;br&gt;&lt;br&gt;The presence of a module or comments deuterocanonical books (11 books according to the file in the root directory BibleBooks.cfg bQ)&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the Bible = &lt;b&gt;Y&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="362"/>
+        <source>&lt;i&gt;The presence of a zero in the module chapter&lt;/i&gt;&lt;br&gt;&lt;br&gt;This option affects the display chapter numbers in the control panel and to synchronize at the transition between the modules. Put &lt;b&gt;Y&lt;/b&gt; when there is an introduction to the book.&lt;br&gt;If &lt;b&gt;ChapterZero = Y&lt;/b&gt;, the null head is synchronized with the file 001. * In the folder with the audio book, the first - to 002. *, Etc.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="371"/>
+        <source>&lt;i&gt;The use of English in the module numbering of verses&lt;/i&gt;&lt;br&gt;&lt;br&gt;If EnglishPsalms = Y, then the numbering changes to the adopted in the CPR as follows:(code snippet)&lt;br&gt;&lt;br&gt;JOB = 40:1-40:5 # -1; 41:1-41:8 # -1 &lt;br&gt;JOB40 = 1-5 # 30, # 6-24 -5&lt;br&gt;JOB41 = 1-8 # 19, # 9-34 -8&lt;br&gt;PSA = 10:1-147:11 # -1&lt;br&gt;ECC = 5:1 # -1&lt;br&gt;SNG = 6:13 # +1&lt;br&gt;DAN = 4:1-4:3 # -1&lt;br&gt;DAN3 = 24-30 # 67&lt;br&gt;DAN4 = 1-3 # 97, # 4-37 -3&lt;br&gt;JON = 1:17 # 1&lt;br&gt;ROM = 16:25-16:27 # -2&lt;br&gt;ROM16 = 25-27 # -1&lt;br&gt;ECC5 = 1 # 16, # -1 2-20&lt;br&gt;SNG1 = 2-16 # -1&lt;br&gt;SNG6 = 13 # -12&lt;br&gt;SNG7 = 1-13 # 1&lt;br&gt;JON2 = 1-10 # 1&lt;br&gt;PRO13 = 14-25 # 1&lt;br&gt;PRO18 = 8-24 # 1&lt;br&gt;2CO13 = 13 # -1&lt;br&gt;&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="398"/>
+        <source>&lt;i&gt;Module Type (Bible or comments or a book).&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Y&lt;/b&gt; if it is put to the Bible or commentary, &lt;b&gt;N&lt;/b&gt; if it is a book.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="402"/>
+        <source>&lt;i&gt;New testament&lt;/i&gt;&lt;br&gt;&lt;br&gt;The presence of books in the module or the comments of the New Testament (27 books according to the file in the root directory BibleBooks.cfg bQoute)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="408"/>
+        <source>&lt;i&gt;Separation is not the verses, and in paragraphs&lt;i&gt;&lt;br&gt;&lt;br&gt;Poems do not appear in the form of paragraphs force.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="413"/>
+        <source>&lt;i&gt;The presence of the module numbers Stronge&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put Y if the module is Strong Room.&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="419"/>
+        <source>&lt;i&gt;Support for displaying chapter titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;Displays the preface in the form of the zero line without a number, if it is present between the sign and the sign of the head of the first verse.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="426"/>
+        <source>&lt;i&gt;Support for right alignment&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put &lt;b&gt;Y&lt;/b&gt; if the module you want to display the entire text to the right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2161,183 +2338,162 @@ ChapterQty = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="37"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="27"/>
         <source>Basic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="52"/>
-        <source>The full name of the module</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="55"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="33"/>
         <source>Module name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="65"/>
-        <source>The short name of the module (reduction).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="68"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="43"/>
         <source>Short module name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="82"/>
-        <source>Copyright</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="85"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="57"/>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="95"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Module Type (Bible or comments or a book).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Y &lt;/span&gt;if it is put to the Bible or commentary, &lt;span style=&quot; font-weight:600;&quot;&gt;N&lt;/span&gt; if it is a book.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="104"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="67"/>
         <source>Type Module:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="111"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="90"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="131"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="80"/>
         <source>Bible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="143"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="163"/>
         <source>More</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="151"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="169"/>
         <source>In module:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="158"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="176"/>
         <source>Old Testament</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="165"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="183"/>
         <source>New Testament</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="172"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="190"/>
         <source>Apocrypha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="179"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="197"/>
         <source>Chapter zero</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="191"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="209"/>
         <source>Strong numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="216"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="234"/>
         <source>Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="239"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="257"/>
         <source>Noforced line breaks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="261"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="275"/>
         <source>Use chapter head</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="266"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="280"/>
         <source>Use right alignment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="275"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="289"/>
         <source>English Psalms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="287"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="297"/>
         <source>Categories:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="300"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="107"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="306"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="115"/>
         <source>rus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="311"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="120"/>
         <source>eng</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="316"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="125"/>
         <source>ukr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="329"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="133"/>
         <source>Encoding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="335"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="141"/>
         <source>utf-8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="347"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="307"/>
+        <source>Html filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="331"/>
         <source>Fonts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="362"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="337"/>
         <source>Install fonts:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="372"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="347"/>
         <source>Desired font name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="382"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="357"/>
         <source>Desired font path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="392"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="367"/>
         <source>Desired UI font:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2350,12 +2506,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/help/assistant.cpp" line="111"/>
+        <location filename="../../src/dialogs/help/assistant.cpp" line="111"/>
         <source>bQella</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/help/assistant.cpp" line="112"/>
+        <location filename="../../src/dialogs/help/assistant.cpp" line="112"/>
         <source>Unable to launch Qt Assistant (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2398,42 +2554,42 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="202"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="203"/>
         <source>Add page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="211"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="212"/>
         <source>Close page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="471"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="472"/>
         <source>Document properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="472"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="473"/>
         <source>Open in external editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="473"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="474"/>
         <source>Open in external browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="475"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="476"/>
         <source>New Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="476"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="477"/>
         <source>Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="477"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="478"/>
         <source>Close Other Tabs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2616,250 +2772,250 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>pCommon</name>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="260"/>
         <source>January</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="260"/>
         <source>February</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="260"/>
         <source>March</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="261"/>
         <source>April</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
-        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="261"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
         <source>May</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="261"/>
         <source>June</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="262"/>
         <source>July</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="262"/>
         <source>August</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="262"/>
         <source>September</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
         <source>October</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
         <source>November</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="263"/>
         <source>December</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
         <source>Jan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
         <source>Feb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="264"/>
         <source>Mar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
         <source>Apr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="265"/>
         <source>Jun</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
         <source>Jul</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
         <source>Aug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="266"/>
         <source>Sep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
         <source>Oct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
         <source>Nov</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="267"/>
         <source>Dec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
         <source>January</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
         <source>February</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="268"/>
         <source>March</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="272"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
         <source>April</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="272"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
         <source>May</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="272"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="269"/>
         <source>June</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="273"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
         <source>July</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="273"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
         <source>August</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="273"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="270"/>
         <source>September</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="274"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
         <source>October</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="274"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
         <source>November</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="274"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="271"/>
         <source>December</source>
         <comment>alternative</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="295"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="292"/>
         <source>Aries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="295"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="292"/>
         <source>Taurus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="296"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="293"/>
         <source>Gemini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="296"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="293"/>
         <source>Cancer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="297"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="294"/>
         <source>Leo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="297"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="294"/>
         <source>Virgo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="298"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="295"/>
         <source>Libra</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="298"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="295"/>
         <source>Scorpius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="299"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="296"/>
         <source>Sagittarius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="299"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="296"/>
         <source>Capricorn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="300"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="297"/>
         <source>Aquarius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cpp/pcommon.cpp" line="300"/>
+        <location filename="../../src/cpp/pcommon.cpp" line="297"/>
         <source>Pisces</source>
         <translation type="unfinished"></translation>
     </message>

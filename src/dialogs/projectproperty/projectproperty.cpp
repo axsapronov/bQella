@@ -270,8 +270,12 @@ void ProjectProperties::setToolTipLabels()
 
     // copyright
     str = QString(tr("<i>Copyright</i><br><br>"
-                     "Must be in the language module, as far as possible according to the printed edition.<br>"
-                     "Must be unique for each module."));
+                     "The year of publication and copyright<br>"
+                     "Implies copyright.htm file in the root directory of the module.<br>"
+                     "If no option is specified in the file equals PublicDomainText interface language lng.<br>"
+                     "If you specify an owner, then the quote will display the specified text and pressing a "
+                     "button will transfer the copyright on the page Copyright data from a file copyright.htm."
+                     ));
     ui.sAuthor->setToolTip(str);
 
     // categories
@@ -347,21 +351,51 @@ void ProjectProperties::setToolTipLabels()
                      ));
     ui.sShortName->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>Version</i><br>"
 
                      ));
     ui.sVersion->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
-
+    str = QString(tr("<i></i>Use aprocrypha<br><br>"
+                     "The presence of a module or comments deuterocanonical books "
+                     "(11 books according to the file in the root directory BibleBooks.cfg bQ)<br>"
+                     "This parameter can be set to <b>Y</b> only if the Bible = <b>Y</b>"
                      ));
     ui.cbApocrypha->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>The presence of a zero in the module chapter</i><br><br>"
+                     "This option affects the display chapter numbers in the control panel "
+                     "and to synchronize at the transition between the modules. "
+                     "Put <b>Y</b> when there is an introduction to the book.<br>"
+                     "If <b>ChapterZero = Y</b>, the null head is synchronized with the "
+                     "file 001. * In the folder with the audio book, the first - to 002. *, Etc."
                      ));
     ui.cbChapterZero->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>The use of English in the module numbering of verses</i><br><br>"
+                     "If EnglishPsalms = Y, then the numbering changes to the adopted in the CPR as follows:"
+                     "(code snippet)<br><br>"
+                     "JOB = 40:1-40:5 # -1; 41:1-41:8 # -1 <br>"
+                     "JOB40 = 1-5 # 30, # 6-24 -5<br>"
+                     "JOB41 = 1-8 # 19, # 9-34 -8<br>"
+                     "PSA = 10:1-147:11 # -1<br>"
+                     "ECC = 5:1 # -1<br>"
+                     "SNG = 6:13 # +1<br>"
+                     "DAN = 4:1-4:3 # -1<br>"
+                     "DAN3 = 24-30 # 67<br>"
+                     "DAN4 = 1-3 # 97, # 4-37 -3<br>"
+                     "JON = 1:17 # 1<br>"
+                     "ROM = 16:25-16:27 # -2<br>"
+                     "ROM16 = 25-27 # -1<br>"
+                     "ECC5 = 1 # 16, # -1 2-20<br>"
+                     "SNG1 = 2-16 # -1<br>"
+                     "SNG6 = 13 # -12<br>"
+                     "SNG7 = 1-13 # 1<br>"
+                     "JON2 = 1-10 # 1<br>"
+                     "PRO13 = 14-25 # 1<br>"
+                     "PRO18 = 8-24 # 1<br>"
+                     "2CO13 = 13 # -1<br><br>"
+                     "This parameter can be set to <b>Y</b> only if the <b>Bible = Y</b>"
                      ));
     ui.cbEnglishPsalms->setToolTip(str);
 
@@ -369,19 +403,26 @@ void ProjectProperties::setToolTipLabels()
                      "<b>Y</b> if it is put to the Bible or commentary, <b>N</b> if it is a book."));
     ui.cbmoduleType->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>New testament</i><br><br>"
+                     "The presence of books in the module or the comments "
+                     "of the New Testament (27 books according to the file in the root directory BibleBooks.cfg bQoute)"
                      ));
     ui.cbNewTestament->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module<i><br>"
+    str = QString(tr("<i>Separation is not the verses, and in paragraphs<i><br><br>"
+                     "Poems do not appear in the form of paragraphs force."
                      ));
     ui.cbNoForcedLineBreaks->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>The presence of the module numbers Stronge</i><br><br>"
+                     "Put Y if the module is Strong Room.<br>"
+                     "This parameter can be set to <b>Y</b> only if the <b>Bible = Y</b>"
                      ));
     ui.cbStrongNumber->setToolTip(str);
 
-    str = QString(tr("<i>The full name of the module</i><br>"
+    str = QString(tr("<i>Support for displaying chapter titles</i><br><br>"
+                     "Displays the preface in the form of the zero line without a number, "
+                     "if it is present between the sign and the sign of the head of the first verse."
                      ));
     ui.cbUseChapterHead->setToolTip(str);
 
