@@ -63,54 +63,57 @@
 \contentsline {subsection}{\numberline {5.21.2}Constructor \& Destructor Documentation}{29}{subsection.5.21.2}
 \contentsline {subsubsection}{\numberline {5.21.2.1}Import}{29}{subsubsection.5.21.2.1}
 \contentsline {subsection}{\numberline {5.21.3}Member Function Documentation}{29}{subsection.5.21.3}
-\contentsline {subsubsection}{\numberline {5.21.3.1}importBook}{29}{subsubsection.5.21.3.1}
+\contentsline {subsubsection}{\numberline {5.21.3.1}addContentToEndProjectFile}{29}{subsubsection.5.21.3.1}
+\contentsline {subsubsection}{\numberline {5.21.3.2}addContentToProjectFile}{29}{subsubsection.5.21.3.2}
+\contentsline {subsubsection}{\numberline {5.21.3.3}getPrjFN}{30}{subsubsection.5.21.3.3}
+\contentsline {subsubsection}{\numberline {5.21.3.4}getStartPage}{30}{subsubsection.5.21.3.4}
+\contentsline {subsubsection}{\numberline {5.21.3.5}importBook}{30}{subsubsection.5.21.3.5}
 \contentsline {section}{\numberline {5.22}ImportBookDialog Class Reference}{30}{section.5.22}
-\contentsline {section}{\numberline {5.23}Index Class Reference}{30}{section.5.23}
+\contentsline {section}{\numberline {5.23}Index Class Reference}{31}{section.5.23}
 \contentsline {section}{\numberline {5.24}IndexItem Struct Reference}{31}{section.5.24}
-\contentsline {section}{\numberline {5.25}IndexKeyword Struct Reference}{31}{section.5.25}
+\contentsline {section}{\numberline {5.25}IndexKeyword Struct Reference}{32}{section.5.25}
 \contentsline {section}{\numberline {5.26}IndexListModel Class Reference}{32}{section.5.26}
-\contentsline {subsection}{\numberline {5.26.1}Member Function Documentation}{32}{subsection.5.26.1}
-\contentsline {subsubsection}{\numberline {5.26.1.1}filter}{32}{subsubsection.5.26.1.1}
-\contentsline {section}{\numberline {5.27}ItemProperties Class Reference}{32}{section.5.27}
+\contentsline {subsection}{\numberline {5.26.1}Member Function Documentation}{33}{subsection.5.26.1}
+\contentsline {subsubsection}{\numberline {5.26.1.1}filter}{33}{subsubsection.5.26.1.1}
+\contentsline {section}{\numberline {5.27}ItemProperties Class Reference}{33}{section.5.27}
 \contentsline {subsection}{\numberline {5.27.1}Detailed Description}{33}{subsection.5.27.1}
-\contentsline {subsection}{\numberline {5.27.2}Constructor \& Destructor Documentation}{33}{subsection.5.27.2}
-\contentsline {subsubsection}{\numberline {5.27.2.1}ItemProperties}{33}{subsubsection.5.27.2.1}
+\contentsline {subsection}{\numberline {5.27.2}Constructor \& Destructor Documentation}{34}{subsection.5.27.2}
+\contentsline {subsubsection}{\numberline {5.27.2.1}ItemProperties}{34}{subsubsection.5.27.2.1}
 \contentsline {section}{\numberline {5.28}LinkProperties Class Reference}{34}{section.5.28}
-\contentsline {subsection}{\numberline {5.28.1}Detailed Description}{34}{subsection.5.28.1}
+\contentsline {subsection}{\numberline {5.28.1}Detailed Description}{35}{subsection.5.28.1}
 \contentsline {subsection}{\numberline {5.28.2}Constructor \& Destructor Documentation}{35}{subsection.5.28.2}
 \contentsline {subsubsection}{\numberline {5.28.2.1}LinkProperties}{35}{subsubsection.5.28.2.1}
-\contentsline {section}{\numberline {5.29}LnkItem Struct Reference}{35}{section.5.29}
-\contentsline {subsection}{\numberline {5.29.1}Detailed Description}{35}{subsection.5.29.1}
+\contentsline {section}{\numberline {5.29}LnkItem Struct Reference}{36}{section.5.29}
+\contentsline {subsection}{\numberline {5.29.1}Detailed Description}{36}{subsection.5.29.1}
 \contentsline {section}{\numberline {5.30}MainWindow Class Reference}{36}{section.5.30}
 \contentsline {subsection}{\numberline {5.30.1}Member Function Documentation}{37}{subsection.5.30.1}
 \contentsline {subsubsection}{\numberline {5.30.1.1}setup}{37}{subsubsection.5.30.1.1}
 \contentsline {section}{\numberline {5.31}Index::PosEntry Struct Reference}{37}{section.5.31}
-\contentsline {section}{\numberline {5.32}PreviewView Class Reference}{37}{section.5.32}
+\contentsline {section}{\numberline {5.32}PreviewView Class Reference}{38}{section.5.32}
 \contentsline {section}{\numberline {5.33}PrintPreview Class Reference}{38}{section.5.33}
-\contentsline {section}{\numberline {5.34}Profile Class Reference}{38}{section.5.34}
+\contentsline {section}{\numberline {5.34}Profile Class Reference}{39}{section.5.34}
 \contentsline {subsection}{\numberline {5.34.1}Constructor \& Destructor Documentation}{39}{subsection.5.34.1}
 \contentsline {subsubsection}{\numberline {5.34.1.1}Profile}{39}{subsubsection.5.34.1.1}
-\contentsline {section}{\numberline {5.35}ProjectProperties Class Reference}{39}{section.5.35}
+\contentsline {section}{\numberline {5.35}ProjectProperties Class Reference}{40}{section.5.35}
 \contentsline {subsection}{\numberline {5.35.1}Constructor \& Destructor Documentation}{40}{subsection.5.35.1}
 \contentsline {subsubsection}{\numberline {5.35.1.1}ProjectProperties}{40}{subsubsection.5.35.1.1}
-\contentsline {section}{\numberline {5.36}ProjectSettings Class Reference}{40}{section.5.36}
-\contentsline {section}{\numberline {5.37}raEdit Class Reference}{40}{section.5.37}
+\contentsline {section}{\numberline {5.36}ProjectSettings Class Reference}{41}{section.5.36}
+\contentsline {section}{\numberline {5.37}raEdit Class Reference}{41}{section.5.37}
 \contentsline {subsection}{\numberline {5.37.1}Detailed Description}{42}{subsection.5.37.1}
-\contentsline {subsection}{\numberline {5.37.2}Member Function Documentation}{42}{subsection.5.37.2}
-\contentsline {subsubsection}{\numberline {5.37.2.1}loadResource}{42}{subsubsection.5.37.2.1}
-\contentsline {subsubsection}{\numberline {5.37.2.2}mouseMoveEvent}{42}{subsubsection.5.37.2.2}
+\contentsline {subsection}{\numberline {5.37.2}Member Function Documentation}{43}{subsection.5.37.2}
+\contentsline {subsubsection}{\numberline {5.37.2.1}loadResource}{43}{subsubsection.5.37.2.1}
+\contentsline {subsubsection}{\numberline {5.37.2.2}mouseMoveEvent}{43}{subsubsection.5.37.2.2}
 \contentsline {subsubsection}{\numberline {5.37.2.3}reload}{43}{subsubsection.5.37.2.3}
-\contentsline {subsubsection}{\numberline {5.37.2.4}setSource}{43}{subsubsection.5.37.2.4}
 \contentsline {subsection}{\numberline {5.37.3}Property Documentation}{43}{subsection.5.37.3}
 \contentsline {subsubsection}{\numberline {5.37.3.1}source}{43}{subsubsection.5.37.3.1}
-\contentsline {section}{\numberline {5.38}SearchValidator Class Reference}{43}{section.5.38}
+\contentsline {section}{\numberline {5.38}SearchValidator Class Reference}{44}{section.5.38}
 \contentsline {section}{\numberline {5.39}SrcItem Struct Reference}{44}{section.5.39}
 \contentsline {section}{\numberline {5.40}SrcListParser Class Reference}{44}{section.5.40}
 \contentsline {subsection}{\numberline {5.40.1}Constructor \& Destructor Documentation}{45}{subsection.5.40.1}
 \contentsline {subsubsection}{\numberline {5.40.1.1}SrcListParser}{45}{subsubsection.5.40.1.1}
 \contentsline {section}{\numberline {5.41}StructModuleProperties Struct Reference}{45}{section.5.41}
 \contentsline {subsection}{\numberline {5.41.1}Detailed Description}{46}{subsection.5.41.1}
-\contentsline {section}{\numberline {5.42}TabbedBrowser Class Reference}{46}{section.5.42}
+\contentsline {section}{\numberline {5.42}TabbedBrowser Class Reference}{47}{section.5.42}
 \contentsline {subsection}{\numberline {5.42.1}Constructor \& Destructor Documentation}{48}{subsection.5.42.1}
 \contentsline {subsubsection}{\numberline {5.42.1.1}TabbedBrowser}{48}{subsubsection.5.42.1.1}
 \contentsline {subsection}{\numberline {5.42.2}Member Function Documentation}{48}{subsection.5.42.2}
@@ -123,5 +126,5 @@
 \contentsline {section}{\numberline {5.44}TagDialog Class Reference}{50}{section.5.44}
 \contentsline {subsection}{\numberline {5.44.1}Constructor \& Destructor Documentation}{50}{subsection.5.44.1}
 \contentsline {subsubsection}{\numberline {5.44.1.1}TagDialog}{50}{subsubsection.5.44.1.1}
-\contentsline {section}{\numberline {5.45}Term Struct Reference}{50}{section.5.45}
+\contentsline {section}{\numberline {5.45}Term Struct Reference}{51}{section.5.45}
 \contentsline {subsection}{\numberline {5.45.1}Detailed Description}{51}{subsection.5.45.1}

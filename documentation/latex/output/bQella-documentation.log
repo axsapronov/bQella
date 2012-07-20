@@ -1,7 +1,7 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2010.5.17)  20 JUL 2012 15:34
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2010.5.17)  20 JUL 2012 16:11
 entering extended mode
-**bQella-documentation.tex
-(./bQella-documentation.tex
+**output/bQella-documentation.tex
+(./output/bQella-documentation.tex
 LaTeX2e <2003/12/01>
 Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
 ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
@@ -1491,31 +1491,53 @@ log/helpwindow.cpp
  []
 
 ) (./classImport.tex [28]
-Overfull \hbox (0.6669pt too wide) in paragraph at lines 77--78
+Overfull \hbox (0.6669pt too wide) in paragraph at lines 65--66
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
  []
 
 
-Overfull \hbox (21.88861pt too wide) in alignment at lines 95--108
+Overfull \hbox (17.43591pt too wide) in paragraph at lines 77--78
+\T1/ptm/m/n/10 Edit project file (pro-ject-name.pem). Add to end two strings:" 
+$\OML/ztmcm/m/it/10 <$\T1/ptm/m/n/10 /contents$\OML/ztmcm/m/it/10 >$ $<$\T1/ptm
+/m/n/10 /pemproject$\OML/ztmcm/m/it/10 >$\T1/ptm/m/n/10 " 
+ []
+
+
+Overfull \hbox (21.88861pt too wide) in alignment at lines 78--81
  [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 108
+Underfull \vbox (badness 10000) detected at line 81
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (21.88861pt too wide) in alignment at lines 94--101
+ [] [] 
+ []
 
- [29]
-Overfull \hbox (44.73482pt too wide) in paragraph at lines 116--117
+
+Underfull \vbox (badness 10000) detected at line 101
+ []
+
+[29]
+Overfull \hbox (21.88861pt too wide) in alignment at lines 135--148
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 148
+ []
+
+
+Overfull \hbox (44.73482pt too wide) in paragraph at lines 153--154
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/import/
 importdialog/importdialog.h 
  []
 
 
-Overfull \hbox (54.17476pt too wide) in paragraph at lines 117--117
+Overfull \hbox (54.17476pt too wide) in paragraph at lines 154--154
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/import/
 importdialog/importdialog.cpp 
  []
@@ -1532,7 +1554,8 @@ Overfull \hbox (94.17476pt too wide) in paragraph at lines 26--26
 importbookdialog/importbookdialog.cpp 
  []
 
-) (./classIndex.tex [30]) (./structIndexItem.tex) (./structIndexKeyword.tex
+) (./classIndex.tex [30]) (./structIndexItem.tex [31])
+(./structIndexKeyword.tex
 Overfull \hbox (5.55772pt too wide) in paragraph at lines 29--31
 []\T1/ptm/b/n/10 Q_-DUMMY_-COMPARISON_-OPERATOR \T1/ptm/m/n/10 ([][]In-dexKey-w
 ord[][]) QString key-word
@@ -1544,13 +1567,13 @@ Overfull \hbox (5.82564pt too wide) in paragraph at lines 45--45
 log/helpdialog.cpp 
  []
 
-) (./classIndexListModel.tex [31]
+) (./classIndexListModel.tex [32]
 Overfull \hbox (5.82564pt too wide) in paragraph at lines 62--62
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/helpdia
 log/helpdialog.cpp 
  []
 
-) (./classItemProperties.tex [32]
+) (./classItemProperties.tex [33]
 Overfull \hbox (0.6669pt too wide) in paragraph at lines 74--75
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
@@ -1574,16 +1597,13 @@ Overfull \hbox (24.05534pt too wide) in paragraph at lines 97--97
 perty/itemproperty.cpp 
  []
 
-) (./classLinkProperties.tex
-Underfull \vbox (badness 1755) has occurred while \output is active []
-
- [33]
+) (./classLinkProperties.tex [34]
 Overfull \hbox (12.37741pt too wide) in paragraph at lines 79--80
 []\T1/ptm/m/n/10 Author: Alexan-der Sapronov/War-mon-geR E-Mail: [][]\T1/pcr/m/
 n/10 warmonger72@gmail.com[][] \T1/ptm/m/n/10 Years:
  []
 
-[34]
+
 Overfull \hbox (0.6669pt too wide) in paragraph at lines 97--98
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
@@ -1607,9 +1627,8 @@ Overfull \hbox (0.6669pt too wide) in paragraph at lines 54--55
 nder92@.gmail.com
  []
 
-) (./classMainWindow.tex [36]) (./structIndex_1_1PosEntry.tex)
-(./classPreviewView.tex [37]) (./classPrintPreview.tex) (./classProfile.tex
-[38]
+) (./classMainWindow.tex [36]) (./structIndex_1_1PosEntry.tex [37])
+(./classPreviewView.tex) (./classPrintPreview.tex [38]) (./classProfile.tex
 Overfull \hbox (0.6669pt too wide) in paragraph at lines 56--57
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
@@ -1633,7 +1652,7 @@ Overfull \hbox (44.03535pt too wide) in paragraph at lines 84--84
 property/projectproperty.cpp 
  []
 
-) (./classProjectSettings.tex
+) (./classProjectSettings.tex [40]
 Overfull \hbox (31.92497pt too wide) in paragraph at lines 17--18
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/project
 property/projectsettings.h 
@@ -1645,502 +1664,22 @@ Overfull \hbox (41.36491pt too wide) in paragraph at lines 18--18
 property/projectsettings.cpp 
  []
 
-) (./classraEdit.tex <classraEdit.pdf, id=973, 501.875pt x 446.10666pt>
+) (./classraEdit.tex <classraEdit.pdf, id=990, 501.875pt x 446.10666pt>
 File: classraEdit.pdf Graphic file (type pdf)
 
-<use classraEdit.pdf> [40 <./classraEdit.pdf>] [41]
-Overfull \hbox (0.6669pt too wide) in paragraph at lines 187--188
+<use classraEdit.pdf> [41 <./classraEdit.pdf>]
+Overfull \hbox (0.6669pt too wide) in paragraph at lines 190--191
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
  []
 
-[42]
-
-! Package inputenc Error: Unicode char \u8:З not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! З
-           агруженный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:а not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! За
-             груженный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:г not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Заг
-               руженный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:р not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загр
-                 уженный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:у not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загру
-                   женный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:ж not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруж
-                     енный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:е not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруже
-                       нный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:н not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загружен
-                         ный текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:н not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженн
-                           ый текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:ы not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженны
-                             й текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:й not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный
-                                текстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:т not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный т
-                                  екстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:е not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный те
-                                    кстовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:к not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный тек
-                                      стовый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:с not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный текс
-                                        товый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:т not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный текст
-                                          овый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:о not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный тексто
-                                            вый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:в not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный текстов
-                                              ый файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:ы not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный текстовы
-                                                й файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:й not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 +! Загруженный текстовый
-                                                   файл -\/ это сн�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:ф not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�груженный текстовый ф
-                                                  айл -\/ это снос...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:а not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�руженный текстовый фа
-                                                  йл -\/ это сноск...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:й not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�уженный текстовый фай
-                                                  л -\/ это сноска...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:л not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�женный текстовый файл
-                                                   -\/ это сноска (...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:э not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...ный текстовый файл -\/ э
-                                                  то сноска (при�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:т not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...ый текстовый файл -\/ эт
-                                                  о сноска (прим�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:о not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...й текстовый файл -\/ это
-                                                   сноска (приме�...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:с not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...текстовый файл -\/ это с
-                                                  носка (примеча...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:н not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...екстовый файл -\/ это сн
-                                                  оска (примечан...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:о not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...кстовый файл -\/ это сно
-                                                  ска (примечани...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:с not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...стовый файл -\/ это снос
-                                                  ка (примечание...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:к not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...товый файл -\/ это сноск
-                                                  а (примечание) ...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:а not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...овый файл -\/ это сноска
-                                                   (примечание) if...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:п not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...ый файл -\/ это сноска (п
-                                                  римечание) if (is...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:р not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...й файл -\/ это сноска (пр
-                                                  имечание) if (isVi...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:и not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ... файл -\/ это сноска (при
-                                                  мечание) if (isVisi...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:м not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�айл -\/ это сноска (прим
-                                                  ечание) if (isVisibl...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:е not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�йл -\/ это сноска (приме
-                                                  чание) if (isVisible(...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:ч not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...�л -\/ это сноска (примеч
-                                                  ание) if (isVisible())...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:а not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...� -\/ это сноска (примеча
-                                                  ние) if (isVisible()) \...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:н not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...-\/ это сноска (примечан
-                                                  ие) if (isVisible()) \{ ...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:и not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 .../ это сноска (примечани
-                                                  е) if (isVisible()) \{ QS...
-
-? 
-
-! Package inputenc Error: Unicode char \u8:е not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...это сноска (примечание
-                                                  ) if (isVisible()) \{ QStr...
-
-? 
-
-Overfull \hbox (80.81543pt too wide) in paragraph at lines 239--240
-\T1/ptm/m/n/10 Tag.contains(QString("detail"))) { #ifn-def QT_-NO_-WHATSTHIS QW
-hat-sThis::showText(QCursor::pos(),
- []
-
-) (./classSearchValidator.tex
+[42]) (./classSearchValidator.tex [43]
 Overfull \hbox (5.82564pt too wide) in paragraph at lines 23--23
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/helpdia
 log/helpdialog.cpp 
  []
 
-) (./structSrcItem.tex [43]) (./classSrcListParser.tex [44]
+) (./structSrcItem.tex) (./classSrcListParser.tex [44]
 Overfull \hbox (0.6669pt too wide) in paragraph at lines 139--140
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
@@ -2176,7 +1715,7 @@ Overfull \hbox (0.6669pt too wide) in paragraph at lines 72--73
 nder92@.gmail.com
  []
 
-
+[49]
 Overfull \hbox (17.9355pt too wide) in paragraph at lines 76--77
 []\T1/ptm/m/n/10 /home/files/Develop/git/bQella/next/bQella/src/dialogs/tablepr
 operty/tableproperty.h 
@@ -2188,7 +1727,7 @@ Overfull \hbox (27.37544pt too wide) in paragraph at lines 77--77
 operty/tableproperty.cpp 
  []
 
-) (./classTagDialog.tex [49]
+) (./classTagDialog.tex
 Overfull \hbox (0.6669pt too wide) in paragraph at lines 64--65
 []\T1/ptm/m/n/10 Author: Sapronov Alexan-der/War-mon-geR E-Mail: sapronov.alexa
 nder92@.gmail.com
@@ -2214,16 +1753,16 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 8932 strings out of 94500
- 156327 string characters out of 1176766
+ 8918 strings out of 94500
+ 156333 string characters out of 1176766
  156922 words of memory out of 1000000
- 10965 multiletter control sequences out of 10000+50000
+ 10945 multiletter control sequences out of 10000+50000
  58207 words of font info for 76 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
- 41i,12n,68p,513b,614s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 41i,12n,68p,445b,614s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 1265 PDF objects out of 300000
- 871 named destinations out of 131072
+ 1273 PDF objects out of 300000
+ 876 named destinations out of 131072
  37 words of extra memory for PDF output out of 65536
 {/usr/share/texmf/fonts/enc/dvips/psnfss/8r.enc}</usr/share/texmf/fonts/type1
 /urw/times/utmri8a.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></us
@@ -2231,4 +1770,4 @@ r/share/texmf/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share/texmf/fonts/typ
 e1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/urw/courier/ucrr8a.pfb><
 /usr/share/texmf/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texmf/fonts/t
 ype1/urw/times/utmb8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb>
-Output written on bQella-documentation.pdf (55 pages, 363078 bytes).
+Output written on bQella-documentation.pdf (55 pages, 364797 bytes).

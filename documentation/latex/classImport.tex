@@ -27,27 +27,15 @@ void {\bfseries SuccessfulImport} ()}
 \item 
 \hyperlink{classImport_a6eba0bb8ae41a701f0ea7dfdbd99856c}{Import} (QWidget $\ast$parent=0)
 \begin{DoxyCompactList}\small\item\em The default constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classImport_ac00f1a1f7b4784c2efd657cdc8b502c5}{
-void {\bfseries addContentToEndProjectFile} (QString filename)}
-\label{classImport_ac00f1a1f7b4784c2efd657cdc8b502c5}
-
+void \hyperlink{classImport_ac00f1a1f7b4784c2efd657cdc8b502c5}{addContentToEndProjectFile} (QString filename)
 \item 
 void \hyperlink{classImport_a546cc6c3932b1028aa139376beab85b3}{importBook} (QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty, QString myChapterSign)
 \item 
-\hypertarget{classImport_a55dc3d2624e169ce1462fab63450e12e}{
-void {\bfseries addContentToProjectFile} (QString filename, QString text, bool tr)}
-\label{classImport_a55dc3d2624e169ce1462fab63450e12e}
-
+void \hyperlink{classImport_a55dc3d2624e169ce1462fab63450e12e}{addContentToProjectFile} (QString filename, QString text, bool tr)
 \item 
-\hypertarget{classImport_ac04b9632c6b9560cc7704b5ae024e309}{
-QString {\bfseries getPrjFN} ()}
-\label{classImport_ac04b9632c6b9560cc7704b5ae024e309}
-
+QString \hyperlink{classImport_ac04b9632c6b9560cc7704b5ae024e309}{getPrjFN} ()
 \item 
-\hypertarget{classImport_a1329a8a68f94129f5d6b1f20eeabbcd2}{
-QString {\bfseries getStartPage} ()}
-\label{classImport_a1329a8a68f94129f5d6b1f20eeabbcd2}
-
+QString \hyperlink{classImport_a1329a8a68f94129f5d6b1f20eeabbcd2}{getStartPage} ()
 \end{DoxyCompactItemize}
 
 
@@ -77,7 +65,59 @@ You should have received a copy of the GNU General Public License along with thi
 Author: Sapronov Alexander/WarmongeR E-\/Mail: sapronov.alexander92@.gmail.com Years: 2011, 2012 WebSite: \href{https://github.com/WarmongeR1/bQella}{\tt https://github.com/WarmongeR1/bQella} 
 
 \subsection{Member Function Documentation}
-\hypertarget{classImport_a546cc6c3932b1028aa139376beab85b3}{
+\hypertarget{classImport_ac00f1a1f7b4784c2efd657cdc8b502c5}{
+\index{Import@{Import}!addContentToEndProjectFile@{addContentToEndProjectFile}}
+\index{addContentToEndProjectFile@{addContentToEndProjectFile}!Import@{Import}}
+\subsubsection[{addContentToEndProjectFile}]{\setlength{\rightskip}{0pt plus 5cm}void Import::addContentToEndProjectFile (
+\begin{DoxyParamCaption}
+\item[{QString}]{filename}
+\end{DoxyParamCaption}
+)}}
+\label{classImport_ac00f1a1f7b4784c2efd657cdc8b502c5}
+Edit project file (projectname.pem). Add to end two strings:" $<$/contents$>$ $<$/pemproject$>$" 
+\begin{DoxyParams}{Parameters}
+{\em filename} & project filename \\
+\hline
+\end{DoxyParams}
+\hypertarget{classImport_a55dc3d2624e169ce1462fab63450e12e}{
+\index{Import@{Import}!addContentToProjectFile@{addContentToProjectFile}}
+\index{addContentToProjectFile@{addContentToProjectFile}!Import@{Import}}
+\subsubsection[{addContentToProjectFile}]{\setlength{\rightskip}{0pt plus 5cm}void Import::addContentToProjectFile (
+\begin{DoxyParamCaption}
+\item[{QString}]{filename, }
+\item[{QString}]{text, }
+\item[{bool}]{tr}
+\end{DoxyParamCaption}
+)}}
+\label{classImport_a55dc3d2624e169ce1462fab63450e12e}
+Edit project file (projectname.pem). Add text to project file(option for load project (book, chapters)) 
+\begin{DoxyParams}{Parameters}
+{\em filename} & project filename \\
+\hline
+{\em text} & text \\
+\hline
+{\em tr} & chapter or book \\
+\hline
+\end{DoxyParams}
+\hypertarget{classImport_ac04b9632c6b9560cc7704b5ae024e309}{
+\index{Import@{Import}!getPrjFN@{getPrjFN}}
+\index{getPrjFN@{getPrjFN}!Import@{Import}}
+\subsubsection[{getPrjFN}]{\setlength{\rightskip}{0pt plus 5cm}QString Import::getPrjFN (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classImport_ac04b9632c6b9560cc7704b5ae024e309}
+return project filename \hypertarget{classImport_a1329a8a68f94129f5d6b1f20eeabbcd2}{
+\index{Import@{Import}!getStartPage@{getStartPage}}
+\index{getStartPage@{getStartPage}!Import@{Import}}
+\subsubsection[{getStartPage}]{\setlength{\rightskip}{0pt plus 5cm}QString Import::getStartPage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classImport_a1329a8a68f94129f5d6b1f20eeabbcd2}
+return start page for project \hypertarget{classImport_a546cc6c3932b1028aa139376beab85b3}{
 \index{Import@{Import}!importBook@{importBook}}
 \index{importBook@{importBook}!Import@{Import}}
 \subsubsection[{importBook}]{\setlength{\rightskip}{0pt plus 5cm}void Import::importBook (
@@ -91,24 +131,21 @@ Author: Sapronov Alexander/WarmongeR E-\/Mail: sapronov.alexander92@.gmail.com Y
 \end{DoxyParamCaption}
 )}}
 \label{classImport_a546cc6c3932b1028aa139376beab85b3}
-The import feature of the book separately. In contrast to the usual import of the book takes another project file 
+The import feature of the book separately. In contrast to the usual import of the book takes another project file / 
 \begin{DoxyParams}{Parameters}
-{\em projectfile} & – path to project file \\
+{\em projectfile} & path to project file / \\
 \hline
-{\em pathName} & – path to book file \\
+{\em pathName} & path to book file / \\
 \hline
-{\em FullName} & – full name for book (bibleqt param) \\
+{\em FullName} & full name for book (bibleqt param) / \\
 \hline
-{\em ShortName} & – short name for book (bibleqt param) \\
+{\em ShortName} & short name for book (bibleqt param) / \\
 \hline
-{\em ChapterQty} & – count chapters in book (bibleqt param) \\
+{\em ChapterQty} & count chapters in book (bibleqt param) / \\
 \hline
-{\em myChapterSign} & – tag for chapters (bibleqt param) \\
+{\em myChapterSign} & tag for chapters (bibleqt param) \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}

@@ -42,23 +42,49 @@ public:
     /// The default constructor
     explicit Import(QWidget *parent = 0);
 
-
+    /**
+    @function
+    Edit project file (projectname.pem). Add to end two strings:"
+    </contents>
+    </pemproject>"
+    @param  filename  project filename
+    */
     void addContentToEndProjectFile(QString filename); // для импорта отдельно книги
 
-    /// The import feature of the book separately. In contrast to the usual import of the book takes another project file
-    /// @param  projectfile – path to project file
-    /// @param  pathName – path to book file
-    /// @param  FullName – full name for book (bibleqt param)
-    /// @param  ShortName – short name for book (bibleqt param)
-    /// @param  ChapterQty – count chapters in book (bibleqt param)
-    /// @param  myChapterSign – tag for chapters (bibleqt param)
-    /// @return void
+    /**
+    @function
+    The import feature of the book separately.
+    In contrast to the usual import of the book takes another project file
+    /// @param  projectfile  path to project file
+    /// @param  pathName  path to book file
+    /// @param  FullName  full name for book (bibleqt param)
+    /// @param  ShortName  short name for book (bibleqt param)
+    /// @param  ChapterQty  count chapters in book (bibleqt param)
+    /// @param  myChapterSign  tag for chapters (bibleqt param)
+    */
     void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign); // для импорта книги
 
+    /**
+    @function
+    Edit project file (projectname.pem). Add text to project file(option for load project (book, chapters))
+    @param  filename project filename
+    @param  text text
+    @param  tr chapter or book
+    */
     void addContentToProjectFile(QString filename, QString text, bool tr); // filename чтобы работал с импортом отдельно книги
 
+    /**
+    @function
+    return project filename
+    */
     QString getPrjFN();
+
+    /**
+    @function
+    return start page for project
+    */
     QString getStartPage();
+
 signals:
     void SuccessfulImport();
 
@@ -66,19 +92,33 @@ public slots:
     void importModule(QString file);
 
 private slots:
+
     void selectImportFile();
+
 private:
     Ui::ImportDialog ui;
     int BookQty;
+
     QString VerseSign;
     QString ChapterSign;
-
     QString encoding;
     QString htmlfilter;
 
     void accept();
+
+    /**
+    @function
+    Import ini file (input bibleqt.ini)
+    @param file  ini filename
+    */
     void importIni(QString file);
+
+    /**
+    @function
+    Import project file (create project file, and write options, first tags)
+    */
     void importProjectFile();
+
     void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
     QString importChapter(QString file);
 
