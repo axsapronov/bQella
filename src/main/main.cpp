@@ -98,25 +98,34 @@ int main( int argc, char ** argv )
 
 --------------------- Files description ---------------------
 
-config		- configuration of the application, global functions and variables
-docuparser 	- parse profile file
-helpdialog	- slidebar functions: content, index, bookmarks, search
-helpwindow	- working area functions: text edit, font, file 
-index 		- procedures to build up index in index tab on helpdialog slidebar
-mainwindow 	- main menu functions
-profile 	- configuration of a project
-msc		- general purpose procedures with no class relations
+/**
+  * @file
+  * Система для работы с полями пользовательского профиля.
+  *
+  * Данная система позволяет настроить отображение практически
+  * в любом виде, любого поля пользовательского профиля в Drupal.
+  *
+  *
+  * config		- configuration of the application, global functions and variables
+  * docuparser 	- parse profile file
+  * helpdialog	- slidebar functions: content, index, bookmarks, search
+  * helpwindow	- working area functions: text edit, font, file
+  * index 		- procedures to build up index in index tab on helpdialog slidebar
+  * mainwindow 	- main menu functions
+  * profile 	- configuration of a project
+  * msc		- general purpose procedures with no class relations
+  *
+  *
+  * ------- Forms aviable from (classes interaction) -------
+  *
+  * HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;
+  * HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
+  * MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
+  *           TabbedBrowser *browsers();		HelpDialog *helpDialog();
+  * TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
+  *
+  * To access from HelpDialog to HelpWindow functions use:
+  * mw -> browsers() -> currentBrowser() -> ...
+  *
+  */
 
-
-------- Forms aviable from (classes interaction) -------
-
-HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;	
-HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
-MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
-          TabbedBrowser *browsers();		HelpDialog *helpDialog();
-TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
-
-To access from HelpDialog to HelpWindow functions use:
-mw -> browsers() -> currentBrowser() -> ...
-
-**********************************************************************/

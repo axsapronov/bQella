@@ -54,9 +54,9 @@ TabbedBrowser::TabbedBrowser(MainWindow *parent)
 
     QPalette p = palette();
     p.setColor(QPalette::Inactive, QPalette::Highlight,
-        p.color(QPalette::Active, QPalette::Highlight));
+               p.color(QPalette::Active, QPalette::Highlight));
     p.setColor(QPalette::Inactive, QPalette::HighlightedText,
-        p.color(QPalette::Active, QPalette::HighlightedText));
+               p.color(QPalette::Active, QPalette::HighlightedText));
     setPalette(p);
 }
 
@@ -71,14 +71,14 @@ MainWindow *TabbedBrowser::mainWindow() const
 
 void TabbedBrowser::forward()
 {
-//    currentBrowser() -> forward();
-//    emit browserUrlChanged(currentBrowser() -> source().toString());
+    //    currentBrowser() -> forward();
+    //    emit browserUrlChanged(currentBrowser() -> source().toString());
 }
 
 void TabbedBrowser::backward()
 {
-//    currentBrowser() -> backward();
-//    emit browserUrlChanged(currentBrowser() -> source().toString());
+    //    currentBrowser() -> backward();
+    //    emit browserUrlChanged(currentBrowser() -> source().toString());
 }
 
 void TabbedBrowser::setSource( const QString &ref )
@@ -94,7 +94,7 @@ void TabbedBrowser::reload()
 
 void TabbedBrowser::home()
 {
-//!+! go to start page    currentBrowser() -> home();
+    //!+! go to start page    currentBrowser() -> home();
 }
 
 HelpWindow *TabbedBrowser::currentBrowser() const
@@ -128,12 +128,12 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     //connect(win, SIGNAL(forwardAvailable(bool)),   mainWin, SLOT(forwardAvailable(bool)));
     connect(win, SIGNAL(sourceChanged(QUrl)), this, SLOT(sourceChanged()));
 
-//    connect(win, SIGNAL(modifed(bool)), mainWindow(), SLOT(modifededitor(bool)));
+    //    connect(win, SIGNAL(modifed(bool)), mainWindow(), SLOT(modifededitor(bool)));
     // автосейв, очень частый
 
     ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(ui.tab -> count() > 1);
-        win -> installEventFilter(this);
-        win -> viewport() -> installEventFilter(this);
+    win -> installEventFilter(this);
+    win -> viewport() -> installEventFilter(this);
     ui.editFind -> installEventFilter(this);
     return win;
 }
@@ -155,13 +155,13 @@ void TabbedBrowser::newTab(const QString &lnk)
         if(w)
             link = w -> source().toString();
     }
-	HelpWindow *win = createHelpWindow();
-        win -> setObjectName("WorkArea");
+    HelpWindow *win = createHelpWindow();
+    win -> setObjectName("WorkArea");
     ui.tab -> setCurrentIndex(ui.tab -> indexOf(win));
     if(!link.isNull())
-    {
-         win -> setSource(link);
-    }
+        {
+            win -> setSource(link);
+        }
     emit tabCountChanged(ui.tab -> count());
 }
 
@@ -177,7 +177,7 @@ void TabbedBrowser::init()
     }
 
     connect(ui.tab, SIGNAL(currentChanged(int)),
-             this, SLOT(transferFocus()));
+            this, SLOT(transferFocus()));
 
     QTabBar *tabBar = qFindChild<QTabBar*>(ui.tab);
     QStyleOptionTab opt;
@@ -197,7 +197,7 @@ void TabbedBrowser::init()
     QToolButton *newTabButton = new QToolButton(this);
     ui.tab -> setCornerWidget(newTabButton, Qt::TopLeftCorner);
     newTabButton -> setCursor(Qt::ArrowCursor);
-//    newTabButton -> setAutoRaise(true);
+    //    newTabButton -> setAutoRaise(true);
     newTabButton -> setIcon(QIcon(Config::configuration() -> ImgDir() + QString("tab_add.png")));
     QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(newTab()));
     newTabButton -> setToolTip(tr("Add page"));
@@ -212,17 +212,17 @@ void TabbedBrowser::init()
     closeTabButton -> setToolTip(tr("Close page"));
     closeTabButton -> setEnabled(false);
 
-        QObject::connect(ui.toolClose, SIGNAL(clicked()), ui.frameFind, SLOT(hide()));
-        QObject::connect(ui.toolPrevious, SIGNAL(clicked()), this, SLOT(findPrevious()));
-        QObject::connect(ui.toolNext, SIGNAL(clicked()), this, SLOT(findNext()));
-        QObject::connect(ui.editFind, SIGNAL(returnPressed()), this, SLOT(findNext()));
-        QObject::connect(ui.editFind, SIGNAL(textEdited(const QString&)), this, SLOT(find(QString)));
-        ui.frameFind -> setVisible(false);
-        ui.labelWrapped -> setVisible(false);
-        autoHideTimer = new QTimer(this);
-        autoHideTimer -> setInterval(5000);
-        autoHideTimer -> setSingleShot(true);
-        QObject::connect(autoHideTimer, SIGNAL(timeout()), ui.frameFind, SLOT(hide()));
+    QObject::connect(ui.toolClose, SIGNAL(clicked()), ui.frameFind, SLOT(hide()));
+    QObject::connect(ui.toolPrevious, SIGNAL(clicked()), this, SLOT(findPrevious()));
+    QObject::connect(ui.toolNext, SIGNAL(clicked()), this, SLOT(findNext()));
+    QObject::connect(ui.editFind, SIGNAL(returnPressed()), this, SLOT(findNext()));
+    QObject::connect(ui.editFind, SIGNAL(textEdited(const QString&)), this, SLOT(find(QString)));
+    ui.frameFind -> setVisible(false);
+    ui.labelWrapped -> setVisible(false);
+    autoHideTimer = new QTimer(this);
+    autoHideTimer -> setInterval(5000);
+    autoHideTimer -> setSingleShot(true);
+    QObject::connect(autoHideTimer, SIGNAL(timeout()), ui.frameFind, SLOT(hide()));
 }
 
 void TabbedBrowser::updateTitle(const QString &title)
@@ -241,8 +241,8 @@ void TabbedBrowser::transferFocus()
         currentBrowser() -> setFocus();
     }
     mainWindow() -> setWindowTitle("bQella  " + Config::configuration() -> profileTitle()
-                             + QString(" - ")
-                             + currentBrowser() -> documentTitle());
+                                   + QString(" - ")
+                                   + currentBrowser() -> documentTitle());
 }
 
 void TabbedBrowser::initHelpWindow(HelpWindow * /*win*/)
@@ -276,18 +276,18 @@ void TabbedBrowser::closeAllTabs()
     int i;
     int n = ui.tab -> count();
     HelpWindow *win;
-    
+
     if( n> 1) {
-    	for (i=1; i<n; i++){ //leave only one tab
-    		win = currentBrowser();
-    		mainWindow() -> removePendingBrowser(win);
-    		ui.tab -> removeTab(ui.tab -> indexOf(win));
-    		QTimer::singleShot(0, win, SLOT(deleteLater())); //delete the object 'win'
-   		}
-    	ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(false);
-    	emit tabCountChanged(ui.tab -> count());
+        for (i=1; i<n; i++){ //leave only one tab
+            win = currentBrowser();
+            mainWindow() -> removePendingBrowser(win);
+            ui.tab -> removeTab(ui.tab -> indexOf(win));
+            QTimer::singleShot(0, win, SLOT(deleteLater())); //delete the object 'win'
+        }
+        ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(false);
+        emit tabCountChanged(ui.tab -> count());
     }
-	currentBrowser() -> setSource( Config::configuration() -> profile() -> props["startpage"] );
+    currentBrowser() -> setSource( Config::configuration() -> profile() -> props["startpage"] );
     //Config::configuration() -> curFile = "";  //?+? may be display empty page on close all tabs?
 }
 
@@ -321,7 +321,7 @@ void TabbedBrowser::sourceChanged()
         docTitle = QString("[- no title -]");
     // Make the classname in the title a bit more visible (otherwise
     // we just see the "Qt 4.0 : Q..." which isn't really helpful ;-)
-/*    QString qtTitle = QString("RA : ");
+    /*    QString qtTitle = QString("RA : ");
     if (docTitle.startsWith(qtTitle))
         docTitle = docTitle.mid(qtTitle.length());*/
     setAppTitle(win, docTitle);
@@ -340,113 +340,113 @@ void TabbedBrowser::setAppTitle(HelpWindow *win, const QString &title)
 
 void TabbedBrowser::keyPressEvent(QKeyEvent *e)
 {
-        int key = e -> key();
-        QString ttf = ui.editFind -> text();
-        QString text = e -> text();
+    int key = e -> key();
+    QString ttf = ui.editFind -> text();
+    QString text = e -> text();
 
-        if (ui.frameFind -> isVisible()) {
-                switch (key) {
-                case Qt::Key_Escape:
-                        ui.frameFind -> hide();
-            			ui.labelWrapped -> hide();
-                        return;
-                case Qt::Key_Backspace:
-                        ttf.chop(1);
-                        break;
-                case Qt::Key_Return:
+    if (ui.frameFind -> isVisible()) {
+        switch (key) {
+        case Qt::Key_Escape:
+            ui.frameFind -> hide();
+            ui.labelWrapped -> hide();
+            return;
+        case Qt::Key_Backspace:
+            ttf.chop(1);
+            break;
+        case Qt::Key_Return:
         case Qt::Key_Enter:
-                        // Return/Enter key events are not accepted by QLineEdit
-                        return;
-                default:
-                        if (text.isEmpty()) {
-                                QWidget::keyPressEvent(e);
-                                return;
-                        }
-                        ttf += text;
-                }
-        } else {
-                if (text.isEmpty() || text[0].isSpace() || !text[0].isPrint()) {
-                        QWidget::keyPressEvent(e);
-                        return;
-                }
+            // Return/Enter key events are not accepted by QLineEdit
+            return;
+        default:
+            if (text.isEmpty()) {
+                QWidget::keyPressEvent(e);
+                return;
+            }
+            ttf += text;
+        }
+    } else {
+        if (text.isEmpty() || text[0].isSpace() || !text[0].isPrint()) {
+            QWidget::keyPressEvent(e);
+            return;
+        }
         if (text.startsWith(QChar('/'))) {
             ui.editFind -> clear();
             find();
             return;
         }
-                ttf = text;
-                ui.frameFind -> show();
-        }
+        ttf = text;
+        ui.frameFind -> show();
+    }
 
-        ui.editFind -> setText(ttf);
-        find(ttf, false, false);
+    ui.editFind -> setText(ttf);
+    find(ttf, false, false);
 }
 
 void TabbedBrowser::findNext()
 {
-        find(ui.editFind -> text(), true, false);
+    find(ui.editFind -> text(), true, false);
 }
 
 void TabbedBrowser::findPrevious()
 {
-        find(ui.editFind -> text(), false, true);
+    find(ui.editFind -> text(), false, true);
 }
 
 void TabbedBrowser::find()
 {
-        ui.frameFind -> show();
-        ui.editFind -> setFocus(Qt::ShortcutFocusReason);
-        ui.editFind -> selectAll();
-        autoHideTimer -> stop();
+    ui.frameFind -> show();
+    ui.editFind -> setFocus(Qt::ShortcutFocusReason);
+    ui.editFind -> selectAll();
+    autoHideTimer -> stop();
 }
 
 void TabbedBrowser::find(QString ttf, bool forward, bool backward)
 {
-        HelpWindow *browser = currentBrowser();
-        QTextDocument *doc = browser -> document();
-        QString oldText = ui.editFind -> text();
-        QTextCursor c = browser -> textCursor();
-        QTextDocument::FindFlags options;
-        QPalette p = ui.editFind -> palette();
-        p.setColor(QPalette::Active, QPalette::Base, Qt::white);
+    HelpWindow *browser = currentBrowser();
+    QTextDocument *doc = browser -> document();
+    QString oldText = ui.editFind -> text();
+    QTextCursor c = browser -> textCursor();
+    QTextDocument::FindFlags options;
+    QPalette p = ui.editFind -> palette();
+    p.setColor(QPalette::Active, QPalette::Base, Qt::white);
 
-        if (c.hasSelection())
-                c.setPosition(forward ? c.position() : c.anchor(), QTextCursor::MoveAnchor);
+    if (c.hasSelection())
+        c.setPosition(forward ? c.position() : c.anchor(), QTextCursor::MoveAnchor);
 
-        QTextCursor newCursor = c;
+    QTextCursor newCursor = c;
 
-        if (!ttf.isEmpty()) {
-                if (backward)
-                        options |= QTextDocument::FindBackward;
+    if (!ttf.isEmpty()) {
+        if (backward)
+            options |= QTextDocument::FindBackward;
 
-                if (ui.checkCase -> isChecked())
-                        options |= QTextDocument::FindCaseSensitively;
+        if (ui.checkCase -> isChecked())
+            options |= QTextDocument::FindCaseSensitively;
 
-                if (ui.checkWholeWords -> isChecked())
-                        options |= QTextDocument::FindWholeWords;
+        if (ui.checkWholeWords -> isChecked())
+            options |= QTextDocument::FindWholeWords;
 
-                newCursor = doc -> find(ttf, c, options);
-                ui.labelWrapped -> hide();
+        newCursor = doc -> find(ttf, c, options);
+        ui.labelWrapped -> hide();
 
-                if (newCursor.isNull()) {
-                        QTextCursor ac(doc);
-                        ac.movePosition(options & QTextDocument::FindBackward
-                                                        ? QTextCursor::End : QTextCursor::Start);
-                        newCursor = doc -> find(ttf, ac, options);
-                        if (newCursor.isNull()) {
-                                p.setColor(QPalette::Active, QPalette::Base, QColor(255, 102, 102));
-                                newCursor = c;
-                        } else
-                                ui.labelWrapped -> show();
-                }
+        if (newCursor.isNull()) {
+            QTextCursor ac(doc);
+            ac.movePosition(options & QTextDocument::FindBackward
+                            ? QTextCursor::End : QTextCursor::Start);
+            newCursor = doc -> find(ttf, ac, options);
+            if (newCursor.isNull()) {
+                p.setColor(QPalette::Active, QPalette::Base, QColor(255, 102, 102));
+                newCursor = c;
+            } else
+                ui.labelWrapped -> show();
         }
+    }
 
-        if (!ui.frameFind -> isVisible())
-                ui.frameFind -> show();
-        browser -> setTextCursor(newCursor);
-        ui.editFind -> setPalette(p);
-        if (!ui.editFind -> hasFocus())
-                autoHideTimer -> start();
+    if (!ui.frameFind -> isVisible())
+        ui.frameFind -> show();
+    browser -> setTextCursor(newCursor);
+    ui.editFind -> setPalette(p);
+    if (!ui.editFind -> hasFocus())
+        autoHideTimer -> start();
 }
 
 bool TabbedBrowser::eventFilter(QObject *o, QEvent *e)
@@ -454,15 +454,15 @@ bool TabbedBrowser::eventFilter(QObject *o, QEvent *e)
     if (o == ui.editFind) {
         if (e -> type() == QEvent::FocusIn && autoHideTimer -> isActive())
             autoHideTimer -> stop();
-    } else if (e -> type() == QEvent::KeyPress && ui.frameFind -> isVisible()) { 
-                QKeyEvent *ke = static_cast<QKeyEvent *>(e);
-                if (ke -> key() == Qt::Key_Space) {
-                        keyPressEvent(ke);
-                        return true;
-                }
+    } else if (e -> type() == QEvent::KeyPress && ui.frameFind -> isVisible()) {
+        QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+        if (ke -> key() == Qt::Key_Space) {
+            keyPressEvent(ke);
+            return true;
         }
+    }
 
-        return QWidget::eventFilter(o, e);
+    return QWidget::eventFilter(o, e);
 }
 
 void TabbedBrowser::openTabMenu(const QPoint& pos)
@@ -517,15 +517,15 @@ void TabbedBrowser::openTabMenu(const QPoint& pos)
             ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(ui.tab -> count() > 1);
             emit tabCountChanged(ui.tab -> count());
         }else if (action_picked == docProp_action) {
-        	emit showDocProperties();
-        	//mainWindow() -> browsers() -> docprop -> show();	
-       	}else if (action_picked == extEditor_action){
-        	currentBrowser() -> fileSave();
-        	mainWindow() -> OpenInExternalApplication(Config::configuration() -> ExternalEditor(), currentBrowser() -> source().toString());		
-       	}else if (action_picked == extBrowser_action){
-        	currentBrowser() -> fileSave();
-        	mainWindow() -> OpenInExternalApplication(Config::configuration() -> ExternalBrowser(), currentBrowser() -> source().toString());		
-       	}
+            emit showDocProperties();
+            //mainWindow() -> browsers() -> docprop -> show();
+        }else if (action_picked == extEditor_action){
+            currentBrowser() -> fileSave();
+            mainWindow() -> OpenInExternalApplication(Config::configuration() -> ExternalEditor(), currentBrowser() -> source().toString());
+        }else if (action_picked == extBrowser_action){
+            currentBrowser() -> fileSave();
+            mainWindow() -> OpenInExternalApplication(Config::configuration() -> ExternalBrowser(), currentBrowser() -> source().toString());
+        }
     }
     delete m;
 }

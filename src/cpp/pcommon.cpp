@@ -52,7 +52,7 @@ QStringList SplitNumString(QString Str, QString Deviders)
     QStringList str2;
     QString ss="";
     for (i=0; i<= Str.length(); i++){  //перебираем все символы строки
-	if (Str[i].isDigit()) 
+        if (Str[i].isDigit())
             ss +=Str[i];
         else {
             if (Deviders.contains(Str[i])){
@@ -77,7 +77,7 @@ int pSign(int x){
 
 //-------------------------------------------------
 // округляет вещ.число до целого;
-/*int pRound(double x){ //-pm- use Qt: int qRound ( qreal value ) 
+/*int pRound(double x){ //-pm- use Qt: int qRound ( qreal value )
   int y;
   float z;
 
@@ -436,14 +436,14 @@ int LetterToInt(QString letter, QString srcAlphabet)
 
 //-------------------------------------------------
 //возвращает номер буквы латинского алфавита
-int LetterToInt(QString letter) 
+int LetterToInt(QString letter)
 {
     return LetterToInt(letter,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 
 
 //-------------------------------------------------
-/* ?+? Процедуры для чисел > 26 (вернее больше числа букв в алфавите), так для латинского алфавита 27 = аа, 28 = ab 
+/* ?+? Процедуры для чисел > 26 (вернее больше числа букв в алфавите), так для латинского алфавита 27 = аа, 28 = ab
 QString IntToLetters(int n, QString str)
 {
  QString retStr;
@@ -488,8 +488,8 @@ int LettersToInt(QString str)
 Мы Дарим Сочные Лимоны, Хватит Всем И ещё останется.
 Соответственно M, D, C, L, X, V, I
 
-Натуральные числа записываются при помощи повторения этих цифр. 
-При этом, если большая цифра стоит перед меньшей, то они складываются (принцип сложения), 
+Натуральные числа записываются при помощи повторения этих цифр.
+При этом, если большая цифра стоит перед меньшей, то они складываются (принцип сложения),
 если же меньшая — перед большей, то меньшая вычитается из большей (принцип вычитания).
 Римские цифры предоставляют возможность записывать числа от 1 до 3999 (MMMCMXCIX). Для решения этой проблемы были созданы расширенные Римские цифры.
 http://ru.wikipedia.org/ <- Римские цифры
@@ -617,18 +617,18 @@ QString unurlifyFileName(const QString &fileName)
 //-------------------------------------------------
 //Turns absolute path to relative to 'path'
 //Difference from QDir::relativeFilePath() in: adds "./" and removes "file:" or "file:///"
-QString relatifyFileName(QString url, QString path) 
+QString relatifyFileName(QString url, QString path)
 {
     QString str = unurlifyFileName(url);
     if ((!str.isEmpty()) && (!str.startsWith("."))){
-	//we assume that the passing paths have "/" as a dir separator, since that's how Qt stores paths
-	if (!path.endsWith("/")) path = path + "/";
-	QFileInfo fi(str);
+        //we assume that the passing paths have "/" as a dir separator, since that's how Qt stores paths
+        if (!path.endsWith("/")) path = path + "/";
+        QFileInfo fi(str);
         QString path1 = fi.absolutePath()  + "/"; path1 = path1.trimmed();
         QString path2 = path.trimmed();
-	//Now we have two correct defined paths, let's make "str" relative to path1
-	//For Windows we need to be sure that both paths are on the same drive
-	if (path1[0] == path2[0]) { 
+        //Now we have two correct defined paths, let's make "str" relative to path1
+        //For Windows we need to be sure that both paths are on the same drive
+        if (path1[0] == path2[0]) {
             if ( path1 == path2){	//same path
                 str = "./" + fi.fileName();
             }else{	//build relative path
@@ -652,7 +652,7 @@ QString relatifyFileName(QString url, QString path)
                     for (i=1; i<=n; i++) prefix += "../";
                 str = prefix + path1 + fi.fileName();
             }
-	}
+        }
     }
     return str;
 }	//relatifyFileName
@@ -664,8 +664,8 @@ QStringList relatifyFileList(QStringList urls, QString path)
 
     QStringList::iterator it = urls.begin();
     for (; it != urls.end(); ++it) {
-    	sl << relatifyFileName(*it, path);
-    }	
+        sl << relatifyFileName(*it, path);
+    }
     return sl;
 }
 
@@ -687,8 +687,8 @@ QStringList absolutifyFileList(QStringList fns, QString path)
 
     QStringList::iterator it = fns.begin();
     for (; it != fns.end(); ++it) {
-    	sl << absolutifyFileName(*it, path);
-    }	
+        sl << absolutifyFileName(*it, path);
+    }
     return sl;
 }
 
@@ -1313,7 +1313,7 @@ QString checkExistenceFile(QString filename)
     {
         filename.append("_");
     }
-    qDebug() << "filename = " << filename;
+//    qDebug() << "filename = " << filename;
     return filename+"."+end;
 }
 //-------------------------------------------------------

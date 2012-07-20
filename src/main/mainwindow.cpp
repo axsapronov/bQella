@@ -65,7 +65,7 @@ MainWindow::MainWindow():
 
     goActions = QList<QAction*>();
     //    goActionDocFiles = new QMap<QAction*,QString>;
-    
+
     windows.append(this);
     tabs = new TabbedBrowser(this);
     connect(tabs, SIGNAL(tabCountChanged(int)), this, SLOT(updateTabActions(int)));
@@ -91,8 +91,8 @@ MainWindow::MainWindow():
 
     dw -> setWidget(helpDock);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
-    
-    prjprop = new ProjectProperties(this);    
+
+    prjprop = new ProjectProperties(this);
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
     //включить после отладки
@@ -105,9 +105,9 @@ MainWindow::MainWindow():
 
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));
-    
+
     if (config -> Lang() == "Russian"){
-    	setLangRu();
+        setLangRu();
     }
 
     //выключаем ненужный функционал
@@ -189,7 +189,7 @@ void MainWindow::setup()
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
     //connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
-    
+
     // Menu Tabs
     connect(ui.actionOpenPage,  SIGNAL(triggered()), tabs, SLOT(newTab()));
     connect(ui.actionClosePage, SIGNAL(triggered()), tabs, SLOT(closeTab()));
@@ -227,7 +227,7 @@ void MainWindow::setup()
     ui.actionEditFind -> setShortcut(QKeySequence::Find);
     ui.actionEditFindNext -> setShortcut(QKeySequence::FindNext);
     ui.actionEditFindPrev -> setShortcut(QKeySequence::FindPrevious);
-    
+
 
 
     qApp -> restoreOverrideCursor();
@@ -442,14 +442,16 @@ void MainWindow::showLinks(const QStringList &links)
         return;
     }
 
-    if (links.size() == 1) {
+    if (links.size() == 1)
+    {
         showLink(urlifyFileName(links.first()));
         return;
     }
 
     QStringList::ConstIterator it = links.begin();
-    // Initial showing, The tab is empty so update that without creating it first
-    if (!tabs -> currentBrowser() -> source().isValid()) {
+    /// Initial showing, The tab is empty so update that without creating it first
+    if (!tabs -> currentBrowser() -> source().isValid())
+    {
         QPair<HelpWindow*, QString> browser;
         browser.first = tabs -> currentBrowser();
         browser.second = links.first();
@@ -458,7 +460,8 @@ void MainWindow::showLinks(const QStringList &links)
     }
     ++it;
 
-    while(it != links.end()) {
+    while(it != links.end())
+    {
         QPair<HelpWindow*, QString> browser;
         browser.first = tabs -> newBackgroundTab();
         browser.second = *it;
@@ -491,7 +494,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
 {
     QPair<HelpWindow*, QString> browser = pendingBrowsers.first();
     pendingBrowsers.pop_front();
-    
+
     if (pendingBrowsers.size() == 0)
         killTimer(e -> timerId());
 
@@ -521,7 +524,7 @@ void MainWindow::saveSettings()
     config -> setSideBarPage(helpDock -> tabWidget() -> currentIndex());
     config -> setWindowGeometry(saveGeometry());
     config -> setMainWindowState(saveState());
-    
+
     // Create list of the tab urls
     QStringList lst;
     QList<HelpWindow*> browsers = tabs -> browsers();
@@ -602,7 +605,7 @@ void MainWindow::updateProfileSettings()
 
     /*	#ifndef Q_WS_MAC
     setWindowIcon(config -> applicationIcon());
-#endif 
+#endif
     ui.helpMenu -> clear();
     ui.helpMenu -> addAction(ui.actionAboutAssistant);
     ui.helpMenu -> addSeparator();
@@ -654,7 +657,7 @@ void MainWindow::ProjectOpen(QString fileName)
         helpDock -> insertContents();
 //        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
-        //Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+        Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
         projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
@@ -886,7 +889,7 @@ void MainWindow::ProjectProps()
 }
 //-------------------------------------------------
 void MainWindow::createProject(ModuleProperties pr)
-{ 
+{
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
     qDebug() << " fn = " << fn;
@@ -894,7 +897,7 @@ void MainWindow::createProject(ModuleProperties pr)
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
     if (!f.open(QFile::WriteOnly)){
-    	qDebug() << "Failed to create project: " << fn;
+        qDebug() << "Failed to create project: " << fn;
         statusBar() -> showMessage(tr("Failed to create project: %1").arg(fn), 7000);
         Config::configuration() -> toAppLog(1, tr("- failed", "For log"));
         return;
@@ -1046,7 +1049,7 @@ void MainWindow::setLangRu()
 
 //-------------------------------------------------
 void MainWindow::msgReloadRequest()
-{	
+{
     if (setupCompleted)
         QMessageBox::warning(this, tr("Reload application"), tr("Changes will be applied after application reload.", "Append this warning in English after translation"));
 }

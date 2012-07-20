@@ -55,12 +55,12 @@ public:
     @function
     The import feature of the book separately.
     In contrast to the usual import of the book takes another project file
-    /// @param  projectfile  path to project file
-    /// @param  pathName  path to book file
-    /// @param  FullName  full name for book (bibleqt param)
-    /// @param  ShortName  short name for book (bibleqt param)
-    /// @param  ChapterQty  count chapters in book (bibleqt param)
-    /// @param  myChapterSign  tag for chapters (bibleqt param)
+    @param  projectfile  path to project file
+    @param  pathName  path to book file
+    @param  FullName  full name for book (bibleqt param)
+    @param  ShortName  short name for book (bibleqt param)
+    @param  ChapterQty  count chapters in book (bibleqt param)
+    @param  myChapterSign  tag for chapters (bibleqt param)
     */
     void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign); // для импорта книги
 
@@ -75,24 +75,40 @@ public:
 
     /**
     @function
-    return project filename
+    Reeturn project filename
     */
     QString getPrjFN();
 
     /**
     @function
-    return start page for project
+    Return start page for project
     */
     QString getStartPage();
+
+    /**
+      @function
+      Set htmlfilter ( tags will be removed upon import)
+      @param removetags  tags will be removed upon import
+      */
+    void setHtmlFilter(QString removetags) { htmlfilter = removetags; }
 
 signals:
     void SuccessfulImport();
 
 public slots:
-    void importModule(QString file);
+    /**
+      @function
+      Start import module
+      @param bibleqtinifile  path to bibleqt.ini file
+      */
+    void importModule(QString bibleqtinifile);
 
 private slots:
 
+    /**
+      @function
+      Browse bibleqt.ini file
+      */
     void selectImportFile();
 
 private:
@@ -119,15 +135,75 @@ private:
     */
     void importProjectFile();
 
+    /**
+    @function
+    The import book.
+    @param  pathName  path to book file
+    @param  FullName  full name for book (bibleqt param)
+    @param  ShortName  short name for book (bibleqt param)
+    @param  ChapterQty  count chapters in book (bibleqt param)
+    @param  myChapterSign  tag for chapters (bibleqt param)
+    */
     void importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty);
+
+    /**
+    @function
+    Import chapter, parse text (remove tags)
+    @param  file  path to file
+    @return text
+    */
     QString importChapter(QString file);
 
+    /**
+      @function
+      Create import folder of path
+      @param path  project folder
+      */
     void createImportFolder(QString path);
+
+    /**
+      @function
+      Creates a file with the data book
+      @param pathName  path to book file
+      @param fullName  param bibleqt
+      @param ShortName  param bibleqt
+      @param ChapterQty  count chapters (param bibleqt)
+    */
     void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
-    void createChaterFile(QString file,QString text, int i);
+
+    /**
+      @function
+      Creates a file with the data chapter
+      @param text  text
+      @param file  path to chapter file  (book_namebook_chapter_count)
+      @param count  number of chapter
+    */
+    void createChaterFile(QString file,QString text, int count);
+
+    /**
+      @function
+      Create project file with the first data (bibleqt.ini param)
+      */
     void createProjectFile();
+    /**
+      @function
+      Create file    ___Instruction in project path (first file)
+      */
     void createInstructionFile();
+
+    /**
+    Edit project file (projectname.pem). Add text to project file(option for load project (book, chapters))
+    @param  text text
+    @param  tr chapter or book
+      */
     void addContentToProjectFile(QString text, bool tr);
+
+    /**
+      @function
+    Edit project file (projectname.pem). Add to end two strings:"
+    </contents>
+    </pemproject>"
+    */
     void addContentToEndProjectFile();
 
 };

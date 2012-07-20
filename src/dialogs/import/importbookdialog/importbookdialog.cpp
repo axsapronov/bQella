@@ -39,11 +39,11 @@ void ImportBookDialog::setData()
     modelEncoding = new QStringListModel(getFillEncoding(), this);
     ui->CBEncoding->setModel(modelEncoding);
 
-    QString htmlfilter = "<br> <pre> </pre>"
-            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
-            " <em> </em> <table </table>"
-            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
-    ui->LEHtmlFilter->setText(htmlfilter);
+//    QString htmlfilter = "<br> <pre> </pre>"
+//            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
+//            " <em> </em> <table </table>"
+//            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
+//    ui->LEHtmlFilter->setText(htmlfilter);
     ui->LETagChapter->setText("<h4>");
     ui->LETagVerse->setText("<p>");
 
@@ -86,14 +86,19 @@ void ImportBookDialog::accept()
             s.append(tr("- Please enter a full name.\n"));
             er = true;
     }
-    if (ui->LEHtmlFilter -> text().isEmpty())
-    {
-            s.append(tr("- Please enter a html filter.\n"));
-            er = true;
-    }
+//    if (ui->LEHtmlFilter -> text().isEmpty())
+//    {
+//            s.append(tr("- Please enter a html filter.\n"));
+//            er = true;
+//    }
     if (ui->LETagChapter->text().isEmpty())
     {
             s.append(tr("- Please enter a tag chapter.\n"));
+            er = true;
+    }
+    if (ui->SBCount->value() == 0)
+    {
+            s.append(tr("- Please enter a count chapters.\n"));
             er = true;
     }
     if (ui->LETagVerse->text().isEmpty())
@@ -119,6 +124,7 @@ void ImportBookDialog::accept()
 
         QString projectfile = Config::configuration()->CurProject();
 //        qDebug() << " project file = " << projectfile;
+        importm->setHtmlFilter (ui->LEHtmlFilter->text ());
         importm->importBook(projectfile, bookPathFile, bookFullName, bookShortName, bookCount, bookTagChapter);
         importm->addContentToEndProjectFile(projectfile);
 

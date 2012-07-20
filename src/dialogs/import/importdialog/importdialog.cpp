@@ -27,13 +27,10 @@
 #include "mainwindow.h"
 #include "config.h"
 
-
-
 #include <QFileDialog>
 #include <QStringList>
 #include <QStringListModel>
-
-
+#include <QMessageBox>
 
 Import::Import(QWidget *parent)
     : QDialog(parent)
@@ -45,8 +42,8 @@ Import::Import(QWidget *parent)
     ui.cBEncoding -> setModel(typeModel);
 
 
-//    ui.LEImportFile->setText("");
-    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    ui.LEImportFile->setText("");
+//    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 
     connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
 }
@@ -66,7 +63,20 @@ void Import::selectImportFile()
 //----------------------------------------------------
 void Import::accept()
 {
+    QString s = "";  //holds list of errors
+    bool er = false;
+//    validProperties = false;
     if (!ui.LEImportFile->text().isEmpty())
+    {
+            s.append(tr("- Please browse bibleqt.ini file.\n"));
+            er = true;
+    }
+
+    if (er)
+    {
+            QMessageBox::critical(this, tr("Import book error"), s);
+    }
+    else
     {
         encoding = ui.cBEncoding->currentText();
         encoding.replace("CP", "Windows");
@@ -86,19 +96,19 @@ void Import::accept()
         if (encoding == "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
         if (encoding == "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
 
-
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
         QTextCodec::setCodecForTr(codec);
 
-        importModule(ui.LEImportFile->text());
         htmlfilter = ui.LEHtmlFilter->text();
+        importModule(ui.LEImportFile->text());
 
         emit SuccessfulImport();
+        QWidget::hide();  //close dialog
 
     }
 
-    QWidget::hide();  //close dialog
+
 }
 //----------------------------------------------------
 void Import::importModule(QString file)
@@ -297,7 +307,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
 
 
     // add info to project file
-    QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
+    QString text2 = QString("<section title=\"" + Qt::escape(FullName) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
     addContentToProjectFile(projectfile ,text2, false);
 
 
@@ -359,9 +369,14 @@ QString Import::importChapter(QString line)
     line
             .remove("<sup>")
             .remove("</sup>");
-//        qDebug() << "Debug: _Import::importChapter:" << "line " << line;
-    return line;
 
+    QStringList htmlfilterlist = QString(htmlfilter).split(" ");
+    for (int i = 0; i < htmlfilterlist.size(); i++)
+    {
+        line.remove(checkTag(htmlfilterlist.at(i))); /// remove <tag>
+        line.remove( "</"+ checkTag(htmlfilterlist.at(i)).remove("<") ); /// remove </tag>
+    }
+    return line;
 }
 //----------------------------------------------------
 void Import::importProjectFile()
@@ -534,7 +549,7 @@ void Import::createChaterFile(QString file, QString text, int i)
 void Import::createProjectFile()
 {
     QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ ".pem";
-    qDebug() << "filename = " << filename;
+//    qDebug() << "filename = " << filename;
     // проверить можно ли обращаться к helpdialog по helpdilog::
 
     QFile file1(filename);
