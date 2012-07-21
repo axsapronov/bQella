@@ -54,7 +54,7 @@ void ImportBookDialog::setData()
 
 void ImportBookDialog::browse()
 {
-    QString beginpath = "/home/warmonger";
+    QString beginpath = Config::configuration ()->AppDir ();
 //    QString beginpath = "/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8";
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select book"),

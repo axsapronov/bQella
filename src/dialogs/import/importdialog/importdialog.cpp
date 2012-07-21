@@ -50,7 +50,7 @@ Import::Import(QWidget *parent)
 //----------------------------------------------------
 void Import::selectImportFile()
 {
-    QString beginpath = "/home/warmonger";
+    QString beginpath = Config::configuration ()->AppDir ();
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select bibleqt.ini"),
                                                     beginpath,
@@ -66,7 +66,7 @@ void Import::accept()
     QString s = "";  //holds list of errors
     bool er = false;
 //    validProperties = false;
-    if (!ui.LEImportFile->text().isEmpty())
+    if (ui.LEImportFile->text().isEmpty())
     {
             s.append(tr("- Please browse bibleqt.ini file.\n"));
             er = true;
@@ -196,6 +196,13 @@ void Import::importIni(QString filename)
                     QString full = miniparserini( line2, "FullName");
                     QString shortna = miniparserini( line3, "ShortName");
                     QString path = filename + miniparserini( line, "PathName");
+
+//                    QString pathname = miniparserini( line, "PathName");
+//                    pathname = QString(pathname).split (".").first ();
+//                    QString bookname = pathname.replace (pathname, checkProcentRol (shortna, pathname));
+
+//                    QString path = filename + bookname + ".htm";
+
 //                    QString path = filename + checkProcentRol(shortna, 50)+".htm";
 //                    qDebug()/* << " bookshorname = " << shortna */<< " check = " << checkProcentRol(shortna, 50) << "path = " << path << "filename = " << filename;
                     int chapter = QString(miniparserini( line4 , "ChapterQty" )).toInt();
@@ -525,10 +532,13 @@ void Import::createImportFolder(QString path)
 //----------------------------------------------------
 void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
-    QString pathNameE = pathName.split("/").last(); // получаем pathname (filename.htm)
-    pathNameE.remove("book_");
+    QString pathNameE = getFileNameAbs (pathName); // получаем pathname (filename.htm)
+    pathNameE = checkProcentRol (ShortName, pathNameE) + ".htm";
+//    pathNameE.remove("book_");
+//    qDebug() << " pathnameE = " << pathNameE;
 //    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE;
-    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + checkProcentRol(ShortName, pathName.split("/").last()).remove (".htm")+".htm";
+    QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + pathNameE;
+
 //    qDebug() << " \n ------- pathname = " << pathNameE << " filenamef = " << fileimportname;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;

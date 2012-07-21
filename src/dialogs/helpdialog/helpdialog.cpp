@@ -729,6 +729,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
             }
         }
 
+
     QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName());
     if (contentOut.open(QFile::WriteOnly))
         {
@@ -1340,6 +1341,8 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
     QString strfor = fileName;
     strfor.remove("file:");
 
+    shortname = shortname;
+    count = count;
     //    qDebug() << " filename = " << fileName;
     QTreeWidgetItem *newEntry;
     if (newSameLevelItem)

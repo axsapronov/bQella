@@ -90,6 +90,7 @@ MainWindow::MainWindow():
     //    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
 
     dw -> setWidget(helpDock);
+    dw->setMaximumWidth (250);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
 
     prjprop = new ProjectProperties(this);
@@ -116,8 +117,9 @@ MainWindow::MainWindow():
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
 
-    //     importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
-    //ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    this->showMaximized ();
 }
 
 //-------------------------------------------------
