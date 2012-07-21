@@ -752,9 +752,9 @@ void MainWindow::on_actionSaveFileAs_triggered()
             }
         }
     }
-    QString src = doc -> toHtml(QByteArray("utf-8"));
+    QString src = doc -> toHtml(QByteArray("UTF-8"));
     QTextStream s(&file);
-    s.setCodec("utf-8");
+    s.setCodec("UTF-8");
     s << src;
     s.flush();
     file.close();
@@ -819,7 +819,7 @@ void MainWindow::ProjectNew()
     pr.desiredFontName = "none";
     pr.categories = "none";
     pr.desiredFontPath = "none";
-    pr.defaultEncoding = "utf-8";
+    pr.defaultEncoding = "UTF-8";
     pr.desiredUIFont = "none";
     pr.useChapterHead = false;
     pr.useRightAlignment = false;

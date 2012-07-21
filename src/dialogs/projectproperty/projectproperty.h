@@ -99,8 +99,8 @@ private:
         QString moduleCopyright;
         QString moduleBibleShortName;
 
-
         void setToolTipLabels();
+        void setData();
 
         bool moduleType;
         bool oldTestament;

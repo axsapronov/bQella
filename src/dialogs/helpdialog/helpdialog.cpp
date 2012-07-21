@@ -2067,20 +2067,29 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
 {
     QFile filebook(filenamebook);
     filebook.remove();
+
+    QString encoding = Config::configuration ()->profile ()->props["defaultencoding"];
+    QTextCodec * codec = getCodecOfEncoding (encoding);
+
     if(!filebook.open(QIODevice::Append))
         {
             qDebug() << "Debug: _HelpDialog::exportBibleBook" <<"Error write";
         }
     else
         {
+
+            QTextStream ts(&filebook);
+            ts.setCodec(codec);
+            QString str;
             //        filebook.write(QString("<html>\n<head>\n<title>NAME</title>\n</head>\n<body>").toUtf8());
             for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
                 {
                     QString filenamechapter = ui.listContents -> topLevelItem(i.toInt()) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
                     int icount = j;
-                    filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true)).toUtf8());
+                    str = exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true);
+                    ts << str;
+//                    filebook.write(QString("%1").arg(exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true)).toUtf8());
                 }
-            //        filebook.write(QString("\n\n</body>\n</html>").toUtf8());
         }
     filebook.close();
 }

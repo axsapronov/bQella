@@ -24,9 +24,12 @@
 #ifndef __PCOMMON_H__
 #define __PCOMMON_H__
 
-#include <QString>
-#include <QStringList>
-#include <QTreeWidgetItem>
+class QString;
+class QStringList;
+#include  <QTreeWidgetItem>
+class QTextCodec;
+
+
 
 #include "config.h"
 
@@ -90,6 +93,7 @@ QString uncheckTag(QString tag); // обратная операция
 QString checkEndTag(QString tag); // возвращает из тега <tag> </tag>
 QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT_OF_MATCHES); // разбивает shortname на части и проверяет насколько совпадает с getFillShortName()
 //если с точностью до процента совпадает, то возвращает номер в shortname, а если нету такого, то out Применяется для импорта книги
+QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
 
 //======= работа с файлами =======
 //--------------------------------

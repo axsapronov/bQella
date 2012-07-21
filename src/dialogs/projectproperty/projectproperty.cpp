@@ -31,7 +31,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QDebug>
-
+#include <QStringListModel>
 
 //===================== class ProjectProperties ===========================
 
@@ -40,8 +40,9 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 {
     ui.setupUi(this);
     modeNewProject = false;
+    setData();
 }
-
+//-------------------------------------------------------------------
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 {
     prjTitle= pr.prjTitle;
@@ -78,17 +79,15 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.LEHtmlFilter ->setText (pr.htmlFilter);
     ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
-    //    // HTMLFilter должен автоматом создаваться
     setToolTipLabels();
 }
-
+//-------------------------------------------------------------------
 void ProjectProperties::reject()
 {
     validProperties = false;
     QWidget::hide();  //close dialog
 }
-
-
+//-------------------------------------------------------------------
 void ProjectProperties::showUpdate()
 {
     if(!modeNewProject)
@@ -100,8 +99,7 @@ void ProjectProperties::showUpdate()
             ui.LEBibleName->setEnabled(true);
         }
 }
-
-
+//-------------------------------------------------------------------
 void ProjectProperties::accept()
 {
     QString s = "";  //holds list of errors
@@ -122,9 +120,10 @@ void ProjectProperties::accept()
   er = true;
  }
         */
-    if (er){
-        QMessageBox::critical(this, tr("Project property error"), s);
-    }
+    if (er)
+        {
+            QMessageBox::critical(this, tr("Project property error"), s);
+        }
     else
         {
             QDir dir(prjFN);
@@ -141,67 +140,70 @@ void ProjectProperties::accept()
             QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
             if (!filePrj.exists())
                 {		//create file if it's not exist
-                    if (filePrj.open(QIODevice::ReadWrite)){	//try to create file
-                        QTextStream ts(&filePrj);
-                        ts << "<pemproject>\n</pemproject>";
-                        filePrj.close();
-                    }else{
-                        QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
-                        er = true;
-                    }
+                    if (filePrj.open(QIODevice::ReadWrite))
+                        {	//try to create file
+                            QTextStream ts(&filePrj);
+                            ts << "<pemproject>\n</pemproject>";
+                            filePrj.close();
+                        }
+                    else
+                        {
+                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
+                            er = true;
+                        }
                 }
             //check for valid start page file name
             //        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"Bibleqt"+GL_PROJECT_CONF_FILE);
             QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
-            if (!fileSP.exists()){		//create file if it does not exist
-                if (fileSP.open(QIODevice::ReadWrite)){		//try to create file
-                    QTextStream ts(&fileSP);
-                    ts.setCodec("UTF-8");
+            if (!fileSP.exists())
+                {		//create file if it does not exist
+                    if (fileSP.open(QIODevice::ReadWrite))
+                        {		//try to create file
+                            QTextStream ts(&fileSP);
+                            ts.setCodec("UTF-8");
 
-                    QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
-                            tr("   ___Instruction") + "</title></head>\n";
-                    QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
+                            QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
+                                    tr("   ___Instruction") + "</title></head>\n";
+                            QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
 
-                    Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
-                    Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());
-                    Config::configuration() -> setModuleCopyright(ui.LECopyright -> text());
+                            Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
+                            Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());
+                            Config::configuration() -> setModuleCopyright(ui.LECopyright -> text());
 
-                    Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
-                    Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
-                    Config::configuration() -> setApocrypha(ui.cbApocrypha -> checkState());
-                    Config::configuration() -> setChapterZero(ui.cbChapterZero -> checkState());
-                    Config::configuration() -> setEnglishPsalms(ui.cbEnglishPsalms -> checkState());
-                    Config::configuration() -> setStrongNumber(ui.cbStrongNumber -> checkState());
-                    Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
-                    Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
-                    Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
-                    Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
+                            Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
+                            Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
+                            Config::configuration() -> setApocrypha(ui.cbApocrypha -> checkState());
+                            Config::configuration() -> setChapterZero(ui.cbChapterZero -> checkState());
+                            Config::configuration() -> setEnglishPsalms(ui.cbEnglishPsalms -> checkState());
+                            Config::configuration() -> setStrongNumber(ui.cbStrongNumber -> checkState());
+                            Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
+                            Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
+                            Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
+                            Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
 
-                    Config::configuration() -> setCategories(ui.LECategories -> text());
-                    Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
-                    Config::configuration() -> setDesiredFontName(ui.LEDesiredFontName -> text());
-                    Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
-                    Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
-                    Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
-                    Config::configuration() -> setHtmlFilter(ui.LEHtmlFilter -> text());
-                    Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
-                    Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
-                    Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
+                            Config::configuration() -> setCategories(ui.LECategories -> text());
+                            Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
+                            Config::configuration() -> setDesiredFontName(ui.LEDesiredFontName -> text());
+                            Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
+                            Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
+                            Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
+                            Config::configuration() -> setHtmlFilter(ui.LEHtmlFilter -> text());
+                            Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
+                            Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
+                            Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
 
-                    QString str_ender = "\n</body>\n</html>\n";
+                            QString str_ender = "\n</body>\n</html>\n";
 
-                    ts << str_header << str_body << str_ender;
-                    //ts << str_conf;
-                    fileSP.close();
-
-
+                            ts << str_header << str_body << str_ender;
+                            //ts << str_conf;
+                            fileSP.close();
+                        }
+                    else
+                        {
+                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
+                            er = true;
+                        }
                 }
-                else
-                    {
-                        QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
-                        er = true;
-                    }
-            }
 
 
             if (!er)
@@ -259,8 +261,7 @@ void ProjectProperties::accept()
                 }
         }
 }
-
-
+//-------------------------------------------------------------------
 void ProjectProperties::setToolTipLabels()
 {
     QString str;
@@ -312,7 +313,7 @@ void ProjectProperties::setToolTipLabels()
 
     // encoding
     str = QString(tr("<i>Encoding module by default</i><br><br>"
-                     "This parameter defaults to <b>utf-8</b>.<br>"
+                     "This parameter defaults to <b>UTF-8</b>.<br>"
                      "Windows-1250 for Central European languages ​​that use Latin script letters "
                      "(Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)"
                      "<b>Windows-1251</b> for Cyrillic alphabets<br>"
@@ -350,7 +351,7 @@ void ProjectProperties::setToolTipLabels()
                      "Septuagint - LXX, <br>"
                      "Russian Synodal Version - RSV, <br>"
                      "Translation Kuznetsova - TK, <br>"
-                     "the Byzantine text-type (Majority Text) is denoted by the letter []."
+                     "the Byzantine text-type (Majority Text) is denoted by the letter [ ]."
                      ));
     ui.sShortName->setToolTip(str);
 
@@ -434,3 +435,11 @@ void ProjectProperties::setToolTipLabels()
                      "Put <b>Y</b> if the module you want to display the entire text to the right"));
     ui.cbUseRightAlignment->setToolTip(str);
 }
+//-------------------------------------------------------------------
+void ProjectProperties::setData()
+{
+    QStringListModel *modelEncoding;
+    modelEncoding = new QStringListModel(getFillEncoding(), this);
+    ui.comBEncoding->setModel(modelEncoding);
+}
+//-------------------------------------------------------------------

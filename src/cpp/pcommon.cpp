@@ -836,7 +836,7 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
             writelist.append(QString(str.at(i))+"\n");
         }
 
-    if (Config::configuration()->Language() == "utf-8") file.write(writelist.toUtf8());
+    if (Config::configuration()->Language() == "UTF-8") file.write(writelist.toUtf8());
     //    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
     //    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
 }
@@ -950,6 +950,7 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
 
+//    qDebug() << "encoding = " << Config::configuration ()->profile ()->props["defaultencoding"];
 
 //        qDebug() << "tags = " << tags << " strtags = " << Config::configuration ()->HtmlFilter ().toUtf8 ();
 //        tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
@@ -1258,7 +1259,7 @@ QString miniparserini(QString str, QString po)
                             return "rus";
                         }
                     if ( po == "DefaultEncoding = ")
-                        return "utf-8";
+                        return "UTF-8";
                     return "none";
                 }
             str.remove("\n");
@@ -1447,4 +1448,26 @@ QString checkProcentRol(QString str, QString out, int procent)
         }
     return out;
 
+}
+//-----------------------------------------
+QTextCodec * getCodecOfEncoding(QString encoding)
+{
+//    encoding = encoding.toUpper ();
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8");
+    if (encoding.toUpper ()== "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
+    if (encoding.toUpper ()== "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
+    if (encoding.toUpper ()== "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
+    if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
+    if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
+    if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
+    if (encoding == "Windows-1254") codec = QTextCodec::codecForName("Windows-1254");
+    if (encoding == "Windows-1255") codec = QTextCodec::codecForName("Windows-1255");
+    if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
+    if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
+    if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
+    if (encoding.toUpper ()== "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
+    if (encoding.toUpper ()== "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
+
+//    qDebug() << " encoding = " << encoding;
+    return codec;
 }

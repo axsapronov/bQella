@@ -62,7 +62,8 @@ void Export::exportCreateDir(QString current_dir)
 //---------------------------------
 void Export::exportBibleqtIni(QString string, QString count)
 {
-
+    QString encoding = Config::configuration ()->profile ()->props["defaultencoding"];
+    QTextCodec * codec = getCodecOfEncoding (encoding);
     //экспортируем ini файл
     QFile file(string);
     //    qDebug() << string;
@@ -137,11 +138,13 @@ void Export::exportBibleqtIni(QString string, QString count)
                         .arg(Config::configuration() -> profile() -> props["defaultencoding"]) /*22*/
                         .arg(Config::configuration() -> profile() -> props["desireduifont"]) /*23*/
                         .arg(Config::configuration() -> profile() -> props["htmlfilter"]));
-                    //                .arg(htmlfilter));
-                    //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
-                    stru.replace("none", "");
+            //                .arg(htmlfilter));
+            //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
+            stru.replace("none", "");
 
-            file.write(QString("%1").arg(stru).toUtf8());
+            QTextStream ts(&file);
+            ts.setCodec(codec);
+            ts << stru;
         }
     file.close();
 }
@@ -150,10 +153,9 @@ void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
 {
     //    QString filename = helpDock -> ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:");
     //    qDebug() << "\n-------str = " << filename;
+    QString encoding = Config::configuration ()->profile ()->props["defaultencoding"];
+    QTextCodec * codec = getCodecOfEncoding (encoding);
     QString string = exportChapter(filename, count ,false);
-
-    //    qDebug() << "\n-------str = " << string;
-
     QFile filebibleqt(file);
     if(!filebibleqt.open(QIODevice::Append))
         {
@@ -161,7 +163,9 @@ void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
         }
     else
         {
-            filebibleqt.write(QString("%1").arg(string).toUtf8());
+            QTextStream ts(&filebibleqt);
+            ts.setCodec(codec);
+            ts << string;
         }
     filebibleqt.close();
 }

@@ -80,22 +80,7 @@ void Import::accept()
     {
         encoding = ui.cBEncoding->currentText();
         encoding.replace("CP", "Windows");
-        QTextCodec * codec = QTextCodec::codecForName("UTF-8");
-
-        if (encoding == "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
-        if (encoding == "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
-        if (encoding == "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
-        if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
-        if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
-        if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
-        if (encoding == "Windows-1254") codec = QTextCodec::codecForName("Windows-1254");
-        if (encoding == "Windows-1255") codec = QTextCodec::codecForName("Windows-1255");
-        if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
-        if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
-        if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
-        if (encoding == "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
-        if (encoding == "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
-
+        QTextCodec * codec = getCodecOfEncoding (encoding);
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
         QTextCodec::setCodecForTr(codec);
@@ -300,26 +285,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
 void Import::importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding)
 {
 
-    QTextCodec * codec = QTextCodec::codecForName("UTF-8");
-
-    if (encoding == "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
-    if (encoding == "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
-    if (encoding == "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
-    if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
-    if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
-    if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
-    if (encoding == "Windows-1254") codec = QTextCodec::codecForName("Windows-1254");
-    if (encoding == "Windows-1255") codec = QTextCodec::codecForName("Windows-1255");
-    if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
-    if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
-    if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
-    if (encoding == "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
-    if (encoding == "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
-
-//    QTextCodec::setCodecForCStrings(codec);
-//    QTextCodec::setCodecForLocale(codec);
-//    QTextCodec::setCodecForTr(codec);
-
+    QTextCodec * codec = getCodecOfEncoding (encoding);
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "Start import book";
     //    qDebug() << "Debug: _Import::importBook(QString file):" << "pathName = " << pathName;
     QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
@@ -442,7 +408,8 @@ void Import::importProjectFile()
     Config::configuration() -> toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
-    if (!f.open(QFile::WriteOnly)){
+    if (!f.open(QFile::WriteOnly))
+        {
         qDebug() << "Failed to create project: " << fn;
         //        statusBar() -> showMessage(tr("Failed to create project: %1").arg(fn), 7000);
         Config::configuration() -> toAppLog(1, tr("- failed", "For log"));
