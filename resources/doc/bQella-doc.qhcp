@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QHelpCollectionProject version="1.0">
     <assistant>
-		<title>bQella </title>
-        <applicationIcon>images/handbook.png</applicationIcon>
-		<cacheDirectory>WarmongeR/bQella</cacheDirectory>
-		<startPage>qthelp://com.trolltech.examples.simpletextviewer/doc/index.html</startPage>
+        <title>bQella </title>
+        <applicationIcon>resources/images/handbook.png</applicationIcon>
+        <cacheDirectory>WarmongeR/bQella</cacheDirectory>
+        <startPage>resources/index_ru.html</startPage>
         <aboutMenuText>
             <text>About bQella</text>
         </aboutMenuText>
         <aboutDialog>
-            <file>about.txt</file>
-            <icon>images/icon.png</icon>
+            <file>resources/about.txt</file>
+            <icon>resources/images/icon.png</icon>
         </aboutDialog>
         <enableDocumentationManager>false</enableDocumentationManager>
         <enableAddressBar>false</enableAddressBar>

@@ -72,11 +72,12 @@ void Assistant::showDocumentation(const QString &page)
     if (!startAssistant())
         return;
 
-    QByteArray ba("SetSource ");
-    ba.append("qthelp://com.trolltech.examples.simpletextviewer/doc/");
+//    QByteArray ba("SetSource ");
+//    ba.append("qthelp://com.trolltech.examples.simpletextviewer/doc/");
+//        ba.append("doc/resources/");
 //    ba.append(":doc/doc");
-    
-    proc->write(ba + page.toLocal8Bit() + '\0');
+
+//    proc->write(ba + page.toLocal8Bit() + '\0');
 }
 //! [1]
 
@@ -111,7 +112,7 @@ bool Assistant::startAssistant()
             QMessageBox::critical(0, QObject::tr("bQella"),
                 QObject::tr("Unable to launch Qt Assistant (%1)").arg(app));
             return false;
-        }    
+        }
     }
     return true;
 }
