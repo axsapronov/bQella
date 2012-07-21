@@ -122,6 +122,7 @@ private:
     QString htmlfilter;
 
     void accept();
+    void setData();
 
     /**
     @function

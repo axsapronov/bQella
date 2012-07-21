@@ -361,7 +361,7 @@ void HelpDialog::initialize()
     QString title;
     QStringList sl = Config::configuration() -> ProfileFNs();
     sl.removeOne("");
-    sl.removeOne(".pem");
+    sl.removeOne(GL_PROJECT_FILE);
     //    qDebug() << " list = " << sl;
     QStringList::iterator it = sl.begin();
     for (; it != sl.end(); ++it)

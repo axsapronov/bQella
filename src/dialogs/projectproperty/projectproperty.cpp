@@ -40,7 +40,8 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 {
     ui.setupUi(this);
     modeNewProject = false;
-    setData();
+    setData(); /// set firsrt data (list encoding)
+    setToolTipLabels(); ///set what'is labels
 }
 //-------------------------------------------------------------------
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
@@ -53,11 +54,10 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     QString version;
     version.setNum(pr.moduleBVersion);
 
-    ui.LEBibleName -> setText(pr.moduleBiblename); // добавил
+    ui.LEBibleName -> setText(pr.moduleBiblename);
     ui.LEBibleShortName -> setText(pr.moduleBibleShortName);
     ui.LECopyright -> setText(pr.moduleCopyright);
     ui.doubleSpinBoxVersion -> setValue(pr.moduleBVersion);
-
     ui.cbOldTestament -> setChecked(pr.oldTestament);
     ui.cbNewTestament -> setChecked(pr.newTestament);
     ui.cbmoduleType -> setChecked(pr.moduleType);
@@ -68,7 +68,6 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.cbUseChapterHead -> setChecked(pr.useChapterHead);
     ui.cbUseRightAlignment -> setChecked(pr.useRightAlignment);
     ui.cbNoForcedLineBreaks -> setChecked(pr.noForcedLineBreaks);
-
     ui.LECategories -> setText(pr.categories);
     ui.comBEncoding -> setCurrentIndex( ui.comBEncoding->findText(pr.defaultEncoding));
     ui.LEDesiredFontName -> setText(pr.desiredFontName);
@@ -79,7 +78,6 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.LEHtmlFilter ->setText (pr.htmlFilter);
     ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
-    setToolTipLabels();
 }
 //-------------------------------------------------------------------
 void ProjectProperties::reject()
@@ -91,13 +89,13 @@ void ProjectProperties::reject()
 void ProjectProperties::showUpdate()
 {
     if(!modeNewProject)
-        {
-            ui.LEBibleName->setEnabled(false);
-        }
+    {
+        ui.LEBibleName->setEnabled(false);
+    }
     else
-        {
-            ui.LEBibleName->setEnabled(true);
-        }
+    {
+        ui.LEBibleName->setEnabled(true);
+    }
 }
 //-------------------------------------------------------------------
 void ProjectProperties::accept()
@@ -114,152 +112,133 @@ void ProjectProperties::accept()
         er = true;
     }
 
-    //check for correct start page
-    /*if  (ui.EStartPage -> text().isEmpty()){ //|| (!itemprop -> valid()) )
-  s += tr("- Please choose a valid start page.");
-  er = true;
- }
-        */
     if (er)
-        {
-            QMessageBox::critical(this, tr("Project property error"), s);
-        }
+    {
+        QMessageBox::critical(this, tr("Project property error"), s);
+    }
     else
-        {
-            QDir dir(prjFN);
-            //    qDebug() << "path = " << path <<  "last = " << path.last();
+    {
+        QDir dir(prjFN);
+        QString str = ui.LEBibleName ->text();
+        str.replace(" ", "_");
+        ui.LEBibleName->setText(str);
+        dir.mkdir(ui.LEBibleName -> text());
 
-            QString str = ui.LEBibleName ->text();
-            str.replace(" ", "_");
-            ui.LEBibleName->setText(str);
-            dir.mkdir(ui.LEBibleName -> text());
-
-            //check for valid project file name
-            //            qDebug() << "Debug: _ProjectProperties::accept()" << "Eprj = " << ui.EprjFileName -> text() << "biblname = " << ui.LEBibleName -> text();
-            //            qDebug() << "Debug: _ProjectProperties::accept()" << "firePrj = " << prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE;
-            QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
-            if (!filePrj.exists())
-                {		//create file if it's not exist
-                    if (filePrj.open(QIODevice::ReadWrite))
-                        {	//try to create file
-                            QTextStream ts(&filePrj);
-                            ts << "<pemproject>\n</pemproject>";
-                            filePrj.close();
-                        }
-                    else
-                        {
-                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
-                            er = true;
-                        }
-                }
-            //check for valid start page file name
-            //        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"Bibleqt"+GL_PROJECT_CONF_FILE);
-            QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
-            if (!fileSP.exists())
-                {		//create file if it does not exist
-                    if (fileSP.open(QIODevice::ReadWrite))
-                        {		//try to create file
-                            QTextStream ts(&fileSP);
-                            ts.setCodec("UTF-8");
-
-                            QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
-                                    tr("   ___Instruction") + "</title></head>\n";
-                            QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
-
-                            Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
-                            Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());
-                            Config::configuration() -> setModuleCopyright(ui.LECopyright -> text());
-
-                            Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
-                            Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
-                            Config::configuration() -> setApocrypha(ui.cbApocrypha -> checkState());
-                            Config::configuration() -> setChapterZero(ui.cbChapterZero -> checkState());
-                            Config::configuration() -> setEnglishPsalms(ui.cbEnglishPsalms -> checkState());
-                            Config::configuration() -> setStrongNumber(ui.cbStrongNumber -> checkState());
-                            Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
-                            Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
-                            Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
-                            Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
-
-                            Config::configuration() -> setCategories(ui.LECategories -> text());
-                            Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
-                            Config::configuration() -> setDesiredFontName(ui.LEDesiredFontName -> text());
-                            Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
-                            Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
-                            Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
-                            Config::configuration() -> setHtmlFilter(ui.LEHtmlFilter -> text());
-                            Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
-                            Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
-                            Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
-
-                            QString str_ender = "\n</body>\n</html>\n";
-
-                            ts << str_header << str_body << str_ender;
-                            //ts << str_conf;
-                            fileSP.close();
-                        }
-                    else
-                        {
-                            QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
-                            er = true;
-                        }
-                }
-
-
-            if (!er)
-                {	//project, start page and sources files do exist we can proceed with setting project properties
-                    ModuleProperties prop;
-                    prop.prjTitle= ui.LEBibleName -> text();//ui.ETitle -> text();
-                    prop.prjStartPage = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
-
-                    prop.moduleBiblename = ui.LEBibleName -> text();
-                    prop.moduleBibleShortName = ui.LEBibleShortName -> text();
-                    prop.moduleCopyright = ui.LECopyright -> text();
-                    prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
-
-                    prop.prjFN = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
-
-                    prop.moduleType = ui.cbmoduleType ->isChecked();
-                    //            qDebug() << "before old = " << prop.oldTestament;
-                    prop.oldTestament = ui.cbOldTestament -> isChecked();
-                    //            qDebug() << "after old = " << prop.oldTestament;
-                    prop.newTestament = ui.cbNewTestament -> isChecked();
-                    prop.apocrypha = ui.cbApocrypha -> isChecked();
-                    prop.chapterZero = ui.cbChapterZero -> isChecked();
-                    prop.englishPsalms = ui.cbEnglishPsalms -> isChecked();
-                    prop.strongNumber = ui.cbStrongNumber -> isChecked();
-                    prop.useChapterHead = ui.cbUseChapterHead -> isChecked();
-                    prop.useRightAlignment = ui.cbUseRightAlignment -> isChecked();
-                    prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
-
-                    prop.categories = ui.LECategories -> text();
-                    prop.defaultEncoding = ui.comBEncoding->currentText();
-                    prop.language = ui.comBLanguage->currentText();
-                    prop.desiredFontName = ui.LEDesiredFontName -> text();
-                    prop.desiredFontPath = ui.LEDesiredFontPath -> text();
-                    prop.strongsDirectory = ui.LEStrongDir -> text();
-                    prop.htmlFilter = ui.LEHtmlFilter -> text();
-                    prop.soundDirectory = ui.LESoundDir -> text();
-                    prop.installFonts = ui.LEInstallFonts -> text();
-                    prop.desiredUIFont = ui.LEDesiredUIFont -> text();
-
-                    ui.tabWidget->setCurrentIndex (0);
-                    validProperties = true;
-                    if (modeNewProject)
-                        {
-
-                            modeNewProject = false;
-                            emit createProject(prop);
-                        }
-                    else
-                        {
-                            prop.prjFN = Config::configuration()->CurProject();
-                            //                qDebug() << "Debug: _update info in project file";
-                            emit updateProjectProperties(prop);
-                        }
-                    QWidget::hide();  //close dialog
-                }
+        //check for valid project file name
+        QFile filePrj(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
+        if (!filePrj.exists())
+        {		//create file if it's not exist
+            if (filePrj.open(QIODevice::ReadWrite))
+            {	//try to create file
+                QTextStream ts(&filePrj);
+                ts << "<pemproject>\n</pemproject>";
+                filePrj.close();
+            }
+            else
+            {
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
+                er = true;
+            }
         }
+
+        //check for valid start page file name
+        QFile fileSP(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
+        if (!fileSP.exists())
+        {		//create file if it does not exist
+            if (fileSP.open(QIODevice::ReadWrite))
+            {		//try to create file
+                QTextStream ts(&fileSP);
+                ts.setCodec("UTF-8");
+
+                QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
+                        tr("   ___Instruction") + "</title></head>\n";
+                QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
+
+                Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
+                Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());
+                Config::configuration() -> setModuleCopyright(ui.LECopyright -> text());
+                Config::configuration() -> setOldTestament(ui.cbOldTestament -> checkState());
+                Config::configuration() -> setNewTestament(ui.cbNewTestament -> checkState());
+                Config::configuration() -> setApocrypha(ui.cbApocrypha -> checkState());
+                Config::configuration() -> setChapterZero(ui.cbChapterZero -> checkState());
+                Config::configuration() -> setEnglishPsalms(ui.cbEnglishPsalms -> checkState());
+                Config::configuration() -> setStrongNumber(ui.cbStrongNumber -> checkState());
+                Config::configuration() -> setUseChapterHead(ui.cbUseChapterHead -> checkState());
+                Config::configuration() -> setUseRightAlignment(ui.cbUseRightAlignment ->checkState());
+                Config::configuration() -> setNoForcedLineBreaks(ui.cbNoForcedLineBreaks -> checkState());
+                Config::configuration() -> setModuleType(ui.cbmoduleType ->checkState());
+                Config::configuration() -> setCategories(ui.LECategories -> text());
+                Config::configuration() -> setDefaultEncoding(ui.comBEncoding->currentText());
+                Config::configuration() -> setDesiredFontName(ui.LEDesiredFontName -> text());
+                Config::configuration() -> setDesiredFontPath(ui.LEDesiredFontPath -> text());
+                Config::configuration() -> setStrongsDirectory(ui.LEStrongDir -> text());
+                Config::configuration() -> setSoundDirectory(ui.LESoundDir -> text());
+                Config::configuration() -> setHtmlFilter(ui.LEHtmlFilter -> text());
+                Config::configuration() -> setInstallFonts(ui.LEInstallFonts -> text());
+                Config::configuration() -> setDesiredUIFont(ui.LEDesiredUIFont -> text());
+                Config::configuration() -> setLanguage(ui.comBLanguage->currentText());
+
+                QString str_ender = "\n</body>\n</html>\n";
+
+                ts << str_header << str_body << str_ender;
+                //ts << str_conf;
+                fileSP.close();
+            }
+            else
+            {
+                QMessageBox::critical(this, tr("Project property error"), tr("Can not create file:\n%1").arg(ui.LEBibleName -> text()));
+                er = true;
+            }
+        }
+
+
+        if (!er)
+        {
+            //project, start page and sources files do exist we can proceed with setting project properties
+            ModuleProperties prop;
+            prop.prjTitle= ui.LEBibleName -> text();
+            prop.prjStartPage = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+"   ___Instruction");
+            prop.moduleBiblename = ui.LEBibleName -> text();
+            prop.moduleBibleShortName = ui.LEBibleShortName -> text();
+            prop.moduleCopyright = ui.LECopyright -> text();
+            prop.moduleBVersion = ui.doubleSpinBoxVersion -> value();
+            prop.prjFN = urlifyFileName(prjFN+ui.LEBibleName -> text()+"/"+ui.LEBibleName -> text()+GL_PROJECT_FILE);
+            prop.moduleType = ui.cbmoduleType ->isChecked();
+            prop.oldTestament = ui.cbOldTestament -> isChecked();
+            prop.newTestament = ui.cbNewTestament -> isChecked();
+            prop.apocrypha = ui.cbApocrypha -> isChecked();
+            prop.chapterZero = ui.cbChapterZero -> isChecked();
+            prop.englishPsalms = ui.cbEnglishPsalms -> isChecked();
+            prop.strongNumber = ui.cbStrongNumber -> isChecked();
+            prop.useChapterHead = ui.cbUseChapterHead -> isChecked();
+            prop.useRightAlignment = ui.cbUseRightAlignment -> isChecked();
+            prop.noForcedLineBreaks = ui.cbNoForcedLineBreaks -> isChecked();
+            prop.categories = ui.LECategories -> text();
+            prop.defaultEncoding = ui.comBEncoding->currentText();
+            prop.language = ui.comBLanguage->currentText();
+            prop.desiredFontName = ui.LEDesiredFontName -> text();
+            prop.desiredFontPath = ui.LEDesiredFontPath -> text();
+            prop.strongsDirectory = ui.LEStrongDir -> text();
+            prop.htmlFilter = ui.LEHtmlFilter -> text();
+            prop.soundDirectory = ui.LESoundDir -> text();
+            prop.installFonts = ui.LEInstallFonts -> text();
+            prop.desiredUIFont = ui.LEDesiredUIFont -> text();
+
+            ui.tabWidget->setCurrentIndex (0);
+            validProperties = true;
+            if (modeNewProject)
+            {
+                modeNewProject = false;
+                emit createProject(prop);
+            }
+            else
+            {
+                prop.prjFN = Config::configuration()->CurProject();
+                emit updateProjectProperties(prop);
+            }
+            QWidget::hide();  //close dialog
+        }
+    }
 }
 //-------------------------------------------------------------------
 void ProjectProperties::setToolTipLabels()

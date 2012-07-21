@@ -36,19 +36,8 @@ typedef struct StructModuleProperties
     QString moduleBiblename;
     QString moduleCopyright;
     QString moduleBibleShortName;
-
-    double moduleBVersion;
-    bool moduleType;
-    bool oldTestament;
-    bool newTestament;
-    bool apocrypha;
-    bool chapterZero;
-    bool englishPsalms;
-    bool strongNumber;
     QString strongsDirectory;
     QString soundDirectory;
-    bool noForcedLineBreaks;
-    // HTMLFilter должен автоматом создаваться
     QString htmlFilter;
     QString language;
     QString installFonts;
@@ -57,74 +46,81 @@ typedef struct StructModuleProperties
     QString desiredFontPath;
     QString defaultEncoding;
     QString desiredUIFont;
+    double moduleBVersion;
+    bool moduleType;
+    bool oldTestament;
+    bool newTestament;
+    bool apocrypha;
+    bool chapterZero;
+    bool englishPsalms;
+    bool strongNumber;
+    bool noForcedLineBreaks;
     bool useRightAlignment;
     bool useChapterHead;
-
-//    QString moduleType;
-
 } ModuleProperties;
 
+/**
+@class ProjectProperties
+class
 
+
+*/
 class ProjectProperties : public QDialog
 {
      Q_OBJECT
 
 public:
         ProjectProperties(QWidget *parent = 0);
-        bool valid() { return validProperties; }
-        void showUpdate();
 
+        /**
+        @function
+        */
+        void showUpdate();
 signals:
         void createProject(ModuleProperties propert);
         void updateProjectProperties(ModuleProperties propert);
-        //void createDb(QString dbFileName);
-
 public slots:
-        void accept();
-        void reject();
-        void setProperties(bool newPrj, ModuleProperties pr);
-//	QString Title()			{ return prjTitle; }
-        QString FileName()		{ return prjFN; }
-//	QString StartPage()		{ return prjStartPage; }
-        void setModeNewProject(bool t)  { modeNewProject = t;}
 
+        /**
+        @function
+        @param
+        @param
+        */
+        void setProperties(bool newPrj, ModuleProperties pr);
+
+        /**
+        @function
+        @param
+        @param
+        */
+        void setModeNewProject(bool t)  { modeNewProject = t;}
 private:
         Ui::ProjectProperty ui;
 
-        bool modeNewProject;
+        /**
+        @function
+        */
+        void accept();
+
+        /**
+        @function
+        */
+        void reject();
+
+        /**
+        @function
+        */
+        void setToolTipLabels();
+
+        /**
+        @function
+        */
+        void setData();
+
         QString prjTitle;
         QString prjFN;
         QString prjStartPage;
-        QString moduleBiblename;
-        QString moduleCopyright;
-        QString moduleBibleShortName;
-
-        void setToolTipLabels();
-        void setData();
-
-        bool moduleType;
-        bool oldTestament;
-        bool newTestament;
-        bool apocrypha;
-        bool chapterZero;
-        bool englishPsalms;
-        bool strongNumber;
-        QString strongsDirectory;
-        QString soundDirectory;
-        bool noForcedLineBreaks;
-        QString language;
-        QString installFonts;
-        QString htmlFilter;
-        QString desiredFontName;
-        QString categories;
-        QString desiredFontPath;
-        QString defaultEncoding;
-        QString desiredUIFont;
-        bool useRightAlignment;
-        bool useChapterHead;
-
-//        QString moduleType;
-        double moduleVersion;
+        bool modeNewProject;
         bool validProperties;
 }; // class ProjectProperties
 
