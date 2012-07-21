@@ -281,14 +281,14 @@ void FRDialog::showFiles(const QStringList &bookList, const QStringList &chapter
                                  (" (Double click on a file to open it)")*/);
 }
 //---------------------------------------
-void FRDialog::on_buttonBox_accepted()
+void FRDialog::accept ()
 {
     ui->LEFind->setText("");
     ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
 }
 //---------------------------------------
-void FRDialog::on_buttonBox_rejected()
+void FRDialog::reject ()
 {
     ui->LEFind->setText("");
     ui->LEReplace->setText("");

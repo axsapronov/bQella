@@ -8,7 +8,7 @@ echo Create documenation for code
 # translate to hindi
 #mv latex/Makefile ./
 cd ../documentation
-rm -rf latex
+#rm -rf latex
 doxygen
 cd latex
 rm Makefile
