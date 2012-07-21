@@ -13,7 +13,7 @@
                     <section title="Поиск и замена" ref="./resources/rus/find/replace.html"></section>
                     <section title="Найти следующее" ref="./resources/rus/find/next.html"></section>
                     <section title="Найти предыдущее" ref="./resources/rus/find/before.html"></section>
-                    <section title="Найти в тексте" ref="./resources/rus/find/intext.html"> </section>
+                    <section title="Найти в тексте" ref="./resources/rus/find/index.html"> </section>
                 </section>
                 <section title="Проект" ref="./resources/rus/project/index.html">
                     <section title="Открыть" ref="./resources/rus/project/open.html"></section>
@@ -107,7 +107,7 @@
             <file>./resources/rus/find/replace.html</file>
             <file>./resources/rus/find/next.html</file>
             <file>./resources/rus/find/before.html</file>
-            <file>./resources/rus/find/intext.html</file>
+            <file>./resources/rus/find/index.html</file>
 
             <file>./resources/rus/project/index.html</file>
             <file>./resources/rus/project/open.html</file>
