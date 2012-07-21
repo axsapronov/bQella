@@ -4,12 +4,12 @@
         <title>bQella </title>
         <applicationIcon>resources/images/handbook.png</applicationIcon>
         <cacheDirectory>WarmongeR/bQella</cacheDirectory>
-        <startPage>resources/index_ru.html</startPage>
+        <startPage>resources/rus/index_ru.html</startPage>
         <aboutMenuText>
             <text>About bQella</text>
         </aboutMenuText>
         <aboutDialog>
-            <file>resources/about.txt</file>
+            <file>resources/about/about.txt</file>
             <icon>resources/images/icon.png</icon>
         </aboutDialog>
         <enableDocumentationManager>false</enableDocumentationManager>
