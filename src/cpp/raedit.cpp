@@ -38,9 +38,9 @@ static bool isAbsoluteFileName(const QString &name)
 {
     return !name.isEmpty()
            && (name[0] == QChar('/')
-				#if defined(Q_WS_WIN)
+                                #if defined(Q_WS_WIN)
                || (name[0].isLetter() && name[1] == QChar(':')) || name.startsWith(QString("\\\\"))
-				#endif
+                                #endif
                || (name[0]  == QChar(':') && name[1] == QChar('/'))
               );
 }
@@ -101,7 +101,7 @@ QUrl raEdit::resolveUrl(const QUrl &url) const
     // we try to resolve against the current working directory in the local
     // file system.
     QFileInfo fi(currentURL.toLocalFile());
-	//qDebug() << "opening file raEdit::resolvUrl: " << currentURL.toLocalFile();
+        //qDebug() << "opening file raEdit::resolvUrl: " << currentURL.toLocalFile();
     if (fi.exists()) {
         return QUrl::fromLocalFile(fi.absolutePath() + QDir::separator()).resolved(url);
     }
@@ -146,8 +146,8 @@ void raEdit::_q_activateAnchor(const QString &href)
 
 void raEdit::_q_highlightLink(const QString &anchor)
 {
-	//-pm- viewport -> setCursor(oldCursor);
-	qDebug() << "mouse over link";
+        //-pm- viewport -> setCursor(oldCursor);
+        qDebug() << "mouse over link";
     if (anchor.isEmpty()) {
         emit highlighted(QUrl());
         emit highlighted(QString());
@@ -173,7 +173,7 @@ void raEdit::setSource(const QUrl &url)
     newUrlWithoutFragment.setFragment(QString());
 
     if (url.isValid()
-    	 && (newUrlWithoutFragment != currentUrlWithoutFragment || forceLoadOnSourceChange)) {
+         && (newUrlWithoutFragment != currentUrlWithoutFragment || forceLoadOnSourceChange)) {
         QVariant data = loadResource(QTextDocument::HtmlResource, resolveUrl(url));
         if (data.type() == QVariant::String) {
             txt = data.toString();
@@ -202,16 +202,16 @@ void raEdit::setSource(const QUrl &url)
         doSetText = true;
     }
     if (doSetText) {
-        	QTextEdit::setHtml(txt);	
+                QTextEdit::setHtml(txt);
 /* !+! for plain text mode
 qDebug() << "--modeHTML= " << modeHtml;
-    	if (modeHtml){
-        	QTextEdit::setHtml(txt);
+        if (modeHtml){
+                QTextEdit::setHtml(txt);
 qDebug() << "--setHTML";
         }else{
-        	QTextEdit::setPlainText(txt);
+                QTextEdit::setPlainText(txt);
 qDebug() << "--setPlainText";
-       	}*/
+        }*/
     }
     forceLoadOnSourceChange = false;
 /*
@@ -265,16 +265,16 @@ void raEdit::reload()
 }
 
 //   \reimp
-void raEdit::mouseMoveEvent(QMouseEvent *e) 
-{ 
+void raEdit::mouseMoveEvent(QMouseEvent *e)
+{
 //qDebug() << ":: mouse move event";
-	if (e -> modifiers() && Qt::ControlModifier){
-		//!+! change cursor on hyperlink 
-		QWidget::setCursor(Qt::PointingHandCursor);
-	}else
-		QWidget::setCursor(Qt::IBeamCursor);
-			// set QObject::installEventFilter
-	QTextEdit::mouseMoveEvent(e); 
+        if (e -> modifiers() && Qt::ControlModifier){
+                //!+! change cursor on hyperlink
+                QWidget::setCursor(Qt::PointingHandCursor);
+        }else
+                QWidget::setCursor(Qt::IBeamCursor);
+                        // set QObject::installEventFilter
+        QTextEdit::mouseMoveEvent(e);
 }
 
 void raEdit::mouseReleaseEvent(QMouseEvent *e){ QTextEdit::mouseReleaseEvent(e); }
@@ -286,9 +286,9 @@ bool raEdit::event(QEvent *e) { return QTextEdit::event(e); }
 void raEdit::keyPressEvent(QKeyEvent *ev) { QTextEdit::keyPressEvent(ev); }
 
 void raEdit::mousePressEvent(QMouseEvent *e)
-{ 
-	//if (e == QEvent::MouseButtonPress)... 	
-	QTextEdit::mousePressEvent(e); 	
+{
+        //if (e == QEvent::MouseButtonPress)...
+        QTextEdit::mousePressEvent(e);
 }
 
 /*!

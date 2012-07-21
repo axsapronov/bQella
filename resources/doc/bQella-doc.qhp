@@ -86,10 +86,11 @@
             <file>./resources/old/findfile.html</file>
             <file>./resources/rus/index_ru.html</file>
             <file>./resources/index.html</file>
-            <file>./resources/index_en.html</file>
+
             <file>./resources/old/intro.html</file>
             <file>./resources/old/openfile.html</file>
             <file>./resources/old/wildcardmatching.html</file>
+
             <file>./resources/images/old/browse.png</file>
             <file>./resources/images/old/fadedfilemenu.png</file>
             <file>./resources/images/old/filedialog.png</file>
@@ -97,28 +98,35 @@
             <file>./resources/images/old/mainwindow.png</file>
             <file>./resources/images/old/open.png</file>
             <file>./resources/images/old/wildcard.png</file>
+
             <file>./resources/rus/interface/index.html</file>
             <file>./resources/rus/interface/menu.html</file>
             <file>./resources/rus/interface/toolbar.html</file>
+
             <file>./resources/rus/find/index.html</file>
             <file>./resources/rus/find/replace.html</file>
             <file>./resources/rus/find/next.html</file>
             <file>./resources/rus/find/before.html</file>
             <file>./resources/rus/find/intext.html</file>
+
             <file>./resources/rus/project/index.html</file>
             <file>./resources/rus/project/open.html</file>
             <file>./resources/rus/project/new.html</file>
             <file>./resources/rus/project/param.html</file>
             <file>./resources/rus/project/import.html</file>
+
             <file>./resources/rus/book/index.html</file>
             <file>./resources/rus/book/add.html</file>
             <file>./resources/rus/book/param.html</file>
             <file>./resources/rus/book/import.html</file>
             <file>./resources/rus/book/delete.html</file>
+
             <file>./resources/rus/chapter/index.html</file>
             <file>./resources/rus/chapter/add.html</file>
             <file>./resources/rus/chapter/delete.html</file>
-            <file>./resources/index_en.html</file>
+
+            <file>./resources/eng/index_en.html</file>
+
             <file>./resources/howto/index.html</file>
             <file>./resources/howto/newmod/index.html</file>
             <file>./resources/howto/newmod/step1.html</file>
@@ -128,6 +136,7 @@
             <file>./resources/howto/newmod/step5.html</file>
             <file>./resources/howto/newmod/step6.html</file>
             <file>./resources/howto/newmod/step7.html</file>
+
             <file>./resources/howto/impmod/index.html</file>
             <file>./resources/howto/impmod/step1.html</file>
             <file>./resources/howto/impmod/step2.html</file>
@@ -136,6 +145,7 @@
             <file>./resources/howto/impmod/step5.html</file>
             <file>./resources/howto/impmod/step6.html</file>
             <file>./resources/howto/impmod/step7.html</file>
+
             <file>./resources/howto/expmod/index.html</file>
             <file>./resources/howto/expmod/step1.html</file>
             <file>./resources/howto/expmod/step2.html</file>
