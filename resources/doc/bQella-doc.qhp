@@ -90,13 +90,13 @@
             <file>./resources/old/intro.html</file>
             <file>./resources/old/openfile.html</file>
             <file>./resources/old/wildcardmatching.html</file>
-            <file>./resources/images/browse.png</file>
-            <file>./resources/images/fadedfilemenu.png</file>
-            <file>./resources/images/filedialog.png</file>
-            <file>./resources/images/handbook.png</file>
-            <file>./resources/images/mainwindow.png</file>
-            <file>./resources/images/open.png</file>
-            <file>./resources/images/wildcard.png</file>
+            <file>./resources/images/old/browse.png</file>
+            <file>./resources/images/old/fadedfilemenu.png</file>
+            <file>./resources/images/old/filedialog.png</file>
+            <file>./resources/images/old/handbook.png</file>
+            <file>./resources/images/old/mainwindow.png</file>
+            <file>./resources/images/old/open.png</file>
+            <file>./resources/images/old/wildcard.png</file>
             <file>./resources/rus/interface/index.html</file>
             <file>./resources/rus/interface/menu.html</file>
             <file>./resources/rus/interface/toolbar.html</file>
@@ -144,6 +144,75 @@
             <file>./resources/howto/expmod/step5.html</file>
             <file>./resources/howto/expmod/step6.html</file>
             <file>./resources/howto/expmod/step7.html</file>
+
+            <file>./resources/images/book/add/book_add_1.png</file>
+            <file>./resources/images/book/add/book_add_2.png</file>
+            <file>./resources/images/book/add/book_add_3.png</file>
+            <file>./resources/images/book/add/book_add_4.png</file>
+            <file>./resources/images/book/add/book_add_5.png</file>
+            <file>./resources/images/book/add/book_add_6.png</file>
+            <file>./resources/images/book/add/book_add_7.png</file>
+            <file>./resources/images/book/add/book_add_8.png</file>
+            <file>./resources/images/chapter/add/chapter_add_1.png</file>
+            <file>./resources/images/chapter/add/chapter_add_2.png</file>
+            <file>./resources/images/chapter/add/chapter_add_3.png</file>
+            <file>./resources/images/import/book/import_book_1.png</file>
+            <file>./resources/images/import/book/import_book_2.png</file>
+            <file>./resources/images/import/book/import_book_3.png</file>
+            <file>./resources/images/import/book/import_book_4.png</file>
+            <file>./resources/images/import/book/import_book_5.png</file>
+            <file>./resources/images/import/book/import_book_6.png</file>
+            <file>./resources/images/import/module/import_module_1.png</file>
+            <file>./resources/images/import/module/import_module_2.png</file>
+            <file>./resources/images/import/module/import_module_3.png</file>
+            <file>./resources/images/import/module/import_module_4.png</file>
+            <file>./resources/images/import/module/import_module_5.png</file>
+            <file>./resources/images/import/module/import_module_6.png</file>
+            <file>./resources/images/import/module/import_module_7.png</file>
+            <file>./resources/images/interface/menu/interface_menu_1.png</file>
+            <file>./resources/images/interface/menu/interface_menu_10.png</file>
+            <file>./resources/images/interface/menu/interface_menu_11.png</file>
+            <file>./resources/images/interface/menu/interface_menu_12.png</file>
+            <file>./resources/images/interface/menu/interface_menu_2.png</file>
+            <file>./resources/images/interface/menu/interface_menu_3.png</file>
+            <file>./resources/images/interface/menu/interface_menu_4.png</file>
+            <file>./resources/images/interface/menu/interface_menu_5.png</file>
+            <file>./resources/images/interface/menu/interface_menu_6.png</file>
+            <file>./resources/images/interface/menu/interface_menu_7.png</file>
+            <file>./resources/images/interface/menu/interface_menu_8.png</file>
+            <file>./resources/images/interface/menu/interface_menu_9.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_1.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_10.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_11.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_12.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_13.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_14.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_15.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_16.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_17.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_18.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_2.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_3.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_4.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_5.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_6.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_7.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_8.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_9.png</file>
+            <file>./resources/images/project/new/project_new_1.png</file>
+            <file>./resources/images/project/new/project_new_2.png</file>
+            <file>./resources/images/project/new/project_new_3.png</file>
+            <file>./resources/images/project/new/project_new_4.png</file>
+            <file>./resources/images/project/new/project_new_5.png</file>
+            <file>./resources/images/project/new/project_new_6.png</file>
+            <file>./resources/images/project/new/project_new_7.png</file>
+            <file>./resources/images/project/open/project_open_1.png</file>
+            <file>./resources/images/project/open/project_open_2.png</file>
+            <file>./resources/images/project/prop/project_prop_1.png</file>
+            <file>./resources/images/project/prop/project_prop_2.png</file>
+            <file>./resources/images/project/prop/project_prop_3.png</file>
+            <file>./resources/images/project/prop/project_prop_4.png</file>
+
             </files>
         </filterSection>
     </QtHelpProject>
