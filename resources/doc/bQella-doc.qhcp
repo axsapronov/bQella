@@ -6,7 +6,7 @@
         <cacheDirectory>WarmongeR/bQella</cacheDirectory>
         <startPage>resources/rus/index_ru.html</startPage>
         <aboutMenuText>
-            <text>About bQella</text>
+            <text>О bQella</text>
         </aboutMenuText>
         <aboutDialog>
             <file>resources/about/about.txt</file>
