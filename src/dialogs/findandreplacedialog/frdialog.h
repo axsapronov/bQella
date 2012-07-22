@@ -109,6 +109,7 @@ private:
 
 
     QDir currentDir;
+    QStringList bookfiles;
 //    QString stringforfoldername;
 };
 

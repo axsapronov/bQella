@@ -202,8 +202,8 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
-            QString chapterfile = incstr(titlechap, GL_LENGTITEMSTRING, "_");
-            titlechap = incstr(titlechap, GL_LENGTITEMSTRING, " ");
+            QString chapterfile = incstr(titlechap, GL_LENGT_ITEM_STRING, "_");
+            titlechap = incstr(titlechap, GL_LENGT_ITEM_STRING, " ");
             QString pathchap = pathName;
             pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
@@ -268,8 +268,8 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
         for (int j = 1; j <= ChapterQty; j++)
         {
             QString titlechap = QString("%1").arg(j);
-            QString chapterfile = incstr(titlechap, GL_LENGTITEMSTRING, "_");
-            titlechap = incstr(titlechap, GL_LENGTITEMSTRING, " ");
+            QString chapterfile = incstr(titlechap, GL_LENGT_ITEM_STRING, "_");
+            titlechap = incstr(titlechap, GL_LENGT_ITEM_STRING, " ");
             QString pathchap = pathName;
             pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + last);
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
@@ -451,7 +451,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
 void Import::createChaterFile(QString file, QString text, int i)
 {
 
-    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGTITEMSTRING, "_");
+    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGT_ITEM_STRING, "_");
     QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
     QString last = file.split("/").last().split(".").last();
     pathNameE.remove("book_");

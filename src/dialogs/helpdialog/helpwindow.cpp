@@ -107,16 +107,16 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
 // open link in this window or pass url to OS
 void HelpWindow::setSource(const QUrl &name)
 {
-// qDebug() << "[8]";
+    // qDebug() << "[8]";
     if (name.isValid()) {
-//        qDebug() << "[32]";
+        //        qDebug() << "[32]";
         // pass URL to OS
         if (name.scheme() == QString("http")
                 || name.scheme() == QString("ftp")
                 || name.scheme() == QString("mailto")
                 || name.path().endsWith(QString("pdf")))
         {
-//            qDebug() << "[33]";
+            //            qDebug() << "[33]";
             bool launched = QDesktopServices::openUrl(name);
             if (!launched) {
                 QMessageBox::information(mw, tr("Help"), tr("Unable to launch web browser.\n"), tr("OK"));
@@ -127,48 +127,48 @@ void HelpWindow::setSource(const QUrl &name)
         QFileInfo fi(name.toLocalFile());
         if (name.scheme() == QString("file") && fi.exists() && fi.isFile() )
         {
-//            qDebug() << "[34]";
+            //            qDebug() << "[34]";
             if (newWindow || (shiftPressed && hasFocus())) {   //open in new window
                 shiftPressed = false;
                 mw -> saveSettings();
                 MainWindow *nmw = new MainWindow;
                 nmw -> move(mw -> geometry().topLeft());
                 nmw -> show();
-//                qDebug() << "[35]";
+                //                qDebug() << "[35]";
                 if (mw -> isMaximized())
                     nmw -> showMaximized();
-                
+
                 nmw -> setup();
-//                qDebug() << "[36]";
+                //                qDebug() << "[36]";
                 nmw -> showLink(name.toString());
-//                qDebug() << "[37]";
+                //                qDebug() << "[37]";
             }
             else
             {   // open in active window
-//                qDebug() << "[38]";
+                //                qDebug() << "[38]";
                 raEdit::setSource(name);
-//                qDebug() << "[39]";
+                //                qDebug() << "[39]";
                 raEdit::scrollToAnchor(name.fragment());
-//                qDebug() << "[40]";
+                //                qDebug() << "[40]";
             }
-//            qDebug() << "[41]";
+            //            qDebug() << "[41]";
             setCurrentFileName(name.toLocalFile());		//? do we need it?
-//            qDebug() << "[42]";
+            //            qDebug() << "[42]";
             mw -> statusBar() -> showMessage(tr("Source: %1").arg(raEdit::source().toString()), 5000);
             return;
         }
     }
     //display error
-//    qDebug() << "[43]";
+    //    qDebug() << "[43]";
     mw -> statusBar() -> showMessage(tr("Failed to open link: '%1'").arg(name.toString()), 5000);
-//    qDebug() << "[44]";
+    //    qDebug() << "[44]";
     raEdit::setSource( Config::configuration() -> ErrPage() );
-//    qDebug() << "[45]";
-//    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
+    //    qDebug() << "[45]";
+    //    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
     setHtml(tr("").arg(name.toString()));
-//    qDebug() << "[46]";
+    //    qDebug() << "[46]";
     mw -> browsers() -> updateTitle(tr("Error..."));
-//    qDebug() << "[47]";
+    //    qDebug() << "[47]";
 }
 
 //-------------------------------------------------
@@ -208,7 +208,7 @@ void HelpWindow::openLinkInNewPage(const QString &link)
 bool HelpWindow::hasAnchorAt(const QPoint& pos)
 {
     lastAnchor = anchorAt(pos);
-    if (lastAnchor.isEmpty()) 
+    if (lastAnchor.isEmpty())
         return false;
     lastAnchor = source().resolved(lastAnchor).toString();
     if (lastAnchor.at(0) == QChar('#')) {
@@ -223,15 +223,20 @@ bool HelpWindow::hasAnchorAt(const QPoint& pos)
 void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
 {
     QMenu *m = new QMenu(0);
-    if (hasAnchorAt(e -> pos())) {
+    if (hasAnchorAt(e -> pos()))
+    {
         m -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
         m -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
         m -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
         m -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
-    }else{
-    	if ( textCursor().hasSelection() )
+    }
+    else
+    {
+        if ( textCursor().hasSelection() )
+        {
             m -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
-        m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
+            m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
+        }
     }
     m -> addSeparator();
     mw -> setupPopupMenu(m);
@@ -339,8 +344,8 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
         cursor.removeSelectedText();
-    	cursor.insertFragment(fragment);
-    	raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+        cursor.insertFragment(fragment);
+        raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
     }
 }
 
@@ -381,8 +386,8 @@ void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
     if (e -> button() == Qt::XButton1) {
         //        raEdit::backward();
         return;
-    } 
-    
+    }
+
     if (e -> button() == Qt::XButton2) {
         //      raEdit::forward();
         return;
@@ -393,12 +398,12 @@ void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
         return;
     }
     if (e -> button() == Qt::LeftButton && hasAnchorAt(e -> pos()) && e -> modifiers() && Qt::ControlModifier){
-    	setSource(lastAnchor);
-    	return;
+        setSource(lastAnchor);
+        return;
     }
     if (e -> button() == Qt::LeftButton && hasAnchorAt(e -> pos()) && e -> modifiers() && Qt::ShiftModifier){
-    	showLinkProperties();
-    	return;
+        showLinkProperties();
+        return;
     }
     raEdit::mouseReleaseEvent(e);
 }
@@ -456,9 +461,9 @@ void HelpWindow::setupFileActions()
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 
     connect(raEdit::document(), SIGNAL(modificationChanged(bool)), mw -> ui.actionSaveFile, SLOT(setEnabled(bool)));
-//    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
+    //    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
 
-//    setWindowModified(raEdit::document() -> isModified());
+    //    setWindowModified(raEdit::document() -> isModified());
     mw -> ui.actionSaveFile -> setEnabled(raEdit::document() -> isModified());
 }
 
@@ -495,8 +500,9 @@ void HelpWindow::setupTextActions()
     connect(mw -> ui.actionTextJustify, 	SIGNAL(triggered()), this, SLOT(textAlignJustify()));
     connect(mw -> ui.actionTextColor, 	SIGNAL(triggered()), this, SLOT(textColor()));
 
-    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
-    mw -> ui.toolBarFormat -> addWidget(comboStyle);
+//    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
+    comboStyle = new QComboBox();
+//    mw -> ui.toolBarFormat -> addWidget(comboStyle);
     comboStyle -> addItem(tr("Standard","Text style (paragraph layout)"));
     comboStyle -> addItem(tr("Bullet List (Disc)"));
     comboStyle -> addItem(tr("Bullet List (Circle)"));
@@ -506,13 +512,15 @@ void HelpWindow::setupTextActions()
     comboStyle -> addItem(tr("Ordered List (Alpha upper)"));
     connect(comboStyle, SIGNAL(activated(int)), this, SLOT(textStyle(int)));
 
-    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
-    mw -> ui.toolBarFormat -> addWidget(comboFont);
+//    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
+    comboFont = new QFontComboBox();
+//    mw -> ui.toolBarFormat -> addWidget(comboFont);
     connect(comboFont, SIGNAL(activated(const QString &)), this, SLOT(textFamily(const QString &)));
 
-    comboSize = new QComboBox(mw -> ui.toolBarFormat);
+//    comboSize = new QComboBox(mw -> ui.toolBarFormat);
+    comboSize = new QComboBox();
     comboSize -> setObjectName("comboSize");
-    mw -> ui.toolBarFormat -> addWidget(comboSize);
+//    mw -> ui.toolBarFormat -> addWidget(comboSize);
     comboSize -> setEditable(true);
 
     QFontDatabase db;
@@ -596,9 +604,9 @@ void HelpWindow::fileNew()
                                               Config::configuration() -> CurPrjDir(), tr("HTML (*.htm *.html);;Text (*.txt);;All Files (*)"));
     if (!fn.isEmpty()){
         QFileInfo fi(fn);
-    	if (fi.suffix().isEmpty()) 
+        if (fi.suffix().isEmpty())
             fn += ".html";
-//        itemprop -> setProperties("",fn,true);
+        //        itemprop -> setProperties("",fn,true);
         itemprop ->setProperties("", "", 0, fn);
         itemprop -> show();
     }
@@ -611,9 +619,9 @@ void HelpWindow::fileOpen()
                                               Config::configuration() -> CurPrjDir(), tr("HTML (*.htm *.html);;Text (*.txt);;All Files (*)"));
     if (!fn.isEmpty()){
         QFileInfo fi(fn);
-    	if (fi.suffix().isEmpty()) 
+        if (fi.suffix().isEmpty())
             fn += ".html";
-//        itemprop -> setProperties("",fn, true);
+        //        itemprop -> setProperties("",fn, true);
         itemprop ->setProperties("", "", 0, fn);
         itemprop -> show();
     }
@@ -832,8 +840,8 @@ void HelpWindow::alignmentChanged(Qt::Alignment a)
     }
 }
 //-------------------------------------------------
-void HelpWindow::setTagTitle(QString title) 
-{ 
+void HelpWindow::setTagTitle(QString title)
+{
     raEdit::setDocumentTitle(title);
     fileSave();
     mw -> browsers() -> updateTitle(title);
@@ -962,16 +970,16 @@ void HelpWindow::cellSplit(int rows, int columns)
 //-------------------------------------------------
 void HelpWindow::tableInsert(int rows, int columns, QTextTableFormat format)
 {
-        QTextCursor cursor = raEdit::textCursor();
-        QTextTable *table = cursor.insertTable(rows, columns);
-        table->setFormat(format);
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.insertTable(rows, columns);
+    table->setFormat(format);
 }
 //-------------------------------------------------
 void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
 {
-        QTextCursor cursor = raEdit::textCursor();
-        QTextTable *table = cursor.currentTable();
-        table->resize(rows, colums);
-        table->setFormat(tableFormat);
+    QTextCursor cursor = raEdit::textCursor();
+    QTextTable *table = cursor.currentTable();
+    table->resize(rows, colums);
+    table->setFormat(tableFormat);
 }
 //-------------------------------------------------

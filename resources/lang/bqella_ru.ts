@@ -1688,17 +1688,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="269"/>
         <source>Open in Current Tab</source>
-        <translation>Открыть на Текущей Странице</translation>
+        <translation>Открыть в текущей вкладке</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="272"/>
         <source>Open in New Window</source>
-        <translation>Открыть в Новом Окне</translation>
+        <translation>Открыть в новом Окне</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="275"/>
         <source>Open in New Tab</source>
-        <translation>Открыть на Новой Странице</translation>
+        <translation>Открыть в новой вкладке</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="290"/>
@@ -2172,7 +2172,7 @@ Do you want to save your changes?</source>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="228"/>
         <source>Open Link in New Tab	MMB</source>
-        <translation>Открыть ссылку на новой странице	СКМ</translation>
+        <translation>Открыть ссылку в новой вкладке	СКМ</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="500"/>
@@ -2853,7 +2853,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../src/main/mainwindow.ui" line="52"/>
         <location filename="../../src/main/mainwindow.ui" line="189"/>
         <source>Tabs</source>
-        <translation>Страницы</translation>
+        <translation>Вкладки</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="17"/>
@@ -2886,7 +2886,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/main/mainwindow.ui" line="234"/>
         <source>Add tag</source>
-        <translation>Добавить тег</translation>
+        <translation>Дополнительные</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="268"/>
@@ -3020,7 +3020,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/main/mainwindow.ui" line="379"/>
         <source>Add tab</source>
-        <translation>Добавить страницу</translation>
+        <translation>Добавить вкладку</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="382"/>
@@ -3030,7 +3030,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/main/mainwindow.ui" line="391"/>
         <source>Next Tab</source>
-        <translation>Следующая страница</translation>
+        <translation>Следующая вкладка</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="394"/>
@@ -3040,7 +3040,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/main/mainwindow.ui" line="403"/>
         <source>Previous Tab</source>
-        <translation>Предыдущая страница</translation>
+        <translation>Предыдущая вкладка</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="406"/>
@@ -3050,7 +3050,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/main/mainwindow.ui" line="415"/>
         <source>Close Tab</source>
-        <translation>Закрыть страницу</translation>
+        <translation>Закрыть вкладку</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="418"/>
@@ -4214,27 +4214,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="203"/>
         <source>Add page</source>
-        <translation>Добавить страницу</translation>
+        <translation type="unfinished">Добавить вкладку</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="212"/>
         <source>Close page</source>
-        <translation>Закрыть страницу</translation>
+        <translation type="unfinished">Закрыть вкладку</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="476"/>
         <source>New Tab</source>
-        <translation>Новая страница</translation>
+        <translation>Новая вкладка</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="477"/>
         <source>Close Tab</source>
-        <translation>Закрыть страницу</translation>
+        <translation>Закрыть вкладку</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="478"/>
         <source>Close Other Tabs</source>
-        <translation>Закрыть другие страницы</translation>
+        <translation>Закрыть другие вкладки</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.ui" line="16"/>

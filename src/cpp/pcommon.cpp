@@ -810,10 +810,15 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
 {
     QFile file(filepath);
 
+    QString encoding = Config::configuration ()->profile ()->props["defaultencoding"];
+    QTextCodec * codec = getCodecOfEncoding(encoding);
+
+    file.close();
     file.open(QIODevice::ReadWrite | QIODevice::Text);
     file.reset();
 
     QTextStream stream(&file);
+    stream.setCodec(codec);
     QStringList str;
     QString line;
     do
@@ -829,6 +834,7 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
     file.close();
     file.remove();
     file.open(QIODevice::WriteOnly);
+//    qDebug() << " filepath  = " << filepath;
 
     QString writelist;
     for (int i = 0; i < str.size(); i++)
@@ -836,9 +842,9 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
             writelist.append(QString(str.at(i))+"\n");
         }
 
-    if (Config::configuration()->Language() == "UTF-8") file.write(writelist.toUtf8());
-    //    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
-    //    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
+    QTextStream st(&file);
+    st.setCodec(codec);
+    st << writelist;
 }
 //-------------------------------------------------
 QString ist(QString str)
@@ -958,9 +964,9 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
 //             << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
                 /*<< "/span"*/
 
-    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGTITEMSTRING," "));
+    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGT_ITEM_STRING," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
-    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGTITEMSTRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
+    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
     for (int i = 0; i < strlist.size(); i++)
@@ -1470,4 +1476,38 @@ QTextCodec * getCodecOfEncoding(QString encoding)
 
 //    qDebug() << " encoding = " << encoding;
     return codec;
+}
+//---------------------------------------------------
+QString removeFirst(QString str, QString remove)
+{
+    int pos = str.indexOf(remove);
+    if (pos != -1)
+    {
+        str.remove(pos, remove.length());
+    }
+    return str;
+}
+//----------------------------------------------------
+QString getParamBook(QString filename, QString param)
+{
+    // translate to hindi
+    QString str= "";
+    QString line;
+    QString parama = param + " = ";
+    QFile file(filename);
+
+    if (file.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream( &file );
+            do {
+                line = stream.readLine();
+                if (line.indexOf(parama) >= 0)
+                    {
+                        //                str = getTextInStr(line);
+                        str = line.remove(parama);
+                    }
+            } while (str.isEmpty() and !line.isNull());
+            file.close();
+        }
+    return str;
 }

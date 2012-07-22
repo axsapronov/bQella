@@ -1449,8 +1449,8 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
                 {
                     // создаем файлы для глав
                     QString title = tr("%1").arg(i);
-                    QString chaptervalue = incstr(title, GL_LENGTITEMSTRING, "_");
-                    title = incstr(title, GL_LENGTITEMSTRING, " ");
+                    QString chaptervalue = incstr(title, GL_LENGT_ITEM_STRING, "_");
+                    title = incstr(title, GL_LENGT_ITEM_STRING, " ");
                     QString fileNamechapter;
                     //            QString bookname = checkProcentRol(shortname,50,QString(m_bookadddialog -> bookFullName).replace(" ","_"));
                     QString bookname = getFileNameAbs(fileName).remove("book_");
@@ -1704,7 +1704,7 @@ void HelpDialog::deleteItem()
                         // удаляем файлы глав
                         // получаем названия файлов глав и удаляем их
                         QString str = fName;
-                        QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LENGTITEMSTRING, "_");
+                        QString replace = "_chapter_"+incstr(QString::number(i+1),GL_LENGT_ITEM_STRING, "_");
                         str = str.replace(getFileNameAbs(fName), getFileNameAbs(fName)+ replace);
                         //                qDebug() << " str = " << str;
                         QFile::remove(str);
@@ -1882,7 +1882,7 @@ void HelpDialog::newItem()
                                 uniqFN = !QFile::exists(fileName);
                                 counter++;
                             }
-                            title = incstr(QString("%1").arg(counter-1),GL_LENGTITEMSTRING, " ");
+                            title = incstr(QString("%1").arg(counter-1),GL_LENGT_ITEM_STRING, " ");
                         }
                     //            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(m_bookadddialog->bookShortName, m_bookadddialog->bookFullName);
                     //            qDebug() << "Debug: _HelpDialog::newItem()"  << " filename = " << checkProcentRol(getShortName(fileName), 50, fileName) << " shrotname " << getShortName(fileName);

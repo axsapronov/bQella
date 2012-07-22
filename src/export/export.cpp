@@ -207,9 +207,9 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
                     ////            if (chapt)
                     ////            {
                     //                //                qDebug() << "************ Export: chapter-file";
-                    //                QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGTITEMSTRING," "));
+                    //                QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGT_ITEM_STRING," "));
                     //                QString titlec2 = QString("<title>%1</title>").arg(i);
-                    //                QString chapter = tr("\n?h4_.Chapter %1?/h4_.").arg(incstr(i,GL_LENGTITEMSTRING," "));
+                    //                QString chapter = tr("\n?h4_.Chapter %1?/h4_.").arg(incstr(i,GL_LENGT_ITEM_STRING," "));
 
                     //                //                qDebug() << "___int  = " << i << "str = "<< str;
                     //                str.replace(titlec,chapter)

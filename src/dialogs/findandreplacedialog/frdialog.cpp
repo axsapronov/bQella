@@ -28,7 +28,7 @@
 
 #include <QProgressDialog>
 #include <QStringListModel>
-
+#include <QMessageBox>
 
 FRDialog::FRDialog(QWidget *parent) :
     QDialog(parent),
@@ -36,6 +36,7 @@ FRDialog::FRDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->tableFiles->setSelectionBehavior(QAbstractItemView::SelectRows);  //settings for table
     ui->tableFiles->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
     ui->tableFiles->verticalHeader()->hide();
     ui->tableFiles->setShowGrid(false);
@@ -51,6 +52,8 @@ FRDialog::FRDialog(QWidget *parent) :
     //    stringforfoldername = "";
     //    ui->LEFind->setText("<"); // закоментить
     updateCBChapter(Config::configuration()->PrjDir());
+//    qDebug() << "path = " << Config::configuration()->PrjDir()
+//             << " curpj = " << Config::configuration()->CurPrjDir();
     updateCBBook();
 
 }
@@ -62,55 +65,126 @@ FRDialog::~FRDialog()
 //---------------------------------------
 void FRDialog::replace()
 {
-    // файлы найдены
-    // получаем список файлов
-    // открываем файлы и делаем QString.replace
-    for (int row = 0; row < ui->tableFiles->rowCount(); row++)
+
+    QString s = "";  //holds list of errors
+    bool er = false;
+    if (ui->LEReplace -> text().isEmpty())
     {
-        // составляем путь до файла
-        QString filepath = Config::configuration()->CurPrjDir() + "/book_" + ui->tableFiles->item(row,0)->text() + "_chapter_" + QString(ui->tableFiles->item(row,1)->text()).remove(tr("Chapter "))+".htm";
-        // заменяем в файлах
-        replaceTextOfFile(filepath, ui->LEFind->text(), ui->LEReplace->text());
+            s.append(tr("- Please enter a replace text.\n"));
+            er = true;
+    }
+
+    if (er)
+    {
+            QMessageBox::critical(this, tr("Replace error"), s);
+    }
+    else
+    {
+        // файлы найдены
+        // получаем список файлов
+        // открываем файлы и делаем QString.replace
+        for (int row = 0; row < ui->tableFiles->rowCount(); row++)
+        {
+            QString namebook = ui->tableFiles->item(row,0)->text();
+//            namebook = bookfiles.at(bookfiles.indexOf(namebook));
+//            qDebug() << " at = " << "" << " index = " << ui->cBBook->findText(namebook)
+//                     << " bookfiles  = " << bookfiles
+//                     << " namebook = " << namebook;
+            namebook = bookfiles.at(ui->cBBook->findText(namebook));
+            QString namechapter = incstr(QString(ui->tableFiles->item(row,1)->text())
+                                         .remove(tr("Chapter ")) ,
+                                         GL_LENGT_ITEM_STRING,
+                                         "_");
+            // составляем путь до файла
+            QString filepath = Config::configuration()->CurPrjDir() + "/book_" +
+                    namebook+ "_chapter_" + namechapter +".htm";
+            // заменяем в файлах
+//            qDebug() << " filepath = " << filepath;
+            replaceTextOfFile(filepath, ui->LEFind->text(), ui->LEReplace->text());
+        }
     }
 }
 
 //---------------------------------------
 void FRDialog::find()
 {
-    ui->tableFiles->setRowCount(0);
-    QString fileName = "";
-    QString text = ui->LEFind->text();
-    QString path;
 
-    if (ui->cBBook->currentIndex() == 0)
-        path = Config::configuration()->CurPrjDir();
-
-    if (ui->cBBook->currentIndex() != 0)
+    QString s = "";  //holds list of errors
+    bool er = false;
+    if (ui->LEFind -> text().isEmpty())
     {
-        if (ui->cBChapter->currentIndex() == 0)
+            s.append(tr("- Please enter a find text.\n"));
+            er = true;
+    }
+
+    if (er)
+    {
+            QMessageBox::critical(this, tr("Find error"), s);
+    }
+    else
+    {
+
+        ui->tableFiles->setRowCount(0);
+        QString fileName = "";
+        QString text = ui->LEFind->text();
+        QString correctName;
+
+        if (ui->cBBook->currentIndex() == 0)
+            correctName = "";
+
+        if (ui->cBBook->currentIndex() != 0)
         {
-            path = Config::configuration()->CurPrjDir() + "/"  + ui->cBBook->currentText();
+            if (ui->cBChapter->currentIndex() == 0)
+            {
+                QString namebook = bookfiles.at(ui->cBBook->currentIndex());
+                correctName = "book_" + namebook;
+            }
+            else
+            {
+                QString namebook = bookfiles.at(ui->cBBook->currentIndex());
+                QString namechapter = ui->cBChapter->currentText();
+                namechapter
+                        .remove(tr("Chapter "));
+                namechapter = incstr(namechapter,GL_LENGT_ITEM_STRING, "_");
+                correctName = "book_"+namebook+"_chapter_"+namechapter;
+            }
+        }
+        currentDir = Config::configuration()->CurPrjDir();/*QDir(correctName);*/
+
+        QStringList files1;
+        if (fileName.isEmpty())
+            fileName = "*";
+        files1 = currentDir.entryList(QStringList(fileName), QDir::Files | QDir::NoSymLinks);
+
+        QStringList files;
+        if (!correctName.isEmpty())
+        {
+                for (int i = 0; i < files1.size(); i++)
+                {
+                    if(files1.at(i).indexOf(correctName) != -1)
+                    {
+                        files << files1.at(i);
+                    }
+                }
         }
         else
         {
-
-            QString str = ui->cBChapter->currentText();
-            QString str2 = ui->cBBook->currentText();
-            path = Config::configuration()->CurPrjDir() + "/" + str.replace(tr("Chapter "), tr("book_%1_chapter_").arg(str2)) +".htm";
+            files = files1;
         }
-    }
-    currentDir = Config::configuration()->CurPrjDir();/*QDir(path);*/
-    QStringList files;
-    if (fileName.isEmpty())
-        fileName = "*";
-    files = currentDir.entryList(QStringList(fileName), QDir::Files | QDir::NoSymLinks);
-    if (!text.isEmpty())
-        files = findFiles(files, text);
 
-    QStringList bookList = files;
-    QStringList chapterList = files;
-    updateItemforTable(bookList, chapterList);
-    showFiles(bookList, chapterList);
+        if (!text.isEmpty())
+            files = findFiles(files, text);
+
+        QStringList bookList = files;
+        QStringList chapterList = files;
+        updateItemforTable(bookList, chapterList);
+
+//        qDebug() << "booklist = " << bookList
+//                 << " chapterlist = " << chapterList
+//                 << " bookfiles = " << bookfiles;
+        showFiles(bookList, chapterList);
+    }
+
 }
 //---------------------------------------
 QStringList FRDialog::findFiles(const QStringList &files, const QString &text)
@@ -164,9 +238,13 @@ void FRDialog::updateCBBook()
 {
     QStringList items;
     items << tr("All books");
+    bookfiles.clear();
+    bookfiles << tr("All books");
 
     QDir dir(Config::configuration()->CurPrjDir());
+    dir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
     QStringList list = dir.entryList();
+    list.removeDuplicates();
     removeItemListBook(list);
     items.append(list);
     QStringListModel * typeModel2 = new QStringListModel(items, this);
@@ -178,39 +256,52 @@ void FRDialog::updateCBChapter(QString path)
     QStringList items;
     items << tr("All chapters");
     QDir dir(path);
+    dir.setFilter(QDir::NoDotAndDotDot | QDir::Files);
     QStringList list = dir.entryList();
+    list.removeDuplicates();
     removeItemListChapter(list);
     items.append(list);
-
     QStringListModel * typeModel2 = new QStringListModel(items, this);
     ui -> cBChapter -> setModel(typeModel2);
 }
 //---------------------------------------
 void FRDialog::removeItemListChapter(QStringList &list)
 {
-#ifdef Q_OS_WIN
-    list.removeOne(QString("export_%1").arg( QString(list.at(2)).remove(GL_PROJECT_FILE)));
-#else
-    list.removeOne(QString("export_%1").arg( QString(list.at(3)).remove(GL_PROJECT_FILE)));
-#endif
     QStringList listb;
     QString bookname;
-    int i = 4;
+    int i = 1;
+    list.removeDuplicates();
+//    qDebug() << "list = " << list;
     while (i < list.size())
     {
-        if ( list.at(i).indexOf(GL_PROJECT_FILE) >= 0  or (  list.at(i).indexOf(ui->cBBook->currentText()) <=0 and
-                                                             list.at(i).indexOf("chapter") <= -1)  )
+        QString namebook = getFileNameAbs(bookfiles.at(ui->cBBook->currentIndex()));
+        QString name = QString(list.at(i));
+
+        if ( list.at(i).indexOf(GL_PROJECT_FILE) >= 0  or
+             (  list.at(i).indexOf(namebook) <=0 and
+                list.at(i).indexOf("chapter") <= -1)  )
         {
             bookname = list.at(i);
             list.removeAt(i);
             --i;
         }
-        QString app = QString(list.at(i)).remove(bookname.split(".").first()).replace(tr("book_%1_chapter_").arg(ui->cBBook->currentText()), tr("Chapter ")).remove(".htm");
-        listb << app;
+
+        if (name.indexOf("book_"+namebook+"_") != -1)
+        {
+//            qDebug() << "name = " << name
+//                     << " namebook = " << namebook
+//                     << " listat(i) = " << list.at(i);
+            QString namechapter = QString(name).remove("book_"+namebook+"_chapter");
+            namechapter
+                    .remove("_")
+                    .remove(".htm");
+            namechapter = tr("Chapter ") + namechapter;
+            listb << namechapter;
+        }
         ++i;
     }
     listb.removeOne(QString(Config::configuration()->CurProject().split("/").last()));
-    listb.removeOne("book_"+ui->cBBook->currentText());
+    listb.removeDuplicates();
     listb.removeOne("");
     list = listb;
 }
@@ -219,7 +310,7 @@ void FRDialog::removeItemListChapter(QStringList &list)
 void FRDialog::removeItemListBook(QStringList &list)
 {
     QStringList listb;
-    int i = 4;
+    int i = 1;
     while (i < list.size())
     {
         if (
@@ -233,8 +324,14 @@ void FRDialog::removeItemListBook(QStringList &list)
         }
         else
         {
-            QString app = QString(list.at(i)).remove("book_").remove(".htm");
+            QString filename = Config::configuration()->CurPrjDir() + "/" +
+                    list.at(i);
+//            qDebug() << "filename = " << filename
+//                     << " param = " << getParamBook(filename, "FullName");
+            QString bookfilename = QString(list.at(i)).remove("book_").remove(".htm");
+            QString app = getParamBook(filename, "FullName");
             listb << app;
+            bookfiles << bookfilename;
         }
         ++i;
     }
@@ -245,24 +342,38 @@ void FRDialog::removeItemListBook(QStringList &list)
     list = listb;
 }
 //---------------------------------------
-void FRDialog::updateItemforTable(QStringList &list, QStringList &list2)
+void FRDialog::updateItemforTable(QStringList &booklist, QStringList &chapterlist)
 {
-    QStringList lib, lib2;
-    QString app, app2;
+    QStringList booklib, chapterlib;
 
-    for (int i = 0; i < list.size(); i++)
+    for (int i = 0; i < booklist.size(); i++)
     {
-        QRegExp rx("_chapter_\\d{1,3}");
-        app = QString(list.at(i)).remove(rx).remove("book_").remove(".htm");
-        lib << app;
-        QStringList str;
-        QString st = QString(list.at(i));
-        (str << st.split("_")).removeFirst();
-        app2 = QString(list.at(i)).remove(tr("book_%1").arg(str.first())).replace("_chapter_", tr("Chapter ")).remove(".htm");
-        lib2 << app2;
+        QString name = getFileNameAbs(QString(booklist.at(i)));
+        QString namebook = QString(name)
+                .remove("book_")
+                .remove("chapter_");
+        QString namechapter = namebook;
+        QStringList list;
+        list = namebook.split("_");
+        namebook = list.first();
+
+        namechapter = QString(namechapter)
+                .remove("_");
+        namechapter = removeFirst(namechapter, namebook);
+
+        QString filenamebook = Config::configuration()->CurPrjDir()
+                + "/" + "book_" + namebook + ".htm";
+
+        namechapter = tr("Chapter ") + namechapter;
+
+        namebook = getParamBook(filenamebook, "FullName");
+        booklib << namebook;
+        chapterlib << namechapter;
     }
-    list = lib;
-    list2 = lib2;
+    booklist = booklib;
+    chapterlist = chapterlib;
+//    qDebug() << "\nlist1 = " << booklist
+//             << "\n\n list2 = " << chapterlist;
 }
 //---------------------------------------
 void FRDialog::showFiles(const QStringList &bookList, const QStringList &chapterList)
@@ -286,6 +397,7 @@ void FRDialog::accept ()
     ui->LEFind->setText("");
     ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
+    QWidget::hide();
 }
 //---------------------------------------
 void FRDialog::reject ()
@@ -293,5 +405,6 @@ void FRDialog::reject ()
     ui->LEFind->setText("");
     ui->LEReplace->setText("");
     ui->tableFiles->clearContents();
+    QWidget::hide();
 }
 //---------------------------------------

@@ -355,7 +355,7 @@ void MainWindow::about()
 //-------------------------------------------------
 void MainWindow::showDocumentation()
 {
-    assistant->showDocumentation("rus/index_ru.html");
+    assistant->showDocumentation("index_ru.html");
 }
 //-------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()

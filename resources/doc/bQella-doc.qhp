@@ -7,13 +7,11 @@
             <section title="Русский" ref="./resources/rus/index_ru.html">
                 <section title="Интерфейс" ref="./resources/rus/interface/index.html">
                     <section title="Меню" ref="./resources/rus/interface/menu.html"></section>
-                    <section title="Тулбар" ref="./resources/rus/interface/toolbar.html"></section>
+                    <section title="Панель инструментов" ref="./resources/rus/interface/toolbar.html"></section>
                 </section>
                 <section title="Поиск" ref="./resources/rus/find/index.html">
                     <section title="Поиск и замена" ref="./resources/rus/find/replace.html"></section>
-                    <section title="Найти следующее" ref="./resources/rus/find/next.html"></section>
-                    <section title="Найти предыдущее" ref="./resources/rus/find/before.html"></section>
-                    <section title="Найти в тексте" ref="./resources/rus/find/index.html"> </section>
+                    <section title="Поиск в тексте" ref="./resources/rus/find/text.html"> </section>
                 </section>
                 <section title="Проект" ref="./resources/rus/project/index.html">
                     <section title="Открыть" ref="./resources/rus/project/open.html"></section>
@@ -30,6 +28,7 @@
                 <section title="Главы" ref="./resources/rus/chapter/index.html">
                     <section title="Добавить главу" ref="./resources/rus/chapter/add.html"></section>
                     <section title="Удалить главу" ref="./resources/rus/chapter/delete.html"></section>
+                    <section title="Открыть главу" ref="./resources/rus/chapter/open.html"></section>
                 </section>
             </section>
             <section title="English" ref="./resources/eng/index_en.html">
@@ -37,30 +36,12 @@
             <section title="Пошаговые инструкции" ref="./resources/howto/index.html">
                 <section title="Создание модуля с нуля" ref="./resources/howto/newmod/index.html">
                     <section title="Шаг 1" ref="./resources/howto/newmod/step1.html"></section>
-                    <section title="Шаг 2" ref="./resources/howto/newmod/step2.html"></section>
-                    <section title="Шаг 3" ref="./resources/howto/newmod/step3.html"></section>
-                    <section title="Шаг 4" ref="./resources/howto/newmod/step4.html"></section>
-                    <section title="Шаг 5" ref="./resources/howto/newmod/step5.html"></section>
-                    <section title="Шаг 6" ref="./resources/howto/newmod/step6.html"></section>
-                    <section title="Шаг 7" ref="./resources/howto/newmod/step7.html"></section>
                 </section>
                 <section title="Импорт модуля" ref="./resources/howto/impmod/index.html">
                     <section title="Шаг 1" ref="./resources/howto/impmod/step1.html"></section>
-                    <section title="Шаг 2" ref="./resources/howto/impmod/step2.html"></section>
-                    <section title="Шаг 3" ref="./resources/howto/impmod/step3.html"></section>
-                    <section title="Шаг 4" ref="./resources/howto/impmod/step4.html"></section>
-                    <section title="Шаг 5" ref="./resources/howto/impmod/step5.html"></section>
-                    <section title="Шаг 6" ref="./resources/howto/impmod/step6.html"></section>
-                    <section title="Шаг 7" ref="./resources/howto/impmod/step7.html"></section>
                 </section>
                 <section title="Экспорт модуля" ref="./resources/howto/expmod/index.html">
                     <section title="Шаг 1" ref="./resources/howto/expmod/step1.html"></section>
-                    <section title="Шаг 2" ref="./resources/howto/expmod/step2.html"></section>
-                    <section title="Шаг 3" ref="./resources/howto/expmod/step3.html"></section>
-                    <section title="Шаг 4" ref="./resources/howto/expmod/step4.html"></section>
-                    <section title="Шаг 5" ref="./resources/howto/expmod/step5.html"></section>
-                    <section title="Шаг 6" ref="./resources/howto/expmod/step6.html"></section>
-                    <section title="Шаг 7" ref="./resources/howto/expmod/step7.html"></section>
                 </section>
             </section>
             </toc>
@@ -81,23 +62,9 @@
             <keyword name="Select" ref="./resources/old/openfile.html"/>
             </keywords>
         <files>
-            <file>./resources/old/browse.html</file>
-            <file>./resources/old/filedialog.html</file>
-            <file>./resources/old/findfile.html</file>
             <file>./resources/rus/index_ru.html</file>
-            <file>./resources/index.html</file>
-
-            <file>./resources/old/intro.html</file>
-            <file>./resources/old/openfile.html</file>
-            <file>./resources/old/wildcardmatching.html</file>
-
-            <file>./resources/images/old/browse.png</file>
-            <file>./resources/images/old/fadedfilemenu.png</file>
-            <file>./resources/images/old/filedialog.png</file>
-            <file>./resources/images/old/handbook.png</file>
-            <file>./resources/images/old/mainwindow.png</file>
-            <file>./resources/images/old/open.png</file>
-            <file>./resources/images/old/wildcard.png</file>
+            <file>./resources/index_ru.html</file>
+            <file>resources/images/old/icon.png</file>
 
             <file>./resources/rus/interface/index.html</file>
             <file>./resources/rus/interface/menu.html</file>
@@ -105,9 +72,7 @@
 
             <file>./resources/rus/find/index.html</file>
             <file>./resources/rus/find/replace.html</file>
-            <file>./resources/rus/find/next.html</file>
-            <file>./resources/rus/find/before.html</file>
-            <file>./resources/rus/find/index.html</file>
+            <file>./resources/rus/find/text.html</file>
 
             <file>./resources/rus/project/index.html</file>
             <file>./resources/rus/project/open.html</file>
@@ -124,36 +89,30 @@
             <file>./resources/rus/chapter/index.html</file>
             <file>./resources/rus/chapter/add.html</file>
             <file>./resources/rus/chapter/delete.html</file>
+            <file>./resources/rus/chapter/open.html</file>
 
             <file>./resources/eng/index_en.html</file>
 
             <file>./resources/howto/index.html</file>
             <file>./resources/howto/newmod/index.html</file>
             <file>./resources/howto/newmod/step1.html</file>
-            <file>./resources/howto/newmod/step2.html</file>
-            <file>./resources/howto/newmod/step3.html</file>
-            <file>./resources/howto/newmod/step4.html</file>
-            <file>./resources/howto/newmod/step5.html</file>
-            <file>./resources/howto/newmod/step6.html</file>
-            <file>./resources/howto/newmod/step7.html</file>
 
             <file>./resources/howto/impmod/index.html</file>
             <file>./resources/howto/impmod/step1.html</file>
-            <file>./resources/howto/impmod/step2.html</file>
-            <file>./resources/howto/impmod/step3.html</file>
-            <file>./resources/howto/impmod/step4.html</file>
-            <file>./resources/howto/impmod/step5.html</file>
-            <file>./resources/howto/impmod/step6.html</file>
-            <file>./resources/howto/impmod/step7.html</file>
 
             <file>./resources/howto/expmod/index.html</file>
             <file>./resources/howto/expmod/step1.html</file>
-            <file>./resources/howto/expmod/step2.html</file>
-            <file>./resources/howto/expmod/step3.html</file>
-            <file>./resources/howto/expmod/step4.html</file>
-            <file>./resources/howto/expmod/step5.html</file>
-            <file>./resources/howto/expmod/step6.html</file>
-            <file>./resources/howto/expmod/step7.html</file>
+
+            <file>./resources/images/book/delete/book_delete_1.png</file>
+            <file>./resources/images/book/delete/book_delete_2.png</file>
+            <file>./resources/images/book/delete/book_delete_3.png</file>
+
+            <file>./resources/images/book/param/book_param_1.png</file>
+            <file>./resources/images/book/param/book_param_2.png</file>
+            <file>./resources/images/book/param/book_param_3.png</file>
+            <file>./resources/images/book/param/book_param_4.png</file>
+            <file>./resources/images/book/param/book_param_5.png</file>
+            <file>./resources/images/book/param/book_param_6.png</file>
 
             <file>./resources/images/book/add/book_add_1.png</file>
             <file>./resources/images/book/add/book_add_2.png</file>
@@ -163,26 +122,46 @@
             <file>./resources/images/book/add/book_add_6.png</file>
             <file>./resources/images/book/add/book_add_7.png</file>
             <file>./resources/images/book/add/book_add_8.png</file>
+
             <file>./resources/images/chapter/add/chapter_add_1.png</file>
             <file>./resources/images/chapter/add/chapter_add_2.png</file>
-            <file>./resources/images/chapter/add/chapter_add_3.png</file>
+
+            <file>./resources/images/chapter/open/chapter_open_1.png</file>
+            <file>./resources/images/chapter/open/chapter_open_2.png</file>
+            <file>./resources/images/chapter/open/chapter_open_3.png</file>
+
+            <file>./resources/images/chapter/delete/chapter_delete_1.png</file>
+            <file>./resources/images/chapter/delete/chapter_delete_2.png</file>
+            <file>./resources/images/chapter/delete/chapter_delete_3.png</file>
+
             <file>./resources/images/import/book/import_book_1.png</file>
             <file>./resources/images/import/book/import_book_2.png</file>
             <file>./resources/images/import/book/import_book_3.png</file>
             <file>./resources/images/import/book/import_book_4.png</file>
             <file>./resources/images/import/book/import_book_5.png</file>
             <file>./resources/images/import/book/import_book_6.png</file>
+
             <file>./resources/images/import/module/import_module_1.png</file>
             <file>./resources/images/import/module/import_module_2.png</file>
             <file>./resources/images/import/module/import_module_3.png</file>
             <file>./resources/images/import/module/import_module_4.png</file>
             <file>./resources/images/import/module/import_module_5.png</file>
-            <file>./resources/images/import/module/import_module_6.png</file>
-            <file>./resources/images/import/module/import_module_7.png</file>
+
+            <file>./resources/images/find/text/find_text_1.png</file>
+            <file>./resources/images/find/text/find_text_2.png</file>
+            <file>./resources/images/find/text/find_text_3.png</file>
+            <file>./resources/images/find/text/find_text_4.png</file>
+
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_1.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_2.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_3.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_4.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_5.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_6.png</file>
+
             <file>./resources/images/interface/menu/interface_menu_1.png</file>
             <file>./resources/images/interface/menu/interface_menu_10.png</file>
             <file>./resources/images/interface/menu/interface_menu_11.png</file>
-            <file>./resources/images/interface/menu/interface_menu_12.png</file>
             <file>./resources/images/interface/menu/interface_menu_2.png</file>
             <file>./resources/images/interface/menu/interface_menu_3.png</file>
             <file>./resources/images/interface/menu/interface_menu_4.png</file>
@@ -191,6 +170,7 @@
             <file>./resources/images/interface/menu/interface_menu_7.png</file>
             <file>./resources/images/interface/menu/interface_menu_8.png</file>
             <file>./resources/images/interface/menu/interface_menu_9.png</file>
+
             <file>./resources/images/interface/toolbar/interface_toolbar_1.png</file>
             <file>./resources/images/interface/toolbar/interface_toolbar_10.png</file>
             <file>./resources/images/interface/toolbar/interface_toolbar_11.png</file>
@@ -209,6 +189,7 @@
             <file>./resources/images/interface/toolbar/interface_toolbar_7.png</file>
             <file>./resources/images/interface/toolbar/interface_toolbar_8.png</file>
             <file>./resources/images/interface/toolbar/interface_toolbar_9.png</file>
+
             <file>./resources/images/project/new/project_new_1.png</file>
             <file>./resources/images/project/new/project_new_2.png</file>
             <file>./resources/images/project/new/project_new_3.png</file>
@@ -216,13 +197,25 @@
             <file>./resources/images/project/new/project_new_5.png</file>
             <file>./resources/images/project/new/project_new_6.png</file>
             <file>./resources/images/project/new/project_new_7.png</file>
+
             <file>./resources/images/project/open/project_open_1.png</file>
             <file>./resources/images/project/open/project_open_2.png</file>
+            <file>./resources/images/project/open/project_open_3.png</file>
+
             <file>./resources/images/project/prop/project_prop_1.png</file>
             <file>./resources/images/project/prop/project_prop_2.png</file>
             <file>./resources/images/project/prop/project_prop_3.png</file>
-            <file>./resources/images/project/prop/project_prop_4.png</file>
 
+            <file>./resources/images/export/export_1.png</file>
+            <file>./resources/images/export/export_2.png</file>
+            <file>./resources/images/export/export_3.png</file>
+            <file>./resources/images/export/export_4.png</file>
+            <file>./resources/images/export/export_5.png</file>
+
+            <file>./resources/images/first/first_launch_1.png</file>
+            <file>./resources/images/first/first_launch_2.png</file>
+            <file>./resources/images/first/first_launch_3.png</file>
+            <file>./resources/images/first/first_launch_4.png</file>
             </files>
         </filterSection>
     </QtHelpProject>
