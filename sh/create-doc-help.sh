@@ -12,10 +12,10 @@ qhelpgenerator $DOC_NAME.qhp -o $DOC_NAME.qch
 
 qcollectiongenerator $DOC_NAME.qhcp -o $DOC_NAME.qhc
 #mv $DOC_NAME.qhc ./$OUTPUT_PATH/
-pwd
-ls
 rm /home/files/Develop/git/bQella/next/bqella-build-desktop/build/bin/doc/$DOC_NAME.qhc
 rm /home/files/Develop/git/bQella/next/bqella-build-desktop/build/bin/doc/$DOC_NAME.qch
+cp $DOC_NAME.qhc ../../bin/doc/
+cp $DOC_NAME.qch ../../bin/doc/
 mv $DOC_NAME.qhc /home/files/Develop/git/bQella/next/bqella-build-desktop/build/bin/doc/
 mv $DOC_NAME.qch /home/files/Develop/git/bQella/next/bqella-build-desktop/build/bin/doc/
 
