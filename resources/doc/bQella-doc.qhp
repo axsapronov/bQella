@@ -32,7 +32,7 @@
                     <section title="Удалить главу" ref="./resources/rus/chapter/delete.html"></section>
                 </section>
             </section>
-            <section title="English" ref="./resources/index_en.html">
+            <section title="English" ref="./resources/eng/index_en.html">
             </section>
             <section title="Пошаговые инструкции" ref="./resources/howto/index.html">
                 <section title="Создание модуля с нуля" ref="./resources/howto/newmod/index.html">

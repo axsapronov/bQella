@@ -117,8 +117,8 @@ MainWindow::MainWindow():
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
 
-//         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
-//    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    //         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
     this->showMaximized ();
 }
 
@@ -355,7 +355,7 @@ void MainWindow::about()
 //-------------------------------------------------
 void MainWindow::showDocumentation()
 {
-    assistant->showDocumentation("index.html");
+    assistant->showDocumentation("rus/index_ru.html");
 }
 //-------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()
@@ -381,23 +381,11 @@ void MainWindow::showLink(const QString &link)
 
     QString mylink;
     if (link.indexOf(Config::configuration()->CurPrjDir() <=0))
-        {
-            QString nameoffile = link.split("/").last();
-            mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
-        }
-
-    //    qDebug() << "link " << link;
+    {
+        QString nameoffile = link.split("/").last();
+        mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
+    }
     QString lnk = unurlifyFileName(link);
-    //    qDebug() << "lnk " << lnk;
-    //    qDebug() << "mylink " << mylink;
-    //    QString test = Config::configuration()->PrjDir();
-    //    QString test2 = Config::configuration()->CurPrjDir();
-    //    QString test3 = Config::configuration()->CurFile();
-    //    qDebug() << "test = " << test;
-    //    qDebug() << "test2 = " << test2;
-    //    qDebug() << "test3 = " << test3;
-
-    //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){
         // don't open a new tab for the same url more then once
@@ -406,21 +394,14 @@ void MainWindow::showLink(const QString &link)
         if (ui.actionSaveFile -> isEnabled()) //i.e. document was modified
             emit saveOpenedLink();
         QUrl url(link);
-        //qDebug() << "down!";
-        //        qDebug() << "[48]";
-        tabs -> setSource(url.toString()); // w
-
-        //        qDebug() << "[49]";
-
+        tabs -> setSource(url.toString());
         tabs -> currentBrowser() -> setFocus();
-
     }
     else
-        {
-            qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-            QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
-        }
-
+    {
+        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
+        QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
+    }
 }
 
 void MainWindow::modifededitor(bool my)
@@ -445,31 +426,31 @@ void MainWindow::showLinks(const QStringList &links)
     }
 
     if (links.size() == 1)
-        {
-            showLink(urlifyFileName(links.first()));
-            return;
-        }
+    {
+        showLink(urlifyFileName(links.first()));
+        return;
+    }
 
     QStringList::ConstIterator it = links.begin();
     /// Initial showing, The tab is empty so update that without creating it first
     if (!tabs -> currentBrowser() -> source().isValid())
-        {
-            QPair<HelpWindow*, QString> browser;
-            browser.first = tabs -> currentBrowser();
-            browser.second = links.first();
-            pendingBrowsers.append(browser);
-            tabs -> setAppTitle(tabs -> currentBrowser(), tr("..."));
-        }
+    {
+        QPair<HelpWindow*, QString> browser;
+        browser.first = tabs -> currentBrowser();
+        browser.second = links.first();
+        pendingBrowsers.append(browser);
+        tabs -> setAppTitle(tabs -> currentBrowser(), tr("..."));
+    }
     ++it;
 
     while(it != links.end())
-        {
-            QPair<HelpWindow*, QString> browser;
-            browser.first = tabs -> newBackgroundTab();
-            browser.second = *it;
-            pendingBrowsers.append(browser);
-            ++it;
-        }
+    {
+        QPair<HelpWindow*, QString> browser;
+        browser.first = tabs -> newBackgroundTab();
+        browser.second = *it;
+        pendingBrowsers.append(browser);
+        ++it;
+    }
 
     startTimer(50);
     return;
@@ -650,22 +631,22 @@ void MainWindow::ProjectOpen()
 void MainWindow::ProjectOpen(QString fileName)
 {
     if (!fileName.isEmpty())
-        {
-            //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
-            browsers() -> currentBrowser() -> fileSave();
-            Config::configuration() -> loadProject(fileName);
-            helpDock -> enableProjectButtons();
-            helpDock -> initTabs();
-            browsers() -> closeAllTabs();
-            helpDock -> insertContents();
-            //        qDebug() << "[5]";
-            helpDock -> on_BProjectAdd_clicked();
-            Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
-            showLink(urlifyFileName(Config::configuration() -> CurFile()));
-            projectModified(false);
-            Config::configuration() -> toPrjLog(1, "-------");
-            Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
-        }
+    {
+        //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
+        browsers() -> currentBrowser() -> fileSave();
+        Config::configuration() -> loadProject(fileName);
+        helpDock -> enableProjectButtons();
+        helpDock -> initTabs();
+        browsers() -> closeAllTabs();
+        helpDock -> insertContents();
+        //        qDebug() << "[5]";
+        helpDock -> on_BProjectAdd_clicked();
+        Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+        showLink(urlifyFileName(Config::configuration() -> CurFile()));
+        projectModified(false);
+        Config::configuration() -> toPrjLog(1, "-------");
+        Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
+    }
 }
 
 //-------------------------------------------------
