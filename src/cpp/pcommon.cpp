@@ -914,19 +914,20 @@ QString editStringList(QString list, QStringList tags, bool f)
             if (tag.indexOf ("hr") != -1)
                 tag = "hr /";
 
+
+            QString untag = tag;
+            if (tag.indexOf("br") != -1)
+                untag = "br /";
+
             if (f)
                 {
-                    list.replace( QString(checkTag (tag)), tagToQuestion(uncheckTag(tag)) );
+                    list.replace( QString(checkTag (untag)), tagToQuestion(uncheckTag(tag)) );
 //                    qDebug() << " list = " << list << " tags,at i = " << tags.at (i) << " ?tag = " << tagToQuestion(uncheckTag(tags.at(i))) << " orig tag = " << checkTag (tags.at (i));
-//                    qDebug() << " list = " << list;
                 }
             else
                 {
                     list.replace( QString("?"+uncheckTag (tag)+"_."), questionToTag(uncheckTag (tag) ));
                 }
-
-
-
         }
     return list;
 }
