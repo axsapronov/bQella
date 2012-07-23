@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLineEdit" name="lETag">
+    <widget class="QLineEdit" name="LETag">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
        <horstretch>0</horstretch>

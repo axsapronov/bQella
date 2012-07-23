@@ -41,7 +41,7 @@ TagDialog::~TagDialog()
 void TagDialog::setProperties(QString lText)
 {
     tag = lText;
-    ui->lETag ->setText(lText);
+    ui->LETag ->setText(lText);
 }
 //---------------------------------------
 void TagDialog::reject()
@@ -52,7 +52,7 @@ void TagDialog::reject()
 //---------------------------------------
 void TagDialog::accept()
 {
-    tag = ui->lETag->text();
+    tag = ui->LETag->text();
     validProperties = true;
     emit addTag(tag);
     QWidget::hide();  //close dialog

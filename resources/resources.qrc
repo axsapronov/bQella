@@ -69,9 +69,7 @@
         <file>images/textright.png</file>
         <file>images/textunder.png</file>
     </qresource>
-    <qresource prefix="/doc">
-        <file>doc/simpletextviewer.qhc</file>
-    </qresource>
+    <qresource prefix="/doc"/>
     <qresource prefix="/lang">
         <file>lang/bqella_ru.qm</file>
         <file>lang/bqella_fr.qm</file>

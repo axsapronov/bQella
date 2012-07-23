@@ -34,17 +34,18 @@
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 
-#define GL_Prog_RA_VERSION_STR	"0.0"
-#define GL_Prog_BUILD_STR	"2012.06.29"
-#define GL_Prog_Name "bQella"
-#define GL_Prog_Author "Alexander Sapronov"
+#define GL_PROG_VERSION_STR	"0.0"
+#define GL_PROG_BUILD_STR	"2012.07.19"
+#define GL_PROG_NAME "bQella"
+#define GL_PROG_AUTHOR "Alexander Sapronov"
+
 
 //.pem  = project module
-#define GL_Project_File ".pem"
-#define GL_Project_Conf_File ".ini"
+#define GL_PROJECT_FILE ".pem"
+#define GL_PROJECT_CONF_FILE ".ini"
 
-#define GL_LengtItemString 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
-
+#define GL_LENGT_ITEM_STRING 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
+#define GL_PROCENT_OF_MATCHES 50 // процент совпадения shortname из файла и из списка, чтобы сократить название файлов
 
 class Profile;
 
@@ -156,6 +157,7 @@ public:
     // HTMLFilter должен автоматом создаваться
     QString Language() {return language;}
     QString InstallFonts() {return installFonts;}
+    QString HtmlFilter() {return htmlFilter;}
     QString DesiredFontName() {return desiredFontName;}
     QString Categories() {return categories;}
     QString DesiredFontPath() {return desiredFontPath;}
@@ -202,8 +204,9 @@ public:
     void setStrongsDirectory(QString fn) { strongsDirectory = fn;}
     void setSoundDirectory(QString fn) { soundDirectory = fn;}
     void setNoForcedLineBreaks(bool fn) {noForcedLineBreaks = fn; }
-    // HTMLFilter должен автоматом создаваться
+
     void setLanguage(QString fn) { language = fn;}
+    void setHtmlFilter(QString fn) { htmlFilter = fn;}
     void setInstallFonts(QString fn) { installFonts = fn;}
     void setDesiredFontName(QString fn) { desiredFontName = fn;}
     void setCategories(QString fn) { categories = fn;}
@@ -255,7 +258,7 @@ private:
 
     Profile *profil;
     Profile *profil_tmp; //to build project list
-    
+
     QStringList profileFNs;	//list of projects
     QString startPage;  //show this page when application is started.  Should be last veiwed page before app close
     QStringList src;    //opened files in tab browser
@@ -303,7 +306,7 @@ private:
     QString strongsDirectory;
     QString soundDirectory;
     bool noForcedLineBreaks;
-    // HTMLFilter должен автоматом создаваться
+    QString htmlFilter;
     QString language;
     QString installFonts;
     QString desiredFontName;

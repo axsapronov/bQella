@@ -169,7 +169,7 @@ QString Index::getCharsetForDocument(QFile *file)
 
     file -> seek(0);
     if (encoding.isEmpty())
-        return QString("utf-8");
+        return QString("UTF-8");
     return encoding;
 }
 
@@ -349,8 +349,8 @@ QString Index::getDocumentTitle( const QString &fullFileName )
         return documentTitleCache.value(fileName);
 
     QFile file( fileName );
-    qDebug() << "opening file getDocumentTitle: " << fileName;	
-	if ( !file.open( QFile::ReadOnly ) ) {
+    qDebug() << "opening file getDocumentTitle: " << fileName;
+        if ( !file.open( QFile::ReadOnly ) ) {
         qWarning( (QString("cannot open file ") + fileName).toAscii().constData() );
         return fileName;
     }
@@ -472,7 +472,7 @@ bool Index::searchForPattern( const QStringList &patterns, const QStringList &wo
     QUrl url(fileName);
     QString fName = url.toLocalFile();
     QFile file( fName );
-	qDebug() << "opening file searchForPattern: " << fName;
+        qDebug() << "opening file searchForPattern: " << fName;
     if ( !file.open( QFile::ReadOnly ) ) {
         qWarning( (QString("cannot open file ") + fName).toAscii().constData() );
         return false;

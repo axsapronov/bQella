@@ -5,19 +5,22 @@
 #include <QDialog>
 #include <QDir>
 
-QT_BEGIN_NAMESPACE
-class QComboBox;
-class QLabel;
-class QPushButton;
-class QTableWidget;
-class QTableWidgetItem;
-class QStringListModel;
-QT_END_NAMESPACE
-
 namespace Ui {
     class FRDialog;
+    class QComboBox;
+    class QLabel;
+    class QPushButton;
+    class QTableWidget;
+    class QTableWidgetItem;
+    class QStringListModel;
 }
 
+/**
+@class FRDialog
+class
+
+
+*/
 class FRDialog : public QDialog
 {
     Q_OBJECT
@@ -27,26 +30,86 @@ public:
     ~FRDialog();
 
 private slots:
+    /**
+    @function
+    */
     void find();
+    /**
+    @function
+    */
     void replace();
-    void updateCBChapter(QString path);
+    /**
+    @function
+    */
     void updateinfo();
-    void on_buttonBox_accepted();
-
-    void on_buttonBox_rejected();
 
 private:
     Ui::FRDialog *ui;
 
+    /**
+    @function
+    */
     void updateCBBook();
+
+    /**
+    @function
+
+    @param
+    */
+    void updateCBChapter(QString path);
+
+    /**
+    @function
+
+    @param
+    */
     void removeItemListChapter(QStringList &list);
+
+    /**
+    @function
+
+    @param
+    */
     void removeItemListBook(QStringList &list);
 
+    /**
+    @function
+
+    @param
+    */
     void updateItemforTable(QStringList &list, QStringList &list2);
+
+    /**
+    @function
+
+    @param
+    */
     QStringList findFiles(const QStringList &files, const QString &text);
+
+    /**
+    @function
+
+    @param
+    */
     void showFiles(const QStringList &files, const QStringList &files2 );
 
+    /**
+    @function
+
+    @param
+    */
+    void accept();
+
+    /**
+    @function
+
+    @param
+    */
+    void reject();
+
+
     QDir currentDir;
+    QStringList bookfiles;
 //    QString stringforfoldername;
 };
 

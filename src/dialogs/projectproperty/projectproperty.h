@@ -36,7 +36,16 @@ typedef struct StructModuleProperties
     QString moduleBiblename;
     QString moduleCopyright;
     QString moduleBibleShortName;
-
+    QString strongsDirectory;
+    QString soundDirectory;
+    QString htmlFilter;
+    QString language;
+    QString installFonts;
+    QString desiredFontName;
+    QString categories;
+    QString desiredFontPath;
+    QString defaultEncoding;
+    QString desiredUIFont;
     double moduleBVersion;
     bool moduleType;
     bool oldTestament;
@@ -45,81 +54,74 @@ typedef struct StructModuleProperties
     bool chapterZero;
     bool englishPsalms;
     bool strongNumber;
-    QString strongsDirectory;
-    QString soundDirectory;
     bool noForcedLineBreaks;
-    // HTMLFilter должен автоматом создаваться
-    QString language;
-    QString installFonts;
-    QString desiredFontName;
-    QString categories;
-    QString desiredFontPath;
-    QString defaultEncoding;
-    QString desiredUIFont;
     bool useRightAlignment;
     bool useChapterHead;
-
-//    QString moduleType;
-
 } ModuleProperties;
 
+/**
+@class ProjectProperties
+class
 
+
+*/
 class ProjectProperties : public QDialog
 {
      Q_OBJECT
 
 public:
-	ProjectProperties(QWidget *parent = 0);
-	bool valid() { return validProperties; }
+        ProjectProperties(QWidget *parent = 0);
 
+        /**
+        @function
+        */
+        void showUpdate();
 signals:
         void createProject(ModuleProperties propert);
         void updateProjectProperties(ModuleProperties propert);
-	//void createDb(QString dbFileName);
-     
 public slots:
-	void accept();
-	void reject();
+
+        /**
+        @function
+        @param
+        @param
+        */
         void setProperties(bool newPrj, ModuleProperties pr);
-//	QString Title()			{ return prjTitle; }	
-	QString FileName()		{ return prjFN; }
-//	QString StartPage()		{ return prjStartPage; } 
-	
+
+        /**
+        @function
+        @param
+        @param
+        */
+        void setModeNewProject(bool t)  { modeNewProject = t;}
 private:
-	Ui::ProjectProperty ui; 
-	
-	bool modeNewProject; 	
+        Ui::ProjectProperty ui;
+
+        /**
+        @function
+        */
+        void accept();
+
+        /**
+        @function
+        */
+        void reject();
+
+        /**
+        @function
+        */
+        void setToolTipLabels();
+
+        /**
+        @function
+        */
+        void setData();
+
         QString prjTitle;
         QString prjFN;
         QString prjStartPage;
-        QString moduleBiblename;
-        QString moduleCopyright;
-        QString moduleBibleShortName;
-
-        bool moduleType;
-        bool oldTestament;
-        bool newTestament;
-        bool apocrypha;
-        bool chapterZero;
-        bool englishPsalms;
-        bool strongNumber;
-        QString strongsDirectory;
-        QString soundDirectory;
-        bool noForcedLineBreaks;
-        // HTMLFilter должен автоматом создаваться
-        QString language;
-        QString installFonts;
-        QString desiredFontName;
-        QString categories;
-        QString desiredFontPath;
-        QString defaultEncoding;
-        QString desiredUIFont;
-        bool useRightAlignment;
-        bool useChapterHead;
-
-//        QString moduleType;
-        double moduleVersion;
-	bool validProperties;
+        bool modeNewProject;
+        bool validProperties;
 }; // class ProjectProperties
 
 #endif // __PROJECTPROPERTY_H__

@@ -49,7 +49,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lEFind">
+      <widget class="QLineEdit" name="LEFind">
        <property name="text">
         <string/>
        </property>
@@ -71,12 +71,12 @@
      </item>
      <item row="3" column="0" colspan="3">
       <widget class="QTableWidget" name="tableFiles">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
        <property name="columnCount">
         <number>2</number>
        </property>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>100</number>
-       </attribute>
        <column>
         <property name="text">
          <string>Book</string>
@@ -97,7 +97,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="lEReplace"/>
+      <widget class="QLineEdit" name="LEReplace"/>
      </item>
      <item row="4" column="2">
       <widget class="QPushButton" name="pBReplace">

@@ -30,6 +30,7 @@
 #include "about.h"
 #include "export.h"
 #include "importdialog.h"
+#include "importbookdialog.h"
 #include "frdialog.h"
 #include "assistant.h"
 
@@ -51,6 +52,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 MainWindow::MainWindow():
     aboutd(new AboutDialog(this))
 {
+    //    qDebug() << "[9]";
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
 
@@ -63,7 +65,7 @@ MainWindow::MainWindow():
 
     goActions = QList<QAction*>();
     //    goActionDocFiles = new QMap<QAction*,QString>;
-    
+
     windows.append(this);
     tabs = new TabbedBrowser(this);
     connect(tabs, SIGNAL(tabCountChanged(int)), this, SLOT(updateTabActions(int)));
@@ -81,15 +83,17 @@ MainWindow::MainWindow():
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
+    importdi = new ImportBookDialog();
     assistant = new Assistant;
 
-//    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
-//    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
+    //    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
+    //    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
 
     dw -> setWidget(helpDock);
+    dw->setMaximumWidth (250);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
-    
-    prjprop = new ProjectProperties(this);    
+
+    prjprop = new ProjectProperties(this);
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
     //включить после отладки
@@ -102,16 +106,22 @@ MainWindow::MainWindow():
 
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));
-    
-    if (config -> Lang() == "Russian"){
-    	setLangRu();
+
+    if (config -> Lang() == "Russian" or config->Lang().isEmpty())
+    {
+        setLangRu();
     }
 
     //выключаем ненужный функционал
-//    ui.toolBarTabs -> setVisible(false);
-//    ui.actionEditFind -> setVisible(false);
-//    ui.actionImportBook->setVisible(false);
+    //    ui.toolBarTabs -> setVisible(false);
+    //    ui.actionEditFind -> setVisible(false);
+    //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
+
+    //         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
+    //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+    this->showMaximized ();
 }
 
 //-------------------------------------------------
@@ -124,13 +134,14 @@ MainWindow::~MainWindow()
 //-------------------------------------------------
 void MainWindow::setup()
 {
+    //    qDebug() << "[7]";
     if(setupCompleted)
         return;
 
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
-    statusBar() -> showMessage(tr("Initializing %1...").arg(GL_Prog_Name));
+    statusBar() -> showMessage(tr("Initializing %1...").arg(GL_PROG_NAME));
     helpDock -> initialize();
-
+    //    qDebug() << "[14]";
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -147,6 +158,7 @@ void MainWindow::setup()
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
 
     connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
+    connect(importdi, SIGNAL(SuccessfulImportBook()), this, SLOT(importBookSuccessful()));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -155,7 +167,7 @@ void MainWindow::setup()
 
 
     // Menu Import
-//    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
+    connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
 
 
@@ -181,7 +193,7 @@ void MainWindow::setup()
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
     //connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
-    
+
     // Menu Tabs
     connect(ui.actionOpenPage,  SIGNAL(triggered()), tabs, SLOT(newTab()));
     connect(ui.actionClosePage, SIGNAL(triggered()), tabs, SLOT(closeTab()));
@@ -219,7 +231,7 @@ void MainWindow::setup()
     ui.actionEditFind -> setShortcut(QKeySequence::Find);
     ui.actionEditFindNext -> setShortcut(QKeySequence::FindNext);
     ui.actionEditFindPrev -> setShortcut(QKeySequence::FindPrevious);
-    
+
 
 
     qApp -> restoreOverrideCursor();
@@ -233,6 +245,8 @@ void MainWindow::setup()
     appsets -> apply();
 
     // set the current selected item in the treeview
+
+    //    qDebug() << "[31]";
     helpDialog() -> locateContents(tabs -> currentBrowser() -> source().toString());
     connect(tabs, SIGNAL(browserUrlChanged(QString)), helpDock, SLOT(locateContents(QString)));
     projectModified(false);
@@ -242,19 +256,16 @@ void MainWindow::setup()
 //-------------------------------------------------
 void MainWindow::exportModule()
 {
-//    helpDock->autosavestart = false;
+    //    helpDock->autosavestart = false;
     browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
-
+//-------------------------------------------------
 void MainWindow::importModule()
 {
-//    helpDock->autosavestart = false;
-
     importm->show();
-
 }
-
+//-------------------------------------------------
 void MainWindow::importModuleSuccessful()
 {
     ModuleProperties pr;
@@ -273,9 +284,31 @@ void MainWindow::importModuleSuccessful()
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
 }
+//-------------------------------------------------
+void MainWindow::importBookSuccessful()
+{
+    ModuleProperties pr;
+    pr.moduleBiblename = Config::configuration()->ModuleBiblename();
+    pr.moduleBibleShortName = Config::configuration()->ModuleBibleShortName();
 
+    pr.moduleCopyright = Config::configuration()->ModuleCopyright();
+    pr.moduleBVersion = 1.00;
+    pr.prjFN = Config::configuration()->CurProject();
+    pr.prjStartPage = importm -> getStartPage();
+
+    //    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
+    pr.prjTitle = Config::configuration()->ModuleBiblename();
+
+
+    // добавить другие параметры (дохера буленов и строк из модулепропертис)
+    ProjectOpen(pr.prjFN);
+    browsers() -> currentBrowser() -> fileSave();
+    helpDock->saveProject();
+}
+//-------------------------------------------------
 void MainWindow::importBook()
 {
+    importdi->show();
     //    QString beginpath = "/home/";
     //    QString path = QFileDialog::getOpenFileName(this,
     //                      tr("Select book file"),
@@ -288,7 +321,6 @@ void MainWindow::importBook()
     //    //ShortName
     //    //ChapterQty
 }
-
 //-------------------------------------------------
 void MainWindow::browserTabChanged()
 {
@@ -325,7 +357,7 @@ void MainWindow::about()
 //-------------------------------------------------
 void MainWindow::showDocumentation()
 {
-    assistant->showDocumentation("index.html");
+    assistant->showDocumentation("index_ru.html");
 }
 //-------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()
@@ -355,46 +387,35 @@ void MainWindow::showLink(const QString &link)
         QString nameoffile = link.split("/").last();
         mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
     }
-
-//    qDebug() << "link " << link;
     QString lnk = unurlifyFileName(link);
-//    qDebug() << "lnk " << lnk;
-//    qDebug() << "mylink " << mylink;
-//    QString test = Config::configuration()->PrjDir();
-//    QString test2 = Config::configuration()->CurPrjDir();
-//    QString test3 = Config::configuration()->CurFile();
-//    qDebug() << "test = " << test;
-//    qDebug() << "test2 = " << test2;
-//    qDebug() << "test3 = " << test3;
-
-    //    qDebug() << "_____lnk = " << lnk;
     QFileInfo fi(lnk);
-    if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){    	
-    	// don't open a new tab for the same url more then once
+    if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){
+        // don't open a new tab for the same url more then once
         if (link == tabs -> currentBrowser() -> source().toString())
-    	    return;
+            return;
         if (ui.actionSaveFile -> isEnabled()) //i.e. document was modified
             emit saveOpenedLink();
         QUrl url(link);
-        //qDebug() << "down!";
-        tabs -> setSource(url.toString()); // w
+        tabs -> setSource(url.toString());
         tabs -> currentBrowser() -> setFocus();
-    }else{
+    }
+    else
+    {
         qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-        QMessageBox::warning(this, GL_Prog_Name, tr("failed to open file:\n%1").arg(lnk));
+        QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
 }
 
 void MainWindow::modifededitor(bool my)
 {
-//    if (my)
+    //    if (my)
 
     my = my;
-//    if (my and helpDock->autosavestart)
-//    {
-//        qDebug() << "teeest" ;
-//        browsers() -> currentBrowser() -> fileSave();
-//    }
+    //    if (my and helpDock->autosavestart)
+    //    {
+    //        qDebug() << "teeest" ;
+    //        browsers() -> currentBrowser() -> fileSave();
+    //    }
 }
 
 //-------------------------------------------------
@@ -406,14 +427,16 @@ void MainWindow::showLinks(const QStringList &links)
         return;
     }
 
-    if (links.size() == 1) {
+    if (links.size() == 1)
+    {
         showLink(urlifyFileName(links.first()));
         return;
     }
 
     QStringList::ConstIterator it = links.begin();
-    // Initial showing, The tab is empty so update that without creating it first
-    if (!tabs -> currentBrowser() -> source().isValid()) {
+    /// Initial showing, The tab is empty so update that without creating it first
+    if (!tabs -> currentBrowser() -> source().isValid())
+    {
         QPair<HelpWindow*, QString> browser;
         browser.first = tabs -> currentBrowser();
         browser.second = links.first();
@@ -422,7 +445,8 @@ void MainWindow::showLinks(const QStringList &links)
     }
     ++it;
 
-    while(it != links.end()) {
+    while(it != links.end())
+    {
         QPair<HelpWindow*, QString> browser;
         browser.first = tabs -> newBackgroundTab();
         browser.second = *it;
@@ -455,7 +479,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
 {
     QPair<HelpWindow*, QString> browser = pendingBrowsers.first();
     pendingBrowsers.pop_front();
-    
+
     if (pendingBrowsers.size() == 0)
         killTimer(e -> timerId());
 
@@ -485,14 +509,14 @@ void MainWindow::saveSettings()
     config -> setSideBarPage(helpDock -> tabWidget() -> currentIndex());
     config -> setWindowGeometry(saveGeometry());
     config -> setMainWindowState(saveState());
-    
+
     // Create list of the tab urls
     QStringList lst;
     QList<HelpWindow*> browsers = tabs -> browsers();
     foreach (HelpWindow *browser, browsers){
-//        qDebug() << "src = " << browser -> source().toString();
+        //        qDebug() << "src = " << browser -> source().toString();
         lst << relatifyFileName(browser -> source().toString(), config -> PrjDir());
-//        qDebug() << "lst = " << lst;
+        //        qDebug() << "lst = " << lst;
     }
     config -> setSource(lst);
     config -> saveSettings();
@@ -566,7 +590,7 @@ void MainWindow::updateProfileSettings()
 
     /*	#ifndef Q_WS_MAC
     setWindowIcon(config -> applicationIcon());
-#endif 
+#endif
     ui.helpMenu -> clear();
     ui.helpMenu -> addAction(ui.actionAboutAssistant);
     ui.helpMenu -> addSeparator();
@@ -608,7 +632,8 @@ void MainWindow::ProjectOpen()
 //-------------------------------------------------
 void MainWindow::ProjectOpen(QString fileName)
 {
-    if (!fileName.isEmpty()){
+    if (!fileName.isEmpty())
+    {
         //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
         browsers() -> currentBrowser() -> fileSave();
         Config::configuration() -> loadProject(fileName);
@@ -616,14 +641,13 @@ void MainWindow::ProjectOpen(QString fileName)
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
+        //        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
-        //Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+        Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
-    	projectModified(false);
+        projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
-
-
     }
 }
 
@@ -633,7 +657,7 @@ void MainWindow::ProjectSaveAs()
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
-            fileName.append(GL_Project_File);
+            fileName.append(GL_PROJECT_FILE);
         helpDock -> saveProject(fileName);
     }
 }
@@ -711,9 +735,9 @@ void MainWindow::on_actionSaveFileAs_triggered()
             }
         }
     }
-    QString src = doc -> toHtml(QByteArray("utf-8"));
+    QString src = doc -> toHtml(QByteArray("UTF-8"));
     QTextStream s(&file);
-    s.setCodec("utf-8");
+    s.setCodec("UTF-8");
     s << src;
     s.flush();
     file.close();
@@ -750,6 +774,8 @@ void MainWindow::ProjectNew()
 
     bool newProject = true;
 
+    prjprop->setModeNewProject(true);
+
     pr.prjTitle = tr("New Project", "Default project name");
     pr.moduleBiblename = "";
     pr.moduleBibleShortName = "";
@@ -757,8 +783,7 @@ void MainWindow::ProjectNew()
     pr.moduleBVersion = 1.0;
     pr.prjFN = Config::configuration() -> PrjDir()+pr.moduleBiblename;
 
-
-    pr.moduleType = true;
+    pr.moduleType = false;
     pr.oldTestament = false;
     pr.newTestament = false;
     pr.apocrypha = false;
@@ -770,16 +795,21 @@ void MainWindow::ProjectNew()
     pr.noForcedLineBreaks = false;
     pr.language = "rus";
     pr.installFonts = "none";
+    pr.htmlFilter = "<br> <pre> </pre>"
+            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
+            " <em> </em> <table </table>"
+            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
     pr.desiredFontName = "none";
     pr.categories = "none";
     pr.desiredFontPath = "none";
-    pr.defaultEncoding = "utf-8";
+    pr.defaultEncoding = "UTF-8";
     pr.desiredUIFont = "none";
     pr.useChapterHead = false;
     pr.useRightAlignment = false;
 
 
-
+    prjprop->setModeNewProject(true);
+    prjprop->showUpdate();
     prjprop -> setProperties(newProject, pr);
     prjprop -> show();
 }
@@ -816,14 +846,14 @@ void MainWindow::ProjectProps()
     pr.moduleBVersion = QString(Config::configuration() -> profile() -> props["version"]).toDouble();
 
 
-//    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
+    //    qDebug() << "before = " << pr.oldTestament << pr.moduleType << Config::configuration() -> profile() -> props["type"] << pr.newTestament ;
 
-    pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["type"]);
+    pr.moduleType = QStringtoBool(Config::configuration() -> profile() -> props["moduletype"]);
     pr.oldTestament = QStringtoBool(Config::configuration() -> profile() -> props["oldtestament"]);
     pr.newTestament = QStringtoBool(Config::configuration() -> profile() -> props["newtestament"]);
     pr.apocrypha = QStringtoBool(Config::configuration() -> profile() -> props["apocrypha"]);
     pr.chapterZero = QStringtoBool(Config::configuration() -> profile() -> props["chapterzero"]);
-    pr.englishPsalms = QStringtoBool(Config::configuration() -> profile() -> props["endlishPsalms"]);
+    pr.englishPsalms = QStringtoBool(Config::configuration() -> profile() -> props["endlishpsalms"]);
     pr.noForcedLineBreaks = QStringtoBool(Config::configuration() -> profile() -> props["noforcedlinebreaks"]);
     pr.useChapterHead = QStringtoBool(Config::configuration() -> profile() -> props["usechapterhead"]);
     pr.useRightAlignment = QStringtoBool(Config::configuration() -> profile() -> props["userightalignment"]);
@@ -831,6 +861,7 @@ void MainWindow::ProjectProps()
     pr.strongsDirectory = Config::configuration() -> profile() -> props["strongsdirectory"];
     pr.soundDirectory = Config::configuration() -> profile() -> props["sounddirectory"];
     pr.language = Config::configuration() -> profile() -> props["language"];
+    pr.htmlFilter = Config::configuration() -> profile() -> props["htmlfilter"];
     pr.installFonts = Config::configuration() -> profile() -> props["installfonts"];
     pr.desiredFontName = Config::configuration() -> profile() -> props["desiredfontname"];
     pr.categories = Config::configuration() -> profile() -> props["categories"];
@@ -838,17 +869,18 @@ void MainWindow::ProjectProps()
     pr.defaultEncoding = Config::configuration() -> profile() -> props["defaultencoding"];
     pr.desiredUIFont = Config::configuration() -> profile() -> props["desireduifont"];
 
-//    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
+    //    qDebug() << "after = " << pr.oldTestament << pr.moduleType << pr.newTestament ;
 
 
     //    pr.moduleType = Config::configuration() -> profile() -> props["type"];
     bool newProject = false;
     prjprop -> setProperties(newProject, pr);
+    prjprop -> showUpdate();
     prjprop -> show();
 }
 //-------------------------------------------------
 void MainWindow::createProject(ModuleProperties pr)
-{ 
+{
     QString ind1="   ";
     QString fn = unurlifyFileName(pr.prjFN);
     qDebug() << " fn = " << fn;
@@ -856,7 +888,7 @@ void MainWindow::createProject(ModuleProperties pr)
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
     if (!f.open(QFile::WriteOnly)){
-    	qDebug() << "Failed to create project: " << fn;
+        qDebug() << "Failed to create project: " << fn;
         statusBar() -> showMessage(tr("Failed to create project: %1").arg(fn), 7000);
         Config::configuration() -> toAppLog(1, tr("- failed", "For log"));
         return;
@@ -889,6 +921,7 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << ind1 << "<property name=\"version\">" << pr.moduleBVersion << "</property>" << endl;
     ts << ind1 << "<property name=\"strongsdirectory\">" << Qt::escape(pr.strongsDirectory) << "</property>" << endl;
     ts << ind1 << "<property name=\"sounddirectory\">" << Qt::escape(pr.soundDirectory) << "</property>" << endl;
+    ts << ind1 << "<property name=\"htmlfilter\">" << Qt::escape(pr.htmlFilter) << "</property>" << endl;
     ts << ind1 << "<property name=\"language\">" << pr.language << "</property>" << endl;
     ts << ind1 << "<property name=\"installfonts\">" << Qt::escape(pr.installFonts) << "</property>" << endl;
     ts << ind1 << "<property name=\"desiredfontname\">" << Qt::escape(pr.desiredFontName) << "</property>" << endl;
@@ -922,14 +955,20 @@ void MainWindow::createProject(ModuleProperties pr)
 
     Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
     Config::configuration() -> toAppLog(1, tr("- done", "For log"));
+
+    //    Config::configuration() -> setCurProject(fn);
+    //    Config::configuration() -> setCurPrjDir(fi.absolutePath());
+    //    Config::configuration() -> setCurPrjSrc();
+    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
     ProjectOpen(fn);
 }
 
 //-------------------------------------------------
 void MainWindow::updateProjectProperties(ModuleProperties pr)
 {
-    QString p = unurlifyFileName(pr.prjFN);
-    QFileInfo fi(p);
+    QString fn = unurlifyFileName(pr.prjFN);
+    //    fn = Config::configuration()->AppDir()+"/projects/"+fn;
+    QFileInfo fi(fn);
     Config::configuration() -> toPrjLog(1, tr("Update project properties:", "For log"));
     Config::configuration() -> toPrjLog(3, tr("- title      = %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toPrjLog(3, tr("- file name  = %1", "For log").arg(pr.prjFN));
@@ -945,8 +984,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> profile() -> addProperty("bibleshortname", pr.moduleBibleShortName);
     Config::configuration() -> profile() -> addProperty("copyright", pr.moduleCopyright);
 
-
-    Config::configuration() -> profile() -> addProperty("type", BooltoQString(pr.moduleType));
+    Config::configuration() -> profile() -> addProperty("moduletype", BooltoQString(pr.moduleType));
     Config::configuration() -> profile() -> addProperty("oldtestament", BooltoQString(pr.oldTestament));
     Config::configuration() -> profile() -> addProperty("newtestament", BooltoQString(pr.newTestament));
     Config::configuration() -> profile() -> addProperty("apocrypha", BooltoQString(pr.apocrypha));
@@ -958,6 +996,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> profile() -> addProperty("strongsnumber", BooltoQString(pr.strongNumber));
 
     Config::configuration() -> profile() -> addProperty("strongsdirectory", pr.strongsDirectory);
+    Config::configuration() -> profile() -> addProperty("htmlfilter", pr.htmlFilter);
     Config::configuration() -> profile() -> addProperty("sounddirectory", pr.soundDirectory);
     Config::configuration() -> profile() -> addProperty("language", pr.language);
     Config::configuration() -> profile() -> addProperty("installfonts", pr.installFonts);
@@ -970,14 +1009,17 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
 
     QString version;
     version.setNum(pr.moduleBVersion);
-    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion;
+    //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion << "bibletype = " << pr.moduleType;
+    //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "path = " << fn << " test = " << Config::configuration()->AppDir()+fn;
     Config::configuration() -> profile() -> addProperty("version", version);
 
 
-    Config::configuration() -> setCurProject(p);
+    Config::configuration() -> setCurProject(fn);
     Config::configuration() -> setCurPrjDir(fi.absolutePath());
     Config::configuration() -> setCurPrjSrc();
     Config::configuration() -> toPrjLog(1, tr("- done", "For log"));
+    helpDock->saveProject(fn);
+    //    ProjectOpen(fn);
 }
 
 //-------------------------------------------------
@@ -1000,7 +1042,7 @@ void MainWindow::setLangRu()
 
 //-------------------------------------------------
 void MainWindow::msgReloadRequest()
-{	
+{
     if (setupCompleted)
         QMessageBox::warning(this, tr("Reload application"), tr("Changes will be applied after application reload.", "Append this warning in English after translation"));
 }

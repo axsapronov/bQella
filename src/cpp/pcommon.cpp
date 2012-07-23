@@ -33,11 +33,8 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDateTime>
-
-
 #include <QString>
 #include <QTextCodec>
-
 
 
 //-------------------------------------------------
@@ -55,7 +52,7 @@ QStringList SplitNumString(QString Str, QString Deviders)
     QStringList str2;
     QString ss="";
     for (i=0; i<= Str.length(); i++){  //перебираем все символы строки
-	if (Str[i].isDigit()) 
+        if (Str[i].isDigit())
             ss +=Str[i];
         else {
             if (Deviders.contains(Str[i])){
@@ -80,7 +77,7 @@ int pSign(int x){
 
 //-------------------------------------------------
 // округляет вещ.число до целого;
-/*int pRound(double x){ //-pm- use Qt: int qRound ( qreal value ) 
+/*int pRound(double x){ //-pm- use Qt: int qRound ( qreal value )
   int y;
   float z;
 
@@ -439,14 +436,14 @@ int LetterToInt(QString letter, QString srcAlphabet)
 
 //-------------------------------------------------
 //возвращает номер буквы латинского алфавита
-int LetterToInt(QString letter) 
+int LetterToInt(QString letter)
 {
     return LetterToInt(letter,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 
 
 //-------------------------------------------------
-/* ?+? Процедуры для чисел > 26 (вернее больше числа букв в алфавите), так для латинского алфавита 27 = аа, 28 = ab 
+/* ?+? Процедуры для чисел > 26 (вернее больше числа букв в алфавите), так для латинского алфавита 27 = аа, 28 = ab
 QString IntToLetters(int n, QString str)
 {
  QString retStr;
@@ -491,8 +488,8 @@ int LettersToInt(QString str)
 Мы Дарим Сочные Лимоны, Хватит Всем И ещё останется.
 Соответственно M, D, C, L, X, V, I
 
-Натуральные числа записываются при помощи повторения этих цифр. 
-При этом, если большая цифра стоит перед меньшей, то они складываются (принцип сложения), 
+Натуральные числа записываются при помощи повторения этих цифр.
+При этом, если большая цифра стоит перед меньшей, то они складываются (принцип сложения),
 если же меньшая — перед большей, то меньшая вычитается из большей (принцип вычитания).
 Римские цифры предоставляют возможность записывать числа от 1 до 3999 (MMMCMXCIX). Для решения этой проблемы были созданы расширенные Римские цифры.
 http://ru.wikipedia.org/ <- Римские цифры
@@ -620,18 +617,18 @@ QString unurlifyFileName(const QString &fileName)
 //-------------------------------------------------
 //Turns absolute path to relative to 'path'
 //Difference from QDir::relativeFilePath() in: adds "./" and removes "file:" or "file:///"
-QString relatifyFileName(QString url, QString path) 
+QString relatifyFileName(QString url, QString path)
 {
     QString str = unurlifyFileName(url);
     if ((!str.isEmpty()) && (!str.startsWith("."))){
-	//we assume that the passing paths have "/" as a dir separator, since that's how Qt stores paths
-	if (!path.endsWith("/")) path = path + "/";
-	QFileInfo fi(str);
+        //we assume that the passing paths have "/" as a dir separator, since that's how Qt stores paths
+        if (!path.endsWith("/")) path = path + "/";
+        QFileInfo fi(str);
         QString path1 = fi.absolutePath()  + "/"; path1 = path1.trimmed();
         QString path2 = path.trimmed();
-	//Now we have two correct defined paths, let's make "str" relative to path1
-	//For Windows we need to be sure that both paths are on the same drive
-	if (path1[0] == path2[0]) { 
+        //Now we have two correct defined paths, let's make "str" relative to path1
+        //For Windows we need to be sure that both paths are on the same drive
+        if (path1[0] == path2[0]) {
             if ( path1 == path2){	//same path
                 str = "./" + fi.fileName();
             }else{	//build relative path
@@ -655,7 +652,7 @@ QString relatifyFileName(QString url, QString path)
                     for (i=1; i<=n; i++) prefix += "../";
                 str = prefix + path1 + fi.fileName();
             }
-	}
+        }
     }
     return str;
 }	//relatifyFileName
@@ -667,8 +664,8 @@ QStringList relatifyFileList(QStringList urls, QString path)
 
     QStringList::iterator it = urls.begin();
     for (; it != urls.end(); ++it) {
-    	sl << relatifyFileName(*it, path);
-    }	
+        sl << relatifyFileName(*it, path);
+    }
     return sl;
 }
 
@@ -690,8 +687,8 @@ QStringList absolutifyFileList(QStringList fns, QString path)
 
     QStringList::iterator it = fns.begin();
     for (; it != fns.end(); ++it) {
-    	sl << absolutifyFileName(*it, path);
-    }	
+        sl << absolutifyFileName(*it, path);
+    }
     return sl;
 }
 
@@ -813,43 +810,49 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
 {
     QFile file(filepath);
 
+    QString encoding = Config::configuration ()->profile ()->props["defaultencoding"];
+    QTextCodec * codec = getCodecOfEncoding(encoding);
+
+    file.close();
     file.open(QIODevice::ReadWrite | QIODevice::Text);
     file.reset();
 
     QTextStream stream(&file);
+    stream.setCodec(codec);
     QStringList str;
     QString line;
     do
-    {
-        line = stream.readLine();
-        line.replace(beforetext, replacetext);
-        str.append(line);
+        {
+            line = stream.readLine();
+            line.replace(beforetext, replacetext);
+            str.append(line);
 
-    } while (!stream.atEnd());
+        } while (!stream.atEnd());
 
     str.removeOne("");
-//    qDebug() << "\nstrlist = " << str;
+    //    qDebug() << "\nstrlist = " << str;
     file.close();
     file.remove();
     file.open(QIODevice::WriteOnly);
+//    qDebug() << " filepath  = " << filepath;
 
     QString writelist;
     for (int i = 0; i < str.size(); i++)
-    {
-        writelist.append(QString(str.at(i))+"\n");
-    }
+        {
+            writelist.append(QString(str.at(i))+"\n");
+        }
 
-    if (Config::configuration()->Language() == "utf-8") file.write(writelist.toUtf8());
-//    if (Config::configuration()->Language() == "Utf-16") file.write(writelist.toLocal8Bit());
-//    if (Config::configuration()->Language() == "Utf-32") file.write(writelist.toUcs4().toStdVector());
+    QTextStream st(&file);
+    st.setCodec(codec);
+    st << writelist;
 }
 //-------------------------------------------------
 QString ist(QString str)
 {
     if (str == "")
-    {
-        return "none";
-    }
+        {
+            return "none";
+        }
     return str;
 }
 //-------------------------------------------------
@@ -880,9 +883,9 @@ bool QStringtoBool(QString str)
 QString incstr(QString str, int n, QString mychar)
 {
     while (str.length() != n)
-    {
-        str = mychar + str;
-    }
+        {
+            str = mychar + str;
+        }
     return str;
 }
 //-------------------------------------------------
@@ -896,26 +899,35 @@ QString questionToTag(QString question)
 {
     question = "?" + question + "_.";
     if (question == "?p_." or question == "?h4_.")
-    {
-        return question.replace("?","\n<").replace("_.",">");
-    }
+        {
+            return question.replace("?","\n<").replace("_.",">");
+        }
     return question.replace("?","<").replace("_.",">");
 }
 //-----------------------------------------------------
 QString editStringList(QString list, QStringList tags, bool f)
 {
+    QString tag;
     for (int i = 0; i < tags.size(); i++)
-    {
-        if (f)
         {
-            list.replace( QString("<"+tags.at(i)+">"), tagToQuestion(tags.at(i)) );
-        }
-        else
-        {
-            list.replace( QString("?"+tags.at(i)+"_."), questionToTag(tags.at(i)) );
-        }
+            tag = tags.at (i);
+            if (tag.indexOf ("hr") != -1)
+                tag = "hr /";
 
-    }
+            if (f)
+                {
+                    list.replace( QString(checkTag (tag)), tagToQuestion(uncheckTag(tag)) );
+//                    qDebug() << " list = " << list << " tags,at i = " << tags.at (i) << " ?tag = " << tagToQuestion(uncheckTag(tags.at(i))) << " orig tag = " << checkTag (tags.at (i));
+//                    qDebug() << " list = " << list;
+                }
+            else
+                {
+                    list.replace( QString("?"+uncheckTag (tag)+"_."), questionToTag(uncheckTag (tag) ));
+                }
+
+
+
+        }
     return list;
 }
 //-----------------------------------------------------
@@ -928,7 +940,7 @@ QString getCenterTag(QString str)
     return str;
 }
 //------------------------------------------------------
-QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool chap)
+QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool chap)
 {
     QStringList strlist = strinput.split("\n");
     QString teststr = "";
@@ -942,80 +954,88 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter, bool cha
 
 
     QStringList tags;
+    tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
 
-    tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
-         << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
-         << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
-            /*<< "/span"*/
+//    qDebug() << "encoding = " << Config::configuration ()->profile ()->props["defaultencoding"];
 
-    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LengtItemString," "));
+//        qDebug() << "tags = " << tags << " strtags = " << Config::configuration ()->HtmlFilter ().toUtf8 ();
+//        tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
+//             << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
+//             << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
+                /*<< "/span"*/
+
+    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGT_ITEM_STRING," "));
     QString titlec2 = QString("<title>%1</title>").arg(i);
-    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LengtItemString," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
+    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
     for (int i = 0; i < strlist.size(); i++)
-    {
-        str = strlist.at(i);
-
-        // title and Chapter replace
-        if (chap)
         {
-        str.replace(titlec,chapter)
-                .replace(titlec2,chapter);
+            str = strlist.at(i);
+
+            // title and Chapter replace
+            if (chap)
+                {
+                    str.replace(titlec,chapter)
+                            .replace(titlec2,chapter);
+                }
+            else
+                {
+                    str.remove(title)
+                            .remove(title2);
+                }
+
+            str.remove("p, li { white-space: pre-wrap; }")
+                    .replace("<P>","<p>")
+                    .remove(title);
+
+            // переписать это убожество
+            if (str.indexOf("<p align=\"center\"") >= 0)
+                {
+                    str.replace("<p align=\"center\"","<center><p")
+                            .replace("</p>","</center>");
+                }
+
+            str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
+            str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
+            str = getParseTagSpan(str, "font-weight:600;", "<strong>");
+            str = getParseTagSpan(str, "font-style:italic;", "<em>");
+            str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
+            //        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
+
+            str.replace(rxp, "?p_.")
+                    .remove("</p>")
+
+                    .remove(rxi);
+
+//            qDebug() << "\nstr = " << str;
+            str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
+            str.remove(rx)
+                    .remove("")
+                    .remove("\n");
+            str.remove("Новый пункт")
+                    .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
+            str.replace("?p_.PathName","\nPathName")
+                    .replace("PathName", "\n\nPathName")
+                    .replace("FullName", "\nFullName")
+                    .replace("ShortName", "\nShortName")
+                    .replace("ChapterQty", "\nChapterQty");
+
+            str = editStringList(str, tags, false); // возвращаем нужные теги
+            str.remove ("<span>>")
+                    .remove ("</span>");
+
+            if (!str.isEmpty())
+                {
+                    teststr.append(str);
+                }
         }
-        else
-        {
-                str.remove(title)
-                .remove(title2);
-        }
 
-        str.remove("p, li { white-space: pre-wrap; }")
-                .replace("<P>","<p>")
-                .remove(title);
-
-        // переписать это убожество
-        if (str.indexOf("<p align=\"center\"") >= 0)
-        {
-            str.replace("<p align=\"center\"","<center><p")
-                    .replace("</p>","</center>");
-        }
-
-        str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
-        str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
-        str = getParseTagSpan(str, "font-weight:600;", "<strong>");
-        str = getParseTagSpan(str, "font-style:italic;", "<em>");
-        str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
-//        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
-
-        str.replace(rxp, "?p_.")
-                .remove("</p>")
-                .remove(rxi);
-
-        str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
-        str.remove(rx)
-                .remove("")
-                .remove("\n");
-        str.remove("Новый пункт")
-            .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
-        str.replace("?p_.PathName","\nPathName")
-                .replace("PathName", "\n\nPathName")
-                .replace("FullName", "\nFullName")
-                .replace("ShortName", "\nShortName")
-                .replace("ChapterQty", "\nChapterQty");
-        str = editStringList(str, tags, false); // возвращаем нужные теги
-
-
-        if (!str.isEmpty())
-        {
-            teststr.append(str);
-        }
-    }
-
-//    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
+    //    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
 
     return teststr;
 }
-
+//-----------------------------------------------------
 QString getParseTagSpan(QString str, QString text, QString tag)
 {
     QString span = "<span>";
@@ -1024,36 +1044,35 @@ QString getParseTagSpan(QString str, QString text, QString tag)
     QString tagend = ta.replace("<","</");
 
     while (str.indexOf(text) >= 0)
-    {
-        // определяем гле находится наша строка
-        // определяем где находится следующая >
-        // определяем где находится spanend
-        // за > ставим tag
-        // перед spanend ставим tagend
+        {
+            // определяем гле находится наша строка
+            // определяем где находится следующая >
+            // определяем где находится spanend
+            // за > ставим tag
+            // перед spanend ставим tagend
 
-        int posOfOurLine = str.indexOf(text);
+            int posOfOurLine = str.indexOf(text);
             str.replace(posOfOurLine, text.length(), "");
-        int posOf = str.indexOf(">",posOfOurLine);
+            int posOf = str.indexOf(">",posOfOurLine);
             str.replace(posOf,1,">"+tag);
-        int posOfEnd = str.indexOf(spanend,posOf);
+            int posOfEnd = str.indexOf(spanend,posOf);
             str.replace(posOfEnd,spanend.length(),tagend+spanend);
-//            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
-    }
+            //            qDebug() << "\nDebug: _getParseTag" << "str = " << str << "\nposOfOurLine = " << posOfOurLine << " posOf = " << posOf << " posOfEnd = " << posOfEnd;
+        }
     return str;
 }
-
-
+//-----------------------------------------------------
 int getDepthTreeWidgetItem(QTreeWidgetItem *item)
 {
     int depth = 0;
     while(item != 0)
-    {
-      depth++;
-      item = item->parent();
-    }
+        {
+            depth++;
+            item = item->parent();
+        }
     return depth;
 }
-
+//-----------------------------------------------------
 QStringList getFillShortName()
 {
     QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
@@ -1062,87 +1081,137 @@ QStringList getFillShortName()
     QTextCodec::setCodecForTr(codec);
 
     QStringList items;
-    items << QString("Быт. Быт Бт. Бт Бытие Ge. Ge Gen. Gen Gn. Gn Genesis")
-          << QString("Исх. Исх Исход Ex. Ex Exo. Exo Exod. Exod Exodus")
-          << QString("Лев. Лев Лв. Лв Левит Lev. Lev Le. Le Lv. Lv Levit. Levit Leviticus")
-          << QString("Чис. Чис Чс. Чс Числ. Числ Числа Nu. Nu Num. Num Nm. Nm Numb. Numb Numbers")
-          << QString("Втор. Втор Вт. Вт Втрзк. Втрзк Второзаконие De. De Deut. Deut Deu. Deu Dt. Dt Deuteron. Deuteron Deuteronomy")
-          << QString("Иис.Нав. Иис.Нав Нав. Нав Иисус Навин Jos. Jos Josh. Josh Joshua")
-          << QString("Суд. Суд Сд. Сд Судьи Jdg. Jdg Judg. Judg Judge. Judge Judges")
-          << QString("Руф. Руф Рф. Рф Руфь Ru. Ru Ruth Rth. Rth Rt. Rt")
-          << QString("1Цар. 1Цар 1Цр. 1Цр 1Ц 1Царств. 1Царств 1Sa. 1Sa 1S. 1S 1Sam. 1Sam 1Sm. 1Sm 1Sml. 1Sml 1Samuel")
-          << QString("2Цар. 2Цар 2Цр. 2Цр 2Ц 2Царств. 2Царств 2Sa. 2Sa 2S. 2S 2Sam. 2Sam 2Sm. 2Sm 2Sml. 2Sml 2Samuel")
-          << QString("3Цар. 3Цар 3Цр. 3Цр 3Ц 3Царств. 3Царств 1Ki. 1Ki 1K. 1K 1Kn. 1Kn 1Kg. 1Kg 1King. 1King 1Kng. 1Kng 1Kings")
-          << QString("4Цар. 4Цар 4Цр. 4Цр 4Ц 4Царств. 4Царств 2Ki. 2Ki 2K. 2K 2Kn. 2Kn 2Kg. 2Kg 2King. 2King 2Kng. 2Kng 2Kings")
-          << QString("1Пар. 1Пар 1Пр. 1Пр 1Chr. 1Chr 1Ch. 1Ch 1Chron. 1Chron")
-          << QString("2Пар. 2Пар 2Пр. 2Пр 2Chr. 2Chr 2Ch. 2Ch 2Chron. 2Chron")
-          << QString("Ездр. Ездр Езд. Езд Ез. Ез Ездра Ezr. Ezr Ezra")
-          << QString("Неем. Неем. Нм. Нм Неемия Ne. Ne Neh. Neh Nehem. Nehem Nehemiah")
-          << QString("Есф. Есф Ес. Ес Есфирь Esth. Esth Est. Est Esther")
-          << QString("Иов. Иов Ив. Ив Job. Job Jb. Jb")
-          << QString("Пс. Пс Псалт. Псалт Псал. Псал Псл. Псл Псалом Псалтирь Псалмы Ps. Ps Psa. Psa Psal. Psal Psalm Psalms")
-          << QString("Прит. Прит Притч. Притч Пр. Пр Притчи Притча Pr. Pr Prov. Prov Pro. Pro Proverb Proverbs")
-          << QString("Еккл. Еккл Ек. Ек Екк. Екк Екклесиаст Ec. Ec Eccl. Eccl Ecc. Ecc Ecclesia. Ecclesia")
-          << QString("Песн. Песн Пес. Пес Псн. Псн Песн.Песней Песни Song. Song Songs SS. SS Sol. Sol")
-          << QString("Ис. Ис Иса. Иса Исаия Исайя Isa. Isa Is. Is Isaiah")
-          << QString("Иер. Иер Иерем. Иерем Иеремия Je. Je Jer. Jer Jerem. Jerem Jeremiah")
-          << QString("Плач. Плач Плч. Плч Пл. Пл Пл.Иер. Пл.Иер Плач Иеремии La. La Lam. Lam Lament. Lament Lamentation")
-          << QString("Иез. Иез Из. Из Иезек. Иезек Иезекииль Ez. Ez Eze. Eze Ezek. Ezek Ezekiel")
-          << QString("Дан. Дан Дн. Дн Днл. Днл Даниил Da. Da Dan. Dan Daniel")
-          << QString("Ос. Ос Осия Hos. Hos Ho. Ho Hosea")
-          << QString("Иоил. Иоил Ил. Ил Иоиль Joel. Joel Joe. Joe")
-          << QString("Ам. Ам Амс. Амс Амос Am. Am Amos Amo. Amo")
-          << QString("Авд. Авд Авдий Ob. Ob Obad. Obad. Obadiah Oba. Oba")
-          << QString("Ион. Ион. Иона Jon. Jon Jnh. Jnh. Jona. Jona Jonah")
-          << QString("Мих. Мих Мх. Мх Михей Mi. Mi Mic. Mic Micah")
-          << QString("Наум. Наум Na. Na Nah. Nah Nahum")
-          << QString("Авв. Авв Аввак. Аввак Аввакум Hab. Hab Habak. Habak Habakkuk")
-          << QString("Соф. Соф Софон. Софон Софония Zeph. Zeph Zep. Zep Zephaniah")
-          << QString("Агг. Агг Аггей Hag. Hag Haggai")
-          << QString("Зах. Зах Зхр. Зхр Захар. Захар Захария Ze. Ze Zec. Zec Zech. Zech Zechariah")
-          << QString("Мал. Мал Малах. Малах Млх. Млх Малахия Mal. Mal Malachi")
-          << QString("Матф. Матф Мтф. Мтф Мф. Мф Мт. Мт Матфея Матфей Мат Мат. Mt. Mt Ma. Ma Matt. Matt Mat. Mat Matthew")
-          << QString("Мар. Мар Марк. Марк Мрк. Мрк Мр. Мр Марка Мк Мк. Mk. Mk Mar. Mar Mr. Mr Mrk. Mrk Mark")
-          << QString("Лук. Лук Лк. Лк Лукa Луки Lk. Lk Lu. Lu Luk. Luk Luke")
-          << QString("Иоан. Иоан Ин. Ин Иоанн Иоанна Jn. Jn Jno. Jno Joh. Joh John")
-          << QString("Деян. Деян Дея. Дея Д.А. Деяния Ac. Ac Act. Act Acts")
-          << QString("Иак. Иак Ик. Ик Иаков Иакова Jas. Jas Ja. Ja Jam. Jam Jms. Jms James")
-          << QString("1Пет. 1Пет 1Пт. 1Пт 1Птр. 1Птр 1Петр. 1Петр 1Петра 1Pe. 1Pe 1Pet. 1Pet 1Peter")
-          << QString("2Пет. 2Пет 2Пт. 2Пт 2Птр. 2Птр 2Петр. 2Петр 2Петра 2Pe. 2Pe 2Pet. 2Pet 2Peter")
-          << QString("1Иоан. 1Иоан 1Ин. 1Ин 1Иоанн 1Иоанна 1Jn. 1Jn 1Jo. 1Jo 1Joh. 1Joh 1Jno. 1Jno 1John")
-          << QString("2Иоан. 2Иоан 2Ин. 2Ин 2Иоанн 2Иоанна 2Jn. 2Jn 2Jo. 2Jo 2Joh. 2Joh 2Jno. 2Jno 2John")
-          << QString("3Иоан. 3Иоан 3Ин. 3Ин 3Иоанн 3Иоанна 3Jn. 3Jn 3Jo. 3Jo 3Joh. 3Joh 3Jno. 3Jno 3John")
-          << QString("Иуд. Иуд Ид. Ид Иуда Иуды Jud. Jud Jude Jd. Jd")
-          << QString("Рим. Рим Римл. Римл Римлянам Ro. Ro Rom. Rom Romans")
-          << QString("1Кор. 1Кор 1Коринф. 1Коринф 1Коринфянам 1Коринфянам 1Co. 1Co 1Cor. 1Cor 1Corinth. 1Corinth 1Corinthians")
-          << QString("2Кор. 2Кор 2Коринф. 2Коринф 2Коринфянам 2Коринфянам 2Co. 2Co 2Cor. 2Cor 2Corinth. 2Corinth 2Corinthians")
-          << QString("Гал. Гал Галат. Галат Галатам Ga. Ga Gal. Gal Galat. Galat Galatians")
-          << QString("Еф. Еф Ефес. Ефес Ефесянам Eph. Eph Ep. Ep Ephes. Ephes Ephesians")
-          << QString("Фил. Фил Флп. Флп Филип. Филип Филиппийцам Php. Php Ph. Ph Phil. Phil Phi. Phi. Philip. Philip Philippians")
-          << QString("Кол. Кол Колос. Колос Колоссянам Col. Col Colos. Colos Colossians")
-          << QString("1Фесс. 1Фесс 1Фес. 1Фес 1Фессалоникийцам 1Сол. 1Сол 1Солунянам 1Th. 1Th 1Thes. 1Thes 1Thess. 1Thess")
-          << QString("2Фесс. 2Фесс 2Фес. 2Фес 2Фессалоникийцам 2Сол. 2Сол 2Солунянам 2Th. 2Th 2Thes. 2Thes 2Thess. 2Thess")
-          << QString("1Тим. 1Тим 1Тимоф. 1Тимоф 1Тимофею 1Ti. 1Ti 1Tim. 1Tim 1Timothy")
-          << QString("2Тим. 2Тим 2Тимоф. 2Тимоф 2Тимофею 2Ti. 2Ti 2Tim. 2Tim 2Timothy")
-          << QString("Тит. Тит Титу Tit. Tit Ti. Ti Titus")
-          << QString("Флм. Флм Филимон. Филимон Филимону Phm. Phm Phile. Phile Phlm. Phlm Philemon")
-          << QString("Евр. Евр Евреям He. He Heb. Heb Hebr. Hebr Hebrews")
-          << QString("Откр. Откр Отк. Отк Откровен. Откровен Апок. Апок Откровение Апокалипсис Rev. Rev Re. Re Rv. Rv Revelation")
-          << QString("2Ездр. 2Ездр 2Езд. 2Езд 2Ездра 2Ездры 2Ез 2Ез. 2Esdras 2Es. 2Es")
-          << QString("Тов. Тов Товит Tobit Tob. Tob")
-          << QString("Иудиф. Иудиф Иудифь Judith Jdt. Jdt")
-          << QString("Прем.Сол. Премудр.Соломон. Премудр.Сол. Премудр. Премудр.Соломона Премудрость Премудрости Прем. Прем Wisdom Wis. Wis")
-          << QString("Сир. Сир Сирах SirachSip Sirach SirSip Sir.Sip SirSip Sir. Sir")
-          << QString("Посл.Иер. Посл.Иер Посл.Иерем. Посл.Иерем Посл.Иеремии Ep.Jer. EpJer Epj. Epj")
-          << QString("Вар. Вар Варух Baruch Bar. Bar")
-          << QString("1Макк. 1Макк. 1Маккав. 1Маккав 1Мак. 1Мак 1Маккавейская 1Maccabees 1Macc. 1Macc 1Mac. 1Mac 1Ma. 1Ma")
-          << QString("2Макк. 2Макк. 2Маккав. 2Маккав 2Мак. 2Мак 2Маккавейская 2Maccabees 2Macc. 2Macc 2Mac. 2Mac 2Ma. 2Ma")
-          << QString("3Макк. 3Макк. 3Маккав. 3Маккав 3Мак. 3Мак 3Маккавейская 3Maccabees 3Macc. 3Macc 3Mac. 3Mac 3Ma. 3Ma")
-          << QString("3Ездр. 3Ездр 3Езд. 3Езд 3Ездра 3Ездры 3Ез 3Ез. 3Esdras 3Es. 3Es");
+
+    items << QString ("Бут. Бут 1M. 1M Буття Быт. Быт Бт. Бт Бытие Ge. Ge Gen. Gen Gn. Gn Genesis")
+          << QString ("Вих. Вих 2М. 2М Вихід Исх. Исх Исход Ex. Ex Exo. Exo Exod. Exod Exodus")
+          << QString ("Лев. Лев 3М. 3М Лв. Лв Левит Lev. Lev Le. Le Lv. Lv Levit. Levit Leviticus")
+          << QString ("Чис. Чис 4М. 4М Чс. Чс Числ. Числ Числа Nu. Nu Num. Num Nm. Nm Numb. Numb Numbers")
+          << QString ("Повт. Повт Повтор. Повтор Повторення 5М. 5М Втор. Втор Вт. Вт Втрзк. Втрзк Второзаконие De. De Deut. Deut Deu. Deu Dt. Dt  Deuteron. Deuteron Deuteronomy ")
+          << QString ("Iс.Нав. Iсус Єг Єг. Иис.Нав. Иис.Нав Нав. Нав Иисус Навин Jos. Jos Josh. Josh Joshua")
+          << QString ("Суд. Суд Суддiв Сд. Сд Судьи Jdg. Jdg Judg. Judg Judge. Judge Judges")
+          << QString ("Рут. Рут Руф. Руф Рф. Рф Руфь Ru. Ru Ruth Rth. Rth Rt. Rt")
+          << QString ("1Сам. 1Сам 1См 1См. 1С 1С. 1Царств. 1Царств 1Sa. 1Sa 1S. 1S 1Sam. 1Sam 1Sm. 1Sm 1Sml. 1Sml 1Samuel ")
+          << QString ("2Сам. 2Сам 2См 2См. 2С 2С. 2Царств. 2Царств 2Sa. 2Sa 2S. 2S 2Sam. 2Sam 2Sm. 2Sm 2Sml. 2Sml 2Samuel")
+          << QString ("1Цар. 1Цар 1Царiв 1Цр. 1Цр 1Ц. 1Ц 1Царей 3Цар. 3Цар 3Царiв 3Цр. 3Цр 3Ц. 3Ц 3Царств. 3Царств 1Ki. 1Ki 1K. 1K 1Kn. 1Kn 1Kg. 1Kg 1King. 1King 1Kng. 1Kng 1Kings")
+          << QString ("2Цар. 2Цар 2Царiв 2Цр. 2Цр 2Ц. 2Ц 2Царей 4Цар. 4Цар 4Царiв 4Цр. 4Цр 4Ц. 4Ц 4Царств. 4Царств 2Ki. 2Ki 2K. 2K 2Kn. 2Kn 2Kg. 2Kg 2King. 2King 2Kng. 2Kng 2Kings")
+          << QString ("1Хр. 1Хр 1Хрон. 1Хрон 1Хронiки 1Пар. 1Пар 1Пр. 1Пр 1Chr. 1Chr 1Ch. 1Ch 1Chron. 1Chron")
+          << QString ("2Хр. 2Хр 2Хрон. 2Хрон 2Хронiки 2Пар. 2Пар 2Пр. 2Пр 2Chr. 2Chr 2Ch. 2Ch 2Chron. 2Chron")
+          << QString ("Езд. Езд Ездр. Ездр Ез. Ез Ездра Ezr. Ezr Ezra")
+          << QString ("Неем. Неем. Неемія Нм. Нм Неемия Ne. Ne Neh. Neh Nehem. Nehem Nehemiah")
+          << QString ("Ест. Ест Естер Есф. Есф Ес. Ес Есфирь Esth. Esth Est. Est Esther")
+          << QString ("Йов. Йов Иов. Иов Ив. Ив Job. Job Jb. Jb")
+          << QString ("Пс. Пс Псалт. Псалт Псал. Псал Псл. Псл Псалми Псалом Псалтирь Псалмы Ps. Ps Psa. Psa Psal. Psal Psalm Psalms")
+          << QString ("Пр. Пр Прип. Прип Приповiстi Прит. Прит Притч. Притч Притчи Притча Pr. Pr Prov. Prov Pro. Pro Proverb Proverbs")
+          << QString ("Екл. Екл Ек. Ек Еккл. Еккл Екк. Екк Екклесиаст Ec. Ec Eccl. Eccl Ecc. Ecc Ecclesia. Ecclesia Ecclesiastes ")
+          << QString ("Пiсн. Пiсн Пiсня Песн. Песн Пес. Пес Псн. Псн Песн.Песней Песни Song. Song Songs SS. SS Sol. Sol")
+          << QString ("Iс. Iс Iсая Ис. Ис Иса. Иса Исаия Исайя Isa. Isa Is. Is Isaiah ")
+          << QString ("Єр. Єр Єрем. Єрем Єремiя Иер. Иер Иерем. Иерем Иеремия Je. Je Jer. Jer Jerem. Jerem Jeremiah")
+          << QString ("Плач. Плач Плч. Плч Пл. Пл Пл.Єрем. Пл.Єрем Пл.Єр. Пл.Єрем Пл.Иер. Пл.Иер Плач Иеремии La. La Lam. Lam Lament. Lament Lamentation Lamentations ")
+          << QString ("Єз. Єз Єзек. Єзек Єзекiїль Иез. Иез Из. Из Иезек. Иезек Иезекииль Ez. Ez Eze. Eze Ezek. Ezek Ezekiel")
+          << QString ("Дан. Дан Дн. Дн Днл. Днл Даниїл Даниил Da. Da Dan. Dan Daniel ")
+          << QString ("Ос. Ос Осiя Осия Hos. Hos Ho. Ho Hosea")
+          << QString ("Йоїл. Йоїл Иоил. Иоил Ил. Ил Иоиль Joel. Joel Joe. Joe")
+          << QString ("Ам. Ам Амс. Амс Амос Am. Am Amos Amo. Amo ")
+          << QString ("Овд. Овд Овдiй Авд. Авд Авдий Ob. Ob Obad. Obad. Obadiah Oba. Oba")
+          << QString ("Йона. Йона Йон. Йон Ион. Ион. Иона Jon. Jon Jnh. Jnh. Jona. Jona Jonah")
+          << QString ("Мих. Мих Мх. Мх Михей Mi. Mi Mic. Mic Micah")
+          << QString ("Наум. Наум Na. Na Nah. Nah Nahum ")
+          << QString ("Ав. Ав Авв. Авв Аввак. Аввак Аввакум Hab. Hab Habak. Habak Habakkuk")
+          << QString ("Соф. Соф Софон. Софон Софонiя Софония Zeph. Zeph  Zep. Zep Zephaniah")
+          << QString ("Ог. Ог Огiй Аг. Аг Агг. Агг Аггей Hag. Hag Haggai")
+          << QString ("Зах. Зах Зхр. Зхр Захар. Захар Захарiя Захария Ze. Ze Zec. Zec Zech. Zech Zechariah")
+          << QString ("Мал. Мал Малах. Малах Млх. Млх Малахия Mal. Mal Malachi")
+          << QString ("Матв. Матв Мтв. Мтв Мв. Мв Матвiя Матвiї Матф. Матф Мтф. Мтф Мф. Мф Мт. Мт Матфея Матфей Мат Мат. Mt. Mt Ma. Ma Matt. Matt Mat. Mat Matthew")
+          << QString ("Мар. Мар Мр. Мр. Марк. Марк Мрк. Мрк Марка Мк Мк. Мр Мр. Mk. Mk Mar. Mar Mr. Mr Mrk. Mrk Mark")
+          << QString ("Лук. Лук Лк. Лк Лукa Луки Lk. Lk Lu. Lu Luk. Luk Luke")
+          << QString ("Iван. Iван Iв. Iв Iн. Iн Iвн. Iвн Iвана Иоан. Иоан Ин. Ин Иоанн Иоанна Jn. Jn Jno. Jno Joh. Joh John")
+          << QString ("Дiї. Дiї Деян. Деян Дея. Дея Д.А. Деяния Ac. Ac Act. Act Acts")
+          << QString ("Рим. Рим Римл. Римл Римлян Римлянам Ro. Ro Rom. Rom Romans")
+          << QString ("1Кор. 1Кор 1Коринтян. 1Коринтян 1Коринт. 1Коринт 1Коринф. 1Коринф 1Коринфянам 1Коринфянам 1Co. 1Co 1Cor. 1Cor 1Corinth. 1Corinth 1Corinthians")
+          << QString ("2Кор. 2Кор 2Коринтян. 2Коринтян 2Коринт. 2Коринт 2Коринф. 2Коринф 2Коринфянам 2Коринфянам 2Co. 2Co 2Cor. 2Cor 2Corinth. 2Corinth 2Corinthians")
+          << QString ("Гал. Гал Галат. Галат Галатiв Галатам Ga. Ga Gal. Gal Galat. Galat Galatians")
+          << QString ("Еф. Еф Ефес. Ефес Ефесян Ефесянам Eph. Eph Ep. Ep Ephes. Ephes Ephesian")
+          << QString ("Фил. Фил Флп. Флп Филип. Филип Филиппийцам Php. Php Ph. Ph Phil. Phil Phi. Phi. Philip. Philip Philippians")
+          << QString ("Кол. Кол Колос. Колос Колоссян Колоссянам Col. Col Colos. Colos Colossians")
+          << QString ("1Сол. 1Сол. 1Солун. 1Солун 1Солунян 1Фесс. 1Фесс 1Фес. 1Фес 1Фессалоникийцам 1Солунянам 1Th. 1Th 1Thes. 1Thes 1Thess. 1Thess 1Thessalonians")
+          << QString ("2Сол. 2Сол 2Солун. 2Солун 2Солунян 2Фесс. 2Фесс 2Фес. 2Фес 2Фессалоникийцам 2Солунянам 2Th. 2Th 2Thes. 2Thes 2Thess. 2Thess 2Thessalonians")
+          << QString ("1Тим. 1Тим  1Тимоф. 1Тимоф 1Тимофiю 1Тимофею 1Ti. 1Ti 1Tim. 1Tim 1Timothy")
+          << QString ("2Тим. 2Тим 2Тимоф. 2Тимоф 2Тимофiю 2Тимофею 2Ti. 2Ti 2Tim. 2Tim 2Timothy")
+          << QString ("Тит. Тит Титу Тита Tit. Tit Ti. Ti Titus")
+          << QString ("Флм. Флм Филим. Филим Филимон. Филимон Филимона Филимону Phm. Phm Phile. Phile Phlm. Phlm Philemon")
+          << QString ("Євр. Євр Євреїв Евр. Евр Евреям He. He Heb. Heb Hebr. Hebr Hebrews")
+          << QString ("Як. Як Яков. Яков Якв. Якв Якова Иак. Иак Ик. Ик Иаков Иакова Jas. Jas Ja. Ja Jam. Jam Jms. Jms James")
+          << QString ("Об. Об Об'явл. Об'явл Об'явлен. Об'явлен Об'явлення Откр. Откр Отк. Отк Откровен. Откровен Апок. Апок ")
+          << QString ("2Ездр. 2Ездр 2Езд. 2Езд 2Ездра 2Ездры 2Ез 2Ез. 2Esdras 2Es. 2Es")
+          << QString ("Тов. Тов Товит Tobit Tob. Tob")
+          << QString ("Иудиф. Иудиф Иудифь Judith Jdt. Jdt")
+          << QString ("Прем.Сол. Премудр.Соломон. Премудр.Сол. Премудр. Премудр.Соломона Премудрость Премудрости Прем. Прем Wisdom Wis. Wis")
+          << QString ("Сир. Сир Сирах SirachSip Sirach SirSip Sir.Sip SirSip Sir. Sir")
+          << QString ("Посл.Иер. Посл.Иер Посл.Иерем. Посл.Иерем Посл.Иеремии Ep.Jer. EpJer Epj. Epj")
+          << QString ("Вар. Вар Варух Baruch Bar. Bar")
+          << QString ("1Макк. 1Макк. 1Маккав. 1Маккав 1Мак. 1Мак 1Маккавейская 1Maccabees 1Macc. 1Macc 1Mac. 1Mac 1Ma. 1Ma")
+          << QString ("2Макк. 2Макк. 2Маккав. 2Маккав 2Мак. 2Мак 2Маккавейская 2Maccabees 2Macc. 2Macc 2Mac. 2Mac 2Ma. 2Ma")
+          << QString ("3Макк. 3Макк. 3Маккав. 3Маккав 3Мак. 3Мак 3Маккавейская 3Maccabees 3Macc. 3Macc 3Mac. 3Mac 3Ma. 3Ma")
+          << QString ("3Ездр. 3Ездр 3Езд. 3Езд 3Ездра 3Ездры 3Ез 3Ез. 3Esdras 3Es. 3Es")
+          << QString ("1Петр. 1Петр 1Пет. 1Пет 1Пт. 1Пт 1Птр. 1Птр 1Петра 1Pe. 1Pe 1Pet. 1Pet 1Peter")
+          << QString ("2Петр. 2Петр 2Пет. 2Пет 2Пт. 2Пт 2Птр. 2Птр 2Петра 2Pe. 2Pe 2Pet. 2Pet 2Peter")
+          << QString ("1Iван. 1Iван 1Iв. 1Iв 1Iн. 1Iн 1Iвн. 1Iвн 1Iвана 1Иоан. 1Иоан 1Ин. 1Ин 1Иоанн 1Иоанна 1Jn. 1Jn 1Jo. 1Jo 1Joh. 1Joh 1Jno. 1Jno 1John")
+          << QString ("2Iван. 2Iван 2Iв. 2Iв 2Iн. 2Iн 2Iвн. 2Iвн 2Iвана 2Иоан. 2Иоан 2Ин. 2Ин 2Иоанн 2Иоанна 2Jn. 2Jn 2Jo. 2Jo 2Joh. 2Joh 2Jno. 2Jno 2John")
+          << QString ("3Iван. 3Iван 3Iв. 3Iв 3Iн. 3Iн 3Iвн. 3Iвн 3Iвана 3Иоан. 3Иоан 3Ин. 3Ин 3Иоанн 3Иоанна 3Jn. 3Jn 3Jo. 3Jo 3Joh. 3Joh 3Jno. 3Jno 3John")
+          << QString ("Юд. Юд Юди. Юди Юда. Юда Иуд. Иуд Ид. Ид Иуда Иуды Jud. Jud Jude Jd. Jd");
     return items;
 }
+//-----------------------------------------------------
 
+QStringList getFillEncoding()
+{
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForTr(codec);
 
+    QStringList items;
+
+    items << QString("UTF-8")
+          << QString("Windows-1251")
+          << QString("KOI8-R")
+          << QString("KOI8-U")
+          << QString("UTF-16")
+             //          << QString("UTF-16BE")
+             //          << QString("UTF-16LE")
+          << QString("UTF-32")
+             //          << QString("UTF-32BE")
+             //          << QString("UTF-32LE")
+          << QString("Windows-1252")
+          << QString("Windows-1253")
+          << QString("Windows-1254")
+          << QString("Windows-1255")
+          << QString("Windows-1256")
+          << QString("Windows-1257")
+          << QString("Windows-1258");
+    //            << tr("MuleLao-1")
+    //            << tr("ROMAN8")
+    //            << tr("Shift-JIS")
+    //            << tr("TIS-620")
+    //            << tr("TSCII")
+    //            << tr("Apple Roman")
+    //            << tr("Big5")
+    //            << tr("Big5-HKSCS")
+    //            << tr("CP949")
+    //            << tr("EUC-JP")
+    //            << tr("EUC-KR")
+    //            << tr("GB18030-0")
+    //            << tr("IBM 850")
+    //            << tr("IBM 866")
+    //            << tr("IBM 874")
+    //            << tr("ISO 2022-JP")
+    //            << tr("JIS X 0201")
+    //            << tr("JIS X 0208")
+    return items;
+
+}
+
+//-----------------------------------------------------
 QString getShortName(QString filename)
 {
     // translate to hindi
@@ -1152,98 +1221,293 @@ QString getShortName(QString filename)
     QFile file(filename);
 
     if (file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream( &file );
-        do {
-            line = stream.readLine();
-            if (line.indexOf("ShortName = ") >= 0)
-            {
-//                str = getTextInStr(line);
-                str = line.remove("ShortName = ");
-            }
-        } while (str.isEmpty() and !line.isNull());
-        file.close();
-    }
-
+        {
+            QTextStream stream( &file );
+            do {
+                line = stream.readLine();
+                if (line.indexOf("ShortName = ") >= 0)
+                    {
+                        //                str = getTextInStr(line);
+                        str = line.remove("ShortName = ");
+                    }
+            } while (str.isEmpty() and !line.isNull());
+            file.close();
+        }
     return str;
 }
-
+//-----------------------------------------------------
 QString miniparserini(QString str, QString po)
 {
     po.append(" = ");
     //    qDebug() << "_str " << str;
     if (str.indexOf(po) >= 0)
-    {
-        str.remove(po);
-        if (po == "BibleName = ")
         {
-            str.replace(" ", "_");
-//                    .remove(str.length()-1, 1);
-        }
+            str.remove(po);
+            if (po == "BibleName = ")
+                {
+                    str.replace(" ", "_");
+                    //                    .remove(str.length()-1, 1);
+                }
 
-        if (po != "ShortName = " and
-                po != "FullName = " and
-                po != "ChapterSign = ")
-        {
-            str.remove(" \0");
-        }
+            if (po != "ShortName = " and
+                    po != "FullName = " and
+                    po != "ChapterSign = ")
+                {
+                    str.remove(" \0");
+                }
 
-        if (str == "")
-        {
-            //               qDebug() << "po = " << po;
-            if ( po == "Language = ")
-            {
-                //                qDebug() << "po = " << po;
-                return "rus";
-            }
-            if ( po == "DefaultEncoding = ")
-                return "utf-8";
-            return "none";
-        }
-        str.remove("\n");
+            if (str == "")
+                {
+                    //               qDebug() << "po = " << po;
+                    if ( po == "Language = ")
+                        {
+                            //                qDebug() << "po = " << po;
+                            return "rus";
+                        }
+                    if ( po == "DefaultEncoding = ")
+                        return "UTF-8";
+                    return "none";
+                }
+            str.remove("\n");
 
-        //        qDebug() << "__str = " << str;
-        return str;
-    }
+            //        qDebug() << "__str = " << str;
+            return str;
+        }
     return "";
 }
-
+//-----------------------------------------------------
 QString getTextInStr(QString strf, int begin, int end)
 {
-//    qDebug() << " str before = " << strf;
-//    QString str = strf.section(" = ", 3, 4);
-////    str.remove(str.indexOf(" ChapterQty"),strf.length()-str.indexOf(" ChapterQty"));
-////    str.remove
+    //    qDebug() << " str before = " << strf;
+    //    QString str = strf.section(" = ", 3, 4);
+    ////    str.remove(str.indexOf(" ChapterQty"),strf.length()-str.indexOf(" ChapterQty"));
+    ////    str.remove
 
-//    qDebug() << " str = " << str;
+    //    qDebug() << " str = " << str;
     return strf;
     strf = strf;
     begin = begin;
     end = end;
 }
-
+//-----------------------------------------------------
 QString replaceFullShortName(QString line, QString text, QString name)
 {
     QString str;
     if (line.indexOf(name) >= 0)
-    {
-        str = QString(line).remove(name);
-        if (str != text)
         {
-            line = name + text;
+            str = QString(line).remove(name);
+            if (str != text)
+                {
+                    line = name + text;
+                }
         }
-    }
     return line;
 }
-
-
+//-----------------------------------------------------
 void writeQStringList(QString filename, QStringList list)
 {
     QFile file(unurlifyFileName(filename));
     if (file.open(QIODevice::WriteOnly))
+        {
+            for (int i = 0; i < list.size(); i++)
+                file.write(QString(list.at(i)+"\n").toUtf8());
+        }
+    //    qDebug() << " list = " << list;
+}
+//-----------------------------------------------------
+QString getCheckShortNameForFile(QString str, QString full)
+{
+    // если нету в short неймах такого названия, то юзаем все полное название книги
+    // если есть, то берем номер шорт нейма и называем файл его номером.
+    QStringList list = getFillShortName();
+    for (int i = 0; i < list.size(); i++)
+        {
+            if (str == list.at(i))
+                return QString::number(i+1);
+        }
+    return full;
+}
+//-----------------------------------------------------
+QString checkExistenceFile(QString filename)
+{
+    QString end = QString(filename).split(".").last();
+    filename.remove("."+end);
+    while (QFile::exists(filename+"."+end))
+        {
+            filename.append("_");
+        }
+    //    qDebug() << "filename = " << filename;
+    return filename+"."+end;
+}
+//-------------------------------------------------------
+QString checkTag(QString tag)
+{
+    //    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
+    if ((tag.indexOf("<", 0) == -1) and (tag.indexOf(">", tag.length()-2) == -1))
+        {
+            tag = "<" + tag + ">";
+        }
+    return tag;
+}
+//--------------------------------------------------------
+QString uncheckTag(QString tag)
+{
+    return tag.remove ("<").remove (">");
+}
+//-------------------------------------------------------
+QString checkEndTag(QString tag)
+{
+    tag = checkTag (tag);
+    tag.replace ("<","</");
+    return tag;
+}
+//-------------------------------------------------------
+QString getFileNameAbs(QString file)
+{
+    QStringList list;
+    list << file.split("/");
+    QString str = list.last();
+    list = str.split(".");
+    str = list.first();
+
+    return str;
+}
+//----------------------------------------------------
+void removeStringInFile(QString filename, QStringList list)
+{
+    QFile file(filename);
+    QString output = "";
+    if (file.open(QIODevice::ReadOnly))
+        {
+            QString line;
+            QTextStream stream(&file);
+            do
+                {
+                    line = stream.readLine();
+                    for (int i = 0; i < list.size(); i++)
+                        {
+                            if (line == list.at(i))
+                                {
+                                    line = "";
+                                }
+                        }
+
+                    if (!line.isEmpty())
+                        {
+                            output.append(line+"\n");
+                        }
+                } while (!stream.atEnd());
+        }
+    file.close();
+    file.remove();
+    if(file.open(QIODevice::WriteOnly))
+        {
+            file.write(output.toUtf8());
+        }
+}
+//---------------------------------------------------
+QString checkProcentRol(QString str, QString out, int procent)
+{
+    QStringList liststr = QString(str).split(" ");
+    QStringList list = getFillShortName();
+
+    //    for (int i = 0; i < liststr.size(); i++)
+    //    {
+    //        qDebug() << " listat = " << liststr.at(i);
+    //        if (list.indexOf(liststr.at(i)) !=-1)
+    //        {
+    //            qDebug() << " find !" << " int i = " << i;
+    //        }
+    //    }
+    //    qDebug() << "liststr = " << liststr;
+    int pr = 0;
+    //how  optimised?
+
+    for (int j = 0; j < list.size(); j++)
+        {
+            pr = 0;
+            QStringList listup = QString(list.at(j)).split(" ");
+            //        qDebug() << "\nlistup = " << listup;
+            for (int foo = 0; foo < listup.size(); foo++)
+                {
+                    for (int i = 0; i < liststr.size(); i++)
+                        {
+                            //                qDebug() << " ttest[2]" << "list = " << listup.at(foo) << " listg =" << liststr.at(i);
+                            if (listup.at(foo) == liststr.at(i))
+                                {
+                                    pr++;
+                                    //                    qDebug() << "lsitatfoo = " <<  listup.at(foo) << " liststrati = " << liststr.at(i);
+                                }
+                        }
+                }
+            //        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
+            double test = double(pr) / double(listup.size()) * 100;
+            if ( pr != 0 )
+                {
+                    //             qDebug() << " role = " << pr << " procent = " << procent << " lastyp.size = " << listup.size() << " testprocent = " << test;
+                }
+            if (test >= procent )
+                {
+                    return QString::number(j+1);
+                }
+
+        }
+    return out;
+
+}
+//-----------------------------------------
+QTextCodec * getCodecOfEncoding(QString encoding)
+{
+//    encoding = encoding.toUpper ();
+    QTextCodec * codec = QTextCodec::codecForName("UTF-8");
+    if (encoding.toUpper ()== "UTF-8")        codec = QTextCodec::codecForName("UTF-8");
+    if (encoding.toUpper ()== "UTF-16")       codec = QTextCodec::codecForName("UTF-16");
+    if (encoding.toUpper ()== "UTF-32")       codec = QTextCodec::codecForName("UTF-32");
+    if (encoding == "Windows-1251") codec = QTextCodec::codecForName("Windows-1251");
+    if (encoding == "Windows-1252") codec = QTextCodec::codecForName("Windows-1252");
+    if (encoding == "Windows-1253") codec = QTextCodec::codecForName("Windows-1253");
+    if (encoding == "Windows-1254") codec = QTextCodec::codecForName("Windows-1254");
+    if (encoding == "Windows-1255") codec = QTextCodec::codecForName("Windows-1255");
+    if (encoding == "Windows-1256") codec = QTextCodec::codecForName("Windows-1256");
+    if (encoding == "Windows-1257") codec = QTextCodec::codecForName("Windows-1257");
+    if (encoding == "Windows-1258") codec = QTextCodec::codecForName("Windows-1258");
+    if (encoding.toUpper ()== "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
+    if (encoding.toUpper ()== "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
+
+//    qDebug() << " encoding = " << encoding;
+    return codec;
+}
+//---------------------------------------------------
+QString removeFirst(QString str, QString remove)
+{
+    int pos = str.indexOf(remove);
+    if (pos != -1)
     {
-        for (int i = 0; i < list.size(); i++)
-            file.write(QString(list.at(i)+"\n").toUtf8());
+        str.remove(pos, remove.length());
     }
-//    qDebug() << " list = " << list;
+    return str;
+}
+//----------------------------------------------------
+QString getParamBook(QString filename, QString param)
+{
+    // translate to hindi
+    QString str= "";
+    QString line;
+    QString parama = param + " = ";
+    QFile file(filename);
+
+    if (file.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream( &file );
+            do {
+                line = stream.readLine();
+                if (line.indexOf(parama) >= 0)
+                    {
+                        //                str = getTextInStr(line);
+                        str = line.remove(parama);
+                    }
+            } while (str.isEmpty() and !line.isNull());
+            file.close();
+        }
+    return str;
 }

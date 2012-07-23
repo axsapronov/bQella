@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>bQella </title>
+        <applicationIcon>resources/images/old/handbook.png</applicationIcon>
+        <cacheDirectory>WarmongeR/bQella</cacheDirectory>
+        <startPage>resources/rus/index_ru.html</startPage>
+        <aboutMenuText>
+            <text>О bQella</text>
+        </aboutMenuText>
+        <aboutDialog>
+            <file>resources/about/about.txt</file>
+            <icon>resources/images/old/icon.png</icon>
+        </aboutDialog>
+        <enableDocumentationManager>false</enableDocumentationManager>
+        <enableAddressBar>false</enableAddressBar>
+        <enableFilterFunctionality>false</enableFilterFunctionality>
+    </assistant>
+    <docFiles>
+        <generate>
+            <file>
+                <input>bQella-doc.qhp</input>
+                <output>bQella-doc.qch</output>
+                </file>
+            </generate>
+        <register>
+            <file>bQella-doc.qch</file>
+            </register>
+        </docFiles>
+    </QHelpCollectionProject>

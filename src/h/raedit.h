@@ -32,13 +32,13 @@ QT_MODULE(Gui)
 //====================== class raEdit ============================
 class raEdit : public QTextEdit  //this is a remake of QTextBrowser
 {
-	//The Q_OBJECT macro must appear in the private section of a class definition that declares its own signals and slots or that uses other services provided by Qt's meta-object system.
+    //The Q_OBJECT macro must appear in the private section of a class definition that declares its own signals and slots or that uses other services provided by Qt's meta-object system.
     Q_OBJECT
 
-	//This macro is used for declaring properties in classes that inherit QObject. Properties behave like class data members, but they have additional features accessible through the Meta-Object System.
-	//qthelp://com.trolltech.qt.442/qdoc/properties.html
+    //This macro is used for declaring properties in classes that inherit QObject. Properties behave like class data members, but they have additional features accessible through the Meta-Object System.
+    //qthelp://com.trolltech.qt.442/qdoc/properties.html
     Q_PROPERTY(QUrl source READ source WRITE setSource)
-	
+
 public:
     explicit raEdit(QWidget* parent = 0);
     virtual ~raEdit();
@@ -49,8 +49,8 @@ public:
     void setOpenExternalLinks(bool open){ openExternalLinks = open; }
     void setOpenLinks(bool open)		{ openLinks = open; }
 
-//-pm- following brought from class raEditPrivate : public QTextEditPrivate
-//-pm- to avoid the use of additional .h files such as qtextedit_p.h
+    //-pm- following brought from class raEditPrivate : public QTextEditPrivate
+    //-pm- to avoid the use of additional .h files such as qtextedit_p.h
     QUrl currentURL;
     QStringList searchPaths;
 
@@ -61,9 +61,9 @@ public:
     bool openExternalLinks;
     bool openLinks;
 
-//#ifndef QT_NO_CURSOR
+    //#ifndef QT_NO_CURSOR
     //QCursor oldCursor;
-//#endif
+    //#endif
     QString findFile(const QUrl &name) const;
 
     void _q_activateAnchor(const QString &href);
@@ -71,25 +71,25 @@ public:
 
     void setSource(const QUrl &url);
     QUrl resolveUrl(const QUrl &url) const;
-	//-pm- end of raEditPrivate section
+    //-pm- end of raEditPrivate section
 
-	bool ModeHtml() { return modeHtml; }
-	void setModeHtml(bool b) { modeHtml = b; }
+    bool ModeHtml() { return modeHtml; }
+    void setModeHtml(bool b) { modeHtml = b; }
 
 signals:
     void sourceChanged(const QUrl &);
     void highlighted(const QUrl &);
     void highlighted(const QString &);
     void anchorClicked(const QUrl &);
-//    void modifed(const bool &);
+    //    void modifed(const bool &);
 
 public slots:
-   // virtual void setSource(const QUrl &name);
+    // virtual void setSource(const QUrl &name);
     virtual void reload();
     inline void _q_documentModified()
     {
         textOrSourceChanged = true;
-//        emit modifed(textOrSourceChanged);
+        //        emit modifed(textOrSourceChanged);
         forceLoadOnSourceChange = !currentURL.path().isEmpty();
     }
 
@@ -101,10 +101,10 @@ protected:
     virtual void mousePressEvent(QMouseEvent *ev);
     virtual void mouseReleaseEvent(QMouseEvent *ev);
     //virtual bool focusNextPrevChild(bool next);
-	// virtual void paintEvent(QPaintEvent *e);
+    // virtual void paintEvent(QPaintEvent *e);
 private:
-	bool modeHtml;
-	QTextDocument *doc;
+    bool modeHtml;
+    QTextDocument *doc;
 
 };
 

@@ -30,11 +30,12 @@ DEPENDPATH += \
     src/dialogs/projectproperty \
     src/dialogs/itemproperty \
     src/dialogs/linkproperty \
-    src/dialogs/importdialog \
+    src/dialogs/import/importdialog \
+    src/dialogs/import/importbookdialog \
     src/dialogs/tagdialog \
     src/dialogs/tableproperty \
     src/dialogs/cellsplit \
-    src/help \
+    src/dialogs/help \
     src/tab \
     src/settings \
     src/main \
@@ -52,14 +53,15 @@ INCLUDEPATH += \
     src/dialogs/projectproperty \
     src/dialogs/itemproperty \
     src/dialogs/linkproperty \
-    src/dialogs/importdialog \
+    src/dialogs/import/importdialog \
+    src/dialogs/import/importbookdialog \
     src/dialogs/tagdialog \
     src/dialogs/tableproperty\
     src/dialogs/cellsplit \
+    src/dialogs/help \
     src/tab \
     src/settings \
     src/main \
-    src/help \
     src/doc \
     src/export
 
@@ -79,6 +81,7 @@ FORMS += \
      frdialog.ui \
      importdialog.ui \
      tagdialog.ui \
+     src/dialogs/import/importbookdialog/importbookdialog.ui
 
 SOURCES +=  \
      config.cpp \
@@ -108,7 +111,8 @@ SOURCES +=  \
      cellsplit.cpp \
      export.cpp \
      tagdialog.cpp \
-    assistant.cpp
+     assistant.cpp \
+     src/dialogs/import/importbookdialog/importbookdialog.cpp
 
 HEADERS += \
      docproperty.h \
@@ -137,7 +141,8 @@ HEADERS += \
      srclistparser.h \
      export.h \
      tagdialog.h \
-    assistant.h
+     assistant.h \
+     src/dialogs/import/importbookdialog/importbookdialog.h
 
 
 RESOURCES += \

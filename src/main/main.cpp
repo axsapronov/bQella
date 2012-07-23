@@ -36,8 +36,8 @@ int main( int argc, char ** argv )
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
-    a.setOrganizationName(GL_Prog_Author);
-    a.setApplicationName(GL_Prog_Name);
+    a.setOrganizationName(GL_PROG_AUTHOR);
+    a.setApplicationName(GL_PROG_NAME);
 
     Config *conf = new Config();
     conf -> setAppDir(QDir::currentPath() + "/");
@@ -58,19 +58,16 @@ int main( int argc, char ** argv )
         return -1;
     }
     //!+! load language based on locale on first startup or if it was not set directly
-    //QString locale = QLocale::system().name();
-    //qDebug()<< "locale = " << locale;
     QTranslator translator;
-
-    //            translator.load("bqella_ru","/home/files/Develop/git/next/bQella/resources/lang");
-//    if (conf -> Lang() == "Russian") translator.load("bqella_ru","lang");
-    if (conf -> Lang() == "Russian") translator.load("bqella_ru",":lang/lang");
+    if (conf -> Lang() == "Russian" or conf->Lang().isEmpty()) translator.load("bqella_ru",":lang/lang");
     if (conf -> Lang() == "Deutch") translator.load("bqella_de",":lang/lang");
     if (conf -> Lang() == "France") translator.load("bqella_fr",":lang/lang");
     a.installTranslator(&translator);
     conf -> hideSideBar( hideSidebar );
+//    qDebug() << "[10]";
     QPointer<MainWindow> mw = new MainWindow();
 
+//    qDebug() << "[11]";
     FontSettings settings = conf -> fontSettings();
     if (mw -> font() != settings.windowFont)
         a.setFont(settings.windowFont, "QWidget");
@@ -78,24 +75,22 @@ int main( int argc, char ** argv )
     mw -> show();
 
 
-//    qDebug() << " curfile" << conf->CurFile();
-//    qDebug() << "CurFile = " << conf->CurFile();
-//    qDebug() << "source = " << conf -> source();
+//    qDebug() << "[12]";
     QStringList links = conf -> source();
     if (links.isEmpty())
     {
         //!+! or option "Remember opened files" is not set
-
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
     }
     else 
+    {//        qDebug() << "[13]";
         mw -> showLinks( links );
-
+    }
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
     
     int appExec = a.exec();
     delete (MainWindow*)mw;
-    toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_Prog_Name));
+    toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_PROG_NAME));
     return appExec;
 }
 
@@ -103,25 +98,34 @@ int main( int argc, char ** argv )
 
 --------------------- Files description ---------------------
 
-config		- configuration of the application, global functions and variables
-docuparser 	- parse profile file
-helpdialog	- slidebar functions: content, index, bookmarks, search
-helpwindow	- working area functions: text edit, font, file 
-index 		- procedures to build up index in index tab on helpdialog slidebar
-mainwindow 	- main menu functions
-profile 	- configuration of a project
-msc		- general purpose procedures with no class relations
+/**
+  * @file
+  * Система для работы с полями пользовательского профиля.
+  *
+  * Данная система позволяет настроить отображение практически
+  * в любом виде, любого поля пользовательского профиля в Drupal.
+  *
+  *
+  * config		- configuration of the application, global functions and variables
+  * docuparser 	- parse profile file
+  * helpdialog	- slidebar functions: content, index, bookmarks, search
+  * helpwindow	- working area functions: text edit, font, file
+  * index 		- procedures to build up index in index tab on helpdialog slidebar
+  * mainwindow 	- main menu functions
+  * profile 	- configuration of a project
+  * msc		- general purpose procedures with no class relations
+  *
+  *
+  * ------- Forms aviable from (classes interaction) -------
+  *
+  * HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;
+  * HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
+  * MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
+  *           TabbedBrowser *browsers();		HelpDialog *helpDialog();
+  * TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
+  *
+  * To access from HelpDialog to HelpWindow functions use:
+  * mw -> browsers() -> currentBrowser() -> ...
+  *
+  */
 
-
-------- Forms aviable from (classes interaction) -------
-
-HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;	
-HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
-MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
-          TabbedBrowser *browsers();		HelpDialog *helpDialog();
-TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
-
-To access from HelpDialog to HelpWindow functions use:
-mw -> browsers() -> currentBrowser() -> ...
-
-**********************************************************************/

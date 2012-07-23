@@ -45,6 +45,7 @@ class Export;
 class Import;
 class FRDialog;
 class Assistant;
+class ImportBookDialog;
 
 //====================== class MainWindow ============================
 
@@ -113,6 +114,7 @@ private slots:
     void importModule();
     void importBook();
     void importModuleSuccessful();
+    void importBookSuccessful();
 
     void exitApp();
 
@@ -134,7 +136,11 @@ private:
     Assistant *assistant;
 
     Export * exportm;
+
+    // import
     Import * importm;
+    ImportBookDialog * importdi;
+
     AboutDialog *aboutd;    // about dialog
 
 

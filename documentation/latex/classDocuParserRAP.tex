@@ -1,0 +1,63 @@
+\hypertarget{classDocuParserRAP}{
+\section{DocuParserRAP Class Reference}
+\label{classDocuParserRAP}\index{DocuParserRAP@{DocuParserRAP}}
+}
+Inheritance diagram for DocuParserRAP:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDocuParserRAP}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries States} \{ \par
+{\bfseries StateInit}, 
+{\bfseries StateProfile}, 
+{\bfseries StateProperty}, 
+{\bfseries StateContents}, 
+\par
+{\bfseries StateSection}, 
+{\bfseries StateKeywords}, 
+{\bfseries StateKeyword}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDocuParserRAP_acdcbe6b3d092878a2cbd726d4d846af4}{
+bool {\bfseries startDocument} ()}
+\label{classDocuParserRAP_acdcbe6b3d092878a2cbd726d4d846af4}
+
+\item 
+\hypertarget{classDocuParserRAP_a345225727306ca2fd27dcfb9c5002fd5}{
+bool {\bfseries startElement} (const QString \&, const QString \&, const QString \&, const QXmlAttributes \&)}
+\label{classDocuParserRAP_a345225727306ca2fd27dcfb9c5002fd5}
+
+\item 
+\hypertarget{classDocuParserRAP_accd93cd7103e8374aa5a585595cb3129}{
+bool {\bfseries endElement} (const QString \&, const QString \&, const QString \&)}
+\label{classDocuParserRAP_accd93cd7103e8374aa5a585595cb3129}
+
+\item 
+\hypertarget{classDocuParserRAP_a149e03d0c48eb50a62582a7ab0d89e86}{
+bool {\bfseries characters} (const QString \&)}
+\label{classDocuParserRAP_a149e03d0c48eb50a62582a7ab0d89e86}
+
+\item 
+\hypertarget{classDocuParserRAP_a965c748473820d302b6d4743cc5263b0}{
+bool {\bfseries fatalError} (const QXmlParseException \&exception)}
+\label{classDocuParserRAP_a965c748473820d302b6d4743cc5263b0}
+
+\item 
+\hypertarget{classDocuParserRAP_a4d1c125084949289b3dc7d3d5faf3d8e}{
+\hyperlink{classProfile}{Profile} $\ast$ {\bfseries profile} () const }
+\label{classDocuParserRAP_a4d1c125084949289b3dc7d3d5faf3d8e}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+/home/files/Develop/git/bQella/next/bQella/src/doc/docuparser.h\item 
+/home/files/Develop/git/bQella/next/bQella/src/doc/docuparser.cpp\end{DoxyCompactItemize}

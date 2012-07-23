@@ -9,7 +9,7 @@
 
 # Vim
 *.*~
-
+*.md.*
 # Compiled Dynamic libraries
 *.so
 

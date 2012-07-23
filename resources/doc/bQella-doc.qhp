@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>bQella-namespace</namespace>
+    <virtualFolder>doc</virtualFolder>
+    <filterSection>
+        <toc>
+            <section title="Русский" ref="./resources/rus/index_ru.html">
+                <section title="Интерфейс" ref="./resources/rus/interface/index.html">
+                    <section title="Меню" ref="./resources/rus/interface/menu.html"></section>
+                    <section title="Панель инструментов" ref="./resources/rus/interface/toolbar.html"></section>
+                </section>
+                <section title="Поиск" ref="./resources/rus/find/index.html">
+                    <section title="Поиск и замена" ref="./resources/rus/find/replace.html"></section>
+                    <section title="Поиск в тексте" ref="./resources/rus/find/text.html"> </section>
+                </section>
+                <section title="Проект" ref="./resources/rus/project/index.html">
+                    <section title="Открыть" ref="./resources/rus/project/open.html"></section>
+                    <section title="Новый" ref="./resources/rus/project/new.html"></section>
+                    <section title="Параметры проекта" ref="./resources/rus/project/param.html"></section>
+                    <section title="Импорт модуля" ref="./resources/rus/project/import.html"></section>
+                </section>
+                <section title="Книги" ref="./resources/rus/book/index.html">
+                    <section title="Добавить книгу" ref="./resources/rus/book/add.html"></section>
+                    <section title="Параметры книги" ref="./resources/rus/book/param.html"></section>
+                    <section title="Импорт книги" ref="./resources/rus/book/import.html"></section>
+                    <section title="Удаление книги" ref="./resources/rus/book/delete.html"></section>
+                </section>
+                <section title="Главы" ref="./resources/rus/chapter/index.html">
+                    <section title="Добавить главу" ref="./resources/rus/chapter/add.html"></section>
+                    <section title="Удалить главу" ref="./resources/rus/chapter/delete.html"></section>
+                    <section title="Открыть главу" ref="./resources/rus/chapter/open.html"></section>
+                </section>
+            </section>
+            <section title="Пошаговые инструкции" ref="./resources/howto/index.html">
+                <section title="Создание модуля с нуля" ref="./resources/howto/newmod/index.html">
+                    <section title="Шаг 1" ref="./resources/howto/newmod/step1.html"></section>
+                </section>
+                <section title="Импорт модуля" ref="./resources/howto/impmod/index.html">
+                    <section title="Шаг 1" ref="./resources/howto/impmod/step1.html"></section>
+                </section>
+                <section title="Экспорт модуля" ref="./resources/howto/expmod/index.html">
+                    <section title="Шаг 1" ref="./resources/howto/expmod/step1.html"></section>
+                </section>
+            </section>
+            </toc>
+        <keywords>
+            <keyword name="Display" ref="./resources/old/index_ru.html"/>
+            <keyword name="Rich text" ref="./resources/old/index_ru.html"/>
+            <keyword name="Plain text" ref="./resources/old/index_ru.html"/>
+            <keyword name="Find" ref="./resources/old/findfile.html"/>
+            <keyword name="File menu" ref="./resources/old/findfile.html"/>
+            <keyword name="File name" ref="./resources/old/filedialog.html"/>
+            <keyword name="File dialog" ref="./resources/old/filedialog.html"/>
+            <keyword name="File globbing" ref="./resources/old/wildcardmatching.html"/>
+            <keyword name="Wildcard matching" ref="./resources/old/wildcardmatching.html"/>
+            <keyword name="Wildcard syntax" ref="./resources/old/wildcardmatching.html"/>
+            <keyword name="Browse" ref="./resources/old/browse.html"/>
+            <keyword name="Directory" ref="./resources/old/browse.html"/>
+            <keyword name="Open" ref="./resources/old/openfile.html"/>
+            <keyword name="Select" ref="./resources/old/openfile.html"/>
+            </keywords>
+        <files>
+            <file>./resources/rus/index_ru.html</file>
+            <file>./resources/index_ru.html</file>
+            <file>resources/images/old/icon.png</file>
+
+            <file>./resources/rus/interface/index.html</file>
+            <file>./resources/rus/interface/menu.html</file>
+            <file>./resources/rus/interface/toolbar.html</file>
+
+            <file>./resources/rus/find/index.html</file>
+            <file>./resources/rus/find/replace.html</file>
+            <file>./resources/rus/find/text.html</file>
+
+            <file>./resources/rus/project/index.html</file>
+            <file>./resources/rus/project/open.html</file>
+            <file>./resources/rus/project/new.html</file>
+            <file>./resources/rus/project/param.html</file>
+            <file>./resources/rus/project/import.html</file>
+
+            <file>./resources/rus/book/index.html</file>
+            <file>./resources/rus/book/add.html</file>
+            <file>./resources/rus/book/param.html</file>
+            <file>./resources/rus/book/import.html</file>
+            <file>./resources/rus/book/delete.html</file>
+
+            <file>./resources/rus/chapter/index.html</file>
+            <file>./resources/rus/chapter/add.html</file>
+            <file>./resources/rus/chapter/delete.html</file>
+            <file>./resources/rus/chapter/open.html</file>
+
+            <file>./resources/eng/index_en.html</file>
+
+            <file>./resources/howto/index.html</file>
+            <file>./resources/howto/newmod/index.html</file>
+            <file>./resources/howto/newmod/step1.html</file>
+
+            <file>./resources/howto/impmod/index.html</file>
+            <file>./resources/howto/impmod/step1.html</file>
+
+            <file>./resources/howto/expmod/index.html</file>
+            <file>./resources/howto/expmod/step1.html</file>
+
+            <file>./resources/images/book/delete/book_delete_1.png</file>
+            <file>./resources/images/book/delete/book_delete_2.png</file>
+            <file>./resources/images/book/delete/book_delete_3.png</file>
+
+            <file>./resources/images/book/param/book_param_1.png</file>
+            <file>./resources/images/book/param/book_param_2.png</file>
+            <file>./resources/images/book/param/book_param_3.png</file>
+            <file>./resources/images/book/param/book_param_4.png</file>
+            <file>./resources/images/book/param/book_param_5.png</file>
+            <file>./resources/images/book/param/book_param_6.png</file>
+
+            <file>./resources/images/book/add/book_add_1.png</file>
+            <file>./resources/images/book/add/book_add_2.png</file>
+            <file>./resources/images/book/add/book_add_3.png</file>
+            <file>./resources/images/book/add/book_add_4.png</file>
+            <file>./resources/images/book/add/book_add_5.png</file>
+            <file>./resources/images/book/add/book_add_6.png</file>
+            <file>./resources/images/book/add/book_add_7.png</file>
+            <file>./resources/images/book/add/book_add_8.png</file>
+
+            <file>./resources/images/chapter/add/chapter_add_1.png</file>
+            <file>./resources/images/chapter/add/chapter_add_2.png</file>
+
+            <file>./resources/images/chapter/open/chapter_open_1.png</file>
+            <file>./resources/images/chapter/open/chapter_open_2.png</file>
+            <file>./resources/images/chapter/open/chapter_open_3.png</file>
+
+            <file>./resources/images/chapter/delete/chapter_delete_1.png</file>
+            <file>./resources/images/chapter/delete/chapter_delete_2.png</file>
+            <file>./resources/images/chapter/delete/chapter_delete_3.png</file>
+
+            <file>./resources/images/import/book/import_book_1.png</file>
+            <file>./resources/images/import/book/import_book_2.png</file>
+            <file>./resources/images/import/book/import_book_3.png</file>
+            <file>./resources/images/import/book/import_book_4.png</file>
+            <file>./resources/images/import/book/import_book_5.png</file>
+            <file>./resources/images/import/book/import_book_6.png</file>
+
+            <file>./resources/images/import/module/import_module_1.png</file>
+            <file>./resources/images/import/module/import_module_2.png</file>
+            <file>./resources/images/import/module/import_module_3.png</file>
+            <file>./resources/images/import/module/import_module_4.png</file>
+            <file>./resources/images/import/module/import_module_5.png</file>
+
+            <file>./resources/images/find/text/find_text_1.png</file>
+            <file>./resources/images/find/text/find_text_2.png</file>
+            <file>./resources/images/find/text/find_text_3.png</file>
+            <file>./resources/images/find/text/find_text_4.png</file>
+
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_1.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_2.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_3.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_4.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_5.png</file>
+            <file>./resources/images/find/find_and_replace/find_find_and_replace_6.png</file>
+
+            <file>./resources/images/interface/menu/interface_menu_1.png</file>
+            <file>./resources/images/interface/menu/interface_menu_10.png</file>
+            <file>./resources/images/interface/menu/interface_menu_11.png</file>
+            <file>./resources/images/interface/menu/interface_menu_2.png</file>
+            <file>./resources/images/interface/menu/interface_menu_3.png</file>
+            <file>./resources/images/interface/menu/interface_menu_4.png</file>
+            <file>./resources/images/interface/menu/interface_menu_5.png</file>
+            <file>./resources/images/interface/menu/interface_menu_6.png</file>
+            <file>./resources/images/interface/menu/interface_menu_7.png</file>
+            <file>./resources/images/interface/menu/interface_menu_8.png</file>
+            <file>./resources/images/interface/menu/interface_menu_9.png</file>
+
+            <file>./resources/images/interface/toolbar/interface_toolbar_1.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_10.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_11.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_12.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_13.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_14.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_15.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_16.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_17.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_18.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_2.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_3.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_4.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_5.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_6.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_7.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_8.png</file>
+            <file>./resources/images/interface/toolbar/interface_toolbar_9.png</file>
+
+            <file>./resources/images/project/new/project_new_1.png</file>
+            <file>./resources/images/project/new/project_new_2.png</file>
+            <file>./resources/images/project/new/project_new_3.png</file>
+            <file>./resources/images/project/new/project_new_4.png</file>
+            <file>./resources/images/project/new/project_new_5.png</file>
+            <file>./resources/images/project/new/project_new_6.png</file>
+            <file>./resources/images/project/new/project_new_7.png</file>
+
+            <file>./resources/images/project/open/project_open_1.png</file>
+            <file>./resources/images/project/open/project_open_2.png</file>
+            <file>./resources/images/project/open/project_open_3.png</file>
+
+            <file>./resources/images/project/prop/project_prop_1.png</file>
+            <file>./resources/images/project/prop/project_prop_2.png</file>
+            <file>./resources/images/project/prop/project_prop_3.png</file>
+
+            <file>./resources/images/export/export_1.png</file>
+            <file>./resources/images/export/export_2.png</file>
+            <file>./resources/images/export/export_3.png</file>
+            <file>./resources/images/export/export_4.png</file>
+            <file>./resources/images/export/export_5.png</file>
+
+            <file>./resources/images/first/first_launch_1.png</file>
+            <file>./resources/images/first/first_launch_2.png</file>
+            <file>./resources/images/first/first_launch_3.png</file>
+            <file>./resources/images/first/first_launch_4.png</file>
+            </files>
+        </filterSection>
+    </QtHelpProject>

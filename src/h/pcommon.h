@@ -24,9 +24,14 @@
 #ifndef __PCOMMON_H__
 #define __PCOMMON_H__
 
-#include <QString>
-#include <QStringList>
-#include <QTreeWidgetItem>
+class QString;
+class QStringList;
+#include  <QTreeWidgetItem>
+class QTextCodec;
+
+
+
+#include "config.h"
 
 //======== процедуры и функции общего назначения ============================
 //---------------------------------------------------------------------------
@@ -80,26 +85,38 @@ QString getHtmlCoolCode(QString str, QString i, QString chapter, bool chap);
 QString getParseTagSpan(QString str, QString text, QString tag);
 int getDepthTreeWidgetItem(QTreeWidgetItem *item); // вернуть глубину QTreeWidgetItem
 QStringList getFillShortName(); // возвращает заполнение для combobox базовых коротких названий
+QStringList getFillEncoding(); // возвращает заполнение для combobox кодировок
 QString getTextInStr(QString str, int begin = 5, int end = 9); // возвращает текст от begin до end символа ( не реализована, работает чтобы доставать shortname)
-
+QString getCheckShortNameForFile(QString str, QString full); // возвращает порядковый номер shortname(str) или полное название книги. Работает для уменьшения длины названия файла
+QString checkTag(QString tag); // проверяет строку, начинается и заканчивается ли она на < и >
+QString uncheckTag(QString tag); // обратная операция
+QString checkEndTag(QString tag); // возвращает из тега <tag> </tag>
+QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT_OF_MATCHES); // разбивает shortname на части и проверяет насколько совпадает с getFillShortName()
+//если с точностью до процента совпадает, то возвращает номер в shortname, а если нету такого, то out Применяется для импорта книги
+QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
+QString removeFirst(QString str, QString remove); // возвращает строку с удаленным первым вхождением
 //======= работа с файлами =======
 //--------------------------------
 QString unurlifyFileName(const QString &fileName);		//remove "file:"
 QString urlifyFileName(const QString &fileName);		//add "file:"
 QString relatifyFileName(QString url, QString path);	//returns path like ../../images/pict.jpg Difference from QDir::relativeFilePath() in: it adds "./" and removes "file:"
-QStringList relatifyFileList(QStringList urls, QString path); 
+QStringList relatifyFileList(QStringList urls, QString path);
 QString absolutifyFileName(QString fn, QString path);	//returns absolute file path
-QStringList absolutifyFileList(QStringList fns, QString path);	
+QStringList absolutifyFileList(QStringList fns, QString path);
 QString removeAnchorFromLink(const QString &link);		//returns link without anchor
 bool verifyDirectory(const QString &str);	//create dir if not exist and if there is no such file name
 bool pathIsRelative(QString path);	//return true if path starts with ./ or ../
 QString CreateValidWebFileName(QString str); //выбирает из строки только разрешённые символы
 bool toLog(QString logFN, QString logMessage); //добавляет в журнал строку в формате "Дата Время Сообщение"
-bool createEmptyHtml(QString fileName, QString title); 
+bool createEmptyHtml(QString fileName, QString title);
 bool createEmptyHtml(QString fileName, QString title, QString text);
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
+QString getParamBook(QString filename, QString param); // возвращает параметр из файла
 QString miniparserini(QString str, QString po);
 QString replaceFullShortName(QString line, QString text, QString name); // возвращает строку с заменой текста в fullname и shortname
 void writeQStringList(QString file, QStringList list); // записывает QStringList в файл ( обычный цикл)
+QString checkExistenceFile(QString file); // проверяет существует файл, если существует, то добавляет к нему символ _ в конце. Происходит в цикле
+QString getFileNameAbs(QString file); // возвращает название файла без разрешения и пути. Т.е. /home/warmonger/develop/чтони-ть там еще/ файл.py  вернет файл
+void removeStringInFile(QString file, QStringList strings); // удаляет из файла строки из qstringlist
 #endif // __PCOMMON_H__

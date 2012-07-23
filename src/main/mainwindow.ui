@@ -202,6 +202,13 @@
     <property name="title">
      <string>&amp;Project</string>
     </property>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionImportModule"/>
+     <addaction name="actionImportBook"/>
+    </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectOpen"/>
     <addaction name="separator"/>
@@ -211,7 +218,7 @@
     <addaction name="actionProjectProperties"/>
     <addaction name="separator"/>
     <addaction name="actionExport_Module"/>
-    <addaction name="actionImportModule"/>
+    <addaction name="menuImport"/>
     <addaction name="separator"/>
     <addaction name="actionAppExit"/>
     <addaction name="separator"/>
@@ -440,7 +447,7 @@
     <string>Project properties...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Ctrl+Shift+T</string>
    </property>
   </action>
   <action name="actionProjectStatistics">
@@ -462,6 +469,9 @@
    </property>
    <property name="toolTip">
     <string>New project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionProjectOpen">
@@ -797,18 +807,10 @@
   </action>
   <action name="actionImportModule">
    <property name="text">
-    <string>Import Module</string>
+    <string>Module</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+D</string>
-   </property>
-  </action>
-  <action name="actionImportBook">
-   <property name="text">
-    <string>Book</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string>Ctrl+Shift+D</string>
    </property>
   </action>
   <action name="actionImportChapter">
@@ -931,7 +933,7 @@
   </action>
   <action name="actionHelp">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Help</string>
@@ -958,6 +960,14 @@
   <action name="actionTableProperty">
    <property name="text">
     <string>Table Property...</string>
+   </property>
+  </action>
+  <action name="actionImportBook">
+   <property name="text">
+    <string>Book</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
    </property>
   </action>
  </widget>

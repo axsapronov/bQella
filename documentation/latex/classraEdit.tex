@@ -1,0 +1,252 @@
+\hypertarget{classraEdit}{
+\section{raEdit Class Reference}
+\label{classraEdit}\index{raEdit@{raEdit}}
+}
+
+
+{\ttfamily \#include $<$raedit.h$>$}
+
+Inheritance diagram for raEdit:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classraEdit}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classraEdit_a737a96c707421d6494a4c24e595bbc9b}{reload} ()
+\item 
+\hypertarget{classraEdit_a68ac9af9497a0787573c14d2033ac96a}{
+void {\bfseries \_\-q\_\-documentModified} ()}
+\label{classraEdit_a68ac9af9497a0787573c14d2033ac96a}
+
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classraEdit_ab53e3ca23b3465172c5e60737e8c0fd5}{
+void {\bfseries sourceChanged} (const QUrl \&)}
+\label{classraEdit_ab53e3ca23b3465172c5e60737e8c0fd5}
+
+\item 
+\hypertarget{classraEdit_a519ba856354b849e3fb62334a37e0474}{
+void {\bfseries highlighted} (const QUrl \&)}
+\label{classraEdit_a519ba856354b849e3fb62334a37e0474}
+
+\item 
+\hypertarget{classraEdit_aeee32446463b15d9004c3dcca504ace7}{
+void {\bfseries highlighted} (const QString \&)}
+\label{classraEdit_aeee32446463b15d9004c3dcca504ace7}
+
+\item 
+\hypertarget{classraEdit_ab577926d331c0f19f4b9c91c798107d1}{
+void {\bfseries anchorClicked} (const QUrl \&)}
+\label{classraEdit_ab577926d331c0f19f4b9c91c798107d1}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classraEdit_a5d054325340671ea55dbcd3a538c2725}{
+{\bfseries raEdit} (QWidget $\ast$parent=0)}
+\label{classraEdit_a5d054325340671ea55dbcd3a538c2725}
+
+\item 
+\hypertarget{classraEdit_a28fd8d4d4b4eeeed8276e1d09461d824}{
+QUrl {\bfseries source} () const }
+\label{classraEdit_a28fd8d4d4b4eeeed8276e1d09461d824}
+
+\item 
+\hypertarget{classraEdit_ad48742722c9b2c1a6fb687b1610d1402}{
+void {\bfseries setSearchPaths} (const QStringList \&paths)}
+\label{classraEdit_ad48742722c9b2c1a6fb687b1610d1402}
+
+\item 
+virtual QVariant \hyperlink{classraEdit_a88d6a5ed8345f496dfa43a78a9240d1a}{loadResource} (int type, const QUrl \&name)
+\item 
+\hypertarget{classraEdit_ac3b7b0e1430b2b8cfe5c37e75955b729}{
+void {\bfseries setOpenExternalLinks} (bool open)}
+\label{classraEdit_ac3b7b0e1430b2b8cfe5c37e75955b729}
+
+\item 
+\hypertarget{classraEdit_ace8a8d6ffa8ad676e0affd4495885277}{
+void {\bfseries setOpenLinks} (bool open)}
+\label{classraEdit_ace8a8d6ffa8ad676e0affd4495885277}
+
+\item 
+\hypertarget{classraEdit_a5b6b0f207f4962738b8fb1774da52d65}{
+QString {\bfseries findFile} (const QUrl \&name) const }
+\label{classraEdit_a5b6b0f207f4962738b8fb1774da52d65}
+
+\item 
+\hypertarget{classraEdit_a85bd0a31357f5a1c6d738d2041da495f}{
+void {\bfseries \_\-q\_\-activateAnchor} (const QString \&href)}
+\label{classraEdit_a85bd0a31357f5a1c6d738d2041da495f}
+
+\item 
+\hypertarget{classraEdit_a458af65b45760161d41b1def5f46444c}{
+void {\bfseries \_\-q\_\-highlightLink} (const QString \&href)}
+\label{classraEdit_a458af65b45760161d41b1def5f46444c}
+
+\item 
+\hypertarget{classraEdit_a8ba687ccd78c096ef0b9577a8238bb3f}{
+void {\bfseries setSource} (const QUrl \&url)}
+\label{classraEdit_a8ba687ccd78c096ef0b9577a8238bb3f}
+
+\item 
+\hypertarget{classraEdit_a845a844f4f4efb1387d51d13e1861c39}{
+QUrl {\bfseries resolveUrl} (const QUrl \&url) const }
+\label{classraEdit_a845a844f4f4efb1387d51d13e1861c39}
+
+\item 
+\hypertarget{classraEdit_a67ba2869e64b8e3322354599b4a8cc0d}{
+bool {\bfseries ModeHtml} ()}
+\label{classraEdit_a67ba2869e64b8e3322354599b4a8cc0d}
+
+\item 
+\hypertarget{classraEdit_ad4ba648986bbc4846a6d6be095f3c8b6}{
+void {\bfseries setModeHtml} (bool b)}
+\label{classraEdit_ad4ba648986bbc4846a6d6be095f3c8b6}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classraEdit_a210d3a47ab3fddf885284e3723537501}{
+QUrl {\bfseries currentURL}}
+\label{classraEdit_a210d3a47ab3fddf885284e3723537501}
+
+\item 
+\hypertarget{classraEdit_ad8de8a6739aa2b8d37e5eaa885eef5d9}{
+QStringList {\bfseries searchPaths}}
+\label{classraEdit_ad8de8a6739aa2b8d37e5eaa885eef5d9}
+
+\item 
+\hypertarget{classraEdit_aa2d846ccedea8fec0a55afafd47bae08}{
+bool {\bfseries textOrSourceChanged}}
+\label{classraEdit_aa2d846ccedea8fec0a55afafd47bae08}
+
+\item 
+\hypertarget{classraEdit_a26258974664a4d2569e3529d3bbab615}{
+bool {\bfseries forceLoadOnSourceChange}}
+\label{classraEdit_a26258974664a4d2569e3529d3bbab615}
+
+\item 
+\hypertarget{classraEdit_a4c576c4d9bae5471ba3f47ce68cff0c2}{
+bool {\bfseries openExternalLinks}}
+\label{classraEdit_a4c576c4d9bae5471ba3f47ce68cff0c2}
+
+\item 
+\hypertarget{classraEdit_a7148458a070db8a86e53637caacca1c9}{
+bool {\bfseries openLinks}}
+\label{classraEdit_a7148458a070db8a86e53637caacca1c9}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classraEdit_a72526183c90d6c582c94fb1393e7b645}{
+bool {\bfseries event} (QEvent $\ast$e)}
+\label{classraEdit_a72526183c90d6c582c94fb1393e7b645}
+
+\item 
+\hypertarget{classraEdit_ab7427daba72eb2ab5368bd8688515b9c}{
+virtual void {\bfseries keyPressEvent} (QKeyEvent $\ast$ev)}
+\label{classraEdit_ab7427daba72eb2ab5368bd8688515b9c}
+
+\item 
+\hypertarget{classraEdit_ace8754d07d9d013047e47c5d47a10401}{
+virtual void {\bfseries focusOutEvent} (QFocusEvent $\ast$ev)}
+\label{classraEdit_ace8754d07d9d013047e47c5d47a10401}
+
+\item 
+virtual void \hyperlink{classraEdit_a6a21025d7abaa643d260449c5342a4d4}{mouseMoveEvent} (QMouseEvent $\ast$ev)
+\item 
+\hypertarget{classraEdit_afb940fa4fd4adb7007f0a7639323f53b}{
+virtual void {\bfseries mousePressEvent} (QMouseEvent $\ast$ev)}
+\label{classraEdit_afb940fa4fd4adb7007f0a7639323f53b}
+
+\item 
+\hypertarget{classraEdit_a5a7773207866caf1624a2b3da16c3944}{
+virtual void {\bfseries mouseReleaseEvent} (QMouseEvent $\ast$ev)}
+\label{classraEdit_a5a7773207866caf1624a2b3da16c3944}
+
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+QUrl \hyperlink{classraEdit_a1609b3812b97d26b500990cb2801c0f1}{source}
+\begin{DoxyCompactList}\small\item\em the name of the displayed document. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-\/1307 USA
+
+Author: Sapronov Alexander/WarmongeR E-\/Mail: sapronov.alexander92@.gmail.com Years: 2011, 2012 WebSite: \href{https://github.com/WarmongeR1/bQella}{\tt https://github.com/WarmongeR1/bQella} 
+
+\subsection{Member Function Documentation}
+\hypertarget{classraEdit_a88d6a5ed8345f496dfa43a78a9240d1a}{
+\index{raEdit@{raEdit}!loadResource@{loadResource}}
+\index{loadResource@{loadResource}!raEdit@{raEdit}}
+\subsubsection[{loadResource}]{\setlength{\rightskip}{0pt plus 5cm}QVariant raEdit::loadResource (
+\begin{DoxyParamCaption}
+\item[{int}]{type, }
+\item[{const QUrl \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classraEdit_a88d6a5ed8345f496dfa43a78a9240d1a}
+This function is called when the document is loaded. The {\itshape type\/} indicates the type of resource to be loaded. For each image in the document, this function is called once.
+
+The default implementation ignores {\itshape type\/} and tries to locate the resources by interpreting {\itshape name\/} as a file name. If it is not an absolute path it tries to find the file in the paths of the  searchPaths property and in the same directory as the current source. On success, the result is a QVariant that stores a QByteArray with the contents of the file.
+
+If you reimplement this function, you can return other QVariant types. The table below shows which variant types are supported depending on the resource type:
+
+ResourceType  QVariant::Type   QTextDocument::HtmlResource  QString or QByteArray   QTextDocument::ImageResource  QImage, QPixmap or QByteArray   QTextDocument::StyleSheetResource  QString or QByteArray  \hypertarget{classraEdit_a6a21025d7abaa643d260449c5342a4d4}{
+\index{raEdit@{raEdit}!mouseMoveEvent@{mouseMoveEvent}}
+\index{mouseMoveEvent@{mouseMoveEvent}!raEdit@{raEdit}}
+\subsubsection[{mouseMoveEvent}]{\setlength{\rightskip}{0pt plus 5cm}void raEdit::mouseMoveEvent (
+\begin{DoxyParamCaption}
+\item[{QMouseEvent $\ast$}]{ev}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{classraEdit_a6a21025d7abaa643d260449c5342a4d4}
+
+
++! change cursor on hyperlink 
+
+\hypertarget{classraEdit_a737a96c707421d6494a4c24e595bbc9b}{
+\index{raEdit@{raEdit}!reload@{reload}}
+\index{reload@{reload}!raEdit@{raEdit}}
+\subsubsection[{reload}]{\setlength{\rightskip}{0pt plus 5cm}void raEdit::reload (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual, slot\mbox{]}}}}
+\label{classraEdit_a737a96c707421d6494a4c24e595bbc9b}
+Reloads the current set source. 
+
+\subsection{Property Documentation}
+\hypertarget{classraEdit_a1609b3812b97d26b500990cb2801c0f1}{
+\index{raEdit@{raEdit}!source@{source}}
+\index{source@{source}!raEdit@{raEdit}}
+\subsubsection[{source}]{\setlength{\rightskip}{0pt plus 5cm}QUrl raEdit::source\hspace{0.3cm}{\ttfamily  \mbox{[}read, write\mbox{]}}}}
+\label{classraEdit_a1609b3812b97d26b500990cb2801c0f1}
+
+
+the name of the displayed document. 
+
+This is a an invalid url if no document is displayed or if the source is unknown.
+
+When setting this property \hyperlink{classraEdit}{raEdit} tries to find a document with the specified name in the paths of the searchPaths property and directory of the current source, unless the value is an absolute file path. It also checks for optional anchors and scrolls the document accordingly
+
+!! -\/$>$ If the first tag in the document is {\ttfamily }\{$<$qt type=\char`\"{}detail\char`\"{}$>$\}, the document is displayed as a popup rather than as new document in the browser window itself. Otherwise, the document is displayed normally in the text browser with the text set to the contents of the named document with setHtml(). 
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+/home/files/Develop/git/bQella/next/bQella/src/h/raedit.h\item 
+/home/files/Develop/git/bQella/next/bQella/src/cpp/raedit.cpp\end{DoxyCompactItemize}
