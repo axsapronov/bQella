@@ -107,7 +107,8 @@ MainWindow::MainWindow():
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));
 
-    if (config -> Lang() == "Russian"){
+    if (config -> Lang() == "Russian" or config->Lang().isEmpty())
+    {
         setLangRu();
     }
 
@@ -118,6 +119,7 @@ MainWindow::MainWindow():
     ui.actionPrint_Preview ->setVisible(false);
 
     //         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
     //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
     this->showMaximized ();
 }

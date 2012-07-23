@@ -1136,10 +1136,10 @@ DesiredUIFont = %23
 HTMLFilter = %24</translation>
     </message>
     <message>
-        <location filename="../../src/export/export.cpp" line="81"/>
+        <location filename="../../src/export/export.cpp" line="82"/>
         <source>\\ Ð­ÑÐ¾Ñ Ð¼Ð¾Ð´ÑÐ»Ñ ÑÐ¾Ð·Ð´Ð°Ð½ Ð² Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ðµ bQella.
 \\ Ð Ð°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸Ðº Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: Ð¡Ð°Ð¿ÑÐ¾Ð½Ð¾Ð² ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ - sapronov.alexander92[@]gmail.com
-\\ Git Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: https://github.com/WarmongeR1/bQella
+\\ Github Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: http://warmonger1.github.com/bQella/
 \\ ÐÐ»Ð¾Ð³ ÑÐ°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸ÐºÐ°: http://warmonger72.blogspot.com/
 \\ Ð¡Ð²ÐµÐ¶Ð°Ñ Ð²ÐµÑÑÐ¸Ñ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ Ð´Ð¾ÑÑÑÐ¿Ð½Ð° Ð¿Ð¾ ÑÑÑÐ»ÐºÐ°Ð¼: 
 \\ win:   
@@ -1150,7 +1150,7 @@ HTMLFilter = %24</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/export/export.cpp" line="89"/>
+        <location filename="../../src/export/export.cpp" line="90"/>
         <source>
 BibleName = %1
 BibleShortName = %2
@@ -1207,7 +1207,7 @@ DesiredUIFont = %23
 HTMLFilter = %24</translation>
     </message>
     <message>
-        <location filename="../../src/export/export.cpp" line="193"/>
+        <location filename="../../src/export/export.cpp" line="197"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
@@ -1236,7 +1236,7 @@ HTMLFilter = %24</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="39"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="201"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="257"/>
         <source>All chapters</source>
         <translation>Все главы</translation>
     </message>
@@ -1276,46 +1276,66 @@ HTMLFilter = %24</translation>
         <translation>Заменить</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="74"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="110"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="233"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="95"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="147"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="298"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="367"/>
         <source>Chapter </source>
         <translation>Глава </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="110"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="233"/>
         <source>book_%1_chapter_</source>
-        <translation>book_%1_chapter_</translation>
+        <translation type="obsolete">book_%1_chapter_</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="137"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="73"/>
+        <source>- Please enter a replace text.
+</source>
+        <translation>- Пожалуйста, добавить текст замены.</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="79"/>
+        <source>Replace error</source>
+        <translation>Ошибка замены</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="116"/>
+        <source>- Please enter a find text.
+</source>
+        <translation>- Пожалуйста, введите текст поиска.</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="122"/>
+        <source>Find error</source>
+        <translation>Ошибка поиска</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="193"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="139"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="195"/>
         <source>Find Files</source>
         <translation>Поиск файлов</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="143"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="199"/>
         <source>Searching file number %1 of %2...</source>
         <translation>Поиск в %1 файле из %2...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="186"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="240"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="242"/>
         <source>All books</source>
         <translation>Все книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="290"/>
         <source>book_%1</source>
-        <translation>book_%1</translation>
+        <translation type="obsolete">book_%1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="311"/>
+        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="391"/>
         <source>%1 file(s) found</source>
         <translation>%1 файл(ов) найдено</translation>
     </message>
@@ -1760,9 +1780,9 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="492"/>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="508"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1025"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1148"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1448"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1026"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1149"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1451"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
@@ -1804,8 +1824,8 @@ Skipping file.</source>
         <translation>Файл проекта %1 не совместим. Пропускаю.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="762"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1194"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="763"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1195"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
@@ -1814,7 +1834,7 @@ Skipping file.</source>
         <translation type="obsolete">Название закладки=%1; ссылка=%2</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1025"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1026"/>
         <source>Source file could not be found:
  %1
 You can create a new file or add one. Do you want to see item property?</source>
@@ -1823,12 +1843,12 @@ You can create a new file or add one. Do you want to see item property?</source>
 Вы можете создать новый файл или выбрать существующий. Хотите открыть свойства пункта?</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1176"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1177"/>
         <source>Indexing files...</source>
         <translation>Индексирую файлы...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1191"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1192"/>
         <source>Reading dictionary...</source>
         <translation>Читаю директории...</translation>
     </message>
@@ -1845,7 +1865,7 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation type="obsolete">Пропущены закрывающие кавычки.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1694"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1697"/>
         <source>Delete contents item AND source file?</source>
         <translation>Удалить пункт меню И файл-источник?</translation>
     </message>
@@ -1967,7 +1987,7 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Подготовка...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1149"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1150"/>
         <source>Failed to save fulltext search index to path: %1</source>
         <translation>Не удалось сохранить результаты полнотекстового поиска в файл по пути: %1</translation>
     </message>
@@ -2032,12 +2052,12 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Вставить файл новым подпунктом...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1616"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1619"/>
         <source>Project has been saved</source>
         <translation>Проект был сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1662"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1665"/>
         <source>Delete just contents item? Source file will be untouched.</source>
         <translation>Убрать пункт (не удаляя файл)</translation>
     </message>
@@ -2098,55 +2118,55 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Ошибка...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="227"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="228"/>
         <source>Open Link in New Window	Shift+LMB</source>
         <translation>Открыть ссылку в новом окне	Shift+LMB</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="230"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="231"/>
         <source>Tag properties...</source>
         <translation>Настройки тега</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="234"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="238"/>
         <source>Add tag...</source>
         <translation>Добавить тег...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="561"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="569"/>
         <source>Application</source>
         <translation>Приложение</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="562"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="570"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation>Документ был изменён.
 Хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="595"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="603"/>
         <source>New File...</source>
         <translation>Новый Файл...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="596"/>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="611"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="604"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="619"/>
         <source>HTML (*.htm *.html);;Text (*.txt);;All Files (*)</source>
         <translation>HTML (*.htm *.html);;Текст (*.txt);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="610"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="618"/>
         <source>Open File...</source>
         <translation>Открыть Файл...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="644"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="652"/>
         <source>Save file as...</source>
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="645"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="653"/>
         <source>HTML (*.htm *.html);;All Files (*)</source>
         <translation>HTML (*.htm *.html);;Все файлы (*)</translation>
     </message>
@@ -2155,58 +2175,58 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Печатать документ</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="691"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="699"/>
         <source>It does not work yet! Set font size to: %1.</source>
         <translation>Не всегда работает! Установить размер шрифта в: %1.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="229"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="230"/>
         <source>Link properties...</source>
         <translation>Свойства ссылки...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="233"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="237"/>
         <source>Create link...</source>
         <translation>Создать ссылку...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="228"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="229"/>
         <source>Open Link in New Tab	MMB</source>
         <translation>Открыть ссылку в новой вкладке	СКМ</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="500"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="506"/>
         <source>Standard</source>
         <comment>Text style (paragraph layout)</comment>
         <translation>Стандартный</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="501"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="507"/>
         <source>Bullet List (Disc)</source>
         <translation>Список (диски)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="502"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="508"/>
         <source>Bullet List (Circle)</source>
         <translation>Список (круги)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="503"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="509"/>
         <source>Bullet List (Square)</source>
         <translation>Список (квадраты)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="504"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="510"/>
         <source>Ordered List (Decimal)</source>
         <translation>Упорядоченный список (десятичный)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="505"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="511"/>
         <source>Ordered List (Alpha lower)</source>
         <translation>Упорядоченный список (маленькие буквы)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="506"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="512"/>
         <source>Ordered List (Alpha upper)</source>
         <translation>Упорядоченный список (заглавные буквы)</translation>
     </message>
@@ -2282,74 +2302,74 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Windows-1258</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="55"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="48"/>
         <source>Select bibleqt.ini</source>
         <translation>Выбрать bibleqt.ini</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="57"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="50"/>
         <source>Bibleqt.ini (*.ini)</source>
         <translation>Bibleqt.ini (*.ini)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="71"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="63"/>
         <source>- Please browse bibleqt.ini file.
 </source>
         <translation>- Пожалуйста выберите bibleqt.ini файл.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="77"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="69"/>
         <source>Import book error</source>
         <translation>Ошибка при импорте книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="420"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="367"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation>Create a new project: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="421"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="368"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation>- project file: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="426"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="373"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation>- failed</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="430"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="377"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation>- project start page: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="438"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="384"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="490"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="427"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation>- project sources DB: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="491"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="428"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation>- done</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="505"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="441"/>
         <source>This folder is imported already exists:</source>
         <translation>This folder is imported already exists:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="520"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="453"/>
         <source>PathName = %1
 FullName = %2
 ShortName = %3
@@ -2360,7 +2380,7 @@ ShortName = %3
 ChapterQty = %4</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="572"/>
+        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="496"/>
         <source>Add a manual</source>
         <translation>Add a manual</translation>
     </message>
@@ -2758,49 +2778,49 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="204"/>
+        <location filename="../../src/main/mainwindow.cpp" line="208"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="205"/>
+        <location filename="../../src/main/mainwindow.cpp" line="209"/>
         <source>Ctrl+]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="206"/>
+        <location filename="../../src/main/mainwindow.cpp" line="210"/>
         <source>Ctrl+[</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="459"/>
+        <location filename="../../src/main/mainwindow.cpp" line="444"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="640"/>
+        <location filename="../../src/main/mainwindow.cpp" line="625"/>
         <source>Open Project</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="661"/>
+        <location filename="../../src/main/mainwindow.cpp" line="646"/>
         <source>- show start page: %1</source>
         <comment>For log</comment>
         <translation>- show start page: %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="672"/>
+        <location filename="../../src/main/mainwindow.cpp" line="657"/>
         <source>Save Project As</source>
         <translation>Сохранить проект как</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="696"/>
-        <location filename="../../src/main/mainwindow.cpp" line="703"/>
+        <location filename="../../src/main/mainwindow.cpp" line="681"/>
+        <location filename="../../src/main/mainwindow.cpp" line="688"/>
         <source>Save Page</source>
         <translation>Сохранить страницу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="703"/>
+        <location filename="../../src/main/mainwindow.cpp" line="688"/>
         <source>Cannot open file for writing!</source>
         <translation>Невозможно открыть файл для записи!</translation>
     </message>
@@ -3312,7 +3332,7 @@ p, li { white-space: pre-wrap; }
         <translation>Гиперссылка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1062"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1047"/>
         <source>Reload application</source>
         <translation>Требуется перезагрузка</translation>
     </message>
@@ -3410,14 +3430,14 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation>Записная книжка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="419"/>
+        <location filename="../../src/main/mainwindow.cpp" line="405"/>
         <source>failed to open file:
 %1</source>
         <translation>Невозможно открыть файл:
 %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="907"/>
+        <location filename="../../src/main/mainwindow.cpp" line="892"/>
         <source>Failed to create project: %1</source>
         <translation>Невозможно создать проект: %1</translation>
     </message>
@@ -3430,7 +3450,7 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">О проекте</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="218"/>
+        <location filename="../../src/main/mainwindow.cpp" line="222"/>
         <source>Toolbars &amp; panels</source>
         <translation>Панели инструментов</translation>
     </message>
@@ -3439,33 +3459,33 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Файл</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="97"/>
+        <location filename="../../src/main/mainwindow.cpp" line="98"/>
         <source>Insert Sign</source>
         <translation>Добавить подпись</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="138"/>
+        <location filename="../../src/main/mainwindow.cpp" line="142"/>
         <source>Initializing %1...</source>
         <translation>Запускаю %1...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="207"/>
+        <location filename="../../src/main/mainwindow.cpp" line="211"/>
         <source>Ctrl+Shift+Insert</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="641"/>
+        <location filename="../../src/main/mainwindow.cpp" line="626"/>
         <source>Project bQella (*.pem)</source>
         <translation>Project bQella (*.pem)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="794"/>
+        <location filename="../../src/main/mainwindow.cpp" line="779"/>
         <source>New Project</source>
         <comment>Default project name</comment>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1062"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1047"/>
         <source>Changes will be applied after application reload.</source>
         <comment>Append this warning in English after translation</comment>
         <translation>Перезагрузите приложение для применения новых настроек.
@@ -3612,102 +3632,102 @@ Changes will be applied after application reload.</translation>
         <translation>Архивировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="665"/>
+        <location filename="../../src/main/mainwindow.cpp" line="650"/>
         <source>Project is opened.</source>
         <comment>For log</comment>
         <translation>Проект открыт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="672"/>
+        <location filename="../../src/main/mainwindow.cpp" line="657"/>
         <source>Project bQella (*.pep)</source>
         <translation>Project bQella (*.pep)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="902"/>
+        <location filename="../../src/main/mainwindow.cpp" line="887"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="903"/>
+        <location filename="../../src/main/mainwindow.cpp" line="888"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="908"/>
+        <location filename="../../src/main/mainwindow.cpp" line="893"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="912"/>
+        <location filename="../../src/main/mainwindow.cpp" line="897"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="920"/>
+        <location filename="../../src/main/mainwindow.cpp" line="905"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="971"/>
+        <location filename="../../src/main/mainwindow.cpp" line="956"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="972"/>
-        <location filename="../../src/main/mainwindow.cpp" line="1035"/>
+        <location filename="../../src/main/mainwindow.cpp" line="957"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1020"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="987"/>
+        <location filename="../../src/main/mainwindow.cpp" line="972"/>
         <source>Update project properties:</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="988"/>
+        <location filename="../../src/main/mainwindow.cpp" line="973"/>
         <source>- title      = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="989"/>
+        <location filename="../../src/main/mainwindow.cpp" line="974"/>
         <source>- file name  = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="990"/>
+        <location filename="../../src/main/mainwindow.cpp" line="975"/>
         <source>- start page = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="991"/>
+        <location filename="../../src/main/mainwindow.cpp" line="976"/>
         <source>- module name      = %1</source>
         <comment>For log</comment>
         <translation>- module name      = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="992"/>
+        <location filename="../../src/main/mainwindow.cpp" line="977"/>
         <source>- module short name  = %1</source>
         <comment>For log</comment>
         <translation>- module short name  = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="993"/>
+        <location filename="../../src/main/mainwindow.cpp" line="978"/>
         <source>- module copyright = %1</source>
         <comment>For log</comment>
         <translation>- module copyright = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1079"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1064"/>
         <source>Open file in external application: %1 %2</source>
         <comment>For log</comment>
         <translation>Открытие файла внешним приложением: %1 %2</translation>
@@ -3758,136 +3778,148 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">- Пожалуйста укажите файл для начальной страницы.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="111"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="107"/>
         <source>- Please enter a bible name.
 </source>
         <translation>- Пожалуйста введите название модуля.
 </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="115"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="111"/>
         <source>- Please enter a short bible name.
 </source>
         <translation>- Пожалуйста введите короткое название модуля.
 </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="126"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="149"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="199"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="117"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="139"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="189"/>
         <source>Project property error</source>
         <translation>Ошибка в свойстве проекта</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="149"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="199"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="139"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="189"/>
         <source>Can not create file:
 %1</source>
         <translation>Невозможно создать файл:%1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="162"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="154"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="163"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="155"/>
         <source>&lt;p&gt;add a user to create modules&lt;/p&gt;</source>
         <translation>&lt;p&gt;add a user to create modules&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="266"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="249"/>
         <source>&lt;i&gt;The full name of the module&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be in the language module, as far as possible according to the printed edition.&lt;br&gt;Must be unique for each module.</source>
         <translation>&lt;i&gt;Полное название модуля&lt;/i&gt;&lt;br&gt;&lt;br&gt;на языке модуля, по возможности согласно печатному изданию.&lt;br&gt; Должен быть уникальным для каждого модуля.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="272"/>
         <source>&lt;i&gt;Copyright&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be in the language module, as far as possible according to the printed edition.&lt;br&gt;Must be unique for each module.</source>
-        <translation>&lt;i&gt;Авторские права&lt;/i&gt;&lt;br&gt;&lt;br&gt;Указывается год издания и правообладатель&lt;br&gt;Подразумевает наличие файла copyright.htm в корневом каталоге модуля.&lt;br&gt;Если не указано ничего параметр приравнивается PublicDomainText из файла интерфейса языка lng.&lt;br&gt;Если указать правообладателя, то Цитата будет показывать указанный текст и при нажатии на кнопку копирайта перебросит на страницу Copyright с данными из файла copyright.htm.</translation>
+        <translation type="obsolete">&lt;i&gt;Авторские права&lt;/i&gt;&lt;br&gt;&lt;br&gt;Указывается год издания и правообладатель&lt;br&gt;Подразумевает наличие файла copyright.htm в корневом каталоге модуля.&lt;br&gt;Если не указано ничего параметр приравнивается PublicDomainText из файла интерфейса языка lng.&lt;br&gt;Если указать правообладателя, то Цитата будет показывать указанный текст и при нажатии на кнопку копирайта перебросит на страницу Copyright с данными из файла copyright.htm.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="278"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="265"/>
         <source>&lt;i&gt;Binding to the module category&lt;/i&gt;&lt;br&gt;&lt;br&gt;By default, the program divides the Bible into the category OT, NT, Apocrypha.&lt;br&gt;You must specify additional parameters for the Bible:&lt;br&gt;| Language | Translation Type | Denomination |&lt;br&gt;For books, specify the subject, keywords (tags).</source>
         <translation>&lt;i&gt;Привязка модуля к категориям&lt;/i&gt;&lt;br&gt;&lt;br&gt;По-умолчанию программа разделяет Библии на категории ВЗ, НЗ, апокрифы.&lt;br&gt;Необходимо указывать для Библии дополнительные параметры:&lt;br&gt;|Язык|Тип перевода|Конфессия|&lt;br&gt; Для книг указывать тему, ключевые слова (теги).</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="287"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="274"/>
         <source>&lt;i&gt;The font, which will use the program to display the text of books (parts) in the main window.&lt;/i&gt;&lt;br&gt;&lt;br&gt;If &lt;b&gt;DesiredFontName&lt;/b&gt; coincides not only with the name of the font, but also with the name of the font file (no file extension TTF), the program will automatically upload it when referring to the module. Therefore, a file with special characters when creating the module should be called by the name of the font (with the extension TTF). Specifies the font supports Unicode: Arial, Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman.We recommend using Times New Roman for Vista and 7, and Microsoft Sans Serif for XP.</source>
         <translation>&lt;i&gt;Шрифт, который будет использовать программа  для отображения текста книг (частей) в главном окне.&lt;/i&gt;&lt;br&gt;&lt;br&gt;Если &lt;b&gt;DesiredFontName&lt;/b&gt; совпадает не только с названием шрифта, но и с названием файла шрифта (без указания расширения TTF), то программа автоматически подгрузит его при обращении к модулю. Поэтому файл со специальным шрифтом при создании модуля нужно называть по имени шрифта (с добавлением расширения TTF). Указывается шрифт поддерживающий Unicode: Arial, Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman.&lt;br&gt;Рекомендуем использовать Times New Roman для Vista и 7, а Microsoft Sans Serif для XP.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="299"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="286"/>
         <source>&lt;i&gt;The path to font file&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Путь к файлу шрифта&lt;/i&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="303"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="290"/>
         <source>&lt;i&gt;Specifies the font header titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Определяет шрифт заголовков названий книг&lt;/i&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="307"/>
         <source>&lt;i&gt;Encoding module by default&lt;/i&gt;&lt;br&gt;&lt;br&gt;This parameter defaults to &lt;b&gt;utf-8&lt;/b&gt;.&lt;br&gt;Windows-1250 for Central European languages ââthat use Latin script letters (Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)&lt;b&gt;Windows-1251&lt;/b&gt; for Cyrillic alphabets&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; for Western languages&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; for the Greek Language&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; for the Turkish language&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; Hebrew&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; for the Arabic language&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; for the Baltic languages&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; for Vietnamese Language&lt;br&gt;&lt;b&gt;Utf-8&lt;/b&gt;, &lt;b&gt;Utf-16&lt;/b&gt; and &lt;b&gt;Utf-32&lt;/b&gt; Unicode character set</source>
-        <translation>&lt;i&gt;Кодировка модуля по умолчанию&lt;/i&gt;&lt;br&gt;&lt;br&gt;Параметр по умолчанию равен &lt;b&gt;utf-8.&lt;/b&gt;&lt;b&gt;Windows-1250&lt;/b&gt; для языков Центральной Европы, которые используют латинское написание букв (польский, чешский, словацкий, венгерский, словенский, хорватский, румынский и албанский)&lt;br&gt;&lt;b&gt;Windows-1251&lt;/b&gt; для кириллических алфавитов&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; для западных языков&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; для греческого языка&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; для турецкого языка&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; для иврита&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; для арабского языка&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; для балтийских языков&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; для вьетнамского языка&lt;br&gt;&lt;b&gt;Utf-8, Utf-16&lt;/b&gt; и &lt;b&gt;Utf-32&lt;/b&gt; набора символов Юникод</translation>
+        <translation type="obsolete">&lt;i&gt;Кодировка модуля по умолчанию&lt;/i&gt;&lt;br&gt;&lt;br&gt;Параметр по умолчанию равен &lt;b&gt;utf-8.&lt;/b&gt;&lt;b&gt;Windows-1250&lt;/b&gt; для языков Центральной Европы, которые используют латинское написание букв (польский, чешский, словацкий, венгерский, словенский, хорватский, румынский и албанский)&lt;br&gt;&lt;b&gt;Windows-1251&lt;/b&gt; для кириллических алфавитов&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; для западных языков&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; для греческого языка&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; для турецкого языка&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; для иврита&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; для арабского языка&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; для балтийских языков&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; для вьетнамского языка&lt;br&gt;&lt;b&gt;Utf-8, Utf-16&lt;/b&gt; и &lt;b&gt;Utf-32&lt;/b&gt; набора символов Юникод</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="325"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="312"/>
         <source>&lt;i&gt;Embedding fonts from a folder in the program module without having to install them in OS&lt;br&gt;&lt;b&gt;Fonts Install Pending&lt;/b&gt;&lt;i&gt;&lt;br&gt;&lt;br&gt;Font files to load must lie at the root of the module. Listed separated by commas with no spaces, indicating expansion. In the file names spaces are allowed. Cloudy. &lt;br&gt;&lt;b&gt;InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf&lt;/b&gt;</source>
         <translation>&lt;i&gt;Внедрение шрифтов в программу из папки модуля, не устанавливая их в OS&lt;br&gt;&lt;b&gt;Fonts Install Pending&lt;/b&gt;&lt;i&gt;&lt;br&gt;&lt;br&gt;Файлы шрифтов для подгрузки должны лежать в корне модуля. Перечисляются через запятую без пробелов с указанием расширения. В названиях файлов пробелы допускаются. Напр. &lt;br&gt;&lt;b&gt;InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="334"/>
         <source>&lt;i&gt;The short name of the module (reduction).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be unique for each module.&lt;br&gt;Option only English characters (if possible - see below).&lt;br&gt;Coincides with the module name of the folder  backup (optional).&lt;br&gt;Language through an underscore in those modules that exist in multiple languagesââ, and then a year after an underscore where there are several different editions.If there is a well-established literary abbreviation for the translation,it is used, such as the Septuagint - LXX, &lt;br&gt;Russian Synodal Version - RSV, &lt;br&gt;Translation Kuznetsova - TK, &lt;br&gt;the Byzantine text-type (Majority Text) is denoted by the letter [].</source>
-        <translation>&lt;i&gt;Короткое название модуля (сокращение).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Должен быть уникальным для каждого модуля.&lt;br&gt;&lt;br&gt;Параметр только английскими символами (по возможности - см.ниже).&lt;br&gt;Совпадает с названием папки модуля\архива (желательно).&lt;br&gt;Язык через знак подчеркивания, в тех модулях, которые существуют на нескольких языках, а затем год через знак подчеркивания где есть несколько отличающихся изданий.&lt;br&gt;Если существует устоявшееся литературное сокращение для перевода, то используется оно, например: Септуагинта – LXX, Русский Синодальный&lt;br&gt; перевод – РСП, Перевод В. кузнецовой – РВ, Византийский тип текста (Majority Text) принято обозначать буквой 𝔐.&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;i&gt;Короткое название модуля (сокращение).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Должен быть уникальным для каждого модуля.&lt;br&gt;&lt;br&gt;Параметр только английскими символами (по возможности - см.ниже).&lt;br&gt;Совпадает с названием папки модуля\архива (желательно).&lt;br&gt;Язык через знак подчеркивания, в тех модулях, которые существуют на нескольких языках, а затем год через знак подчеркивания где есть несколько отличающихся изданий.&lt;br&gt;Если существует устоявшееся литературное сокращение для перевода, то используется оно, например: Септуагинта – LXX, Русский Синодальный&lt;br&gt; перевод – РСП, Перевод В. кузнецовой – РВ, Византийский тип текста (Majority Text) принято обозначать буквой 𝔐.&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="350"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="255"/>
+        <source>&lt;i&gt;Copyright&lt;/i&gt;&lt;br&gt;&lt;br&gt;The year of publication and copyright&lt;br&gt;Implies copyright.htm file in the root directory of the module.&lt;br&gt;If no option is specified in the file equals PublicDomainText interface language lng.&lt;br&gt;If you specify an owner, then the quote will display the specified text and pressing a button will transfer the copyright on the page Copyright data from a file copyright.htm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="294"/>
+        <source>&lt;i&gt;Encoding module by default&lt;/i&gt;&lt;br&gt;&lt;br&gt;This parameter defaults to &lt;b&gt;UTF-8&lt;/b&gt;.&lt;br&gt;Windows-1250 for Central European languages ââthat use Latin script letters (Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)&lt;b&gt;Windows-1251&lt;/b&gt; for Cyrillic alphabets&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; for Western languages&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; for the Greek Language&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; for the Turkish language&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; Hebrew&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; for the Arabic language&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; for the Baltic languages&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; for Vietnamese Language&lt;br&gt;&lt;b&gt;Utf-8&lt;/b&gt;, &lt;b&gt;Utf-16&lt;/b&gt; and &lt;b&gt;Utf-32&lt;/b&gt; Unicode character set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="321"/>
+        <source>&lt;i&gt;The short name of the module (reduction).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be unique for each module.&lt;br&gt;Option only English characters (if possible - see below).&lt;br&gt;Coincides with the module name of the folder  backup (optional).&lt;br&gt;Language through an underscore in those modules that exist in multiple languagesââ, and then a year after an underscore where there are several different editions.If there is a well-established literary abbreviation for the translation,it is used, such as the Septuagint - LXX, &lt;br&gt;Russian Synodal Version - RSV, &lt;br&gt;Translation Kuznetsova - TK, &lt;br&gt;the Byzantine text-type (Majority Text) is denoted by the letter [ ].</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="337"/>
         <source>&lt;i&gt;Version&lt;/i&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Версия&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="355"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="342"/>
         <source>&lt;i&gt;&lt;/i&gt;Use aprocrypha&lt;br&gt;&lt;br&gt;The presence of a module or comments deuterocanonical books (11 books according to the file in the root directory BibleBooks.cfg bQ)&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the Bible = &lt;b&gt;Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;&lt;/i&gt;Использовать апокрифы&lt;br&gt;&lt;br&gt;Наличие в модуле второканонических книг или комментариев (11 книг согласно файлу BibleBooks.cfg в корневой директории Ц.)&lt;br&gt;Этот параметр может быть равен &lt;b&gt;Y&lt;/b&gt; только если Bible=&lt;b&gt;Y&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="362"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="349"/>
         <source>&lt;i&gt;The presence of a zero in the module chapter&lt;/i&gt;&lt;br&gt;&lt;br&gt;This option affects the display chapter numbers in the control panel and to synchronize at the transition between the modules. Put &lt;b&gt;Y&lt;/b&gt; when there is an introduction to the book.&lt;br&gt;If &lt;b&gt;ChapterZero = Y&lt;/b&gt;, the null head is synchronized with the file 001. * In the folder with the audio book, the first - to 002. *, Etc.</source>
         <translation>&lt;i&gt;Наличие в модуле нулевой главы&lt;/i&gt;&lt;br&gt;&lt;br&gt;Этот параметр влияет на отображение номеров глав в панели управления и на синхронизацию при переходе между модулями. Ставится Y  тогда, когда есть вступление к книге.&lt;br&gt;Если ChapterZero=Y, то нулевая глава синхронизируется с файлом 001.* в папке с аудиокнигой, первая – с 002.* и т.д.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="371"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="358"/>
         <source>&lt;i&gt;The use of English in the module numbering of verses&lt;/i&gt;&lt;br&gt;&lt;br&gt;If EnglishPsalms = Y, then the numbering changes to the adopted in the CPR as follows:(code snippet)&lt;br&gt;&lt;br&gt;JOB = 40:1-40:5 # -1; 41:1-41:8 # -1 &lt;br&gt;JOB40 = 1-5 # 30, # 6-24 -5&lt;br&gt;JOB41 = 1-8 # 19, # 9-34 -8&lt;br&gt;PSA = 10:1-147:11 # -1&lt;br&gt;ECC = 5:1 # -1&lt;br&gt;SNG = 6:13 # +1&lt;br&gt;DAN = 4:1-4:3 # -1&lt;br&gt;DAN3 = 24-30 # 67&lt;br&gt;DAN4 = 1-3 # 97, # 4-37 -3&lt;br&gt;JON = 1:17 # 1&lt;br&gt;ROM = 16:25-16:27 # -2&lt;br&gt;ROM16 = 25-27 # -1&lt;br&gt;ECC5 = 1 # 16, # -1 2-20&lt;br&gt;SNG1 = 2-16 # -1&lt;br&gt;SNG6 = 13 # -12&lt;br&gt;SNG7 = 1-13 # 1&lt;br&gt;JON2 = 1-10 # 1&lt;br&gt;PRO13 = 14-25 # 1&lt;br&gt;PRO18 = 8-24 # 1&lt;br&gt;2CO13 = 13 # -1&lt;br&gt;&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;Использование в модуле английской нумерации стихов&lt;/i&gt;&lt;br&gt;&lt;br&gt;Если EnglishPsalms=Y, то нумерация изменяется с принятой в РСП следующим образом:&lt;br&gt;(фрагмент программного кода)&lt;br&gt;&lt;br&gt;JOB=40:1-40:5#-1;41:1-41:8#-1&lt;br&gt;JOB40=1-5#30;6-24#-5&lt;br&gt;JOB41=1-8#19;9-34#-8&lt;br&gt;PSA=10:1-147:11#-1&lt;br&gt;ECC=5:1#-1&lt;br&gt;SNG=6:13#+1&lt;br&gt;DAN=4:1-4:3#-1&lt;br&gt;DAN3=24-30#67&lt;br&gt;DAN4=1-3#97;4-37#-3&lt;br&gt;JON=1:17#1&lt;br&gt;ROM=16:25-16:27#-2&lt;br&gt;ROM16=25-27#-1&lt;br&gt;ECC5=1#16;2-20#-1&lt;br&gt;SNG1=2-16#-1&lt;br&gt;SNG6=13#-12&lt;br&gt;SNG7=1-13#1&lt;br&gt;JON2=1-10#1&lt;br&gt;PRO13=14-25#1&lt;br&gt;PRO18=8-24#1&lt;br&gt;2CO13=13#-1&lt;br&gt;&lt;br&gt;Этот параметр может быть равен Y только если  Bible=Y</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="398"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="385"/>
         <source>&lt;i&gt;Module Type (Bible or comments or a book).&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Y&lt;/b&gt; if it is put to the Bible or commentary, &lt;b&gt;N&lt;/b&gt; if it is a book.</source>
         <translation>&lt;i&gt;Тип модуля (Библия, комментарий, книга)&lt;br&gt;Bible Commentary Book.&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;/b&gt;если это Библия или комментарий, &lt;b&gt;N&lt;/b&gt; если это книга.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="402"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="389"/>
         <source>&lt;i&gt;New testament&lt;/i&gt;&lt;br&gt;&lt;br&gt;The presence of books in the module or the comments of the New Testament (27 books according to the file in the root directory BibleBooks.cfg bQoute)</source>
         <translation>&lt;i&gt;Новый Завет&lt;/i&gt;&lt;br&gt;&lt;br&gt;Наличие в модуле книг или комментариев Нового Завета (27 книг согласно файлу BibleBooks.cfg в корневой директории Ц.)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="408"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="395"/>
         <source>&lt;i&gt;Separation is not the verses, and in paragraphs&lt;i&gt;&lt;br&gt;&lt;br&gt;Poems do not appear in the form of paragraphs force.</source>
         <translation>&lt;i&gt;Разделение не на стихи, а на абзацы&lt;i&gt;&lt;br&gt;&lt;br&gt;Стихи не отображаются в виде абзацев принудительно.
 Ставится Y  тогда, стихи отображаются «сплошняком», если нет тегов &lt;br&gt; или аналогичных (их конечно необходимо указать в HTMLFilter).</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="413"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="400"/>
         <source>&lt;i&gt;The presence of the module numbers Stronge&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put Y if the module is Strong Room.&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;Наличие в модуле номеров Стронга&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;/b&gt;  тогда, когда в модуле есть номера Стронга.&lt;br&gt;Этот параметр может быть равен &lt;b&gt;Y&lt;/b&gt; только если &lt;b&gt;Bible=Y&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="419"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="406"/>
         <source>&lt;i&gt;Support for displaying chapter titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;Displays the preface in the form of the zero line without a number, if it is present between the sign and the sign of the head of the first verse.</source>
         <translation>&lt;i&gt;Поддержка отображения заголовков глав&lt;/i&gt;&lt;br&gt;&lt;br&gt;Отображает предисловие в виде нулевого стиха без номера, если оно присутствует между знаком главы и знаком первого стиха.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="426"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="413"/>
         <source>&lt;i&gt;Support for right alignment&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put &lt;b&gt;Y&lt;/b&gt; if the module you want to display the entire text to the right</source>
         <translation>&lt;i&gt;Поддержка правого выравнивания&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;b&gt;  тогда, когда в модуле весь текст нужно отображать по правому краю.</translation>
     </message>
@@ -3971,67 +4003,67 @@ p, li { white-space: pre-wrap; }
         <translation>Библия</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="163"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="157"/>
         <source>More</source>
         <translation>Продвинутые</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="169"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="163"/>
         <source>In module:</source>
         <translation>В модуле:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="176"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="170"/>
         <source>Old Testament</source>
         <translation>Ветхий Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="183"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="177"/>
         <source>New Testament</source>
         <translation>Новый Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="190"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="184"/>
         <source>Apocrypha</source>
         <translation>Апокрифы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="197"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="191"/>
         <source>Chapter zero</source>
         <translation>Нулевая глава</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="209"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="203"/>
         <source>Strong numbers</source>
         <translation>Номера Стронга</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="234"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="228"/>
         <source>Sound</source>
         <translation>Звук</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="257"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="251"/>
         <source>Noforced line breaks</source>
         <translation>Разделение на абзацы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="275"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="269"/>
         <source>Use chapter head</source>
         <translation>Отображение заголовков глав</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="280"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="274"/>
         <source>Use right alignment</source>
         <translation>Правое выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="289"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="283"/>
         <source>English Psalms</source>
         <translation>Английская нумерация</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="297"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="291"/>
         <source>Categories:</source>
         <translation>Категории:</translation>
     </message>
@@ -4061,37 +4093,36 @@ p, li { white-space: pre-wrap; }
         <translation>Кодировка:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="141"/>
         <source>utf-8</source>
-        <translation>utf-8</translation>
+        <translation type="obsolete">utf-8</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="307"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="301"/>
         <source>Html filter:</source>
         <translation>HTMLfilter:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="331"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="325"/>
         <source>Fonts</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="337"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="331"/>
         <source>Install fonts:</source>
         <translation>Добавить шрифты:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="347"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="341"/>
         <source>Desired font name:</source>
         <translation>Шрифт для текста:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="357"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="351"/>
         <source>Desired font path:</source>
         <translation>Путь к нему:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="367"/>
+        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="361"/>
         <source>Desired UI font:</source>
         <translation>Шрифт заголовков:</translation>
     </message>
@@ -4194,12 +4225,12 @@ p, li { white-space: pre-wrap; }
         <translation>[Без имени]</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/help/assistant.cpp" line="111"/>
+        <location filename="../../src/dialogs/help/assistant.cpp" line="112"/>
         <source>bQella</source>
         <translation>bQella</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/help/assistant.cpp" line="112"/>
+        <location filename="../../src/dialogs/help/assistant.cpp" line="113"/>
         <source>Unable to launch Qt Assistant (%1)</source>
         <translation>Не удается запустить Qt Assistant (%1)</translation>
     </message>
@@ -4214,12 +4245,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="203"/>
         <source>Add page</source>
-        <translation type="unfinished">Добавить вкладку</translation>
+        <translation>Добавить вкладку</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="212"/>
         <source>Close page</source>
-        <translation type="unfinished">Закрыть вкладку</translation>
+        <translation>Закрыть вкладку</translation>
     </message>
     <message>
         <location filename="../../src/tab/tabbedbrowser.cpp" line="476"/>

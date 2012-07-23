@@ -71,7 +71,7 @@ void Import::accept()
     else
     {
         encoding = ui.cBEncoding->currentText();
-        encoding.replace("CP", "Windows");
+//        Config::configuration()->setDefaultEncoding(encoding);
         QTextCodec * codec = getCodecOfEncoding (encoding);
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
@@ -105,11 +105,22 @@ void Import::importIni(QString filename)
     QString line;
     if ( file.open(QIODevice::ReadOnly) )
     {
+
+//        encoding = "Windows-1251";
+        encoding = ui.cBEncoding->currentText();
+//        qDebug()  << "\nencoding  = " << Config::configuration()->profile()->props["defaultencoding"]
+//                  << "\nencoding2 = " << Config::configuration()->DefaultEncoding()
+//                  << "\nencoding3 = " << encoding
+//                  << "\nencoding4 = " << ui.cBEncoding->currentText();
+//        encoding = Config::configuration()->DefaultEncoding();
+        QTextCodec * codec = getCodecOfEncoding (encoding);
+
         int BookQtyIn = 2000;
         int book = 0;
         //        int count;
         // file opened successfully
         QTextStream stream( &file );        // use a text stream
+        stream.setCodec(codec);
         // until end of file...
         do {
             // read and parse the command line
@@ -117,12 +128,12 @@ void Import::importIni(QString filename)
             // do something with the line
             if (line != "" and line.indexOf("//") <0)
             {
-                if (miniparserini(line,"BibleName") != "")
+                if (miniparserini(line,"BibleName") != "") Config::configuration() -> setModuleBiblename(miniparserini(line,"BibleName"));
+                if (miniparserini(line,"BibleShortName") != "")
                 {
-                    Config::configuration() -> setModuleBiblename(miniparserini(line,"BibleName"));
-                    createImportFolder(Config::configuration()->PrjDir() + Config::configuration()->ModuleBiblename());
+                    Config::configuration() -> setModuleBibleShortName(miniparserini(line,"BibleShortName"));
+                    createImportFolder(Config::configuration()->PrjDir() + Config::configuration()->ModuleBibleShortName());
                 }
-                if (miniparserini(line,"BibleShortName") != "") Config::configuration() -> setModuleBibleShortName(miniparserini(line,"BibleShortName"));
                 if (miniparserini(line,"Copyright") != "") Config::configuration() -> setModuleCopyright(miniparserini(line,"Copyright"));
                 if (miniparserini(line,"ChapterSign") != "") ChapterSign = miniparserini(line,"ChapterSign");
                 if (miniparserini(line,"VerseSign") != "") VerseSign = miniparserini(line,"VerseSign");
@@ -194,6 +205,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     {
         // file opened successfully
         QTextStream stream( &file );        // use a text stream
+        stream.setCodec(getCodecOfEncoding(encoding));
         // until end of file...
         line = stream.readLine();
         while (line.indexOf(ChapterSign) == -1)
@@ -419,6 +431,7 @@ void Import::importProjectFile()
 void Import::createImportFolder(QString path)
 {
     QDir dir(path);
+    qDebug() << " path = " << path;
     if (!QDir(QString(path)).exists())
     {
         dir.mkdir(QString(path));
@@ -466,7 +479,7 @@ void Import::createChaterFile(QString file, QString text, int i)
 //----------------------------------------------------
 void Import::createProjectFile()
 {
-    QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ GL_PROJECT_FILE;
+    QString filename = Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBibleShortName()+ GL_PROJECT_FILE;
     QFile file1(filename);
     if(!file1.open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -573,7 +586,7 @@ void Import::addContentToEndProjectFile(QString filename)
 //----------------------------------------------------
 QString Import::getPrjFN()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBiblename()+ GL_PROJECT_FILE); // Нахера если Config::configuration->CurProject тоже самое? =)
+    return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBibleShortName()+ GL_PROJECT_FILE); // Нахера если Config::configuration->CurProject тоже самое? =)
 }
 //----------------------------------------------------
 QString Import::getStartPage()
