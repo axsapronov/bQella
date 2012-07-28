@@ -1290,15 +1290,57 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
         }
         else if (action == actionItemContentsBookAdd) //
         {
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
+            QString namebook = ui.listContents->currentItem()->text(0);
+            QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
+            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
+//                    qDebug() << "filebook = " << filebook
+//                             <<  " namebook = " << namebook
+//                              << " chapternumber = " << chapternumber
+//                              << " filecontetns = " << filecontents;
+
+
+
+            QStringList list = visitTree(ui.listContents);
+            contentbook->setEdit(false);
+            contentbook->setProperty(filebook, namebook,
+                                     chapternumber, filecontents, list);
             contentbook->show();
         }
         else if (action == actionItemContentsBookEdit) //
         {
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
+            QString namebook = ui.listContents->currentItem()->text(0);
+            QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
+            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
 
+
+            QStringList list;
+            list.append(ui.listContents->currentItem()->text(0));
+            list.append(getParentText(ui.listContents->currentItem()));
+
+
+            contentbook->setEdit(true);
+
+
+            qDebug() << "filebook = " << filebook
+                     <<  " namebook = " << namebook
+                      << " chapternumber = " << chapternumber
+                      << " filecontetns = " << filecontents
+                      << " list = " << list;
+
+            contentbook->setProperty(filebook, namebook,
+                                     chapternumber, filecontents, list);
+            contentbook->show();
         }
         else if (action == actionItemContentsBookDelete) //
         {
-            contentbook->show();
+            QString filecontents = unurlifyFileName
+                        (
+                        QString(ui.listContents->currentItem()->data(0,LinkRole).toString())
+                        )
+                    .replace(".htm","_contents.htm");
+            contentbook->deleteContent(filecontents);
         }
         else if (action == actionItemRemove)
         {
@@ -1349,10 +1391,13 @@ void HelpDialog::showTreeItemMenu(const QPoint &pos) //bookmark popup menu
         return;
 
     QAction *action = itemPopup -> exec(treeWidget -> viewport() -> mapToGlobal(pos));
-    if (action == actionOpenCurrentTab) {
+    if (action == actionOpenCurrentTab)
+    {
         if (ui.tabWidget -> currentWidget() -> objectName() == QString("contentPage"))
             showContentsTopic();
-    } else if (action) {
+    }
+    else if (action)
+    {
         QTreeWidgetItem *i = (QTreeWidgetItem*)item;
         if (action == actionOpenLinkInNewWindow)
             mw -> browsers() -> currentBrowser() -> openLinkInNewWindow(i -> data(0, LinkRole).toString());
@@ -2095,7 +2140,7 @@ void HelpDialog::exportModule()
     saveProject();
     //                    int999(123);
     //                    int999(000);
-    QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
+//    QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
     //    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
     QString curdir = Config::configuration()->CurPrjDir() + "/";
     exportf -> exportCreateDir(curdir); // создается
@@ -2103,7 +2148,7 @@ void HelpDialog::exportModule()
 
     for (int i = 1; i < ui.listContents -> topLevelItemCount() ; ++i)  //0 это       ___Instruction
     {
-        QString filename = ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString().remove("file:");;
+        QString filename = unurlifyFileName(QString(ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString()));
         filename = curdir+"export_"+ getNameFolder(curdir) +  "/"+filename.split("/").last();
         //        qDebug() << "\n ----" <<  QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)) <<  ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:") << QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  );
         exportf -> exportBibleqtIniInfo(QString("%1export_%2/bibleqt.ini").arg(curdir, getNameFolder(curdir)), ui.listContents -> topLevelItem(i) -> data(0,LinkRole).toString().remove("file:"),  QString("%1").arg(ui.listContents -> topLevelItem(i) -> childCount()  ));
@@ -2141,7 +2186,5 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
     }
     filebook.close();
 }
-
-
 
 

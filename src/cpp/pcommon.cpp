@@ -1512,3 +1512,27 @@ QString getParamBook(QString filename, QString param)
         }
     return str;
 }
+//----------------------------------------------------
+void visitTree(QStringList &list, QTreeWidgetItem *item)
+{
+  list << item->text(0);
+  for(int i = 0; i < item->childCount(); ++i)
+    visitTree(list, item->child(i));
+}
+//----------------------------------------------------
+QStringList visitTree(QTreeWidget *tree)
+{
+  QStringList list;
+  for(int i = 0; i < tree->topLevelItemCount(); ++i)
+    visitTree(list, tree->topLevelItem( i ));
+  return list;
+}
+//----------------------------------------------------
+QStringList getParentText(QTreeWidgetItem *item)
+{
+  QStringList list;
+  for(int i = 0; i < item->childCount(); ++i)
+    visitTree(list, item->child(i));
+  return list;
+}
+//----------------------------------------------------

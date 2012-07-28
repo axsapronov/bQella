@@ -95,6 +95,13 @@ QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT
 //если с точностью до процента совпадает, то возвращает номер в shortname, а если нету такого, то out Применяется для импорта книги
 QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
 QString removeFirst(QString str, QString remove); // возвращает строку с удаленным первым вхождением
+
+
+void visitTree(QStringList &list, QTreeWidgetItem *item);
+QStringList visitTree(QTreeWidget *tree);
+QStringList getParentText(QTreeWidgetItem *item);
+
+
 //======= работа с файлами =======
 //--------------------------------
 QString unurlifyFileName(const QString &fileName);		//remove "file:"
