@@ -47,6 +47,7 @@ class IndexListModel;
 class Export;
 
 class BookAddDialog;
+class ContentsBook;
 
 //==================== class HelpNavigationListItem ====================
 
@@ -157,7 +158,7 @@ private slots:
     void fixedBookConfFile(QString,QTreeWidgetItem*,QString);
     // void prevMatchedItem();
     //void GoToMatchedItem(int n);
-    
+
 
 
 private:
@@ -183,7 +184,8 @@ private:
     Ui::HelpDialog ui;
     MainWindow *mw;
     Export * exportf;
-    BookAddDialog *m_bookadddialog;
+    BookAddDialog *bookadddialog;
+    ContentsBook *contentbook;
 
 
     typedef QList<ContentItem> ContentList;	//ContentItem structure is described in docuparser.h
@@ -216,6 +218,9 @@ private:
     QAction *actionItemRemove;
     QAction *actionItemDelete;
     QAction *actionItemAuto;
+    QAction *actionItemContentsBookAdd;
+    QAction *actionItemContentsBookEdit;
+    QAction *actionItemContentsBookDelete;
     QAction *actionOpenCurrentTab;
     QAction *actionOpenLinkInNewWindow;
     QAction *actionOpenLinkInNewTab;

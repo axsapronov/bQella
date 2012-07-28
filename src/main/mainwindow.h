@@ -62,6 +62,7 @@ public:
     TabbedBrowser *browsers() const;
     HelpDialog *helpDialog() const;
 
+
     void setupPopupMenu(QMenu *menu);
     void removePendingBrowser(HelpWindow *win);
     void msgReloadRequest();
@@ -84,6 +85,7 @@ public slots:
     void ProjectOpen(QString fileName);
     void updateAppFont(FontSettings settings);
     void projectModified(bool modified);
+
 
 private slots:
     void ProjectNew();

@@ -7,8 +7,9 @@ ContentsBook::ContentsBook(QWidget *parent) :
 {
     ui->setupUi(this);
 }
-
+//------------------------------------------
 ContentsBook::~ContentsBook()
 {
     delete ui;
 }
+//------------------------------------------
