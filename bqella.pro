@@ -4,8 +4,8 @@ TEMPLATE = app
 LANGUAGE = C++
 
 CONFIG += qt \
-    warn_on 
-    
+    warn_on
+
 win32 {
     LIBS +=  -lshell32
     RC_FILE =  resources/resources-win.rc
@@ -26,16 +26,18 @@ DEPENDPATH += \
     src/dialogs/about \
     src/dialogs/fontdialog \
     src/dialogs/bookdialog \
-    src/dialogs/findandreplacedialog \
-    src/dialogs/projectproperty \
-    src/dialogs/itemproperty \
-    src/dialogs/linkproperty \
+    src/dialogs/finds/findandreplacedialog \
+    src/dialogs/propertys/projectproperty \
+    src/dialogs/propertys/itemproperty \
+    src/dialogs/propertys/linkproperty \
     src/dialogs/import/importdialog \
     src/dialogs/import/importbookdialog \
     src/dialogs/tagdialog \
-    src/dialogs/tableproperty \
+    src/dialogs/propertys/tableproperty \
     src/dialogs/cellsplit \
     src/dialogs/help \
+    src/dialogs/contents/book \
+    src/dialogs/contents/module \
     src/tab \
     src/settings \
     src/main \
@@ -49,16 +51,18 @@ INCLUDEPATH += \
     src/dialogs/about \
     src/dialogs/fontdialog \
     src/dialogs/bookdialog \
-    src/dialogs/findandreplacedialog \
-    src/dialogs/projectproperty \
-    src/dialogs/itemproperty \
-    src/dialogs/linkproperty \
+    src/dialogs/finds/findandreplacedialog \
+    src/dialogs/propertys/projectproperty \
+    src/dialogs/propertys/itemproperty \
+    src/dialogs/propertys/linkproperty \
     src/dialogs/import/importdialog \
     src/dialogs/import/importbookdialog \
     src/dialogs/tagdialog \
-    src/dialogs/tableproperty\
+    src/dialogs/propertys/tableproperty\
     src/dialogs/cellsplit \
     src/dialogs/help \
+    src/dialogs/contents/book \
+    src/dialogs/contents/module \
     src/tab \
     src/settings \
     src/main \
@@ -81,7 +85,8 @@ FORMS += \
      frdialog.ui \
      importdialog.ui \
      tagdialog.ui \
-     src/dialogs/import/importbookdialog/importbookdialog.ui
+     importbookdialog.ui \
+     contentsbook.ui
 
 SOURCES +=  \
      config.cpp \
@@ -112,7 +117,8 @@ SOURCES +=  \
      export.cpp \
      tagdialog.cpp \
      assistant.cpp \
-     src/dialogs/import/importbookdialog/importbookdialog.cpp
+     importbookdialog.cpp \
+     contentsbook.cpp
 
 HEADERS += \
      docproperty.h \
@@ -142,7 +148,8 @@ HEADERS += \
      export.h \
      tagdialog.h \
      assistant.h \
-     src/dialogs/import/importbookdialog/importbookdialog.h
+     importbookdialog.h \
+     contentsbook.h
 
 
 RESOURCES += \

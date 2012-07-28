@@ -46,6 +46,8 @@ class Import;
 class FRDialog;
 class Assistant;
 class ImportBookDialog;
+class ContentsBook;
+//class ContentsModule;
 
 //====================== class MainWindow ============================
 
@@ -95,7 +97,7 @@ private slots:
     void setLangEn();
     void setLangRu();
     void showAppSettings();
-    void globalShortcut_CtrlShiftInsert();    
+    void globalShortcut_CtrlShiftInsert();
     void on_actionNewWindow_triggered();
     void on_actionAboutAssistant_triggered();
     void on_actionSaveFileAs_triggered();
@@ -106,7 +108,17 @@ private slots:
     void browserTabChanged();
     void updateTabActions(int index);
 
+    // about
     void showDocumentation();
+    void showHomePage(); ///  open web page in browser
+
+    // contents book
+
+    void contentsBookAdd();
+    void contentsBookEdit();
+    void contentsBookDelete();
+
+
     // export
     void exportModule();
 
@@ -135,6 +147,10 @@ private:
     FRDialog *frdialog;
     Assistant *assistant;
 
+    ContentsBook *contbook;
+//    ContentsModule *contmodule;
+
+    // export
     Export * exportm;
 
     // import

@@ -44,6 +44,8 @@
 #define GL_PROJECT_FILE ".pem"
 #define GL_PROJECT_CONF_FILE ".ini"
 
+#define GL_WEB_SITE "http://warmonger1.github.com/bQella/"
+
 #define GL_LENGT_ITEM_STRING 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
 #define GL_PROCENT_OF_MATCHES 50 // процент совпадения shortname из файла и из списка, чтобы сократить название файлов
 

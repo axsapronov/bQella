@@ -33,6 +33,7 @@
 #include "importbookdialog.h"
 #include "frdialog.h"
 #include "assistant.h"
+#include "contentsbook.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -40,6 +41,7 @@
 #include <QStatusBar>
 #include <QShortcut>
 #include <QCloseEvent>
+#include <QDesktopServices>
 
 
 QList<MainWindow*> MainWindow::windows;
@@ -79,23 +81,24 @@ MainWindow::MainWindow():
     dw -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     dw -> setWindowTitle(tr("Project manager"));
     dw -> setObjectName(QString("sidebar"));
+
     helpDock = new HelpDialog(dw, this);
+    dw -> setWidget(helpDock);
+    dw->setMaximumWidth (250);
+    addDockWidget(Qt::LeftDockWidgetArea, dw);
+
+
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
     importdi = new ImportBookDialog();
     assistant = new Assistant;
-
-    //    HelpBrowser  helpBr("/home/files/Develop/git/next/bQella/resources/doc", "index.htm");
-    //    helpBr = new HelpBrowser(":doc/doc", "index.htm", this);
-
-    dw -> setWidget(helpDock);
-    dw->setMaximumWidth (250);
-    addDockWidget(Qt::LeftDockWidgetArea, dw);
+    contbook = new ContentsBook();
 
     prjprop = new ProjectProperties(this);
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
+
     //включить после отладки
     //    connect(menuSign, SIGNAL(triggered(QAction*)), this, SLOT(insertSignature(QAction*)));
 
@@ -176,7 +179,18 @@ void MainWindow::setup()
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
     connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties()));
-    connect(ui.actionAddTag, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+
+    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+    // contents book
+    connect(ui.actionContentBookAdd, SIGNAL(triggered()), this, SLOT(contentsBookAdd()));
+    connect(ui.actionContentBookDelete, SIGNAL(triggered()), this, SLOT(contentsBookDelete()));
+    connect(ui.actionContentBookEdit, SIGNAL(triggered()), this, SLOT(contentsBookEdit()));
+
+//    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+//    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+//    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+//    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
+//    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
 
     connect(ui.actionSettings, SIGNAL(triggered()), this, SLOT(showAppSettings()));
 
@@ -213,6 +227,7 @@ void MainWindow::setup()
 
     // Menu about
     connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(showDocumentation()));
+    connect(ui.actionHomePage, SIGNAL(triggered()), this, SLOT(showHomePage()));
 
 
 
@@ -1077,3 +1092,24 @@ void MainWindow::globalShortcut_CtrlShiftInsert()
 void MainWindow::projectModified(bool modified){
     ui.actionProjectSave -> setEnabled(modified);
 }
+//---------------------------------------------------
+void MainWindow::contentsBookAdd()
+{
+    contbook->show();
+}
+//---------------------------------------------------
+void MainWindow::contentsBookDelete()
+{
+
+}
+//---------------------------------------------------
+void MainWindow::contentsBookEdit()
+{
+    contbook->show();
+}
+//---------------------------------------------------
+void MainWindow::showHomePage()
+{
+    QDesktopServices::openUrl(QUrl(GL_WEB_SITE));
+}
+//--------------------------------------------------

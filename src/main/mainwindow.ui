@@ -88,9 +88,6 @@
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
    <addaction name="separator"/>
-   <addaction name="actionCut"/>
-   <addaction name="actionCopy"/>
-   <addaction name="actionPaste"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -109,6 +106,7 @@
     <addaction name="separator"/>
     <addaction name="actionAboutAssistant"/>
     <addaction name="actionAbout_Qt"/>
+    <addaction name="actionHomePage"/>
    </widget>
    <widget class="QMenu" name="editMenu">
     <property name="title">
@@ -155,7 +153,16 @@
      <addaction name="actionEditFindNext"/>
      <addaction name="actionEditFindPrev"/>
     </widget>
+    <widget class="QMenu" name="menuContent">
+     <property name="title">
+      <string>Content</string>
+     </property>
+     <addaction name="actionContentBookAdd"/>
+     <addaction name="actionContentBookEdit"/>
+     <addaction name="actionContentBookDelete"/>
+    </widget>
     <addaction name="menuTable"/>
+    <addaction name="menuContent"/>
     <addaction name="separator"/>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
@@ -208,6 +215,16 @@
      </property>
      <addaction name="actionImportModule"/>
      <addaction name="actionImportBook"/>
+     <addaction name="separator"/>
+     <addaction name="actionImportHTML"/>
+     <addaction name="actionImportDoc"/>
+    </widget>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionExport_Module"/>
+     <addaction name="actionExportBook"/>
     </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectOpen"/>
@@ -217,11 +234,10 @@
     <addaction name="separator"/>
     <addaction name="actionProjectProperties"/>
     <addaction name="separator"/>
-    <addaction name="actionExport_Module"/>
+    <addaction name="menuExport"/>
     <addaction name="menuImport"/>
     <addaction name="separator"/>
     <addaction name="actionAppExit"/>
-    <addaction name="separator"/>
    </widget>
    <addaction name="menuProject"/>
    <addaction name="editMenu"/>
@@ -231,7 +247,7 @@
   </widget>
   <widget class="QToolBar" name="toolBarFormat">
    <property name="windowTitle">
-    <string>Add tag</string>
+    <string>Other</string>
    </property>
    <property name="iconSize">
     <size>
@@ -256,7 +272,9 @@
    <addaction name="separator"/>
    <addaction name="actionHyperlink"/>
    <addaction name="actionTextColor"/>
-   <addaction name="actionAddTag"/>
+   <addaction name="actionTagHtml"/>
+   <addaction name="actionTagBr"/>
+   <addaction name="actionTagStrongNumber"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionFilePrint">
@@ -302,6 +320,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionEditFind">
@@ -559,8 +580,14 @@
    <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCut">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
      <normaloff>:/edit/images/edit_cut.png</normaloff>:/edit/images/edit_cut.png</iconset>
@@ -570,6 +597,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionRemoveItem">
@@ -779,7 +809,7 @@
   </action>
   <action name="actionExport_Module">
    <property name="text">
-    <string>Export Module</string>
+    <string>Module</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -829,7 +859,7 @@
     <string>Ctrl+Shift+F</string>
    </property>
   </action>
-  <action name="actionAddTag">
+  <action name="actionTagHtml">
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
      <normaloff>:/file/images/tag.png</normaloff>:/file/images/tag.png</iconset>
@@ -968,6 +998,73 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+B</string>
+   </property>
+  </action>
+  <action name="actionHomePage">
+   <property name="text">
+    <string>Home page</string>
+   </property>
+  </action>
+  <action name="actionTagBr">
+   <property name="text">
+    <string>New line</string>
+   </property>
+   <property name="iconText">
+    <string>&lt;br&gt;</string>
+   </property>
+   <property name="toolTip">
+    <string>Add to text symbol 
+ (&lt;br&gt;)</string>
+   </property>
+  </action>
+  <action name="actionTagStrongNumber">
+   <property name="text">
+    <string>Add Strong's number</string>
+   </property>
+   <property name="iconText">
+    <string>st</string>
+   </property>
+  </action>
+  <action name="actionImportHTML">
+   <property name="text">
+    <string>HTML</string>
+   </property>
+  </action>
+  <action name="actionImportDoc">
+   <property name="text">
+    <string>Doc</string>
+   </property>
+  </action>
+  <action name="actionExportBook">
+   <property name="text">
+    <string>Book</string>
+   </property>
+  </action>
+  <action name="actionContentBookAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+   <property name="toolTip">
+    <string>Add content for book</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Y</string>
+   </property>
+  </action>
+  <action name="actionContentBookEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit content for book</string>
+   </property>
+  </action>
+  <action name="actionContentBookDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete content for book</string>
    </property>
   </action>
  </widget>
