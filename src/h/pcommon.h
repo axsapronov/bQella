@@ -119,11 +119,14 @@ bool createEmptyHtml(QString fileName, QString title);
 bool createEmptyHtml(QString fileName, QString title, QString text);
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
-QString getParamBook(QString filename, QString param); // возвращает параметр из файла
+QString getParamBook(QString filename, QString param); // возвращает параметр из файла. Вид файла    "PARAM = VALUE"
 QString miniparserini(QString str, QString po);
 QString replaceFullShortName(QString line, QString text, QString name); // возвращает строку с заменой текста в fullname и shortname
 void writeQStringList(QString file, QStringList list); // записывает QStringList в файл ( обычный цикл)
 QString checkExistenceFile(QString file); // проверяет существует файл, если существует, то добавляет к нему символ _ в конце. Происходит в цикле
 QString getFileNameAbs(QString file); // возвращает название файла без разрешения и пути. Т.е. /home/warmonger/develop/чтони-ть там еще/ файл.py  вернет файл
 void removeStringInFile(QString file, QStringList strings); // удаляет из файла строки из qstringlist
+bool checkFileContainsText(QString filename, QString text); // проверяет есть ли текст в файле
+bool createFileText(QString fileName, QString text); // создает  файл с текстом ( так как книги не юзаются, то можно и обычным файлом юзать их)
+bool addToEndFile(QString fileName, QString text); // добавить в конец файла текст
 #endif // __PCOMMON_H__

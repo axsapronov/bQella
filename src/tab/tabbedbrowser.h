@@ -31,6 +31,34 @@ class HelpWindow;
 class QStyleSheet;
 class QMimeSourceFactory;
 class QTimer;
+class LineNumberArea;
+
+
+class LineNumberArea : public QWidget
+{
+public:
+
+    LineNumberArea(QWidget *parent)
+    {
+//        codeEditor = editor;
+    }
+
+    QSize sizeHint() const
+    {
+//        return QSize(codeEditor->lineNumberAreaWidth(), 0);
+        return (QSize(2,2));
+    }
+
+protected:
+    void paintEvent(QPaintEvent *event)
+    {
+//        codeEditor->lineNumberAreaPaintEvent(event);
+    }
+
+//private:
+//    CodeEditor *codeEditor;
+};
+
 
 class TabbedBrowser : public QWidget
 {
@@ -92,6 +120,7 @@ private:
     Ui::TabbedBrowser ui;
     QWidget *lastCurrentTab;
     QFont tabFont;
+    QWidget *lineNumberArea;
 
     QString fixedFontFam;
     QColor lnkColor;

@@ -47,17 +47,18 @@ TabbedBrowser::TabbedBrowser(MainWindow *parent)
     ui.setupUi(this);
     init();
 
+
+
     QStackedWidget *stack = qFindChild<QStackedWidget*>(ui.tab);
     Q_ASSERT(stack);
     stack -> setContentsMargins(0, 0, 0, 0);
     connect(stack, SIGNAL(currentChanged(int)), parent, SLOT(browserTabChanged()));
 
     QPalette p = palette();
-    p.setColor(QPalette::Inactive, QPalette::Highlight,
-               p.color(QPalette::Active, QPalette::Highlight));
-    p.setColor(QPalette::Inactive, QPalette::HighlightedText,
-               p.color(QPalette::Active, QPalette::HighlightedText));
+    p.setColor(QPalette::Inactive, QPalette::Highlight, p.color(QPalette::Active, QPalette::Highlight));
+    p.setColor(QPalette::Inactive, QPalette::HighlightedText, p.color(QPalette::Active, QPalette::HighlightedText));
     setPalette(p);
+
 }
 
 TabbedBrowser::~TabbedBrowser()
@@ -123,6 +124,20 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     win -> setPalette(palette());
     win -> setSearchPaths(Config::configuration() -> mimePaths());
     ui.tab -> addTab(win, tr("..."));
+
+
+//    QWidget *test = new QWidget();
+//    QVBoxLayout *mainLayout = new QVBoxLayout;
+//! [2] //! [3]
+//    mainLayout->setMenuBar(menuBar);
+//! [3] //! [4]
+//    mainLayout->addWidget(win);
+//! [4] //! [5]
+//    test->setLayout(mainLayout);
+
+
+//    ui.tab->addTab(test, tr("test"));
+
     connect(win, SIGNAL(highlighted(QString)),  (const QObject*) (mainWin -> statusBar()), SLOT(showMessage(QString)));
     //connect(win, SIGNAL(backwardAvailable(bool)),  mainWin, SLOT(backwardAvailable(bool)));
     //connect(win, SIGNAL(forwardAvailable(bool)),   mainWin, SLOT(forwardAvailable(bool)));
@@ -170,18 +185,19 @@ void TabbedBrowser::init()
 {
 
     lastCurrentTab = 0;
-    while(ui.tab -> count()) {
+    while(ui.tab -> count())
+    {
         QWidget *page = ui.tab -> widget(0);
         ui.tab -> removeTab(0);
         delete page;
     }
 
-    connect(ui.tab, SIGNAL(currentChanged(int)),
-            this, SLOT(transferFocus()));
+    connect(ui.tab, SIGNAL(currentChanged(int)), this, SLOT(transferFocus()));
 
     QTabBar *tabBar = qFindChild<QTabBar*>(ui.tab);
     QStyleOptionTab opt;
-    if (tabBar) {
+    if (tabBar)
+    {
         opt.init(tabBar);
         opt.shape = tabBar -> shape();
         tabBar -> setContextMenuPolicy(Qt::CustomContextMenu);
@@ -211,6 +227,8 @@ void TabbedBrowser::init()
     QObject::connect(closeTabButton, SIGNAL(clicked()), this, SLOT(closeTab()));
     closeTabButton -> setToolTip(tr("Close page"));
     closeTabButton -> setEnabled(false);
+
+    // сюда можно добавить какой-то виджет
 
     QObject::connect(ui.toolClose, SIGNAL(clicked()), ui.frameFind, SLOT(hide()));
     QObject::connect(ui.toolPrevious, SIGNAL(clicked()), this, SLOT(findPrevious()));

@@ -2,6 +2,7 @@
 #include "ui_contentsbook.h"
 
 #include "config.h"
+#include "pcommon.h"
 
 #include <QFile>
 #include <QMessageBox>
@@ -19,40 +20,59 @@ ContentsBook::~ContentsBook()
     delete ui;
 }
 //------------------------------------------
-
 void ContentsBook::createContents()
 {
-    QString pathbook = ui->sBookFileEdit->text();
+}
+//-------------------------------------------
+void ContentsBook::createContents(QString filebook)
+{
+    if (QFile::exists(filebook))
+    {
+        if (checkFileContainsText(filebook, "Content = "))
+        {
+            replaceTextOfFile(filebook, "Content = no", "Content = yes");
+        }
+        else
+        {
+            if (checkFileContainsText(filebook, "</body>"))
+            {
+                replaceTextOfFile(filebook, "</body>", "Content = yes\n</body>");
+            }
+            else
+            {
+                addToEndFile(filebook, "\nContent = yes");
+            }
+        }
+    }
 }
 //-------------------------------------------
 void ContentsBook::setProperty(QString filebook, QString namebook,
-                               QString chapternumber, QString filecontents,
-                               QStringList list)
+                               QString chapternumber, QStringList list)
 {
-    ui->sBookFileEdit->setText(filebook);
+//    ui->sBookFileEdit->setText(filebook);
     ui->sBookNameEdit->setText(namebook);
     ui->sChaptersEdit->setText(chapternumber);
 
-    if (QFile::exists(filecontents))
-    {
-        ui->sFileContents->setText(filecontents);
-        ui->pBCreateContents->setVisible(false);
-    }
-    else
-    {
-        ui->pBCreateContents->setVisible(true);
-        ui->sFileContents->setText("It can create the content?");
-    }
+//    if (QFile::exists(filecontents))
+//    {
+//        ui->sFileContents->setText(filecontents);
+//        ui->pBCreateContents->setVisible(false);
+//    }
+//    else
+//    {
+//        ui->pBCreateContents->setVisible(true);
+//        ui->sFileContents->setText("It can create the content?");
+//    }
 
     if (!editable)
     {
-//        QTreeWidgetItem *item;
+        //        QTreeWidgetItem *item;
         for (int i = 0; i < list.size(); i++)
         {
-//            ui->treeW->addTopLevelItem();
+            //            ui->treeW->addTopLevelItem();
         }
 
-//        ui->treeW->setModel(model);
+        //        ui->treeW->setModel(model);
     }
 }
 //--------------------------------------------
@@ -70,11 +90,11 @@ void ContentsBook::deleteContent(QString fName)
 {
     if (QFile::exists(fName))
     {
-        int ret = QMessageBox::warning(this, GL_PROG_NAME, tr("Delete contents item AND source file?"),
+        int ret = QMessageBox::warning(this, GL_PROG_NAME, tr("Delete content?"),
                                        QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);
         if (ret == QMessageBox::Yes)
         {
-            QFile::remove(fName);
+            replaceTextOfFile(fName, "Content = yes", "Content = no");
         }
     }
 }

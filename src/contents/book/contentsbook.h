@@ -18,9 +18,10 @@ public:
 public slots:
     void setProperty(QString filebook,
                      QString namebook, QString chapternumber,
-                     QString filecontents, QStringList list);
+                     QStringList list);
     void deleteContent(QString filename);
     void setEdit(bool editable);
+    void createContents(QString filebook);
 private slots:
     void createContents();
 private:

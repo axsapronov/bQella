@@ -67,7 +67,8 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
     setFont(settings.browserFont);
 
     // connect MainMenu functions
-    if (needConnection) {
+    if (needConnection)
+    {
         itemprop = new ItemProperties(this);
         linkprop = new LinkProperties(this);
         docprop  = new DocProperties(this);
@@ -251,14 +252,17 @@ void HelpWindow::showLinkProperties()
     QTextCursor cursor = raEdit::textCursor();
     QTextCharFormat cf = cursor.charFormat();
     selCur = cursor.position();
-    if (cf.isAnchor()){		//select whole text of the link.
-        while (cf.isAnchor()){	//move anchor to the start of hypertext link
+    if (cf.isAnchor())
+    {		//select whole text of the link.
+        while (cf.isAnchor())
+        {	//move anchor to the start of hypertext link
             cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor);
             cf = cursor.charFormat();
         }
         cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
         cf = cursor.charFormat();
-        while (cf.isAnchor()){ //move cursor to the end of hypertext link
+        while (cf.isAnchor())
+        { //move cursor to the end of hypertext link
             cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
             cf = cursor.charFormat();
         }
@@ -339,7 +343,7 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
         removeLink();
     }else{
         s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
-        qDebug() << "s = " << s;
+//        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);

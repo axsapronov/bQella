@@ -82,12 +82,12 @@ int main( int argc, char ** argv )
         //!+! or option "Remember opened files" is not set
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
     }
-    else 
+    else
     {//        qDebug() << "[13]";
         mw -> showLinks( links );
     }
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
-    
+
     int appExec = a.exec();
     delete (MainWindow*)mw;
     toLog(conf -> AppLogFN(),QString("%1 shuts down normally.").arg(GL_PROG_NAME));
@@ -100,17 +100,13 @@ int main( int argc, char ** argv )
 
 /**
   * @file
-  * Система для работы с полями пользовательского профиля.
-  *
-  * Данная система позволяет настроить отображение практически
-  * в любом виде, любого поля пользовательского профиля в Drupal.
   *
   *
-  * config		- configuration of the application, global functions and variables
+  * config	- configuration of the application, global functions and variables
   * docuparser 	- parse profile file
   * helpdialog	- slidebar functions: content, index, bookmarks, search
   * helpwindow	- working area functions: text edit, font, file
-  * index 		- procedures to build up index in index tab on helpdialog slidebar
+  * index 	- procedures to build up index in index tab on helpdialog slidebar
   * mainwindow 	- main menu functions
   * profile 	- configuration of a project
   * msc		- general purpose procedures with no class relations
@@ -119,9 +115,9 @@ int main( int argc, char ** argv )
   * ------- Forms aviable from (classes interaction) -------
   *
   * HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;
-  * HelpWindow								MainWindow *mw;					ItemProperties *itemprop;
+  * HelpWindow		MainWindow *mw;			ItemProperties *itemprop;
   * MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
-  *           TabbedBrowser *browsers();		HelpDialog *helpDialog();
+  * TabbedBrowser *browsers();		HelpDialog *helpDialog();
   * TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
   *
   * To access from HelpDialog to HelpWindow functions use:

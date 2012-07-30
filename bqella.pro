@@ -16,28 +16,29 @@ PROJECTNAME = bQella
 DESTDIR     = build/bin
 OBJECTS_DIR = build/obj
 MOC_DIR     = build/moc
-RCC_DIR     = build
+RCC_DIR     = build/rc
+UI_DIR      = build/ui
 
 DEPENDPATH += \
     src/cpp \
     src/h \
     src/ui \
-    src/dialogs/helpdialog \
-    src/dialogs/about \
-    src/dialogs/fontdialog \
-    src/dialogs/bookdialog \
-    src/dialogs/finds/findandreplacedialog \
-    src/dialogs/propertys/projectproperty \
-    src/dialogs/propertys/itemproperty \
-    src/dialogs/propertys/linkproperty \
-    src/dialogs/import/importdialog \
-    src/dialogs/import/importbookdialog \
-    src/dialogs/tagdialog \
-    src/dialogs/propertys/tableproperty \
-    src/dialogs/cellsplit \
-    src/dialogs/help \
-    src/dialogs/contents/book \
-    src/dialogs/contents/module \
+    src/helpdialog \
+    src/about \
+    src/fontdialog \
+    src/bookdialog \
+    src/finds/findandreplacedialog \
+    src/propertys/projectproperty \
+    src/propertys/itemproperty \
+    src/propertys/linkproperty \
+    src/import/importdialog \
+    src/import/importbookdialog \
+    src/tagdialog \
+    src/propertys/tableproperty \
+    src/cellsplit \
+    src/help \
+    src/contents/book \
+    src/contents/module \
     src/tab \
     src/settings \
     src/main \
@@ -47,22 +48,22 @@ DEPENDPATH += \
 
 INCLUDEPATH += \
     src/h/ \
-    src/dialogs/helpdialog \
-    src/dialogs/about \
-    src/dialogs/fontdialog \
-    src/dialogs/bookdialog \
-    src/dialogs/finds/findandreplacedialog \
-    src/dialogs/propertys/projectproperty \
-    src/dialogs/propertys/itemproperty \
-    src/dialogs/propertys/linkproperty \
-    src/dialogs/import/importdialog \
-    src/dialogs/import/importbookdialog \
-    src/dialogs/tagdialog \
-    src/dialogs/propertys/tableproperty\
-    src/dialogs/cellsplit \
-    src/dialogs/help \
-    src/dialogs/contents/book \
-    src/dialogs/contents/module \
+    src/helpdialog \
+    src/about \
+    src/fontdialog \
+    src/bookdialog \
+    src/finds/findandreplacedialog \
+    src/propertys/projectproperty \
+    src/propertys/itemproperty \
+    src/propertys/linkproperty \
+    src/import/importdialog \
+    src/import/importbookdialog \
+    src/tagdialog \
+    src/propertys/tableproperty\
+    src/cellsplit \
+    src/help \
+    src/contents/book \
+    src/contents/module \
     src/tab \
     src/settings \
     src/main \
@@ -150,7 +151,6 @@ HEADERS += \
      assistant.h \
      importbookdialog.h \
      contentsbook.h
-
 
 RESOURCES += \
     resources/resources.qrc

@@ -1290,57 +1290,69 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
         }
         else if (action == actionItemContentsBookAdd) //
         {
-            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
-            QString namebook = ui.listContents->currentItem()->text(0);
-            QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
-            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
-//                    qDebug() << "filebook = " << filebook
-//                             <<  " namebook = " << namebook
-//                              << " chapternumber = " << chapternumber
-//                              << " filecontetns = " << filecontents;
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
+            //            QString namebook = ui.listContents->currentItem()->text(0);
+            //            QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
+            //            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
+            ////                    qDebug() << "filebook = " << filebook
+            ////                             <<  " namebook = " << namebook
+            ////                              << " chapternumber = " << chapternumber
+            ////                              << " filecontetns = " << filecontents;
 
 
 
-            QStringList list = visitTree(ui.listContents);
-            contentbook->setEdit(false);
-            contentbook->setProperty(filebook, namebook,
-                                     chapternumber, filecontents, list);
-            contentbook->show();
+            //            QStringList list = visitTree(ui.listContents);
+            //            contentbook->setEdit(false);
+            //            contentbook->setProperty(filebook, namebook,
+            //                                     chapternumber, filecontents, list);
+            //            contentbook->show();
+
+            contentbook->createContents(filebook);
         }
         else if (action == actionItemContentsBookEdit) //
         {
-            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
+
+            if (getParamBook(filebook, "Contents") != "yes")
+            {
+                contentbook->createContents(filebook);
+            }
             QString namebook = ui.listContents->currentItem()->text(0);
             QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
-            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
-
 
             QStringList list;
             list.append(ui.listContents->currentItem()->text(0));
             list.append(getParentText(ui.listContents->currentItem()));
 
-
             contentbook->setEdit(true);
-
 
             qDebug() << "filebook = " << filebook
                      <<  " namebook = " << namebook
                       << " chapternumber = " << chapternumber
-                      << " filecontetns = " << filecontents
                       << " list = " << list;
 
-            contentbook->setProperty(filebook, namebook,
-                                     chapternumber, filecontents, list);
+            contentbook->setProperty(filebook, namebook, chapternumber, list);
             contentbook->show();
         }
         else if (action == actionItemContentsBookDelete) //
         {
-            QString filecontents = unurlifyFileName
-                        (
-                        QString(ui.listContents->currentItem()->data(0,LinkRole).toString())
-                        )
-                    .replace(".htm","_contents.htm");
-            contentbook->deleteContent(filecontents);
+
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
+            //            QString filecontents = unurlifyFileName
+            //                        (
+            //                        QString(ui.listContents->currentItem()->data(0,LinkRole).toString())
+            //                        )
+            //                    .replace(".htm","_contents.htm");
+
+            if (getParamBook(filebook, "Content") != "no")
+            {
+                contentbook->deleteContent(filebook);
+            }
+            else
+            {
+                QString string = tr("The content was not created");
+                QMessageBox::critical(this, tr("Delete content"), string);
+            }
         }
         else if (action == actionItemRemove)
         {
@@ -1465,10 +1477,11 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
                 //                str.replace(" ","_")
                 //                                .remove(str.length(),1);
                 //                qDebug() << "\n ----- str = " << str; //
-                file1.write(QString("\nPathName = %1"
+                file1.write(QString("PathName = %1"
                                     "\nFullName = %2"
                                     "\nShortName = %3"
-                                    "\nChapterQty = %4")
+                                    "\nChapterQty = %4"
+                                    "\nContents = no")
                             .arg(str)
                             .arg(bookadddialog -> bookFullNameWithSpace)
                             .arg(bookadddialog -> bookShortName)
@@ -1617,7 +1630,7 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
                     //                    qDebug() << "\n" << "find!";
                     //str = QString("ChapterQty = %1").arg(bookadddialog -> bookChapterQty);
                     //                    qDebug() << "\n" << ui.listContents -> currentItem() << " " << ui.listContents -> currentItem() -> childCount();
-                    str = QString("ChapterQty = %1\n").arg(item -> childCount());
+                    str = QString("ChapterQty = %1").arg(item -> childCount());
                 }
                 string.append(str+"\n");
             }
@@ -1926,7 +1939,6 @@ void HelpDialog::currentItemChanged(QTreeWidgetItem* curItem,QTreeWidgetItem* pr
 }
 
 //-------------------------------------------------
-// определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
 void HelpDialog::newItem()
 {
     // определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
@@ -1961,10 +1973,14 @@ void HelpDialog::newItem()
                     uniqFN = !QFile::exists(fileName);
                     counter++;
                 }
+                title.replace("_", " ");
+                //                createFileText(fileName, title);
+                createFileText(fileName, "");
             }
             else
             {
-                while (!uniqFN){
+                while (!uniqFN)
+                {
                     //create chapter file
                     QString bookname = getFileNameAbs(ui.listContents -> currentItem() -> data(0, LinkRole).toString().remove("file:")).remove("book_");
                     //                                qDebug() << "bookname = " << bookname;
@@ -1976,12 +1992,9 @@ void HelpDialog::newItem()
                     counter++;
                 }
                 title = incstr(QString("%1").arg(counter-1),GL_LENGT_ITEM_STRING, " ");
+                title.replace("_", " ");
+                createEmptyHtml(fileName, title);
             }
-            //            qDebug() << "Debug: _HelpDialog::newItem()" << "- fn = " << fileName << " newfiename = " << getCheckShortNameForFile(bookadddialog->bookShortName, bookadddialog->bookFullName);
-            //            qDebug() << "Debug: _HelpDialog::newItem()"  << " filename = " << checkProcentRol(getShortName(fileName), 50, fileName) << " shrotname " << getShortName(fileName);
-
-            title.replace("_", " ");
-            createEmptyHtml(fileName, title);
             InsertContentsItem(title, getShortName(fileName), counter-1, urlifyFileName(fileName));// отвечает за добавление файла в список
             ui.listContents -> setFocus();
             //ui.listContents -> openPersistentEditor(ui.listContents -> currentItem(),0);  // редактировать название в дереве
@@ -2140,7 +2153,7 @@ void HelpDialog::exportModule()
     saveProject();
     //                    int999(123);
     //                    int999(000);
-//    QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
+    //    QString fileBibleqtName = ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
     //    QString curdir = QString(fileBibleqtName.replace("   ___Instruction",""));
     QString curdir = Config::configuration()->CurPrjDir() + "/";
     exportf -> exportCreateDir(curdir); // создается

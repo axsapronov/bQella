@@ -184,14 +184,18 @@ void Import::importIni(QString filename)
 //----------------------------------------------------
 void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
-    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
+    QString lastfile = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
+    QString last = "htm";
     QString title = FullName;
-    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last())+".htm";
+    QString bookname = getFileNameAbs(pathName);
+    QString path = "./book_" + checkProcentRol(ShortName, bookname);
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
-    QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
-    QString filenameforchapter = QString(pathName).replace(getFileNameAbs(pathName), chunksnameforchapter);
+    QString chunksnameforchapter = checkProcentRol(ShortName, bookname).remove("."+lastfile);
+    QString filenameforchapter = QString(pathName)
+            .replace(getFileNameAbs(pathName), chunksnameforchapter)
+            .replace(lastfile, "htm");
 
     // add info to project file
     QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
@@ -234,6 +238,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
             while ((!line.isNull()) and ( flag));
 
             flag = true;
+
             createChaterFile(filenameforchapter, text, j);
             addContentToProjectFile("</section>", true);
 
@@ -453,7 +458,8 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
     QString text = ""+tr("PathName = %1"
                          "\nFullName = %2"
                          "\nShortName = %3"
-                         "\nChapterQty = %4")
+                         "\nChapterQty = %4"
+                         "\nContent = no")
             .arg(pathNameE)
             .arg(FullName)
             .arg(ShortName)
