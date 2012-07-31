@@ -153,6 +153,8 @@ void ProjectProperties::accept()
                 QString str_header = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>" +
                         tr("   ___Instruction") + "</title></head>\n";
                 QString str_body = "<body>"+tr("<p>add a user to create modules</p>");
+                createEmptyHtml(prjFN+ui.LEBibleName -> text()+"/ru.html", "ru");
+                createEmptyHtml(prjFN+ui.LEBibleName -> text()+"/en.html", "en");
 
                 Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
                 Config::configuration() -> setModuleBibleShortName(ui.LEBibleShortName -> text());

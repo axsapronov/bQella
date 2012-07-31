@@ -58,11 +58,14 @@ int main( int argc, char ** argv )
         return -1;
     }
     //!+! load language based on locale on first startup or if it was not set directly
+
+    toLog(conf -> AppLogFN(), "Load: Language");
     QTranslator translator;
     if (conf -> Lang() == "Russian" or conf->Lang().isEmpty()) translator.load("bqella_ru",":lang/lang");
     if (conf -> Lang() == "Deutch") translator.load("bqella_de",":lang/lang");
     if (conf -> Lang() == "France") translator.load("bqella_fr",":lang/lang");
     a.installTranslator(&translator);
+    toLog(conf -> AppLogFN(), "Load: Language - done");
     conf -> hideSideBar( hideSidebar );
 //    qDebug() << "[10]";
     QPointer<MainWindow> mw = new MainWindow();
@@ -77,6 +80,8 @@ int main( int argc, char ** argv )
 
 //    qDebug() << "[12]";
     QStringList links = conf -> source();
+
+    toLog(conf -> AppLogFN(), "Load: Files");
     if (links.isEmpty())
     {
         //!+! or option "Remember opened files" is not set

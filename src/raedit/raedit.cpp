@@ -37,12 +37,12 @@
 static bool isAbsoluteFileName(const QString &name)
 {
     return !name.isEmpty()
-           && (name[0] == QChar('/')
-                                #if defined(Q_WS_WIN)
-               || (name[0].isLetter() && name[1] == QChar(':')) || name.startsWith(QString("\\\\"))
-                                #endif
-               || (name[0]  == QChar(':') && name[1] == QChar('/'))
-              );
+            && (name[0] == QChar('/')
+            #if defined(Q_WS_WIN)
+                || (name[0].isLetter() && name[1] == QChar(':')) || name.startsWith(QString("\\\\"))
+            #endif
+                || (name[0]  == QChar(':') && name[1] == QChar('/'))
+                );
 }
 
 //====================== class raEdit ============================
@@ -93,7 +93,7 @@ QUrl raEdit::resolveUrl(const QUrl &url) const
     if (!(currentURL.isRelative()
           || (currentURL.scheme() == QString("file")
               && !isAbsoluteFileName(currentURL.toLocalFile())))
-          || (url.hasFragment() && url.path().isEmpty())) {
+            || (url.hasFragment() && url.path().isEmpty())) {
         return currentURL.resolved(url);
     }
 
@@ -101,7 +101,7 @@ QUrl raEdit::resolveUrl(const QUrl &url) const
     // we try to resolve against the current working directory in the local
     // file system.
     QFileInfo fi(currentURL.toLocalFile());
-        //qDebug() << "opening file raEdit::resolvUrl: " << currentURL.toLocalFile();
+    //qDebug() << "opening file raEdit::resolvUrl: " << currentURL.toLocalFile();
     if (fi.exists()) {
         return QUrl::fromLocalFile(fi.absolutePath() + QDir::separator()).resolved(url);
     }
@@ -113,7 +113,7 @@ void raEdit::_q_activateAnchor(const QString &href)
 {
     if (href.isEmpty())
         return;
-/*
+    /*
 #ifndef QT_NO_CURSOR
     viewport -> setCursor(oldCursor);
 #endif
@@ -129,8 +129,8 @@ void raEdit::_q_activateAnchor(const QString &href)
 
 #ifndef QT_NO_DESKTOPSERVICES
     if (openExternalLinks
-        && url.scheme() != QString("file")
-        && url.scheme() != QString("qrc")) {
+            && url.scheme() != QString("file")
+            && url.scheme() != QString("qrc")) {
         QDesktopServices::openUrl(url);
         return;
     }
@@ -146,8 +146,8 @@ void raEdit::_q_activateAnchor(const QString &href)
 
 void raEdit::_q_highlightLink(const QString &anchor)
 {
-        //-pm- viewport -> setCursor(oldCursor);
-        qDebug() << "mouse over link";
+    //-pm- viewport -> setCursor(oldCursor);
+    qDebug() << "mouse over link";
     if (anchor.isEmpty()) {
         emit highlighted(QUrl());
         emit highlighted(QString());
@@ -162,7 +162,7 @@ void raEdit::_q_highlightLink(const QString &anchor)
 void raEdit::setSource(const QUrl &url)
 {
     textOrSourceChanged = true;
-
+    //здесь
     QString txt;
 
     bool doSetText = false;
@@ -173,22 +173,27 @@ void raEdit::setSource(const QUrl &url)
     newUrlWithoutFragment.setFragment(QString());
 
     if (url.isValid()
-         && (newUrlWithoutFragment != currentUrlWithoutFragment || forceLoadOnSourceChange)) {
+            && (newUrlWithoutFragment != currentUrlWithoutFragment || forceLoadOnSourceChange))
+    {
+//        QVariant data = loadResource(QTextDocument::UserResource, resolveUrl(url));
         QVariant data = loadResource(QTextDocument::HtmlResource, resolveUrl(url));
-        if (data.type() == QVariant::String) {
+        if (data.type() == QVariant::String)
+        {
             txt = data.toString();
-        } else if (data.type() == QVariant::ByteArray) {
+        }
+        else if (data.type() == QVariant::ByteArray)
+        {
 #ifndef QT_NO_TEXTCODEC
             QByteArray ba = data.toByteArray();
             QTextCodec *codec = Qt::codecForHtml(ba);
             txt = codec -> toUnicode(ba);
 #else
-         txt = data.toString();
+            txt = data.toString();
 #endif
         }
         if (txt.isEmpty())
             qWarning("Warning: _raEdit::setSource(): No document for %s", url.toString().toUtf8().constData());
-/* load text file
+        /* load text file
         if (isVisible()) {
             QString firstTag = txt.left(txt.indexOf(QChar('>')) + 1);
             if (firstTag.left(3) == QString("<qt") && firstTag.contains(QString("type")) && firstTag.contains(QString("detail"))) {
@@ -202,8 +207,8 @@ void raEdit::setSource(const QUrl &url)
         doSetText = true;
     }
     if (doSetText) {
-                QTextEdit::setHtml(txt);
-/* !+! for plain text mode
+        QTextEdit::setHtml(txt);
+        /* !+! for plain text mode
 qDebug() << "--modeHTML= " << modeHtml;
         if (modeHtml){
                 QTextEdit::setHtml(txt);
@@ -214,14 +219,14 @@ qDebug() << "--setPlainText";
         }*/
     }
     forceLoadOnSourceChange = false;
-/*
+    /*
     if (!url.fragment().isEmpty()) {
         scrollToAnchor(url.fragment());
     } else {
 //        hbar -> setValue(0);
 //        vbar -> setValue(0);
     }*/
-//    qDebug() << "--emit sourceChanged(url): " << url;
+    //    qDebug() << "--emit sourceChanged(url): " << url;
     emit sourceChanged(url);
 }
 
@@ -267,14 +272,14 @@ void raEdit::reload()
 //   \reimp
 void raEdit::mouseMoveEvent(QMouseEvent *e)
 {
-//qDebug() << ":: mouse move event";
-        if (e -> modifiers() && Qt::ControlModifier){
-                //!+! change cursor on hyperlink
-                QWidget::setCursor(Qt::PointingHandCursor);
-        }else
-                QWidget::setCursor(Qt::IBeamCursor);
-                        // set QObject::installEventFilter
-        QTextEdit::mouseMoveEvent(e);
+    //qDebug() << ":: mouse move event";
+    if (e -> modifiers() && Qt::ControlModifier){
+        //!+! change cursor on hyperlink
+        QWidget::setCursor(Qt::PointingHandCursor);
+    }else
+        QWidget::setCursor(Qt::IBeamCursor);
+    // set QObject::installEventFilter
+    QTextEdit::mouseMoveEvent(e);
 }
 
 void raEdit::mouseReleaseEvent(QMouseEvent *e){ QTextEdit::mouseReleaseEvent(e); }
@@ -287,8 +292,8 @@ void raEdit::keyPressEvent(QKeyEvent *ev) { QTextEdit::keyPressEvent(ev); }
 
 void raEdit::mousePressEvent(QMouseEvent *e)
 {
-        //if (e == QEvent::MouseButtonPress)...
-        QTextEdit::mousePressEvent(e);
+    //if (e == QEvent::MouseButtonPress)...
+    QTextEdit::mousePressEvent(e);
 }
 
 /*!
@@ -328,7 +333,7 @@ QVariant raEdit::loadResource(int /*type*/, const QUrl &name)
 {
     QByteArray data;
     QString fileName = findFile(resolveUrl(name));
-//    qDebug() << "filename KNJM = " << fileName;
+    //    qDebug() << "filename KNJM = " << fileName;
     QFile f(fileName);
     if (f.open(QFile::ReadWrite)) {
         data = f.readAll();

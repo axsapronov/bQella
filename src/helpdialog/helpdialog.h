@@ -100,6 +100,8 @@ signals:
 public slots:
     void initialize();	//setup connections and actions and call initTabs()
     void initTabs();	//clear all tabs
+    void startSearch();
+    void addBookmark();
     void currentTabChanged(int index);
     void locateContents(const QString &link);  //find and select contents item corresponding to link
     void insertContents();
@@ -118,7 +120,7 @@ public slots:
     QString getTest();
     QString getFileBibleqtName();
     QString getFileName(int i);
-
+    void showResultPage(QListWidgetItem *item);
     int getTopLevelItemCount();
 
     void on_BProjectAdd_clicked();
@@ -131,6 +133,17 @@ private slots:
     //	void on_listContents_itemClicked(QTreeWidgetItem* item, int column);
 
     void on_BProjectDelete_clicked();
+
+    void on_buttonAdd_clicked();
+    void on_buttonRemove_clicked();
+    void on_termsEdit_returnPressed();
+    void on_searchButton_clicked();
+    void updateSearchButton(const QString &txt);
+    void on_resultBox_itemActivated(QListWidgetItem*);
+    void toggleIndex();
+    void toggleBookmarks();
+    void toggleSearch();
+    void searchInIndex(const QString &s);
     void loadIndexFile();
     void setupFullTextIndex();
     void showTopic();
@@ -139,10 +152,13 @@ private slots:
     void setIndexingProgress(int prog);
     void showContentsItemMenu(const QPoint &pos);
     void showTreeItemMenu(const QPoint &pos);
+    void insertBookmarks();
     void processEvents();
     void loadProjectFromList(int prjIindex);
     void fillSubList();
     void cloneItem(QTreeWidgetItem *item, bool subItem);
+    void showListItemMenu(const QPoint &pos);
+    void showIndexItemMenu(const QPoint &pos);
     void cloneDone();
     void showTopic(QTreeWidgetItem *);
     void currentItemChanged(QTreeWidgetItem* curItem, QTreeWidgetItem* prevItem);
@@ -178,6 +194,7 @@ private:
     bool findItemByName(QTreeWidgetItem *i, QString &name);
     void triggerAction(QTreeWidgetItem *item, QAction *action);
 
+    void showBookmarkTopic();
 
 
 

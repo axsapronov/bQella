@@ -417,6 +417,7 @@ void MainWindow::showLink(const QString &link)
     else
     {
         qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
+        toLog(Config::configuration()->AppLogFN(), QString("Failed to open link: %1").arg(link) + "Func: MainWindow::showLink");
         QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
 }
@@ -639,7 +640,8 @@ void MainWindow::ProjectOpen()
     helpDock->autosavestart = false;
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Project"), Config::configuration() -> PrjDir(),
                                                     tr("Project bQella (*.pem)"));
-    if (!fileName.isEmpty()){
+    if (!fileName.isEmpty())
+    {
         ProjectOpen(fileName);
     }
 }
@@ -902,7 +904,8 @@ void MainWindow::createProject(ModuleProperties pr)
     Config::configuration() -> toAppLog(1, tr("Create a new project: %1", "For log").arg(pr.prjTitle));
     Config::configuration() -> toAppLog(3, tr("- project file: %1", "For log").arg(fn));
     QFile f(fn);
-    if (!f.open(QFile::WriteOnly)){
+    if (!f.open(QFile::WriteOnly))
+    {
         qDebug() << "Failed to create project: " << fn;
         statusBar() -> showMessage(tr("Failed to create project: %1").arg(fn), 7000);
         Config::configuration() -> toAppLog(1, tr("- failed", "For log"));
@@ -961,7 +964,9 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
-    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
+    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) <<  "\">" << endl;
+    ts << ind1 << ind1 << "<section title=\"" << "ru" << "\" ref=\""<< "./ru.html\"" << ">" << "</section>" << endl;
+    ts << ind1 << ind1 << "<section title=\"" << "en" << "\" ref=\""<< "./en.html\"" << ">" << "</section>" << endl;
     ts << ind1 << "</section>" << endl;
     ts << "</contents>" << endl << endl;
 

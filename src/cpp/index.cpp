@@ -176,7 +176,7 @@ QString Index::getCharsetForDocument(QFile *file)
 void Index::parseDocument( const QString &filename, int docNum )
 {
     QFile file( filename );
-    qDebug() << "opening file parseDocument: " << filename;
+//    qDebug() << "opening file parseDocument: " << filename;
     if ( !file.open(QFile::ReadOnly) ) {
         qWarning( (QString("can not open file ") + filename).toAscii().constData() );
         return;

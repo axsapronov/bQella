@@ -10,6 +10,7 @@
 # Vim
 *.*~
 *.md.*
+*.*.swp
 # Compiled Dynamic libraries
 *.so
 

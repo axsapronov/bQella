@@ -37,13 +37,15 @@ DEPENDPATH += \
     src/propertys/tableproperty \
     src/cellsplit \
     src/help \
+    src/raedit \
     src/contents/book \
     src/contents/module \
     src/tab \
     src/settings \
     src/main \
     src/doc \
-    src/export
+    src/export \
+    src/topicchooser
 
 
 INCLUDEPATH += \
@@ -64,11 +66,13 @@ INCLUDEPATH += \
     src/help \
     src/contents/book \
     src/contents/module \
+    src/raedit \
     src/tab \
     src/settings \
     src/main \
     src/doc \
-    src/export
+    src/export\
+    src/topicchooser
 
 FORMS += \
      docproperty.ui \
@@ -87,7 +91,8 @@ FORMS += \
      importdialog.ui \
      tagdialog.ui \
      importbookdialog.ui \
-     contentsbook.ui
+     contentsbook.ui \
+     topicchooser.ui
 
 SOURCES +=  \
      config.cpp \
@@ -119,7 +124,8 @@ SOURCES +=  \
      tagdialog.cpp \
      assistant.cpp \
      importbookdialog.cpp \
-     contentsbook.cpp
+     contentsbook.cpp \
+     topicchooser.cpp
 
 HEADERS += \
      docproperty.h \
@@ -150,7 +156,8 @@ HEADERS += \
      tagdialog.h \
      assistant.h \
      importbookdialog.h \
-     contentsbook.h
+     contentsbook.h \
+     topicchooser.h
 
 RESOURCES += \
     resources/resources.qrc
