@@ -225,6 +225,7 @@ private:
 
     QMenu *itemPopup;
     QMenu *itemPopupContents;
+    QMenu *itemPopupContentsFirst;
     QMenu *itemPopupSubItems;
     QMenu *itemPopupContentsChapter;
     QAction *actionItemProperties;

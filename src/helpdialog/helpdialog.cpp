@@ -379,6 +379,10 @@ void HelpDialog::initialize()
     itemPopupContents -> addAction(actionItemRemove);
     itemPopupContents -> addAction(actionItemDelete);
 
+
+    itemPopupContentsFirst = new QMenu(this);  //for Contents tab
+    itemPopupContentsFirst -> addAction(actionItemBookAdd);
+
     itemPopupContentsChapter = new QMenu(this);  //for Contents tab
     itemPopupContentsChapter -> addAction(actionOpenCurrentTab);
     itemPopupContentsChapter -> addAction(actionOpenLinkInNewWindow);
@@ -828,15 +832,17 @@ void HelpDialog::showTopic()
     }
 
     // if there is no title for the document set one to title of the item
-    QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
-    if (t.isEmpty()) {
-        if (ContCur == ContTreeView)
-            t = ui.listContents -> currentItem() -> text(0);
-        else if (ContCur == ContSubItems)
-            t = ui.TWSubItems -> currentItem() -> text(0);
-        mw -> browsers() -> currentBrowser() -> setTagTitle(t);
-        mw -> browsers() -> sourceChanged();
-    }
+    // падает из за этого блока
+//    QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
+//    if (t.isEmpty())
+//    {
+//        if (ContCur == ContTreeView)
+//            t = ui.listContents -> currentItem() -> text(0);
+//        else if (ContCur == ContSubItems)
+//            t = ui.TWSubItems -> currentItem() -> text(0);
+//        mw -> browsers() -> currentBrowser() -> setTagTitle(t);
+//        mw -> browsers() -> sourceChanged();
+//    }
 
     /*	-pm- the following is for debug
  // display item index
@@ -1115,7 +1121,8 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
     int depth = getDepthTreeWidgetItem(i);
 
-    if (depth != -1)
+//    qDebug() << " depth =" << depth;
+    if (depth == 2) // chapter level
     {
         if (ContCur == ContSubItems)
         {
@@ -1339,6 +1346,10 @@ void HelpDialog::showContentsItemMenu(const QPoint &pos)
         {
             /// if select first file, then no show content menu
             action = itemPopupContents -> exec(treeWidget -> viewport() -> mapToGlobal(pos)); //ContCur == ContTreeView
+        }
+        else
+        {
+            action = itemPopupContentsFirst -> exec(treeWidget -> viewport() -> mapToGlobal(pos)); //ContCur == ContTreeView
         }
     }
     else

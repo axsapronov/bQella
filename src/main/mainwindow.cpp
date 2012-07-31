@@ -964,7 +964,7 @@ void MainWindow::createProject(ModuleProperties pr)
     ts << "</profile>" << endl << endl;
 
     ts << "<contents>" << endl;
-    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) <<  "\">" << endl;
+    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< "./   ___Instruction"<<  "\">" << endl;
     ts << ind1 << ind1 << "<section title=\"" << "ru" << "\" ref=\""<< "./ru.html\"" << ">" << "</section>" << endl;
     ts << ind1 << ind1 << "<section title=\"" << "en" << "\" ref=\""<< "./en.html\"" << ">" << "</section>" << endl;
     ts << ind1 << "</section>" << endl;
