@@ -33,7 +33,7 @@ class AppSettings : public QDialog
 
 public:
 	AppSettings(QWidget *parent = 0);
-	
+
 signals:
 	void showContentsAV(bool b);
 	void showContentsAVHeader(bool b);
@@ -44,15 +44,11 @@ public slots:
 	void reject();
 	void apply();
 	void set();
-	
+
 private:
-	Ui::AppSettings ui; 
-	
+	Ui::AppSettings ui;
+
 private slots:
-	void chooseEditor();
-	void chooseBrowser();
-	void chooseArchiver();
-	void chooseBackupDir();
 	void showFontSettingsDialog();
 };
 #endif // __SETTINGS_H__

@@ -349,7 +349,7 @@ QString Index::getDocumentTitle( const QString &fullFileName )
         return documentTitleCache.value(fileName);
 
     QFile file( fileName );
-    qDebug() << "opening file getDocumentTitle: " << fileName;
+//    qDebug() << "opening file getDocumentTitle: " << fileName;
         if ( !file.open( QFile::ReadOnly ) ) {
         qWarning( (QString("cannot open file ") + fileName).toAscii().constData() );
         return fileName;

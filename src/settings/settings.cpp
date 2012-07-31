@@ -30,107 +30,53 @@
 
 //-------------------------------------------------
 AppSettings::AppSettings(QWidget *parent)
-     : QDialog(parent)
+    : QDialog(parent)
 {
-     ui.setupUi(this);
+    ui.setupUi(this);
 
-     ui.CBItemAutoProperties->setChecked(true);
-     ui.CBItemAutoProperties->setVisible(false);
-     connect(ui.PBExternalEditor, SIGNAL(clicked()), this, SLOT(chooseEditor()));    
-     connect(ui.PBExternalBrowser, SIGNAL(clicked()), this, SLOT(chooseBrowser()));    
-     connect(ui.PBExternalArchiver, SIGNAL(clicked()), this, SLOT(chooseArchiver()));    
-     connect(ui.PBBackupDir, SIGNAL(clicked()), this, SLOT(chooseBackupDir()));
-     connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));         
+    ui.CBItemAutoProperties->setChecked(true);
+    ui.CBItemAutoProperties->setVisible(false);
+    connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));
 }
 
 //-------------------------------------------------
 void AppSettings::reject()
 {
-	QWidget::hide();  //close dialog
+    QWidget::hide();  //close dialog
 }
 
 //-------------------------------------------------
 void AppSettings::accept()
 {
-	apply();
-	QWidget::hide();  //close dialog
+    apply();
+    QWidget::hide();  //close dialog
 }
 
 //-------------------------------------------------
 void AppSettings::apply()
 {
-	Config::configuration() -> setContentsAdditionalView(ui.CBContentsAdditionalView -> isChecked());
-	emit showContentsAV(ui.CBContentsAdditionalView -> isChecked());	
-	Config::configuration() -> setShowSubItemsTitle(ui.CBShowSubItemsTitle -> isChecked());
-	emit showContentsAVHeader(ui.CBShowSubItemsTitle -> isChecked());	
-	Config::configuration() -> setAutoCollapse(ui.CBAutoCollapse -> isChecked());
-	Config::configuration() -> setExternalEditor(ui.LEExternalEditor -> text());
-	Config::configuration() -> setExternalBrowser(ui.LEExternalBrowser -> text());
-	Config::configuration() -> setExternalArchiver(ui.LEExternalArchiver -> text());
-	Config::configuration() -> setExternalArchiverOptions(ui.LEExternalArchiverOptions -> text());
-	Config::configuration() -> setBackupDir(ui.LEBackupDir -> text());
-	Config::configuration() -> setAppLogLevel(ui.SBAppLogLevel -> value());
-	Config::configuration() -> setPrjLogLevel(ui.SBPrjLogLevel -> value());
-//	Config::configuration() -> setItemAutoProperties(ui.CBItemAutoProperties -> isChecked());
-        Config::configuration() -> setItemAutoProperties(true);
+    Config::configuration() -> setContentsAdditionalView(ui.CBContentsAdditionalView -> isChecked());
+    emit showContentsAV(ui.CBContentsAdditionalView -> isChecked());
+    Config::configuration() -> setShowSubItemsTitle(ui.CBShowSubItemsTitle -> isChecked());
+    emit showContentsAVHeader(ui.CBShowSubItemsTitle -> isChecked());
+    Config::configuration() -> setAutoCollapse(ui.CBAutoCollapse -> isChecked());
+    Config::configuration() -> setAppLogLevel(ui.SBAppLogLevel -> value());
+    Config::configuration() -> setPrjLogLevel(ui.SBPrjLogLevel -> value());
+    //	Config::configuration() -> setItemAutoProperties(ui.CBItemAutoProperties -> isChecked());
+    Config::configuration() -> setAutoNumbers(ui.cBAutoSetNumbers->isChecked());
+    Config::configuration() -> setItemAutoProperties(true);
 }
 
 //-------------------------------------------------
 void AppSettings::set()
 {
-	ui.CBContentsAdditionalView -> setChecked(Config::configuration() -> ContentsAdditionalView());
-	ui.CBShowSubItemsTitle -> setChecked(Config::configuration() -> ShowSubItemsTitle());
-	ui.CBAutoCollapse -> setChecked(Config::configuration() -> AutoCollapse());
-//	ui.CBItemAutoProperties -> setChecked(Config::configuration() -> ItemAutoProperties());
-        ui.CBItemAutoProperties -> setChecked(true);
-	ui.LEExternalEditor -> setText(Config::configuration() -> ExternalEditor());
-	ui.LEExternalBrowser -> setText(Config::configuration() -> ExternalBrowser());
-	ui.LEExternalArchiver -> setText(Config::configuration() -> ExternalArchiver());
-	ui.LEExternalArchiverOptions -> setText(Config::configuration() -> ExternalArchiverOptions());
-	ui.LEBackupDir -> setText(Config::configuration() -> BackupDir());
-	ui.SBAppLogLevel -> setValue(Config::configuration() -> AppLogLevel());
-	ui.SBPrjLogLevel -> setValue(Config::configuration() -> PrjLogLevel());
-}
-
-//-------------------------------------------------
-void AppSettings::chooseEditor()
-{
-	QString fn = QFileDialog::getOpenFileName(this, tr("Choose editor"),
-                               Config::configuration() -> AppDir(), tr("All Files (*)"));
-    if (!fn.isEmpty()){
-		ui.LEExternalEditor -> setText(fn);
-	}		
-}
-
-//-------------------------------------------------
-void AppSettings::chooseBrowser()
-{
-	QString fn = QFileDialog::getOpenFileName(this, tr("Choose browser"),
-                               Config::configuration() -> AppDir(), tr("All Files (*)"));
-    if (!fn.isEmpty()){
-		ui.LEExternalBrowser -> setText(fn);
-	}		
-}
-
-//-------------------------------------------------
-void AppSettings::chooseArchiver()
-{
-	QString fn = QFileDialog::getOpenFileName(this, tr("Choose archiver"),
-                               Config::configuration() -> AppDir(), tr("All Files (*)"));
-    if (!fn.isEmpty()){
-		ui.LEExternalArchiver -> setText(fn);
-	}		
-}
-
-//-------------------------------------------------
-void AppSettings::chooseBackupDir()
-{
-	QString dir = QFileDialog::getExistingDirectory(this, tr("Choose where to store backup archives"),
-                               Config::configuration() -> BackupDir(),
-                               QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-    if (!dir.isEmpty()){
-		ui.LEBackupDir -> setText(dir);
-	}		
+    ui.CBContentsAdditionalView -> setChecked(Config::configuration() -> ContentsAdditionalView());
+    ui.CBShowSubItemsTitle -> setChecked(Config::configuration() -> ShowSubItemsTitle());
+    ui.CBAutoCollapse -> setChecked(Config::configuration() -> AutoCollapse());
+    ui.CBItemAutoProperties -> setChecked(true);
+    ui.SBAppLogLevel -> setValue(Config::configuration() -> AppLogLevel());
+    ui.SBPrjLogLevel -> setValue(Config::configuration() -> PrjLogLevel());
+    ui.cBAutoSetNumbers -> setChecked(Config::configuration()->AutoNumbers());
 }
 
 //-------------------------------------------------
@@ -146,6 +92,6 @@ void AppSettings::showFontSettingsDialog()
     }
     config -> setFontPointSize(settings.browserFont.pointSizeF());
     config -> setFontSettings(settings);
-    
+
     emit updateApplicationFontSettings(settings);
 }

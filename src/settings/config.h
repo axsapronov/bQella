@@ -139,6 +139,8 @@ public:
     QString ContentsSortOrder()	{ return contentsSortOrder; }
     QString IndentString()	{ return "   "; }
 
+
+    bool AutoNumbers() { return autoNumbers; }
     //
     //settings modules
     QString ModuleBiblename()  { return moduleBiblename;}
@@ -173,7 +175,7 @@ public:
 //    double ModuleVersion() { return moduleVersion;}
 
 
-
+    void setAutoNumbers(bool bo)    { autoNumbers = bo; }
     void setAppDir(QString dir)		{ appDir = dir; }
     void setBackupDir(QString dir)	{ backupDir = dir; }
     void setCacheDir(QString dir)	{ cacheDir = dir; }
@@ -273,6 +275,8 @@ private:
     FontSettings m_fontSettings;
 
     //variables for global use via  Config::configuration() -> variable()
+
+    bool autoNumbers;
     QString appDir;
     QString backupDir;
     QString cacheDir;	//path for cache
