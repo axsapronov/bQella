@@ -43,6 +43,8 @@
 #include <QCloseEvent>
 #include <QDesktopServices>
 
+enum { LinkRole   = Qt::UserRole + 1000 	// reference = file name = link to source
+     };
 
 QList<MainWindow*> MainWindow::windows;
 
@@ -166,8 +168,8 @@ void MainWindow::setup()
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
     connect(ui.actionDeleteFile, SIGNAL(triggered()), helpDock, SLOT(deleteItem()));
-    connect(ui.actionExport_Module, SIGNAL(triggered()), this/*exportm*//*helpDock*/, SLOT(exportModule()));
 
+    connect(ui.actionExport_Module, SIGNAL(triggered()), this/*exportm*//*helpDock*/, SLOT(exportModule()));
 
     // Menu Import
     connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
@@ -178,9 +180,10 @@ void MainWindow::setup()
     // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
     connect(helpDock, SIGNAL(showSearchLink(QString,QStringList)), this, SLOT(showSearchLink(QString,QStringList)));
-    connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties()));
+    connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties())); // add a href
+    connect(ui.actionTagStrongNumber, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(showStrongProperties())); // strong
+    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties())); // add other html tag
 
-    connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties()));
     // contents book
     connect(ui.actionContentBookAdd, SIGNAL(triggered()), this, SLOT(contentsBookAdd()));
     connect(ui.actionContentBookDelete, SIGNAL(triggered()), this, SLOT(contentsBookDelete()));

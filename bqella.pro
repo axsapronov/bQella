@@ -23,23 +23,24 @@ DEPENDPATH += \
     src/cpp \
     src/h \
     src/ui \
-    src/helpdialog \
-    src/about \
-    src/fontdialog \
-    src/bookdialog \
-    src/finds/findandreplacedialog \
-    src/propertys/projectproperty \
-    src/propertys/itemproperty \
-    src/propertys/linkproperty \
+    src/dialogs/helpdialog \
+    src/dialogs/about \
+    src/dialogs/fontdialog \
+    src/dialogs/bookdialog \
+    src/dialogs/finds/findandreplacedialog \
+    src/properties/projectproperty \
+    src/properties/itemproperty \
+    src/properties/linkproperty \
     src/import/importdialog \
     src/import/importbookdialog \
-    src/tagdialog \
-    src/propertys/tableproperty \
-    src/cellsplit \
-    src/help \
+    src/properties/tagdialog \
+    src/table/tableproperty \
+    src/properties/strongproperty \
+    src/table/cellsplit \
+    src/dialogs/assistant \
     src/raedit \
-    src/contents/book \
-    src/contents/module \
+    src/dialogs/contents/book \
+    src/dialogs/contents/module \
     src/tab \
     src/settings \
     src/main \
@@ -49,30 +50,34 @@ DEPENDPATH += \
 
 
 INCLUDEPATH += \
-    src/h/ \
-    src/helpdialog \
-    src/about \
-    src/fontdialog \
-    src/bookdialog \
-    src/finds/findandreplacedialog \
-    src/propertys/projectproperty \
-    src/propertys/itemproperty \
-    src/propertys/linkproperty \
+    src/cpp \
+    src/h \
+    src/ui \
+    src/dialogs/helpdialog \
+    src/dialogs/about \
+    src/dialogs/fontdialog \
+    src/dialogs/bookdialog \
+    src/dialogs/finds/findandreplacedialog \
+    src/properties/projectproperty \
+    src/properties/itemproperty \
+    src/properties/linkproperty \
     src/import/importdialog \
     src/import/importbookdialog \
-    src/tagdialog \
-    src/propertys/tableproperty\
-    src/cellsplit \
-    src/help \
-    src/contents/book \
-    src/contents/module \
+    src/properties/tagdialog \
+    src/table/tableproperty \
+    src/properties/strongproperty \
+    src/table/cellsplit \
+    src/dialogs/assistant \
     src/raedit \
+    src/dialogs/contents/book \
+    src/dialogs/contents/module \
     src/tab \
     src/settings \
     src/main \
     src/doc \
-    src/export\
+    src/export \
     src/topicchooser
+
 
 FORMS += \
      docproperty.ui \
@@ -92,7 +97,8 @@ FORMS += \
      tagdialog.ui \
      importbookdialog.ui \
      contentsbook.ui \
-     topicchooser.ui
+     topicchooser.ui \
+     strongproperty.ui
 
 SOURCES +=  \
      config.cpp \
@@ -125,7 +131,8 @@ SOURCES +=  \
      assistant.cpp \
      importbookdialog.cpp \
      contentsbook.cpp \
-     topicchooser.cpp
+     topicchooser.cpp \
+     strongproperty.cpp
 
 HEADERS += \
      docproperty.h \
@@ -157,7 +164,8 @@ HEADERS += \
      assistant.h \
      importbookdialog.h \
      contentsbook.h \
-     topicchooser.h
+     topicchooser.h \
+     strongproperty.h
 
 RESOURCES += \
     resources/resources.qrc

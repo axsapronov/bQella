@@ -310,12 +310,17 @@ void HelpDialog::initialize()
     itemPopup -> addAction(actionOpenCurrentTab);
     itemPopup -> addAction(actionOpenLinkInNewWindow);
     itemPopup -> addAction(actionOpenLinkInNewTab);
-//    itemPopup -> addAction(actionOpenLinkInExtEditor);
-//    itemPopup -> addAction(actionOpenLinkInExtBrowser);
+    //    itemPopup -> addAction(actionOpenLinkInExtEditor);
+    //    itemPopup -> addAction(actionOpenLinkInExtBrowser);
 
     actionItemProperties = new QAction(this);
     actionItemProperties -> setText(tr("Item properties..."));
     actionItemProperties -> setShortcut( QKeySequence(Qt::ControlModifier + Qt::Key_Return) ); //!+! shortcuts does not trigger action, see eventFilter()
+
+
+    actionItemExportBook = new QAction(this);
+    actionItemExportBook -> setText(tr("Export book"));
+    //    actionItemBookAdd -> setShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_1));
 
     actionItemBookAdd = new QAction(this);
     actionItemBookAdd -> setText(tr("Add book"));
@@ -375,6 +380,8 @@ void HelpDialog::initialize()
     itemPopupContents -> addAction(actionItemContentsBookAdd);
     itemPopupContents -> addAction(actionItemContentsBookEdit);
     itemPopupContents -> addAction(actionItemContentsBookDelete);
+    itemPopupContents -> addSeparator();
+    itemPopupContents -> addAction(actionItemExportBook);
     itemPopupContents -> addSeparator();
     itemPopupContents -> addAction(actionItemRemove);
     itemPopupContents -> addAction(actionItemDelete);
@@ -821,7 +828,7 @@ void HelpDialog::showTopic(QTreeWidgetItem *item)
 //-------------------------------------------------
 void HelpDialog::showTopic()
 {
-   QString tabName = ui.tabWidget -> currentWidget() -> objectName();
+    QString tabName = ui.tabWidget -> currentWidget() -> objectName();
     if (tabName == QString("indexPage"))
         showIndexTopic();
     else if (tabName == QString("bookmarkPage"))
@@ -833,16 +840,16 @@ void HelpDialog::showTopic()
 
     // if there is no title for the document set one to title of the item
     // падает из за этого блока
-//    QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
-//    if (t.isEmpty())
-//    {
-//        if (ContCur == ContTreeView)
-//            t = ui.listContents -> currentItem() -> text(0);
-//        else if (ContCur == ContSubItems)
-//            t = ui.TWSubItems -> currentItem() -> text(0);
-//        mw -> browsers() -> currentBrowser() -> setTagTitle(t);
-//        mw -> browsers() -> sourceChanged();
-//    }
+    //    QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
+    //    if (t.isEmpty())
+    //    {
+    //        if (ContCur == ContTreeView)
+    //            t = ui.listContents -> currentItem() -> text(0);
+    //        else if (ContCur == ContSubItems)
+    //            t = ui.TWSubItems -> currentItem() -> text(0);
+    //        mw -> browsers() -> currentBrowser() -> setTagTitle(t);
+    //        mw -> browsers() -> sourceChanged();
+    //    }
 
     /*	-pm- the following is for debug
  // display item index
@@ -1121,7 +1128,7 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
     int depth = getDepthTreeWidgetItem(i);
 
-//    qDebug() << " depth =" << depth;
+    //    qDebug() << " depth =" << depth;
     if (depth == 2) // chapter level
     {
         if (ContCur == ContSubItems)
@@ -1391,6 +1398,11 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
         {
             newSameLevelItem = true;
             newItem();
+        }
+        else if (action == actionItemExportBook)
+        {
+            //            newSameLevelItem = true;
+            exportBook();
         }
         else if (action == actionItemBookAdd)
         {
@@ -2318,6 +2330,23 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
         }
     }
     filebook.close();
+}
+
+//-------------------------------------------------
+void HelpDialog::exportBook()
+{
+    mw->browsers() -> currentBrowser() -> fileSave(); /// save files
+
+    QString curdir = Config::configuration()->CurPrjDir() + "/";
+    exportf -> exportCreateDir(curdir); /// create export folder
+
+    QTreeWidgetItem *item = ui.listContents->currentItem();
+
+    QString numberOfBook = QString::number(ui.listContents->indexOfTopLevelItem(item)); /// number of book in listcontents
+    QString filename = unurlifyFileName(ui.listContents->currentItem()->data(0,LinkRole).toString()); /// filaname file
+    filename = curdir+"export_"+ getNameFolder(curdir) +  "/"+filename.split("/").last();  /// filename for export file
+
+    exportBibleBook(filename, numberOfBook); /// export book
 }
 
 //-------------------------------------------------

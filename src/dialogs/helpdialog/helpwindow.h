@@ -30,6 +30,7 @@
 #include "raedit.h"
 #include "itemproperty.h"
 #include "linkproperty.h"
+#include "strongproperty.h"
 #include "docproperty.h"
 #include "tableproperty.h"
 #include "cellsplit.h"
@@ -64,7 +65,7 @@ public:
 
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent *);
-    
+
     //    bool ModeSourceHTML;
 
 signals:
@@ -72,7 +73,7 @@ signals:
     void choosePDFReader();
     void insertContentsItem(QString title, QString fileName);
     void updateContentsItem(QString title, QString fileName);
-    
+
 public slots:
     void updateItem(QString full, QString shortname, int count, QString path);
     void setTagTitle(QString title);
@@ -100,6 +101,7 @@ private:
 
     MainWindow *mw;
     ItemProperties *itemprop;
+    StrongProperties *strongprop;
     LinkProperties *linkprop;
     DocProperties *docprop;
     TagDialog *tagprop;
@@ -134,7 +136,7 @@ private:
     QComboBox *comboSize;
     QToolBar *tb;
     int selCur, selStart, selEnd;
-    
+
 private slots:
     void openLinkInNewWindow();
     void openLinkInNewPage();
@@ -145,6 +147,12 @@ private slots:
     void updateLink(QString lText, QString lLocation);
     void loadNewItemFile();
     void showDocProperties();
+
+    //-------------- strong numbers --------
+    void showStrongProperties();
+    void removeStrong();
+    void updateStrong(QString lText, QString lLocation);
+
 
     //------- taken from TextEdit -------
     bool fileSaveAs();
@@ -161,7 +169,7 @@ private slots:
     void textAlignRight();
     void textAlignJustify();
 
-    void currentCharFormatChanged(const QTextCharFormat &format); 
+    void currentCharFormatChanged(const QTextCharFormat &format);
     void cursorPositionChanged();
     void clipboardDataChanged();
 

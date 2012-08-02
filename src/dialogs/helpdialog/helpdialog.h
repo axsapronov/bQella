@@ -127,6 +127,7 @@ public slots:
 
     void exportModule();
     void exportBibleBook(QString filebook, QString i);
+    void exportBook();
 
 private slots:
     void newItem();
@@ -247,6 +248,7 @@ private:
     QAction *actionItemChapterAdd;
     QAction *actionItemVerseAdd;
     QAction *actionItemBookAdd;
+    QAction *actionItemExportBook;
 
 }; //class HelpDialog
 

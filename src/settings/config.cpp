@@ -72,14 +72,14 @@ void Config::loadProject(const QString &projectFileName)
 
     if ( !(fi.exists() && fi.isFile()) ){
         qWarning( (QString("Project does not exist2: ") + prjFN).toUtf8().constData() );
-        toAppLog(2, "- project does not exist: " + prjFN); 
+        toAppLog(2, "- project does not exist: " + prjFN);
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
         prjFN = PrjDir() + "help/help.pem";
         fi.setFile(prjFN);
         qWarning( (QString("Open help project instead: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- open help project instead: " + prjFN);
-    } 
-    
+    }
+
     setCurProject(prjFN);
     setCurPrjDir(fi.absolutePath());
     DocuParser *parser = DocuParser::createParser( prjFN );
@@ -118,8 +118,8 @@ void Config::loadSettings()
     src = settings.value(QString("Source") ).toStringList();
     QStringList::iterator it = src.begin();
     for (; it != src.end(); ++it) {
-    	*it = urlifyFileName( absolutifyFileName(*it, prjDir) );
-    }    
+        *it = urlifyFileName( absolutifyFileName(*it, prjDir) );
+    }
     sideBar = settings.value(QString("SideBarPage") ).toInt();
     rebuildDocs = settings.value(QString("RebuildDocDB"), true ).toBool();
     profileFNs = settings.value(QString("Projects") ).toStringList();
@@ -146,16 +146,17 @@ void Config::loadSettings()
     setContentsAdditionalView(	settings.value(QString("ContentsAdditionalView")).toBool() );
     setShowSubItemsTitle(		settings.value(QString("ShowSubItemsTitle")).toBool() );
     setAutoCollapse(			settings.value(QString("AutoCollapse")).toBool() );
-    backupDir = settings.value(QString("BackupPath") ).toString();
-    backupDir = absolutifyFileName(backupDir, prjDir);		//absolutify path to backup dir
-    externalEditor = settings.value(QString("ExternalEditor") ).toString();
-    externalEditor = absolutifyFileName(externalEditor, prjDir); //absolutify file path to editor
-    externalBrowser = settings.value(QString("ExternalBrowser") ).toString();
-    externalBrowser = absolutifyFileName(externalBrowser, prjDir);	//absolutify file path to browser
-    externalArchiver = settings.value(QString("ExternalArchiver") ).toString();
-    externalArchiver = absolutifyFileName(externalArchiver, prjDir);	//absolutify file path to archiver
-    externalArchiverOptions = settings.value(QString("ExternalArchiverOptions") ).toString();
+//    backupDir = settings.value(QString("BackupPath") ).toString();
+//    backupDir = absolutifyFileName(backupDir, prjDir);		//absolutify path to backup dir
+//    externalEditor = settings.value(QString("ExternalEditor") ).toString();
+//    externalEditor = absolutifyFileName(externalEditor, prjDir); //absolutify file path to editor
+//    externalBrowser = settings.value(QString("ExternalBrowser") ).toString();
+//    externalBrowser = absolutifyFileName(externalBrowser, prjDir);	//absolutify file path to browser
+//    externalArchiver = settings.value(QString("ExternalArchiver") ).toString();
+//    externalArchiver = absolutifyFileName(externalArchiver, prjDir);	//absolutify file path to archiver
+//    externalArchiverOptions = settings.value(QString("ExternalArchiverOptions") ).toString();
     setItemAutoProperties(settings.value(QString("ItemAutoProperties")).toBool() );
+    setAutoNumbers(settings.value(QString("AutoNumbers")).toBool() );
 
     //settings from Signature window
     setDefaultSignatureID(		settings.value(QString("DefaultSignatureID")).toInt() );
@@ -168,7 +169,7 @@ void Config::saveSettings()
 {
     toAppLog(2, "Save application settings");
     QSettings settings(iniFile, QSettings::IniFormat);
-    
+
     //miscellaneous settings
     settings.setValue(QString("Language"), lang);
     settings.setValue(QString("Projects"), relatifyFileList(profileFNs, prjDir) );
@@ -190,21 +191,23 @@ void Config::saveSettings()
     settings.setValue(QString("BrowserWritingSystem"), m_fontSettings.browserWritingSystem);
 
     //settings from Settings window
-    settings.setValue(QString("ExternalEditor"), relatifyFileName(externalEditor, prjDir) );
-    settings.setValue(QString("ExternalBrowser"), relatifyFileName(externalBrowser, prjDir) );
-    settings.setValue(QString("ExternalArchiver"), relatifyFileName(externalArchiver, prjDir) );
-    settings.setValue(QString("ExternalArchiverOptions"), ExternalArchiverOptions());
-    settings.setValue(QString("BackupPath"), relatifyFileName(backupDir, prjDir) );
+//    settings.setValue(QString("ExternalEditor"), relatifyFileName(externalEditor, prjDir) );
+//    settings.setValue(QString("ExternalBrowser"), relatifyFileName(externalBrowser, prjDir) );
+//    settings.setValue(QString("ExternalArchiver"), relatifyFileName(externalArchiver, prjDir) );
+//    settings.setValue(QString("ExternalArchiverOptions"), ExternalArchiverOptions());
+//    settings.setValue(QString("BackupPath"), relatifyFileName(backupDir, prjDir) );
     settings.setValue(QString("ContentsAdditionalView"), contentsAdditionalView);
     settings.setValue(QString("ShowSubItemsTitle"), showSubItemsTitle);
     settings.setValue(QString("AutoCollapse"),autoCollapse);
     settings.setValue(QString("LogLevel-Application"),AppLogLevel());
     settings.setValue(QString("LogLevel-Project"),PrjLogLevel());
     settings.setValue(QString("ItemAutoProperties"),ItemAutoProperties());
-    
+    settings.setValue(QString("AutoCreateNumbers"),AutoNumbers());
+
+
     //settings from Signature window
     settings.setValue(QString("DefaultSignatureID"),DefaultSignatureID());
-    
+
     toAppLog(2, "- done");
 }//saveSettings()
 
@@ -229,7 +232,7 @@ void Config::delProject(QString prj)
         if (profileFNs[i] == prj)
             index = i;
     if (index >=0)
-    	profileFNs.removeAt(index);
+        profileFNs.removeAt(index);
 }
 
 //-------------------------------------------------
@@ -268,7 +271,7 @@ void Config::hideSideBar( bool b ) {  hideSidebar = b; }
 bool Config::sideBarHidden() const {  return hideSidebar; }
 
 //-------------------------------------------------
-QString Config::getProjectProperty(QString prop, QString prjFN) 
+QString Config::getProjectProperty(QString prop, QString prjFN)
 {
 //    qDebug() << "[19]";
     qDebug() << "Debug: _Config::getProjectProperty()" << "prjfn = " << prjFN;
@@ -276,7 +279,7 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
     if (!file.exists()) {
         qWarning( (QString("Project does not exist1: ") + prjFN).toUtf8().constData() );
         toAppLog(1, "Failed to get property for project:" + prjFN);
-        return ""; 
+        return "";
     }
     DocuParser *parser = DocuParser::createParser( prjFN );
     if (!parser) {
@@ -296,13 +299,13 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
 }
 
 //-------------------------------------------------
-void Config::setCurPrjSrc()	
+void Config::setCurPrjSrc()
 {
     curPrjSrc = CurProject();
     curPrjSrc.chop(4);
     dbName = curPrjSrc + "-sources.db";
     curPrjSrc = curPrjSrc + "-sources.xml";	// !+! for future XML import-export
-}	
+}
 
 //-------------------------------------------------
 void Config::setFontPointSize(qreal size)

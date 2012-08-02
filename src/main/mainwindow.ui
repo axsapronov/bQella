@@ -219,13 +219,6 @@
      <addaction name="actionImportHTML"/>
      <addaction name="actionImportDoc"/>
     </widget>
-    <widget class="QMenu" name="menuExport">
-     <property name="title">
-      <string>Export</string>
-     </property>
-     <addaction name="actionExport_Module"/>
-     <addaction name="actionExportBook"/>
-    </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectOpen"/>
     <addaction name="separator"/>
@@ -234,7 +227,7 @@
     <addaction name="separator"/>
     <addaction name="actionProjectProperties"/>
     <addaction name="separator"/>
-    <addaction name="menuExport"/>
+    <addaction name="actionExport_Module"/>
     <addaction name="menuImport"/>
     <addaction name="separator"/>
     <addaction name="actionAppExit"/>
@@ -809,7 +802,7 @@
   </action>
   <action name="actionExport_Module">
    <property name="text">
-    <string>Module</string>
+    <string>Export module</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>

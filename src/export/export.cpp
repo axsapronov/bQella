@@ -73,10 +73,10 @@ void Export::exportBibleqtIni(QString string, QString count)
         }
     else
         {
-            QString htmlfilter = "<br> <pre> </pre>"
-                    " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
-                    " <em> </em> <table </table>"
-                    " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
+//            QString htmlfilter = "<br> <pre> </pre>"
+//                    " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
+//                    " <em> </em> <table </table>"
+//                    " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
             // сделать QStringList?
             QString stru ="";
             stru.append(tr("\\\\ Этот модуль создан в программе bQella."
