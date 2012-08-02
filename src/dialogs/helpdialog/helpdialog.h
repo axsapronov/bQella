@@ -129,6 +129,8 @@ public slots:
     void exportBibleBook(QString filebook, QString i);
     void exportBook();
 
+    QString getContents(QTreeWidgetItem *item);
+
 private slots:
     void newItem();
     //	void on_listContents_itemClicked(QTreeWidgetItem* item, int column);

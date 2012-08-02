@@ -1429,7 +1429,7 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
         }
         else if (action == actionItemContentsBookAdd) //
         {
-            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
             //            QString namebook = ui.listContents->currentItem()->text(0);
             //            QString chapternumber = QString::number(ui.listContents->currentItem()->childCount());
             //            QString filecontents = QString(filebook).replace(".htm", "_contents.htm");
@@ -1445,14 +1445,13 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
             //            contentbook->setProperty(filebook, namebook,
             //                                     chapternumber, filecontents, list);
             //            contentbook->show();
-
             contentbook->createContents(filebook);
         }
         else if (action == actionItemContentsBookEdit) //
         {
-            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
 
-            if (getParamBook(filebook, "Contents") != "yes")
+            if (getParamBook(filebook, "Content") != "yes")
             {
                 contentbook->createContents(filebook);
             }
@@ -2320,6 +2319,10 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
     {
         QTextStream ts(&filebook);
         ts.setCodec(codec);
+
+//        ts << getContents(ui.listContents -> topLevelItem(i.toInt()));
+//        qDebug() << getContents(ui.listContents -> topLevelItem(i.toInt()));
+
         QString str;
         for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
         {
@@ -2348,7 +2351,28 @@ void HelpDialog::exportBook()
 
     exportBibleBook(filename, numberOfBook); /// export book
 }
+//---------------------------------------------------
+QString HelpDialog::getContents(QTreeWidgetItem *item)
+{
+    QString filebook = unurlifyFileName(item->data(0, LinkRole).toString());
+    qDebug() << " getParamBook(filebook " << getParamBook(filebook, "Content");
+    if (getParamBook(filebook, "Content") != "no")
+    {
+        QString str = "<a href=\"test\"> test </a>";
+        str.append("\n<ul>");
+        for (int i = 0; i < item->childCount(); i++)
+        {
+            str.append("\n\t<li><a href\"#"+QString::number(i)+
+                       "\">"+"chapter " + QString::number(i) +
+                       "</a></li>");
+        }
 
+        str.append("\n</ul>");
+        return str;
+    }
+    return "";
+
+}
 //-------------------------------------------------
 void HelpDialog::addBookmark()
 {
