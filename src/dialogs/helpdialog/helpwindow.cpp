@@ -393,6 +393,21 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
         raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
     }
 }
+//------------------------------------------------
+void HelpWindow::addBrTag()
+{
+    QTextCursor cursor = raEdit::textCursor();
+    selStart = cursor.selectionStart();
+    selEnd = cursor.selectionEnd();
+    selCur = cursor.position();
+    QString s = "<br>";
+    QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
+    cursor.setPosition(selStart, QTextCursor::MoveAnchor);
+    cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
+    cursor.removeSelectedText();
+    cursor.insertFragment(fragment);
+    raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+}
 
 
 //-------------------------------------------------

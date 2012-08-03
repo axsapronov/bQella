@@ -144,6 +144,7 @@ private slots:
     void showTagProperties();
     void addTag(QString tag);
     void removeLink();
+    void addBrTag();
     void updateLink(QString lText, QString lLocation);
     void loadNewItemFile();
     void showDocProperties();

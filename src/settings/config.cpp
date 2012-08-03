@@ -275,9 +275,11 @@ bool Config::sideBarHidden() const {  return hideSidebar; }
 QString Config::getProjectProperty(QString prop, QString prjFN)
 {
 //    qDebug() << "[19]";
-    qDebug() << "Debug: _Config::getProjectProperty()" << "prjfn = " << prjFN;
+//    qDebug() << "Debug: _Config::getProjectProperty()" << "prjfn = " << prjFN;
+
     QFile file(prjFN);
-    if (!file.exists()) {
+    if (!file.exists())
+    {
         qWarning( (QString("Project does not exist1: ") + prjFN).toUtf8().constData() );
         toAppLog(1, "Failed to get property for project:" + prjFN);
         return "";
