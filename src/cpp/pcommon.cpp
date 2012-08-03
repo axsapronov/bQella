@@ -1483,12 +1483,12 @@ QString checkProcentRol(QString str, QString out, int procent)
             }
         }
         //        qDebug() << "role = "<< int(double(pr/listup.size())*100) << " procent = " << procent;
-        double test = double(pr) / double(listup.size()) * 100;
+        double procentvalue = double(pr) / double(listup.size()) * 100;
         if ( pr != 0 )
         {
             //             qDebug() << " role = " << pr << " procent = " << procent << " lastyp.size = " << listup.size() << " testprocent = " << test;
         }
-        if (test >= procent )
+        if (procentvalue >= procent )
         {
             return QString::number(j+1);
         }

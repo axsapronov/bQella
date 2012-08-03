@@ -125,19 +125,6 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     win -> setSearchPaths(Config::configuration() -> mimePaths());
     ui.tab -> addTab(win, tr("..."));
 
-
-//    QWidget *test = new QWidget();
-//    QVBoxLayout *mainLayout = new QVBoxLayout;
-//! [2] //! [3]
-//    mainLayout->setMenuBar(menuBar);
-//! [3] //! [4]
-//    mainLayout->addWidget(win);
-//! [4] //! [5]
-//    test->setLayout(mainLayout);
-
-
-//    ui.tab->addTab(test, tr("test"));
-
     connect(win, SIGNAL(highlighted(QString)),  (const QObject*) (mainWin -> statusBar()), SLOT(showMessage(QString)));
     //connect(win, SIGNAL(backwardAvailable(bool)),  mainWin, SLOT(backwardAvailable(bool)));
     //connect(win, SIGNAL(forwardAvailable(bool)),   mainWin, SLOT(forwardAvailable(bool)));

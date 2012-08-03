@@ -156,7 +156,8 @@ void Config::loadSettings()
 //    externalArchiver = absolutifyFileName(externalArchiver, prjDir);	//absolutify file path to archiver
 //    externalArchiverOptions = settings.value(QString("ExternalArchiverOptions") ).toString();
     setItemAutoProperties(settings.value(QString("ItemAutoProperties")).toBool() );
-    setAutoNumbers(settings.value(QString("AutoNumbers")).toBool() );
+    setAutoNumbers(			settings.value(QString("AutoNumbers")).toBool() );
+
 
     //settings from Signature window
     setDefaultSignatureID(		settings.value(QString("DefaultSignatureID")).toInt() );
@@ -202,7 +203,7 @@ void Config::saveSettings()
     settings.setValue(QString("LogLevel-Application"),AppLogLevel());
     settings.setValue(QString("LogLevel-Project"),PrjLogLevel());
     settings.setValue(QString("ItemAutoProperties"),ItemAutoProperties());
-    settings.setValue(QString("AutoCreateNumbers"),AutoNumbers());
+    settings.setValue(QString("AutoNumbers"),AutoNumbers());
 
 
     //settings from Signature window

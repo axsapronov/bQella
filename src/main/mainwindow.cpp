@@ -1033,7 +1033,6 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     QString version;
     version.setNum(pr.moduleBVersion);
     //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "version(str) = " << version << "version(double) = " << pr.moduleBVersion << "bibletype = " << pr.moduleType;
-    //    qDebug() << "Debug: _MainWindow::updateProjectProperties:" << "path = " << fn << " test = " << Config::configuration()->AppDir()+fn;
     Config::configuration() -> profile() -> addProperty("version", version);
 
 

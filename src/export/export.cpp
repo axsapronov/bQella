@@ -139,7 +139,6 @@ void Export::exportBibleqtIni(QString string, QString count)
                     .arg(Config::configuration() -> profile() -> props["desireduifont"]) /*23*/
                     .arg(Config::configuration() -> profile() -> props["htmlfilter"]));
         //                .arg(htmlfilter));
-        //         qDebug() << "test = " << Config::configuration() -> profile() -> props["biblename"];
         stru.replace("none", "");
 
         QTextStream ts(&file);

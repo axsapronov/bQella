@@ -1140,17 +1140,10 @@ void HelpDialog::showContentsTopic() //show topic on click in contens
 
         QString fn = unurlifyFileName(i -> data(0, LinkRole).toString());
         QFileInfo fi(fn);
-
-        //    qDebug() << " ____ fn === " << fn << "test = " << test2 << "i =" << i;
-
         if (fi.exists() && fi.isFile())
         {
-            //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "opening file: " << fn ;
-            //        qDebug() << "Debug: _HelpDialog::showContentsTopic()" << "link = " << i -> data(0, LinkRole).toString();
-            //emit showLink(i -> data(0, LinkRole).toString());
             if (depth > 1)
                 emit showLink("file:"+fn);  //  если не глава, то не показываем
-            //        autosavestart = true;
         }
         else
         {

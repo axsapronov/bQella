@@ -377,10 +377,12 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
 {
     QTextCursor cursor = raEdit::textCursor();
     QString s =	lText;
-    qDebug() << "test = " ;
-    if (lLocation.isEmpty()){
+    if (lLocation.isEmpty())
+    {
         removeStrong();
-    }else{
+    }
+    else
+    {
         s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
 //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
