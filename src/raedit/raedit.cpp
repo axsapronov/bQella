@@ -288,7 +288,16 @@ void raEdit::focusOutEvent(QFocusEvent *ev) { QTextEdit::focusOutEvent(ev); }
 
 bool raEdit::event(QEvent *e) { return QTextEdit::event(e); }
 
-void raEdit::keyPressEvent(QKeyEvent *ev) { QTextEdit::keyPressEvent(ev); }
+void raEdit::keyPressEvent(QKeyEvent *ev)
+{
+    QTextEdit::keyPressEvent(ev);
+
+//    if (ev->key() == Qt::Key_Return)
+//    {
+//        qDebug() << "ENTER PRESS";
+//        QTextEdit::append("LOL");
+//    }
+}
 
 void raEdit::mousePressEvent(QMouseEvent *e)
 {

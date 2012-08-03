@@ -1008,8 +1008,10 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
     QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
+    int number = 0;
     for (int i = 0; i < strlist.size(); i++)
     {
+
         str = strlist.at(i);
 
         // title and Chapter replace
@@ -1040,38 +1042,39 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
         str = getParseTagSpan(str, "font-weight:600;", "<strong>");
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
         str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
-        //        qDebug() << "Debug: getHtmlCoolCode" << " str = " << str;
 
         str.replace(rxp, "?p_.")
                 .remove("</p>")
-
                 .remove(rxi);
 
-        //            qDebug() << "\nstr = " << str;
         str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
         str.remove(rx)
                 .remove("")
                 .remove("\n");
         str.remove("Новый пункт")
-                .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
+                .remove("New item"); /// от куда эти хери вылезли? (к чему вообще тайтлы файлов)
         str.replace("?p_.PathName","\nPathName")
                 .replace("PathName", "\n\nPathName")
                 .replace("FullName", "\nFullName")
                 .replace("ShortName", "\nShortName")
                 .replace("ChapterQty", "\nChapterQty");
 
-        str = editStringList(str, tags, false); // возвращаем нужные теги
+        str = editStringList(str, tags, false); /// возвращаем нужные теги
         str.remove ("<span>>")
                 .remove ("</span>");
 
+
         if (!str.isEmpty())
         {
+            if (Config::configuration()->AutoNumbers())
+            {
+                /// create autonumbers
+                str.replace("<p>", QString("<p>%1 ").arg(number));
+                number++;
+            }
             teststr.append(str);
         }
     }
-
-    //    qDebug() << "\n\nDebug: _getHtmlCoolCode" << " teststr = " << teststr;
-
     return teststr;
 }
 //-----------------------------------------------------
