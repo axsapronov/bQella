@@ -820,6 +820,11 @@ section #title .credits.right {
   float: right;
 }
 
+section #title .credits.center {
+  font-size: 8px;
+  float: right;
+}
+
 @media print, screen and (max-width: 720px) {
   #title .credits {
     display: block;
