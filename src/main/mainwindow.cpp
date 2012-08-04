@@ -56,7 +56,7 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 MainWindow::MainWindow():
     aboutd(new AboutDialog(this))
 {
-    //    qDebug() << "[9]";
+//    qDebug() << "[9]";
     setUnifiedTitleAndToolBarOnMac(true);
     ui.setupUi(this);
 
@@ -72,6 +72,7 @@ MainWindow::MainWindow():
 
     windows.append(this);
     tabs = new TabbedBrowser(this);
+//    tabs->init();
     connect(tabs, SIGNAL(tabCountChanged(int)), this, SLOT(updateTabActions(int)));
     setCentralWidget(tabs);
 
@@ -85,6 +86,7 @@ MainWindow::MainWindow():
     dw -> setObjectName(QString("sidebar"));
 
     helpDock = new HelpDialog(dw, this);
+//    helpDock->initialize();
     dw -> setWidget(helpDock);
     dw->setMaximumWidth (250);
     addDockWidget(Qt::LeftDockWidgetArea, dw);
@@ -126,6 +128,8 @@ MainWindow::MainWindow():
     //         importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 //    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
     //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+
+
     this->showMaximized ();
 }
 
@@ -139,14 +143,14 @@ MainWindow::~MainWindow()
 //-------------------------------------------------
 void MainWindow::setup()
 {
-    //    qDebug() << "[7]";
+//    qDebug() << "[7]";
     if(setupCompleted)
         return;
 
     qApp -> setOverrideCursor(QCursor(Qt::WaitCursor));
     statusBar() -> showMessage(tr("Initializing %1...").arg(GL_PROG_NAME));
     helpDock -> initialize();
-    //    qDebug() << "[14]";
+//    qDebug() << "[14]";
 
     // Menu Project
     connect(ui.actionProjectNew, SIGNAL(triggered()), this, SLOT(ProjectNew()));
@@ -265,7 +269,7 @@ void MainWindow::setup()
 
     // set the current selected item in the treeview
 
-    //    qDebug() << "[31]";
+//    qDebug() << "[31]";
     helpDialog() -> locateContents(tabs -> currentBrowser() -> source().toString());
     connect(tabs, SIGNAL(browserUrlChanged(QString)), helpDock, SLOT(locateContents(QString)));
     projectModified(false);
@@ -662,7 +666,7 @@ void MainWindow::ProjectOpen(QString fileName)
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
-        //        qDebug() << "[5]";
+        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
         Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
         showLink(urlifyFileName(Config::configuration() -> CurFile()));

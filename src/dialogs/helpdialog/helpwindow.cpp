@@ -114,7 +114,7 @@ void HelpWindow::setSource(const QUrl &name)
 {
     // qDebug() << "[8]";
     if (name.isValid()) {
-        //        qDebug() << "[32]";
+//        qDebug() << "[32]";
         // pass URL to OS
         if (name.scheme() == QString("http")
                 || name.scheme() == QString("ftp")
@@ -164,16 +164,16 @@ void HelpWindow::setSource(const QUrl &name)
         }
     }
     //display error
-    //    qDebug() << "[43]";
+//    qDebug() << "[43]";
     mw -> statusBar() -> showMessage(tr("Failed to open link: '%1'").arg(name.toString()), 5000);
-    //    qDebug() << "[44]";
+//    qDebug() << "[44]";
     raEdit::setSource( Config::configuration() -> ErrPage() );
-    //    qDebug() << "[45]";
+//    qDebug() << "[45]";
     //    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
     setHtml(tr("").arg(name.toString()));
-    //    qDebug() << "[46]";
+//    qDebug() << "[46]";
     mw -> browsers() -> updateTitle(tr("Error..."));
-    //    qDebug() << "[47]";
+//    qDebug() << "[47]";
 }
 
 //-------------------------------------------------

@@ -274,7 +274,7 @@ bool Config::sideBarHidden() const {  return hideSidebar; }
 //-------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN)
 {
-//    qDebug() << "[19]";
+//qDebug() << "[19]";
 //    qDebug() << "Debug: _Config::getProjectProperty()" << "prjfn = " << prjFN;
 
     QFile file(prjFN);

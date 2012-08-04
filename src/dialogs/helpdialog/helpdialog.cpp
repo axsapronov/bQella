@@ -35,6 +35,8 @@
 #include "bookadddialog.h"
 #include "contentsbook.h"
 
+
+//#include <QtConcurrentRun>
 #include <QMessageBox>
 #include <QMoveEvent>
 #include <QStatusBar>
@@ -250,7 +252,7 @@ HelpDialog::HelpDialog(QWidget *parent, MainWindow *h)
 //-------------------------------------------------
 void HelpDialog::initialize()
 {
-    //    qDebug() << "[15]";
+//    qDebug() << "[15]";
     connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
     ui.tabWidget -> setElideMode(Qt::ElideNone);	//show tab titles, do not elide them by placing "..."
     ui.tabWidget -> removeTab(1); //hide Index tab
@@ -418,7 +420,7 @@ void HelpDialog::initialize()
     for (; it != sl.end(); ++it)
     {
 
-        //        qDebug() << "[18]";
+//        qDebug() << "[18]";
         title = Config::configuration() -> getProjectProperty("title", *it);
         if (!title.isEmpty())
         {
@@ -428,7 +430,7 @@ void HelpDialog::initialize()
             ui.CBProjects -> setItemData(0, *it, LinkRole);
         }
     }
-    //    qDebug() << "[16]";
+//    qDebug() << "[16]";
 
     int ind = sl.indexOf(Config::configuration() -> CurProject());	//!+! stores index in unsorted list
     ui.CBProjects -> setCurrentIndex(ind);
@@ -440,7 +442,7 @@ void HelpDialog::initialize()
     enableProjectButtons();
     newSameLevelItem = false;	// This should be set in create-item functions. Init here just in case
 
-    //    qDebug() << "[17]";
+//    qDebug() << "[17]";
     initTabs();
 
     ui.CBProjects ->setCurrentIndex(0);
@@ -452,7 +454,7 @@ void HelpDialog::initTabs()
 {
     contentList.clear();
 
-    //    qDebug() << "[22]";
+//    qDebug() << "[22]";
     initDoneMsgShown = false;
     fullTextIndex = 0;
     indexDone = false;
@@ -515,7 +517,7 @@ void HelpDialog::timerEvent(QTimerEvent *e)
 //-------------------------------------------------
 void HelpDialog::loadIndexFile()
 {
-    //    qDebug() << "[2]";
+//    qDebug() << "[2]";
     if (indexDone)
         return;
 
@@ -671,7 +673,7 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
     if (titleMapDone)
         return;
 
-    //    qDebug() << "[23]";
+//    qDebug() << "[23]";
     bool needRebuild = false;
     if (Config::configuration() -> profileName() == QString("default")) {
         const QStringList docuFiles = Config::configuration() -> docFiles();
@@ -706,12 +708,12 @@ void HelpDialog::setupTitleMap() //?-? check this procedure, may be remove some 
 //-------------------------------------------------
 void HelpDialog::getAllContents()
 {
-    //    qDebug() << "[24]";
+//    qDebug() << "[24]";
     QFile contentFile(Config::configuration() -> profileName());
     contentList.clear();
     if (!contentFile.open(QFile::ReadOnly))
     {
-        //        qDebug() << "[25]";
+//        qDebug() << "[25]";
         buildContentDict();
         return;
     }
@@ -721,7 +723,7 @@ void HelpDialog::getAllContents()
     ds >> fileAges;
     if (fileAges != getFileAges())
     {
-        //        qDebug() << "[26]";
+//        qDebug() << "[26]";
         contentFile.close();
         removeOldCacheFiles(true);
         buildContentDict();
@@ -731,7 +733,7 @@ void HelpDialog::getAllContents()
     QList<ContentItem> lst;
     while (!ds.atEnd())
     {
-        //        qDebug() << "[27]";
+//        qDebug() << "[27]";
         ds >> key;
         ds >> lst;
         //contentList += qMakePair(key, QList<ContentItem>(lst));
@@ -744,13 +746,13 @@ void HelpDialog::getAllContents()
 //-------------------------------------------------
 void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes (TreeWidgetItems)
 {
-    //    qDebug() << "[28]";
+//    qDebug() << "[28]";
     QStringList docuFiles = Config::configuration() -> docFiles();
 
     quint32 fileAges = 0;
     for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it)
     {
-        //        qDebug() << "[29]";
+//        qDebug() << "[29]";
         QFile file(*it);
         //        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pem file. Should we remove 'for' cycle and docuFiles
 
@@ -784,7 +786,7 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
     QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName());
     if (contentOut.open(QFile::WriteOnly))
     {
-        //        qDebug() << "[30]";
+//        qDebug() << "[30]";
         QDataStream s(&contentOut);
         s << fileAges;
         for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
@@ -811,7 +813,7 @@ void HelpDialog::currentTabChanged(int index)
 //-------------------------------------------------
 void HelpDialog::showInitDoneMessage()
 {
-    //    qDebug() << "[1]";
+//    qDebug() << "[1]";
     if (initDoneMsgShown)
         return;
     initDoneMsgShown = true;
@@ -1060,7 +1062,7 @@ void HelpDialog::store(QTreeWidget *tw, QTextStream &ts)
 //-------------------------------------------------
 void HelpDialog::insertContents()
 {
-    //    qDebug() << "[3]";
+//    qDebug() << "[3]-YAS";
     int int64 = 64;    // ? Why 64? Maximum depth of tree?
     QTreeWidgetItem *rootEntry;
     QTreeWidgetItem *childEntry;
@@ -1069,6 +1071,7 @@ void HelpDialog::insertContents()
     int depth = 0;
     QTreeWidgetItem *lastItem[int64];    // ? Why 64? Maximum depth of tree?
 
+//    qDebug() << "[104]";
     if (contentsInserted)
         return;
     if (contentList.isEmpty())
@@ -1082,8 +1085,11 @@ void HelpDialog::insertContents()
     for (int j = 0; j < int64; ++j)
         lastItem[j] = 0;
 
+//    qDebug() << "[101]\n=============";
     for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it)
     {
+        //        qDebug() << "[102]";
+        //        qDebug() << " depth = " << item.depth;
         item = *it;
         if (item.depth == 0)
         {
@@ -1095,6 +1101,7 @@ void HelpDialog::insertContents()
         }
         else
         {
+            //            qDebug() << "[103]";
             if (item.depth == depth)
             {
                 childEntry = new QTreeWidgetItem(stack.top(), lastItem[ depth ]);
@@ -1116,7 +1123,10 @@ void HelpDialog::insertContents()
         }
         //processEvents(); // ? why do we need it ?
     }
+
     setCursor(Qt::ArrowCursor);
+
+//    qDebug() << "\n==========\n[100]";
     showInitDoneMessage();
 }
 
@@ -1185,10 +1195,15 @@ QTreeWidgetItem * HelpDialog::locateLink(QTreeWidgetItem *item, const QString &l
 //-------------------------------------------------
 void HelpDialog::locateContents(const QString &link)
 {
-    //    qDebug() << "[6]";
+//    qDebug() << "[6]";
     //ensure the TOC is filled
     if (!contentsInserted)
+    {
         insertContents();
+//        QFuture<void> f1 = QtConcurrent::run(this,
+//                                             &HelpDialog::insertContents);
+//        f1.waitForFinished();
+    }
 #ifdef Q_OS_WIN
     Qt::CaseSensitivity checkCase = Qt::CaseInsensitive;
 #else
@@ -1196,26 +1211,26 @@ void HelpDialog::locateContents(const QString &link)
 #endif
     QString findLink(link);
 
-    //    qDebug() << "[50]";
+//    qDebug() << "[50]";
     //Installations on a windows local drive will give the 'link' as <file:///C:/xxx>
     //and the contents in the TOC will be <file:C:/xxx>.
     //But on others the 'link' of format <file:///root/xxx>
     //and the contents in the TOC will be <file:/root/xxx>.
     if (findLink.contains(QString("file:///")))
     {
-        //        qDebug() << "[51]";
+//        qDebug() << "[51]";
         if (findLink[9] == QChar(':')) //on windows drives
             findLink.replace(0, 8, QString("file:"));
         else
             findLink.replace(0, 8, QString("file:/"));
     }
 
-    //    qDebug() << "[52]";
+//    qDebug() << "[52]";
     bool topLevel = false;
     QTreeWidgetItem *item = 0;
     int totalItems = ui.listContents -> topLevelItemCount();
 
-    //    qDebug() << "[53]";
+//    qDebug() << "[53]";
     for (int i = 0; i < totalItems; i++ ) {
         // first see if we are one of the top level items
         item = (QTreeWidgetItem*)ui.listContents -> topLevelItem(i);
@@ -1225,7 +1240,7 @@ void HelpDialog::locateContents(const QString &link)
         }
     }
 
-    //    qDebug() << "[54]";
+//    qDebug() << "[54]";
     if (!topLevel) {
         // now try to find it in the sublevel items
         for (int n = 0; n < totalItems; ++n) {
@@ -1235,14 +1250,14 @@ void HelpDialog::locateContents(const QString &link)
                 break;
         }
     }
-    //    qDebug() << "[55]";
+//    qDebug() << "[55]";
 
     //remove the old selection
     QList<QTreeWidgetItem *> selected = ui.listContents -> selectedItems();
     foreach(QTreeWidgetItem *sel, selected)
         ui.listContents -> setItemSelected(sel, false);
 
-    //    qDebug() << "[56]";
+//    qDebug() << "[56]";
     //set the TOC item and show
     ui.listContents -> setCurrentItem(item);
     ui.listContents -> setItemSelected(item, true);
@@ -1265,7 +1280,7 @@ void HelpDialog::setupFullTextIndex()
     if (fullTextIndex)
         return;
 
-    //    qDebug() << "[4]";
+    qDebug() << "[4]";
     QString pname = Config::configuration() -> profileName();
     //fullTextIndex = new Index(QStringList(), QDir::homePath()); // ### Is this correct ?
     fullTextIndex = new Index(QStringList(), Config::configuration() -> CacheDir());
@@ -2000,7 +2015,7 @@ void HelpDialog::loadProjectFromList(int prjIndex)
 //-------------------------------------------------
 void HelpDialog::enableProjectButtons()
 {
-    //    qDebug() << "[21]";
+//    qDebug() << "[21]";
     int i;
     int n = ui.CBProjects -> count();
     int ind = -1;

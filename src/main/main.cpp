@@ -42,7 +42,7 @@ int main( int argc, char ** argv )
     Config *conf = new Config();
     conf -> setAppDir(QDir::currentPath() + "/");
 //    conf -> setCacheDir(conf -> AppDir() + "cache/");
-    conf -> setImgDir(conf -> AppDir() + "images/");
+//    conf -> setImgDir(conf -> AppDir() + "images/");
     conf -> setPrjDir(conf -> AppDir() + "projects/");
     conf -> setIniFile(conf -> AppDir() + "project.ini");
     conf -> setErrPage(conf -> AppDir() + "last-error.html");
@@ -52,7 +52,8 @@ int main( int argc, char ** argv )
     conf -> loadSettings();
     conf -> loadProject(conf -> CurProject());
 
-    if (!conf) {
+    if (!conf)
+    {
         fprintf( stderr, "Profile '%s' does not exist!\n", conf -> CurProject().toUtf8().constData() );
         fflush( stderr );
         return -1;
@@ -67,10 +68,10 @@ int main( int argc, char ** argv )
     a.installTranslator(&translator);
     toLog(conf -> AppLogFN(), "Load: Language - done");
     conf -> hideSideBar( hideSidebar );
-//    qDebug() << "[10]";
+//qDebug() << "[10]";
     QPointer<MainWindow> mw = new MainWindow();
 
-//    qDebug() << "[11]";
+//qDebug() << "[11]";
     FontSettings settings = conf -> fontSettings();
     if (mw -> font() != settings.windowFont)
         a.setFont(settings.windowFont, "QWidget");
@@ -78,7 +79,7 @@ int main( int argc, char ** argv )
     mw -> show();
 
 
-//    qDebug() << "[12]";
+//qDebug() << "[12]";
     QStringList links = conf -> source();
 
     toLog(conf -> AppLogFN(), "Load: Files");
@@ -88,7 +89,8 @@ int main( int argc, char ** argv )
         mw -> showLink( urlifyFileName(conf -> CurFile()) );
     }
     else
-    {//        qDebug() << "[13]";
+    {
+//        qDebug() << "[13]";
         mw -> showLinks( links );
     }
     a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
