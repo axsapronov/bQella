@@ -146,7 +146,7 @@ void ProjectProperties::accept()
         if (!er)
         {
             /// create first files
-            createEmptyHtml(prjFN + pathOfBibleName+"/"+"   ___Instruction", "   ___Instruction" );
+            createEmptyHtml(prjFN + pathOfBibleName + "/" + "   ___Instruction", "   ___Instruction" );
             createEmptyHtml(prjFN + pathOfBibleName + "/ru.html", "ru");
             createEmptyHtml(prjFN + pathOfBibleName + "/en.html", "en");
 

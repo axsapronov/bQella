@@ -391,6 +391,9 @@ void Import::importProjectFile()
     ts.setCodec("UTF-8");
     ts << "<pemproject version=\"1.0\">" << endl << endl;
 
+    createEmptyHtml(path + "/ru.html", "ru");
+    createEmptyHtml(path + "/en.html", "en");
+
     QString version;
     version.setNum(pr.moduleBVersion);
 
@@ -424,10 +427,13 @@ void Import::importProjectFile()
     ts << ind1 << "<property name=\"usechapterhead\">" << Qt::escape(BooltoQString(pr.useChapterHead)) << "</property>" << endl;
     ts << "</profile>" << endl << endl;
     ts << "<contents>" << endl;
-    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< Qt::escape(spFN) << "\" icon=\"\">" << endl;
+    ts << ind1 << "<section title=\"" << Qt::escape(spT) << "\" ref=\""<< "./   ___Instruction"<<  "\">" << endl;
+    ts << ind1 << ind1 << "<section title=\"" << "ru" << "\" ref=\""<< "./ru.html\"" << ">" << "</section>" << endl;
+    ts << ind1 << ind1 << "<section title=\"" << "en" << "\" ref=\""<< "./en.html\"" << ">" << "</section>" << endl;
     ts << ind1 << "</section>" << endl;
 
     f.close();
+
 
     Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
     Config::configuration() -> toAppLog(1, tr("- done", "For log"));
@@ -436,7 +442,7 @@ void Import::importProjectFile()
 void Import::createImportFolder(QString path)
 {
     QDir dir(path);
-    qDebug() << " path = " << path;
+//    qDebug() << " path = " << path;
     if (!QDir(QString(path)).exists())
     {
         dir.mkdir(QString(path));
@@ -597,7 +603,7 @@ QString Import::getPrjFN()
 //----------------------------------------------------
 QString Import::getStartPage()
 {
-    return QString(Config::configuration()->CurPrjDir()+"/   ___Instruction");
+    return QString(Config::configuration()->CurPrjDir()+"/ru.html");
 }
 //----------------------------------------------------
 

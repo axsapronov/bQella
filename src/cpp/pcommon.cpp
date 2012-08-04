@@ -1279,13 +1279,13 @@ QString miniparserini(QString str, QString po)
         str.remove(po);
         if (po == "BibleName = ")
         {
-            str.replace(" ", "_");
+//            str.replace(" ", "_");
             //                    .remove(str.length()-1, 1);
         }
-
         if (po != "ShortName = " and
                 po != "FullName = " and
-                po != "ChapterSign = ")
+                po != "ChapterSign = " and
+                po != "BibleName = ")
         {
             str.remove(" \0");
         }
@@ -1303,8 +1303,7 @@ QString miniparserini(QString str, QString po)
             return "none";
         }
         str.remove("\n");
-
-        //        qDebug() << "__str = " << str;
+//                qDebug() << "__str = " << str;
         return str;
     }
     return "";

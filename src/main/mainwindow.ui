@@ -153,16 +153,7 @@
      <addaction name="actionEditFindNext"/>
      <addaction name="actionEditFindPrev"/>
     </widget>
-    <widget class="QMenu" name="menuContent">
-     <property name="title">
-      <string>Content</string>
-     </property>
-     <addaction name="actionContentBookAdd"/>
-     <addaction name="actionContentBookEdit"/>
-     <addaction name="actionContentBookDelete"/>
-    </widget>
     <addaction name="menuTable"/>
-    <addaction name="menuContent"/>
     <addaction name="separator"/>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
@@ -1025,11 +1016,17 @@
    </property>
   </action>
   <action name="actionImportHTML">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>HTML</string>
    </property>
   </action>
   <action name="actionImportDoc">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Doc</string>
    </property>
