@@ -34,6 +34,7 @@ private slots:
 
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
+    void setStrongInfo();
 
 private:
     Ui::StrongProperties *ui;

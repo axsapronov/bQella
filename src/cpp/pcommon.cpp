@@ -1054,7 +1054,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
                     && createcontent)
             {
                 str.replace("</h4>","</a></h4>")
-                       .replace("<h4>","<h4>"+QString("<a name=\"chapter"+inumber + "\">"));
+                        .replace("<h4>","<h4>"+QString("<a name=\"chapter"+inumber + "\">"));
             }
 
             if (Config::configuration()->AutoNumbers())
@@ -1588,4 +1588,62 @@ bool checkFileContainsText(QString filename, QString text)
         file.close();
     }
     return false;
+}
+//------------------------------------------------------------
+QString getInfoFromStrongFile(QString horg, QString number)
+{
+    QString filename = getFileNameOfStrong(horg, number);
+    // возвращает данные о стронге из файла
+    qDebug() << filename;
+    if (QFile::exists(filename))
+    {
+        bool stop = false;
+        QString line;
+        QFile file(filename);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream(&file);
+            do
+            {
+                line = stream.readLine();
+                if (line.indexOf(number) >= 0)
+                {
+                    line = stream.readLine();
+                    line = "<b>" + line + "</b>";
+                    line.append(stream.readLine());
+                    line.replace("\t<option2>","\n\r<br>");
+                    line.remove("\t<option1>")
+                            .remove("</option1>")
+                            .remove("</option2>");
+                    stop = true;
+                }
+            } while (!stream.atEnd() && !stop);
+        }
+        else
+        {
+            qDebug() << "Debug: _getInfoFromStrongFile: "
+                     << "File " << filename << " not open";
+        }
+        file.close();
+        return line;
+    }
+    else
+    {
+        qDebug() << "Debug: _getInfoFromStrongFile: "
+                 << "File " << filename << " not exist";
+    }
+    return "";
+}
+//----------------------------------------------------------
+QString getFileNameOfStrong(QString horg, QString numberstr)
+{
+    int number = numberstr.toInt();
+    QString numberfile = QString::number(number/100);
+    numberfile = incstr(numberfile, 2, "0");
+    QString filename =
+            Config::configuration()->AppDir() +
+            "strong/" +
+            horg + "/" +
+            horg + numberfile + ".htm";
+    return filename;
 }

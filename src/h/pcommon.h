@@ -129,4 +129,9 @@ void removeStringInFile(QString file, QStringList strings); // удаляет и
 bool checkFileContainsText(QString filename, QString text); // проверяет есть ли текст в файле
 bool createFileText(QString fileName, QString text); // создает  файл с текстом ( так как книги не юзаются, то можно и обычным файлом юзать их)
 bool addToEndFile(QString fileName, QString text); // добавить в конец файла текст
+
+/// strong
+QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла
+QString getFileNameOfStrong(QString horg, QString numberstr); /// возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
+
 #endif // __PCOMMON_H__
