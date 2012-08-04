@@ -979,52 +979,35 @@ QString getCenterTag(QString str)
     return str;
 }
 //------------------------------------------------------
-QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool chap)
+QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bool createcontent)
 {
     QStringList strlist = strinput.split("\n");
     QString teststr = "";
 
     QRegExp title("<title>  [1]</title>");
-    QRegExp title2("<title>[1]</title>");
-    QRegExp rx("(<[^>]*>)");
 
+    QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
-
 
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
 
-    //    qDebug() << "encoding = " << Config::configuration ()->profile ()->props["defaultencoding"];
+    QString titlec = QString("<title>%1</title>").arg(incstr(inumber,GL_LENGT_ITEM_STRING," "));
+    QString titlec2 = QString("<title>%1</title>").arg(inumber);
 
-    //        qDebug() << "tags = " << tags << " strtags = " << Config::configuration ()->HtmlFilter ().toUtf8 ();
-    //        tags << "p" << "i" << "b" << "u" << "br /" << "h4" << "/h4" << "pre" << "/pre" << "font" << "/font" << "sup" << "/sup" << "sub" << "/sub" << "center"
-    //             << "/center" << "strong" << "/strong" << "em" << "/em" << "table" << "/table"
-    //             << "tr" << "tr" << "/tr" << "td" << "td" << "/td" << "th" << "th" << "/th" << "hr /" ;/*<< "span"*/
-    /*<< "/span"*/
-
-    QString titlec = QString("<title>%1</title>").arg(incstr(i,GL_LENGT_ITEM_STRING," "));
-    QString titlec2 = QString("<title>%1</title>").arg(i);
-    QString chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(i,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
+    QString chapter;
+    chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(inumber,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
 
     QString str;
     int number = 0;
     for (int i = 0; i < strlist.size(); i++)
     {
-
         str = strlist.at(i);
 
         // title and Chapter replace
-        if (chap)
-        {
-            str.replace(titlec,chapter)
-                    .replace(titlec2,chapter);
-        }
-        else
-        {
-            str.remove(title)
-                    .remove(title2);
-        }
+        str.replace(titlec,chapter)
+                .replace(titlec2,chapter);
 
         str.remove("p, li { white-space: pre-wrap; }")
                 .replace("<P>","<p>")
@@ -1057,15 +1040,23 @@ QString getHtmlCoolCode(QString strinput, QString i, QString mychapter ,bool cha
                 .replace("PathName", "\n\nPathName")
                 .replace("FullName", "\nFullName")
                 .replace("ShortName", "\nShortName")
-                .replace("ChapterQty", "\nChapterQty");
+                .replace("ChapterQty", "\nChapterQty")
+                .remove("Content = yes")
+                .remove("Content = no");
 
         str = editStringList(str, tags, false); /// возвращаем нужные теги
         str.remove ("<span>>")
                 .remove ("</span>");
 
-
         if (!str.isEmpty())
         {
+            if (str.indexOf(mychapter) >= 0
+                    && createcontent)
+            {
+                str.replace("</h4>","</a></h4>")
+                       .replace("<h4>","<h4>"+QString("<a name=\"chapter"+inumber + "\">"));
+            }
+
             if (Config::configuration()->AutoNumbers())
             {
                 /// create autonumbers
@@ -1537,7 +1528,7 @@ QString getParamBook(QString filename, QString param)
     QString line;
     QString parama = param + " = ";
     QFile file(filename);
-
+    file.close();
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream stream( &file );
@@ -1545,11 +1536,14 @@ QString getParamBook(QString filename, QString param)
             line = stream.readLine();
             if (line.indexOf(parama) >= 0)
             {
-                //                str = getTextInStr(line);
                 str = line.remove(parama);
             }
         } while (str.isEmpty() and !line.isNull());
         file.close();
+    }
+    else
+    {
+        qDebug() << "Error";
     }
     return str;
 }

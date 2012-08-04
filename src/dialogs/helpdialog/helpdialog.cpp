@@ -378,7 +378,7 @@ void HelpDialog::initialize()
     itemPopupContents -> addAction(actionItemProperties);
     itemPopupContents -> addSeparator();
     itemPopupContents -> addAction(actionItemContentsBookAdd);
-    itemPopupContents -> addAction(actionItemContentsBookEdit);
+    //    itemPopupContents -> addAction(actionItemContentsBookEdit);
     itemPopupContents -> addAction(actionItemContentsBookDelete);
     itemPopupContents -> addSeparator();
     itemPopupContents -> addAction(actionItemExportBook);
@@ -1467,14 +1467,7 @@ void HelpDialog::triggerAction(QTreeWidgetItem *item, QAction *action)
         }
         else if (action == actionItemContentsBookDelete) //
         {
-
-            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()))+".htm";
-            //            QString filecontents = unurlifyFileName
-            //                        (
-            //                        QString(ui.listContents->currentItem()->data(0,LinkRole).toString())
-            //                        )
-            //                    .replace(".htm","_contents.htm");
-
+            QString filebook = unurlifyFileName(QString(ui.listContents->currentItem()->data(0,LinkRole).toString()));
             if (getParamBook(filebook, "Content") != "no")
             {
                 contentbook->deleteContent(filebook);
@@ -2313,15 +2306,21 @@ void HelpDialog::exportBibleBook(QString filenamebook, QString i)
         QTextStream ts(&filebook);
         ts.setCodec(codec);
 
-//        ts << getContents(ui.listContents -> topLevelItem(i.toInt()));
-//        qDebug() << getContents(ui.listContents -> topLevelItem(i.toInt()));
+        /// get option, and add content book
+        QString filename = unurlifyFileName(ui.listContents->topLevelItem(i.toInt())->data(0,LinkRole).toString());
+        bool content = getParamBook(filename, "Content") == "yes";
+        if (content)
+        {
+            ts << getContents(ui.listContents -> topLevelItem(i.toInt()));
+        }
+
 
         QString str;
         for (int j=1; j <= ui.listContents -> topLevelItem(i.toInt()) -> childCount(); j++)
         {
             QString filenamechapter = ui.listContents -> topLevelItem(i.toInt()) -> child(j-1) -> data(0,LinkRole).toString().remove("file:");
             int icount = j;
-            str = exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), true);
+            str = exportf -> exportChapter(filenamechapter, QString("%1").arg(icount), content);
             ts << str;
         }
     }
@@ -2348,15 +2347,15 @@ void HelpDialog::exportBook()
 QString HelpDialog::getContents(QTreeWidgetItem *item)
 {
     QString filebook = unurlifyFileName(item->data(0, LinkRole).toString());
-    qDebug() << " getParamBook(filebook " << getParamBook(filebook, "Content");
+    //    qDebug() << " getParamBook(filebook " << getParamBook(filebook, "Content");
     if (getParamBook(filebook, "Content") != "no")
     {
-        QString str = "<a href=\"test\"> test </a>";
+        QString str = "<a name=\"book\"> book </a>";
         str.append("\n<ul>");
         for (int i = 0; i < item->childCount(); i++)
         {
-            str.append("\n\t<li><a href\"#"+QString::number(i)+
-                       "\">"+"chapter " + QString::number(i) +
+            str.append("\n\t<li><a href=\"#chapter"+QString::number(i+1)+
+                       "\">"+"chapter" + QString::number(i+1) +
                        "</a></li>");
         }
 
