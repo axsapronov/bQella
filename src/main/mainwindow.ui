@@ -1009,13 +1009,19 @@
     <string>Add to text symbol 
  (&lt;br&gt;)</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+1</string>
+   </property>
   </action>
   <action name="actionTagStrongNumber">
    <property name="text">
     <string>Add Strong's number</string>
    </property>
    <property name="iconText">
-    <string>st</string>
+    <string>strong</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+3</string>
    </property>
   </action>
   <action name="actionImportHTML">

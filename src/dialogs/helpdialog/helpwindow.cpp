@@ -400,7 +400,7 @@ void HelpWindow::addBrTag()
     selStart = cursor.selectionStart();
     selEnd = cursor.selectionEnd();
     selCur = cursor.position();
-    QString s = "<br>";
+    QString s = "↵<br>";
     QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
     cursor.setPosition(selStart, QTextCursor::MoveAnchor);
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);

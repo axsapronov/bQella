@@ -1028,7 +1028,8 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
 
         str.replace(rxp, "?p_.")
                 .remove("</p>")
-                .remove(rxi);
+                .remove(rxi)
+                .remove("↵");
 
         str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
         str.remove(rx)
