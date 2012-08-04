@@ -41,7 +41,7 @@ int main( int argc, char ** argv )
 
     Config *conf = new Config();
     conf -> setAppDir(QDir::currentPath() + "/");
-    conf -> setCacheDir(conf -> AppDir() + "cache/");
+//    conf -> setCacheDir(conf -> AppDir() + "cache/");
     conf -> setImgDir(conf -> AppDir() + "images/");
     conf -> setPrjDir(conf -> AppDir() + "projects/");
     conf -> setIniFile(conf -> AppDir() + "project.ini");
