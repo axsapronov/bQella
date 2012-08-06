@@ -383,7 +383,8 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
     }
     else
     {
-        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
+//        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
+        s = lText + " " + "<l><u>0" + lLocation + "</l></u> ";
 //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);

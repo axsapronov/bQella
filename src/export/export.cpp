@@ -79,13 +79,13 @@ void Export::exportBibleqtIni(QString string, QString count)
         //                    " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
         // сделать QStringList?
         QString stru ="";
-        stru.append(tr("\\\\ Этот модуль создан в программе bQella."
+        stru.append(QString("\\\\ Этот модуль создан в программе bQella."
                        "\n\\\\ Разработчик программы: Сапронов Александр - sapronov.alexander92[@]gmail.com"
                        "\n\\\\ Github программы: http://warmonger1.github.com/bQella/"
                        "\n\\\\ Блог разработчика: http://warmonger72.blogspot.com/"
                        "\n\\\\ Свежая версия программы доступна по ссылкам: "
-                       "\n\\\\ win:   "
-                       "\n\\\\ source: \n\n\n"));
+                       "\n\\\\ win: https://github.com/downloads/WarmongeR1/bQella/bQella-win-current.exe "
+                       "\n\\\\ source: https://github.com/WarmongeR1/bQella/tarball/master \n"));
 
         stru.append(tr("\nBibleName = %1"
                        "\nBibleShortName = %2"

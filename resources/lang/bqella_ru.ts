@@ -4553,7 +4553,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="124"/>
         <source>Number </source>
-        <translation>Число</translation>
+        <translation type="unfinished">Число </translation>
     </message>
 </context>
 <context>
