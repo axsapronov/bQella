@@ -485,7 +485,11 @@ void HelpDialog::removeOldCacheFiles(bool onlyFulltextSearchIndex)
         qWarning("Failed to create assistant directory");
         return;
     }
-    QString pname = QString(".") + Config::configuration() -> profileName();
+    QString pname ;
+    if (Config::configuration() -> profileName() != "bQella")
+    {
+        pname = QString(".") + Config::configuration() -> profileName();
+    }
 
     QStringList fileList;
     fileList << QString("indexdb40.dict")
@@ -495,7 +499,8 @@ void HelpDialog::removeOldCacheFiles(bool onlyFulltextSearchIndex)
         fileList << QString("indexdb40") << QString("contentdb40");
 
     QStringList::iterator it = fileList.begin();
-    for (; it != fileList.end(); ++it) {
+    for (; it != fileList.end(); ++it)
+    {
         if (QFile::exists(Config::configuration() -> CacheDir() + QDir::separator() + *it + pname)) {
             QFile f(Config::configuration() -> CacheDir() + QDir::separator() + *it + pname);
             f.remove();
@@ -783,16 +788,20 @@ void HelpDialog::buildContentDict() //fill up contents = create TreeWidget nodes
     }
 
 
-    QFile contentOut(Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName());
-    if (contentOut.open(QFile::WriteOnly))
+    QString filename = Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName();
+    if (filename.indexOf("bQella") == -1)
     {
-//        qDebug() << "[30]";
-        QDataStream s(&contentOut);
-        s << fileAges;
-        for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
-            s << *it;
+        QFile contentOut(filename);
+        if (contentOut.open(QFile::WriteOnly))
+        {
+    //        qDebug() << "[30]";
+            QDataStream s(&contentOut);
+            s << fileAges;
+            for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
+                s << *it;
+            }
+            contentOut.close();
         }
-        contentOut.close();
     }
 }
 
