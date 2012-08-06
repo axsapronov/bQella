@@ -10,7 +10,6 @@
         <translation>О программе</translation>
     </message>
     <message utf8="true">
-        <location filename="../../src/dialogs/about/about.ui" line="30"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -26,7 +25,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -41,6 +40,25 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../../src/dialogs/about/about.ui" line="30"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;bQella v 0.0 &lt;/span&gt;&lt;img src=&quot;:/banners/banners/globe-small.png&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Программа позиционируется как редактор модулей для Цитаты из Библии. Программа позволит без знания тегов и прочих тонкостей оформления html кода создавать модули. &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;Website: &lt;/span&gt;&lt;a href=&quot;http://warmonger1.github.com/bQella/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://warmonger1.github.com/bQella/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/dialogs/about/about.ui" line="52"/>
@@ -293,8 +311,50 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -328,72 +388,64 @@ p, li { white-space: pre-wrap; }
         <translation>Основные</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="258"/>
+        <location filename="../../src/settings/settings.ui" line="50"/>
+        <source>Automatically set the number of rows</source>
+        <translation>Автоматическая нумерация строк при экспорте</translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settings.ui" line="193"/>
         <source>View</source>
         <translation>Вид</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="301"/>
+        <location filename="../../src/settings/settings.ui" line="236"/>
         <source>Contents additional view</source>
         <translation>Дополнительный вид подпунктов содержания</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="342"/>
+        <location filename="../../src/settings/settings.ui" line="277"/>
         <source>Show parent item title in header</source>
         <translation>Показывать в загаловке название родительского пункта</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="320"/>
+        <location filename="../../src/settings/settings.ui" line="255"/>
         <source>Automaticly collapse expended items</source>
         <translation>Автоматическое схлопывание пунктов</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.cpp" line="98"/>
         <source>Choose editor</source>
-        <translation>Выбрать редактор</translation>
+        <translation type="obsolete">Выбрать редактор</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.cpp" line="99"/>
-        <location filename="../../src/settings/settings.cpp" line="109"/>
-        <location filename="../../src/settings/settings.cpp" line="119"/>
         <source>All Files (*)</source>
-        <translation>Все файлы (*)</translation>
+        <translation type="obsolete">Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.cpp" line="108"/>
         <source>Choose browser</source>
-        <translation>Выбрать обозреватель</translation>
+        <translation type="obsolete">Выбрать обозреватель</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="50"/>
         <source>External editor</source>
-        <translation>Внешний редактор</translation>
+        <translation type="obsolete">Внешний редактор</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="77"/>
-        <location filename="../../src/settings/settings.ui" line="113"/>
-        <location filename="../../src/settings/settings.ui" line="385"/>
-        <location filename="../../src/settings/settings.ui" line="421"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="86"/>
         <source>External browser</source>
-        <translation>Внешний обозреватель</translation>
+        <translation type="obsolete">Внешний обозреватель</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.cpp" line="118"/>
         <source>Choose archiver</source>
-        <translation>Выбор архиватора</translation>
+        <translation type="obsolete">Выбор архиватора</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.cpp" line="128"/>
         <source>Choose where to store backup archives</source>
-        <translation>Укажите где хранить архивы</translation>
+        <translation type="obsolete">Укажите где хранить архивы</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="134"/>
+        <location filename="../../src/settings/settings.ui" line="69"/>
         <source>Log events:
 0 = no log; 1 = basic;
 2 = more info; 3 = debug</source>
@@ -402,49 +454,45 @@ p, li { white-space: pre-wrap; }
 2 = подробно; 3 = отладка</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="175"/>
+        <location filename="../../src/settings/settings.ui" line="110"/>
         <source>Log level for application</source>
         <translation>Подробность журнала приложения</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="217"/>
+        <location filename="../../src/settings/settings.ui" line="152"/>
         <source>Log level for project</source>
         <translation>Подробность журнала проекта</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="352"/>
         <source>Backup</source>
-        <translation>Архивировать</translation>
+        <translation type="obsolete">Архивировать</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="358"/>
         <source>Path to store backup archives</source>
-        <translation>Место хранения резервных копий</translation>
+        <translation type="obsolete">Место хранения резервных копий</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="394"/>
         <source>Archiver</source>
-        <translation>Архиватор</translation>
+        <translation type="obsolete">Архиватор</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="430"/>
         <source>Parameters for archiver to compress directory with all its content.
 For 7Zip: &quot;a -t7z&quot;</source>
-        <translation>Параметры архиватора для сжатия каталога со всем содержимым.
+        <translation type="obsolete">Параметры архиватора для сжатия каталога со всем содержимым.
 Для 7Zip: &quot;a -t7z&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="234"/>
+        <location filename="../../src/settings/settings.ui" line="169"/>
         <source>Do not ask for item properties when creating</source>
         <translation>Не спрашивать свойства пункта при добавлении (задать автоматически)</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="270"/>
+        <location filename="../../src/settings/settings.ui" line="205"/>
         <source>Font settings...</source>
         <translation>Шрифт...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="283"/>
+        <location filename="../../src/settings/settings.ui" line="218"/>
         <source>Contents</source>
         <translation>Содержание</translation>
     </message>
@@ -909,29 +957,57 @@ For 7Zip: &quot;a -t7z&quot;</source>
     </message>
 </context>
 <context>
+    <name>ContentsBook</name>
+    <message>
+        <location filename="../../src/dialogs/contents/book/contentsbook.ui" line="14"/>
+        <source>Create contents</source>
+        <translation>Создать содержание</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/contents/book/contentsbook.ui" line="24"/>
+        <source>Book name:</source>
+        <translation>Название книги:</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/contents/book/contentsbook.ui" line="38"/>
+        <source>Number of chapters:</source>
+        <translation>Количество глав:</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/contents/book/contentsbook.ui" line="76"/>
+        <source>Create</source>
+        <translation>Создать</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/contents/book/contentsbook.cpp" line="93"/>
+        <source>Delete content?</source>
+        <translation>Удалить содержание?</translation>
+    </message>
+</context>
+<context>
     <name>DialogCellSplit</name>
     <message>
-        <location filename="../../src/dialogs/cellsplit/cellsplit.ui" line="14"/>
+        <location filename="../../src/table/cellsplit/cellsplit.ui" line="14"/>
         <source>Split Cell</source>
         <translation>Разбить на ячейки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/cellsplit/cellsplit.ui" line="26"/>
+        <location filename="../../src/table/cellsplit/cellsplit.ui" line="26"/>
         <source>Rows</source>
         <translation>Строки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/cellsplit/cellsplit.ui" line="36"/>
+        <location filename="../../src/table/cellsplit/cellsplit.ui" line="36"/>
         <source>Columns</source>
         <translation>Колонки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/cellsplit/cellsplit.ui" line="110"/>
+        <location filename="../../src/table/cellsplit/cellsplit.ui" line="110"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/cellsplit/cellsplit.ui" line="117"/>
+        <location filename="../../src/table/cellsplit/cellsplit.ui" line="117"/>
         <source>Cancel</source>
         <translation>Отменить</translation>
     </message>
@@ -1147,7 +1223,16 @@ HTMLFilter = %24</translation>
 
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>\\ Ð­ÑÐ¾Ñ Ð¼Ð¾Ð´ÑÐ»Ñ ÑÐ¾Ð·Ð´Ð°Ð½ Ð² Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ðµ bQella.
+\\ Ð Ð°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸Ðº Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: Ð¡Ð°Ð¿ÑÐ¾Ð½Ð¾Ð² ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ - sapronov.alexander92[@]gmail.com
+\\ Github Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ: http://warmonger1.github.com/bQella/
+\\ ÐÐ»Ð¾Ð³ ÑÐ°Ð·ÑÐ°Ð±Ð¾ÑÑÐ¸ÐºÐ°: http://warmonger72.blogspot.com/
+\\ Ð¡Ð²ÐµÐ¶Ð°Ñ Ð²ÐµÑÑÐ¸Ñ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ Ð´Ð¾ÑÑÑÐ¿Ð½Ð° Ð¿Ð¾ ÑÑÑÐ»ÐºÐ°Ð¼: 
+\\ win:   
+\\ source: 
+
+
+</translation>
     </message>
     <message>
         <location filename="../../src/export/export.cpp" line="90"/>
@@ -1207,7 +1292,7 @@ DesiredUIFont = %23
 HTMLFilter = %24</translation>
     </message>
     <message>
-        <location filename="../../src/export/export.cpp" line="197"/>
+        <location filename="../../src/export/export.cpp" line="190"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
@@ -1220,66 +1305,66 @@ HTMLFilter = %24</translation>
 <context>
     <name>FRDialog</name>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="14"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="14"/>
         <source>Find and replace dialog</source>
         <translation>Поиск и замена</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="22"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="22"/>
         <source>Search:</source>
         <translation>Искать в:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="30"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="30"/>
         <source>All book</source>
         <translation>Все книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="39"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="257"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="39"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="257"/>
         <source>All chapters</source>
         <translation>Все главы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="47"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="47"/>
         <source>Text:</source>
         <translation>Текст:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="61"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="61"/>
         <source>Find</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="68"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="68"/>
         <source>Found in the files:</source>
         <translation>Найдено в файлах:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="82"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="82"/>
         <source>Book</source>
         <translation>Книга</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="87"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="87"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="95"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="95"/>
         <source>Replace:</source>
         <translation>Заменить:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.ui" line="105"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.ui" line="105"/>
         <source>Replace</source>
         <translation>Заменить</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="95"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="147"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="298"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="367"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="95"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="147"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="298"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="367"/>
         <source>Chapter </source>
         <translation>Глава </translation>
     </message>
@@ -1288,45 +1373,45 @@ HTMLFilter = %24</translation>
         <translation type="obsolete">book_%1_chapter_</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="73"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="73"/>
         <source>- Please enter a replace text.
 </source>
         <translation>- Пожалуйста, добавить текст замены.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="79"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="79"/>
         <source>Replace error</source>
         <translation>Ошибка замены</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="116"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="116"/>
         <source>- Please enter a find text.
 </source>
         <translation>- Пожалуйста, введите текст поиска.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="122"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="122"/>
         <source>Find error</source>
         <translation>Ошибка поиска</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="193"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="193"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="195"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="195"/>
         <source>Find Files</source>
         <translation>Поиск файлов</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="199"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="199"/>
         <source>Searching file number %1 of %2...</source>
         <translation>Поиск в %1 файле из %2...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="240"/>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="242"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="240"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="242"/>
         <source>All books</source>
         <translation>Все книги</translation>
     </message>
@@ -1335,7 +1420,7 @@ HTMLFilter = %24</translation>
         <translation type="obsolete">book_%1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/findandreplacedialog/frdialog.cpp" line="391"/>
+        <location filename="../../src/dialogs/finds/findandreplacedialog/frdialog.cpp" line="391"/>
         <source>%1 file(s) found</source>
         <translation>%1 файл(ов) найдено</translation>
     </message>
@@ -1706,63 +1791,83 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HelpDialog</name>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="269"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="298"/>
         <source>Open in Current Tab</source>
         <translation>Открыть в текущей вкладке</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="272"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="301"/>
         <source>Open in New Window</source>
         <translation>Открыть в новом Окне</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="275"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="304"/>
         <source>Open in New Tab</source>
         <translation>Открыть в новой вкладке</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="290"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="319"/>
         <source>Item properties...</source>
         <translation>Свойства пункта...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="294"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="324"/>
+        <source>Export book</source>
+        <translation>Экспорт книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="328"/>
         <source>Add book</source>
         <translation>Добавить книгу</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="298"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="332"/>
         <source>Add chapter</source>
         <translation>Добавить главу</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="302"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="336"/>
         <source>Add verse</source>
         <translation>Добавить стих</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="314"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="348"/>
         <source>Insert new item (and create source file)</source>
         <translation>Вставить пункт (и создать файл)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="318"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="352"/>
         <source>Insert file as new item...</source>
         <translation>Вставить файл как новый пункт...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="326"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="360"/>
         <source>Remove item (do not touch source file)</source>
         <translation>Убрать пункт (не удаляя файл)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="330"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="364"/>
         <source>Delete item and source file</source>
         <translation>Удалить пункт и файл</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="473"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="557"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="368"/>
+        <source>Add contents for book</source>
+        <translation>Добавить содержание для книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="371"/>
+        <source>Edit contents for book</source>
+        <translation>Редактировать содержание для книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="374"/>
+        <source>Delete contents for book</source>
+        <translation>Удалить содержание книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="526"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="610"/>
         <source>Prepare...</source>
         <translation>Подготовка...</translation>
     </message>
@@ -1771,70 +1876,81 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Research Assistant</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="492"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="545"/>
         <source>Failed to load keyword index file from:
 %1</source>
         <translation>Невозможно загрузить индекс ключевых слов из файла:
 %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="492"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="508"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1026"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1149"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1451"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="545"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="561"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1160"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1288"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1695"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="508"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="561"/>
         <source>Cannot open the index file %1</source>
         <translation>Не возможно открыть индексный файл  %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="570"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="707"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="714"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="623"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="760"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="767"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="570"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="623"/>
         <source>Documentation file %1 does not exist!
 Skipping file.</source>
         <translation>Файл документации %1 не существует! Пропускаю.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="582"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="727"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="635"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="780"/>
         <source>Parse Error</source>
         <translation>Ошибка обработки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="708"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="761"/>
         <source>Project file %1 does not exist!
 Skipping file.</source>
         <translation>Файл проекта %1 не существует!
 Пропускаю.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="715"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="768"/>
         <source>Project file %1 is not compatible!
 Skipping file.</source>
         <translation>Файл проекта %1 не совместим. Пропускаю.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="763"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1195"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="820"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1334"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <source>bookmark title=%1; link=%2</source>
-        <translation type="obsolete">Название закладки=%1; ссылка=%2</translation>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1492"/>
+        <source>The content was not created</source>
+        <translation>Содержание не было создано</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1026"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1493"/>
+        <source>Delete content</source>
+        <translation>Удаление содержания</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2390"/>
+        <source>bookmark title=%1; link=%2</source>
+        <translation>Название закладки=%1; ссылка=%2</translation>
+    </message>
+    <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1160"/>
         <source>Source file could not be found:
  %1
 You can create a new file or add one. Do you want to see item property?</source>
@@ -1843,29 +1959,33 @@ You can create a new file or add one. Do you want to see item property?</source>
 Вы можете создать новый файл или выбрать существующий. Хотите открыть свойства пункта?</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1177"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1316"/>
         <source>Indexing files...</source>
         <translation>Индексирую файлы...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1192"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1331"/>
         <source>Reading dictionary...</source>
         <translation>Читаю директории...</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2518"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2527"/>
         <source>Full Text Search</source>
-        <translation type="obsolete">Полнотекстовый поиск</translation>
+        <translation>Полнотекстовый поиск</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2519"/>
         <source>Using a wildcard within phrases is not allowed.</source>
-        <translation type="obsolete">Использование шаблонов во фразах не допускается.</translation>
+        <translation>Использование шаблонов во фразах не допускается.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2527"/>
         <source>The closing quotation mark is missing.</source>
-        <translation type="obsolete">Пропущены закрывающие кавычки.</translation>
+        <translation>Пропущены закрывающие кавычки.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1697"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1950"/>
         <source>Delete contents item AND source file?</source>
         <translation>Удалить пункт меню И файл-источник?</translation>
     </message>
@@ -1875,189 +1995,215 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="109"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="103"/>
         <source>Displays contents of project, index or bookmarks. Another tab inherits the full text search.</source>
         <translation>Показывает содержание проекта, индекс ключевых слов и закладки. Последняя вкладка предоставляет полнотекстовый поиск по проекту.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="119"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="113"/>
         <source>Con&amp;tents</source>
         <translation>&amp;Содержание</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="163"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="157"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="268"/>
         <source>column 1</source>
         <translation>Колонка 1</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="197"/>
         <source>&amp;Index</source>
-        <translation type="obsolete">&amp;Индекс</translation>
+        <translation>&amp;Индекс</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="209"/>
         <source>&amp;Look For:</source>
-        <translation type="obsolete">&amp;Искать:</translation>
+        <translation>&amp;Искать:</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="222"/>
         <source>Enter keyword</source>
-        <translation type="obsolete">Введите ключевое слово</translation>
+        <translation>Введите ключевое слово</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="225"/>
         <source>&lt;b&gt;Enter a keyword.&lt;/b&gt;&lt;p&gt;The list will select an item that matches the entered string best.&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Введите ключевое слово.&lt;/b&gt;&lt;p&gt;В списке будет выделен пункт наиболее подходящий для введённой строки. &lt;/p&gt;</translation>
+        <translation>&lt;b&gt;Введите ключевое слово.&lt;/b&gt;&lt;p&gt;В списке будет выделен пункт наиболее подходящий для введённой строки. &lt;/p&gt;</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="246"/>
         <source>&amp;Bookmarks</source>
-        <translation type="obsolete">&amp;Закладки</translation>
+        <translation>&amp;Закладки</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="261"/>
         <source>Displays the list of bookmarks.</source>
-        <translation type="obsolete">Отобразить список закладок.</translation>
+        <translation>Отобразить список закладок.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="300"/>
         <source>Add new bookmark</source>
-        <translation type="obsolete">Добавить закладку</translation>
+        <translation>Добавить закладку</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="303"/>
         <source>Add the currently displayed page as a new bookmark.</source>
-        <translation type="obsolete">Добавить текущую страницу в закладки.</translation>
+        <translation>Добавить текущую страницу в закладки.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="306"/>
         <source>&amp;New</source>
-        <translation type="obsolete">&amp;Добавить</translation>
+        <translation>&amp;Добавить</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="313"/>
         <source>Delete bookmark</source>
-        <translation type="obsolete">Удалить закладку</translation>
+        <translation>Удалить закладку</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="316"/>
         <source>Delete the selected bookmark.</source>
-        <translation type="obsolete">Удалить выбранную закладку.</translation>
+        <translation>Удалить выбранную закладку.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="319"/>
         <source>&amp;Delete</source>
-        <translation type="obsolete">&amp;Удалить</translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="329"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="446"/>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Поиск</translation>
+        <translation>&amp;Поиск</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="357"/>
         <source>Searching f&amp;or:</source>
-        <translation type="obsolete">Ис&amp;кать:</translation>
+        <translation>Ис&amp;кать:</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="367"/>
         <source>Enter searchword(s).</source>
-        <translation type="obsolete">Введите слово(а) для поиска.</translation>
+        <translation>Введите слово(а) для поиска.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="370"/>
         <source>&lt;b&gt;Enter search word(s).&lt;/b&gt;&lt;p&gt;Enter here the word(s) you are looking for. The words may contain wildcards (*). For a sequence of words quote them.&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Введите слово(а) для поиска.&lt;/b&gt;&lt;p&gt;Слова могут содержать шаблон (*). Для поиска нужной последовательности слов, заключите их в кавычки.&lt;/p&gt;</translation>
+        <translation>&lt;b&gt;Введите слово(а) для поиска.&lt;/b&gt;&lt;p&gt;Слова могут содержать шаблон (*). Для поиска нужной последовательности слов, заключите их в кавычки.&lt;/p&gt;</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="380"/>
         <source>&lt;b&gt;Found documents&lt;/b&gt;&lt;p&gt;This list contains all found documents from the last search. The documents are ordered, i.e. the first document has the most matches.&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Найти документы&lt;/b&gt;&lt;p&gt;Этот список содержит все найденные в прошлый раз докумены. Документы упорядочены по количеству совпадений с искомым словом.&lt;/p&gt;</translation>
+        <translation>&lt;b&gt;Найти документы&lt;/b&gt;&lt;p&gt;Этот список содержит все найденные в прошлый раз докумены. Документы упорядочены по количеству совпадений с искомым словом.&lt;/p&gt;</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="387"/>
         <source>Found &amp;Documents:</source>
-        <translation type="obsolete">Найти &amp;Документы:</translation>
+        <translation>Найти &amp;Документы:</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="408"/>
         <source>Display the help page.</source>
-        <translation type="obsolete">Отобразить страницу помощи.</translation>
+        <translation>Отобразить страницу помощи.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="411"/>
         <source>Display the help page for the full text search.</source>
-        <translation type="obsolete">Отобразить страницу помощи для полнотекстового поиска.</translation>
+        <translation>Отобразить страницу помощи для полнотекстового поиска.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="414"/>
         <source>He&amp;lp</source>
-        <translation type="obsolete">&amp;Помощь</translation>
+        <translation>&amp;Помощь</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="440"/>
         <source>Start searching.</source>
-        <translation type="obsolete">Начать поиск.</translation>
+        <translation>Начать поиск.</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="443"/>
         <source>Pressing this button starts the search.</source>
-        <translation type="obsolete">Нажатие этой кнопки запустит поиск.</translation>
+        <translation>Нажатие этой кнопки запустит поиск.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="221"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="474"/>
         <source>Preparing...</source>
         <translation>Подготовка...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1150"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1289"/>
         <source>Failed to save fulltext search index to path: %1</source>
         <translation>Не удалось сохранить результаты полнотекстового поиска в файл по пути: %1</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="19"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="116"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="110"/>
         <source>&lt;b&gt;Project&lt;/b&gt;&lt;p&gt;Choose the topic you want from the contents list.&lt;/p&gt;</source>
         <translation>&lt;b&gt;Проект&lt;/b&gt;&lt;p&gt;Выбирете интересующую Вас тему в содержании.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="138"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="132"/>
         <source>&lt;b&gt;Contents list of project.&lt;/b&gt;&lt;p&gt;Click an item to see the page.&lt;/p&gt;</source>
         <translation>&lt;b&gt;Содержание проекта.&lt;/b&gt;&lt;p&gt;Щёлкните пункт, чтобы увидеть страницу.&lt;/p&gt;</translation>
     </message>
     <message>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="238"/>
         <source>&lt;b&gt;List of available topics.&lt;/b&gt;&lt;p&gt;Double-click on an item to open its page. If more than one is found, you must specify which page you want.&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Список доступных тем.&lt;/b&gt;&lt;p&gt;Сделайте двойной щелчок на пункте, чтобы открыть страницу. Если найдено больше одной, Вы должны выбрать из предложеного списка.&lt;/p&gt;</translation>
+        <translation>&lt;b&gt;Список доступных тем.&lt;/b&gt;&lt;p&gt;Сделайте двойной щелчок на пункте, чтобы открыть страницу. Если найдено больше одной, Вы должны выбрать из предложеного списка.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="45"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="42"/>
         <source>Remove project from list</source>
         <translation>Убрать проект из списка</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="77"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="74"/>
         <source>Add project to list</source>
         <translation>Добавить проект в список</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="97"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="94"/>
         <source>List of projects</source>
         <translation>Список проектов</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="322"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="356"/>
         <source>Automaticly create items...</source>
         <translation>Автоматически создать пункты...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="278"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="307"/>
         <source>Open in External Editor</source>
         <translation>Открыть во внешнем редакторе</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="280"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="309"/>
         <source>Open in External Browser</source>
         <translation>Открыть во внешнем обозревателе</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="235"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="248"/>
         <source>New item</source>
         <translation>Новый пункт</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="306"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="340"/>
         <source>Insert new subitem (and create source file)</source>
         <translation>Вставить новый подпункт (и создать файл)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="310"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="344"/>
         <source>Insert file as new subitem...</source>
         <translation>Вставить файл новым подпунктом...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1619"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1864"/>
         <source>Project has been saved</source>
         <translation>Проект был сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1665"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1910"/>
         <source>Delete just contents item? Source file will be untouched.</source>
         <translation>Убрать пункт (не удаляя файл)</translation>
     </message>
@@ -2074,7 +2220,7 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation type="obsolete">Не сортировать</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="193"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.ui" line="187"/>
         <source>Search for an item</source>
         <translation>Поиск пункта по названию</translation>
     </message>
@@ -2082,29 +2228,29 @@ You can create a new file or add one. Do you want to see item property?</source>
 <context>
     <name>HelpWindow</name>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="127"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="127"/>
         <source>Unable to launch web browser.
 </source>
         <translation>Невозможно запустить Интернет обозреватель.
 </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="122"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="127"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="157"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="162"/>
         <source>Source: %1</source>
         <translation>Источник: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="163"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="168"/>
         <source>Failed to open link: &apos;%1&apos;</source>
         <translation>Невозможно открыть ссылку: &apos;%1&apos;</translation>
     </message>
@@ -2113,60 +2259,60 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation type="obsolete">&lt;div align=&quot;center&quot;&gt;&lt;h1&gt;Файл не найден&lt;/h1&gt;&lt;br&gt;&lt;h3&gt;&apos;%1&apos;&lt;/h3&gt;&lt;/div&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="170"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="175"/>
         <source>Error...</source>
         <translation>Ошибка...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="228"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="233"/>
         <source>Open Link in New Window	Shift+LMB</source>
         <translation>Открыть ссылку в новом окне	Shift+LMB</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="231"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="236"/>
         <source>Tag properties...</source>
         <translation>Настройки тега</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="238"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="243"/>
         <source>Add tag...</source>
         <translation>Добавить тег...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="569"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="661"/>
         <source>Application</source>
         <translation>Приложение</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="570"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="662"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation>Документ был изменён.
 Хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="603"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="695"/>
         <source>New File...</source>
         <translation>Новый Файл...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="604"/>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="619"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="696"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="711"/>
         <source>HTML (*.htm *.html);;Text (*.txt);;All Files (*)</source>
         <translation>HTML (*.htm *.html);;Текст (*.txt);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="618"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="710"/>
         <source>Open File...</source>
         <translation>Открыть Файл...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="652"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="744"/>
         <source>Save file as...</source>
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="653"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="745"/>
         <source>HTML (*.htm *.html);;All Files (*)</source>
         <translation>HTML (*.htm *.html);;Все файлы (*)</translation>
     </message>
@@ -2175,58 +2321,58 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Печатать документ</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="699"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="791"/>
         <source>It does not work yet! Set font size to: %1.</source>
         <translation>Не всегда работает! Установить размер шрифта в: %1.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="230"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="235"/>
         <source>Link properties...</source>
         <translation>Свойства ссылки...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="237"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="242"/>
         <source>Create link...</source>
         <translation>Создать ссылку...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="229"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="234"/>
         <source>Open Link in New Tab	MMB</source>
         <translation>Открыть ссылку в новой вкладке	СКМ</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="506"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="598"/>
         <source>Standard</source>
         <comment>Text style (paragraph layout)</comment>
         <translation>Стандартный</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="507"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="599"/>
         <source>Bullet List (Disc)</source>
         <translation>Список (диски)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="508"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="600"/>
         <source>Bullet List (Circle)</source>
         <translation>Список (круги)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="509"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="601"/>
         <source>Bullet List (Square)</source>
         <translation>Список (квадраты)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="510"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="602"/>
         <source>Ordered List (Decimal)</source>
         <translation>Упорядоченный список (десятичный)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="511"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="603"/>
         <source>Ordered List (Alpha lower)</source>
         <translation>Упорядоченный список (маленькие буквы)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="512"/>
+        <location filename="../../src/dialogs/helpdialog/helpwindow.cpp" line="604"/>
         <source>Ordered List (Alpha upper)</source>
         <translation>Упорядоченный список (заглавные буквы)</translation>
     </message>
@@ -2302,85 +2448,97 @@ Do you want to save your changes?</source>
         <translation type="obsolete">Windows-1258</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="48"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="48"/>
         <source>Select bibleqt.ini</source>
         <translation>Выбрать bibleqt.ini</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="50"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="50"/>
         <source>Bibleqt.ini (*.ini)</source>
         <translation>Bibleqt.ini (*.ini)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="63"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="63"/>
         <source>- Please browse bibleqt.ini file.
 </source>
         <translation>- Пожалуйста выберите bibleqt.ini файл.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="69"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="69"/>
         <source>Import book error</source>
         <translation>Ошибка при импорте книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="367"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="372"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation>Create a new project: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="368"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="373"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation>- project file: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="373"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="378"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation>- failed</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="377"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="382"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation>- project start page: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="384"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="389"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="427"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="438"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation>- project sources DB: %1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="428"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="439"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation>- done</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="441"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="452"/>
         <source>This folder is imported already exists:</source>
         <translation>This folder is imported already exists:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="453"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="464"/>
+        <source>PathName = %1
+FullName = %2
+ShortName = %3
+ChapterQty = %4
+Content = no</source>
+        <translation>PathName = %1
+FullName = %2
+ShortName = %3
+ChapterQty = %4
+Content = no</translation>
+    </message>
+    <message>
         <source>PathName = %1
 FullName = %2
 ShortName = %3
 ChapterQty = %4</source>
-        <translation>PathName = %1
+        <translation type="obsolete">PathName = %1
 FullName = %2
 ShortName = %3
 ChapterQty = %4</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.cpp" line="496"/>
+        <location filename="../../src/import/importdialog/importdialog.cpp" line="508"/>
         <source>Add a manual</source>
         <translation>Add a manual</translation>
     </message>
@@ -2388,57 +2546,57 @@ ChapterQty = %4</translation>
 <context>
     <name>ImportBookDialog</name>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="14"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="14"/>
         <source>Import book</source>
         <translation>Импорт книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="22"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="22"/>
         <source>Book: </source>
         <translation>Книга:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="32"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="32"/>
         <source>Browse</source>
         <translation>Выбрать</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="41"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="41"/>
         <source>Full name:</source>
         <translation>Полное название:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="51"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="51"/>
         <source>Short name:</source>
         <translation>Короткое название:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="74"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="74"/>
         <source>Tag division chapters:</source>
         <translation>Тег для разделения глав:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="84"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="84"/>
         <source>Tag division verses:</source>
         <translation>Тег для разделения стихов:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="94"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="94"/>
         <source>Number of chapters:</source>
         <translation>Количество глав:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="104"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="104"/>
         <source>Encoding:</source>
         <translation>Кодировка:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="118"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="118"/>
         <source>Remove tags*:</source>
         <translation>Удалить теги*:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.ui" line="151"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.ui" line="151"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2455,53 +2613,53 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic; color:#000000;&quot;&gt;hr &amp;lt;br&amp;gt; b text &amp;lt;i&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="60"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="60"/>
         <source>Select book</source>
         <translation>Выбор книги</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="62"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="62"/>
         <source>Html Files (*.html *.htm);;All Files (*)</source>
         <translation>Html Files (*.html *.htm);;All Files (*)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="76"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="76"/>
         <source>- Please enter a file.
 </source>
         <translation>- Пожалуйста выберите файл книги.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="81"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="81"/>
         <source>- Please enter a correct short name.
 </source>
         <translation>- Пожалуйста, введите корректное короткое название</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="86"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="86"/>
         <source>- Please enter a full name.
 </source>
         <translation>- Пожалуйста, введите полное название</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="96"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="96"/>
         <source>- Please enter a tag chapter.
 </source>
         <translation>- Пожалуйста, введите тег для деления глав.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="101"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="101"/>
         <source>- Please enter a count chapters.
 </source>
         <translation>- Пожалуйста, выберите количество глав.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="106"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="106"/>
         <source>- Please enter a tag verse.
 </source>
         <translation>- Пожалуйста,  выберите тег для отделения стихов.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importbookdialog/importbookdialog.cpp" line="112"/>
+        <location filename="../../src/import/importbookdialog/importbookdialog.cpp" line="112"/>
         <source>Import book error</source>
         <translation>Ошибка при импорте книги.</translation>
     </message>
@@ -2509,82 +2667,82 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="14"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="14"/>
         <source>Import module</source>
         <translation>Импортировать модуль</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="20"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="20"/>
         <source>Source encoding:</source>
         <translation>Исходная кодировка:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="28"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="28"/>
         <source>UTF-8</source>
         <translation>UTF-8</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="33"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="33"/>
         <source>UTF-16</source>
         <translation>UTF-16</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="38"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="38"/>
         <source>UTF-32</source>
         <translation>UTF-32</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="43"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="43"/>
         <source>CP-1251</source>
         <translation>CP-1251</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="48"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="48"/>
         <source>CP-1252</source>
         <translation>CP-1252</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="53"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="53"/>
         <source>CP-1253</source>
         <translation>CP-1253</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="58"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="58"/>
         <source>CP-1254</source>
         <translation>CP-1254</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="63"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="63"/>
         <source>CP-1255</source>
         <translation>CP-1255</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="68"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="68"/>
         <source>CP-1256</source>
         <translation>CP-1256</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="73"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="73"/>
         <source>CP-1257</source>
         <translation>CP-1257</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="78"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="78"/>
         <source>CP-1258</source>
         <translation>CP-1258</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="86"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="86"/>
         <source>What is import?</source>
         <translation>Что импортируем?</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="107"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="107"/>
         <source>Remove tags*:</source>
         <translation>Удалить теги*:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/import/importdialog/importdialog.ui" line="117"/>
+        <location filename="../../src/import/importdialog/importdialog.ui" line="117"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -2644,19 +2802,19 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">- Пункт содержания должен быть связан с файлом-источником. Вы можете связать его с существующим файлом или создать новый.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.cpp" line="48"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.cpp" line="48"/>
         <source>- Please enter a full name.
 </source>
         <translation>- Пожалуйста, введите полное название</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.cpp" line="53"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.cpp" line="53"/>
         <source>- Please enter a correct short name.
 </source>
         <translation>- Пожалуйста, введите корректное короткое название</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.cpp" line="59"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.cpp" line="59"/>
         <source>Item property error</source>
         <translation>Ошибка в свойсте пункта</translation>
     </message>
@@ -2664,27 +2822,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ItemProperty</name>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.ui" line="23"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.ui" line="23"/>
         <source>Item property</source>
         <translation>Свойства пункта</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.ui" line="31"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.ui" line="31"/>
         <source>Full name book:</source>
         <translation>Полное название:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.ui" line="41"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.ui" line="41"/>
         <source>Short name:</source>
         <translation>Короткое название:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.ui" line="67"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.ui" line="67"/>
         <source>Count (chapters):</source>
         <translation>Количество глав:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/itemproperty/itemproperty.ui" line="81"/>
+        <location filename="../../src/properties/itemproperty/itemproperty.ui" line="81"/>
         <source>Link item to file:</source>
         <translation>Путь к файлу:</translation>
     </message>
@@ -2712,12 +2870,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>LinkProperties</name>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.cpp" line="46"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.cpp" line="46"/>
         <source>Choose file to link to</source>
         <translation>Выбирете файл для ссылки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.cpp" line="47"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.cpp" line="47"/>
         <source>HTML (*.htm *.html);;All Files (*)</source>
         <translation>HTML (*.htm *.html);;Все файлы (*)</translation>
     </message>
@@ -2725,37 +2883,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>LinkProperty</name>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="13"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="13"/>
         <source>Link properties</source>
         <translation>Свойства ссылки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="42"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="42"/>
         <source>Link location:</source>
         <translation>Месторасположение ссылки:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="85"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="85"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="22"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="22"/>
         <source>Link text:</source>
         <translation>Текст ссылки:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="100"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="100"/>
         <source>(leave it empty to remove link)</source>
         <translation>(оставье пустым для удаления ссылки)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="125"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="125"/>
         <source>Remove link</source>
         <translation>Удалить ссылку</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/linkproperty/linkproperty.ui" line="128"/>
+        <location filename="../../src/properties/linkproperty/linkproperty.ui" line="128"/>
         <source>Remove</source>
         <comment>remove link</comment>
         <translation>Удалить</translation>
@@ -2768,59 +2926,59 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Инициализация Research Assistant...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="611"/>
+        <location filename="../../src/main/mainwindow.ui" line="625"/>
         <source>Ctrl+I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="596"/>
+        <location filename="../../src/main/mainwindow.ui" line="610"/>
         <source>Ctrl+B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="208"/>
+        <location filename="../../src/main/mainwindow.cpp" line="230"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="209"/>
+        <location filename="../../src/main/mainwindow.cpp" line="231"/>
         <source>Ctrl+]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="210"/>
+        <location filename="../../src/main/mainwindow.cpp" line="232"/>
         <source>Ctrl+[</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="444"/>
+        <location filename="../../src/main/mainwindow.cpp" line="468"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="625"/>
+        <location filename="../../src/main/mainwindow.cpp" line="649"/>
         <source>Open Project</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="646"/>
+        <location filename="../../src/main/mainwindow.cpp" line="671"/>
         <source>- show start page: %1</source>
         <comment>For log</comment>
         <translation>- show start page: %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="657"/>
+        <location filename="../../src/main/mainwindow.cpp" line="682"/>
         <source>Save Project As</source>
         <translation>Сохранить проект как</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="681"/>
-        <location filename="../../src/main/mainwindow.cpp" line="688"/>
+        <location filename="../../src/main/mainwindow.cpp" line="706"/>
+        <location filename="../../src/main/mainwindow.cpp" line="713"/>
         <source>Save Page</source>
         <translation>Сохранить страницу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="688"/>
+        <location filename="../../src/main/mainwindow.cpp" line="713"/>
         <source>Cannot open file for writing!</source>
         <translation>Невозможно открыть файл для записи!</translation>
     </message>
@@ -2834,11 +2992,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="71"/>
+        <location filename="../../src/main/mainwindow.ui" line="1052"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="106"/>
+        <location filename="../../src/main/mainwindow.ui" line="103"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
@@ -2851,17 +3010,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Страницы</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="185"/>
+        <location filename="../../src/main/mainwindow.ui" line="183"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="115"/>
+        <location filename="../../src/main/mainwindow.ui" line="113"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редактировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="203"/>
+        <location filename="../../src/main/mainwindow.ui" line="201"/>
         <source>&amp;Project</source>
         <translation>П&amp;роект</translation>
     </message>
@@ -2871,7 +3030,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="52"/>
-        <location filename="../../src/main/mainwindow.ui" line="189"/>
+        <location filename="../../src/main/mainwindow.ui" line="187"/>
         <source>Tabs</source>
         <translation>Вкладки</translation>
     </message>
@@ -2894,82 +3053,81 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Удалить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="207"/>
+        <location filename="../../src/main/mainwindow.ui" line="205"/>
         <source>Import</source>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="175"/>
+        <location filename="../../src/main/mainwindow.ui" line="173"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="234"/>
         <source>Add tag</source>
-        <translation>Дополнительные</translation>
+        <translation type="obsolete">Дополнительные</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="268"/>
+        <location filename="../../src/main/mainwindow.ui" line="270"/>
         <source>&amp;Print...</source>
         <translation>Пе&amp;чать...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="271"/>
+        <location filename="../../src/main/mainwindow.ui" line="273"/>
         <source>Print the currently displayed page.</source>
         <translation>Печатать текущую страницу.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="280"/>
+        <location filename="../../src/main/mainwindow.ui" line="282"/>
         <source>E&amp;xit Application</source>
         <translation>&amp;Выйти из приложения</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="286"/>
+        <location filename="../../src/main/mainwindow.ui" line="288"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="298"/>
+        <location filename="../../src/main/mainwindow.ui" line="300"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="301"/>
+        <location filename="../../src/main/mainwindow.ui" line="303"/>
         <source>Copy the selected text to the clipboard.</source>
         <translation>Копировать выделенный текст в буфер.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="304"/>
+        <location filename="../../src/main/mainwindow.ui" line="306"/>
         <source>Ctrl+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="313"/>
+        <location filename="../../src/main/mainwindow.ui" line="318"/>
         <source>&amp;Find in Text...</source>
         <translation>&amp;Найти в тексте...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="319"/>
+        <location filename="../../src/main/mainwindow.ui" line="324"/>
         <source>Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="324"/>
+        <location filename="../../src/main/mainwindow.ui" line="329"/>
         <source>Find &amp;Next</source>
         <translation>Найти &amp;следующее</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="327"/>
+        <location filename="../../src/main/mainwindow.ui" line="332"/>
         <source>F3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="332"/>
+        <location filename="../../src/main/mainwindow.ui" line="337"/>
         <source>Find &amp;Previous</source>
         <translation>Найти &amp;предыдущее</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="335"/>
+        <location filename="../../src/main/mainwindow.ui" line="340"/>
         <source>Shift+F3</source>
         <translation></translation>
     </message>
@@ -2994,38 +3152,37 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Уменьшить масштаб документа, т.е. уменьшить шрифт.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="355"/>
+        <location filename="../../src/main/mainwindow.ui" line="360"/>
         <source>New Window</source>
         <translation>Новое окно</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="358"/>
+        <location filename="../../src/main/mainwindow.ui" line="363"/>
         <source>Open a new window.</source>
         <translation>Открыть в новом окне.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="474"/>
-        <location filename="../../src/main/mainwindow.ui" line="914"/>
+        <location filename="../../src/main/mainwindow.ui" line="479"/>
+        <location filename="../../src/main/mainwindow.ui" line="928"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="370"/>
+        <location filename="../../src/main/mainwindow.ui" line="375"/>
         <source>Close the current window.</source>
         <translation>Закрыть текущее окно.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="782"/>
         <source>Export Module</source>
-        <translation>Экспорт модуля</translation>
+        <translation type="obsolete">Экспорт модуля</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="785"/>
+        <location filename="../../src/main/mainwindow.ui" line="799"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="805"/>
+        <location filename="../../src/main/mainwindow.ui" line="819"/>
         <source>Add the currently displayed page as a new bookmark.</source>
         <translation>Добавить текущую страницу в закладки.</translation>
     </message>
@@ -3038,53 +3195,53 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot;Что это?&quot; - контекстная помощь.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="379"/>
+        <location filename="../../src/main/mainwindow.ui" line="384"/>
         <source>Add tab</source>
         <translation>Добавить вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="382"/>
+        <location filename="../../src/main/mainwindow.ui" line="387"/>
         <source>Ctrl+Alt+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="391"/>
+        <location filename="../../src/main/mainwindow.ui" line="396"/>
         <source>Next Tab</source>
         <translation>Следующая вкладка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="394"/>
+        <location filename="../../src/main/mainwindow.ui" line="399"/>
         <source>Ctrl+Alt+Right</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="403"/>
+        <location filename="../../src/main/mainwindow.ui" line="408"/>
         <source>Previous Tab</source>
         <translation>Предыдущая вкладка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="406"/>
+        <location filename="../../src/main/mainwindow.ui" line="411"/>
         <source>Ctrl+Alt+Left</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="415"/>
+        <location filename="../../src/main/mainwindow.ui" line="420"/>
         <source>Close Tab</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="418"/>
+        <location filename="../../src/main/mainwindow.ui" line="423"/>
         <source>Ctrl+Alt+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="423"/>
-        <location filename="../../src/main/mainwindow.ui" line="700"/>
+        <location filename="../../src/main/mainwindow.ui" line="428"/>
+        <location filename="../../src/main/mainwindow.ui" line="714"/>
         <source>Save As...</source>
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="426"/>
+        <location filename="../../src/main/mainwindow.ui" line="431"/>
         <source>Ctrl+Alt+S</source>
         <translation></translation>
     </message>
@@ -3097,7 +3254,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Выбирете страницу на вкладке содержания.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="435"/>
+        <location filename="../../src/main/mainwindow.ui" line="440"/>
         <source>Font Settings...</source>
         <translation>Шрифт...</translation>
     </message>
@@ -3106,28 +3263,28 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Свойства...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="459"/>
+        <location filename="../../src/main/mainwindow.ui" line="464"/>
         <source>Statistics</source>
         <translation>Статистика</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="468"/>
+        <location filename="../../src/main/mainwindow.ui" line="473"/>
         <source>New</source>
         <translation>Новый</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="483"/>
+        <location filename="../../src/main/mainwindow.ui" line="488"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="501"/>
-        <location filename="../../src/main/mainwindow.ui" line="525"/>
+        <location filename="../../src/main/mainwindow.ui" line="506"/>
+        <location filename="../../src/main/mainwindow.ui" line="530"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="530"/>
+        <location filename="../../src/main/mainwindow.ui" line="535"/>
         <source>Print Preview...</source>
         <translation>Предварительный просмотр...</translation>
     </message>
@@ -3136,101 +3293,184 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Экспорт в PDF...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="539"/>
+        <location filename="../../src/main/mainwindow.ui" line="544"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="548"/>
+        <location filename="../../src/main/mainwindow.ui" line="553"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="557"/>
+        <location filename="../../src/main/mainwindow.ui" line="562"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="560"/>
+        <location filename="../../src/main/mainwindow.ui" line="565"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="569"/>
+        <location filename="../../src/main/mainwindow.ui" line="580"/>
         <source>Cut</source>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="572"/>
+        <location filename="../../src/main/mainwindow.ui" line="583"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="581"/>
+        <location filename="../../src/main/mainwindow.ui" line="595"/>
         <source>Remove Item</source>
         <translation>Убрать пункт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="593"/>
+        <location filename="../../src/main/mainwindow.ui" line="607"/>
         <source>Bold</source>
         <translation>Жирный</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="608"/>
+        <location filename="../../src/main/mainwindow.ui" line="622"/>
         <source>Italic</source>
         <translation>Курсив</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="623"/>
+        <location filename="../../src/main/mainwindow.ui" line="637"/>
         <source>Underline</source>
         <translation>Подчёркнутый</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="638"/>
+        <location filename="../../src/main/mainwindow.ui" line="652"/>
         <source>Left</source>
         <translation>По левому краю</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="650"/>
+        <location filename="../../src/main/mainwindow.ui" line="664"/>
         <source>Center</source>
         <translation>По центру</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="662"/>
+        <location filename="../../src/main/mainwindow.ui" line="676"/>
         <source>Right</source>
         <translation>По правому краю</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="674"/>
+        <location filename="../../src/main/mainwindow.ui" line="688"/>
         <source>Justify</source>
         <translation>По ширине</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="686"/>
+        <location filename="../../src/main/mainwindow.ui" line="700"/>
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="695"/>
+        <location filename="../../src/main/mainwindow.ui" line="709"/>
         <source>Item properties...</source>
         <translation>Свойства пункта...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="810"/>
+        <location filename="../../src/main/mainwindow.ui" line="796"/>
+        <source>Export module</source>
+        <translation>Экспорт модуля</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="824"/>
         <source>Module</source>
         <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="970"/>
+        <location filename="../../src/main/mainwindow.ui" line="984"/>
         <source>Ctrl+Shift+B</source>
         <translation>Ctrl+Shift+B</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="989"/>
+        <source>Home page</source>
+        <translation>Домашная страница</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="994"/>
+        <source>New line</source>
+        <translation>На новую строку</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="997"/>
+        <source>&lt;br&gt;</source>
+        <translation>&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1000"/>
+        <source>Add to text symbol 
+ (&lt;br&gt;)</source>
+        <translation>Добавить в текст символ 
+ &lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1004"/>
+        <source>Alt+1</source>
+        <translation>Alt+1</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1009"/>
+        <source>Add Strong&apos;s number</source>
+        <translation>Добавить номера Стронга</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1012"/>
+        <source>strong</source>
+        <translation>strong</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1015"/>
+        <source>Alt+3</source>
+        <translation>Alt+3</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1023"/>
+        <source>HTML</source>
+        <translation>HTML</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1031"/>
+        <source>Doc</source>
+        <translation>Doc</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1041"/>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1044"/>
+        <source>Add content for book</source>
+        <translation>Добавить содержание для книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1047"/>
+        <source>Ctrl+Shift+Y</source>
+        <translation>Ctrl+Shift+Y</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1055"/>
+        <source>Edit content for book</source>
+        <translation>Редактировать содеражние книги</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="1063"/>
+        <source>Delete content for book</source>
+        <translation>Удалить содеражние книги</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
         <translation type="obsolete">Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="967"/>
+        <location filename="../../src/main/mainwindow.ui" line="981"/>
+        <location filename="../../src/main/mainwindow.ui" line="1036"/>
         <source>Book</source>
         <translation>Книга</translation>
     </message>
@@ -3239,12 +3479,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="818"/>
+        <location filename="../../src/main/mainwindow.ui" line="832"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="826"/>
+        <location filename="../../src/main/mainwindow.ui" line="840"/>
         <source>Find and replace</source>
         <translation>Поиск и замена</translation>
     </message>
@@ -3253,8 +3493,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="838"/>
-        <location filename="../../src/main/mainwindow.ui" line="841"/>
+        <location filename="../../src/main/mainwindow.ui" line="852"/>
+        <location filename="../../src/main/mainwindow.ui" line="855"/>
         <source>AddTag</source>
         <translation>Добавить тег</translation>
     </message>
@@ -3268,76 +3508,81 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Язык (&amp;Language)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="283"/>
+        <location filename="../../src/main/mainwindow.ui" line="285"/>
         <source>Exit Application</source>
         <translation>Выйти из приложения</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="316"/>
+        <location filename="../../src/main/mainwindow.ui" line="321"/>
         <source>Open the Find dialog. This will search the currently displayed page for the text you enter.</source>
         <translation>Открыть диалог поиска для поиска введённого текста на текущей странице.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="344"/>
+        <location filename="../../src/main/mainwindow.ui" line="349"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="447"/>
+        <location filename="../../src/main/mainwindow.ui" line="452"/>
         <source>Project properties...</source>
         <translation>Свойства проекта...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="450"/>
+        <location filename="../../src/main/mainwindow.ui" line="455"/>
         <source>Ctrl+Shift+T</source>
         <translation>Ctrl+Shift+T</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="813"/>
+        <location filename="../../src/main/mainwindow.ui" line="827"/>
         <source>Ctrl+Shift+D</source>
         <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="821"/>
-        <location filename="../../src/main/mainwindow.ui" line="844"/>
+        <location filename="../../src/main/mainwindow.ui" line="835"/>
+        <location filename="../../src/main/mainwindow.ui" line="858"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="489"/>
-        <location filename="../../src/main/mainwindow.ui" line="926"/>
+        <location filename="../../src/main/mainwindow.ui" line="494"/>
+        <location filename="../../src/main/mainwindow.ui" line="940"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="507"/>
+        <location filename="../../src/main/mainwindow.ui" line="234"/>
+        <source>Other</source>
+        <translation>Другое</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="512"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="718"/>
+        <location filename="../../src/main/mainwindow.ui" line="732"/>
         <source>English</source>
         <comment>Name on your language (in English)</comment>
         <translation>Английский (English)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="730"/>
+        <location filename="../../src/main/mainwindow.ui" line="744"/>
         <source>Russian</source>
         <comment>Name on your language (in English)</comment>
         <translation>Русский (Russian)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="739"/>
+        <location filename="../../src/main/mainwindow.ui" line="753"/>
         <source>Hyperlink</source>
         <translation>Гиперссылка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1047"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1074"/>
         <source>Reload application</source>
         <translation>Требуется перезагрузка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="367"/>
+        <location filename="../../src/main/mainwindow.ui" line="372"/>
         <source>&amp;Delete Item and File</source>
         <translation>У&amp;далить пункт и файл</translation>
     </message>
@@ -3346,30 +3591,30 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Новый...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="471"/>
-        <location filename="../../src/main/mainwindow.ui" line="911"/>
+        <location filename="../../src/main/mainwindow.ui" line="476"/>
+        <location filename="../../src/main/mainwindow.ui" line="925"/>
         <source>New project</source>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="486"/>
-        <location filename="../../src/main/mainwindow.ui" line="923"/>
+        <location filename="../../src/main/mainwindow.ui" line="491"/>
+        <location filename="../../src/main/mainwindow.ui" line="937"/>
         <source>Open project</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="504"/>
-        <location filename="../../src/main/mainwindow.ui" line="931"/>
+        <location filename="../../src/main/mainwindow.ui" line="509"/>
+        <location filename="../../src/main/mainwindow.ui" line="945"/>
         <source>Save project</source>
         <translation>Сохранить проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="516"/>
+        <location filename="../../src/main/mainwindow.ui" line="521"/>
         <source>Add...</source>
         <translation>Добавить...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="703"/>
+        <location filename="../../src/main/mainwindow.ui" line="717"/>
         <source>Save project as...</source>
         <translation>Сохранить проект как...</translation>
     </message>
@@ -3388,7 +3633,7 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Вид исходного HTML</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="80"/>
+        <location filename="../../src/main/mainwindow.cpp" line="85"/>
         <source>Project manager</source>
         <translation>Менеджер проекта</translation>
     </message>
@@ -3397,12 +3642,12 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Формат</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="802"/>
+        <location filename="../../src/main/mainwindow.ui" line="816"/>
         <source>&amp;Add to bookmarks</source>
         <translation>&amp;Добавить в закладки</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="748"/>
+        <location filename="../../src/main/mainwindow.ui" line="762"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -3415,29 +3660,29 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">&amp;Закладки</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="753"/>
+        <location filename="../../src/main/mainwindow.ui" line="767"/>
         <source>Sources</source>
         <translation>Источники</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="761"/>
+        <location filename="../../src/main/mainwindow.ui" line="775"/>
         <source>Diary</source>
         <translation>Дневник</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="769"/>
+        <location filename="../../src/main/mainwindow.ui" line="783"/>
         <source>Notebook</source>
         <translation>Записная книжка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="405"/>
+        <location filename="../../src/main/mainwindow.cpp" line="429"/>
         <source>failed to open file:
 %1</source>
         <translation>Невозможно открыть файл:
 %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="892"/>
+        <location filename="../../src/main/mainwindow.cpp" line="918"/>
         <source>Failed to create project: %1</source>
         <translation>Невозможно создать проект: %1</translation>
     </message>
@@ -3450,7 +3695,7 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">О проекте</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="222"/>
+        <location filename="../../src/main/mainwindow.cpp" line="245"/>
         <source>Toolbars &amp; panels</source>
         <translation>Панели инструментов</translation>
     </message>
@@ -3459,33 +3704,33 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Файл</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="98"/>
+        <location filename="../../src/main/mainwindow.cpp" line="104"/>
         <source>Insert Sign</source>
         <translation>Добавить подпись</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="142"/>
+        <location filename="../../src/main/mainwindow.cpp" line="151"/>
         <source>Initializing %1...</source>
         <translation>Запускаю %1...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="211"/>
+        <location filename="../../src/main/mainwindow.cpp" line="233"/>
         <source>Ctrl+Shift+Insert</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="626"/>
+        <location filename="../../src/main/mainwindow.cpp" line="650"/>
         <source>Project bQella (*.pem)</source>
         <translation>Project bQella (*.pem)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="779"/>
+        <location filename="../../src/main/mainwindow.cpp" line="804"/>
         <source>New Project</source>
         <comment>Default project name</comment>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1047"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1074"/>
         <source>Changes will be applied after application reload.</source>
         <comment>Append this warning in English after translation</comment>
         <translation>Перезагрузите приложение для применения новых настроек.
@@ -3500,7 +3745,8 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">В&amp;ыделить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="138"/>
+        <location filename="../../src/main/mainwindow.ui" line="136"/>
+        <location filename="../../src/main/mainwindow.ui" line="1060"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
@@ -3509,12 +3755,12 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Печатайте здесь</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="626"/>
+        <location filename="../../src/main/mainwindow.ui" line="640"/>
         <source>Ctrl+U</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="756"/>
+        <location filename="../../src/main/mainwindow.ui" line="770"/>
         <source>F11</source>
         <translation></translation>
     </message>
@@ -3523,38 +3769,38 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Вставить таблицу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="793"/>
+        <location filename="../../src/main/mainwindow.ui" line="807"/>
         <source>Insert Image</source>
         <translation>Вставить рисунок</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="852"/>
+        <location filename="../../src/main/mainwindow.ui" line="866"/>
         <source>Row Above</source>
         <translation>Строку сверху</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="860"/>
+        <location filename="../../src/main/mainwindow.ui" line="874"/>
         <source>Row Below</source>
         <translation>Строку снизу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="119"/>
-        <location filename="../../src/main/mainwindow.ui" line="892"/>
+        <location filename="../../src/main/mainwindow.ui" line="117"/>
+        <location filename="../../src/main/mainwindow.ui" line="906"/>
         <source>Table</source>
         <translation>Таблица</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="123"/>
+        <location filename="../../src/main/mainwindow.ui" line="121"/>
         <source>Insert</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="151"/>
+        <location filename="../../src/main/mainwindow.ui" line="149"/>
         <source>Find</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="171"/>
+        <location filename="../../src/main/mainwindow.ui" line="169"/>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
@@ -3563,52 +3809,52 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Импортировать модуль</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="829"/>
+        <location filename="../../src/main/mainwindow.ui" line="843"/>
         <source>Ctrl+Shift+F</source>
         <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="865"/>
+        <location filename="../../src/main/mainwindow.ui" line="879"/>
         <source>New Table</source>
         <translation>Новая таблица</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="897"/>
+        <location filename="../../src/main/mainwindow.ui" line="911"/>
         <source>Row</source>
         <translation>Строка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="902"/>
+        <location filename="../../src/main/mainwindow.ui" line="916"/>
         <source>Column</source>
         <translation>Столбец</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="939"/>
+        <location filename="../../src/main/mainwindow.ui" line="953"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="942"/>
+        <location filename="../../src/main/mainwindow.ui" line="956"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="947"/>
+        <location filename="../../src/main/mainwindow.ui" line="961"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="952"/>
+        <location filename="../../src/main/mainwindow.ui" line="966"/>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="957"/>
+        <location filename="../../src/main/mainwindow.ui" line="971"/>
         <source>f</source>
-        <translation type="unfinished"></translation>
+        <translation>f</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="962"/>
+        <location filename="../../src/main/mainwindow.ui" line="976"/>
         <source>Table Property...</source>
         <translation>Свойства таблицы...</translation>
     </message>
@@ -3617,117 +3863,117 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">В&amp;ставить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="873"/>
+        <location filename="../../src/main/mainwindow.ui" line="887"/>
         <source>Column Left</source>
         <translation>Колонку слева</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="881"/>
+        <location filename="../../src/main/mainwindow.ui" line="895"/>
         <source>Column Right</source>
         <translation>Колонку справа</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="777"/>
+        <location filename="../../src/main/mainwindow.ui" line="791"/>
         <source>Backup</source>
         <translation>Архивировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="650"/>
+        <location filename="../../src/main/mainwindow.cpp" line="675"/>
         <source>Project is opened.</source>
         <comment>For log</comment>
         <translation>Проект открыт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="657"/>
+        <location filename="../../src/main/mainwindow.cpp" line="682"/>
         <source>Project bQella (*.pep)</source>
         <translation>Project bQella (*.pep)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="887"/>
+        <location filename="../../src/main/mainwindow.cpp" line="912"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="888"/>
+        <location filename="../../src/main/mainwindow.cpp" line="913"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="893"/>
+        <location filename="../../src/main/mainwindow.cpp" line="919"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="897"/>
+        <location filename="../../src/main/mainwindow.cpp" line="923"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="905"/>
+        <location filename="../../src/main/mainwindow.cpp" line="931"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="956"/>
+        <location filename="../../src/main/mainwindow.cpp" line="984"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="957"/>
-        <location filename="../../src/main/mainwindow.cpp" line="1020"/>
+        <location filename="../../src/main/mainwindow.cpp" line="985"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1047"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="972"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1000"/>
         <source>Update project properties:</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="973"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1001"/>
         <source>- title      = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="974"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1002"/>
         <source>- file name  = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="975"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1003"/>
         <source>- start page = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="976"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1004"/>
         <source>- module name      = %1</source>
         <comment>For log</comment>
         <translation>- module name      = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="977"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1005"/>
         <source>- module short name  = %1</source>
         <comment>For log</comment>
         <translation>- module short name  = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="978"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1006"/>
         <source>- module copyright = %1</source>
         <comment>For log</comment>
         <translation>- module copyright = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1064"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1091"/>
         <source>Open file in external application: %1 %2</source>
         <comment>For log</comment>
         <translation>Открытие файла внешним приложением: %1 %2</translation>
@@ -3778,45 +4024,41 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">- Пожалуйста укажите файл для начальной страницы.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="107"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="107"/>
         <source>- Please enter a bible name.
 </source>
         <translation>- Пожалуйста введите название модуля.
 </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="111"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="111"/>
         <source>- Please enter a short bible name.
 </source>
         <translation>- Пожалуйста введите короткое название модуля.
 </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="117"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="139"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="189"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="117"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="141"/>
         <source>Project property error</source>
         <translation>Ошибка в свойстве проекта</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="139"/>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="189"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="141"/>
         <source>Can not create file:
 %1</source>
         <translation>Невозможно создать файл:%1</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="154"/>
         <source>   ___Instruction</source>
-        <translation>   ___Instruction</translation>
+        <translation type="obsolete">   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="155"/>
         <source>&lt;p&gt;add a user to create modules&lt;/p&gt;</source>
-        <translation>&lt;p&gt;add a user to create modules&lt;/p&gt;</translation>
+        <translation type="obsolete">&lt;p&gt;add a user to create modules&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="249"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="233"/>
         <source>&lt;i&gt;The full name of the module&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be in the language module, as far as possible according to the printed edition.&lt;br&gt;Must be unique for each module.</source>
         <translation>&lt;i&gt;Полное название модуля&lt;/i&gt;&lt;br&gt;&lt;br&gt;на языке модуля, по возможности согласно печатному изданию.&lt;br&gt; Должен быть уникальным для каждого модуля.</translation>
     </message>
@@ -3825,22 +4067,22 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">&lt;i&gt;Авторские права&lt;/i&gt;&lt;br&gt;&lt;br&gt;Указывается год издания и правообладатель&lt;br&gt;Подразумевает наличие файла copyright.htm в корневом каталоге модуля.&lt;br&gt;Если не указано ничего параметр приравнивается PublicDomainText из файла интерфейса языка lng.&lt;br&gt;Если указать правообладателя, то Цитата будет показывать указанный текст и при нажатии на кнопку копирайта перебросит на страницу Copyright с данными из файла copyright.htm.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="265"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="249"/>
         <source>&lt;i&gt;Binding to the module category&lt;/i&gt;&lt;br&gt;&lt;br&gt;By default, the program divides the Bible into the category OT, NT, Apocrypha.&lt;br&gt;You must specify additional parameters for the Bible:&lt;br&gt;| Language | Translation Type | Denomination |&lt;br&gt;For books, specify the subject, keywords (tags).</source>
         <translation>&lt;i&gt;Привязка модуля к категориям&lt;/i&gt;&lt;br&gt;&lt;br&gt;По-умолчанию программа разделяет Библии на категории ВЗ, НЗ, апокрифы.&lt;br&gt;Необходимо указывать для Библии дополнительные параметры:&lt;br&gt;|Язык|Тип перевода|Конфессия|&lt;br&gt; Для книг указывать тему, ключевые слова (теги).</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="274"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="258"/>
         <source>&lt;i&gt;The font, which will use the program to display the text of books (parts) in the main window.&lt;/i&gt;&lt;br&gt;&lt;br&gt;If &lt;b&gt;DesiredFontName&lt;/b&gt; coincides not only with the name of the font, but also with the name of the font file (no file extension TTF), the program will automatically upload it when referring to the module. Therefore, a file with special characters when creating the module should be called by the name of the font (with the extension TTF). Specifies the font supports Unicode: Arial, Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman.We recommend using Times New Roman for Vista and 7, and Microsoft Sans Serif for XP.</source>
         <translation>&lt;i&gt;Шрифт, который будет использовать программа  для отображения текста книг (частей) в главном окне.&lt;/i&gt;&lt;br&gt;&lt;br&gt;Если &lt;b&gt;DesiredFontName&lt;/b&gt; совпадает не только с названием шрифта, но и с названием файла шрифта (без указания расширения TTF), то программа автоматически подгрузит его при обращении к модулю. Поэтому файл со специальным шрифтом при создании модуля нужно называть по имени шрифта (с добавлением расширения TTF). Указывается шрифт поддерживающий Unicode: Arial, Comic Sans MS, Courier New, Microsoft Sans Serif, Times New Roman.&lt;br&gt;Рекомендуем использовать Times New Roman для Vista и 7, а Microsoft Sans Serif для XP.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="286"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="270"/>
         <source>&lt;i&gt;The path to font file&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Путь к файлу шрифта&lt;/i&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="290"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="274"/>
         <source>&lt;i&gt;Specifies the font header titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Определяет шрифт заголовков названий книг&lt;/i&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
@@ -3849,7 +4091,7 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">&lt;i&gt;Кодировка модуля по умолчанию&lt;/i&gt;&lt;br&gt;&lt;br&gt;Параметр по умолчанию равен &lt;b&gt;utf-8.&lt;/b&gt;&lt;b&gt;Windows-1250&lt;/b&gt; для языков Центральной Европы, которые используют латинское написание букв (польский, чешский, словацкий, венгерский, словенский, хорватский, румынский и албанский)&lt;br&gt;&lt;b&gt;Windows-1251&lt;/b&gt; для кириллических алфавитов&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; для западных языков&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; для греческого языка&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; для турецкого языка&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; для иврита&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; для арабского языка&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; для балтийских языков&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; для вьетнамского языка&lt;br&gt;&lt;b&gt;Utf-8, Utf-16&lt;/b&gt; и &lt;b&gt;Utf-32&lt;/b&gt; набора символов Юникод</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="312"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="296"/>
         <source>&lt;i&gt;Embedding fonts from a folder in the program module without having to install them in OS&lt;br&gt;&lt;b&gt;Fonts Install Pending&lt;/b&gt;&lt;i&gt;&lt;br&gt;&lt;br&gt;Font files to load must lie at the root of the module. Listed separated by commas with no spaces, indicating expansion. In the file names spaces are allowed. Cloudy. &lt;br&gt;&lt;b&gt;InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf&lt;/b&gt;</source>
         <translation>&lt;i&gt;Внедрение шрифтов в программу из папки модуля, не устанавливая их в OS&lt;br&gt;&lt;b&gt;Fonts Install Pending&lt;/b&gt;&lt;i&gt;&lt;br&gt;&lt;br&gt;Файлы шрифтов для подгрузки должны лежать в корне модуля. Перечисляются через запятую без пробелов с указанием расширения. В названиях файлов пробелы допускаются. Напр. &lt;br&gt;&lt;b&gt;InstallFonts = Greek Uncials.ttf, GU Greek.ttf, GU Hebrew.ttf, NetBibleGreek.ttf&lt;/b&gt;</translation>
     </message>
@@ -3858,68 +4100,68 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">&lt;i&gt;Короткое название модуля (сокращение).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Должен быть уникальным для каждого модуля.&lt;br&gt;&lt;br&gt;Параметр только английскими символами (по возможности - см.ниже).&lt;br&gt;Совпадает с названием папки модуля\архива (желательно).&lt;br&gt;Язык через знак подчеркивания, в тех модулях, которые существуют на нескольких языках, а затем год через знак подчеркивания где есть несколько отличающихся изданий.&lt;br&gt;Если существует устоявшееся литературное сокращение для перевода, то используется оно, например: Септуагинта – LXX, Русский Синодальный&lt;br&gt; перевод – РСП, Перевод В. кузнецовой – РВ, Византийский тип текста (Majority Text) принято обозначать буквой 𝔐.&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="255"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="239"/>
         <source>&lt;i&gt;Copyright&lt;/i&gt;&lt;br&gt;&lt;br&gt;The year of publication and copyright&lt;br&gt;Implies copyright.htm file in the root directory of the module.&lt;br&gt;If no option is specified in the file equals PublicDomainText interface language lng.&lt;br&gt;If you specify an owner, then the quote will display the specified text and pressing a button will transfer the copyright on the page Copyright data from a file copyright.htm.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;Авторские права&lt;/i&gt;&lt;br&gt;&lt;br&gt;Указывается год издания и правообладатель&lt;br&gt;Подразумевает наличие файла copyright.htm в корневом каталоге модуля.&lt;br&gt;Если не указано ничего параметр приравнивается PublicDomainText из файла интерфейса языка lng.&lt;br&gt;Если указать правообладателя, то Цитата будет показывать указанный текст и при нажатии на кнопку копирайта перебросит на страницу Copyright с данными из файла copyright.htm.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="294"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="278"/>
         <source>&lt;i&gt;Encoding module by default&lt;/i&gt;&lt;br&gt;&lt;br&gt;This parameter defaults to &lt;b&gt;UTF-8&lt;/b&gt;.&lt;br&gt;Windows-1250 for Central European languages ââthat use Latin script letters (Polish, Czech, Slovak, Hungarian, Slovenian, Croatian, Romanian and Albanian)&lt;b&gt;Windows-1251&lt;/b&gt; for Cyrillic alphabets&lt;br&gt;&lt;b&gt;Windows-1252&lt;/b&gt; for Western languages&lt;br&gt;&lt;b&gt;Windows-1253&lt;/b&gt; for the Greek Language&lt;br&gt;&lt;b&gt;Windows-1254&lt;/b&gt; for the Turkish language&lt;br&gt;&lt;b&gt;Windows-1255&lt;/b&gt; Hebrew&lt;br&gt;&lt;b&gt;Windows-1256&lt;/b&gt; for the Arabic language&lt;br&gt;&lt;b&gt;Windows-1257&lt;/b&gt; for the Baltic languages&lt;br&gt;&lt;b&gt;Windows-1258&lt;/b&gt; for Vietnamese Language&lt;br&gt;&lt;b&gt;Utf-8&lt;/b&gt;, &lt;b&gt;Utf-16&lt;/b&gt; and &lt;b&gt;Utf-32&lt;/b&gt; Unicode character set</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;Кодировка модуля по умолчанию&lt;/i&gt;&lt;br&gt;&lt;br&gt;Параметр по умолчанию равен utf-8.&lt;br&gt;Windows-1250 для языков Центральной Европы, которые используют латинское написание букв (польский, чешский, словацкий, венгерский, словенский, хорватский, румынский и албанский)&lt;br&gt;Windows-1251 для кириллических алфавитов&lt;br&gt;Windows-1252 для западных языков&lt;br&gt;Windows-1253 для греческого языка&lt;br&gt;Windows-1254 для турецкого языка&lt;br&gt;Windows-1255 для иврита&lt;br&gt;Windows-1256 для арабского языка&lt;br&gt;Windows-1257 для балтийских языков&lt;br&gt;Windows-1258 для вьетнамского языка&lt;br&gt;Utf-8, Utf-16 и Utf-32 набора символов Юникод</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="321"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="305"/>
         <source>&lt;i&gt;The short name of the module (reduction).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Must be unique for each module.&lt;br&gt;Option only English characters (if possible - see below).&lt;br&gt;Coincides with the module name of the folder  backup (optional).&lt;br&gt;Language through an underscore in those modules that exist in multiple languagesââ, and then a year after an underscore where there are several different editions.If there is a well-established literary abbreviation for the translation,it is used, such as the Septuagint - LXX, &lt;br&gt;Russian Synodal Version - RSV, &lt;br&gt;Translation Kuznetsova - TK, &lt;br&gt;the Byzantine text-type (Majority Text) is denoted by the letter [ ].</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;Короткое название модуля (сокращение).&lt;/i&gt;&lt;br&gt;&lt;br&gt;Должен быть уникальным для каждого модуля.&lt;br&gt;&lt;br&gt;Параметр только английскими символами (по возможности - см.ниже).&lt;br&gt;Совпадает с названием папки модуля\архива (желательно).&lt;br&gt;Язык через знак подчеркивания, в тех модулях, которые существуют на нескольких языках, а затем год через знак подчеркивания где есть несколько отличающихся изданий.&lt;br&gt;Если существует устоявшееся литературное сокращение для перевода, то используется оно, например: Септуагинта – LXX, Русский Синодальный перевод – РСП, Перевод В. кузнецовой – РВ, Византийский тип текста (Majority Text) принято обозначать буквой 𝔐.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="337"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="321"/>
         <source>&lt;i&gt;Version&lt;/i&gt;&lt;br&gt;</source>
         <translation>&lt;i&gt;Версия&lt;/i&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="342"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="326"/>
         <source>&lt;i&gt;&lt;/i&gt;Use aprocrypha&lt;br&gt;&lt;br&gt;The presence of a module or comments deuterocanonical books (11 books according to the file in the root directory BibleBooks.cfg bQ)&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the Bible = &lt;b&gt;Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;&lt;/i&gt;Использовать апокрифы&lt;br&gt;&lt;br&gt;Наличие в модуле второканонических книг или комментариев (11 книг согласно файлу BibleBooks.cfg в корневой директории Ц.)&lt;br&gt;Этот параметр может быть равен &lt;b&gt;Y&lt;/b&gt; только если Bible=&lt;b&gt;Y&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="349"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="333"/>
         <source>&lt;i&gt;The presence of a zero in the module chapter&lt;/i&gt;&lt;br&gt;&lt;br&gt;This option affects the display chapter numbers in the control panel and to synchronize at the transition between the modules. Put &lt;b&gt;Y&lt;/b&gt; when there is an introduction to the book.&lt;br&gt;If &lt;b&gt;ChapterZero = Y&lt;/b&gt;, the null head is synchronized with the file 001. * In the folder with the audio book, the first - to 002. *, Etc.</source>
         <translation>&lt;i&gt;Наличие в модуле нулевой главы&lt;/i&gt;&lt;br&gt;&lt;br&gt;Этот параметр влияет на отображение номеров глав в панели управления и на синхронизацию при переходе между модулями. Ставится Y  тогда, когда есть вступление к книге.&lt;br&gt;Если ChapterZero=Y, то нулевая глава синхронизируется с файлом 001.* в папке с аудиокнигой, первая – с 002.* и т.д.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="358"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="342"/>
         <source>&lt;i&gt;The use of English in the module numbering of verses&lt;/i&gt;&lt;br&gt;&lt;br&gt;If EnglishPsalms = Y, then the numbering changes to the adopted in the CPR as follows:(code snippet)&lt;br&gt;&lt;br&gt;JOB = 40:1-40:5 # -1; 41:1-41:8 # -1 &lt;br&gt;JOB40 = 1-5 # 30, # 6-24 -5&lt;br&gt;JOB41 = 1-8 # 19, # 9-34 -8&lt;br&gt;PSA = 10:1-147:11 # -1&lt;br&gt;ECC = 5:1 # -1&lt;br&gt;SNG = 6:13 # +1&lt;br&gt;DAN = 4:1-4:3 # -1&lt;br&gt;DAN3 = 24-30 # 67&lt;br&gt;DAN4 = 1-3 # 97, # 4-37 -3&lt;br&gt;JON = 1:17 # 1&lt;br&gt;ROM = 16:25-16:27 # -2&lt;br&gt;ROM16 = 25-27 # -1&lt;br&gt;ECC5 = 1 # 16, # -1 2-20&lt;br&gt;SNG1 = 2-16 # -1&lt;br&gt;SNG6 = 13 # -12&lt;br&gt;SNG7 = 1-13 # 1&lt;br&gt;JON2 = 1-10 # 1&lt;br&gt;PRO13 = 14-25 # 1&lt;br&gt;PRO18 = 8-24 # 1&lt;br&gt;2CO13 = 13 # -1&lt;br&gt;&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;Использование в модуле английской нумерации стихов&lt;/i&gt;&lt;br&gt;&lt;br&gt;Если EnglishPsalms=Y, то нумерация изменяется с принятой в РСП следующим образом:&lt;br&gt;(фрагмент программного кода)&lt;br&gt;&lt;br&gt;JOB=40:1-40:5#-1;41:1-41:8#-1&lt;br&gt;JOB40=1-5#30;6-24#-5&lt;br&gt;JOB41=1-8#19;9-34#-8&lt;br&gt;PSA=10:1-147:11#-1&lt;br&gt;ECC=5:1#-1&lt;br&gt;SNG=6:13#+1&lt;br&gt;DAN=4:1-4:3#-1&lt;br&gt;DAN3=24-30#67&lt;br&gt;DAN4=1-3#97;4-37#-3&lt;br&gt;JON=1:17#1&lt;br&gt;ROM=16:25-16:27#-2&lt;br&gt;ROM16=25-27#-1&lt;br&gt;ECC5=1#16;2-20#-1&lt;br&gt;SNG1=2-16#-1&lt;br&gt;SNG6=13#-12&lt;br&gt;SNG7=1-13#1&lt;br&gt;JON2=1-10#1&lt;br&gt;PRO13=14-25#1&lt;br&gt;PRO18=8-24#1&lt;br&gt;2CO13=13#-1&lt;br&gt;&lt;br&gt;Этот параметр может быть равен Y только если  Bible=Y</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="385"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="369"/>
         <source>&lt;i&gt;Module Type (Bible or comments or a book).&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Y&lt;/b&gt; if it is put to the Bible or commentary, &lt;b&gt;N&lt;/b&gt; if it is a book.</source>
         <translation>&lt;i&gt;Тип модуля (Библия, комментарий, книга)&lt;br&gt;Bible Commentary Book.&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;/b&gt;если это Библия или комментарий, &lt;b&gt;N&lt;/b&gt; если это книга.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="389"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="373"/>
         <source>&lt;i&gt;New testament&lt;/i&gt;&lt;br&gt;&lt;br&gt;The presence of books in the module or the comments of the New Testament (27 books according to the file in the root directory BibleBooks.cfg bQoute)</source>
         <translation>&lt;i&gt;Новый Завет&lt;/i&gt;&lt;br&gt;&lt;br&gt;Наличие в модуле книг или комментариев Нового Завета (27 книг согласно файлу BibleBooks.cfg в корневой директории Ц.)</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="395"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="379"/>
         <source>&lt;i&gt;Separation is not the verses, and in paragraphs&lt;i&gt;&lt;br&gt;&lt;br&gt;Poems do not appear in the form of paragraphs force.</source>
         <translation>&lt;i&gt;Разделение не на стихи, а на абзацы&lt;i&gt;&lt;br&gt;&lt;br&gt;Стихи не отображаются в виде абзацев принудительно.
 Ставится Y  тогда, стихи отображаются «сплошняком», если нет тегов &lt;br&gt; или аналогичных (их конечно необходимо указать в HTMLFilter).</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="400"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="384"/>
         <source>&lt;i&gt;The presence of the module numbers Stronge&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put Y if the module is Strong Room.&lt;br&gt;This parameter can be set to &lt;b&gt;Y&lt;/b&gt; only if the &lt;b&gt;Bible = Y&lt;/b&gt;</source>
         <translation>&lt;i&gt;Наличие в модуле номеров Стронга&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;/b&gt;  тогда, когда в модуле есть номера Стронга.&lt;br&gt;Этот параметр может быть равен &lt;b&gt;Y&lt;/b&gt; только если &lt;b&gt;Bible=Y&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="406"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="390"/>
         <source>&lt;i&gt;Support for displaying chapter titles&lt;/i&gt;&lt;br&gt;&lt;br&gt;Displays the preface in the form of the zero line without a number, if it is present between the sign and the sign of the head of the first verse.</source>
         <translation>&lt;i&gt;Поддержка отображения заголовков глав&lt;/i&gt;&lt;br&gt;&lt;br&gt;Отображает предисловие в виде нулевого стиха без номера, если оно присутствует между знаком главы и знаком первого стиха.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.cpp" line="413"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.cpp" line="397"/>
         <source>&lt;i&gt;Support for right alignment&lt;/i&gt;&lt;br&gt;&lt;br&gt;Put &lt;b&gt;Y&lt;/b&gt; if the module you want to display the entire text to the right</source>
         <translation>&lt;i&gt;Поддержка правого выравнивания&lt;/i&gt;&lt;br&gt;&lt;br&gt;Ставится &lt;b&gt;Y&lt;b&gt;  тогда, когда в модуле весь текст нужно отображать по правому краю.</translation>
     </message>
@@ -3935,12 +4177,12 @@ Changes will be applied after application reload.</translation>
 <context>
     <name>ProjectProperty</name>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="17"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="17"/>
         <source>Project property</source>
         <translation>Свойства проекта</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="27"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="27"/>
         <source>Basic</source>
         <translation>Базовые</translation>
     </message>
@@ -3949,7 +4191,7 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Полное название модуля</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="33"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="33"/>
         <source>Module name:</source>
         <translation>Название модуля:</translation>
     </message>
@@ -3958,7 +4200,7 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Короткое название модуля (сокращение).</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="43"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="43"/>
         <source>Short module name:</source>
         <translation>Короткое название модуля:</translation>
     </message>
@@ -3967,7 +4209,7 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Авторские права</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="57"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="57"/>
         <source>Author:</source>
         <translation>Автор:</translation>
     </message>
@@ -3988,107 +4230,107 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ставится &lt;span style=&quot; font-weight:600;&quot;&gt;Y &lt;/span&gt;если это Библия или комментарий, &lt;span style=&quot; font-weight:600;&quot;&gt;N&lt;/span&gt; если это книга.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="67"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="67"/>
         <source>Type Module:</source>
         <translation>Тип модуля:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="90"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="90"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="80"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="80"/>
         <source>Bible</source>
         <translation>Библия</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="157"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="157"/>
         <source>More</source>
         <translation>Продвинутые</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="163"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="163"/>
         <source>In module:</source>
         <translation>В модуле:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="170"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="170"/>
         <source>Old Testament</source>
         <translation>Ветхий Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="177"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="177"/>
         <source>New Testament</source>
         <translation>Новый Завет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="184"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="184"/>
         <source>Apocrypha</source>
         <translation>Апокрифы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="191"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="191"/>
         <source>Chapter zero</source>
         <translation>Нулевая глава</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="203"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="203"/>
         <source>Strong numbers</source>
         <translation>Номера Стронга</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="228"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="228"/>
         <source>Sound</source>
         <translation>Звук</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="251"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="251"/>
         <source>Noforced line breaks</source>
         <translation>Разделение на абзацы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="269"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="269"/>
         <source>Use chapter head</source>
         <translation>Отображение заголовков глав</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="274"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="274"/>
         <source>Use right alignment</source>
         <translation>Правое выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="283"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="283"/>
         <source>English Psalms</source>
         <translation>Английская нумерация</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="291"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="291"/>
         <source>Categories:</source>
         <translation>Категории:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="107"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="107"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="115"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="115"/>
         <source>rus</source>
         <translation>rus</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="120"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="120"/>
         <source>eng</source>
         <translation>eng</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="125"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="125"/>
         <source>ukr</source>
         <translation>ukr</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="133"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="133"/>
         <source>Encoding:</source>
         <translation>Кодировка:</translation>
     </message>
@@ -4097,32 +4339,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">utf-8</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="301"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="301"/>
         <source>Html filter:</source>
         <translation>HTMLfilter:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="325"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="325"/>
         <source>Fonts</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="331"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="331"/>
         <source>Install fonts:</source>
         <translation>Добавить шрифты:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="341"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="341"/>
         <source>Desired font name:</source>
         <translation>Шрифт для текста:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="351"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="351"/>
         <source>Desired font path:</source>
         <translation>Путь к нему:</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/projectproperty/projectproperty.ui" line="361"/>
+        <location filename="../../src/properties/projectproperty/projectproperty.ui" line="361"/>
         <source>Desired UI font:</source>
         <translation>Шрифт заголовков:</translation>
     </message>
@@ -4220,50 +4462,129 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/settings/config.cpp" line="240"/>
+        <location filename="../../src/settings/config.cpp" line="244"/>
         <source>[No title]</source>
         <translation>[Без имени]</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/help/assistant.cpp" line="112"/>
+        <location filename="../../src/dialogs/assistant/assistant.cpp" line="112"/>
         <source>bQella</source>
         <translation>bQella</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/help/assistant.cpp" line="113"/>
+        <location filename="../../src/dialogs/assistant/assistant.cpp" line="113"/>
         <source>Unable to launch Qt Assistant (%1)</source>
         <translation>Не удается запустить Qt Assistant (%1)</translation>
     </message>
 </context>
 <context>
+    <name>StrongProperties</name>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="14"/>
+        <source>Strong numbers</source>
+        <translation>Номера Стронга</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="20"/>
+        <source>Text:</source>
+        <translation>Текст:</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="42"/>
+        <source>Greek</source>
+        <translation>Греческие</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="49"/>
+        <source>Hebrew</source>
+        <translation>Еврейские</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="60"/>
+        <source>Strong number:</source>
+        <translation>Номер Стронга:</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="74"/>
+        <source>Info</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="81"/>
+        <source>Strong:</source>
+        <translation>Стронг:</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="105"/>
+        <source>Remove link</source>
+        <translation>Удалить ссылку</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.ui" line="108"/>
+        <source>Remove</source>
+        <comment>remove link</comment>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="69"/>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="77"/>
+        <source>There is no such numbers Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="70"/>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="78"/>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="112"/>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="119"/>
+        <source>There is no such numbers Strong:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="111"/>
+        <source>There is no such numbers hebrew Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="118"/>
+        <source>There is no such numbers gr Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/properties/strongproperty/strongproperty.cpp" line="124"/>
+        <source>Number </source>
+        <translation>Число</translation>
+    </message>
+</context>
+<context>
     <name>TabbedBrowser</name>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="125"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="126"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="203"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="206"/>
         <source>Add page</source>
         <translation>Добавить вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="212"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="215"/>
         <source>Close page</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="476"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="481"/>
         <source>New Tab</source>
         <translation>Новая вкладка</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="477"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="482"/>
         <source>Close Tab</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="478"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="483"/>
         <source>Close Other Tabs</source>
         <translation>Закрыть другие вкладки</translation>
     </message>
@@ -4298,17 +4619,17 @@ p, li { white-space: pre-wrap; }
         <translation>Слова целиком</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="472"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="477"/>
         <source>Document properties</source>
         <translation>Свойства документа</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="473"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="478"/>
         <source>Open in external editor</source>
         <translation>Открыть во внешнем редакторе</translation>
     </message>
     <message>
-        <location filename="../../src/tab/tabbedbrowser.cpp" line="474"/>
+        <location filename="../../src/tab/tabbedbrowser.cpp" line="479"/>
         <source>Open in external browser</source>
         <translation>Открыть во внешнем обозревателе</translation>
     </message>
@@ -4316,161 +4637,161 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TableProperty</name>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="14"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="14"/>
         <source>Table property</source>
         <translation>Свойства таблицы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="26"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="26"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="36"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="36"/>
         <source>Rows</source>
         <translation>Строки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="46"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="46"/>
         <source>Columns</source>
         <translation>Колонки</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="126"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="126"/>
         <source>Height</source>
         <translation>Высота</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="136"/>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="389"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="136"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="389"/>
         <source>Width</source>
         <translation>Ширина</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="229"/>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="258"/>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="522"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="229"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="258"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="522"/>
         <source>pixels</source>
         <translation>пикселов</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="234"/>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="263"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="234"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="263"/>
         <source>% </source>
         <translation>% </translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="379"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="379"/>
         <source>Border and Margins</source>
         <translation>Границы и поля</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="399"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="399"/>
         <source>Margins in table</source>
         <translation>Полей в таблице</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="409"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="409"/>
         <source>Margins in cell</source>
         <translation>Полей в ячейке</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="567"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="567"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="572"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="572"/>
         <source>Dotted</source>
         <translation>Пунктирный</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="577"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="577"/>
         <source>Dashed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="582"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="582"/>
         <source>Solid</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="587"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="587"/>
         <source>Double</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="592"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="592"/>
         <source>DotDash</source>
-        <translation type="unfinished"></translation>
+        <translation>Точка тире</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="597"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="597"/>
         <source>DotDotDash</source>
-        <translation type="unfinished"></translation>
+        <translation>Точка точка тире</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="602"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="602"/>
         <source>Groove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="607"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="607"/>
         <source>Ridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="612"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="612"/>
         <source>Inset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="617"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="617"/>
         <source>Outset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="627"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="627"/>
         <source>pixels between cells</source>
-        <translation type="unfinished"></translation>
+        <translation>пикселов между ячейками</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="634"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="634"/>
         <source>pixels between cell border and its contets</source>
-        <translation type="unfinished"></translation>
+        <translation>пикселов м/у границей и ее содержанием</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="291"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="291"/>
         <source>Alignment and Color</source>
         <translation>Выравнивание и цвет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="308"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="308"/>
         <source>Table alignment</source>
         <translation>Выравнивание таблицы</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="318"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="318"/>
         <source>Background color</source>
         <translation>Фоновый цвет</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="333"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="333"/>
         <source>Left</source>
         <translation>По левому краю</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="338"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="338"/>
         <source>Center</source>
         <translation>По центру</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="343"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="343"/>
         <source>Right</source>
         <translation>По правому краю</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tableproperty/tableproperty.ui" line="663"/>
+        <location filename="../../src/table/tableproperty/tableproperty.ui" line="663"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
@@ -4478,12 +4799,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TagDialog</name>
     <message>
-        <location filename="../../src/dialogs/tagdialog/tagdialog.ui" line="14"/>
+        <location filename="../../src/properties/tagdialog/tagdialog.ui" line="14"/>
         <source>Add tag</source>
         <translation>Добавить тег</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/tagdialog/tagdialog.ui" line="20"/>
+        <location filename="../../src/properties/tagdialog/tagdialog.ui" line="20"/>
         <source>Input tag:</source>
         <translation>Введите тег:</translation>
     </message>
@@ -4491,40 +4812,49 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TopicChooser</name>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.cpp" line="33"/>
         <source>Choose a topic for &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="obsolete">Выбирите тему для &lt;b&gt;%1&lt;/b&gt;</translation>
+        <translation>Выбирите тему для &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="15"/>
         <source>Choose Topic</source>
-        <translation type="obsolete">Выбирите тему</translation>
+        <translation>Выбирите тему</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="18"/>
         <source>Select a topic from the list and click the &lt;b&gt;Display&lt;/b&gt;-button to open the online help.</source>
-        <translation type="obsolete">Выбирите тему из списка и нажмите кнопку &lt;b&gt;Показать&lt;/b&gt;.</translation>
+        <translation>Выбирите тему из списка и нажмите кнопку &lt;b&gt;Показать&lt;/b&gt;.</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="42"/>
         <source>&amp;Topics</source>
-        <translation type="obsolete">&amp;Темы</translation>
+        <translation>&amp;Темы</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="52"/>
         <source>Displays a list of available help topics for the keyword.</source>
-        <translation type="obsolete">Показать список доступных тем для ключевого слова.</translation>
+        <translation>Показать список доступных тем для ключевого слова.</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="92"/>
         <source>Open the topic selected in the list.</source>
-        <translation type="obsolete">Открыть выбранную из списка тему.</translation>
+        <translation>Открыть выбранную из списка тему.</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="95"/>
         <source>&amp;Display</source>
-        <translation type="obsolete">&amp;Показать</translation>
+        <translation>&amp;Показать</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="108"/>
         <source>Close the Dialog.</source>
-        <translation type="obsolete">Закрыть диалог.</translation>
+        <translation>Закрыть диалог.</translation>
     </message>
     <message>
+        <location filename="../../src/topicchooser/topicchooser.ui" line="111"/>
         <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Закрыть</translation>
+        <translation>&amp;Закрыть</translation>
     </message>
 </context>
 <context>

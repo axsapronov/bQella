@@ -988,7 +988,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
 
     QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
-    QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\"|'[^']*')");
+    QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\")");
 
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
@@ -1004,7 +1004,6 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     for (int i = 0; i < strlist.size(); i++)
     {
         str = strlist.at(i);
-
         // title and Chapter replace
         str.replace(titlec,chapter)
                 .replace(titlec2,chapter);
@@ -1012,25 +1011,21 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
         str.remove("p, li { white-space: pre-wrap; }")
                 .replace("<P>","<p>")
                 .remove(title);
-
         // переписать это убожество
         if (str.indexOf("<p align=\"center\"") >= 0)
         {
             str.replace("<p align=\"center\"","<center><p")
                     .replace("</p>","</center>");
         }
-
         str = getParseTagSpan(str, "vertical-align:super;", "<sup>");
         str = getParseTagSpan(str, "vertical-align:sub;"  , "<sub>");
         str = getParseTagSpan(str, "font-weight:600;", "<strong>");
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
         str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
-
         str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi)
                 .remove("↵");
-
         str = editStringList(str, tags, true); // сохраняем нужные теги, заменой на ?tag_.
         str.remove(rx)
                 .remove("")
