@@ -162,6 +162,8 @@ void Export::exportBibleqtIniInfo(QString file, QString filename, QString count)
     }
     else
     {
+        string.remove("<h4>Глава   1</h4>")
+                .remove("<h4>Chapter   1</h4>");
         QTextStream ts(&filebibleqt);
         ts.setCodec(codec);
         ts << string;

@@ -1187,7 +1187,8 @@ QStringList getFillShortName()
           << QString ("1Iван. 1Iван 1Iв. 1Iв 1Iн. 1Iн 1Iвн. 1Iвн 1Iвана 1Иоан. 1Иоан 1Ин. 1Ин 1Иоанн 1Иоанна 1Jn. 1Jn 1Jo. 1Jo 1Joh. 1Joh 1Jno. 1Jno 1John")
           << QString ("2Iван. 2Iван 2Iв. 2Iв 2Iн. 2Iн 2Iвн. 2Iвн 2Iвана 2Иоан. 2Иоан 2Ин. 2Ин 2Иоанн 2Иоанна 2Jn. 2Jn 2Jo. 2Jo 2Joh. 2Joh 2Jno. 2Jno 2John")
           << QString ("3Iван. 3Iван 3Iв. 3Iв 3Iн. 3Iн 3Iвн. 3Iвн 3Iвана 3Иоан. 3Иоан 3Ин. 3Ин 3Иоанн 3Иоанна 3Jn. 3Jn 3Jo. 3Jo 3Joh. 3Joh 3Jno. 3Jno 3John")
-          << QString ("Юд. Юд Юди. Юди Юда. Юда Иуд. Иуд Ид. Ид Иуда Иуды Jud. Jud Jude Jd. Jd");
+          << QString ("Юд. Юд Юди. Юди Юда. Юда Иуд. Иуд Ид. Ид Иуда Иуды Jud. Jud Jude Jd. Jd")
+          << QString ("Матф. Матф Мтф. Мтф Мф. Мф Мт. Мт Матфея Матфей Мат Мат. Mt. Mt Ma. Ma Matt. Matt Mat. Mat Matthew");
     return items;
 }
 //-----------------------------------------------------

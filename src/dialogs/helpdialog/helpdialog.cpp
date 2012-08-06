@@ -1631,7 +1631,7 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
                                     "\nFullName = %2"
                                     "\nShortName = %3"
                                     "\nChapterQty = %4"
-                                    "\nContents = no")
+                                    "\nContent = no")
                             .arg(str)
                             .arg(bookadddialog -> bookFullNameWithSpace)
                             .arg(bookadddialog -> bookShortName)

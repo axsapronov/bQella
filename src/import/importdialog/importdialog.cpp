@@ -188,7 +188,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     QString last = "htm";
     QString title = FullName;
     QString bookname = getFileNameAbs(pathName);
-    QString path = "./book_" + checkProcentRol(ShortName, bookname);
+    QString path = "./book_" + checkProcentRol(ShortName, bookname) + ".htm";
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
