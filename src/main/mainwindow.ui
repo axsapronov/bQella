@@ -752,6 +752,9 @@
    <property name="text">
     <string>Hyperlink</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+2</string>
+   </property>
   </action>
   <action name="actionSettings">
    <property name="icon">
@@ -855,7 +858,7 @@
     <string>AddTag</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Alt+4</string>
    </property>
   </action>
   <action name="actionInsertRowAbove">
