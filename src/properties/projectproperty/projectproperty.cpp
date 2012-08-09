@@ -40,6 +40,10 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 {
     ui.setupUi(this);
     modeNewProject = false;
+
+//    connect(ui.cbStrongNumber, SLOT(setChecked(bool)), ui.LEStrongDir, SLOT(hide()));
+    connect(ui.cbStrongNumber, SIGNAL(stateChanged(int)), this, SLOT(hideshow()));
+    connect(ui.cbSound, SIGNAL(stateChanged(int)), this, SLOT(hideshow()));
     setData(); /// set firsrt data (list encoding)
     setToolTipLabels(); ///set what'is labels
 }
@@ -406,3 +410,13 @@ void ProjectProperties::setData()
     ui.comBEncoding->setModel(modelEncoding);
 }
 //-------------------------------------------------------------------
+void ProjectProperties::hideshow()
+{
+    /// strong number
+    ui.LEStrongDir->setVisible(ui.cbStrongNumber->isChecked());
+    ui.pushButtonStrongDir->setVisible(ui.cbStrongNumber->isChecked());
+
+    /// sound
+    ui.LESoundDir->setVisible(ui.cbSound->isChecked());
+    ui.pushButtonSoundDir->setVisible(ui.cbSound->isChecked());
+}
