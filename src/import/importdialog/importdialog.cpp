@@ -77,7 +77,58 @@ void Import::accept()
         QTextCodec::setCodecForLocale(codec);
         QTextCodec::setCodecForTr(codec);
 
-        htmlfilter = ui.LEHtmlFilter->text();
+
+        QStringList replaceduplex;
+        if (!ui.LETextAdnvanceReplace->text().isEmpty())
+        {
+            QString str = ui.LETextAdnvanceReplace->text();
+
+            /// replace spaces to text
+            str = replaceSpaceInStrToText(str);
+
+            /// add ";" to end if
+            /// hahaha  how?  not work symbol ";"
+            /// int(";") = 135406813
+            if (str[str.length()-1] != QChar(135406813))
+                str.append(";");
+
+
+            int pos;
+            QString cut;
+            /// cut str to blocks
+            while (str.indexOf(";") >=0)
+            {
+                pos = str.indexOf(";");
+                cut = QString(str).remove(pos, str.length()-pos);
+                str.remove(cut + ";");
+                replaceduplex
+                        << cut;
+            }
+        }
+        else
+        {
+            replaceduplex
+                    << QString("%1:%2")
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1A->text()))
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1B->text()))
+                    << QString("%1:%2")
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1A_2->text()))
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1B_2->text()))
+                    << QString("%1:%2")
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1A_3->text()))
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1B_3->text()))
+                    << QString("%1:%2")
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1A_4->text()))
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1B_4->text()))
+                    << QString("%1:%2")
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1A_5->text()))
+                       .arg(replaceSpaceInStrToText(ui.LETextReplace1B_5->text()));
+        }
+
+        qDebug() << "replaceduplex = " << replaceduplex;
+
+        setTextReplace(replaceduplex);
+        setHtmlFilter(ui.LEHtmlFilter->text());
         importModule(ui.LEImportFile->text());
 
         emit SuccessfulImport();
@@ -105,14 +156,7 @@ void Import::importIni(QString filename)
     QString line;
     if ( file.open(QIODevice::ReadOnly) )
     {
-
-        //        encoding = "Windows-1251";
         encoding = ui.cBEncoding->currentText();
-        //        qDebug()  << "\nencoding  = " << Config::configuration()->profile()->props["defaultencoding"]
-        //                  << "\nencoding2 = " << Config::configuration()->DefaultEncoding()
-        //                  << "\nencoding3 = " << encoding
-        //                  << "\nencoding4 = " << ui.cBEncoding->currentText();
-        //        encoding = Config::configuration()->DefaultEncoding();
         QTextCodec * codec = getCodecOfEncoding (encoding);
 
         int BookQtyIn = 2000;
@@ -184,7 +228,6 @@ void Import::importIni(QString filename)
 //----------------------------------------------------
 void Import::importBook(QString pathName2, QString FullName, QString ShortName, int ChapterQty)
 {
-
     QString title = FullName;
     QString pathName = pathName2;
     pathName = checkProcentRol(ShortName, getFileNameAbs(pathName));
@@ -266,11 +309,8 @@ void Import::importBook(QString projectfile, QString pathName2, QString FullName
     checkFileName = checkExistenceFile(checkFileName);
     pathName = getFileNameAbs(QString(checkFileName).remove("book_"));
     QString path = "./book_" + pathName+ ".htm";
-    //    qDebug() << "\npathName = " << pathName
-    //             << "\ncheckFileName = " << checkFileName
-    //             << "\npath = " << path;
 
-    //    // create book file
+    // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
     QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
@@ -348,18 +388,28 @@ QString Import::importChapter(QString line)
     {
         qDebug() << "test2";
     }
-
-
-
-
     //            .replace("^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+", "$1<b>$2</b>$3 ")
     //            .replace("<a\\s+?href=\"verse\\s\\d+?\">(\\d+?)</a>", "<b>$1</b>");
 
+    /// remove tags
     QStringList htmlfilterlist = QString(htmlfilter).split(" ");
     for (int i = 0; i < htmlfilterlist.size(); i++)
     {
         line.remove(checkTag(htmlfilterlist.at(i))); /// remove <tag>
         line.remove( "</"+ checkTag(htmlfilterlist.at(i)).remove("<") ); /// remove </tag>
+    }
+
+    /// replace
+    for (int i = 0; i < listreplace.size(); i++)
+    {
+        QString strati = listreplace.at(i);
+        if (!strati.isEmpty())
+        {
+            int pos = strati.indexOf(":");
+            QString astr = QString(strati).remove(pos, strati.length()-pos);
+            QString bstr = QString(strati).remove(astr + ":");
+            line.replace(astr, bstr);
+        }
     }
     return line;
 }
@@ -509,19 +559,11 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
 //----------------------------------------------------
 void Import::createChapterFile(QString file, QString text, int i)
 {
-
-    //    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGT_ITEM_STRING, "_");
-    //    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
-    //    QString last = file.split("/").last().split(".").last();
-    //    pathNameE.remove("book_");
-    //    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(chapterfilecount) + last;
-    QString fileimportname = file;
-
-    if (QFile::exists(fileimportname))
+    if (QFile::exists(file))
     {
         toLog(Config::configuration()->AppLogFN(), QString("File chapter - %1 is exists").arg(file));
     }
-    createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
+    createEmptyHtml(file, QString("%1").arg(i) , text);
 }
 //----------------------------------------------------
 void Import::createProjectFile()

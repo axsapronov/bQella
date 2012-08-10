@@ -99,10 +99,10 @@ QString removeFirst(QString str, QString remove); // возвращает стр
 /**
   @function
   Replace spaces in qstring to text(default = }<B-B>{)
-  @param *str  link to qstring
+  @param str  qstring
   @param text  default = }<B-B>{
   */
-QString replaceSpaceInStrToText(QString *str, QString text = "}<B-B>{");
+QString replaceSpaceInStrToText(QString str, QString text = "}<B-B>{");
 
 /**
   @function

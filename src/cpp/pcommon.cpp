@@ -1678,7 +1678,7 @@ void printToDebugModuleProperties(ModuleProperties *pr)
 }
 
 //----------------------------------------------------------
-QString replaceSpaceInStrToText(QString *str, QString text)
+QString replaceSpaceInStrToText(QString str, QString text)
 {
-    return str->replace(" ",text);
+    return str.replace(" ",text);
 }

@@ -52,6 +52,9 @@ void ImportBookDialog::setData()
     ui->LETagChapter->setText("<A NAME");
     ui->LETagVerse->setText("<p>");
 
+    ui->LEFullName->setText("text");
+//    ui->LETextAdnvanceReplace->setText("text:b;first:two;");
+
     //test
     //    ui->LEFullName->setText("test12");
     //    ui->SBCount->setValue(3);
@@ -129,37 +132,53 @@ void ImportBookDialog::accept()
         QString projectfile = Config::configuration()->CurProject();
 
         QStringList replaceduplex;
-
         if (!ui->LETextAdnvanceReplace->text().isEmpty())
         {
-            // надо как-то разбить на части
-            replaceduplex
-                    << ui->LETextAdnvanceReplace->text();
+            QString str = ui->LETextAdnvanceReplace->text();
+
+            /// replace spaces to text
+            str = replaceSpaceInStrToText(str);
+
+            /// add ";" to end if
+            /// hahaha  how?  not work symbol ";"
+            /// int(";") = 135406813
+            if (str[str.length()-1] != QChar(135406813))
+                str.append(";");
+
+            int pos;
+            QString cut;
+            /// cut str to blocks
+            while (str.indexOf(";") >=0)
+            {
+                pos = str.indexOf(";");
+                cut = QString(str).remove(pos, str.length()-pos);
+                str.remove(cut + ";");
+                replaceduplex
+                        << cut;
+            }
         }
         else
         {
             replaceduplex
                     << QString("%1:%2")
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1A->text()))
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1B->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1A->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1B->text()))
                     << QString("%1:%2")
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1A_2->text()))
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1B_2->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1A_2->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1B_2->text()))
                     << QString("%1:%2")
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1A_3->text()))
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1B_3->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1A_3->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1B_3->text()))
                     << QString("%1:%2")
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1A_4->text()))
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1B_4->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1A_4->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1B_4->text()))
                     << QString("%1:%2")
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1A_5->text()))
-                       .arg(replaceSpaceInStrToText(&ui->LETextReplace1B_5->text()));
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1A_5->text()))
+                       .arg(replaceSpaceInStrToText(ui->LETextReplace1B_5->text()));
         }
 
-//        qDebug() << "replaceduplex = " << replaceduplex;
-
         importm->setHtmlFilter (ui->LEHtmlFilter->text ());
-        //        importm->setTextReplace (replaceduplex);
+                importm->setTextReplace (replaceduplex);
         importm->importBook(projectfile, bookPathFile, bookFullName, bookShortName, bookCount, bookTagChapter, bookEncoding);
         importm->addContentToEndProjectFile(projectfile);
 
