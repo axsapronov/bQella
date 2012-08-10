@@ -318,12 +318,11 @@ void MainWindow::importBookSuccessful()
     pr.moduleBVersion = 1.00;
     pr.prjFN = Config::configuration()->CurProject();
     pr.prjStartPage = importm -> getStartPage();
-
-    //    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
     pr.prjTitle = Config::configuration()->ModuleBiblename();
 
+    printToDebugModuleProperties(&pr);
+    qDebug() << "curpage =" << Config::configuration()->CurFile();
 
-    // добавить другие параметры (дохера буленов и строк из модулепропертис)
     ProjectOpen(pr.prjFN);
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
@@ -332,17 +331,6 @@ void MainWindow::importBookSuccessful()
 void MainWindow::importBook()
 {
     importdi->show();
-    //    QString beginpath = "/home/";
-    //    QString path = QFileDialog::getOpenFileName(this,
-    //                      tr("Select book file"),
-    //                      beginpath,
-    //                      tr("Book file (*.html *.txt *.htm)"));
-    //    importm->importBook(path, "", "", 0);
-    //// еще надо вызывать диалог с вводом данных о книге
-    //    //PathName
-    //    //FullName
-    //    //ShortName
-    //    //ChapterQty
 }
 //-------------------------------------------------
 void MainWindow::browserTabChanged()
@@ -665,13 +653,13 @@ void MainWindow::ProjectOpen(QString fileName)
     {
         //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
         browsers() -> currentBrowser() -> fileSave();
-        qDebug() << fileName;
+//        qDebug() << fileName;
         Config::configuration() -> loadProject(fileName);
         helpDock -> enableProjectButtons();
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
-        qDebug() << "[5]";
+//        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
         Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
 

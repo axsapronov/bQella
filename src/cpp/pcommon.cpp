@@ -1275,7 +1275,7 @@ QString miniparserini(QString str, QString po)
         str.remove(po);
         if (po == "BibleName = ")
         {
-//            str.replace(" ", "_");
+            //            str.replace(" ", "_");
             //                    .remove(str.length()-1, 1);
         }
         if (po != "ShortName = " and
@@ -1299,7 +1299,7 @@ QString miniparserini(QString str, QString po)
             return "none";
         }
         str.remove("\n");
-//                qDebug() << "__str = " << str;
+        //                qDebug() << "__str = " << str;
         return str;
     }
     return "";
@@ -1643,3 +1643,37 @@ QString getFileNameOfStrong(QString horg, QString numberstr)
             horg + numberfile + ".htm";
     return filename;
 }
+//----------------------------------------------------------
+void printToDebugModuleProperties(ModuleProperties *pr)
+{
+    qDebug()
+            << "\n" << " prjTitle             = " <<  pr->prjTitle
+            << "\n" << " prjFN                = " <<  pr->prjFN
+            << "\n" << " prjStartPage         = " <<  pr->prjStartPage
+            << "\n" << " moduleBiblename      = " <<  pr->moduleBiblename
+            << "\n" << " moduleCopyright      = " <<  pr->moduleCopyright
+            << "\n" << " moduleBibleShortName = " <<  pr->moduleBibleShortName
+            << "\n" << " strngDirectry        = " <<  pr->strongsDirectory
+            << "\n" << " soundDirectory       = " <<  pr->soundDirectory
+            << "\n" << " htmlFilter           = " <<  pr->htmlFilter
+            << "\n" << " language             = " <<  pr->language
+            << "\n" << " installFonts         = " <<  pr->installFonts
+            << "\n" << " desiredFontName      = " <<  pr->desiredFontName
+            << "\n" << " categories           = " <<  pr->categories
+            << "\n" << " desiredFontPath      = " <<  pr->desiredFontPath
+            << "\n" << " defaultEncoding      = " <<  pr->defaultEncoding
+            << "\n" << " desiredUIFont        = " <<  pr->desiredUIFont
+            << "\n" << " moduleBVersion       = " <<  pr->moduleBVersion
+            << "\n" << " moduleType           = " <<  pr->moduleType
+            << "\n" << " oldTestament         = " <<  pr->oldTestament
+            << "\n" << " newTestament         = " <<  pr->newTestament
+            << "\n" << " apocrypha            = " <<  pr->apocrypha
+            << "\n" << " chapterZero          = " <<  pr->chapterZero
+            << "\n" << " englishPsalms        = " <<  pr->englishPsalms
+            << "\n" << " strongNumber         = " <<  pr->strongNumber
+            << "\n" << " noForcedLineBreaks   = " <<  pr->noForcedLineBreaks
+            << "\n" << " useRightAlignment    = " <<  pr->useRightAlignment
+            << "\n" << " useChapterHead       = " <<  pr->useChapterHead;
+}
+
+//----------------------------------------------------------

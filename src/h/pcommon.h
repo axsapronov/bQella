@@ -30,7 +30,7 @@ class QStringList;
 class QTextCodec;
 
 
-
+#include "projectproperty.h"
 #include "config.h"
 
 //======== процедуры и функции общего назначения ============================
@@ -96,6 +96,13 @@ QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT
 QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
 QString removeFirst(QString str, QString remove); // возвращает строку с удаленным первым вхождением
 
+
+/**
+  @function
+  Function to show to qDebug moduleproperties
+  @param *pr  moduleproperties
+  */
+void printToDebugModuleProperties(ModuleProperties *pr);
 
 void visitTree(QStringList &list, QTreeWidgetItem *item);
 QStringList visitTree(QTreeWidget *tree);
