@@ -1687,3 +1687,31 @@ QString replaceSpaceInStrToText(QString str, QString text)
 {
     return str.replace(" ",text);
 }
+//----------------------------------------------------------
+QString getTextFromFile(QString filepath)
+{
+    QString filetext = "";
+    if (QFile::exists(filepath))
+    {
+        QFile file(filepath);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            filetext = file.readAll();
+            file.close();
+        }
+    }
+    return filetext;
+}
+//------------------------------------------------------------
+int countTheNumberOfFiles(QString *textinput, QString tag)
+{
+    int count = 0;
+    QString text = *textinput;
+    while (text.indexOf(tag) >= 0)
+    {
+        count++;
+        text = removeFirst(text, tag);
+    }
+//    qDebug() << text;
+    return count;
+}

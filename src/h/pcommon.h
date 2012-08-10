@@ -98,6 +98,13 @@ QString removeFirst(QString str, QString remove); // возвращает стр
 
 /**
   @function
+  Number of files with the division of the text tag (split files)
+  @param *text  text
+  @param tag  tag
+  */
+int countTheNumberOfFiles(QString *text, QString tag);
+/**
+  @function
   Replace spaces in qstring to text(default = }<B-B>{)
   @param str  qstring
   @param text  default = }<B-B>{
@@ -143,6 +150,15 @@ void removeStringInFile(QString file, QStringList strings); // удаляет и
 bool checkFileContainsText(QString filename, QString text); // проверяет есть ли текст в файле
 bool createFileText(QString fileName, QString text); // создает  файл с текстом ( так как книги не юзаются, то можно и обычным файлом юзать их)
 bool addToEndFile(QString fileName, QString text); // добавить в конец файла текст
+
+
+/**
+  @function
+  get text from file
+  @param file  QString path to file
+  @return QString
+  */
+QString getTextFromFile(QString file); // достать весь текст из файла
 
 /// strong
 QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла
