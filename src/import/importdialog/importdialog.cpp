@@ -182,20 +182,23 @@ void Import::importIni(QString filename)
     }
 }
 //----------------------------------------------------
-void Import::importBook(QString pathName, QString FullName, QString ShortName, int ChapterQty)
+void Import::importBook(QString pathName2, QString FullName, QString ShortName, int ChapterQty)
 {
-    QString lastfile = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    QString last = "htm";
+
     QString title = FullName;
-    QString bookname = getFileNameAbs(pathName);
-    QString path = "./book_" + checkProcentRol(ShortName, bookname) + ".htm";
+    QString pathName = pathName2;
+    pathName = checkProcentRol(ShortName, getFileNameAbs(pathName));
+    QString checkFileName = Config::configuration()->CurPrjDir() + "/" +
+            "book_" + pathName + ".htm";
+    checkFileName = checkExistenceFile(checkFileName);
+    pathName = getFileNameAbs(QString(checkFileName).remove("book_"));
+    QString path = "./book_" + pathName+ ".htm";
+
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
-    QString chunksnameforchapter = checkProcentRol(ShortName, bookname).remove("."+lastfile);
-    QString filenameforchapter = QString(pathName)
-            .replace(getFileNameAbs(pathName), chunksnameforchapter)
-            .replace(lastfile, "htm");
+    QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
+    QString filenameforchapter;
 
     // add info to project file
     QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
@@ -204,7 +207,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     // parse
     bool flag;
     QString line;
-    QFile file(pathName);
+    QFile file(pathName2);
     if ( file.open(QIODevice::ReadOnly) )
     {
         // file opened successfully
@@ -221,7 +224,7 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
             QString chapterfile = incstr(titlechap, GL_LENGT_ITEM_STRING, "_");
             titlechap = incstr(titlechap, GL_LENGT_ITEM_STRING, " ");
             QString pathchap = pathName;
-            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + last);
+            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + ".htm");
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
             addContentToProjectFile(textchap , true);
             QString text ="";
@@ -238,8 +241,10 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
             while ((!line.isNull()) and ( flag));
 
             flag = true;
+            filenameforchapter = QString(pathchap)
+                    .replace("./book_", Config::configuration()->CurPrjDir() + "/book_");
 
-            createChaterFile(filenameforchapter, text, j);
+            createChapterFile(filenameforchapter, text, j);
             addContentToProjectFile("</section>", true);
 
         }
@@ -254,38 +259,28 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
 //----------------------------------------------------
 void Import::importBook(QString projectfile, QString pathName2, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding)
 {
-
     QString pathName = pathName2;
-    QString bookPathFile = pathName;
-    QString pathNameE = getFileNameAbs (bookPathFile); // получаем pathname (filename.htm)
+    pathName = checkProcentRol(ShortName, getFileNameAbs(pathName));
+    QString checkFileName = Config::configuration()->CurPrjDir() + "/" +
+            "book_" + pathName + ".htm";
+    checkFileName = checkExistenceFile(checkFileName);
+    pathName = getFileNameAbs(QString(checkFileName).remove("book_"));
+    QString path = "./book_" + pathName+ ".htm";
+    //    qDebug() << "\npathName = " << pathName
+    //             << "\ncheckFileName = " << checkFileName
+    //             << "\npath = " << path;
 
-    /// check for file existence,
-    /// prevents a coincidence of files:
-    /// example:
-    /// if existence file 1Co.html
-    /// then replace to 1Co_.html
-
-    QString pathToFileInProjectDir = Config::configuration()->CurPrjDir() + "/" + "book_"+ pathNameE + ".htm";
-    pathNameE = QString(checkExistenceFile(pathToFileInProjectDir))
-            .remove(Config::configuration()->CurPrjDir()+"/book_")
-            .remove(".htm");
-    pathName.replace(getFileNameAbs(pathName), getFileNameAbs(pathNameE));
-
-
-    QTextCodec * codec = getCodecOfEncoding (encoding);
-    //    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    QString path = "./book_" + checkProcentRol(ShortName, getFileNameAbs(pathName)).remove (".htm")+".htm";
-    // create book file
+    //    // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
     QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
-    QString filenameforchapter = QString(pathName).replace(getFileNameAbs(pathName), chunksnameforchapter);
+    QString filenameforchapter;
 
     // add info to project file
     QString text2 = QString("<section title=\"" + Qt::escape(FullName) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
     addContentToProjectFile(projectfile ,text2, false);
 
-
+    QTextCodec * codec = getCodecOfEncoding (encoding);
     // parse
     bool flag;
     QString line;
@@ -321,8 +316,11 @@ void Import::importBook(QString projectfile, QString pathName2, QString FullName
             }
             while ((!line.isNull()) and ( flag));
 
+
+            filenameforchapter = QString(pathchap)
+                    .replace("./book_", Config::configuration()->CurPrjDir() + "/book_");
             flag = true;
-            createChaterFile(filenameforchapter, text, j);
+            createChapterFile(filenameforchapter, text, j);
             addContentToProjectFile(projectfile, "</section>", true);
 
         }
@@ -390,6 +388,10 @@ void Import::importProjectFile()
 
     pr.strongsDirectory = Config::configuration()->StrongsDirectory();
     pr.soundDirectory = Config::configuration()->SoundDirectory();
+    if (Config::configuration()->Language().isEmpty())
+    {
+        Config::configuration()->setLanguage("rus");
+    }
     pr.language = Config::configuration()->Language();
     pr.htmlFilter = Config::configuration()->HtmlFilter();
     pr.installFonts = Config::configuration()->InstallFonts();
@@ -489,8 +491,7 @@ void Import::createImportFolder(QString path)
 //----------------------------------------------------
 void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
-    QString pathNameE = getFileNameAbs (pathName); // получаем pathname (filename.htm)
-    pathNameE = checkProcentRol (ShortName, pathNameE) + ".htm";
+    QString pathNameE = pathName + ".htm";
     QString fileimportname = Config::configuration()->CurPrjDir() +  "/book_" + pathNameE;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
@@ -503,21 +504,22 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
             .arg(FullName)
             .arg(ShortName)
             .arg(ChapterQty);
-    createEmptyHtml(fileimportname, "1" , text);
+    createEmptyHtml(fileimportname, "" , text);
 }
 //----------------------------------------------------
-void Import::createChaterFile(QString file, QString text, int i)
+void Import::createChapterFile(QString file, QString text, int i)
 {
 
-    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGT_ITEM_STRING, "_");
-    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
-    QString last = file.split("/").last().split(".").last();
-    pathNameE.remove("book_");
-    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(chapterfilecount) + last;
+    //    QString chapterfilecount = incstr(QString("%1").arg(i), GL_LENGT_ITEM_STRING, "_");
+    //    QString pathNameE = file.split("/").last(); // получаем pathname (filename.htm)
+    //    QString last = file.split("/").last().split(".").last();
+    //    pathNameE.remove("book_");
+    //    QString fileimportname = Config::configuration()->CurPrjDir() + "/book_"+ pathNameE.remove("."+last) +QString("_chapter_%1.").arg(chapterfilecount) + last;
+    QString fileimportname = file;
 
     if (QFile::exists(fileimportname))
     {
-        QFile::remove(fileimportname);
+        toLog(Config::configuration()->AppLogFN(), QString("File chapter - %1 is exists").arg(file));
     }
     createEmptyHtml(fileimportname, QString("%1").arg(i) , text);
 }
@@ -647,5 +649,8 @@ void Import::setData()
     typeModel = new QStringListModel(items, this);
     ui.cBEncoding -> setModel(typeModel);
     ui.LEImportFile->setText("");
+
+    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
+    ui.LEImportFile->setText(importstr);
     //    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }

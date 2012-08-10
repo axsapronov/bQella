@@ -127,7 +127,12 @@ MainWindow::MainWindow():
 
 //    importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 //    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
+
+//    importm->importModule("/home/files/Documents/Bible/unrar/my/BIBLEQT.INI");
     //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
+//        ui.lEImportFile->setText(importstr);
 
 
     this->showMaximized ();
@@ -320,8 +325,8 @@ void MainWindow::importBookSuccessful()
     pr.prjStartPage = importm -> getStartPage();
     pr.prjTitle = Config::configuration()->ModuleBiblename();
 
-    printToDebugModuleProperties(&pr);
-    qDebug() << "curpage =" << Config::configuration()->CurFile();
+//    printToDebugModuleProperties(&pr);
+//    qDebug() << "curpage =" << Config::configuration()->CurFile();
 
     ProjectOpen(pr.prjFN);
     browsers() -> currentBrowser() -> fileSave();

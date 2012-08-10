@@ -1281,7 +1281,8 @@ QString miniparserini(QString str, QString po)
         if (po != "ShortName = " and
                 po != "FullName = " and
                 po != "ChapterSign = " and
-                po != "BibleName = ")
+                po != "BibleName = " and
+                po != "HTMLFilter = ")
         {
             str.remove(" \0");
         }
@@ -1677,3 +1678,7 @@ void printToDebugModuleProperties(ModuleProperties *pr)
 }
 
 //----------------------------------------------------------
+QString replaceSpaceInStrToText(QString *str, QString text)
+{
+    return str->replace(" ",text);
+}

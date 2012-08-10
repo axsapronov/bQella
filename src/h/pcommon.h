@@ -96,6 +96,13 @@ QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT
 QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
 QString removeFirst(QString str, QString remove); // возвращает строку с удаленным первым вхождением
 
+/**
+  @function
+  Replace spaces in qstring to text(default = }<B-B>{)
+  @param *str  link to qstring
+  @param text  default = }<B-B>{
+  */
+QString replaceSpaceInStrToText(QString *str, QString text = "}<B-B>{");
 
 /**
   @function

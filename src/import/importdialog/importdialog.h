@@ -93,6 +93,14 @@ public:
       */
     void setHtmlFilter(QString removetags) { htmlfilter = removetags; }
 
+
+    /**
+      @function
+      Set text and replace text for replace text :)
+      @param replacelist  QStringList text:replacetext
+      */
+    void setTextReplace(QStringList replacelist) { listreplace = replacelist;}
+
 signals:
     void SuccessfulImport();
 
@@ -120,6 +128,7 @@ private:
     QString ChapterSign;
     QString encoding;
     QString htmlfilter;
+    QStringList listreplace;
 
     void accept();
     void setData();
@@ -180,7 +189,7 @@ private:
       @param file  path to chapter file  (book_namebook_chapter_count)
       @param count  number of chapter
     */
-    void createChaterFile(QString file,QString text, int count);
+    void createChapterFile(QString file,QString text, int count);
 
     /**
       @function
