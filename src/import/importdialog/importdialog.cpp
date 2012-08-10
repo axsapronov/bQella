@@ -71,7 +71,7 @@ void Import::accept()
     else
     {
         encoding = ui.cBEncoding->currentText();
-//        Config::configuration()->setDefaultEncoding(encoding);
+        //        Config::configuration()->setDefaultEncoding(encoding);
         QTextCodec * codec = getCodecOfEncoding (encoding);
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
@@ -106,13 +106,13 @@ void Import::importIni(QString filename)
     if ( file.open(QIODevice::ReadOnly) )
     {
 
-//        encoding = "Windows-1251";
+        //        encoding = "Windows-1251";
         encoding = ui.cBEncoding->currentText();
-//        qDebug()  << "\nencoding  = " << Config::configuration()->profile()->props["defaultencoding"]
-//                  << "\nencoding2 = " << Config::configuration()->DefaultEncoding()
-//                  << "\nencoding3 = " << encoding
-//                  << "\nencoding4 = " << ui.cBEncoding->currentText();
-//        encoding = Config::configuration()->DefaultEncoding();
+        //        qDebug()  << "\nencoding  = " << Config::configuration()->profile()->props["defaultencoding"]
+        //                  << "\nencoding2 = " << Config::configuration()->DefaultEncoding()
+        //                  << "\nencoding3 = " << encoding
+        //                  << "\nencoding4 = " << ui.cBEncoding->currentText();
+        //        encoding = Config::configuration()->DefaultEncoding();
         QTextCodec * codec = getCodecOfEncoding (encoding);
 
         int BookQtyIn = 2000;
@@ -252,12 +252,29 @@ void Import::importBook(QString pathName, QString FullName, QString ShortName, i
     addContentToProjectFile(text, false);
 }
 //----------------------------------------------------
-void Import::importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding)
+void Import::importBook(QString projectfile, QString pathName2, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding)
 {
 
+    QString pathName = pathName2;
+    QString bookPathFile = pathName;
+    QString pathNameE = getFileNameAbs (bookPathFile); // получаем pathname (filename.htm)
+
+    /// check for file existence,
+    /// prevents a coincidence of files:
+    /// example:
+    /// if existence file 1Co.html
+    /// then replace to 1Co_.html
+
+    QString pathToFileInProjectDir = Config::configuration()->CurPrjDir() + "/" + "book_"+ pathNameE + ".htm";
+    pathNameE = QString(checkExistenceFile(pathToFileInProjectDir))
+            .remove(Config::configuration()->CurPrjDir()+"/book_")
+            .remove(".htm");
+    pathName.replace(getFileNameAbs(pathName), getFileNameAbs(pathNameE));
+
+
     QTextCodec * codec = getCodecOfEncoding (encoding);
-    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
-    QString path = "./book_" + checkProcentRol(ShortName, pathName.split("/").last()).remove (".htm")+".htm";
+    //    QString last = pathName.split("/").last().split(".").last(); // получаем разрешение файла (htm)
+    QString path = "./book_" + checkProcentRol(ShortName, getFileNameAbs(pathName)).remove (".htm")+".htm";
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
@@ -272,7 +289,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
     // parse
     bool flag;
     QString line;
-    QFile file(pathName);
+    QFile file(pathName2);
     if ( file.open(QIODevice::ReadOnly) )
     {
         // file opened successfully
@@ -288,7 +305,7 @@ void Import::importBook(QString projectfile, QString pathName, QString FullName,
             QString chapterfile = incstr(titlechap, GL_LENGT_ITEM_STRING, "_");
             titlechap = incstr(titlechap, GL_LENGT_ITEM_STRING, " ");
             QString pathchap = pathName;
-            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + last);
+            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + "htm");
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
             addContentToProjectFile(projectfile, textchap , true);
             QString text ="";
@@ -323,6 +340,22 @@ QString Import::importChapter(QString line)
     line
             .remove("<sup>")
             .remove("</sup>");
+    if (line.indexOf("^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+") >= 0)
+    {
+        qDebug() << "test1";
+
+    }
+
+    if (line.indexOf("<a\\s+?href=\"verse\\s\\d+?\">(\\d+?)</a>") >= 0)
+    {
+        qDebug() << "test2";
+    }
+
+
+
+
+    //            .replace("^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+", "$1<b>$2</b>$3 ")
+    //            .replace("<a\\s+?href=\"verse\\s\\d+?\">(\\d+?)</a>", "<b>$1</b>");
 
     QStringList htmlfilterlist = QString(htmlfilter).split(" ");
     for (int i = 0; i < htmlfilterlist.size(); i++)
@@ -442,7 +475,7 @@ void Import::importProjectFile()
 void Import::createImportFolder(QString path)
 {
     QDir dir(path);
-//    qDebug() << " path = " << path;
+    //    qDebug() << " path = " << path;
     if (!QDir(QString(path)).exists())
     {
         dir.mkdir(QString(path));

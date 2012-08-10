@@ -404,13 +404,17 @@ void MainWindow::showLinkFromClient(const QString &link)
 void MainWindow::showLink(const QString &link)
 {
 
-    QString mylink;
+    QString mylink = link;
+
     if (link.indexOf(Config::configuration()->CurPrjDir() <=0))
     {
+//        qDebug() << " test4 " << link;
         QString nameoffile = link.split("/").last();
         mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
+
+//        qDebug() << nameoffile << mylink;
     }
-    QString lnk = unurlifyFileName(link);
+    QString lnk = unurlifyFileName(mylink);
     QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){
         // don't open a new tab for the same url more then once
@@ -424,8 +428,8 @@ void MainWindow::showLink(const QString &link)
     }
     else
     {
-        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-        toLog(Config::configuration()->AppLogFN(), QString("Failed to open link: %1").arg(link) + "Func: MainWindow::showLink");
+        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << mylink;
+        toLog(Config::configuration()->AppLogFN(), QString("Failed to open link: %1").arg(mylink) + "Func: MainWindow::showLink");
         QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
 }
@@ -661,6 +665,7 @@ void MainWindow::ProjectOpen(QString fileName)
     {
         //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
         browsers() -> currentBrowser() -> fileSave();
+        qDebug() << fileName;
         Config::configuration() -> loadProject(fileName);
         helpDock -> enableProjectButtons();
         helpDock -> initTabs();
@@ -669,6 +674,7 @@ void MainWindow::ProjectOpen(QString fileName)
         qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
         Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
         projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");

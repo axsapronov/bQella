@@ -82,6 +82,7 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.LEHtmlFilter ->setText (pr.htmlFilter);
     ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
+    hideshow();
 }
 //-------------------------------------------------------------------
 void ProjectProperties::reject()
