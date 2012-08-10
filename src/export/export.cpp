@@ -36,7 +36,7 @@ Export::Export(QObject *parent) :
 void Export::exportCreateDir(QString current_dir)
 {
 
-    qDebug() << "Debug: _Export::exportCreateDir()" << "current_dir = " << current_dir;
+//    qDebug() << "Debug: _Export::exportCreateDir()" << "current_dir = " << current_dir;
     // если папки export нету, то создаем, если есть, то удаляем содержимое
     QDir dir(current_dir);
     //    qDebug() << "path = " << path <<  "last = " << path.last();

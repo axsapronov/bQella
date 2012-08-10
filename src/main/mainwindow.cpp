@@ -135,6 +135,35 @@ MainWindow::MainWindow():
 //        ui.lEImportFile->setText(importstr);
 
 
+
+//    QString regexp = "^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+";
+//    QString regexp2 = "(<[^>].?>){1,10}(\s){0,10}(\d+)(\s){0,10}(<[^>]*>){1,10}\s+";
+//    QString regexp3 = "<[^/]+?>";
+
+//    if (line.indexOf(regexp) >= 0) qDebug() << "test1";
+//    if (line.indexOf(regexp2) >= 0) qDebug() << "test2";
+//    if (line.indexOf(regexp3) >= 0) qDebug() << "test3";
+
+//    QString test = "<bfsasafsfasff><li>1235</li></bf> text <b>tgext</b> в <b><lf>52</lf></b>dsfg";
+//    qDebug() << "\ntest = " << test
+//             << "\ntextreplace = " << test.replace(regexp2, "\\4 ");
+
+
+////    QString reg = "(\d)";
+//    QString test2 = "<bfssff><li>5</li></bf>text <b>tgext</b> в <lf>52</lf>dsfg";
+//    QString t = "A <i>bon mot</i>.";
+//    t.replace(QRegExp("<i>([^<]*)</i>"), "\\emph{\\1}");
+//    QRegExp rx("^(<[^>](.?){1,10}>)(\\s*)(\\d*)(\\s*)(<[^>]*>)*\\s*");
+//    // t == "A \\emph{bon mot}."
+////    qDebug() << "\n" << t
+////    qDebug() << "\n" << test2.replace(QRegExp("(<[^>].?>)(\\s*)(\\d*)(\\s*)(<[^>]*>)*\\s*"), "\n=begin=_\n1=\\1"
+////                                      "\n2=\\2 \n3=\\3 \n4=\\4 \n5=\\5 \n6=\\6 \n7=\\7_\n==end=\n\n");
+
+
+//    qDebug() << "\n" << test2.replace(rx, "<p>\\4 ");
+
+
+
     this->showMaximized ();
 }
 

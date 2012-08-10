@@ -989,6 +989,9 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\")");
+//    QRegExp regP("(<[a-zA-Z]+) [^>]*");  /// убирает атрибуты у p Тега
+    /// html атрибуты  (?:[\w]*) *= *"(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"]*)\\\W)*[^"]*")
+    /// все теги </?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>+(.*?|[\s\S]*?)+</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>
 
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
@@ -1022,6 +1025,8 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
         str = getParseTagSpan(str, "font-weight:600;", "<strong>");
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
         str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
+
+//        str.replace(regP, "<p");
         str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi)

@@ -124,9 +124,6 @@ void Import::accept()
                        .arg(replaceSpaceInStrToText(ui.LETextReplace1A_5->text()))
                        .arg(replaceSpaceInStrToText(ui.LETextReplace1B_5->text()));
         }
-
-        qDebug() << "replaceduplex = " << replaceduplex;
-
         setTextReplace(replaceduplex);
         setHtmlFilter(ui.LEHtmlFilter->text());
         importModule(ui.LEImportFile->text());
@@ -141,7 +138,7 @@ void Import::accept()
 //----------------------------------------------------
 void Import::importModule(QString file)
 {
-    qDebug() << "Debug: _Import::importModule()" << "Start import Module";
+//    qDebug() << "Debug: _Import::importModule()" << "Start import Module";
     //    Config::configuration()->setLanguage("rus");
     importIni(file);
     createInstructionFile();
@@ -150,7 +147,7 @@ void Import::importModule(QString file)
 //----------------------------------------------------
 void Import::importIni(QString filename)
 {
-    qDebug() << "Debug: _Import::importIni()" << "Start import ini";
+//    qDebug() << "Debug: _Import::importIni()" << "Start import ini";
     QFile file(filename);
     filename.remove(filename.length()-11, 11);
     QString line;
@@ -375,21 +372,12 @@ void Import::importBook(QString projectfile, QString pathName2, QString FullName
 //----------------------------------------------------
 QString Import::importChapter(QString line)
 {
+    QRegExp rx("^(<[^>](.?){1,10}>)(\\s*)(\\d*)(\\s*)(<[^>]*>)*\\s*");
+
     line
             .remove("<sup>")
-            .remove("</sup>");
-    if (line.indexOf("^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+") >= 0)
-    {
-        qDebug() << "test1";
-
-    }
-
-    if (line.indexOf("<a\\s+?href=\"verse\\s\\d+?\">(\\d+?)</a>") >= 0)
-    {
-        qDebug() << "test2";
-    }
-    //            .replace("^(<[^/]+?>)*?(\\d+)(</(.)+?>){0,1}?\\s+", "$1<b>$2</b>$3 ")
-    //            .replace("<a\\s+?href=\"verse\\s\\d+?\">(\\d+?)</a>", "<b>$1</b>");
+            .remove("</sup>")
+            .replace(rx, "<p><b><sup>\\4</b></sup> ");
 
     /// remove tags
     QStringList htmlfilterlist = QString(htmlfilter).split(" ");
