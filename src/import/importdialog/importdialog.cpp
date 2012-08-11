@@ -26,6 +26,8 @@
 #include "helpdialog.h"
 #include "mainwindow.h"
 #include "config.h"
+#include "previewmodule.h"
+
 
 #include <QFileDialog>
 #include <QStringList>
@@ -38,7 +40,9 @@ Import::Import(QWidget *parent)
     ui.setupUi(this);
     setData();
 
+    prevmodule = new PreviewModule();
     connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
+    connect(ui.pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
 }
 //----------------------------------------------------
 void Import::selectImportFile()
@@ -683,4 +687,16 @@ void Import::setData()
     QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
     ui.LEImportFile->setText(importstr);
     //    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+}
+///-----------------------------------------------------
+void Import::showPreview()
+{
+    prevmodule->setData(ui.LEImportFile->text());
+
+    QString currk = "/home/files/Develop/git/bQella/next/bqella-build-desktop/build/bin/projects/GRKWH";
+//    qDebug() << "CurPrjDir() " << Config::configuration()->CurPrjDir();
+
+    prevmodule->setPrjPath(currk);
+    prevmodule->createPreview();
+    prevmodule->show();
 }

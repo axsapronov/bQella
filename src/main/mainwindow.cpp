@@ -140,7 +140,8 @@ MainWindow::MainWindow():
 
     this->showMaximized ();
 //    showSplitFile();
-    importdi->showPreview();
+//    importdi->showPreview();
+    importm->showPreview();
 }
 
 //-------------------------------------------------

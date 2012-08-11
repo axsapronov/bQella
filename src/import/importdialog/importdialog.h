@@ -28,7 +28,7 @@
 
 class QDialog;
 class QOBject;
-
+class PreviewModule;
 
 /**
 @class Import
@@ -112,7 +112,15 @@ public slots:
       */
     void importModule(QString bibleqtinifile);
 
+    /**
+      @function
+      Show preview
+      */
+    void showPreview();
+
+
 private slots:
+
 
     /**
       @function
@@ -130,6 +138,7 @@ private:
     QString htmlfilter;
     QStringList listreplace;
 
+    PreviewModule *prevmodule;
     void accept();
     void setData();
 

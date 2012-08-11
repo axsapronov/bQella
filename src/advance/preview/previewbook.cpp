@@ -55,9 +55,6 @@ void PreviewBook::setData(QString filepath)
             QFile::remove(entryAbsPath);
         }
     }
-
-
-
 }
 ///-------------------------------------------------------------------
 void PreviewBook::reject()
