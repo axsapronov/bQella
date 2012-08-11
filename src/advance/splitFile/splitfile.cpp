@@ -45,6 +45,10 @@ void SplitFile::createConnect()
     connect(ui->pBAutoRun, SIGNAL(clicked()), this, SLOT(AutoRun()));
     connect(ui->pBAutoBrowse, SIGNAL(clicked()), this, SLOT(AutoBrowse()));
     connect(ui->pBAutoEstimate, SIGNAL(clicked()), this, SLOT(AutoEstimate()));
+    connect(ui->pBSave, SIGNAL(clicked()), this, SLOT(saveTextEdit()));
+
+    /// auto refresh if edit text
+    connect(ui->textEdit, SIGNAL(textChanged()), this, SLOT(refreshTextHtml()));
 }
 //--------------------------------------------
 void SplitFile::browse()
@@ -69,26 +73,39 @@ void SplitFile::setData()
 void SplitFile::showFileText()
 {
     TextOfFile = getTextFromFile(ui->LEFilePath->text());
-    showFileHtml(ui->LEFilePath->text());
-    showFileEdit(ui->LEFilePath->text());
+//    showFileHtml(ui->LEFilePath->text());
+//    showFileEdit(ui->LEFilePath->text());
+
+    showFileHtml(TextOfFile);
+    showFileEdit(TextOfFile);
+}
+
+////--------------------------------------------
+//void SplitFile::showFileHtml(QString filepath)
+//{
+//    if(QFile::exists(filepath))
+//    {
+//        //        QString filetext = getTextFromFile(filepath);
+//        ui->textBrowser->setHtml(TextOfFile);
+//    }
+//}
+//--------------------------------------------
+void SplitFile::showFileHtml(QString text)
+{
+    ui->textBrowser->setHtml(text);
 }
 //--------------------------------------------
-void SplitFile::showFileHtml(QString filepath)
+//void SplitFile::showFileEdit(QString filepath)
+//{
+//    if(QFile::exists(filepath))
+//    {
+//        //        QString filetext = getTextFromFile(filepath);
+//        ui->textEdit->setPlainText(TextOfFile);
+//    }
+//}
+void SplitFile::showFileEdit(QString text)
 {
-    if(QFile::exists(filepath))
-    {
-        //        QString filetext = getTextFromFile(filepath);
-        ui->textBrowser->setHtml(TextOfFile);
-    }
-}
-//--------------------------------------------
-void SplitFile::showFileEdit(QString filepath)
-{
-    if(QFile::exists(filepath))
-    {
-        //        QString filetext = getTextFromFile(filepath);
-        ui->textEdit->setPlainText(TextOfFile);
-    }
+    ui->textEdit->setPlainText(text);
 }
 //-----------------------------------------------
 void SplitFile::AutoSplitOn()
@@ -143,14 +160,13 @@ void SplitFile::AutoRun()
 {
     AutoEstimate();
 
-
+    /// if dir is exist then remove files in dir
+    /// if not create folder
     QString outputPath = ui->LEDirOutput->text();
     QDir dir(outputPath);
-    //    qDebug() << "path = " << path <<  "last = " << path.last();
     if (!dir.exists())
     {
         /// create folder
-
         QString last = QString(outputPath).remove(outputPath.length()-1,1);
         last =  QString(last).split("/").last();
         QString dir = QString(outputPath).remove("/" + last);
@@ -159,35 +175,34 @@ void SplitFile::AutoRun()
     }
     else
     {
-        QStringList lstFiles = dir.entryList(QDir::Files); //Получаем список файлов
-        //Удаляем файлы
+        /// get file list and remove files
+        QStringList lstFiles = dir.entryList(QDir::Files);
         foreach (QString entry, lstFiles)
         {
             QString entryAbsPath = dir.absolutePath() + "/" + entry;
-            //qDebug() << entryAbsPath;
             QFile::setPermissions(entryAbsPath, QFile::ReadOwner | QFile::WriteOwner);
             QFile::remove(entryAbsPath);
         }
     }
 
 
-
+    /// split file
     QString filename, text;
     QString textinput = TextOfFile;
-//    qDebug() << textinput;
     int pos;
 
-///first delete
+    ///first delete
     pos = textinput.indexOf(TagOfFile);
     text = QString(textinput).remove(pos+TagOfFile.length(), textinput.length()-pos);
     textinput.remove(text);
 
-//    qDebug() << textinput;
     for (int i = 1; i < countFiles+1; i++)
     {
         /// create files
         filename = outputPath + "output_file_" + QString::number(i) + ".htm";
 
+        /// detect pos of tag
+        /// and split block
         pos = textinput.indexOf(TagOfFile)  ;
         if (pos == -1)
         {
@@ -199,14 +214,38 @@ void SplitFile::AutoRun()
             pos += TagOfFile.length();
             text = QString(textinput).remove(pos, textinput.length()-pos);
         }
-
-        qDebug() << pos;
-
-
         textinput.remove(text);
-
-//        qDebug() << textinput;
         createEmptyHtml(filename, QString::number(i), text);
     }
 }
+//-----------------------------------------------
+void SplitFile::refreshTextHtml()
+{
+    /// get text from textedit
+    /// and set to textbrowser
+    QString text = ui->textEdit->toPlainText();
+    showFileHtml(text);
+}
+
+//-----------------------------------------------
+void SplitFile::saveTextEdit()
+{
+    /// get text, filepath
+    /// remove file
+    /// and create file with text
+    /// (save)
+    QString filepath = ui->LEFilePath->text();
+    QString text = ui->textEdit->toPlainText();
+
+    QFile file(filepath);
+    file.close();
+    file.remove();
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QTextStream stream(&file);
+        stream << text;
+        file.close();
+    }
+}
+
 //-----------------------------------------------

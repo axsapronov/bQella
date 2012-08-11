@@ -55,6 +55,19 @@ private slots:
       */
     void AutoRun();
 
+    /**
+      @function
+      Refresh text edit
+      */
+    void refreshTextHtml();
+
+    /**
+      @function
+      Save text edit
+      and refresh show text edit
+      */
+    void saveTextEdit();
+
 private:
     Ui::SplitFile *ui;
 
