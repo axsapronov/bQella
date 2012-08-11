@@ -101,11 +101,9 @@ MainWindow::MainWindow():
     assistant = new Assistant;
     contbook = new ContentsBook();
 
-
     splitFileDialog = new SplitFile();
 
-
-    prjprop = new ProjectProperties(this);
+    prjprop = new ProjectProperties();
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
 
@@ -141,7 +139,7 @@ MainWindow::MainWindow():
 //        ui.lEImportFile->setText(importstr);
 
     this->showMaximized ();
-    showSplitFile();
+//    showSplitFile();
 }
 
 //-------------------------------------------------
@@ -177,8 +175,9 @@ void MainWindow::setup()
     connect(prjprop, SIGNAL(createProject(ModuleProperties)), this, SLOT(createProject(ModuleProperties)));
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
 
-    connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
+    connect(importdi, SIGNAL(ProjectPropsShow()), this, SLOT(ProjectProps()));
     connect(importdi, SIGNAL(SuccessfulImportBook()), this, SLOT(importBookSuccessful()));
+    connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));

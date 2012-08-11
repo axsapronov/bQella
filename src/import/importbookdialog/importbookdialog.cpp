@@ -5,6 +5,8 @@
 #include "importdialog.h"
 #include "config.h"
 
+#include "projectproperty.h"
+
 #include <QStringListModel>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -18,16 +20,17 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
-
+    connect(ui->pBProjectProperties, SIGNAL(clicked()), this, SLOT(showPropertiesDialog()));
     importm = new Import();
+
     setData();
 }
-
+///------------------------------------------------
 ImportBookDialog::~ImportBookDialog()
 {
     delete ui;
 }
-
+///------------------------------------------------
 void ImportBookDialog::setData()
 {
 
@@ -59,7 +62,7 @@ void ImportBookDialog::setData()
     //    ui->LEFullName->setText("test12");
     //    ui->SBCount->setValue(3);
 }
-
+///------------------------------------------------
 void ImportBookDialog::browse()
 {
     QString beginpath = Config::configuration ()->AppDir ();
@@ -73,7 +76,7 @@ void ImportBookDialog::browse()
         ui->LEFilePath->setText(fileName);
     }
 }
-
+///------------------------------------------------
 void ImportBookDialog::accept()
 {
     QString s = "";  //holds list of errors
@@ -94,11 +97,6 @@ void ImportBookDialog::accept()
         s.append(tr("- Please enter a full name.\n"));
         er = true;
     }
-    //    if (ui->LEHtmlFilter -> text().isEmpty())
-    //    {
-    //            s.append(tr("- Please enter a html filter.\n"));
-    //            er = true;
-    //    }
     if (ui->LETagChapter->text().isEmpty())
     {
         s.append(tr("- Please enter a tag chapter.\n"));
@@ -184,7 +182,11 @@ void ImportBookDialog::accept()
 
         emit SuccessfulImportBook();
         QWidget::hide();  //close dialog
-
     }
 }
-
+///------------------------------------------------
+void ImportBookDialog::showPropertiesDialog()
+{
+//    showProperties();
+    emit ProjectPropsShow();
+}
