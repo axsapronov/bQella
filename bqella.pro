@@ -47,7 +47,8 @@ DEPENDPATH += \
     src/doc \
     src/export \
     src/topicchooser \
-    src/advance/splitFile
+    src/advance/splitFile \
+    src/advance/preview
 
 
 INCLUDEPATH += \
@@ -78,7 +79,8 @@ INCLUDEPATH += \
     src/doc \
     src/export \
     src/topicchooser \
-    src/advance/splitFile
+    src/advance/splitFile \
+    src/advance/preview
 
 
 FORMS += \
@@ -101,7 +103,9 @@ FORMS += \
      contentsbook.ui \
      topicchooser.ui \
      strongproperty.ui \
-     splitfile.ui
+     splitfile.ui \
+    src/advance/preview/previewbook.ui \
+    src/advance/preview/previewmodule.ui
 
 SOURCES +=  \
      config.cpp \
@@ -136,7 +140,9 @@ SOURCES +=  \
      contentsbook.cpp \
      topicchooser.cpp \
      strongproperty.cpp \
-     splitfile.cpp
+     splitfile.cpp \
+    src/advance/preview/previewbook.cpp \
+    src/advance/preview/previewmodule.cpp
 
 HEADERS += \
      docproperty.h \
@@ -170,7 +176,9 @@ HEADERS += \
      contentsbook.h \
      topicchooser.h \
      strongproperty.h \
-     splitfile.h
+     splitfile.h \
+    src/advance/preview/previewbook.h \
+    src/advance/preview/previewmodule.h
 
 RESOURCES += \
     resources/resources.qrc

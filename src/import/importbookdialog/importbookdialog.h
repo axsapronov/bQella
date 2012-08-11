@@ -8,6 +8,7 @@ namespace Ui {
 }
 
 class Import;
+class PreviewBook;
 
 /**
   @class
@@ -22,6 +23,14 @@ class ImportBookDialog : public QDialog
 public:
     explicit ImportBookDialog(QWidget *parent = 0);
     ~ImportBookDialog();
+
+
+public slots:
+    /**
+      @function
+      function to show preview
+      */
+    void showPreview();
 
 signals:
     void SuccessfulImportBook();
@@ -41,11 +50,12 @@ private slots:
     void showPropertiesDialog();
 
 
+
 private:
     Ui::ImportBookDialog *ui;
 
     Import * importm;
-
+    PreviewBook *prevbook;
     /**
       @function
       set data

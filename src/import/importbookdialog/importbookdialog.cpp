@@ -3,9 +3,8 @@
 #include "pcommon.h"
 
 #include "importdialog.h"
+#include "previewbook.h"
 #include "config.h"
-
-#include "projectproperty.h"
 
 #include <QStringListModel>
 #include <QFileDialog>
@@ -21,7 +20,10 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
 
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBProjectProperties, SIGNAL(clicked()), this, SLOT(showPropertiesDialog()));
+    connect(ui->pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
+
     importm = new Import();
+    prevbook = new PreviewBook(this);
 
     setData();
 }
@@ -190,3 +192,11 @@ void ImportBookDialog::showPropertiesDialog()
 //    showProperties();
     emit ProjectPropsShow();
 }
+///------------------------------------------------
+void ImportBookDialog::showPreview()
+{
+        prevbook->setData(ui->LEFilePath->text());
+        prevbook->show();
+
+}
+///------------------------------------------------
