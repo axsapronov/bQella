@@ -7,6 +7,7 @@ namespace Ui {
     class PreviewBook;
 }
 
+class Import;
 /**
   @class PreviewBook
   class for preview book
@@ -15,6 +16,8 @@ class PreviewBook : public QDialog
 {
     Q_OBJECT
 
+signals:
+    void createBookPreview();
 public:
     explicit PreviewBook(QWidget *parent = 0);
     ~PreviewBook();
@@ -26,8 +29,19 @@ public:
       */
     void setData(QString filepath);
 
+    void createBookPreviewFunc();
+    void setPathToBook(QString file) {pathToBook = file;}
+
+private slots:
+    /**
+      @function
+      Show chapter in browser, edit frame
+      @param int  count - number in combobox item
+      */
+    void showChapter(int count);
 private:
     Ui::PreviewBook *ui;
+    QString pathToBook;
 
     /**
       @fucntion
@@ -35,10 +49,10 @@ private:
     void accept();
 
 
-    /**
-      @fucntion
-      */
-    void reject();
+//    /**
+//      @fucntion
+//      */
+//    void reject();
 
     void removePreviewFiles();
 

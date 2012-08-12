@@ -45,9 +45,15 @@ private slots:
 
     /**
       @function
-      function of emit signal ProjectPropsShow()
+      Function of emit signal ProjectPropsShow()
       */
     void showPropertiesDialog();
+
+    /**
+      @function
+      Create files for preview book (chapters files)
+      */
+    void createBookPreview();
 
 
 
@@ -66,8 +72,10 @@ private:
       function for first parse, and begin import
       */
     void accept();
+    void saveData();
+    QStringList getReplaceList();
 
-    QString bookShortName, bookFullName, bookHtmlFilter;
+    QString bookShortName, bookFullName, bookHtmlFilter, projectfile;
     QString bookEncoding, bookTagChapter, bookTagVerse, bookPathFile;
     int bookCount;
 };

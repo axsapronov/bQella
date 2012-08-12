@@ -28,9 +28,11 @@ void PreviewModule::setData(QString filepath)
 void PreviewModule::showPreviewBook()
 {
     QString book = ui->ComBBooks->currentText();
+    book = "text";
     QString pathToBook = prjDir + "/_Preview_/" + book;
 
     prevbook->setData(pathToBook);
+    prevbook->createBookPreviewFunc();
     prevbook->show();
 }
 ///-------------------------------------------------------------------
@@ -54,14 +56,14 @@ void PreviewModule::createBookPreview()
 ///-------------------------------------------------------------------
 void PreviewModule::accept()
 {
-    qDebug() << "accept";
+//    qDebug() << "accept";
 //    removePreviewFiles();
     QWidget::hide();  //close dialog
 }
 ///-------------------------------------------------------------------
 void PreviewModule::reject()
 {
-    qDebug() << "reject";
+//    qDebug() << "reject";
     QWidget::hide();  //close dialog
 }
 ///-------------------------------------------------------------------

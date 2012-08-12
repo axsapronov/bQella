@@ -154,6 +154,24 @@ bool addToEndFile(QString fileName, QString text); // добавить в кон
 
 /**
   @function
+  get list chapter files in curprj/_Preview_/
+  used in previewbook
+  @return QStringList  list of file path to chapter files
+  */
+QStringList getChapterList();
+
+/**
+  @function
+  get list text chapter files in curprj/_Preview_/
+  used in previewbook: set to combobox
+  @return QStringList  list of value text
+  */
+QStringList getChapterComboText();
+
+
+
+/**
+  @function
   get text from file
   @param file  QString path to file
   @return QString

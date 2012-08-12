@@ -63,7 +63,7 @@ public:
     @param  myChapterSign  tag for chapters (bibleqt param)
     @param  encoding  encoding
     */
-    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding); // для импорта книги
+    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding, QString pathOutput=""); // для импорта книги
 
     /**
     @function
@@ -140,6 +140,7 @@ private:
 
     PreviewModule *prevmodule;
     void accept();
+    QStringList getReplaceList();
     void setData();
 
     /**
@@ -189,7 +190,7 @@ private:
       @param ShortName  param bibleqt
       @param ChapterQty  count chapters (param bibleqt)
     */
-    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
+    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty, QString pathout="");
 
     /**
       @function

@@ -1715,3 +1715,42 @@ int countTheNumberOfFiles(QString *textinput, QString tag)
 //    qDebug() << text;
     return count;
 }
+//------------------------------------------------------------
+QStringList getChapterList()
+{
+    QString path = Config::configuration()->CurPrjDir() + "/" + "_Preview_/";
+    QDir dir(path);
+    QStringList listFiles = dir.entryList(QDir::Files);
+
+    QStringList chapters, files;
+    foreach (QString entry, listFiles)
+    {
+        QString entryAbsPath = dir.absolutePath() + "/" + entry;
+        if (entry.indexOf("_chapter_") != -1)
+        {
+           files << entryAbsPath;
+        }
+    }
+    return files;
+}
+
+//------------------------------------------------------------
+QStringList  getChapterComboText()
+{
+    QStringList list = getChapterList();
+
+    QStringList chapters;
+    for (int i = 0; i < list.size(); i++)
+    {
+        QString str = list.at(i);
+        /// get number chapter
+        str = getFileNameAbs(str);
+        int pos = str.indexOf("_chapter_");
+        str = "Chapter "
+                + str.remove(0,pos)
+                .remove("_chapter_")
+                .remove("_");
+        chapters << str;
+    }
+    return chapters;
+}

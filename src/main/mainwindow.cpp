@@ -141,7 +141,8 @@ MainWindow::MainWindow():
     this->showMaximized ();
 //    showSplitFile();
 //    importdi->showPreview();
-    importm->showPreview();
+//    importm->showPreview();
+//    importdi->show();
 }
 
 //-------------------------------------------------
@@ -190,8 +191,6 @@ void MainWindow::setup()
     // Menu Import
     connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
-
-
 
     // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
