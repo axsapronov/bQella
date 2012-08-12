@@ -25,6 +25,12 @@ public:
     void setPrjPath(QString path) {prjDir = path;}
     void createPreview();
 
+    void setFileBibleqtIni(QString path) {fileBibleqtIni = path;}
+    QString getFileBibleqtIni() {return fileBibleqtIni;}
+
+signals:
+    void createBookPreviewModule(QString);
+
 private slots:
     void showPreviewBook();
 private:
@@ -32,9 +38,13 @@ private:
     PreviewBook *prevbook;
 
     QString prjDir;
+    QString fileBibleqtIni;
     void accept();
     void reject();
     void removePreviewFiles();
+
+    void createListBook();
+
 
     void createFolder(QString path);
 

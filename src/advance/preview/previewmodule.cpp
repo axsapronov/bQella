@@ -2,6 +2,7 @@
 #include "ui_previewmodule.h"
 
 #include "previewbook.h"
+#include "pcommon.h"
 #include <QDir>
 #include <QDebug>
 
@@ -23,15 +24,19 @@ PreviewModule::~PreviewModule()
 void PreviewModule::setData(QString filepath)
 {
     ui->LAFile->setText(filepath);
+    setFileBibleqtIni(filepath);
+
+    ///
+    createListBook();
 }
 ///-------------------------------------------------------------------
 void PreviewModule::showPreviewBook()
 {
-    QString book = ui->ComBBooks->currentText();
-    book = "text";
-    QString pathToBook = prjDir + "/_Preview_/" + book;
-
-    prevbook->setData(pathToBook);
+    QStringList listfiles = getListFilesFromBibleqtIni(getFileBibleqtIni());
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    QString book = listfiles.at(ui->ComBBooks->currentIndex());
+    prevbook->setData(book);
+    emit createBookPreviewModule(listvaluetext.at(ui->ComBBooks->currentIndex()));
     prevbook->createBookPreviewFunc();
     prevbook->show();
 }
@@ -45,7 +50,7 @@ void PreviewModule::createPreview()
 void PreviewModule::createFolder(QString path)
 {
     QDir dir(path);
-    qDebug() << " path = " << path;
+//    qDebug() << " path = " << path;
     dir.mkdir("_Preview_");
 }
 ///-------------------------------------------------------------------
@@ -90,3 +95,10 @@ void PreviewModule::removePreviewFiles()
     }
 }
 ///-------------------------------------------------------------------
+void PreviewModule::createListBook()
+{
+
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    ui->ComBBooks->clear();
+    ui->ComBBooks->addItems(listvaluetext);
+}

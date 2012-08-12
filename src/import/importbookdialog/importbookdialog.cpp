@@ -21,7 +21,6 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
     importm = new Import();
     prevbook = new PreviewBook(this);
 
-
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBProjectProperties, SIGNAL(clicked()), this, SLOT(showPropertiesDialog()));
     connect(ui->pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
@@ -213,20 +212,20 @@ void ImportBookDialog::showPropertiesDialog()
 void ImportBookDialog::showPreview()
 {
     prevbook->setData(ui->LEFilePath->text());
-        createBookPreview();
+    createBookPreview();
     prevbook->show();
 }
 ///------------------------------------------------
 void ImportBookDialog::createBookPreview()
 {
     saveData();
+    importm->setPathOutput("_Preview_");
     importm->importBook(projectfile,
                         bookPathFile,
                         bookFullName,
                         bookShortName,
                         bookCount,
                         bookTagChapter,
-                        bookEncoding,
-                        "_Preview_");
+                        bookEncoding);
 }
 ///------------------------------------------------

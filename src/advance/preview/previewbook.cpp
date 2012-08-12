@@ -77,7 +77,6 @@ void PreviewBook::setData(QString filepath)
 ///-------------------------------------------------------------------
 void PreviewBook::accept()
 {
-    //    qDebug() << "accept";
     removePreviewFiles();
     QWidget::hide();  //close dialog
 }
@@ -85,7 +84,7 @@ void PreviewBook::accept()
 void PreviewBook::removePreviewFiles()
 {
     QString outputPath = Config::configuration()->CurPrjDir() + "/" + "_Preview_/";
-//    qDebug() << "outputpath = " << outputPath;
+    qDebug() << "outputpath = " << outputPath;
     QDir dir(outputPath);
     if (dir.exists())
     {
@@ -108,10 +107,12 @@ void PreviewBook::removePreviewFiles()
 void PreviewBook::createBookPreviewFunc()
 {
     emit createBookPreview();
-    QStringList files = getChapterList();
+//    QStringList files = getChapterList();
     QStringList chapters = getChapterComboText();
 //    setFilesChapter(files);
     /// add list to comboBox
+    ui->comBChapters_1->clear();
+    ui->comBChapters_2->clear();
     ui->comBChapters_1->addItems(chapters);
     ui->comBChapters_2->addItems(chapters);
 }
@@ -119,6 +120,8 @@ void PreviewBook::createBookPreviewFunc()
 void PreviewBook::showChapter(int count)
 {
     QString textchapter = getTextFromFile(getChapterList().at(count));
+    ui->comBChapters_1->setCurrentIndex(count);
+    ui->comBChapters_2->setCurrentIndex(count);
     ui->tBHtmlChapter->setPlainText(textchapter);
     ui->tbViewChapter->setHtml(textchapter);
 }

@@ -168,6 +168,21 @@ QStringList getChapterList();
   */
 QStringList getChapterComboText();
 
+/**
+  @function
+  Get list files from bibleqt.ini file
+  @param QString filepath  path to bibleqt.ini file
+  @return QStringList list  list book files
+  */
+QStringList getListFilesFromBibleqtIni(QString filepath);
+
+/**
+  @function
+  Get list full names from book from bibleqt.ini file
+  @param QString filepath  path to bibleqt.ini file
+  @return QStringList list  list full text
+  */
+QStringList getListValueTextFromBibleqtIni(QString filepath);
 
 
 /**

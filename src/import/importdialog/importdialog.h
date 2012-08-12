@@ -63,7 +63,7 @@ public:
     @param  myChapterSign  tag for chapters (bibleqt param)
     @param  encoding  encoding
     */
-    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding, QString pathOutput=""); // для импорта книги
+    void importBook(QString projectfile, QString pathName, QString FullName, QString ShortName, int ChapterQty,QString myChapterSign, QString encoding); // для импорта книги
 
     /**
     @function
@@ -101,6 +101,7 @@ public:
       */
     void setTextReplace(QStringList replacelist) { listreplace = replacelist;}
 
+    void setPathOutput(QString path) {pathOutput = path;}
 signals:
     void SuccessfulImport();
 
@@ -128,6 +129,8 @@ private slots:
       */
     void selectImportFile();
 
+    void createBookPreviewModule(QString fullname);
+
 private:
     Ui::ImportDialog ui;
     int BookQty;
@@ -137,12 +140,14 @@ private:
     QString encoding;
     QString htmlfilter;
     QStringList listreplace;
+    QString pathOutput;
 
     PreviewModule *prevmodule;
     void accept();
     QStringList getReplaceList();
     void setData();
 
+    QStringList getParamsBibleQtIni(QString fullname);
     /**
     @function
     Import ini file (input bibleqt.ini)
@@ -190,7 +195,7 @@ private:
       @param ShortName  param bibleqt
       @param ChapterQty  count chapters (param bibleqt)
     */
-    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty, QString pathout="");
+    void createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty);
 
     /**
       @function

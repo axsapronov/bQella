@@ -1754,3 +1754,93 @@ QStringList  getChapterComboText()
     }
     return chapters;
 }
+///-------------------------------------------------------
+QStringList getListFilesFromBibleqtIni(QString filename)
+{
+    QStringList listFiles;
+
+    /// hindi
+    /// copy from import module
+
+    QFile file(filename);
+    filename.remove(filename.length()-11, 11);
+    QString line;
+    if ( file.open(QIODevice::ReadOnly) )
+    {
+        int BookQtyIn = 2000;
+        int book = 0;
+        //        int count;
+        // file opened successfully
+        QTextStream stream( &file );        // use a text stream
+
+        // until end of file...
+        do {
+            // read and parse the command line
+            line = stream.readLine();         // line of text excluding '\n'
+            // do something with the line
+            if (line != "" and line.indexOf("//") <0)
+            {
+                if (miniparserini(line,"PathName") != "")
+                {
+                    //парсим инфу о книгке
+                    QString line2 = stream.readLine();
+                    QString line3 = stream.readLine();
+                    QString line4 = stream.readLine();
+                    QString path = filename + miniparserini( line, "PathName");
+                    book++;
+//                    qDebug() << "path = " << path;
+                    listFiles << path;
+                }
+            }
+        } while ((!line.isNull()) || (BookQtyIn == book));
+        // Close the file
+        file.close();
+    }
+    return listFiles;
+}
+///-------------------------------------------------------
+QStringList getListValueTextFromBibleqtIni(QString filename)
+{
+
+    QStringList listValueText;
+
+    /// hindi
+    /// copy from import module
+
+    QFile file(filename);
+    filename.remove(filename.length()-11, 11);
+    QString line;
+    if ( file.open(QIODevice::ReadOnly) )
+    {
+        int BookQtyIn = 2000;
+        int book = 0;
+        //        int count;
+        // file opened successfully
+        QTextStream stream( &file );        // use a text stream
+
+        // until end of file...
+        do {
+            // read and parse the command line
+            line = stream.readLine();         // line of text excluding '\n'
+            // do something with the line
+            if (line != "" and line.indexOf("//") <0)
+            {
+                if (miniparserini(line,"PathName") != "")
+                {
+                    //парсим инфу о книгке
+                    QString line2 = stream.readLine();
+                    QString line3 = stream.readLine();
+                    QString line4 = stream.readLine();
+                    QString full = miniparserini( line2, "FullName");
+                    book++;
+                    listValueText << full;
+                }
+            }
+        } while ((!line.isNull()) || (BookQtyIn == book));
+        // Close the file
+        file.close();
+    }
+    return listValueText;
+}
+
+///-------------------------------------------------------
