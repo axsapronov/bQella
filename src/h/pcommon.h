@@ -206,6 +206,6 @@ QString getTextFromFile(QString file, QString encoding); // достать ве�
 
 /// strong
 QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла
-QString getFileNameOfStrong(QString horg, QString numberstr); /// возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
+QString getFileNameOfStrong(QString horg, QString numberstr); // возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
 
 #endif // __PCOMMON_H__

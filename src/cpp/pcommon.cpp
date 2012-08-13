@@ -1012,9 +1012,9 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\")");
-    //    QRegExp regP("(<[a-zA-Z]+) [^>]*");  /// убирает атрибуты у p Тега
-    /// html атрибуты  (?:[\w]*) *= *"(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"]*)\\\W)*[^"]*")
-    /// все теги </?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>+(.*?|[\s\S]*?)+</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>
+    //    QRegExp regP("(<[a-zA-Z]+) [^>]*");  // убирает атрибуты у p Тега
+    // html атрибуты  (?:[\w]*) *= *"(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"]*)\\\W)*[^"]*")
+    // все теги </?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>+(.*?|[\s\S]*?)+</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>
 
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
@@ -1059,7 +1059,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
                 .remove("")
                 .remove("\n");
         str.remove("Новый пункт")
-                .remove("New item"); /// от куда эти хери вылезли? (к чему вообще тайтлы файлов)
+                .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
         str.replace("?p_.PathName","\nPathName")
                 .replace("PathName", "\n\nPathName")
                 .replace("FullName", "\nFullName")
@@ -1068,7 +1068,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
                 .remove("Content = yes")
                 .remove("Content = no");
 
-        str = editStringList(str, tags, false); /// возвращаем нужные теги
+        str = editStringList(str, tags, false); // возвращаем нужные теги
         str.remove ("<span>>")
                 .remove ("</span>");
 

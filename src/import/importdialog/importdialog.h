@@ -42,7 +42,7 @@ public:
     /// The default constructor
     explicit Import(QWidget *parent = 0);
 
-    /// костыль, как-то убрать его
+    /// dirty hack
     /**
       @function
       @return
