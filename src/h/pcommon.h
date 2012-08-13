@@ -30,7 +30,7 @@ class QStringList;
 class QTextCodec;
 
 
-
+#include "projectproperty.h"
 #include "config.h"
 
 //======== процедуры и функции общего назначения ============================
@@ -96,6 +96,27 @@ QString checkProcentRol(QString shortname, QString out, int procent = GL_PROCENT
 QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
 QString removeFirst(QString str, QString remove); // возвращает строку с удаленным первым вхождением
 
+/**
+  @function
+  Number of files with the division of the text tag (split files)
+  @param *text  text
+  @param tag  tag
+  */
+int countTheNumberOfFiles(QString *text, QString tag);
+/**
+  @function
+  Replace spaces in qstring to text(default = }<B-B>{)
+  @param str  qstring
+  @param text  default = }<B-B>{
+  */
+QString replaceSpaceInStrToText(QString str, QString text = "}<B-B>{");
+
+/**
+  @function
+  Function to show to qDebug moduleproperties
+  @param *pr  moduleproperties
+  */
+void printToDebugModuleProperties(ModuleProperties *pr);
 
 void visitTree(QStringList &list, QTreeWidgetItem *item);
 QStringList visitTree(QTreeWidget *tree);
@@ -117,6 +138,16 @@ QString CreateValidWebFileName(QString str); //выбирает из строк�
 bool toLog(QString logFN, QString logMessage); //добавляет в журнал строку в формате "Дата Время Сообщение"
 bool createEmptyHtml(QString fileName, QString title);
 bool createEmptyHtml(QString fileName, QString title, QString text);
+
+/**
+  @function
+  @param
+  @param
+  @param
+  @param
+  */
+bool createEmptyHtmlWithEncoding(QString fileName, QString title, QString text, QString encoding); // тоже самое что и предыдущее но с учетом кодировки
+
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
 QString getParamBook(QString filename, QString param); // возвращает параметр из файла. Вид файла    "PARAM = VALUE"
@@ -130,8 +161,51 @@ bool checkFileContainsText(QString filename, QString text); // проверяе�
 bool createFileText(QString fileName, QString text); // создает  файл с текстом ( так как книги не юзаются, то можно и обычным файлом юзать их)
 bool addToEndFile(QString fileName, QString text); // добавить в конец файла текст
 
+
+/**
+  @function
+  get list chapter files in curprj/_Preview_/
+  used in previewbook
+  @return QStringList  list of file path to chapter files
+  */
+QStringList getChapterList();
+
+/**
+  @function
+  get list text chapter files in curprj/_Preview_/
+  used in previewbook: set to combobox
+  @return QStringList  list of value text
+  */
+QStringList getChapterComboText();
+
+/**
+  @function
+  Get list files from bibleqt.ini file
+  @param QString filepath  path to bibleqt.ini file
+  @return QStringList list  list book files
+  */
+QStringList getListFilesFromBibleqtIni(QString filepath);
+
+/**
+  @function
+  Get list full names from book from bibleqt.ini file
+  @param QString filepath  path to bibleqt.ini file
+  @return QStringList list  list full text
+  */
+QStringList getListValueTextFromBibleqtIni(QString filepath);
+
+
+/**
+  @function
+  get text from file
+  @param file  QString path to file
+  @param encoding
+  @return QString
+  */
+QString getTextFromFile(QString file, QString encoding); // достать весь текст из файла
+
 /// strong
 QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла
-QString getFileNameOfStrong(QString horg, QString numberstr); /// возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
+QString getFileNameOfStrong(QString horg, QString numberstr); // возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
 
 #endif // __PCOMMON_H__

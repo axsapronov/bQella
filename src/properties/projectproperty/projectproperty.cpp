@@ -40,12 +40,17 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 {
     ui.setupUi(this);
     modeNewProject = false;
+
+//    connect(ui.cbStrongNumber, SLOT(setChecked(bool)), ui.LEStrongDir, SLOT(hide()));
+    connect(ui.cbStrongNumber, SIGNAL(stateChanged(int)), this, SLOT(hideshow()));
+    connect(ui.cbSound, SIGNAL(stateChanged(int)), this, SLOT(hideshow()));
     setData(); /// set firsrt data (list encoding)
     setToolTipLabels(); ///set what'is labels
 }
 //-------------------------------------------------------------------
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 {
+//    printToDebugModuleProperties(&pr);
     prjTitle= pr.prjTitle;
     prjFN = pr.prjFN;
     prjStartPage = pr.prjStartPage;
@@ -78,6 +83,7 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.LEHtmlFilter ->setText (pr.htmlFilter);
     ui.LEDesiredUIFont -> setText(pr.desiredUIFont);
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
+    hideshow();
 }
 //-------------------------------------------------------------------
 void ProjectProperties::reject()
@@ -127,6 +133,8 @@ void ProjectProperties::accept()
 
         //check for valid project file name
         QString filePrjFilename = prjFN+pathOfBibleName+"/"+pathOfBibleName+GL_PROJECT_FILE;
+//        qDebug() << "filePrjFilename = " << filePrjFilename
+//                 << " prjFN = " << prjFN;
         QFile filePrj(filePrjFilename);
         if (!filePrj.exists())
         {		//create file if it's not exist
@@ -149,6 +157,8 @@ void ProjectProperties::accept()
             createEmptyHtml(prjFN + pathOfBibleName + "/" + "   ___Instruction", "   ___Instruction" );
             createEmptyHtml(prjFN + pathOfBibleName + "/ru.html", "ru");
             createEmptyHtml(prjFN + pathOfBibleName + "/en.html", "en");
+
+            qDebug() << "prjFN + pathOfBibleName = " << prjFN + pathOfBibleName;
 
             /// add to config
             Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());
@@ -406,3 +416,13 @@ void ProjectProperties::setData()
     ui.comBEncoding->setModel(modelEncoding);
 }
 //-------------------------------------------------------------------
+void ProjectProperties::hideshow()
+{
+    /// strong number
+    ui.LEStrongDir->setVisible(ui.cbStrongNumber->isChecked());
+    ui.pushButtonStrongDir->setVisible(ui.cbStrongNumber->isChecked());
+
+    /// sound
+    ui.LESoundDir->setVisible(ui.cbSound->isChecked());
+    ui.pushButtonSoundDir->setVisible(ui.cbSound->isChecked());
+}

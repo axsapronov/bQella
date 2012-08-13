@@ -34,6 +34,8 @@
 #include "frdialog.h"
 #include "assistant.h"
 #include "contentsbook.h"
+#include "splitfile.h"
+
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -99,7 +101,9 @@ MainWindow::MainWindow():
     assistant = new Assistant;
     contbook = new ContentsBook();
 
-    prjprop = new ProjectProperties(this);
+    splitFileDialog = new SplitFile();
+
+    prjprop = new ProjectProperties();
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
 
@@ -124,13 +128,22 @@ MainWindow::MainWindow():
     //    ui.actionEditFind -> setVisible(false);
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
+    ui.actionTagHtml->setVisible(false);
 
 //    importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 //    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
-    //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 
+//    importm->importModule("/home/files/Documents/Bible/unrar/my/BIBLEQT.INI");
+    //    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    ui.lEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
+//    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
+//        ui.lEImportFile->setText(importstr);
 
     this->showMaximized ();
+//    showSplitFile();
+//    importdi->showPreview();
+//    importm->showPreview();
+//    importdi->show();
 }
 
 //-------------------------------------------------
@@ -166,8 +179,9 @@ void MainWindow::setup()
     connect(prjprop, SIGNAL(createProject(ModuleProperties)), this, SLOT(createProject(ModuleProperties)));
     connect(prjprop, SIGNAL(updateProjectProperties(ModuleProperties)), this, SLOT(updateProjectProperties(ModuleProperties)));
 
-    connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
+    connect(importdi, SIGNAL(ProjectPropsShow()), this, SLOT(ProjectProps()));
     connect(importdi, SIGNAL(SuccessfulImportBook()), this, SLOT(importBookSuccessful()));
+    connect(importm, SIGNAL(SuccessfulImport()), this, SLOT(importModuleSuccessful()));
 
     // Menu File
     connect(ui.actionRemoveItem, SIGNAL(triggered()), helpDock, SLOT(removeItem()));
@@ -178,8 +192,6 @@ void MainWindow::setup()
     // Menu Import
     connect(ui.actionImportBook, SIGNAL(triggered()), this, SLOT(importBook()));
     connect(ui.actionImportModule, SIGNAL(triggered()), this, SLOT(importModule()));
-
-
 
     // Menu Edit
     connect(helpDock, SIGNAL(showLink(QString)), this, SLOT(showLink(QString)));
@@ -210,6 +222,8 @@ void MainWindow::setup()
 
 
 
+    /// menu advance
+    connect(ui.actionAdvanceSplitFile, SIGNAL(triggered()), this, SLOT(showSplitFile()));
     // Menu Format
     connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
@@ -318,12 +332,11 @@ void MainWindow::importBookSuccessful()
     pr.moduleBVersion = 1.00;
     pr.prjFN = Config::configuration()->CurProject();
     pr.prjStartPage = importm -> getStartPage();
-
-    //    qDebug() << " prjFN = " << pr.prjFN << " strartpage  = " << pr.prjStartPage;
     pr.prjTitle = Config::configuration()->ModuleBiblename();
 
+//    printToDebugModuleProperties(&pr);
+//    qDebug() << "curpage =" << Config::configuration()->CurFile();
 
-    // добавить другие параметры (дохера буленов и строк из модулепропертис)
     ProjectOpen(pr.prjFN);
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
@@ -332,17 +345,6 @@ void MainWindow::importBookSuccessful()
 void MainWindow::importBook()
 {
     importdi->show();
-    //    QString beginpath = "/home/";
-    //    QString path = QFileDialog::getOpenFileName(this,
-    //                      tr("Select book file"),
-    //                      beginpath,
-    //                      tr("Book file (*.html *.txt *.htm)"));
-    //    importm->importBook(path, "", "", 0);
-    //// еще надо вызывать диалог с вводом данных о книге
-    //    //PathName
-    //    //FullName
-    //    //ShortName
-    //    //ChapterQty
 }
 //-------------------------------------------------
 void MainWindow::browserTabChanged()
@@ -404,13 +406,17 @@ void MainWindow::showLinkFromClient(const QString &link)
 void MainWindow::showLink(const QString &link)
 {
 
-    QString mylink;
+    QString mylink = link;
+
     if (link.indexOf(Config::configuration()->CurPrjDir() <=0))
     {
+//        qDebug() << " test4 " << link;
         QString nameoffile = link.split("/").last();
         mylink = Config::configuration()->CurPrjDir()+"/"+nameoffile;
+
+//        qDebug() << nameoffile << mylink;
     }
-    QString lnk = unurlifyFileName(link);
+    QString lnk = unurlifyFileName(mylink);
     QFileInfo fi(lnk);
     if( (!lnk.isEmpty()) && fi.exists() && fi.isFile() ){
         // don't open a new tab for the same url more then once
@@ -424,8 +430,8 @@ void MainWindow::showLink(const QString &link)
     }
     else
     {
-        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << link;
-        toLog(Config::configuration()->AppLogFN(), QString("Failed to open link: %1").arg(link) + "Func: MainWindow::showLink");
+        qWarning() << "Debug: _MainWindow::showLink()" << "Failed to open link: " << mylink;
+        toLog(Config::configuration()->AppLogFN(), QString("Failed to open link: %1").arg(mylink) + "Func: MainWindow::showLink");
         QMessageBox::warning(this, GL_PROG_NAME, tr("failed to open file:\n%1").arg(lnk));
     }
 }
@@ -661,14 +667,16 @@ void MainWindow::ProjectOpen(QString fileName)
     {
         //Config::configuration() -> toAppLog(1, tr("Open project: %1", "For log").arg(fileName));
         browsers() -> currentBrowser() -> fileSave();
+//        qDebug() << fileName;
         Config::configuration() -> loadProject(fileName);
         helpDock -> enableProjectButtons();
         helpDock -> initTabs();
         browsers() -> closeAllTabs();
         helpDock -> insertContents();
-        qDebug() << "[5]";
+//        qDebug() << "[5]";
         helpDock -> on_BProjectAdd_clicked();
         Config::configuration() -> toAppLog(1, tr("- show start page: %1", "For log").arg(Config::configuration() -> CurFile()));
+
         showLink(urlifyFileName(Config::configuration() -> CurFile()));
         projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
@@ -863,6 +871,7 @@ void MainWindow::ProjectNew()
 void MainWindow::ProjectProps()
 {
     ModuleProperties pr;
+    pr.prjFN = Config::configuration()-> PrjDir();
     pr.prjTitle = Config::configuration() -> profile() -> props["title"];
     pr.prjStartPage = Config::configuration() -> profile() -> props["startpage"];
     pr.moduleBiblename = Config::configuration() -> profile() -> props["biblename"];
@@ -987,7 +996,7 @@ void MainWindow::createProject(ModuleProperties pr)
     //    Config::configuration() -> setCurProject(fn);
     //    Config::configuration() -> setCurPrjDir(fi.absolutePath());
     //    Config::configuration() -> setCurPrjSrc();
-    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
+//    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
     ProjectOpen(fn);
 }
 
@@ -1125,3 +1134,7 @@ void MainWindow::showHomePage()
     QDesktopServices::openUrl(QUrl(GL_WEB_SITE));
 }
 //--------------------------------------------------
+void MainWindow::showSplitFile()
+{
+    splitFileDialog->show();
+}

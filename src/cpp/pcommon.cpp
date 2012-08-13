@@ -806,6 +806,29 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     return ret;
 }
 //-------------------------------------------------
+bool createEmptyHtmlWithEncoding(QString fileName, QString title, QString text, QString encoding)
+{
+    bool ret = true;
+    QFile file(fileName);
+    if (!file.exists()){		//create file if it's not exist
+        if (file.open(QIODevice::ReadWrite)){	//try to open or create file
+            QTextStream ts(&file);
+            QTextCodec * codec = getCodecOfEncoding (encoding);
+            ts.setCodec(codec);
+            ts << "<html>\n<head>" << endl;
+            ts << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" << endl;
+            ts << "<title>" << title <<"</title>" << endl;
+            ts << "</head>\n<body>\n" << text << "\n</body>\n</html>" << endl;
+            file.close();
+
+            //QFile
+        }else{
+            ret = false;
+        }
+    }
+    return ret;
+}
+//-------------------------------------------------
 bool createFileText(QString fileName, QString text)
 {
     bool ret = true;
@@ -989,6 +1012,9 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\")");
+    //    QRegExp regP("(<[a-zA-Z]+) [^>]*");  // убирает атрибуты у p Тега
+    // html атрибуты  (?:[\w]*) *= *"(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"]*)\\\W)*[^"]*")
+    // все теги </?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>+(.*?|[\s\S]*?)+</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>
 
     QStringList tags;
     tags << "p" << "i" << "/i" << "b" << "/b" << "h4" << "/h4" <<QString(Config::configuration() -> profile() -> props["htmlfilter"]).split (" ");
@@ -1022,6 +1048,8 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
         str = getParseTagSpan(str, "font-weight:600;", "<strong>");
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
         str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
+
+        //        str.replace(regP, "<p");
         str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi)
@@ -1031,7 +1059,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
                 .remove("")
                 .remove("\n");
         str.remove("Новый пункт")
-                .remove("New item"); /// от куда эти хери вылезли? (к чему вообще тайтлы файлов)
+                .remove("New item"); // от куда эти хери вылезли? (к чему вообще тайтлы файлов)
         str.replace("?p_.PathName","\nPathName")
                 .replace("PathName", "\n\nPathName")
                 .replace("FullName", "\nFullName")
@@ -1040,7 +1068,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
                 .remove("Content = yes")
                 .remove("Content = no");
 
-        str = editStringList(str, tags, false); /// возвращаем нужные теги
+        str = editStringList(str, tags, false); // возвращаем нужные теги
         str.remove ("<span>>")
                 .remove ("</span>");
 
@@ -1275,13 +1303,14 @@ QString miniparserini(QString str, QString po)
         str.remove(po);
         if (po == "BibleName = ")
         {
-//            str.replace(" ", "_");
+            //            str.replace(" ", "_");
             //                    .remove(str.length()-1, 1);
         }
         if (po != "ShortName = " and
                 po != "FullName = " and
                 po != "ChapterSign = " and
-                po != "BibleName = ")
+                po != "BibleName = " and
+                po != "HTMLFilter = ")
         {
             str.remove(" \0");
         }
@@ -1299,7 +1328,7 @@ QString miniparserini(QString str, QString po)
             return "none";
         }
         str.remove("\n");
-//                qDebug() << "__str = " << str;
+        //                qDebug() << "__str = " << str;
         return str;
     }
     return "";
@@ -1643,3 +1672,202 @@ QString getFileNameOfStrong(QString horg, QString numberstr)
             horg + numberfile + ".htm";
     return filename;
 }
+//----------------------------------------------------------
+void printToDebugModuleProperties(ModuleProperties *pr)
+{
+    qDebug()
+            << "\n" << " prjTitle             = " <<  pr->prjTitle
+            << "\n" << " prjFN                = " <<  pr->prjFN
+            << "\n" << " prjStartPage         = " <<  pr->prjStartPage
+            << "\n" << " moduleBiblename      = " <<  pr->moduleBiblename
+            << "\n" << " moduleCopyright      = " <<  pr->moduleCopyright
+            << "\n" << " moduleBibleShortName = " <<  pr->moduleBibleShortName
+            << "\n" << " strngDirectry        = " <<  pr->strongsDirectory
+            << "\n" << " soundDirectory       = " <<  pr->soundDirectory
+            << "\n" << " htmlFilter           = " <<  pr->htmlFilter
+            << "\n" << " language             = " <<  pr->language
+            << "\n" << " installFonts         = " <<  pr->installFonts
+            << "\n" << " desiredFontName      = " <<  pr->desiredFontName
+            << "\n" << " categories           = " <<  pr->categories
+            << "\n" << " desiredFontPath      = " <<  pr->desiredFontPath
+            << "\n" << " defaultEncoding      = " <<  pr->defaultEncoding
+            << "\n" << " desiredUIFont        = " <<  pr->desiredUIFont
+            << "\n" << " moduleBVersion       = " <<  pr->moduleBVersion
+            << "\n" << " moduleType           = " <<  pr->moduleType
+            << "\n" << " oldTestament         = " <<  pr->oldTestament
+            << "\n" << " newTestament         = " <<  pr->newTestament
+            << "\n" << " apocrypha            = " <<  pr->apocrypha
+            << "\n" << " chapterZero          = " <<  pr->chapterZero
+            << "\n" << " englishPsalms        = " <<  pr->englishPsalms
+            << "\n" << " strongNumber         = " <<  pr->strongNumber
+            << "\n" << " noForcedLineBreaks   = " <<  pr->noForcedLineBreaks
+            << "\n" << " useRightAlignment    = " <<  pr->useRightAlignment
+            << "\n" << " useChapterHead       = " <<  pr->useChapterHead;
+}
+
+//----------------------------------------------------------
+QString replaceSpaceInStrToText(QString str, QString text)
+{
+    return str.replace(" ",text);
+}
+//----------------------------------------------------------
+QString getTextFromFile(QString filepath, QString encoding)
+{
+    QString filetext = "";
+    if (QFile::exists(filepath))
+    {
+        QFile file(filepath);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream(&file);
+            stream.setCodec(getCodecOfEncoding(encoding));
+            filetext = stream.readAll();
+            file.close();
+        }
+    }
+    return filetext;
+}
+//------------------------------------------------------------
+int countTheNumberOfFiles(QString *textinput, QString tag)
+{
+    int count = 0;
+    QString text = *textinput;
+    while (text.indexOf(tag) >= 0)
+    {
+        count++;
+        text = removeFirst(text, tag);
+    }
+    //    qDebug() << text;
+    return count;
+}
+//------------------------------------------------------------
+QStringList getChapterList()
+{
+    QString path = Config::configuration()->CurPrjDir() + "/" + "_Preview_/";
+    QDir dir(path);
+    QStringList listFiles = dir.entryList(QDir::Files);
+
+    QStringList files;
+    foreach (QString entry, listFiles)
+    {
+        QString entryAbsPath = dir.absolutePath() + "/" + entry;
+        if (entry.indexOf("_chapter_") != -1)
+        {
+            files << entryAbsPath;
+        }
+    }
+    //    qDebug() << " files " << files << "\n";
+    return files;
+}
+
+//------------------------------------------------------------
+QStringList  getChapterComboText()
+{
+    QStringList list = getChapterList();
+
+    QStringList chapters;
+    for (int index = 0; index < list.size(); index++)
+    {
+        QString str = list.at(index);
+        /// get number chapter
+        str = getFileNameAbs(str);
+        int pos = str.indexOf("_chapter_");
+        str = "Chapter "
+                + str.remove(0,pos)
+                .remove("_chapter_")
+                .remove("_");
+        chapters << str;
+    }
+    //    qDebug() << "chapters" << chapters << "\n";
+    return chapters;
+}
+///-------------------------------------------------------
+QStringList getListFilesFromBibleqtIni(QString filename)
+{
+    QStringList listFiles;
+
+    /// hindi
+    /// copy from import module
+
+    QFile file(filename);
+    filename.remove(filename.length()-11, 11);
+    QString line;
+    if ( file.open(QIODevice::ReadOnly) )
+    {
+        int BookQtyIn = 2000;
+        int book = 0;
+        //        int count;
+        // file opened successfully
+        QTextStream stream( &file );        // use a text stream
+
+        // until end of file...
+        do {
+            // read and parse the command line
+            line = stream.readLine();         // line of text excluding '\n'
+            // do something with the line
+            if (line != "" and line.indexOf("//") <0)
+            {
+                if (miniparserini(line,"PathName") != "")
+                {
+                    //парсим инфу о книгке
+                    QString line2 = stream.readLine();
+                    QString line3 = stream.readLine();
+                    QString line4 = stream.readLine();
+                    QString path = filename + miniparserini( line, "PathName");
+                    book++;
+                    //                    qDebug() << "path = " << path;
+                    listFiles << path;
+                }
+            }
+        } while ((!line.isNull()) || (BookQtyIn == book));
+        // Close the file
+        file.close();
+    }
+    return listFiles;
+}
+///-------------------------------------------------------
+QStringList getListValueTextFromBibleqtIni(QString filename)
+{
+
+    QStringList listValueText;
+
+    /// hindi
+    /// copy from import module
+
+    QFile file(filename);
+    filename.remove(filename.length()-11, 11);
+    QString line;
+    if ( file.open(QIODevice::ReadOnly) )
+    {
+        int BookQtyIn = 2000;
+        int book = 0;
+        //        int count;
+        // file opened successfully
+        QTextStream stream( &file );        // use a text stream
+
+        // until end of file...
+        do {
+            // read and parse the command line
+            line = stream.readLine();         // line of text excluding '\n'
+            // do something with the line
+            if (line != "" and line.indexOf("//") <0)
+            {
+                if (miniparserini(line,"PathName") != "")
+                {
+                    //парсим инфу о книгке
+                    QString line2 = stream.readLine();
+                    QString line3 = stream.readLine();
+                    QString line4 = stream.readLine();
+                    QString full = miniparserini( line2, "FullName");
+                    book++;
+                    listValueText << full;
+                }
+            }
+        } while ((!line.isNull()) || (BookQtyIn == book));
+        // Close the file
+        file.close();
+    }
+    return listValueText;
+}
+
+///-------------------------------------------------------

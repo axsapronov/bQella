@@ -223,7 +223,7 @@
        <item row="5" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QCheckBox" name="checkBoxSound">
+          <widget class="QCheckBox" name="cbSound">
            <property name="text">
             <string>Sound</string>
            </property>

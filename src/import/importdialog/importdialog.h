@@ -28,7 +28,7 @@
 
 class QDialog;
 class QOBject;
-
+class PreviewModule;
 
 /**
 @class Import
@@ -41,6 +41,20 @@ class Import : public QDialog
 public:
     /// The default constructor
     explicit Import(QWidget *parent = 0);
+
+    /// dirty hack
+    /**
+      @function
+      @return
+      */
+    QString getEncodingForPreview() {return encodingForPreview;}
+    /**
+      @function
+      @param
+      */
+    void setEncodingForPreview(QString en) { encodingForPreview = en;}
+
+
 
     /**
     @function
@@ -93,6 +107,15 @@ public:
       */
     void setHtmlFilter(QString removetags) { htmlfilter = removetags; }
 
+
+    /**
+      @function
+      Set text and replace text for replace text :)
+      @param replacelist  QStringList text:replacetext
+      */
+    void setTextReplace(QStringList replacelist) { listreplace = replacelist;}
+
+    void setPathOutput(QString path) {pathOutput = path;}
 signals:
     void SuccessfulImport();
 
@@ -104,13 +127,23 @@ public slots:
       */
     void importModule(QString bibleqtinifile);
 
+    /**
+      @function
+      Show preview
+      */
+    void showPreview();
+
+
 private slots:
+
 
     /**
       @function
       Browse bibleqt.ini file
       */
     void selectImportFile();
+
+    void createBookPreviewModule(QString fullname);
 
 private:
     Ui::ImportDialog ui;
@@ -119,11 +152,17 @@ private:
     QString VerseSign;
     QString ChapterSign;
     QString encoding;
+    QString encodingForPreview;
     QString htmlfilter;
+    QStringList listreplace;
+    QString pathOutput;
 
+    PreviewModule *prevmodule;
     void accept();
+    QStringList getReplaceList();
     void setData();
 
+    QStringList getParamsBibleQtIni(QString fullname);
     /**
     @function
     Import ini file (input bibleqt.ini)
@@ -180,7 +219,7 @@ private:
       @param file  path to chapter file  (book_namebook_chapter_count)
       @param count  number of chapter
     */
-    void createChaterFile(QString file,QString text, int count);
+    void createChapterFile(QString file,QString text, int count);
 
     /**
       @function

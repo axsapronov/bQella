@@ -115,7 +115,7 @@ void StrongProperties::setStrongInfo()
     if (strongnumberactual > strongValueG
             && ui->rBGreek->isChecked())
     {
-        QMessageBox::critical(this, tr("There is no such numbers gr Strong"),
+        QMessageBox::critical(this, tr("There is no such numbers greek Strong"),
                               tr("There is no such numbers Strong:\n%1").arg(strongnumberactual));
     }
     QString horg = "";

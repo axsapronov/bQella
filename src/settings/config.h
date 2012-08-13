@@ -34,8 +34,8 @@
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 
-#define GL_PROG_VERSION_STR	"0.0"
-#define GL_PROG_BUILD_STR	"2012.07.19"
+#define GL_PROG_VERSION_STR	"0.1"
+#define GL_PROG_BUILD_STR	"2012.08.13"
 #define GL_PROG_NAME "bQella"
 #define GL_PROG_AUTHOR "Alexander Sapronov"
 

@@ -223,10 +223,17 @@
     <addaction name="separator"/>
     <addaction name="actionAppExit"/>
    </widget>
+   <widget class="QMenu" name="menuAdvance">
+    <property name="title">
+     <string>&amp;Advance</string>
+    </property>
+    <addaction name="actionAdvanceSplitFile"/>
+   </widget>
    <addaction name="menuProject"/>
    <addaction name="editMenu"/>
    <addaction name="viewMenu"/>
    <addaction name="menuSettings"/>
+   <addaction name="menuAdvance"/>
    <addaction name="helpMenu"/>
   </widget>
   <widget class="QToolBar" name="toolBarFormat">
@@ -752,6 +759,9 @@
    <property name="text">
     <string>Hyperlink</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+2</string>
+   </property>
   </action>
   <action name="actionSettings">
    <property name="icon">
@@ -855,7 +865,7 @@
     <string>AddTag</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Alt+4</string>
    </property>
   </action>
   <action name="actionInsertRowAbove">
@@ -1061,6 +1071,11 @@
    </property>
    <property name="toolTip">
     <string>Delete content for book</string>
+   </property>
+  </action>
+  <action name="actionAdvanceSplitFile">
+   <property name="text">
+    <string>&amp;Split file</string>
    </property>
   </action>
  </widget>

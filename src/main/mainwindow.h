@@ -34,6 +34,11 @@
 #include <QMap>
 #include <QPointer>
 
+namespace Ui
+{
+   class MainWindow;
+}
+QT_BEGIN_NAMESPACE
 class QMenu;
 class QDockWidget;
 class QTreeWidget;
@@ -47,6 +52,8 @@ class FRDialog;
 class Assistant;
 class ImportBookDialog;
 class ContentsBook;
+class SplitFile;
+QT_END_NAMESPACE
 //class ContentsModule;
 
 //====================== class MainWindow ============================
@@ -120,6 +127,8 @@ private slots:
     void contentsBookEdit();
     void contentsBookDelete();
 
+    /// advance
+    void showSplitFile();
 
     // export
     void exportModule();
@@ -150,6 +159,7 @@ private:
     Assistant *assistant;
 
     ContentsBook *contbook;
+    SplitFile *splitFileDialog;
 //    ContentsModule *contmodule;
 
     // export

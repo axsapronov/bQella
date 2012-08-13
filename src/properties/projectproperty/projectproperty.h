@@ -94,6 +94,13 @@ public slots:
         @param
         */
         void setModeNewProject(bool t)  { modeNewProject = t;}
+private slots:
+        /**
+          @function
+          Hide/show LineEdit strong number (input dir of strong)
+          If cbStrongNumber active - show
+          */
+        void hideshow();
 private:
         Ui::ProjectProperty ui;
 
