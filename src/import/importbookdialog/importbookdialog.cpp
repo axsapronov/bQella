@@ -51,14 +51,14 @@ void ImportBookDialog::setData()
     //            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
     //    ui->LEHtmlFilter->setText(htmlfilter);
     //    ui->CBShortName->acceptDrops()"lol");
-    ui->SBCount->setValue(4);
-    ui->LEFilePath->setText("/home/files/Documents/Bible/unrar/my/1Co.htm");
+//    ui->SBCount->setValue(4);
+//    ui->LEFilePath->setText("/home/files/Documents/Bible/unrar/my/1Co.htm");
 
-    //    ui->LETagChapter->setText("<h4>");
-    ui->LETagChapter->setText("<A NAME");
+        ui->LETagChapter->setText("<h4>");
+//    ui->LETagChapter->setText("<A NAME");
     ui->LETagVerse->setText("<p>");
 
-    ui->LEFullName->setText("text");
+//    ui->LEFullName->setText("text");
     //    ui->LETextAdnvanceReplace->setText("text:b;first:two;");
 
     //test

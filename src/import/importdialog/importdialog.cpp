@@ -755,8 +755,8 @@ void Import::setData()
     ui.cBEncoding -> setModel(typeModel);
     ui.LEImportFile->setText("");
 
-    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
-    ui.LEImportFile->setText(importstr);
+//    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
+//    ui.LEImportFile->setText(importstr);
     //    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }
 ///-----------------------------------------------------

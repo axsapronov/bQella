@@ -128,6 +128,7 @@ MainWindow::MainWindow():
     //    ui.actionEditFind -> setVisible(false);
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
+    ui.actionTagHtml->setVisible(false);
 
 //    importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 //    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");

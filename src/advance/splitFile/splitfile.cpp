@@ -16,19 +16,18 @@ SplitFile::SplitFile(QWidget *parent) :
     createConnect();
 
     setData();
-    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
-    ui->LEFilePath->setText(str);
+//    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
+//    ui->LEFilePath->setText(str);
 
-    QString tag = "<A NAME";
+    QString tag = "<h4>";
     ui->LETagSplit->setText(tag);
-
 
     QStringListModel *modelEncoding;
     modelEncoding = new QStringListModel(getFillEncoding(), this);
     ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
-    ui->cBAutoOn->setChecked(true);
+    ui->cBAutoOn->setChecked(false);
     AutoSplitOn();
     showFileText();
     //    AutoEstimate();
