@@ -50,6 +50,7 @@ ProjectProperties::ProjectProperties(QWidget *parent)
 //-------------------------------------------------------------------
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 {
+//    printToDebugModuleProperties(&pr);
     prjTitle= pr.prjTitle;
     prjFN = pr.prjFN;
     prjStartPage = pr.prjStartPage;
@@ -132,6 +133,8 @@ void ProjectProperties::accept()
 
         //check for valid project file name
         QString filePrjFilename = prjFN+pathOfBibleName+"/"+pathOfBibleName+GL_PROJECT_FILE;
+//        qDebug() << "filePrjFilename = " << filePrjFilename
+//                 << " prjFN = " << prjFN;
         QFile filePrj(filePrjFilename);
         if (!filePrj.exists())
         {		//create file if it's not exist
@@ -154,6 +157,8 @@ void ProjectProperties::accept()
             createEmptyHtml(prjFN + pathOfBibleName + "/" + "   ___Instruction", "   ___Instruction" );
             createEmptyHtml(prjFN + pathOfBibleName + "/ru.html", "ru");
             createEmptyHtml(prjFN + pathOfBibleName + "/en.html", "en");
+
+            qDebug() << "prjFN + pathOfBibleName = " << prjFN + pathOfBibleName;
 
             /// add to config
             Config::configuration() -> setModuleBiblename(ui.LEBibleName -> text());

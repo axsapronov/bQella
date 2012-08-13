@@ -871,6 +871,7 @@ void MainWindow::ProjectNew()
 void MainWindow::ProjectProps()
 {
     ModuleProperties pr;
+    pr.prjFN = Config::configuration()-> PrjDir();
     pr.prjTitle = Config::configuration() -> profile() -> props["title"];
     pr.prjStartPage = Config::configuration() -> profile() -> props["startpage"];
     pr.moduleBiblename = Config::configuration() -> profile() -> props["biblename"];
@@ -995,7 +996,7 @@ void MainWindow::createProject(ModuleProperties pr)
     //    Config::configuration() -> setCurProject(fn);
     //    Config::configuration() -> setCurPrjDir(fi.absolutePath());
     //    Config::configuration() -> setCurPrjSrc();
-    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
+//    qDebug() << " curprj" << Config::configuration()->CurProject() << " curprjdir = " << Config::configuration()->CurPrjDir() << " curprjsouse = " << Config::configuration()->CurPrjSrc();
     ProjectOpen(fn);
 }
 
