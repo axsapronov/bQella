@@ -806,6 +806,29 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     return ret;
 }
 //-------------------------------------------------
+bool createEmptyHtmlWithEncoding(QString fileName, QString title, QString text, QString encoding)
+{
+    bool ret = true;
+    QFile file(fileName);
+    if (!file.exists()){		//create file if it's not exist
+        if (file.open(QIODevice::ReadWrite)){	//try to open or create file
+            QTextStream ts(&file);
+            QTextCodec * codec = getCodecOfEncoding (encoding);
+            ts.setCodec(codec);
+            ts << "<html>\n<head>" << endl;
+            ts << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" << endl;
+            ts << "<title>" << title <<"</title>" << endl;
+            ts << "</head>\n<body>\n" << text << "\n</body>\n</html>" << endl;
+            file.close();
+
+            //QFile
+        }else{
+            ret = false;
+        }
+    }
+    return ret;
+}
+//-------------------------------------------------
 bool createFileText(QString fileName, QString text)
 {
     bool ret = true;
@@ -989,7 +1012,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     QRegExp rx("(<[^>]*>)");
     QRegExp rxp("(<[Pp].*?>)");
     QRegExp rxi("( [a-zA-Z:]+=)|(\"[^\"]*\")");
-//    QRegExp regP("(<[a-zA-Z]+) [^>]*");  /// убирает атрибуты у p Тега
+    //    QRegExp regP("(<[a-zA-Z]+) [^>]*");  /// убирает атрибуты у p Тега
     /// html атрибуты  (?:[\w]*) *= *"(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"]*)\\\W)*[^"]*")
     /// все теги </?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>+(.*?|[\s\S]*?)+</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>
 
@@ -1026,7 +1049,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
         str = getParseTagSpan(str, "font-style:italic;", "<em>");
         str = getParseTagSpan(str, "font-family:'Courier New,courier';", "<pre>");
 
-//        str.replace(regP, "<p");
+        //        str.replace(regP, "<p");
         str.replace(rxp, "?p_.")
                 .remove("</p>")
                 .remove(rxi)
@@ -1688,7 +1711,7 @@ QString replaceSpaceInStrToText(QString str, QString text)
     return str.replace(" ",text);
 }
 //----------------------------------------------------------
-QString getTextFromFile(QString filepath)
+QString getTextFromFile(QString filepath, QString encoding)
 {
     QString filetext = "";
     if (QFile::exists(filepath))
@@ -1696,7 +1719,9 @@ QString getTextFromFile(QString filepath)
         QFile file(filepath);
         if(file.open(QIODevice::ReadOnly))
         {
-            filetext = file.readAll();
+            QTextStream stream(&file);
+            stream.setCodec(getCodecOfEncoding(encoding));
+            filetext = stream.readAll();
             file.close();
         }
     }
@@ -1712,7 +1737,7 @@ int countTheNumberOfFiles(QString *textinput, QString tag)
         count++;
         text = removeFirst(text, tag);
     }
-//    qDebug() << text;
+    //    qDebug() << text;
     return count;
 }
 //------------------------------------------------------------
@@ -1728,10 +1753,10 @@ QStringList getChapterList()
         QString entryAbsPath = dir.absolutePath() + "/" + entry;
         if (entry.indexOf("_chapter_") != -1)
         {
-           files << entryAbsPath;
+            files << entryAbsPath;
         }
     }
-//    qDebug() << " files " << files << "\n";
+    //    qDebug() << " files " << files << "\n";
     return files;
 }
 
@@ -1753,7 +1778,7 @@ QStringList  getChapterComboText()
                 .remove("_");
         chapters << str;
     }
-//    qDebug() << "chapters" << chapters << "\n";
+    //    qDebug() << "chapters" << chapters << "\n";
     return chapters;
 }
 ///-------------------------------------------------------
@@ -1790,7 +1815,7 @@ QStringList getListFilesFromBibleqtIni(QString filename)
                     QString line4 = stream.readLine();
                     QString path = filename + miniparserini( line, "PathName");
                     book++;
-//                    qDebug() << "path = " << path;
+                    //                    qDebug() << "path = " << path;
                     listFiles << path;
                 }
             }

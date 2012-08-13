@@ -138,6 +138,16 @@ QString CreateValidWebFileName(QString str); //выбирает из строк�
 bool toLog(QString logFN, QString logMessage); //добавляет в журнал строку в формате "Дата Время Сообщение"
 bool createEmptyHtml(QString fileName, QString title);
 bool createEmptyHtml(QString fileName, QString title, QString text);
+
+/**
+  @function
+  @param
+  @param
+  @param
+  @param
+  */
+bool createEmptyHtmlWithEncoding(QString fileName, QString title, QString text, QString encoding); // тоже самое что и предыдущее но с учетом кодировки
+
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext); // заменяет в файле тест с before на replacetext
 QString getShortName(QString filename); // возвращает shortname из файла (можно добывать не только shortname)
 QString getParamBook(QString filename, QString param); // возвращает параметр из файла. Вид файла    "PARAM = VALUE"
@@ -189,9 +199,10 @@ QStringList getListValueTextFromBibleqtIni(QString filepath);
   @function
   get text from file
   @param file  QString path to file
+  @param encoding
   @return QString
   */
-QString getTextFromFile(QString file); // достать весь текст из файла
+QString getTextFromFile(QString file, QString encoding); // достать весь текст из файла
 
 /// strong
 QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла

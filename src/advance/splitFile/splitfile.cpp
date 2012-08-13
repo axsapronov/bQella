@@ -5,6 +5,7 @@
 
 #include <QFileDialog>
 #include <QFile>
+#include <QStringListModel>
 
 SplitFile::SplitFile(QWidget *parent) :
     QDialog(parent),
@@ -20,6 +21,11 @@ SplitFile::SplitFile(QWidget *parent) :
 
     QString tag = "<A NAME";
     ui->LETagSplit->setText(tag);
+
+
+    QStringListModel *modelEncoding;
+    modelEncoding = new QStringListModel(getFillEncoding(), this);
+    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
     ui->cBAutoOn->setChecked(true);
@@ -39,6 +45,8 @@ void SplitFile::createConnect()
     /// manual
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBShow, SIGNAL(clicked()), this, SLOT(showFileText()));
+
+    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
 
     /// auto
     connect(ui->cBAutoOn, SIGNAL(stateChanged(int)), this, SLOT(AutoSplitOn()));
@@ -72,7 +80,8 @@ void SplitFile::setData()
 //--------------------------------------------
 void SplitFile::showFileText()
 {
-    TextOfFile = getTextFromFile(ui->LEFilePath->text());
+    setEncoding(ui->comBEncoding->currentText());
+    TextOfFile = getTextFromFile(ui->LEFilePath->text(), getEncoding());
 //    showFileHtml(ui->LEFilePath->text());
 //    showFileEdit(ui->LEFilePath->text());
 

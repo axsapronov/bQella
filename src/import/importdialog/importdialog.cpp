@@ -320,7 +320,7 @@ void Import::importBook(QString projectfile,
     QString pathName = pathName2;
     pathName = checkProcentRol(ShortName, getFileNameAbs(pathName));
     QString checkFileName;
-//    qDebug() << "pathOutput" << pathOutput;
+    //    qDebug() << "pathOutput" << pathOutput;
     if (pathOutput.isEmpty())
     {
         checkFileName = Config::configuration()->CurPrjDir() + "/" +
@@ -337,7 +337,7 @@ void Import::importBook(QString projectfile,
     pathName = getFileNameAbs(QString(checkFileName).remove("book_"));
     QString path = "./book_" + pathName+ ".htm";
 
-//    qDebug() << "checkFileName" << checkFileName;
+    //    qDebug() << "checkFileName" << checkFileName;
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
@@ -352,6 +352,7 @@ void Import::importBook(QString projectfile,
     }
 
     QTextCodec * codec = getCodecOfEncoding (encoding);
+
     // parse
     bool flag;
     QString line;
@@ -588,7 +589,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
         fileimportname = Config::configuration()->CurPrjDir()  + "/book_" + pathNameE;
     else
         fileimportname = Config::configuration()->CurPrjDir()  + "/" + pathOutput +  "/book_" + pathNameE;
-//    qDebug() << "fileimportname" << fileimportname;
+    //    qDebug() << "fileimportname" << fileimportname;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
     QString text = ""+tr("PathName = %1"
@@ -609,7 +610,15 @@ void Import::createChapterFile(QString file, QString text, int i)
     {
         toLog(Config::configuration()->AppLogFN(), QString("File chapter - %1 is exists").arg(file));
     }
-    createEmptyHtml(file, QString("%1").arg(i) , text);
+
+    if (pathOutput.isEmpty())
+    {
+        createEmptyHtml(file, QString("%1").arg(i) , text);
+    }
+    else
+    {
+        createEmptyHtmlWithEncoding(file, QString("%1").arg(i) , text, getEncodingForPreview());
+    }
 }
 //----------------------------------------------------
 void Import::createProjectFile()
@@ -755,6 +764,7 @@ void Import::showPreview()
 {
     prevmodule->setData(ui.LEImportFile->text());
 
+    prevmodule->setEncoding( getParamBook(ui.LEImportFile->text(), "DefaultEncoding"));
     importModule(ui.LEImportFile->text());
 
     prevmodule->setPrjPath(Config::configuration()->CurPrjDir());

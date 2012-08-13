@@ -35,6 +35,8 @@ void PreviewModule::showPreviewBook()
     QStringList listfiles = getListFilesFromBibleqtIni(getFileBibleqtIni());
     QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
     QString book = listfiles.at(ui->ComBBooks->currentIndex());
+
+    prevbook->setEncoding(getEncoding());
     prevbook->setData(book);
     emit createBookPreviewModule(listvaluetext.at(ui->ComBBooks->currentIndex()));
     prevbook->createBookPreviewFunc();

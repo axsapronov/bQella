@@ -211,6 +211,7 @@ void ImportBookDialog::showPropertiesDialog()
 ///------------------------------------------------
 void ImportBookDialog::showPreview()
 {
+    prevbook->setEncoding(ui->CBEncoding->currentText());
     prevbook->setData(ui->LEFilePath->text());
     createBookPreview();
     prevbook->createBookPreviewFunc();
@@ -221,6 +222,7 @@ void ImportBookDialog::createBookPreview()
 {
     saveData();
     importm->setPathOutput("_Preview_");
+    importm->setEncodingForPreview(bookEncoding);
     importm->importBook(projectfile,
                         bookPathFile,
                         bookFullName,

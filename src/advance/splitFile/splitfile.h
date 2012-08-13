@@ -15,6 +15,17 @@ public:
     explicit SplitFile(QWidget *parent = 0);
     ~SplitFile();
 
+    /**
+      @function
+      @return
+      */
+    QString getEncoding() {return encoding;}
+    /**
+      @function
+      @param
+      */
+    void setEncoding(QString en) { encoding = en;}
+
 
 private slots:
     /**
@@ -70,6 +81,7 @@ private slots:
 
 private:
     Ui::SplitFile *ui;
+    QString encoding;
 
     /**
       @function

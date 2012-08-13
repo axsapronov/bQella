@@ -12,7 +12,6 @@ PreviewBook::PreviewBook(QWidget *parent) :
     ui(new Ui::PreviewBook)
 {
     ui->setupUi(this);
-
     createConnects();
 }
 ///------------------------------------------------
@@ -27,7 +26,7 @@ void PreviewBook::setData(QString filepath)
     ui->LAViewFile_2->setText(filepath);
 
     setPathToBook(filepath);
-    QString text = getTextFromFile(filepath);
+    QString text = getTextFromFile(filepath, getEncoding());
 
     ui->tBHtmlBook->setPlainText(text);
     ui->tBViewBook->setHtml(text);
@@ -97,7 +96,7 @@ void PreviewBook::createBookPreviewFunc()
 ///------------------------------------------------------------------
 void PreviewBook::showChapter(int count)
 {
-    QString textchapter = getTextFromFile(getChapterList().at(count));
+    QString textchapter = getTextFromFile(getChapterList().at(count), getEncoding());
     ui->comBChapters_1->setCurrentIndex(count);
     ui->comBChapters_2->setCurrentIndex(count);
     ui->tBHtmlChapter->setPlainText(textchapter);

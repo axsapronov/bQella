@@ -24,6 +24,17 @@ public:
 
     /**
       @function
+      @return
+      */
+    QString getEncoding() {return encoding;}
+    /**
+      @function
+      @param
+      */
+    void setEncoding(QString en) { encoding = en;}
+
+    /**
+      @function
       set data to ui
       @param filepath(QString)  param at set
       */
@@ -42,6 +53,7 @@ private slots:
 private:
     Ui::PreviewBook *ui;
     QString pathToBook;
+    QString encoding;
 
     /**
       @fucntion

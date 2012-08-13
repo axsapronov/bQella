@@ -42,6 +42,20 @@ public:
     /// The default constructor
     explicit Import(QWidget *parent = 0);
 
+    /// костыль, как-то убрать его
+    /**
+      @function
+      @return
+      */
+    QString getEncodingForPreview() {return encodingForPreview;}
+    /**
+      @function
+      @param
+      */
+    void setEncodingForPreview(QString en) { encodingForPreview = en;}
+
+
+
     /**
     @function
     Edit project file (projectname.pem). Add to end two strings:"
@@ -138,6 +152,7 @@ private:
     QString VerseSign;
     QString ChapterSign;
     QString encoding;
+    QString encodingForPreview;
     QString htmlfilter;
     QStringList listreplace;
     QString pathOutput;
