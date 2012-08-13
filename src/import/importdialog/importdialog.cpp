@@ -320,6 +320,7 @@ void Import::importBook(QString projectfile,
     QString pathName = pathName2;
     pathName = checkProcentRol(ShortName, getFileNameAbs(pathName));
     QString checkFileName;
+//    qDebug() << "pathOutput" << pathOutput;
     if (pathOutput.isEmpty())
     {
         checkFileName = Config::configuration()->CurPrjDir() + "/" +
@@ -331,10 +332,12 @@ void Import::importBook(QString projectfile,
                 + pathOutput + "/" + "book_" + pathName + ".htm";
     }
 
+
     checkFileName = checkExistenceFile(checkFileName);
     pathName = getFileNameAbs(QString(checkFileName).remove("book_"));
     QString path = "./book_" + pathName+ ".htm";
 
+//    qDebug() << "checkFileName" << checkFileName;
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
@@ -585,7 +588,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
         fileimportname = Config::configuration()->CurPrjDir()  + "/book_" + pathNameE;
     else
         fileimportname = Config::configuration()->CurPrjDir()  + "/" + pathOutput +  "/book_" + pathNameE;
-
+//    qDebug() << "fileimportname" << fileimportname;
     if (pathNameE.indexOf("book_") < 0)
         pathNameE = "book_" + pathNameE;
     QString text = ""+tr("PathName = %1"

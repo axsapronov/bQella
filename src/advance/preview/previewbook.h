@@ -47,6 +47,9 @@ private:
       @fucntion
       */
     void accept();
+    void createConnects();
+
+    void createFolder(QString filepath);
 
 
 //    /**

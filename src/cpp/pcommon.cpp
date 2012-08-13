@@ -1722,7 +1722,7 @@ QStringList getChapterList()
     QDir dir(path);
     QStringList listFiles = dir.entryList(QDir::Files);
 
-    QStringList chapters, files;
+    QStringList files;
     foreach (QString entry, listFiles)
     {
         QString entryAbsPath = dir.absolutePath() + "/" + entry;
@@ -1731,6 +1731,7 @@ QStringList getChapterList()
            files << entryAbsPath;
         }
     }
+//    qDebug() << " files " << files << "\n";
     return files;
 }
 
@@ -1740,9 +1741,9 @@ QStringList  getChapterComboText()
     QStringList list = getChapterList();
 
     QStringList chapters;
-    for (int i = 0; i < list.size(); i++)
+    for (int index = 0; index < list.size(); index++)
     {
-        QString str = list.at(i);
+        QString str = list.at(index);
         /// get number chapter
         str = getFileNameAbs(str);
         int pos = str.indexOf("_chapter_");
@@ -1752,6 +1753,7 @@ QStringList  getChapterComboText()
                 .remove("_");
         chapters << str;
     }
+//    qDebug() << "chapters" << chapters << "\n";
     return chapters;
 }
 ///-------------------------------------------------------

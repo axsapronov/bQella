@@ -213,6 +213,7 @@ void ImportBookDialog::showPreview()
 {
     prevbook->setData(ui->LEFilePath->text());
     createBookPreview();
+    prevbook->createBookPreviewFunc();
     prevbook->show();
 }
 ///------------------------------------------------
