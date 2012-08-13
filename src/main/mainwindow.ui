@@ -1077,9 +1077,6 @@
    <property name="text">
     <string>&amp;Split file</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+1</string>
-   </property>
   </action>
  </widget>
  <resources>

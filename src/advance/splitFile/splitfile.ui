@@ -36,7 +36,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Split files.</string>
+          <string>Split file.</string>
          </property>
         </widget>
        </item>
@@ -200,7 +200,7 @@
          <item>
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>TTag for split:</string>
+            <string>Tag for split:</string>
            </property>
           </widget>
          </item>
@@ -242,7 +242,7 @@
             <widget class="QLabel" name="label_8">
              <property name="maximumSize">
               <size>
-               <width>150</width>
+               <width>300</width>
                <height>16777215</height>
               </size>
              </property>
