@@ -1,0 +1,1000 @@
+<strong>
+	<number>1001</number>
+	<word>בִּירָה‎</word>
+	<description>дворец.</description>
+</strong>
+<strong>
+	<number>1002</number>
+	<word>בִּירָה‎</word>
+	<description>1. крепость, кремль (центральная укреплённая часть); <br>2. храм.</description>
+</strong>
+<strong>
+	<number>1003</number>
+	<word>בִּירָנִית‎</word>
+	<description>крепость, замок.</description>
+</strong>
+<strong>
+	<number>1004</number>
+	<word>בַּיִת‎</word>
+	<description>1. дом, жилище; <br>2. внутренняя часть (здания); <br>3. дом (семейство, род).</description>
+</strong>
+<strong>
+	<number>1005</number>
+	<word>בַּיִת‎</word>
+	<description>дом.</description>
+</strong>
+<strong>
+	<number>1006</number>
+	<word>בַּיִת‎</word>
+	<description>Баит.</description>
+</strong>
+<strong>
+	<number>1007</number>
+	<word>בּית אָוֶן‎</word>
+	<description>Бефавен, Бет-Авен.</description>
+</strong>
+<strong>
+	<number>1008</number>
+	<word>בּית אֵל‎</word>
+	<description>Вефиль, Бефель.</description>
+</strong>
+<strong>
+	<number>1009</number>
+	<word>בּיתאַרְבּאל‎</word>
+	<description>Бет-Арбел.</description>
+</strong>
+<strong>
+	<number>1010</number>
+	<word>בּית בַּעַל מְעוֹן‎</word>
+	<description>Бет-Меон, Бет-Ваал-Меон.</description>
+</strong>
+<strong>
+	<number>1011</number>
+	<word>בּית בִּרְאִי‎</word>
+	<description>Бет-Бирея.</description>
+</strong>
+<strong>
+	<number>1012</number>
+	<word>בּית בָּרָה‎</word>
+	<description>Бефвара.</description>
+</strong>
+<strong>
+	<number>1013</number>
+	<word>בּית גדר‎</word>
+	<description>Бефгадера.</description>
+</strong>
+<strong>
+	<number>1014</number>
+	<word>בּית גמוּל‎</word>
+	<description>Бет-Гамул.</description>
+</strong>
+<strong>
+	<number>1015</number>
+	<word>בּית דִּבְלָתַיִם‎</word>
+	<description>Бет-Дивлафаим.</description>
+</strong>
+<strong>
+	<number>1016</number>
+	<word>בּית דָּגוֹן‎</word>
+	<description>Бет­Дагон.</description>
+</strong>
+<strong>
+	<number>1017</number>
+	<word>בּית הָאֱלִי‎</word>
+	<description>Вефилянин.</description>
+</strong>
+<strong>
+	<number>1018</number>
+	<word>בּיתהָאצֶל‎</word>
+	<description>Бет-Ецель, селение Ецель.</description>
+</strong>
+<strong>
+	<number>1019</number>
+	<word>בּית הַגִּלְגל‎</word>
+	<description>Бет-Гилгал.</description>
+</strong>
+<strong>
+	<number>1020</number>
+	<word>בּיתהַיְשִׂימוֹת‎</word>
+	<description>Бет-Иешимоф.</description>
+</strong>
+<strong>
+	<number>1021</number>
+	<word>בּיתהַכֶּרֶם‎</word>
+	<description>Бефкарем.</description>
+</strong>
+<strong>
+	<number>1022</number>
+	<word>בּיתהַלַּחְמִי‎</word>
+	<description>Вифлеемлянин.</description>
+</strong>
+<strong>
+	<number>1023</number>
+	<word>בּיתהַמֶּרְחָק‎</word>
+	<description>Бет-Мерхата.</description>
+</strong>
+<strong>
+	<number>1024</number>
+	<word>בּיתהַמַּרְכָּבוֹת‎</word>
+	<description>Бет-Маркавоф.</description>
+</strong>
+<strong>
+	<number>1025</number>
+	<word>בּית הָעמֶק‎</word>
+	<description>Бет-Емек.</description>
+</strong>
+<strong>
+	<number>1026</number>
+	<word>בּית הָעֲרָבָה‎</word>
+	<description>Бет-Арава.</description>
+</strong>
+<strong>
+	<number>1027</number>
+	<word>בּית הָרָם‎</word>
+	<description>Бет-Гарам.</description>
+</strong>
+<strong>
+	<number>1028</number>
+	<word>בּית הָרָן‎</word>
+	<description>Бет-Гаран.</description>
+</strong>
+<strong>
+	<number>1029</number>
+	<word>בּית הִַֹשּׂטָּה‎</word>
+	<description>Бефшитта.</description>
+</strong>
+<strong>
+	<number>1030</number>
+	<word>בּית הִַֹשּׂמְשִׂי‎</word>
+	<description>Вефшамишиянин.</description>
+</strong>
+<strong>
+	<number>1031</number>
+	<word>בּית חָגְלָה‎</word>
+	<description>Бет-Хогла.</description>
+</strong>
+<strong>
+	<number>1032</number>
+	<word>בּית חוֹרוֹן‎</word>
+	<description>Бефхорон, Бет-хорон.</description>
+</strong>
+<strong>
+	<number>1033</number>
+	<word>בּית כַּר‎</word>
+	<description>Вефхар.</description>
+</strong>
+<strong>
+	<number>1034</number>
+	<word>בּית לְבָאוֹת‎</word>
+	<description>Бет-Леваоф.</description>
+</strong>
+<strong>
+	<number>1035</number>
+	<word>בּית לֶחֶם‎</word>
+	<description>Вифлеем, Бет-Лехем.</description>
+</strong>
+<strong>
+	<number>1036</number>
+	<word>בּית לְעַפְרָה‎</word>
+	<description>Бет-Офра.</description>
+</strong>
+<strong>
+	<number>1037</number>
+	<word>בּית מִלּוֹא‎</word>
+	<description>Бет-Милло.</description>
+</strong>
+<strong>
+	<number>1038</number>
+	<word>בּית מַעֲכָה‎</word>
+	<description>Бет-Мааха.</description>
+</strong>
+<strong>
+	<number>1039</number>
+	<word>בּית נִמְרָה‎</word>
+	<description>Бет-Нимра.</description>
+</strong>
+<strong>
+	<number>1040</number>
+	<word>בּית עדֶן‎</word>
+	<description>Бет-Еден.</description>
+</strong>
+<strong>
+	<number>1041</number>
+	<word> בּית עַזְמָוֶת‎</word>
+	<description>Бет-Азмавеф.</description>
+</strong>
+<strong>
+	<number>1042</number>
+	<word>בּית עֲנוֹת‎</word>
+	<description>Бет-Аноф.</description>
+</strong>
+<strong>
+	<number>1043</number>
+	<word>בּית עֲנָת‎</word>
+	<description>Бет-Анаф, Бефанаф.</description>
+</strong>
+<strong>
+	<number>1044</number>
+	<word>בּית עקֶד‎</word>
+	<description>Бет-Екед.</description>
+</strong>
+<strong>
+	<number>1045</number>
+	<word>בּית עַשְׂתָּרוֹת‎</word>
+	<description>Бет-Аштароф (дом Астарты).</description>
+</strong>
+<strong>
+	<number>1046</number>
+	<word>בּית פֶּלֶט‎</word>
+	<description>Бет-Пелет.</description>
+</strong>
+<strong>
+	<number>1047</number>
+	<word>בּית פְּעוֹר‎</word>
+	<description>Бет-Фегор.</description>
+</strong>
+<strong>
+	<number>1048</number>
+	<word>בּית פַּצּץ‎</word>
+	<description>Бет-Пацец.</description>
+</strong>
+<strong>
+	<number>1049</number>
+	<word>בּית צוּר‎</word>
+	<description>Бет-Цур, Бефцур.</description>
+</strong>
+<strong>
+	<number>1050</number>
+	<word>בּית רְחוֹב‎</word>
+	<description>Бет-Рехов.</description>
+</strong>
+<strong>
+	<number>1051</number>
+	<word>בּית רָפָא‎</word>
+	<description>Бет-Рафа.</description>
+</strong>
+<strong>
+	<number>1052</number>
+	<word>בּית שְׂאָן‎</word>
+	<description>Бет-Шан, Бефсан.</description>
+</strong>
+<strong>
+	<number>1053</number>
+	<word>בּית שֶׂמֶשׂ‎</word>
+	<description>Бет-Шемеш, Бефсамис.</description>
+</strong>
+<strong>
+	<number>1054</number>
+	<word>בּית תַּפּוּחַ‎</word>
+	<description>Бет-Таппуах.</description>
+</strong>
+<strong>
+	<number>1055</number>
+	<word>בִּיתָן‎</word>
+	<description>дворец.</description>
+</strong>
+<strong>
+	<number>1056</number>
+	<word> בָּכָא‎</word>
+	<description>плач.</description>
+</strong>
+<strong>
+	<number>1057</number>
+	<word>בָּכָא‎</word>
+	<description>плачущее дерево (растение, которое при повреждении выделяло белый сок), возм.тутовое дерево, шелковица.</description>
+</strong>
+<strong>
+	<number>1058</number>
+	<word>בּכה‎</word>
+	<description>A(qal): плакать, оплакивать. C(pi): оплакивать.</description>
+</strong>
+<strong>
+	<number>1059</number>
+	<word>בֶּכֶה‎</word>
+	<description>плач.</description>
+</strong>
+<strong>
+	<number>1060</number>
+	<word>בְּכוֹר‎</word>
+	<description>первенец, первородный.</description>
+</strong>
+<strong>
+	<number>1061</number>
+	<word>בִּכּוּרִים‎</word>
+	<description>1. ранняя смоква; 2. первый плод, начаток плодов. LXX: 4416 (πρωτότοκος).</description>
+</strong>
+<strong>
+	<number>1062</number>
+	<word>בְּכֹרָה‎</word>
+	<description>первородство.</description>
+</strong>
+<strong>
+	<number>1063</number>
+	<word>בִּכּוּרָה‎</word>
+	<description>ранняя смоква, первая спелая ягода смоквы.</description>
+</strong>
+<strong>
+	<number>1064</number>
+	<word>בְּכוֹרַת‎</word>
+	<description>Бехораф.</description>
+</strong>
+<strong>
+	<number>1065</number>
+	<word>בְּכִי‎</word>
+	<description>плач, рыдание.</description>
+</strong>
+<strong>
+	<number>1066</number>
+	<word>בֹּכִים‎</word>
+	<description>Бохим.</description>
+</strong>
+<strong>
+	<number>1067</number>
+	<word>בְּכִירָה‎</word>
+	<description>первородная, старшая.</description>
+</strong>
+<strong>
+	<number>1068</number>
+	<word>בְּכִית‎</word>
+	<description>плач, оплакивание.</description>
+</strong>
+<strong>
+	<number>1069</number>
+	<word>בּכר‎</word>
+	<description>C(pi): 1. приносить первый плод. 2. обращаться как с первородным, давать первородство. D(pu): принадлежать по первенству, быть первородным. E(hi): рожать в первый раз, рожать первородного.</description>
+</strong>
+<strong>
+	<number>1070</number>
+	<word>בּכֶר‎</word>
+	<description>молодой верблюд.</description>
+</strong>
+<strong>
+	<number>1071</number>
+	<word>בֶּכֶר‎</word>
+	<description>Бехер.</description>
+</strong>
+<strong>
+	<number>1072</number>
+	<word>בִּכְרָה‎</word>
+	<description>молодая верблюдица.</description>
+</strong>
+<strong>
+	<number>1073</number>
+	<word>בַּכּוּרָה‎</word>
+	<description>ранняя смоква.</description>
+</strong>
+<strong>
+	<number>1074</number>
+	<word>בֹּכְרוּ‎</word>
+	<description>Бохру.</description>
+</strong>
+<strong>
+	<number>1075</number>
+	<word>בִּכְרִי‎</word>
+	<description>Бихрий.</description>
+</strong>
+<strong>
+	<number>1076</number>
+	<word>בַּכְרִי‎</word>
+	<description>Бехериянин.</description>
+</strong>
+<strong>
+	<number>1077</number>
+	<word>בַּל‎</word>
+	<description>1. ничего; <br>2. нет; <br>3. едва.</description>
+</strong>
+<strong>
+	<number>1078</number>
+	<word>בּל‎</word>
+	<description>Бел.</description>
+</strong>
+<strong>
+	<number>1079</number>
+	<word>בָּל‎</word>
+	<description>сердце.</description>
+</strong>
+<strong>
+	<number>1080</number>
+	<word> בּלא‎</word>
+	<description>I(pael): угнетать.</description>
+</strong>
+<strong>
+	<number>1081</number>
+	<word> בַּלְאֲדָן‎</word>
+	<description>Баладан.</description>
+</strong>
+<strong>
+	<number>1082</number>
+	<word>בּלג‎</word>
+	<description>E(hi): 1. делать ярким; 2. ободрять, укреплять.</description>
+</strong>
+<strong>
+	<number>1083</number>
+	<word>בִּלְגה‎</word>
+	<description>Билга.</description>
+</strong>
+<strong>
+	<number>1084</number>
+	<word>בִּלְגַּי‎</word>
+	<description>Билгай.</description>
+</strong>
+<strong>
+	<number>1085</number>
+	<word>בִּלְדַּד‎</word>
+	<description>Билдад.</description>
+</strong>
+<strong>
+	<number>1086</number>
+	<word>בּלה‎</word>
+	<description>A(qal): обветшать, состариться. C(pi): 1. использовать, пользоваться; 2. доводить до изнеможения, уничтожать, истощать.</description>
+</strong>
+<strong>
+	<number>1087</number>
+	<word>בָּלֶה‎</word>
+	<description>старый, обветшавший, ветхий, одряхлевший.</description>
+</strong>
+<strong>
+	<number>1088</number>
+	<word>בָּלָה‎</word>
+	<description>Бала.</description>
+</strong>
+<strong>
+	<number>1089</number>
+	<word>בּלהּ‎</word>
+	<description>C(pi): прич.удерживающий, отговаривающий, запугивающий, препятствующий.</description>
+</strong>
+<strong>
+	<number>1090</number>
+	<word>בִּלְהָה‎</word>
+	<description>Билга.</description>
+</strong>
+<strong>
+	<number>1091</number>
+	<word>בַּלָּהָה‎</word>
+	<description>(неожиданный, внезапный) ужас.</description>
+</strong>
+<strong>
+	<number>1092</number>
+	<word>בִּלְהָן‎</word>
+	<description>Билган.</description>
+</strong>
+<strong>
+	<number>1093</number>
+	<word>בְּלוֹ‎</word>
+	<description>налог.</description>
+</strong>
+<strong>
+	<number>1094</number>
+	<word>בְּלוֹי‎</word>
+	<description>старая изношенная одежда, обноски, тряпьё.</description>
+</strong>
+<strong>
+	<number>1095</number>
+	<word>בּלְטְשַׂאצַּר‎</word>
+	<description>Валтасар.</description>
+</strong>
+<strong>
+	<number>1096</number>
+	<word>בּלְטְשַׂאְצַּר‎</word>
+	<description>Валтасар.</description>
+</strong>
+<strong>
+	<number>1097</number>
+	<word>בְּלִי‎</word>
+	<description>1. прекращение, окончание; <br>2. отрицание:не, без.</description>
+</strong>
+<strong>
+	<number>1098</number>
+	<word>בְּלִיל‎</word>
+	<description>корм, месиво (смешанный корм для скота).</description>
+</strong>
+<strong>
+	<number>1099</number>
+	<word> בְּלִימָה‎</word>
+	<description>ничто.</description>
+</strong>
+<strong>
+	<number>1100</number>
+	<word>בְּלִיַּעַל‎</word>
+	<description>негодность, нечестие; прил.негодный, нечестивый, развратный, развращённый.</description>
+</strong>
+<strong>
+	<number>1101</number>
+	<word>בּלל‎</word>
+	<description>A(qal): мешать, смешивать. G(hith): смешиваться.</description>
+</strong>
+<strong>
+	<number>1102</number>
+	<word>בּלם‎</word>
+	<description>A(qal): обуздывать, усмирять.</description>
+</strong>
+<strong>
+	<number>1103</number>
+	<word>בּלס‎</word>
+	<description>A(qal): прич.собиратель тутовой смоковницы.</description>
+</strong>
+<strong>
+	<number>1104</number>
+	<word>בּלע‎</word>
+	<description>A(qal): глотать, поглощать. B(ni): 1. быть поглощённым; 2. путаться, быть помрачённым, быть сбитым с толку; C(pi): 1. поглощать; <br>2. провозглашать; 3. приводить в замешательство или смятение, запутывать, сбивать с толку. D(pu): <br>1. быть возмещённым; 2. быть в замешательстве или смятении, быть помрачённым, путаться, запутываться, быть сбитым с толку. G(hith): путаться, запутываться, быть сбитым с толку;</description>
+</strong>
+<strong>
+	<number>1105</number>
+	<word>בֶּלַע‎</word>
+	<description>1. проглоченное, поглощение, пожирание; <br>2. путаница, замешательство, смятение, помрачение.</description>
+</strong>
+<strong>
+	<number>1106</number>
+	<word>בֶּלַע‎</word>
+	<description>Бела.</description>
+</strong>
+<strong>
+	<number>1107</number>
+	<word>בִּלְעֲדי‎</word>
+	<description>кроме, без.</description>
+</strong>
+<strong>
+	<number>1108</number>
+	<word>בַּלְעִי‎</word>
+	<description>Белаянин.</description>
+</strong>
+<strong>
+	<number>1109</number>
+	<word>בִּלְעָם‎</word>
+	<description>Балаам.</description>
+</strong>
+<strong>
+	<number>1110</number>
+	<word>בּלק‎</word>
+	<description>A(qal): разорять, опустошать. D(pu): прич.разорение, опустошение.</description>
+</strong>
+<strong>
+	<number>1111</number>
+	<word>בָּלָק‎</word>
+	<description>Балак.</description>
+</strong>
+<strong>
+	<number>1112</number>
+	<word>בּלְאשַׂצַּר‎</word>
+	<description>Валтасар.</description>
+</strong>
+<strong>
+	<number>1113</number>
+	<word>בּלְשַׂאְצַּר‎</word>
+	<description>Валтасар.</description>
+</strong>
+<strong>
+	<number>1114</number>
+	<word>בִּלְשָׂן‎</word>
+	<description>Билшан.</description>
+</strong>
+<strong>
+	<number>1115</number>
+	<word>בִּלְתִּי‎</word>
+	<description>нет, без, кроме.</description>
+</strong>
+<strong>
+	<number>1116</number>
+	<word>בָּמָה‎</word>
+	<description>1. спина; <br>2. возвышенность, высокое место, холм; <br>3. могила.</description>
+</strong>
+<strong>
+	<number>1117</number>
+	<word>בָּמָה‎</word>
+	<description>Бама.</description>
+</strong>
+<strong>
+	<number>1118</number>
+	<word> בִּמְהָל‎</word>
+	<description>Бимгал.</description>
+</strong>
+<strong>
+	<number>1119</number>
+	<word>בְּמוֹ‎</word>
+	<description>в, среди, через.</description>
+</strong>
+<strong>
+	<number>1120</number>
+	<word>בָּמוֹת‎</word>
+	<description>Бамоф.</description>
+</strong>
+<strong>
+	<number>1121</number>
+	<word>בּן‎</word>
+	<description>сын, потомок.</description>
+</strong>
+<strong>
+	<number>1122</number>
+	<word>בּן‎</word>
+	<description>Бен.</description>
+</strong>
+<strong>
+	<number>1123</number>
+	<word>בַּר‎</word>
+	<description>сын, потомок.</description>
+</strong>
+<strong>
+	<number>1124</number>
+	<word>בּנה‎</word>
+	<description>H(peal): строить. M(hithpeel): быть построенным.</description>
+</strong>
+<strong>
+	<number>1125</number>
+	<word> בֶּןאֲבִינָדָב‎</word>
+	<description>Бен-Авинадав.</description>
+</strong>
+<strong>
+	<number>1126</number>
+	<word> בֶּןאוֹנִי‎</word>
+	<description>Бенони.</description>
+</strong>
+<strong>
+	<number>1127</number>
+	<word> בֶּןגֶּבֶר‎</word>
+	<description>Бен-Гевер.</description>
+</strong>
+<strong>
+	<number>1128</number>
+	<word>דֶּקֶר‎</word>
+	<description>Бен-Декер.</description>
+</strong>
+<strong>
+	<number>1129</number>
+	<word>בּנה‎</word>
+	<description>A(qal): строить, сооружать, созидать, устраивать, создавать. B(ni): быть построенным.</description>
+</strong>
+<strong>
+	<number>1130</number>
+	<word>בֶּןהֲדַד‎</word>
+	<description>Бенадад.</description>
+</strong>
+<strong>
+	<number>1131</number>
+	<word>בִּנּוּי‎</word>
+	<description>Биннуй.</description>
+</strong>
+<strong>
+	<number>1132</number>
+	<word>בּןזוֹחת‎</word>
+	<description>Бензохеф.</description>
+</strong>
+<strong>
+	<number>1133</number>
+	<word>בֶּןחוּר‎</word>
+	<description>Бен-Хур.</description>
+</strong>
+<strong>
+	<number>1134</number>
+	<word>בֶּןחַיִל‎</word>
+	<description>Бенхаил.</description>
+</strong>
+<strong>
+	<number>1135</number>
+	<word>בֶּןחָנָן‎</word>
+	<description>Бенханан.</description>
+</strong>
+<strong>
+	<number>1136</number>
+	<word>בֶּןחֶסֶד‎</word>
+	<description>Бен-Хесед.</description>
+</strong>
+<strong>
+	<number>1137</number>
+	<word>בָּנִי‎</word>
+	<description>Баний.</description>
+</strong>
+<strong>
+	<number>1138</number>
+	<word>לבּנִּי‎</word>
+	<description>Бунний.</description>
+</strong>
+<strong>
+	<number>1139</number>
+	<word>בְּנֵיבְרַק‎</word>
+	<description>Бене-Берак.</description>
+</strong>
+<strong>
+	<number>1140</number>
+	<word>בִּנְיָה‎</word>
+	<description>здание, строение.</description>
+</strong>
+<strong>
+	<number>1141</number>
+	<word>בְּנָיָהוּ‎</word>
+	<description>Беная.</description>
+</strong>
+<strong>
+	<number>1142</number>
+	<word>בְּנֵייַעֲקָן‎</word>
+	<description>Бене-Яакан.</description>
+</strong>
+<strong>
+	<number>1143</number>
+	<word>בּינַיִם‎</word>
+	<description>единоборец.</description>
+</strong>
+<strong>
+	<number>1144</number>
+	<word>בִּנְיָמִן‎</word>
+	<description>Вениамин.</description>
+</strong>
+<strong>
+	<number>1145</number>
+	<word>יְמִינִי‎</word>
+	<description>Вениамитянин.</description>
+</strong>
+<strong>
+	<number>1146</number>
+	<word>בִּנְיָן‎</word>
+	<description>здание.</description>
+</strong>
+<strong>
+	<number>1147</number>
+	<word>בִּנְיָן‎</word>
+	<description>здание.</description>
+</strong>
+<strong>
+	<number>1148</number>
+	<word>בְּנִינוּ‎</word>
+	<description>Бенийну.</description>
+</strong>
+<strong>
+	<number>1149</number>
+	<word>בּנס‎</word>
+	<description>H(peal): рассердиться, рассвирепеть.</description>
+</strong>
+<strong>
+	<number>1150</number>
+	<word> בִּנְעָא‎</word>
+	<description>Бина.</description>
+</strong>
+<strong>
+	<number>1151</number>
+	<word> בֶּןעַמִּי‎</word>
+	<description>Бен-Аммий.</description>
+</strong>
+<strong>
+	<number>1152</number>
+	<word> בְּסוֹדְיָה‎</word>
+	<description>Бесодея.</description>
+</strong>
+<strong>
+	<number>1153</number>
+	<word> בּסַי‎</word>
+	<description>Бесай.</description>
+</strong>
+<strong>
+	<number>1154</number>
+	<word>בֹּסֶר‎</word>
+	<description>неспелая ягода.</description>
+</strong>
+<strong>
+	<number>1155</number>
+	<word>בֹּסֶר‎</word>
+	<description>неспелая ягода.</description>
+</strong>
+<strong>
+	<number>1156</number>
+	<word>בּעא‎</word>
+	<description>H(peal): 1. искать; 2. просить. I(pael): разыскивать, выискивать.</description>
+</strong>
+<strong>
+	<number>1157</number>
+	<word>בַּעַד‎</word>
+	<description>1. позади, за; <br>2. вокруг; <br>3. для, ради; <br>4. через, сквозь; <br>5. из-за.</description>
+</strong>
+<strong>
+	<number>1158</number>
+	<word>בּעה‎</word>
+	<description>A(qal): 1. спрашивать, расспрашивать, вопрошать; 2. кипятить. B(ni): 1. быть обыскиваемым илиразыскиваемым; 2. прич.выпуклый, выгнутый, горбатый.</description>
+</strong>
+<strong>
+	<number>1159</number>
+	<word>בָּעוּ‎</word>
+	<description>прошение, молитва.</description>
+</strong>
+<strong>
+	<number>1160</number>
+	<word> בְּעוֹר‎</word>
+	<description>Беор.</description>
+</strong>
+<strong>
+	<number>1161</number>
+	<word>בִּעוּת‎</word>
+	<description>мн.ч.ужасы, устрашения.</description>
+</strong>
+<strong>
+	<number>1162</number>
+	<word>בֹּעַז‎</word>
+	<description>Боаз.</description>
+</strong>
+<strong>
+	<number>1163</number>
+	<word>בּעט‎</word>
+	<description>A(qal): пинать; перен.презирать.</description>
+</strong>
+<strong>
+	<number>1164</number>
+	<word>בְּעִי‎</word>
+	<description>молитва? возм. приставка בְ‎, „в» с 05856 (עִי‎) ­ „в разрушении» или„в погибели.»</description>
+</strong>
+<strong>
+	<number>1165</number>
+	<word>בְּעִיר‎</word>
+	<description>скот.</description>
+</strong>
+<strong>
+	<number>1166</number>
+	<word>בּעל‎</word>
+	<description>A(qal): 1. господствовать; 2. брать замуж. B(ni): сочетаться, выходить замуж.</description>
+</strong>
+<strong>
+	<number>1167</number>
+	<word>בַּעַל‎</word>
+	<description>1. владелец, господин, хозяин; <br>2. муж.</description>
+</strong>
+<strong>
+	<number>1168</number>
+	<word>בְּעָלִים‎</word>
+	<description>Баал, Баалам.</description>
+</strong>
+<strong>
+	<number>1169</number>
+	<word>בְּעל‎</word>
+	<description>советник.</description>
+</strong>
+<strong>
+	<number>1170</number>
+	<word>בַּעַלבְּרִית‎</word>
+	<description>Баалбериф.</description>
+</strong>
+<strong>
+	<number>1171</number>
+	<word> בַּעַל גָּד‎</word>
+	<description>Баал-Гад.</description>
+</strong>
+<strong>
+	<number>1172</number>
+	<word>בַּעֲלָה‎</word>
+	<description>хозяйка, владелица.</description>
+</strong>
+<strong>
+	<number>1173</number>
+	<word>בַּעֲלָה‎</word>
+	<description>Баала.</description>
+</strong>
+<strong>
+	<number>1174</number>
+	<word>בַּעַלהָמוֹן‎</word>
+	<description>Баал-Гамон.</description>
+</strong>
+<strong>
+	<number>1175</number>
+	<word>בְּעָלוֹת‎</word>
+	<description>Баалоф.</description>
+</strong>
+<strong>
+	<number>1176</number>
+	<word>בַּעַלזְבוּב‎</word>
+	<description>Веельзевул, Баал-Зебуб.</description>
+</strong>
+<strong>
+	<number>1177</number>
+	<word>בַּעַלחָנָן‎</word>
+	<description>Баал-Ханан.</description>
+</strong>
+<strong>
+	<number>1178</number>
+	<word>בַּעַלחָצוֹר‎</word>
+	<description>Баал-Гацор.</description>
+</strong>
+<strong>
+	<number>1179</number>
+	<word>בַּעַלחֶרְמוֹן‎</word>
+	<description>Баал-Хермон.</description>
+</strong>
+<strong>
+	<number>1180</number>
+	<word>בַּעֲלִי‎</word>
+	<description>Баалий.</description>
+</strong>
+<strong>
+	<number>1181</number>
+	<word>בַּעֲליבָּמוֹת‎</word>
+	<description>Баэлей-Бамоф (владельцы высоты).</description>
+</strong>
+<strong>
+	<number>1182</number>
+	<word>בְּעֶלְיָדָע‎</word>
+	<description>Беельяда.</description>
+</strong>
+<strong>
+	<number>1183</number>
+	<word>בְּעַלְיָה‎</word>
+	<description>Беалия.</description>
+</strong>
+<strong>
+	<number>1184</number>
+	<word>בַּעֲלייְהוּדָה‎</word>
+	<description>Баэлей-Иуда.</description>
+</strong>
+<strong>
+	<number>1185</number>
+	<word>בַּעֲלִיס‎</word>
+	<description>Баэлис.</description>
+</strong>
+<strong>
+	<number>1186</number>
+	<word>בַּעַלמְעוֹן‎</word>
+	<description>Баал-Меон.</description>
+</strong>
+<strong>
+	<number>1187</number>
+	<word>בַּעַלפְּעוֹר‎</word>
+	<description>Баал-Пеор.</description>
+</strong>
+<strong>
+	<number>1188</number>
+	<word>בַּעַלפְּרָצִים‎</word>
+	<description>Баал-Перацим.</description>
+</strong>
+<strong>
+	<number>1189</number>
+	<word>בַּעַלצְפוֹן‎</word>
+	<description>Баал-Цефон.</description>
+</strong>
+<strong>
+	<number>1190</number>
+	<word>בַּעַלשָׂלִשָׂה‎</word>
+	<description>Баал-Шалиша.</description>
+</strong>
+<strong>
+	<number>1191</number>
+	<word>בַּעֲלָת‎</word>
+	<description>Баэлаф.</description>
+</strong>
+<strong>
+	<number>1192</number>
+	<word>בַּעֲלַתבְּאר‎</word>
+	<description>Баэлаф­Беера.</description>
+</strong>
+<strong>
+	<number>1193</number>
+	<word>בַּעַלתָּמָר‎</word>
+	<description>Баал-Фамар.</description>
+</strong>
+<strong>
+	<number>1194</number>
+	<word> בְּעֹן‎</word>
+	<description>Беон.</description>
+</strong>
+<strong>
+	<number>1195</number>
+	<word> בַּעֲנָה‎</word>
+	<description>Баэна.</description>
+</strong>
+<strong>
+	<number>1196</number>
+	<word> בַּעֲנָה‎</word>
+	<description>Баэна.</description>
+</strong>
+<strong>
+	<number>1197</number>
+	<word>בּער‎</word>
+	<description>A(qal): 1. гореть; <br>2. жечь, сжигать, палить; <br>3. вспыхивать (об огне), загораться; 4. быть глупым илибестолковым. B(ni): безумствовать, глупо себя вести. C(pi): 1. зажигать, сжигать, запаливать; <br>2. пасти; 3. опустошать. D(pu): загореться, зажечься. E(hi): 1. поджигать; <br>2. сжигать дотла; 3. пасти. Син.08313 (שׂרף‎).</description>
+</strong>
+<strong>
+	<number>1198</number>
+	<word>בַּעַר‎</word>
+	<description>глупый, несмышленый, бестолковый.</description>
+</strong>
+<strong>
+	<number>1199</number>
+	<word> בַּעֲרָא‎</word>
+	<description>Баара.</description>
+</strong>
+<strong>
+	<number>1200</number>
+	<word>בְּערָה‎</word>
+	<description>пожар.</description>
+</strong>
