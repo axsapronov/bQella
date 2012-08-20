@@ -122,6 +122,13 @@ void visitTree(QStringList &list, QTreeWidgetItem *item);
 QStringList visitTree(QTreeWidget *tree);
 QStringList getParentText(QTreeWidgetItem *item);
 
+/**
+  @function
+  Return path of file
+  @param file  path of file
+  @return path  path
+  */
+QString getFolderFile(QString *file);
 
 
 

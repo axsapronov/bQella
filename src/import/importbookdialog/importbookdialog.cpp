@@ -72,7 +72,8 @@ void ImportBookDialog::setData()
 void ImportBookDialog::browse()
 {
     QString beginpath = Config::configuration ()->AppDir ();
-    //    QString beginpath = "/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8";
+    if (!ui->LEFilePath->text().isEmpty())
+        beginpath = getFolderFile(&QString(ui->LEFilePath->text()));
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select book"),
                                                     beginpath,

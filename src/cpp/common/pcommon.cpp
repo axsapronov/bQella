@@ -1426,3 +1426,11 @@ int countTheNumberOfFiles(QString *textinput, QString tag)
     //    qDebug() << text;
     return count;
 }
+//------------------------------------------------------------
+QString getFolderFile(QString *file)
+{
+    QString str = *file;
+    str = str.remove(str.split("/").last());
+    return str;
+}
+//------------------------------------------------------------
