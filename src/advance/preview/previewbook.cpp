@@ -2,6 +2,7 @@
 #include "ui_previewbook.h"
 
 #include "pcommon.h"
+#include "filecommon.h"
 #include "config.h"
 #include "importdialog.h"
 

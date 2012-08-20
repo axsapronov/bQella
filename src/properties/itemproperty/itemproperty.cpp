@@ -23,6 +23,7 @@
 #include "itemproperty.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -33,7 +34,7 @@ ItemProperties::ItemProperties(QWidget *parent)
      : QDialog(parent)
 {
      ui.setupUi(this);
-     
+
 //     connect(ui.BIcon, SIGNAL(clicked()), this, SLOT(chooseIcon()) );
 //     connect(ui.BOpenFileDialog, SIGNAL(clicked()), this, SLOT(chooseFile()) );
 }
@@ -43,16 +44,16 @@ void ItemProperties::accept()
 	QString s = "";  //holds list of errors
 	bool er = false;
 	validProperties = false;
-        if (ui.lineEditFullName -> text().isEmpty())
-        {
-                s = tr("- Please enter a full name.\n");
-                er = true;
-        }
-        if ( ui.comboBoxShortName->currentText().isEmpty())
-        {
-                s += tr("- Please enter a correct short name.\n");
-                er = true;
-        }
+	if (ui.lineEditFullName -> text().isEmpty())
+	{
+		s = tr("- Please enter a full name.\n");
+		er = true;
+	}
+	if ( ui.comboBoxShortName->currentText().isEmpty())
+	{
+		s += tr("- Please enter a correct short name.\n");
+		er = true;
+	}
 
         if (er)
         {

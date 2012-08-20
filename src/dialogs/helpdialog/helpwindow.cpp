@@ -29,6 +29,7 @@
 #include "helpdialog.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 
 #include <QMessageBox>

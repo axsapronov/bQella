@@ -48,7 +48,9 @@ DEPENDPATH += \
     src/export \
     src/topicchooser \
     src/advance/splitFile \
-    src/advance/preview
+    src/advance/preview \
+    src/cpp/common \
+    src/h/common
 
 
 INCLUDEPATH += \
@@ -80,7 +82,8 @@ INCLUDEPATH += \
     src/export \
     src/topicchooser \
     src/advance/splitFile \
-    src/advance/preview
+    src/advance/preview \
+    src/h/common
 
 
 FORMS += \
@@ -130,6 +133,8 @@ SOURCES +=  \
      linkproperty.cpp \
      index.cpp \
      pcommon.cpp \
+     strongcommon.cpp \
+     filecommon.cpp \
      raedit.cpp \
      srclistparser.cpp \
      cellsplit.cpp \
@@ -166,6 +171,8 @@ HEADERS += \
      tableproperty.h \
      cellsplit.h \
      pcommon.h \
+     filecommon.h \
+     strongcommon.h \
      index.h \
      raedit.h \
      srclistparser.h \

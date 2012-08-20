@@ -26,6 +26,7 @@
 #include "helpdialog.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 #include "settings.h"
 #include "about.h"
 #include "export.h"

@@ -27,6 +27,7 @@
 #include "mainwindow.h"
 #include "config.h"
 #include "previewmodule.h"
+#include "filecommon.h"
 
 
 #include <QFileDialog>
@@ -40,7 +41,7 @@ Import::Import(QWidget *parent)
     ui.setupUi(this);
     setData();
 
-    prevmodule = new PreviewModule();
+    prevmodule = new PreviewModule(this);
     connect(ui.pBImportFile, SIGNAL(clicked()), this, SLOT(selectImportFile()));
     connect(ui.pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
     connect(prevmodule, SIGNAL(createBookPreviewModule(QString)), this, SLOT(createBookPreviewModule(QString)));
@@ -49,6 +50,8 @@ Import::Import(QWidget *parent)
 void Import::selectImportFile()
 {
     QString beginpath = Config::configuration ()->AppDir ();
+    if (!ui.LEImportFile->text().isEmpty())
+        beginpath = QString(ui.LEImportFile->text());
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select bibleqt.ini"),
                                                     beginpath,

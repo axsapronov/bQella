@@ -24,6 +24,7 @@
 #include "profile.h"
 #include "docuparser.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QApplication>
 #include <QDesktopWidget>

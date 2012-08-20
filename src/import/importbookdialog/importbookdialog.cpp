@@ -1,6 +1,8 @@
 #include "importbookdialog.h"
 #include "ui_importbookdialog.h"
 #include "pcommon.h"
+#include "filecommon.h"
+
 
 #include "importdialog.h"
 #include "previewbook.h"

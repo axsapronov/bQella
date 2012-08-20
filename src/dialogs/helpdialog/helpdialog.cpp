@@ -28,6 +28,7 @@
 #include "config.h"
 #include "tabbedbrowser.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include "topicchooser.h"
 

@@ -2,6 +2,7 @@
 #include "ui_previewmodule.h"
 
 #include "previewbook.h"
+#include "filecommon.h"
 #include "pcommon.h"
 #include <QDir>
 #include <QDebug>
