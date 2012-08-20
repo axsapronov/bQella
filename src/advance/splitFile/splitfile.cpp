@@ -16,9 +16,9 @@ SplitFile::SplitFile(QWidget *parent) :
     createConnect();
 
     setData();
-    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
-    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
-    ui->LEFilePath->setText(str);
+//    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
+//    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
+//    ui->LEFilePath->setText(str);
 
     QString tag = "<h4>";
 //     QString tag = "<A NAME";
@@ -193,7 +193,6 @@ void SplitFile::AutoRun()
             QFile::remove(entryAbsPath);
         }
     }
-
 
     /// split file
     QString filename, text;
