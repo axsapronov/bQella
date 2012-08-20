@@ -33,7 +33,8 @@ void PreviewModule::setData(QString filepath)
 void PreviewModule::showPreviewBook()
 {
     QStringList listfiles = getListFilesFromBibleqtIni(getFileBibleqtIni());
-    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),
+                                                               getEncoding());
     QString book = listfiles.at(ui->ComBBooks->currentIndex());
 
     prevbook->setEncoding(getEncoding());
@@ -64,7 +65,7 @@ void PreviewModule::createBookPreview()
 void PreviewModule::accept()
 {
 //    qDebug() << "accept";
-//    removePreviewFiles();
+    removePreviewFiles();
     QWidget::hide();  //close dialog
 }
 ///-------------------------------------------------------------------
@@ -76,8 +77,8 @@ void PreviewModule::reject()
 ///-------------------------------------------------------------------
 void PreviewModule::removePreviewFiles()
 {
-    QString outputPath = prjDir + "/" + "_Preview_/";
-    qDebug() << "outputPath = " << outputPath;
+    QString outputPath = prjDir  + "_Preview_/";
+//    qDebug() << "outputPath = " << outputPath;
     QDir dir(outputPath);
     if (dir.exists())
     {
@@ -99,8 +100,8 @@ void PreviewModule::removePreviewFiles()
 ///-------------------------------------------------------------------
 void PreviewModule::createListBook()
 {
-
-    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),
+                                                               getEncoding());
     ui->ComBBooks->clear();
     ui->ComBBooks->addItems(listvaluetext);
 }

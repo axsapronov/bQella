@@ -190,9 +190,10 @@ QStringList getListFilesFromBibleqtIni(QString filepath);
   @function
   Get list full names from book from bibleqt.ini file
   @param QString filepath  path to bibleqt.ini file
+  @param encoding  QString encoding file
   @return QStringList list  list full text
   */
-QStringList getListValueTextFromBibleqtIni(QString filepath);
+QStringList getListValueTextFromBibleqtIni(QString filepath, QString encoding);
 
 
 /**

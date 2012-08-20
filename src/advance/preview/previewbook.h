@@ -18,6 +18,7 @@ class PreviewBook : public QDialog
 
 signals:
     void createBookPreview();
+    void deletePreviewFolder();
 public:
     explicit PreviewBook(QWidget *parent = 0);
     ~PreviewBook();

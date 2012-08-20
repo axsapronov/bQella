@@ -25,6 +25,8 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
     connect(ui->pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
     connect(prevbook, SIGNAL(createBookPreview()), this, SLOT(createBookPreview()));
     connect(ui->pBEstimate, SIGNAL(clicked()), this, SLOT(estimate()));
+
+    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(deletePreviewFolder()));
     setData();
 }
 ///------------------------------------------------
@@ -137,6 +139,7 @@ void ImportBookDialog::accept()
                             bookEncoding);
         importm->addContentToEndProjectFile(projectfile);
 
+        deletePreviewFolder();
         emit SuccessfulImportBook();
         QWidget::hide();  //close dialog
     }
@@ -226,7 +229,7 @@ void ImportBookDialog::showPreview()
 void ImportBookDialog::createBookPreview()
 {
     saveData();
-    importm->setPathOutput("_Preview_");
+    importm->setPathOutput("_Preview_/_Preview_");
     importm->setEncodingForPreview(bookEncoding);
     importm->importBook(projectfile,
                         bookPathFile,
@@ -243,4 +246,12 @@ void ImportBookDialog::estimate()
     QString TextOfFile = getTextFromFile(ui->LEFilePath->text(),ui->LAEncoding->text());
     int countFiles = countTheNumberOfFiles(&TextOfFile, TagOfFile);
     ui->SBCount->setValue(countFiles);
+}
+
+void ImportBookDialog::deletePreviewFolder()
+{
+    QString path = Config::configuration()->PrjDir() + "_Preview_";
+    QDir dir(path);
+    dir.rmpath(path);
+
 }

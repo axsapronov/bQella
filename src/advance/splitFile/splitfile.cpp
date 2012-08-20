@@ -22,9 +22,9 @@ SplitFile::SplitFile(QWidget *parent) :
     QString tag = "<h4>";
     ui->LETagSplit->setText(tag);
 
-    QStringListModel *modelEncoding;
-    modelEncoding = new QStringListModel(getFillEncoding(), this);
-    ui->comBEncoding->setModel(modelEncoding);
+//    QStringListModel *modelEncoding;
+//    modelEncoding = new QStringListModel(getFillEncoding(), this);
+//    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
     ui->cBAutoOn->setChecked(false);
@@ -45,7 +45,7 @@ void SplitFile::createConnect()
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBShow, SIGNAL(clicked()), this, SLOT(showFileText()));
 
-    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
+//    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
 
     /// auto
     connect(ui->cBAutoOn, SIGNAL(stateChanged(int)), this, SLOT(AutoSplitOn()));
@@ -69,6 +69,9 @@ void SplitFile::browse()
     if (!fileName.isNull())
     {
         ui->LEFilePath->setText(fileName);
+        ui->LAEncoding->setText(getEncodingFromFile(fileName));
+        showFileText();
+        refreshAutoInfo();
     }
 }
 //--------------------------------------------
@@ -79,11 +82,8 @@ void SplitFile::setData()
 //--------------------------------------------
 void SplitFile::showFileText()
 {
-    setEncoding(ui->comBEncoding->currentText());
+    setEncoding(ui->LAEncoding->text());
     TextOfFile = getTextFromFile(ui->LEFilePath->text(), getEncoding());
-//    showFileHtml(ui->LEFilePath->text());
-//    showFileEdit(ui->LEFilePath->text());
-
     showFileHtml(TextOfFile);
     showFileEdit(TextOfFile);
 }
@@ -141,6 +141,8 @@ void SplitFile::AutoSplitOn()
     ui->pBAutoBrowse->setVisible(flag);
     ui->pBAutoEstimate->setVisible(flag);
     ui->pBAutoRun->setVisible(flag);
+    if (flag)
+        AutoEstimate();
 
 }
 //-----------------------------------------------
@@ -255,5 +257,15 @@ void SplitFile::saveTextEdit()
         file.close();
     }
 }
-
 //-----------------------------------------------
+void SplitFile::refreshAutoInfo()
+{
+    QString filepath = ui->LEFilePath->text();
+    ui->LAInputFile->setText(filepath);
+
+    QString outputpath = QString(filepath)
+            .remove(QString(filepath).split("/").last())
+            + "Output/";
+    ui->LEDirOutput->setText(outputpath);
+    AutoEstimate();
+}

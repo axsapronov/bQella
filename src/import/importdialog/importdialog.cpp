@@ -56,6 +56,8 @@ void Import::selectImportFile()
     if (!fileName.isNull())
     {
         ui.LEImportFile->setText(fileName);
+        ui.LAEncoding->setText(getEncodingFromFile(fileName));
+        setEncodingForPreview(ui.LAEncoding->text());
     }
 }
 //----------------------------------------------------
@@ -75,7 +77,7 @@ void Import::accept()
     }
     else
     {
-        encoding = ui.cBEncoding->currentText();
+        encoding = ui.LAEncoding->text();
         QTextCodec * codec = getCodecOfEncoding (encoding);
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
@@ -84,6 +86,7 @@ void Import::accept()
         QStringList replaceduplex = getReplaceList();
         setTextReplace(replaceduplex);
         setHtmlFilter(ui.LEHtmlFilter->text());
+        setPathOutput("");
         importModule(ui.LEImportFile->text());
 
         emit SuccessfulImport();
@@ -145,6 +148,7 @@ void Import::importModule(QString file)
 {
     //    qDebug() << "Debug: _Import::importModule()" << "Start import Module";
     //    Config::configuration()->setLanguage("rus");
+    setEncodingForPreview(ui.LAEncoding->text());
     importIni(file);
     createInstructionFile();
     addContentToEndProjectFile();
@@ -158,7 +162,7 @@ void Import::importIni(QString filename)
     QString line;
     if ( file.open(QIODevice::ReadOnly) )
     {
-        encoding = ui.cBEncoding->currentText();
+        encoding = ui.LAEncoding->text();
         QTextCodec * codec = getCodecOfEncoding (encoding);
 
         int BookQtyIn = 2000;
@@ -178,7 +182,21 @@ void Import::importIni(QString filename)
                 if (miniparserini(line,"BibleShortName") != "")
                 {
                     Config::configuration() -> setModuleBibleShortName(miniparserini(line,"BibleShortName"));
-                    createImportFolder(Config::configuration()->PrjDir() + Config::configuration()->ModuleBibleShortName());
+
+                    if (pathOutput.isEmpty())
+                    {
+                        createImportFolder(Config::configuration()->PrjDir() +
+                                           Config::configuration()->ModuleBibleShortName());
+                    }
+                    else
+                    {
+                        QString path = Config::configuration()->PrjDir() +
+                                pathOutput + "/";
+                        QDir pathdir;
+                        pathdir.mkdir(path);
+                        createImportFolder(Config::configuration()->PrjDir() +
+                                           pathOutput + "/");
+                    }
                 }
                 if (miniparserini(line,"Copyright") != "") Config::configuration() -> setModuleCopyright(miniparserini(line,"Copyright"));
                 if (miniparserini(line,"ChapterSign") != "") ChapterSign = miniparserini(line,"ChapterSign");
@@ -245,15 +263,14 @@ void Import::importBook(QString pathName2, QString FullName, QString ShortName, 
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
 
+
     QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
     QString filenameforchapter;
 
     // add info to project file
-    //    if (pathOutput.isEmpty())
-    //    {
     QString text2 = QString("<section title=\"" + Qt::escape(title) + "\" ref=\"" + Qt::escape(path) + "\" icon=\"\">");
     addContentToProjectFile(text2, false);
-    //    }
+
 
     // parse
     bool flag;
@@ -401,7 +418,7 @@ void Import::importBook(QString projectfile,
             else
             {
                 filenameforchapter = QString(pathchap)
-                        .replace("./book_", Config::configuration()->CurPrjDir() + "/" +pathOutput + "/book_");
+                        .replace("./book_", Config::configuration()->PrjDir() +pathOutput + "/book_");
             }
             flag = true;
 
@@ -606,6 +623,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
 //----------------------------------------------------
 void Import::createChapterFile(QString file, QString text, int i)
 {
+
     if (QFile::exists(file))
     {
         toLog(Config::configuration()->AppLogFN(), QString("File chapter - %1 is exists").arg(file));
@@ -749,25 +767,31 @@ QString Import::getStartPage()
 
 void Import::setData()
 {
-    QStringListModel *typeModel;
-    QStringList items = getFillEncoding();
-    typeModel = new QStringListModel(items, this);
-    ui.cBEncoding -> setModel(typeModel);
+    //    QStringListModel *typeModel;
+    //    QStringList items = getFillEncoding();
+    //    typeModel = new QStringListModel(items, this);
+    //    ui.cBEncoding -> setModel(typeModel);
     ui.LEImportFile->setText("");
 
-//    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
-//    ui.LEImportFile->setText(importstr);
+    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
+    ui.LAEncoding->setText(getEncodingFromFile(ui.LEImportFile->text()));
+
+    //    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
+    //    ui.LEImportFile->setText(importstr);
     //    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }
 ///-----------------------------------------------------
 void Import::showPreview()
 {
+    prevmodule->setEncoding(ui.LAEncoding->text());
     prevmodule->setData(ui.LEImportFile->text());
+    //    prevmodule->setEncoding( getParamBook(ui.LEImportFile->text(), "DefaultEncoding"));
 
-    prevmodule->setEncoding( getParamBook(ui.LEImportFile->text(), "DefaultEncoding"));
+    setPathOutput("_Preview_");
     importModule(ui.LEImportFile->text());
 
-    prevmodule->setPrjPath(Config::configuration()->CurPrjDir());
+//    prevmodule->setPrjPath(Config::configuration()->CurPrjDir());
+    prevmodule->setPrjPath(Config::configuration()->PrjDir());
     prevmodule->createPreview();
     prevmodule->show();
 }
@@ -781,9 +805,9 @@ void Import::createBookPreviewModule(QString fullname)
     int bookCount = QString(listparams.at(2)).toInt();
     QString bookTagChapter = listparams.at(3);
     QString bookFullName = fullname;
-    QString bookEncoding = ui.cBEncoding->currentText();
-    QString project = "prevmodule->getFileBibleqtIni()";
-    setPathOutput("_Preview_");
+    QString bookEncoding = ui.LAEncoding->text();
+    QString project = prevmodule->getFileBibleqtIni();
+    setPathOutput("_Preview_/_Preview_");
 
     importBook(project,
                bookPathFile,
@@ -802,7 +826,7 @@ QStringList Import::getParamsBibleQtIni(QString fullname)
     QString line;
     if ( file.open(QIODevice::ReadOnly) )
     {
-        encoding = ui.cBEncoding->currentText();
+        encoding = ui.LAEncoding->text();
         QTextCodec * codec = getCodecOfEncoding (encoding);
 
         int BookQtyIn = 2000;

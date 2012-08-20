@@ -57,6 +57,7 @@ private slots:
 
 
     void estimate();
+    void deletePreviewFolder();
 
 
 

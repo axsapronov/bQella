@@ -1751,9 +1751,10 @@ int countTheNumberOfFiles(QString *textinput, QString tag)
 //------------------------------------------------------------
 QStringList getChapterList()
 {
-    QString path = Config::configuration()->CurPrjDir() + "/" + "_Preview_/";
+    QString path = Config::configuration()->PrjDir() + "/" + "_Preview_/_Preview_/";
     QDir dir(path);
     QStringList listFiles = dir.entryList(QDir::Files);
+//    qDebug() << "path = " << path;
 
     QStringList files;
     foreach (QString entry, listFiles)
@@ -1764,7 +1765,7 @@ QStringList getChapterList()
             files << entryAbsPath;
         }
     }
-    //    qDebug() << " files " << files << "\n";
+//        qDebug() << " files " << files << "\n";
     return files;
 }
 
@@ -1780,10 +1781,11 @@ QStringList  getChapterComboText()
         /// get number chapter
         str = getFileNameAbs(str);
         int pos = str.indexOf("_chapter_");
-        str = "Chapter "
-                + str.remove(0,pos)
+        str = str.remove(0,pos)
                 .remove("_chapter_")
                 .remove("_");
+        str = "Chapter " + incstr(str,3," ");
+
         chapters << str;
     }
     //    qDebug() << "chapters" << chapters << "\n";
@@ -1834,7 +1836,7 @@ QStringList getListFilesFromBibleqtIni(QString filename)
     return listFiles;
 }
 ///-------------------------------------------------------
-QStringList getListValueTextFromBibleqtIni(QString filename)
+QStringList getListValueTextFromBibleqtIni(QString filename, QString encoding)
 {
 
     QStringList listValueText;
@@ -1852,6 +1854,8 @@ QStringList getListValueTextFromBibleqtIni(QString filename)
         //        int count;
         // file opened successfully
         QTextStream stream( &file );        // use a text stream
+        QTextCodec * codec = getCodecOfEncoding(encoding);
+        stream.setCodec(codec);
 
         // until end of file...
         do {
@@ -1905,5 +1909,6 @@ QString getEncodingFromFile(QString file, QString language)
     if (encoding.indexOf("KOI8-R Cyrillic") >= 0) encoding = "KOI8-R";
     if (encoding.indexOf("KOI8-U Cyrillic") >= 0) encoding = "KOI8-U";
     if (encoding.indexOf("Unrecognized encoding") >= 0) encoding = "UTF-8";
+//    qDebug() << "encoding = " << encoding;
     return encoding;
 }
