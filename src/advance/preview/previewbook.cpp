@@ -33,11 +33,9 @@ void PreviewBook::setData(QString filepath)
     ui->tBHtmlBook->setPlainText(text);
     ui->tBViewBook->setHtml(text);
 
-
     QString path = Config::configuration()->PrjDir()+"_Preview_/";
     QDir dir(path);
     dir.mkdir(path);
-
 
     /// if dir is exist then remove files in dir
     /// if not create folder
@@ -81,7 +79,6 @@ void PreviewBook::removePreviewFiles()
     if (dir.exists())
     {
         /// get path and outpath
-//        QString dira = QString(outputPath).remove(QString("/") + QString("_Preview_"));
         QString dira = Config::configuration()->PrjDir() + "_Preview_/";
         QDir dir2(dira);
         /// get file list and remove files
@@ -103,6 +100,10 @@ void PreviewBook::createBookPreviewFunc()
     /// add list to comboBox
     ui->comBChapters_1->addItems(chapters);
     ui->comBChapters_2->addItems(chapters);
+
+    ui->comBChapters_1->model()->sort(0);
+    ui->comBChapters_2->model()->sort(0);
+
     createConnects();
     if (!chapters.isEmpty())
         showChapter(0);
@@ -111,7 +112,6 @@ void PreviewBook::createBookPreviewFunc()
 void PreviewBook::showChapter(int count)
 {
     QString textchapter = getTextFromFile(getChapterList().at(count), getEncoding());
-//    QString textchapter = getTextFromFile(getChapterList().at(count), "UTF-8");
     ui->comBChapters_1->setCurrentIndex(count);
     ui->comBChapters_2->setCurrentIndex(count);
     ui->tBHtmlChapter->setPlainText(textchapter);

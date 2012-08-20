@@ -767,7 +767,6 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
 
     QString chapter;
     chapter = QString("\n?h4_." + mychapter +" %1?/h4_.").arg(incstr(inumber,GL_LENGT_ITEM_STRING," ")); // не работает tr - почему?? заменить mtchapter на tr("Chapter")
-
     QString str;
     int number = 0;
     for (int i = 0; i < strlist.size(); i++)

@@ -105,4 +105,5 @@ void PreviewModule::createListBook()
                                                                getEncoding());
     ui->ComBBooks->clear();
     ui->ComBBooks->addItems(listvaluetext);
+    ui->ComBBooks->model()->sort(0);
 }

@@ -64,7 +64,7 @@ void SplitFile::createConnect()
 //--------------------------------------------
 void SplitFile::browse()
 {
-    QString beginpath = Config::configuration ()->AppDir ();
+    QString beginpath = Config::configuration ()->PrjDir ();
     if (!ui->LEFilePath->text().isEmpty())
         beginpath = getFolderFile(&QString(ui->LEFilePath->text()));
     QString fileName = QFileDialog::getOpenFileName(this,

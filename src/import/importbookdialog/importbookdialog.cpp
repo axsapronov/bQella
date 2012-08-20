@@ -222,6 +222,7 @@ void ImportBookDialog::showPropertiesDialog()
 void ImportBookDialog::showPreview()
 {
 //    prevbook->setEncoding(ui->CBEncoding->currentText());
+    estimate();
     prevbook->setEncoding(ui->LAEncoding->text());
     prevbook->setData(ui->LEFilePath->text());
     createBookPreview();

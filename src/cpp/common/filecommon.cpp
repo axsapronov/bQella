@@ -28,7 +28,6 @@ QStringList getChapterList()
 QStringList  getChapterComboText()
 {
     QStringList list = getChapterList();
-
     QStringList chapters;
     for (int index = 0; index < list.size(); index++)
     {
@@ -39,7 +38,7 @@ QStringList  getChapterComboText()
         str = str.remove(0,pos)
                 .remove("_chapter_")
                 .remove("_");
-        str = "Chapter " + incstr(str,3," ");
+        str = QObject::tr("Chapter") + " " + incstr(str,3," ");
 
         chapters << str;
     }
