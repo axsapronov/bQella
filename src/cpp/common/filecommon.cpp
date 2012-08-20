@@ -140,7 +140,13 @@ QStringList getListValueTextFromBibleqtIni(QString filename, QString encoding)
 QString getEncodingFromFile(QString file, QString language)
 {
     QProcess pr;
-    pr.start("enca -L" + language + " "+file);
+
+#ifdef Q_OS_WIN
+    pr.start("enca.exe -L " +language + " \""  + file + "\"");
+#endif
+#ifdef Q_OS_LINUX
+    pr.start("enca -L " + language + " \""  + file + "\"");
+#endif
 //    pr.start("pwd");
 
     QString encoding = "";
