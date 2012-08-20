@@ -56,6 +56,9 @@ private slots:
     void createBookPreview();
 
 
+    void estimate();
+
+
 
 private:
     Ui::ImportBookDialog *ui;

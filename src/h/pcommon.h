@@ -204,8 +204,34 @@ QStringList getListValueTextFromBibleqtIni(QString filepath);
   */
 QString getTextFromFile(QString file, QString encoding); // достать весь текст из файла
 
+
+/**
+  @function
+  Auto detect encoding file
+  @param filepath  QString of file path
+  @param language  QString of language, default = russian
+  @return encoding  QString encoding
+  */
+QString getEncodingFromFile(QString file, QString language="russian");
+
 /// strong
+/**
+  @function
+  Return info from number
+  (filename from getFileNameOfStrong function)
+  @param filepath QString of file path
+  @param number  QString (int) number
+  @return info  QString
+  */
 QString getInfoFromStrongFile(QString filename, QString number); // возвращает данные о стронге из файла
+
+/**
+  @function
+  Return path of filename
+  @param QString  hebrew or greek (bool :-D)
+  @param number  QString
+  @return filepath QString
+  */
 QString getFileNameOfStrong(QString horg, QString numberstr); // возвращает название файла. ПРинимает греческй или иврит стронг и номер стронга
 
 #endif // __PCOMMON_H__

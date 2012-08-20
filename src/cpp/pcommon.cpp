@@ -1879,3 +1879,31 @@ QStringList getListValueTextFromBibleqtIni(QString filename)
 }
 
 ///-------------------------------------------------------
+QString getEncodingFromFile(QString file, QString language)
+{
+    QProcess pr;
+    pr.start("enca -L" + language + " "+file);
+//    pr.start("pwd");
+
+    QString encoding = "";
+    if (pr.waitForFinished() == true)
+    {
+        QByteArray b = pr.readAll();
+        encoding = QString(b);
+    }
+    if (encoding.indexOf("Universal transformation format 8 bits;") >= 0 ) encoding = "UTF-8";
+    if (encoding.indexOf("Universal transformation format 16 bits;") >= 0 ) encoding = "UTF-16";
+    if (encoding.indexOf("Universal transformation format 32 bits;") >= 0 ) encoding = "UTF-32";
+    if (encoding.indexOf("MS-Windows code page 1251") >= 0) encoding = "Windows-1251";
+    if (encoding.indexOf("MS-Windows code page 1252") >= 0) encoding = "Windows-1252";
+    if (encoding.indexOf("MS-Windows code page 1253") >= 0) encoding = "Windows-1253";
+    if (encoding.indexOf("MS-Windows code page 1254") >= 0) encoding = "Windows-1254";
+    if (encoding.indexOf("MS-Windows code page 1255") >= 0) encoding = "Windows-1255";
+    if (encoding.indexOf("MS-Windows code page 1256") >= 0) encoding = "Windows-1256";
+    if (encoding.indexOf("MS-Windows code page 1257") >= 0) encoding = "Windows-1257";
+    if (encoding.indexOf("MS-Windows code page 1258") >= 0) encoding = "Windows-1258";
+    if (encoding.indexOf("KOI8-R Cyrillic") >= 0) encoding = "KOI8-R";
+    if (encoding.indexOf("KOI8-U Cyrillic") >= 0) encoding = "KOI8-U";
+    if (encoding.indexOf("Unrecognized encoding") >= 0) encoding = "UTF-8";
+    return encoding;
+}

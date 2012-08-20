@@ -20,12 +20,11 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
 
     importm = new Import();
     prevbook = new PreviewBook(this);
-
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBProjectProperties, SIGNAL(clicked()), this, SLOT(showPropertiesDialog()));
     connect(ui->pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
     connect(prevbook, SIGNAL(createBookPreview()), this, SLOT(createBookPreview()));
-
+    connect(ui->pBEstimate, SIGNAL(clicked()), this, SLOT(estimate()));
     setData();
 }
 ///------------------------------------------------
@@ -41,9 +40,9 @@ void ImportBookDialog::setData()
     modelShortName = new QStringListModel(getFillShortName(), this);
     ui->CBShortName->setModel(modelShortName);
 
-    QStringListModel *modelEncoding;
-    modelEncoding = new QStringListModel(getFillEncoding(), this);
-    ui->CBEncoding->setModel(modelEncoding);
+//    QStringListModel *modelEncoding;
+//    modelEncoding = new QStringListModel(getFillEncoding(), this);
+//    ui->CBEncoding->setModel(modelEncoding);
 
     //    QString htmlfilter = "<br> <pre> </pre>"
     //            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
@@ -77,6 +76,9 @@ void ImportBookDialog::browse()
     if (!fileName.isNull())
     {
         ui->LEFilePath->setText(fileName);
+        ui->LAEncoding->setText(getEncodingFromFile(fileName));
+        estimate();
+//        qDebug() << getEncodingFromFile(fileName);
     }
 }
 ///------------------------------------------------
@@ -144,7 +146,9 @@ void ImportBookDialog::saveData()
 {
     bookShortName = ui->CBShortName->currentText();
     bookFullName = ui->LEFullName->text();
-    bookEncoding = ui->CBEncoding->currentText();
+//    bookEncoding = ui->CBEncoding->currentText();
+    bookEncoding = ui->LAEncoding->text();
+
     bookTagChapter = ui->LETagChapter->text();
     bookTagVerse = ui->LETagVerse->text();
     bookHtmlFilter = ui->LEHtmlFilter->text();
@@ -211,7 +215,8 @@ void ImportBookDialog::showPropertiesDialog()
 ///------------------------------------------------
 void ImportBookDialog::showPreview()
 {
-    prevbook->setEncoding(ui->CBEncoding->currentText());
+//    prevbook->setEncoding(ui->CBEncoding->currentText());
+    prevbook->setEncoding(ui->LAEncoding->text());
     prevbook->setData(ui->LEFilePath->text());
     createBookPreview();
     prevbook->createBookPreviewFunc();
@@ -232,3 +237,10 @@ void ImportBookDialog::createBookPreview()
                         bookEncoding);
 }
 ///------------------------------------------------
+void ImportBookDialog::estimate()
+{
+    QString TagOfFile = ui->LETagChapter->text();
+    QString TextOfFile = getTextFromFile(ui->LEFilePath->text(),ui->LAEncoding->text());
+    int countFiles = countTheNumberOfFiles(&TextOfFile, TagOfFile);
+    ui->SBCount->setValue(countFiles);
+}
