@@ -16,10 +16,12 @@ SplitFile::SplitFile(QWidget *parent) :
     createConnect();
 
     setData();
-//    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
-//    ui->LEFilePath->setText(str);
+    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
+    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
+    ui->LEFilePath->setText(str);
 
     QString tag = "<h4>";
+//     QString tag = "<A NAME";
     ui->LETagSplit->setText(tag);
 
 //    QStringListModel *modelEncoding;
@@ -27,10 +29,11 @@ SplitFile::SplitFile(QWidget *parent) :
 //    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
-    ui->cBAutoOn->setChecked(false);
+//    ui->cBAutoOn->setChecked(false);
+    ui->cBAutoOn->setChecked(true);
     AutoSplitOn();
     showFileText();
-    //    AutoEstimate();
+        AutoEstimate();
     AutoRun();
 }
 //--------------------------------------------
@@ -177,11 +180,7 @@ void SplitFile::AutoRun()
     if (!dir.exists())
     {
         /// create folder
-        QString last = QString(outputPath).remove(outputPath.length()-1,1);
-        last =  QString(last).split("/").last();
-        QString dir = QString(outputPath).remove("/" + last);
-        QDir dir2(dir);
-        dir2.mkdir(last);
+        dir.mkpath(outputPath);
     }
     else
     {
@@ -199,12 +198,18 @@ void SplitFile::AutoRun()
     /// split file
     QString filename, text;
     QString textinput = TextOfFile;
-    int pos;
+    int pos, posNext;
 
     ///first delete
     pos = textinput.indexOf(TagOfFile);
-    text = QString(textinput).remove(pos+TagOfFile.length(), textinput.length()-pos);
-    textinput.remove(text);
+    text = QString(textinput).remove(pos, textinput.length() - pos);
+
+    if (
+            text != " " &&
+            text != "\n" &&
+            text != TagOfFile
+       )
+        textinput.remove(text);
 
     for (int i = 1; i < countFiles+1; i++)
     {
@@ -221,8 +226,8 @@ void SplitFile::AutoRun()
         }
         else
         {
-            pos += TagOfFile.length();
-            text = QString(textinput).remove(pos, textinput.length()-pos);
+            posNext = textinput.indexOf(TagOfFile, pos+TagOfFile.length());
+            text = textinput.mid(pos, posNext-TagOfFile.length());
         }
         textinput.remove(text);
         createEmptyHtml(filename, QString::number(i), text);
