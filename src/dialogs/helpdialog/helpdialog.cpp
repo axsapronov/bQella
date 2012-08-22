@@ -850,18 +850,18 @@ void HelpDialog::showTopic()
         ui.listContents -> setFocus();
     }
 
-    // if there is no title for the document set one to title of the item
-    // падает из за этого блока
-    //    QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
-    //    if (t.isEmpty())
-    //    {
-    //        if (ContCur == ContTreeView)
-    //            t = ui.listContents -> currentItem() -> text(0);
-    //        else if (ContCur == ContSubItems)
-    //            t = ui.TWSubItems -> currentItem() -> text(0);
-    //        mw -> browsers() -> currentBrowser() -> setTagTitle(t);
-    //        mw -> browsers() -> sourceChanged();
-    //    }
+//     if there is no title for the document set one to title of the item
+//     падает из за этого блока
+//        QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
+//        if (t.isEmpty())
+//        {
+//            if (ContCur == ContTreeView)
+//                t = ui.listContents -> currentItem() -> text(0);
+//            else if (ContCur == ContSubItems)
+//                t = ui.TWSubItems -> currentItem() -> text(0);
+//            mw -> browsers() -> currentBrowser() -> setTagTitle(t);
+//            mw -> browsers() -> sourceChanged();
+//        }
 
     /*	-pm- the following is for debug
  // display item index
@@ -1388,8 +1388,11 @@ void HelpDialog::showContentsItemMenu(const QPoint &pos)
         }
     }
 
+    qDebug() << QString(item->data(0,LinkRole).toString());
     if (ContCur == ContSubItems)
+    {
         action = itemPopupSubItems -> exec(treeWidget -> viewport() -> mapToGlobal(pos));
+    }
     triggerAction(item, action);
 }
 
