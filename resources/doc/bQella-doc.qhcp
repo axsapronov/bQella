@@ -2,7 +2,7 @@
 <QHelpCollectionProject version="1.0">
     <assistant>
         <title>bQella </title>
-        <applicationIcon>resources/images/old/handbook.png</applicationIcon>
+        <applicationIcon>resources/images/handbook.png</applicationIcon>
         <cacheDirectory>WarmongeR/bQella</cacheDirectory>
         <startPage>resources/rus/index_ru.html</startPage>
         <aboutMenuText>
@@ -10,7 +10,7 @@
         </aboutMenuText>
         <aboutDialog>
             <file>resources/about/about.txt</file>
-            <icon>resources/images/old/icon.png</icon>
+            <icon>resources/images/icon.png</icon>
         </aboutDialog>
         <enableDocumentationManager>false</enableDocumentationManager>
         <enableAddressBar>false</enableAddressBar>
