@@ -22,7 +22,6 @@ void RightPanel::refreshInfo()
 {
     clearInfo();
     ui->LABibleName->setText(Config::configuration() -> profile() -> props["biblename"]);
-    //    pr.noForcedLineBreaks = Config::configuration() -> profile() -> props["noforcedlinebreaks"]);
     ui->LAShortName->setText(Config::configuration() -> profile() -> props["bibleshortname"]);
     ui->LAAuthor->setText(Config::configuration() -> profile() -> props["copyright"]);
     ui->LAEnglishPsalms->setText(Config::configuration() -> profile() -> props["endlishpsalms"]);
@@ -63,4 +62,17 @@ void RightPanel::clearInfoProject()
     ui->LAInstallFonts->clear();
     ui->LAHTMLFilter->clear();
     ui->LALanguage->clear();
+    ui->LAShortName->clear();
+    ui->LAAuthor->clear();
+    ui->LAEnglishPsalms->clear();
+    ui->LATypeModule->clear();
+    ui->LAVersion->clear();
+    ui->LAOldTestament->clear();
+    ui->LANewTestament->clear();
+    ui->LAApocrypha->clear();
+    ui->LAChapterZero->clear();
+    ui->LAUseChapterHead->clear();
+    ui->LAUseRightAlignment->clear();
+    ui->LAStrongNumbers->clear();
+    ui->LAStrongNumbersDir->clear();
 }

@@ -383,32 +383,32 @@ p, li { white-space: pre-wrap; }
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="44"/>
+        <location filename="../../src/settings/settings.ui" line="41"/>
         <source>General</source>
         <translation>Основные</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="50"/>
+        <location filename="../../src/settings/settings.ui" line="47"/>
         <source>Automatically set the number of rows</source>
         <translation>Автоматическая нумерация строк при экспорте</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="193"/>
+        <location filename="../../src/settings/settings.ui" line="190"/>
         <source>View</source>
         <translation>Вид</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="236"/>
+        <location filename="../../src/settings/settings.ui" line="208"/>
         <source>Contents additional view</source>
         <translation>Дополнительный вид подпунктов содержания</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="277"/>
+        <location filename="../../src/settings/settings.ui" line="237"/>
         <source>Show parent item title in header</source>
         <translation>Показывать в загаловке название родительского пункта</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="255"/>
+        <location filename="../../src/settings/settings.ui" line="221"/>
         <source>Automaticly collapse expended items</source>
         <translation>Автоматическое схлопывание пунктов</translation>
     </message>
@@ -445,7 +445,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Укажите где хранить архивы</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="69"/>
+        <location filename="../../src/settings/settings.ui" line="66"/>
         <source>Log events:
 0 = no log; 1 = basic;
 2 = more info; 3 = debug</source>
@@ -454,12 +454,12 @@ p, li { white-space: pre-wrap; }
 2 = подробно; 3 = отладка</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="110"/>
+        <location filename="../../src/settings/settings.ui" line="107"/>
         <source>Log level for application</source>
         <translation>Подробность журнала приложения</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="152"/>
+        <location filename="../../src/settings/settings.ui" line="149"/>
         <source>Log level for project</source>
         <translation>Подробность журнала проекта</translation>
     </message>
@@ -482,17 +482,17 @@ For 7Zip: &quot;a -t7z&quot;</source>
 Для 7Zip: &quot;a -t7z&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="169"/>
+        <location filename="../../src/settings/settings.ui" line="166"/>
         <source>Do not ask for item properties when creating</source>
         <translation>Не спрашивать свойства пункта при добавлении (задать автоматически)</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="205"/>
+        <location filename="../../src/settings/settings.ui" line="263"/>
         <source>Font settings...</source>
         <translation>Шрифт...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settings.ui" line="218"/>
+        <location filename="../../src/settings/settings.ui" line="196"/>
         <source>Contents</source>
         <translation>Содержание</translation>
     </message>
@@ -1886,7 +1886,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="567"/>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1170"/>
         <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1298"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1705"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1708"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
@@ -1934,17 +1934,17 @@ Skipping file.</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1502"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1505"/>
         <source>The content was not created</source>
         <translation>Содержание не было создано</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1503"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1506"/>
         <source>Delete content</source>
         <translation>Удаление содержания</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2400"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2403"/>
         <source>bookmark title=%1; link=%2</source>
         <translation>Название закладки=%1; ссылка=%2</translation>
     </message>
@@ -1968,23 +1968,23 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Читаю директории...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2528"/>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2537"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2531"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2540"/>
         <source>Full Text Search</source>
         <translation>Полнотекстовый поиск</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2529"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2532"/>
         <source>Using a wildcard within phrases is not allowed.</source>
         <translation>Использование шаблонов во фразах не допускается.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2537"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="2540"/>
         <source>The closing quotation mark is missing.</source>
         <translation>Пропущены закрывающие кавычки.</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1960"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1963"/>
         <source>Delete contents item AND source file?</source>
         <translation>Удалить пункт меню И файл-источник?</translation>
     </message>
@@ -2197,12 +2197,12 @@ You can create a new file or add one. Do you want to see item property?</source>
         <translation>Вставить файл новым подпунктом...</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1874"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1877"/>
         <source>Project has been saved</source>
         <translation>Проект был сохранён</translation>
     </message>
     <message>
-        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1920"/>
+        <location filename="../../src/dialogs/helpdialog/helpdialog.cpp" line="1923"/>
         <source>Delete just contents item? Source file will be untouched.</source>
         <translation>Убрать пункт (не удаляя файл)</translation>
     </message>
@@ -3110,59 +3110,59 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Инициализация Research Assistant...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="632"/>
+        <location filename="../../src/main/mainwindow.ui" line="635"/>
         <source>Ctrl+I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="617"/>
+        <location filename="../../src/main/mainwindow.ui" line="620"/>
         <source>Ctrl+B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="246"/>
+        <location filename="../../src/main/mainwindow.cpp" line="261"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="247"/>
+        <location filename="../../src/main/mainwindow.cpp" line="262"/>
         <source>Ctrl+]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="248"/>
+        <location filename="../../src/main/mainwindow.cpp" line="263"/>
         <source>Ctrl+[</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="476"/>
+        <location filename="../../src/main/mainwindow.cpp" line="491"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="657"/>
+        <location filename="../../src/main/mainwindow.cpp" line="672"/>
         <source>Open Project</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="680"/>
+        <location filename="../../src/main/mainwindow.cpp" line="695"/>
         <source>- show start page: %1</source>
         <comment>For log</comment>
         <translation>- show start page: %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="692"/>
+        <location filename="../../src/main/mainwindow.cpp" line="708"/>
         <source>Save Project As</source>
         <translation>Сохранить проект как</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="716"/>
-        <location filename="../../src/main/mainwindow.cpp" line="723"/>
+        <location filename="../../src/main/mainwindow.cpp" line="732"/>
+        <location filename="../../src/main/mainwindow.cpp" line="739"/>
         <source>Save Page</source>
         <translation>Сохранить страницу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="723"/>
+        <location filename="../../src/main/mainwindow.cpp" line="739"/>
         <source>Cannot open file for writing!</source>
         <translation>Невозможно открыть файл для записи!</translation>
     </message>
@@ -3176,7 +3176,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="71"/>
-        <location filename="../../src/main/mainwindow.ui" line="1065"/>
+        <location filename="../../src/main/mainwindow.ui" line="1068"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
@@ -3346,13 +3346,13 @@ p, li { white-space: pre-wrap; }
         <translation>Открыть в новом окне.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="486"/>
-        <location filename="../../src/main/mainwindow.ui" line="941"/>
+        <location filename="../../src/main/mainwindow.ui" line="489"/>
+        <location filename="../../src/main/mainwindow.ui" line="944"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="382"/>
+        <location filename="../../src/main/mainwindow.ui" line="385"/>
         <source>Close the current window.</source>
         <translation>Закрыть текущее окно.</translation>
     </message>
@@ -3361,12 +3361,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Экспорт модуля</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="812"/>
+        <location filename="../../src/main/mainwindow.ui" line="815"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="832"/>
+        <location filename="../../src/main/mainwindow.ui" line="835"/>
         <source>Add the currently displayed page as a new bookmark.</source>
         <translation>Добавить текущую страницу в закладки.</translation>
     </message>
@@ -3379,53 +3379,53 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&quot;Что это?&quot; - контекстная помощь.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="391"/>
+        <location filename="../../src/main/mainwindow.ui" line="394"/>
         <source>Add tab</source>
         <translation>Добавить вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="394"/>
+        <location filename="../../src/main/mainwindow.ui" line="397"/>
         <source>Ctrl+Alt+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="403"/>
+        <location filename="../../src/main/mainwindow.ui" line="406"/>
         <source>Next Tab</source>
         <translation>Следующая вкладка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="406"/>
+        <location filename="../../src/main/mainwindow.ui" line="409"/>
         <source>Ctrl+Alt+Right</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="415"/>
+        <location filename="../../src/main/mainwindow.ui" line="418"/>
         <source>Previous Tab</source>
         <translation>Предыдущая вкладка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="418"/>
+        <location filename="../../src/main/mainwindow.ui" line="421"/>
         <source>Ctrl+Alt+Left</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="427"/>
+        <location filename="../../src/main/mainwindow.ui" line="430"/>
         <source>Close Tab</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="430"/>
+        <location filename="../../src/main/mainwindow.ui" line="433"/>
         <source>Ctrl+Alt+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="435"/>
-        <location filename="../../src/main/mainwindow.ui" line="721"/>
+        <location filename="../../src/main/mainwindow.ui" line="438"/>
+        <location filename="../../src/main/mainwindow.ui" line="724"/>
         <source>Save As...</source>
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="438"/>
+        <location filename="../../src/main/mainwindow.ui" line="441"/>
         <source>Ctrl+Alt+S</source>
         <translation></translation>
     </message>
@@ -3438,7 +3438,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Выбирете страницу на вкладке содержания.</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="447"/>
+        <location filename="../../src/main/mainwindow.ui" line="450"/>
         <source>Font Settings...</source>
         <translation>Шрифт...</translation>
     </message>
@@ -3447,28 +3447,28 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Свойства...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="471"/>
+        <location filename="../../src/main/mainwindow.ui" line="474"/>
         <source>Statistics</source>
         <translation>Статистика</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="480"/>
+        <location filename="../../src/main/mainwindow.ui" line="483"/>
         <source>New</source>
         <translation>Новый</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="495"/>
+        <location filename="../../src/main/mainwindow.ui" line="498"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="513"/>
-        <location filename="../../src/main/mainwindow.ui" line="537"/>
+        <location filename="../../src/main/mainwindow.ui" line="516"/>
+        <location filename="../../src/main/mainwindow.ui" line="540"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="542"/>
+        <location filename="../../src/main/mainwindow.ui" line="545"/>
         <source>Print Preview...</source>
         <translation>Предварительный просмотр...</translation>
     </message>
@@ -3477,194 +3477,194 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Экспорт в PDF...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="551"/>
+        <location filename="../../src/main/mainwindow.ui" line="554"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="560"/>
+        <location filename="../../src/main/mainwindow.ui" line="563"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="569"/>
+        <location filename="../../src/main/mainwindow.ui" line="572"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="572"/>
+        <location filename="../../src/main/mainwindow.ui" line="575"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="587"/>
+        <location filename="../../src/main/mainwindow.ui" line="590"/>
         <source>Cut</source>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="590"/>
+        <location filename="../../src/main/mainwindow.ui" line="593"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="602"/>
+        <location filename="../../src/main/mainwindow.ui" line="605"/>
         <source>Remove Item</source>
         <translation>Убрать пункт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="614"/>
+        <location filename="../../src/main/mainwindow.ui" line="617"/>
         <source>Bold</source>
         <translation>Жирный</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="629"/>
+        <location filename="../../src/main/mainwindow.ui" line="632"/>
         <source>Italic</source>
         <translation>Курсив</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="644"/>
+        <location filename="../../src/main/mainwindow.ui" line="647"/>
         <source>Underline</source>
         <translation>Подчёркнутый</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="659"/>
+        <location filename="../../src/main/mainwindow.ui" line="662"/>
         <source>Left</source>
         <translation>По левому краю</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="671"/>
+        <location filename="../../src/main/mainwindow.ui" line="674"/>
         <source>Center</source>
         <translation>По центру</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="683"/>
+        <location filename="../../src/main/mainwindow.ui" line="686"/>
         <source>Right</source>
         <translation>По правому краю</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="695"/>
+        <location filename="../../src/main/mainwindow.ui" line="698"/>
         <source>Justify</source>
         <translation>По ширине</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="707"/>
+        <location filename="../../src/main/mainwindow.ui" line="710"/>
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="716"/>
+        <location filename="../../src/main/mainwindow.ui" line="719"/>
         <source>Item properties...</source>
         <translation>Свойства пункта...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="763"/>
+        <location filename="../../src/main/mainwindow.ui" line="766"/>
         <source>Alt+2</source>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="809"/>
+        <location filename="../../src/main/mainwindow.ui" line="812"/>
         <source>Export module</source>
         <translation>Экспорт модуля</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="837"/>
+        <location filename="../../src/main/mainwindow.ui" line="840"/>
         <source>Module</source>
         <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="871"/>
+        <location filename="../../src/main/mainwindow.ui" line="874"/>
         <source>Alt+4</source>
         <translation>Alt+4</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="997"/>
+        <location filename="../../src/main/mainwindow.ui" line="1000"/>
         <source>Ctrl+Shift+B</source>
         <translation>Ctrl+Shift+B</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1002"/>
+        <location filename="../../src/main/mainwindow.ui" line="1005"/>
         <source>Home page</source>
         <translation>Домашная страница</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1007"/>
+        <location filename="../../src/main/mainwindow.ui" line="1010"/>
         <source>New line</source>
         <translation>На новую строку</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1010"/>
+        <location filename="../../src/main/mainwindow.ui" line="1013"/>
         <source>&lt;br&gt;</source>
         <translation>&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1013"/>
+        <location filename="../../src/main/mainwindow.ui" line="1016"/>
         <source>Add to text symbol 
  (&lt;br&gt;)</source>
         <translation>Добавить в текст символ 
  &lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1017"/>
+        <location filename="../../src/main/mainwindow.ui" line="1020"/>
         <source>Alt+1</source>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1022"/>
+        <location filename="../../src/main/mainwindow.ui" line="1025"/>
         <source>Add Strong&apos;s number</source>
         <translation>Добавить номера Стронга</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1025"/>
+        <location filename="../../src/main/mainwindow.ui" line="1028"/>
         <source>strong</source>
         <translation>strong</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1028"/>
+        <location filename="../../src/main/mainwindow.ui" line="1031"/>
         <source>Alt+3</source>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1036"/>
+        <location filename="../../src/main/mainwindow.ui" line="1039"/>
         <source>HTML</source>
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1044"/>
+        <location filename="../../src/main/mainwindow.ui" line="1047"/>
         <source>Doc</source>
         <translation>Doc</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1054"/>
+        <location filename="../../src/main/mainwindow.ui" line="1057"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1057"/>
+        <location filename="../../src/main/mainwindow.ui" line="1060"/>
         <source>Add content for book</source>
         <translation>Добавить содержание для книги</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1060"/>
+        <location filename="../../src/main/mainwindow.ui" line="1063"/>
         <source>Ctrl+Shift+Y</source>
         <translation>Ctrl+Shift+Y</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1068"/>
+        <location filename="../../src/main/mainwindow.ui" line="1071"/>
         <source>Edit content for book</source>
         <translation>Редактировать содеражние книги</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1076"/>
+        <location filename="../../src/main/mainwindow.ui" line="1079"/>
         <source>Delete content for book</source>
         <translation>Удалить содеражние книги</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1081"/>
+        <location filename="../../src/main/mainwindow.ui" line="1084"/>
         <source>&amp;Split file</source>
         <translation>Р&amp;азбить файл</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="1084"/>
+        <location filename="../../src/main/mainwindow.ui" line="1087"/>
         <source>Ctrl+Alt+1</source>
         <translation>Ctrl+Alt+1</translation>
     </message>
@@ -3673,8 +3673,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="994"/>
-        <location filename="../../src/main/mainwindow.ui" line="1049"/>
+        <location filename="../../src/main/mainwindow.ui" line="997"/>
+        <location filename="../../src/main/mainwindow.ui" line="1052"/>
         <source>Book</source>
         <translation>Книга</translation>
     </message>
@@ -3683,23 +3683,23 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="845"/>
+        <location filename="../../src/main/mainwindow.ui" line="848"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="853"/>
+        <location filename="../../src/main/mainwindow.ui" line="856"/>
         <source>Find and replace</source>
         <translation>Поиск и замена</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="775"/>
+        <location filename="../../src/main/mainwindow.ui" line="778"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="865"/>
         <location filename="../../src/main/mainwindow.ui" line="868"/>
+        <location filename="../../src/main/mainwindow.ui" line="871"/>
         <source>AddTag</source>
         <translation>Добавить тег</translation>
     </message>
@@ -3728,28 +3728,33 @@ p, li { white-space: pre-wrap; }
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="459"/>
+        <location filename="../../src/main/mainwindow.ui" line="373"/>
+        <source>Ctrl+Shift+N</source>
+        <translation>Ctrl+Shift+N</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.ui" line="462"/>
         <source>Project properties...</source>
         <translation>Свойства проекта...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="462"/>
+        <location filename="../../src/main/mainwindow.ui" line="465"/>
         <source>Ctrl+Shift+T</source>
         <translation>Ctrl+Shift+T</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="840"/>
+        <location filename="../../src/main/mainwindow.ui" line="843"/>
         <source>Ctrl+Shift+D</source>
         <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="848"/>
+        <location filename="../../src/main/mainwindow.ui" line="851"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="501"/>
-        <location filename="../../src/main/mainwindow.ui" line="953"/>
+        <location filename="../../src/main/mainwindow.ui" line="504"/>
+        <location filename="../../src/main/mainwindow.ui" line="956"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
@@ -3764,34 +3769,34 @@ p, li { white-space: pre-wrap; }
         <translation>Другое</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="519"/>
+        <location filename="../../src/main/mainwindow.ui" line="522"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="739"/>
+        <location filename="../../src/main/mainwindow.ui" line="742"/>
         <source>English</source>
         <comment>Name on your language (in English)</comment>
         <translation>Английский (English)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="751"/>
+        <location filename="../../src/main/mainwindow.ui" line="754"/>
         <source>Russian</source>
         <comment>Name on your language (in English)</comment>
         <translation>Русский (Russian)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="760"/>
+        <location filename="../../src/main/mainwindow.ui" line="763"/>
         <source>Hyperlink</source>
         <translation>Гиперссылка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1085"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1101"/>
         <source>Reload application</source>
         <translation>Требуется перезагрузка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="379"/>
+        <location filename="../../src/main/mainwindow.ui" line="382"/>
         <source>&amp;Delete Item and File</source>
         <translation>У&amp;далить пункт и файл</translation>
     </message>
@@ -3800,30 +3805,30 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Новый...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="483"/>
-        <location filename="../../src/main/mainwindow.ui" line="938"/>
+        <location filename="../../src/main/mainwindow.ui" line="486"/>
+        <location filename="../../src/main/mainwindow.ui" line="941"/>
         <source>New project</source>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="498"/>
-        <location filename="../../src/main/mainwindow.ui" line="950"/>
+        <location filename="../../src/main/mainwindow.ui" line="501"/>
+        <location filename="../../src/main/mainwindow.ui" line="953"/>
         <source>Open project</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="516"/>
-        <location filename="../../src/main/mainwindow.ui" line="958"/>
+        <location filename="../../src/main/mainwindow.ui" line="519"/>
+        <location filename="../../src/main/mainwindow.ui" line="961"/>
         <source>Save project</source>
         <translation>Сохранить проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="528"/>
+        <location filename="../../src/main/mainwindow.ui" line="531"/>
         <source>Add...</source>
         <translation>Добавить...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="724"/>
+        <location filename="../../src/main/mainwindow.ui" line="727"/>
         <source>Save project as...</source>
         <translation>Сохранить проект как...</translation>
     </message>
@@ -3842,7 +3847,7 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Вид исходного HTML</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="88"/>
+        <location filename="../../src/main/mainwindow.cpp" line="89"/>
         <source>Project manager</source>
         <translation>Менеджер проекта</translation>
     </message>
@@ -3851,12 +3856,12 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Формат</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="829"/>
+        <location filename="../../src/main/mainwindow.ui" line="832"/>
         <source>&amp;Add to bookmarks</source>
         <translation>&amp;Добавить в закладки</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="772"/>
+        <location filename="../../src/main/mainwindow.ui" line="775"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -3869,29 +3874,29 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">&amp;Закладки</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="780"/>
+        <location filename="../../src/main/mainwindow.ui" line="783"/>
         <source>Sources</source>
         <translation>Источники</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="788"/>
+        <location filename="../../src/main/mainwindow.ui" line="791"/>
         <source>Diary</source>
         <translation>Дневник</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="796"/>
+        <location filename="../../src/main/mainwindow.ui" line="799"/>
         <source>Notebook</source>
         <translation>Записная книжка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="437"/>
+        <location filename="../../src/main/mainwindow.cpp" line="452"/>
         <source>failed to open file:
 %1</source>
         <translation>Невозможно открыть файл:
 %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="929"/>
+        <location filename="../../src/main/mainwindow.cpp" line="945"/>
         <source>Failed to create project: %1</source>
         <translation>Невозможно создать проект: %1</translation>
     </message>
@@ -3904,7 +3909,7 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">О проекте</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="261"/>
+        <location filename="../../src/main/mainwindow.cpp" line="276"/>
         <source>Toolbars &amp; panels</source>
         <translation>Панели инструментов</translation>
     </message>
@@ -3913,33 +3918,33 @@ Research Assistant создан с помощью Qt Open Source Edition.</trans
         <translation type="obsolete">Файл</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="109"/>
+        <location filename="../../src/main/mainwindow.cpp" line="118"/>
         <source>Insert Sign</source>
         <translation>Добавить подпись</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="166"/>
+        <location filename="../../src/main/mainwindow.cpp" line="181"/>
         <source>Initializing %1...</source>
         <translation>Запускаю %1...</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="249"/>
+        <location filename="../../src/main/mainwindow.cpp" line="264"/>
         <source>Ctrl+Shift+Insert</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="658"/>
+        <location filename="../../src/main/mainwindow.cpp" line="673"/>
         <source>Project bQella (*.pem)</source>
         <translation>Project bQella (*.pem)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="814"/>
+        <location filename="../../src/main/mainwindow.cpp" line="830"/>
         <source>New Project</source>
         <comment>Default project name</comment>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1085"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1101"/>
         <source>Changes will be applied after application reload.</source>
         <comment>Append this warning in English after translation</comment>
         <translation>Перезагрузите приложение для применения новых настроек.
@@ -3955,7 +3960,7 @@ Changes will be applied after application reload.</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="136"/>
-        <location filename="../../src/main/mainwindow.ui" line="1073"/>
+        <location filename="../../src/main/mainwindow.ui" line="1076"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
@@ -3964,12 +3969,12 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Печатайте здесь</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="647"/>
+        <location filename="../../src/main/mainwindow.ui" line="650"/>
         <source>Ctrl+U</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="783"/>
+        <location filename="../../src/main/mainwindow.ui" line="786"/>
         <source>F11</source>
         <translation></translation>
     </message>
@@ -3978,23 +3983,23 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Вставить таблицу</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="820"/>
+        <location filename="../../src/main/mainwindow.ui" line="823"/>
         <source>Insert Image</source>
         <translation>Вставить рисунок</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="879"/>
+        <location filename="../../src/main/mainwindow.ui" line="882"/>
         <source>Row Above</source>
         <translation>Строку сверху</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="887"/>
+        <location filename="../../src/main/mainwindow.ui" line="890"/>
         <source>Row Below</source>
         <translation>Строку снизу</translation>
     </message>
     <message>
         <location filename="../../src/main/mainwindow.ui" line="117"/>
-        <location filename="../../src/main/mainwindow.ui" line="919"/>
+        <location filename="../../src/main/mainwindow.ui" line="922"/>
         <source>Table</source>
         <translation>Таблица</translation>
     </message>
@@ -4018,52 +4023,52 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">Импортировать модуль</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="856"/>
+        <location filename="../../src/main/mainwindow.ui" line="859"/>
         <source>Ctrl+Shift+F</source>
         <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="892"/>
+        <location filename="../../src/main/mainwindow.ui" line="895"/>
         <source>New Table</source>
         <translation>Новая таблица</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="924"/>
+        <location filename="../../src/main/mainwindow.ui" line="927"/>
         <source>Row</source>
         <translation>Строка</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="929"/>
+        <location filename="../../src/main/mainwindow.ui" line="932"/>
         <source>Column</source>
         <translation>Столбец</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="966"/>
+        <location filename="../../src/main/mainwindow.ui" line="969"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="969"/>
+        <location filename="../../src/main/mainwindow.ui" line="972"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="974"/>
+        <location filename="../../src/main/mainwindow.ui" line="977"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="979"/>
+        <location filename="../../src/main/mainwindow.ui" line="982"/>
         <source>m</source>
         <translation>m</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="984"/>
+        <location filename="../../src/main/mainwindow.ui" line="987"/>
         <source>f</source>
         <translation>f</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="989"/>
+        <location filename="../../src/main/mainwindow.ui" line="992"/>
         <source>Table Property...</source>
         <translation>Свойства таблицы...</translation>
     </message>
@@ -4072,117 +4077,122 @@ Changes will be applied after application reload.</translation>
         <translation type="obsolete">В&amp;ставить</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="900"/>
+        <location filename="../../src/main/mainwindow.ui" line="903"/>
         <source>Column Left</source>
         <translation>Колонку слева</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="908"/>
+        <location filename="../../src/main/mainwindow.ui" line="911"/>
         <source>Column Right</source>
         <translation>Колонку справа</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.ui" line="804"/>
+        <location filename="../../src/main/mainwindow.ui" line="807"/>
         <source>Backup</source>
         <translation>Архивировать</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="685"/>
+        <location filename="../../src/main/mainwindow.cpp" line="99"/>
+        <source>Right panel</source>
+        <translation>Правая панель</translation>
+    </message>
+    <message>
+        <location filename="../../src/main/mainwindow.cpp" line="700"/>
         <source>Project is opened.</source>
         <comment>For log</comment>
         <translation>Проект открыт</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="692"/>
+        <location filename="../../src/main/mainwindow.cpp" line="708"/>
         <source>Project bQella (*.pep)</source>
         <translation>Project bQella (*.pep)</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="923"/>
+        <location filename="../../src/main/mainwindow.cpp" line="939"/>
         <source>Create a new project: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="924"/>
+        <location filename="../../src/main/mainwindow.cpp" line="940"/>
         <source>- project file: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="930"/>
+        <location filename="../../src/main/mainwindow.cpp" line="946"/>
         <source>- failed</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="934"/>
+        <location filename="../../src/main/mainwindow.cpp" line="950"/>
         <source>- project start page: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="942"/>
+        <location filename="../../src/main/mainwindow.cpp" line="958"/>
         <source>   ___Instruction</source>
         <translation>   ___Instruction</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="995"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1011"/>
         <source>- project sources DB: %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="996"/>
-        <location filename="../../src/main/mainwindow.cpp" line="1058"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1012"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1074"/>
         <source>- done</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1011"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1027"/>
         <source>Update project properties:</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1012"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1028"/>
         <source>- title      = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1013"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1029"/>
         <source>- file name  = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1014"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1030"/>
         <source>- start page = %1</source>
         <comment>For log</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1015"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1031"/>
         <source>- module name      = %1</source>
         <comment>For log</comment>
         <translation>- module name      = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1016"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1032"/>
         <source>- module short name  = %1</source>
         <comment>For log</comment>
         <translation>- module short name  = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1017"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1033"/>
         <source>- module copyright = %1</source>
         <comment>For log</comment>
         <translation>- module copyright = %1</translation>
     </message>
     <message>
-        <location filename="../../src/main/mainwindow.cpp" line="1102"/>
+        <location filename="../../src/main/mainwindow.cpp" line="1118"/>
         <source>Open file in external application: %1 %2</source>
         <comment>For log</comment>
         <translation>Открытие файла внешним приложением: %1 %2</translation>
@@ -4747,6 +4757,134 @@ p, li { white-space: pre-wrap; }
         <location filename="../../src/cpp/common/filecommon.cpp" line="41"/>
         <source>Chapter</source>
         <translation>Глава</translation>
+    </message>
+</context>
+<context>
+    <name>RightPanel</name>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="14"/>
+        <source>Right panel</source>
+        <translation>Правая панель</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="24"/>
+        <source>Info project</source>
+        <translation>Информация о проекте</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="33"/>
+        <source>Bible name:</source>
+        <translation>Название модуля:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="47"/>
+        <source>Short module name:</source>
+        <translation>Короткое название модуля:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="61"/>
+        <source>Author:</source>
+        <translation>Автор:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="68"/>
+        <source>Categories:</source>
+        <translation>Категории:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="82"/>
+        <source>Type Module:</source>
+        <translation>Тип модуля:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="96"/>
+        <source>Version:</source>
+        <translation>Версия:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="110"/>
+        <source>Language:</source>
+        <translation>Язык:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="124"/>
+        <source>Chapter zero:</source>
+        <translation>Нулевая глава:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="138"/>
+        <source>Apocrypha:</source>
+        <translation>Апокриф:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="152"/>
+        <source>Old Testament:</source>
+        <translation>Ветхий Завет:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="166"/>
+        <source>New Testament:</source>
+        <translation>Новый Завет:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="180"/>
+        <source>Encoding:</source>
+        <translation>Кодировка:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="194"/>
+        <source>Install fonts:</source>
+        <translation>Добавить шрифты:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="208"/>
+        <source>Desired font name:</source>
+        <translation>Шрифт для текста:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="222"/>
+        <source>Desired font path:</source>
+        <translation>Путь к нему:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="236"/>
+        <source>Desired UI font:</source>
+        <translation>Шрифт заголовков:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="250"/>
+        <source>Strong numbers:</source>
+        <translation>Номера Стронга:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="264"/>
+        <source>Strong numbers dir:</source>
+        <translation>Папка номеров:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="278"/>
+        <source>English Psalms:</source>
+        <translation>Англ. Псалмы:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="292"/>
+        <source>Sound dir:</source>
+        <translation>Папка звуков:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="306"/>
+        <source>Use chapter head:</source>
+        <translation>Показывать заголовки глав:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="320"/>
+        <source>Use right alignment:</source>
+        <translation>Правое выравнивание:</translation>
+    </message>
+    <message>
+        <location filename="../../src/panel/rightpanel.ui" line="341"/>
+        <source>HTML-Filter:</source>
+        <translation>HTML-фильтр:</translation>
     </message>
 </context>
 <context>

@@ -100,7 +100,7 @@ MainWindow::MainWindow():
     dwRight -> setObjectName(QString("rightpanel"));
     rightDock = new RightPanel(dwRight, this);
     dwRight -> setWidget(rightDock);
-    dwRight->setMaximumWidth (250);
+    dwRight->setMaximumWidth (350);
     addDockWidget(Qt::RightDockWidgetArea, dwRight);
 
 
@@ -126,7 +126,6 @@ MainWindow::MainWindow():
         dwLeft -> hide();
     if (config -> rightPanelHidden())
         dwRight -> hide();
-
 
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));
