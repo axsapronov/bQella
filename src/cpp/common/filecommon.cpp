@@ -20,6 +20,7 @@ QStringList getChapterList()
             files << entryAbsPath;
         }
     }
+//    files.sort();
 //        qDebug() << " files " << files << "\n";
     return files;
 }
@@ -28,7 +29,9 @@ QStringList getChapterList()
 QStringList  getChapterComboText()
 {
     QStringList list = getChapterList();
+    list.sort();
     QStringList chapters;
+//    qDebug() << list;
     for (int index = 0; index < list.size(); index++)
     {
         QString str = list.at(index);
@@ -39,10 +42,9 @@ QStringList  getChapterComboText()
                 .remove("_chapter_")
                 .remove("_");
         str = QObject::tr("Chapter") + " " + incstr(str,3," ");
-
         chapters << str;
     }
-    //    qDebug() << "chapters" << chapters << "\n";
+//    qDebug() << "chapters" << chapters << "\n";
     return chapters;
 }
 ///-------------------------------------------------------

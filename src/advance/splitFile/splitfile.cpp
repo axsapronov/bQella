@@ -17,24 +17,24 @@ SplitFile::SplitFile(QWidget *parent) :
     createConnect();
 
     setData();
-//    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
-//    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
-//    ui->LEFilePath->setText(str);
+    //    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
+    //    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
+    //    ui->LEFilePath->setText(str);
 
     QString tag = "<h4>";
-//     QString tag = "<A NAME";
+    //     QString tag = "<A NAME";
     ui->LETagSplit->setText(tag);
 
-//    QStringListModel *modelEncoding;
-//    modelEncoding = new QStringListModel(getFillEncoding(), this);
-//    ui->comBEncoding->setModel(modelEncoding);
+    //    QStringListModel *modelEncoding;
+    //    modelEncoding = new QStringListModel(getFillEncoding(), this);
+    //    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
-//    ui->cBAutoOn->setChecked(false);
-    ui->cBAutoOn->setChecked(true);
+    ui->cBAutoOn->setChecked(false);
+    //    ui->cBAutoOn->setChecked(true);
     AutoSplitOn();
     showFileText();
-        AutoEstimate();
+    AutoEstimate();
     AutoRun();
 }
 //--------------------------------------------
@@ -49,7 +49,7 @@ void SplitFile::createConnect()
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBShow, SIGNAL(clicked()), this, SLOT(showFileText()));
 
-//    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
+    //    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
 
     /// auto
     connect(ui->cBAutoOn, SIGNAL(stateChanged(int)), this, SLOT(AutoSplitOn()));
@@ -209,7 +209,7 @@ void SplitFile::AutoRun()
             text != " " &&
             text != "\n" &&
             text != TagOfFile
-       )
+            )
         textinput.remove(text);
 
     for (int i = 1; i < countFiles+1; i++)

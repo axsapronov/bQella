@@ -30,6 +30,7 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(deletePreviewFolder()));
     setData();
+//    debug();
 }
 ///------------------------------------------------
 ImportBookDialog::~ImportBookDialog()
@@ -44,30 +45,22 @@ void ImportBookDialog::setData()
     modelShortName = new QStringListModel(getFillShortName(), this);
     ui->CBShortName->setModel(modelShortName);
 
-//    QStringListModel *modelEncoding;
-//    modelEncoding = new QStringListModel(getFillEncoding(), this);
-//    ui->CBEncoding->setModel(modelEncoding);
 
-    //    QString htmlfilter = "<br> <pre> </pre>"
-    //            " <span </span> <font </font> <sup> </sup> <sub> </sub> <center> </center> <strong> </strong>"
-    //            " <em> </em> <table </table>"
-    //            " <tr <tr> </tr> <td <td> </td> <th> <th </th> <hr <hr>";
+}
+///------------------------------------------------
+void ImportBookDialog::debug()
+{
     //    ui->LEHtmlFilter->setText(htmlfilter);
     //    ui->CBShortName->acceptDrops()"lol");
-//    ui->SBCount->setValue(4);
-//    ui->LEFilePath->setText("/home/files/Documents/Bible/unrar/my/1Co.htm");
+    //    ui->SBCount->setValue(4);
+    QString str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/41_mark.htm";
+    ui->LEFilePath->setText(str);
 
-        ui->LETagChapter->setText("<h4>");
-//    ui->LETagChapter->setText("<A NAME");
+    ui->LETagChapter->setText("<h4>");
+    //    ui->LETagChapter->setText("<A NAME");
     ui->LETagVerse->setText("<p>");
-
-//    ui->LEFullName->setText("text");
-    //    ui->LETextAdnvanceReplace->setText("text:b;first:two;");
-
-    //test
-    //    ui->LEFullName->setText("test12");
-    //    ui->SBCount->setValue(3);
 }
+
 ///------------------------------------------------
 void ImportBookDialog::browse()
 {
@@ -83,7 +76,7 @@ void ImportBookDialog::browse()
         ui->LEFilePath->setText(fileName);
         ui->LAEncoding->setText(getEncodingFromFile(fileName));
         estimate();
-//        qDebug() << getEncodingFromFile(fileName);
+        //        qDebug() << getEncodingFromFile(fileName);
     }
 }
 ///------------------------------------------------
@@ -152,7 +145,7 @@ void ImportBookDialog::saveData()
 {
     bookShortName = ui->CBShortName->currentText();
     bookFullName = ui->LEFullName->text();
-//    bookEncoding = ui->CBEncoding->currentText();
+    //    bookEncoding = ui->CBEncoding->currentText();
     bookEncoding = ui->LAEncoding->text();
 
     bookTagChapter = ui->LETagChapter->text();
@@ -221,7 +214,7 @@ void ImportBookDialog::showPropertiesDialog()
 ///------------------------------------------------
 void ImportBookDialog::showPreview()
 {
-//    prevbook->setEncoding(ui->CBEncoding->currentText());
+    //    prevbook->setEncoding(ui->CBEncoding->currentText());
     estimate();
     prevbook->setEncoding(ui->LAEncoding->text());
     prevbook->setData(ui->LEFilePath->text());

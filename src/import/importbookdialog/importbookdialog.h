@@ -77,6 +77,8 @@ private:
       */
     void accept();
     void saveData();
+
+    void debug();
     QStringList getReplaceList();
 
     QString bookShortName, bookFullName, bookHtmlFilter, projectfile;

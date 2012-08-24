@@ -14,11 +14,17 @@ PreviewBook::PreviewBook(QWidget *parent) :
 {
     ui->setupUi(this);
     createConnects();
+    debug();
 }
 ///------------------------------------------------
 PreviewBook::~PreviewBook()
 {
     delete ui;
+}
+///------------------------------------------------
+void PreviewBook::debug()
+{
+
 }
 ///------------------------------------------------
 void PreviewBook::setData(QString filepath)
@@ -27,7 +33,7 @@ void PreviewBook::setData(QString filepath)
     ui->LAViewFile_2->setText(filepath);
 
     setPathToBook(filepath);
-//    qDebug() << "getEncoding()" << getEncoding();
+    //    qDebug() << "getEncoding()" << getEncoding();
     QString text = getTextFromFile(filepath, getEncoding());
 
     ui->tBHtmlBook->setPlainText(text);
@@ -74,7 +80,7 @@ void PreviewBook::accept()
 void PreviewBook::removePreviewFiles()
 {
     QString outputPath = Config::configuration()->PrjDir() + "_Preview_/_Preview_";
-//    qDebug() << "outputpath = " << outputPath;
+    //    qDebug() << "outputpath = " << outputPath;
     QDir dir(outputPath);
     if (dir.exists())
     {
@@ -96,6 +102,7 @@ void PreviewBook::removePreviewFiles()
 void PreviewBook::createBookPreviewFunc()
 {
     QStringList chapters = getChapterComboText();
+    chapterList = getChapterList();
 
     /// add list to comboBox
     ui->comBChapters_1->addItems(chapters);
@@ -104,6 +111,9 @@ void PreviewBook::createBookPreviewFunc()
     ui->comBChapters_1->model()->sort(0);
     ui->comBChapters_2->model()->sort(0);
 
+    ui->comBChapters_1->setCurrentIndex(0);
+    ui->comBChapters_2->setCurrentIndex(0);
+
     createConnects();
     if (!chapters.isEmpty())
         showChapter(0);
@@ -111,16 +121,38 @@ void PreviewBook::createBookPreviewFunc()
 ///------------------------------------------------------------------
 void PreviewBook::showChapter(int count)
 {
-    QString textchapter = getTextFromFile(getChapterList().at(count), getEncoding());
-    ui->comBChapters_1->setCurrentIndex(count);
-    ui->comBChapters_2->setCurrentIndex(count);
-    ui->tBHtmlChapter->setPlainText(textchapter);
-    ui->tbViewChapter->setHtml(textchapter);
+
+    bool flag = false;
+    if (ui->comBChapters_1->currentIndex() != count)
+    {
+        flag = true;
+        ui->comBChapters_1->setCurrentIndex(count);
+    }
+    if (ui->comBChapters_2->currentIndex() != count)
+    {
+        flag = true;
+        ui->comBChapters_2->setCurrentIndex(count);
+    }
+
+    if (flag)
+    {
+        int pos;
+        for (int i = 0; i < chapterList.size(); ++i)
+        {
+            if (QString(chapterList.at(i)).indexOf("_" + QString::number(count+1) + ".htm") != -1)
+            {
+                pos = i;
+            }
+        }
+        QString textchapter = getTextFromFile(chapterList.at(pos), getEncoding());
+        ui->tBHtmlChapter->setPlainText(textchapter);
+        ui->tbViewChapter->setHtml(textchapter);
+    }
 }
 ///------------------------------------------------------------------
 void PreviewBook::createFolder(QString folderPath)
 {
-//    qDebug() << folderPath;
+    //    qDebug() << folderPath;
     QDir dir(folderPath);
     if (!dir.exists())
     {

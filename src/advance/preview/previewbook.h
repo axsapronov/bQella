@@ -55,13 +55,13 @@ private:
     Ui::PreviewBook *ui;
     QString pathToBook;
     QString encoding;
+    QStringList chapterList;
 
     /**
       @fucntion
       */
     void accept();
     void createConnects();
-
     void createFolder(QString filepath);
 
 
@@ -69,8 +69,9 @@ private:
 //      @fucntion
 //      */
 //    void reject();
-
     void removePreviewFiles();
+
+    void debug();
 
 };
 
