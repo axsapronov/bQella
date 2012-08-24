@@ -296,7 +296,7 @@ void Import::importBook(QString pathName2, QString FullName, QString ShortName, 
             QString chapterfile = incstr(titlechap, GL_LENGT_ITEM_STRING, "_");
             titlechap = incstr(titlechap, GL_LENGT_ITEM_STRING, " ");
             QString pathchap = pathName;
-            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + "." + ".htm");
+            pathchap =  "./book_" + chunksnameforchapter + QString("_chapter_" + chapterfile + ".htm");
             QString textchap = QString("<section title=\"" + Qt::escape(titlechap) + "\" ref=\"" + Qt::escape(pathchap) + "\" icon=\"\">");
             addContentToProjectFile(textchap , true);
             QString text ="";
