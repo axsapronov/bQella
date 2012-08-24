@@ -83,6 +83,8 @@ public:
     bool validProfileName() const;
     void hideSideBar( bool b );
     bool sideBarHidden() const;
+    void hideRightPanel ( bool b );
+    bool rightPanelHidden() const;
     QStringList mimePaths();
     QString getProjectProperty(QString prop, QString prjFN); //especially for not current projects. Gets projects' property without loading.
     void toAppLog(int logLevel, QString msg);
@@ -270,7 +272,9 @@ private:
     QByteArray winGeometry;
     qreal pointFntSize;
     int sideBar;
+    int rightPanel;
     bool hideSidebar;
+    bool hideRightpanel;
     bool rebuildDocs;
     FontSettings m_fontSettings;
 

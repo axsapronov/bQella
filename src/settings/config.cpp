@@ -272,6 +272,10 @@ void Config::hideSideBar( bool b ) {  hideSidebar = b; }
 //-------------------------------------------------
 bool Config::sideBarHidden() const {  return hideSidebar; }
 
+
+void Config::hideRightPanel( bool b ) {  hideRightpanel = b; }
+bool Config::rightPanelHidden() const {  return hideRightpanel; }
+
 //-------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN)
 {

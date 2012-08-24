@@ -24,6 +24,7 @@
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
 #include "helpdialog.h"
+#include "rightpanel.h"
 #include "config.h"
 #include "pcommon.h"
 #include "filecommon.h"
@@ -83,16 +84,24 @@ MainWindow::MainWindow():
 
     updateProfileSettings();
 
-    dw = new QDockWidget(this);
-    dw -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    dw -> setWindowTitle(tr("Project manager"));
-    dw -> setObjectName(QString("sidebar"));
+    dwLeft = new QDockWidget(this);
+    dwLeft -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dwLeft -> setWindowTitle(tr("Project manager"));
+    dwLeft -> setObjectName(QString("sidebar"));
+    helpDock = new HelpDialog(dwLeft, this);
+    dwLeft -> setWidget(helpDock);
+    dwLeft ->setMaximumWidth (250);
+    addDockWidget(Qt::LeftDockWidgetArea, dwLeft);
 
-    helpDock = new HelpDialog(dw, this);
-//    helpDock->initialize();
-    dw -> setWidget(helpDock);
-    dw->setMaximumWidth (250);
-    addDockWidget(Qt::LeftDockWidgetArea, dw);
+
+    dwRight = new QDockWidget(this);
+    dwRight -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dwRight -> setWindowTitle(tr("Right panel"));
+    dwRight -> setObjectName(QString("rightpanel"));
+    rightDock = new RightPanel(dwRight, this);
+    dwRight -> setWidget(rightDock);
+    dwRight->setMaximumWidth (250);
+    addDockWidget(Qt::RightDockWidgetArea, dwRight);
 
 
     frdialog = new FRDialog();
@@ -114,7 +123,10 @@ MainWindow::MainWindow():
     restoreGeometry(config -> windowGeometry());
     restoreState(config -> mainWindowState());
     if (config -> sideBarHidden())
-        dw -> hide();
+        dwLeft -> hide();
+    if (config -> rightPanelHidden())
+        dwRight -> hide();
+
 
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));

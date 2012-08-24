@@ -50,7 +50,8 @@ DEPENDPATH += \
     src/advance/splitFile \
     src/advance/preview \
     src/cpp/common \
-    src/h/common
+    src/h/common \
+    src/panel
 
 
 INCLUDEPATH += \
@@ -83,7 +84,8 @@ INCLUDEPATH += \
     src/topicchooser \
     src/advance/splitFile \
     src/advance/preview \
-    src/h/common
+    src/h/common \
+    src/panel
 
 
 FORMS += \
@@ -108,7 +110,8 @@ FORMS += \
      strongproperty.ui \
      splitfile.ui \
     src/advance/preview/previewbook.ui \
-    src/advance/preview/previewmodule.ui
+    src/advance/preview/previewmodule.ui \
+    src/panel/rightpanel.ui
 
 SOURCES +=  \
      config.cpp \
@@ -147,7 +150,8 @@ SOURCES +=  \
      strongproperty.cpp \
      splitfile.cpp \
     src/advance/preview/previewbook.cpp \
-    src/advance/preview/previewmodule.cpp
+    src/advance/preview/previewmodule.cpp \
+    src/panel/rightpanel.cpp
 
 HEADERS += \
      docproperty.h \
@@ -185,7 +189,8 @@ HEADERS += \
      strongproperty.h \
      splitfile.h \
     src/advance/preview/previewbook.h \
-    src/advance/preview/previewmodule.h
+    src/advance/preview/previewmodule.h \
+    src/panel/rightpanel.h
 
 RESOURCES += \
     resources/resources.qrc
