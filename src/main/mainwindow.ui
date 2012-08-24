@@ -726,6 +726,9 @@
    <property name="toolTip">
     <string>Save project as...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="actionLang_en">
    <property name="checkable">

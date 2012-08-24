@@ -704,7 +704,7 @@ void MainWindow::ProjectOpen(QString fileName)
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pem)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_PROJECT_FILE);
