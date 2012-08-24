@@ -104,15 +104,15 @@ MainWindow::MainWindow():
     addDockWidget(Qt::RightDockWidgetArea, dwRight);
 
 
+
+
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
     importdi = new ImportBookDialog();
     assistant = new Assistant;
     contbook = new ContentsBook();
-
     splitFileDialog = new SplitFile();
-
     prjprop = new ProjectProperties();
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
@@ -156,6 +156,7 @@ MainWindow::MainWindow():
 //        ui.lEImportFile->setText(importstr);
 
     this->showMaximized ();
+    rightDock->refreshInfo();
 //    showSplitFile();
 //    importdi->showPreview();
 //    importm->showPreview();
@@ -697,6 +698,7 @@ void MainWindow::ProjectOpen(QString fileName)
         projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
+        rightDock->refreshInfo();
     }
 }
 
