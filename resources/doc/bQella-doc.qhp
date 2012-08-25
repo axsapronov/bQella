@@ -97,7 +97,6 @@
             <file>./resources/rus/preview/module.html</file>
             <file>./resources/rus/preview/book.html</file>
 
-
             <file>./resources/howto/index.html</file>
             <file>./resources/howto/newmod/index.html</file>
             <file>./resources/howto/newmod/step1.html</file>
@@ -130,6 +129,44 @@
 
             <file>./resources/images/chapter/add/chapter_add_1.png</file>
             <file>./resources/images/chapter/add/chapter_add_2.png</file>
+
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_1.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_2.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_3.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_4.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_5.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_6.png</file>
+
+            <file>./resources/images/other/split/split_1.png</file>
+            <file>./resources/images/other/split/split_2.png</file>
+            <file>./resources/images/other/split/split_3.png</file>
+            <file>./resources/images/other/split/split_4.png</file>
+            <file>./resources/images/other/split/split_5.png</file>
+            <file>./resources/images/other/split/split_6.png</file>
+            <file>./resources/images/other/split/split_7.png</file>
+            <file>./resources/images/other/split/split_8.png</file>
+
+            <file>./resources/images/other/strongs/strongs_1.png</file>
+            <file>./resources/images/other/strongs/strongs_2.png</file>
+            <file>./resources/images/other/strongs/strongs_3.png</file>
+            <file>./resources/images/other/strongs/strongs_4.png</file>
+            <file>./resources/images/other/strongs/strongs_5.png</file>
+            <file>./resources/images/other/strongs/strongs_6.png</file>
+            <file>./resources/images/other/strongs/strongs_7.png</file>
+            <file>./resources/images/other/strongs/strongs_8.png</file>
+            <file>./resources/images/other/strongs/strongs_9.png</file>
+
+            <file>./resources/images/preview/book/preview_book_1.png</file>
+            <file>./resources/images/preview/book/preview_book_2.png</file>
+            <file>./resources/images/preview/book/preview_book_3.png</file>
+            <file>./resources/images/preview/book/preview_book_4.png</file>
+            <file>./resources/images/preview/book/preview_book_5.png</file>
+
+            <file>./resources/images/preview/module/preview_module_1.png</file>
+            <file>./resources/images/preview/module/preview_module_2.png</file>
+            <file>./resources/images/preview/module/preview_module_3.png</file>
+            <file>./resources/images/preview/module/preview_module_4.png</file>
+            <file>./resources/images/preview/module/preview_module_5.png</file>
 
             <file>./resources/images/chapter/open/chapter_open_1.png</file>
             <file>./resources/images/chapter/open/chapter_open_2.png</file>
