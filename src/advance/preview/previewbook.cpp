@@ -2,6 +2,7 @@
 #include "ui_previewbook.h"
 
 #include "pcommon.h"
+#include "filecommon.h"
 #include "config.h"
 #include "importdialog.h"
 
@@ -13,11 +14,17 @@ PreviewBook::PreviewBook(QWidget *parent) :
 {
     ui->setupUi(this);
     createConnects();
+    debug();
 }
 ///------------------------------------------------
 PreviewBook::~PreviewBook()
 {
     delete ui;
+}
+///------------------------------------------------
+void PreviewBook::debug()
+{
+
 }
 ///------------------------------------------------
 void PreviewBook::setData(QString filepath)
@@ -26,14 +33,23 @@ void PreviewBook::setData(QString filepath)
     ui->LAViewFile_2->setText(filepath);
 
     setPathToBook(filepath);
+    //    qDebug() << "getEncoding()" << getEncoding();
     QString text = getTextFromFile(filepath, getEncoding());
 
     ui->tBHtmlBook->setPlainText(text);
     ui->tBViewBook->setHtml(text);
 
+    QString path = Config::configuration()->PrjDir()+"_Preview_/";
+    QDir dir(path);
+    dir.mkdir(path);
+
     /// if dir is exist then remove files in dir
     /// if not create folder
-    createFolder(filepath);
+    QString folderpath = Config::configuration()->PrjDir() +
+            "_Preview_" +
+            "/" +
+            "_Preview_/";
+    createFolder(folderpath);
 }
 ///-------------------------------------------------------------------
 //void PreviewBook::reject()
@@ -56,20 +72,21 @@ void PreviewBook::accept()
     ui->tBViewBook->clear();
     ui->tbViewChapter->clear();
 
+    emit deletePreviewFolder();
+
     QWidget::hide();  //close dialog
 }
 ///-------------------------------------------------------------------
 void PreviewBook::removePreviewFiles()
 {
-    QString outputPath = Config::configuration()->CurPrjDir() + "/" + "_Preview_/";
-//    qDebug() << "outputpath = " << outputPath;
+    QString outputPath = Config::configuration()->PrjDir() + "_Preview_/_Preview_";
+    //    qDebug() << "outputpath = " << outputPath;
     QDir dir(outputPath);
     if (dir.exists())
     {
         /// get path and outpath
-        QString dira = QString(outputPath).remove(QString("/") + QString("_Preview_"));
+        QString dira = Config::configuration()->PrjDir() + "_Preview_/";
         QDir dir2(dira);
-
         /// get file list and remove files
         QStringList lstFiles = dir.entryList(QDir::Files);
         foreach (QString entry, lstFiles)
@@ -85,10 +102,15 @@ void PreviewBook::removePreviewFiles()
 void PreviewBook::createBookPreviewFunc()
 {
     QStringList chapters = getChapterComboText();
+    chapterList = getChapterList();
 
     /// add list to comboBox
     ui->comBChapters_1->addItems(chapters);
     ui->comBChapters_2->addItems(chapters);
+
+    ui->comBChapters_1->model()->sort(0);
+    ui->comBChapters_2->model()->sort(0);
+
     createConnects();
     if (!chapters.isEmpty())
         showChapter(0);
@@ -96,32 +118,43 @@ void PreviewBook::createBookPreviewFunc()
 ///------------------------------------------------------------------
 void PreviewBook::showChapter(int count)
 {
-    QString textchapter = getTextFromFile(getChapterList().at(count), getEncoding());
-    ui->comBChapters_1->setCurrentIndex(count);
-    ui->comBChapters_2->setCurrentIndex(count);
-    ui->tBHtmlChapter->setPlainText(textchapter);
-    ui->tbViewChapter->setHtml(textchapter);
+
+    bool flag = false;
+    if (ui->comBChapters_1->currentIndex() != count)
+    {
+        flag = true;
+        ui->comBChapters_1->setCurrentIndex(count);
+    }
+    if (ui->comBChapters_2->currentIndex() != count)
+    {
+        flag = true;
+        ui->comBChapters_2->setCurrentIndex(count);
+    }
+
+    if (flag)
+    {
+        int pos;
+        for (int i = 0; i < chapterList.size(); ++i)
+        {
+            if (QString(chapterList.at(i)).indexOf("_" + QString::number(count+1) + ".htm") != -1)
+            {
+                pos = i;
+            }
+        }
+        QString textchapter = getTextFromFile(chapterList.at(pos), getEncoding());
+        ui->tBHtmlChapter->setPlainText(textchapter);
+        ui->tbViewChapter->setHtml(textchapter);
+    }
 }
 ///------------------------------------------------------------------
-void PreviewBook::createFolder(QString filepath)
+void PreviewBook::createFolder(QString folderPath)
 {
-    QString path = Config::configuration()->CurPrjDir();
-    if (Config::configuration()->CurPrjDir().isEmpty())
-    {
-        path = QString(filepath).remove(QString(filepath).split("/").last())
-                .remove("/_Preview_/");
-    }
-    QString outputPath = path + "/" + "_Preview_/";
-
-    QDir dir(outputPath);
+    //    qDebug() << folderPath;
+    QDir dir(folderPath);
     if (!dir.exists())
     {
         /// create folder
-        QString last = QString(outputPath).remove(outputPath.length()-1,1);
-        last =  QString(last).split("/").last();
-        QString dira = QString(outputPath).remove("/" + last);
-        QDir dir2(dira);
-        dir2.mkdir(last);
+        dir.mkdir(folderPath);
     }
     else
     {

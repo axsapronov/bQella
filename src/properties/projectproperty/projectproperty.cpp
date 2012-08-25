@@ -25,6 +25,7 @@
 #include "config.h"
 #include "mainwindow.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QFileDialog>
 #include <QFileInfo>

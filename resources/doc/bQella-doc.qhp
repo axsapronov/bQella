@@ -30,6 +30,15 @@
                     <section title="Удалить главу" ref="./resources/rus/chapter/delete.html"></section>
                     <section title="Открыть главу" ref="./resources/rus/chapter/open.html"></section>
                 </section>
+                <section title="Предварительный просмотр" ref="./resources/rus/preview/index.html">
+                    <section title="Предварительный просмотр модуля" ref="./resources/rus/preview/module.html"></section>
+                    <section title="Предварительный просмотр книги" ref="./resources/rus/preview/book.html"></section>
+                </section>
+                <section title="Другое" ref="./resources/rus/other/index.html">
+                    <section title="Автоопределение кодировки" ref="./resources/rus/other/autodetectencoding.html"></section>
+                    <section title="Номера Стронга" ref="./resources/rus/other/strongs.html"></section>
+                    <section title="Резалка файлов" ref="./resources/rus/other/split.html"></section>
+                </section>
             </section>
             <section title="Пошаговые инструкции" ref="./resources/howto/index.html">
                 <section title="Создание модуля с нуля" ref="./resources/howto/newmod/index.html">
@@ -42,27 +51,14 @@
                     <section title="Шаг 1" ref="./resources/howto/expmod/step1.html"></section>
                 </section>
             </section>
-            </toc>
+        </toc>
         <keywords>
-            <keyword name="Display" ref="./resources/old/index_ru.html"/>
-            <keyword name="Rich text" ref="./resources/old/index_ru.html"/>
-            <keyword name="Plain text" ref="./resources/old/index_ru.html"/>
-            <keyword name="Find" ref="./resources/old/findfile.html"/>
-            <keyword name="File menu" ref="./resources/old/findfile.html"/>
-            <keyword name="File name" ref="./resources/old/filedialog.html"/>
-            <keyword name="File dialog" ref="./resources/old/filedialog.html"/>
-            <keyword name="File globbing" ref="./resources/old/wildcardmatching.html"/>
-            <keyword name="Wildcard matching" ref="./resources/old/wildcardmatching.html"/>
-            <keyword name="Wildcard syntax" ref="./resources/old/wildcardmatching.html"/>
-            <keyword name="Browse" ref="./resources/old/browse.html"/>
-            <keyword name="Directory" ref="./resources/old/browse.html"/>
-            <keyword name="Open" ref="./resources/old/openfile.html"/>
-            <keyword name="Select" ref="./resources/old/openfile.html"/>
-            </keywords>
+            <keyword name="Rich text" ref="./resources/rus/index_ru.html"/>
+            <keyword name="Plain text" ref="./resources/rus/index_ru.html"/>
+        </keywords>
         <files>
             <file>./resources/rus/index_ru.html</file>
             <file>./resources/index_ru.html</file>
-            <file>resources/images/old/icon.png</file>
 
             <file>./resources/rus/interface/index.html</file>
             <file>./resources/rus/interface/menu.html</file>
@@ -90,6 +86,16 @@
             <file>./resources/rus/chapter/open.html</file>
 
             <file>./resources/eng/index_en.html</file>
+
+
+            <file>./resources/rus/other/index.html</file>
+            <file>./resources/rus/other/split.html</file>
+            <file>./resources/rus/other/strongs.html</file>
+            <file>./resources/rus/other/autodetectencoding.html</file>
+
+            <file>./resources/rus/preview/index.html</file>
+            <file>./resources/rus/preview/module.html</file>
+            <file>./resources/rus/preview/book.html</file>
 
             <file>./resources/howto/index.html</file>
             <file>./resources/howto/newmod/index.html</file>
@@ -123,6 +129,44 @@
 
             <file>./resources/images/chapter/add/chapter_add_1.png</file>
             <file>./resources/images/chapter/add/chapter_add_2.png</file>
+
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_1.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_2.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_3.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_4.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_5.png</file>
+            <file>./resources/images/other/autodetectencoding/auto_detect_encoding_6.png</file>
+
+            <file>./resources/images/other/split/split_1.png</file>
+            <file>./resources/images/other/split/split_2.png</file>
+            <file>./resources/images/other/split/split_3.png</file>
+            <file>./resources/images/other/split/split_4.png</file>
+            <file>./resources/images/other/split/split_5.png</file>
+            <file>./resources/images/other/split/split_6.png</file>
+            <file>./resources/images/other/split/split_7.png</file>
+            <file>./resources/images/other/split/split_8.png</file>
+
+            <file>./resources/images/other/strongs/strongs_1.png</file>
+            <file>./resources/images/other/strongs/strongs_2.png</file>
+            <file>./resources/images/other/strongs/strongs_3.png</file>
+            <file>./resources/images/other/strongs/strongs_4.png</file>
+            <file>./resources/images/other/strongs/strongs_5.png</file>
+            <file>./resources/images/other/strongs/strongs_6.png</file>
+            <file>./resources/images/other/strongs/strongs_7.png</file>
+            <file>./resources/images/other/strongs/strongs_8.png</file>
+            <file>./resources/images/other/strongs/strongs_9.png</file>
+
+            <file>./resources/images/preview/book/preview_book_1.png</file>
+            <file>./resources/images/preview/book/preview_book_2.png</file>
+            <file>./resources/images/preview/book/preview_book_3.png</file>
+            <file>./resources/images/preview/book/preview_book_4.png</file>
+            <file>./resources/images/preview/book/preview_book_5.png</file>
+
+            <file>./resources/images/preview/module/preview_module_1.png</file>
+            <file>./resources/images/preview/module/preview_module_2.png</file>
+            <file>./resources/images/preview/module/preview_module_3.png</file>
+            <file>./resources/images/preview/module/preview_module_4.png</file>
+            <file>./resources/images/preview/module/preview_module_5.png</file>
 
             <file>./resources/images/chapter/open/chapter_open_1.png</file>
             <file>./resources/images/chapter/open/chapter_open_2.png</file>

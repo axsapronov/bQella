@@ -34,10 +34,10 @@
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 
-#define GL_PROG_VERSION_STR	"0.1"
-#define GL_PROG_BUILD_STR	"2012.08.13"
+#define GL_PROG_VERSION_STR	"0.11"
+#define GL_PROG_BUILD_STR	"2012.08.25"
 #define GL_PROG_NAME "bQella"
-#define GL_PROG_AUTHOR "Alexander Sapronov"
+#define GL_PROG_AUTHOR "Sapronov Alexander"
 
 
 //.pem  = project module
@@ -83,6 +83,8 @@ public:
     bool validProfileName() const;
     void hideSideBar( bool b );
     bool sideBarHidden() const;
+    void hideRightPanel ( bool b );
+    bool rightPanelHidden() const;
     QStringList mimePaths();
     QString getProjectProperty(QString prop, QString prjFN); //especially for not current projects. Gets projects' property without loading.
     void toAppLog(int logLevel, QString msg);
@@ -270,7 +272,9 @@ private:
     QByteArray winGeometry;
     qreal pointFntSize;
     int sideBar;
+    int rightPanel;
     bool hideSidebar;
+    bool hideRightpanel;
     bool rebuildDocs;
     FontSettings m_fontSettings;
 

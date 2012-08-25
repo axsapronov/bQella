@@ -25,6 +25,7 @@
 
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QProgressDialog>
 #include <QStringListModel>

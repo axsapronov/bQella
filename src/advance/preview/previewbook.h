@@ -18,6 +18,7 @@ class PreviewBook : public QDialog
 
 signals:
     void createBookPreview();
+    void deletePreviewFolder();
 public:
     explicit PreviewBook(QWidget *parent = 0);
     ~PreviewBook();
@@ -54,13 +55,13 @@ private:
     Ui::PreviewBook *ui;
     QString pathToBook;
     QString encoding;
+    QStringList chapterList;
 
     /**
       @fucntion
       */
     void accept();
     void createConnects();
-
     void createFolder(QString filepath);
 
 
@@ -68,8 +69,9 @@ private:
 //      @fucntion
 //      */
 //    void reject();
-
     void removePreviewFiles();
+
+    void debug();
 
 };
 

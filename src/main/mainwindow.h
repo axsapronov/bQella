@@ -53,6 +53,7 @@ class Assistant;
 class ImportBookDialog;
 class ContentsBook;
 class SplitFile;
+class RightPanel;
 QT_END_NAMESPACE
 //class ContentsModule;
 
@@ -155,6 +156,7 @@ private:
     //ProjectSettings *prjset;
     AppSettings *appsets;
     HelpDialog *helpDock;
+    RightPanel *rightDock;
     FRDialog *frdialog;
     Assistant *assistant;
 
@@ -172,7 +174,7 @@ private:
     AboutDialog *aboutd;    // about dialog
 
 
-    QDockWidget *dw;
+    QDockWidget *dwLeft, *dwRight;
 
     static QList<MainWindow*> windows;
     //    QMap<QAction*,QString> *goActionDocFiles;

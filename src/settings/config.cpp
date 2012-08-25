@@ -24,6 +24,7 @@
 #include "profile.h"
 #include "docuparser.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -70,7 +71,8 @@ void Config::loadProject(const QString &projectFileName)
     QFileInfo fi(prjFN);
 //    qDebug() << "Debug: Config::loadProject() " << "prjfn = " << prjFN;
 
-    if ( !(fi.exists() && fi.isFile()) ){
+    if ( !(fi.exists() && fi.isFile()) )
+    {
         qWarning( (QString("Project does not exist2: ") + prjFN).toUtf8().constData() );
         toAppLog(2, "- project does not exist: " + prjFN);
         //QMessageBox::warning(this, "No project", "Project does not exist:\n"+ prjFN, QMessageBox::Ok, QMessageBox::Ok); //only for QWidget child, but class "Config" is not.
@@ -83,21 +85,23 @@ void Config::loadProject(const QString &projectFileName)
     setCurProject(prjFN);
     setCurPrjDir(fi.absolutePath());
     DocuParser *parser = DocuParser::createParser( prjFN );
-    if (!parser) {
+    if (!parser)
+    {
         qWarning( (QString("Failed to create parser for file: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- failed to create parser for file: " + prjFN);
     }
-    DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
+    DocuParserPEM *profileParser = static_cast<DocuParserPEM*>(parser);
     QFile file(prjFN);
     parser -> parse(&file);
     profil = profileParser -> profile();
-    if (!profil) {
+    if (!profil)
+    {
         qWarning( (QString("Config::loadProject(), no profile in: ") + prjFN).toAscii().constData() );
         toAppLog(2, "- no profile in: " + prjFN);
     }
     profil -> setDocuParser(profileParser);
     setCurFile(profil -> props["startpage"]);
-    setCurPrjSrc();
+//    setCurPrjSrc();
     prjLogFN = AppDir() + "log/" + profileName() + ".log";
 //    qDebug() << "Debug: _Config::loadProject()" << "curProject = " << curProject;
 //    qDebug() << "Debug: _Config::loadProject()" << "curFile = " << curFile;
@@ -271,6 +275,10 @@ void Config::hideSideBar( bool b ) {  hideSidebar = b; }
 //-------------------------------------------------
 bool Config::sideBarHidden() const {  return hideSidebar; }
 
+
+void Config::hideRightPanel( bool b ) {  hideRightpanel = b; }
+bool Config::rightPanelHidden() const {  return hideRightpanel; }
+
 //-------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN)
 {
@@ -290,7 +298,7 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
         toAppLog(1, "Failed to create parser for project:" + prjFN);
         return "";
     }
-    DocuParserRAP *profileParser = static_cast<DocuParserRAP*>(parser);
+    DocuParserPEM *profileParser = static_cast<DocuParserPEM*>(parser);
     parser -> parse(&file);
     profil_tmp = profileParser -> profile();
     if (!profil_tmp) {

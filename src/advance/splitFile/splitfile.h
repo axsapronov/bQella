@@ -108,6 +108,13 @@ private:
       */
     void createConnect();
 
+
+    /**
+      @function
+      Refresh info for AUTO tab
+      */
+    void refreshAutoInfo();
+
     QString TextOfFile;
     QString TagOfFile;
     int countFiles;

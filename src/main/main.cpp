@@ -24,6 +24,7 @@
 #include "mainwindow.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QApplication>
 

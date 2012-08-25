@@ -2,6 +2,7 @@
 #include "ui_previewmodule.h"
 
 #include "previewbook.h"
+#include "filecommon.h"
 #include "pcommon.h"
 #include <QDir>
 #include <QDebug>
@@ -33,9 +34,9 @@ void PreviewModule::setData(QString filepath)
 void PreviewModule::showPreviewBook()
 {
     QStringList listfiles = getListFilesFromBibleqtIni(getFileBibleqtIni());
-    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),
+                                                               getEncoding());
     QString book = listfiles.at(ui->ComBBooks->currentIndex());
-
     prevbook->setEncoding(getEncoding());
     prevbook->setData(book);
     emit createBookPreviewModule(listvaluetext.at(ui->ComBBooks->currentIndex()));
@@ -64,7 +65,7 @@ void PreviewModule::createBookPreview()
 void PreviewModule::accept()
 {
 //    qDebug() << "accept";
-//    removePreviewFiles();
+    removePreviewFiles();
     QWidget::hide();  //close dialog
 }
 ///-------------------------------------------------------------------
@@ -76,8 +77,8 @@ void PreviewModule::reject()
 ///-------------------------------------------------------------------
 void PreviewModule::removePreviewFiles()
 {
-    QString outputPath = prjDir + "/" + "_Preview_/";
-    qDebug() << "outputPath = " << outputPath;
+    QString outputPath = prjDir  + "_Preview_/";
+//    qDebug() << "outputPath = " << outputPath;
     QDir dir(outputPath);
     if (dir.exists())
     {
@@ -99,8 +100,9 @@ void PreviewModule::removePreviewFiles()
 ///-------------------------------------------------------------------
 void PreviewModule::createListBook()
 {
-
-    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni());
+    QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),
+                                                               getEncoding());
     ui->ComBBooks->clear();
     ui->ComBBooks->addItems(listvaluetext);
+//    ui->ComBBooks->model()->sort(0);
 }

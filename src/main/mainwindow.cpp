@@ -24,8 +24,10 @@
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
 #include "helpdialog.h"
+#include "rightpanel.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 #include "settings.h"
 #include "about.h"
 #include "export.h"
@@ -82,16 +84,26 @@ MainWindow::MainWindow():
 
     updateProfileSettings();
 
-    dw = new QDockWidget(this);
-    dw -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    dw -> setWindowTitle(tr("Project manager"));
-    dw -> setObjectName(QString("sidebar"));
+    dwLeft = new QDockWidget(this);
+    dwLeft -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dwLeft -> setWindowTitle(tr("Project manager"));
+    dwLeft -> setObjectName(QString("sidebar"));
+    helpDock = new HelpDialog(dwLeft, this);
+    dwLeft -> setWidget(helpDock);
+    dwLeft ->setMaximumWidth (250);
+    addDockWidget(Qt::LeftDockWidgetArea, dwLeft);
 
-    helpDock = new HelpDialog(dw, this);
-//    helpDock->initialize();
-    dw -> setWidget(helpDock);
-    dw->setMaximumWidth (250);
-    addDockWidget(Qt::LeftDockWidgetArea, dw);
+
+    dwRight = new QDockWidget(this);
+    dwRight -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dwRight -> setWindowTitle(tr("Right panel"));
+    dwRight -> setObjectName(QString("rightpanel"));
+    rightDock = new RightPanel(dwRight, this);
+    dwRight -> setWidget(rightDock);
+    dwRight->setMaximumWidth (350);
+    addDockWidget(Qt::RightDockWidgetArea, dwRight);
+
+
 
 
     frdialog = new FRDialog();
@@ -100,9 +112,7 @@ MainWindow::MainWindow():
     importdi = new ImportBookDialog();
     assistant = new Assistant;
     contbook = new ContentsBook();
-
     splitFileDialog = new SplitFile();
-
     prjprop = new ProjectProperties();
     appsets = new AppSettings(this);
     menuSign = new QMenu(tr("Insert Sign"));
@@ -113,7 +123,9 @@ MainWindow::MainWindow():
     restoreGeometry(config -> windowGeometry());
     restoreState(config -> mainWindowState());
     if (config -> sideBarHidden())
-        dw -> hide();
+        dwLeft -> hide();
+    if (config -> rightPanelHidden())
+        dwRight -> hide();
 
     tabs -> setup();
     QTimer::singleShot(0, this, SLOT(setup()));
@@ -129,6 +141,9 @@ MainWindow::MainWindow():
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
     ui.actionTagHtml->setVisible(false);
+    ui.actionTextColor->setVisible(false);
+    ui.actionImportDoc->setVisible(false);
+    ui.actionImportHTML->setVisible(false);
 
 //    importm->importModule("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 //    importm->importModule("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
@@ -140,6 +155,7 @@ MainWindow::MainWindow():
 //        ui.lEImportFile->setText(importstr);
 
     this->showMaximized ();
+    rightDock->refreshInfo();
 //    showSplitFile();
 //    importdi->showPreview();
 //    importm->showPreview();
@@ -681,13 +697,14 @@ void MainWindow::ProjectOpen(QString fileName)
         projectModified(false);
         Config::configuration() -> toPrjLog(1, "-------");
         Config::configuration() -> toPrjLog(1, tr("Project is opened.", "For log"));
+        rightDock->refreshInfo();
     }
 }
 
 //-------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pep)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pem)"));
     if ( !fileName.isEmpty() ){
         if (QFileInfo(fileName).suffix().isEmpty())
             fileName.append(GL_PROJECT_FILE);
@@ -1055,6 +1072,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> setCurPrjSrc();
     Config::configuration() -> toPrjLog(1, tr("- done", "For log"));
     helpDock->saveProject(fn);
+    rightDock->refreshInfo();
     //    ProjectOpen(fn);
 }
 

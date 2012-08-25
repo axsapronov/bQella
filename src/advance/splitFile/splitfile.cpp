@@ -2,6 +2,7 @@
 #include "ui_splitfile.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 #include <QFileDialog>
 #include <QFile>
@@ -17,23 +18,37 @@ SplitFile::SplitFile(QWidget *parent) :
 
     setData();
     //    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
+<<<<<<< HEAD
 //    QString str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/48_1john.htm";
 //    ui->LEFilePath->setText(str);
+=======
+    //    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
+    //    ui->LEFilePath->setText(str);
+>>>>>>> next
 
     QString tag = "<h4>";
+    //     QString tag = "<A NAME";
     ui->LETagSplit->setText(tag);
 
-    QStringListModel *modelEncoding;
-    modelEncoding = new QStringListModel(getFillEncoding(), this);
-    ui->comBEncoding->setModel(modelEncoding);
+    //    QStringListModel *modelEncoding;
+    //    modelEncoding = new QStringListModel(getFillEncoding(), this);
+    //    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
     ui->cBAutoOn->setChecked(false);
+<<<<<<< HEAD
 //    ui->cBAutoOn->setChecked(true);
     AutoSplitOn();
     showFileText();
 //    AutoEstimate();
     //    AutoRun();
+=======
+    //    ui->cBAutoOn->setChecked(true);
+    AutoSplitOn();
+    showFileText();
+    AutoEstimate();
+    AutoRun();
+>>>>>>> next
 }
 //--------------------------------------------
 SplitFile::~SplitFile()
@@ -47,7 +62,7 @@ void SplitFile::createConnect()
     connect(ui->pBBrowse, SIGNAL(clicked()), this, SLOT(browse()));
     connect(ui->pBShow, SIGNAL(clicked()), this, SLOT(showFileText()));
 
-    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
+    //    connect(ui->comBEncoding, SIGNAL(currentIndexChanged(int)), this, SLOT(showFileText()));
 
     /// auto
     connect(ui->cBAutoOn, SIGNAL(stateChanged(int)), this, SLOT(AutoSplitOn()));
@@ -61,8 +76,9 @@ void SplitFile::createConnect()
 //--------------------------------------------
 void SplitFile::browse()
 {
-    QString beginpath = Config::configuration ()->AppDir ();
-    //    QString beginpath = "/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8";
+    QString beginpath = Config::configuration ()->PrjDir ();
+    if (!ui->LEFilePath->text().isEmpty())
+        beginpath = getFolderFile(&QString(ui->LEFilePath->text()));
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select file"),
                                                     beginpath,
@@ -70,7 +86,13 @@ void SplitFile::browse()
     if (!fileName.isNull())
     {
         ui->LEFilePath->setText(fileName);
+<<<<<<< HEAD
         showFileText();
+=======
+        ui->LAEncoding->setText(getEncodingFromFile(fileName));
+        showFileText();
+        refreshAutoInfo();
+>>>>>>> next
     }
 }
 //--------------------------------------------
@@ -81,11 +103,14 @@ void SplitFile::setData()
 //--------------------------------------------
 void SplitFile::showFileText()
 {
-    setEncoding(ui->comBEncoding->currentText());
+    setEncoding(ui->LAEncoding->text());
     TextOfFile = getTextFromFile(ui->LEFilePath->text(), getEncoding());
+<<<<<<< HEAD
     //    showFileHtml(ui->LEFilePath->text());
     //    showFileEdit(ui->LEFilePath->text());
 
+=======
+>>>>>>> next
     showFileHtml(TextOfFile);
     showFileEdit(TextOfFile);
 }
@@ -143,6 +168,8 @@ void SplitFile::AutoSplitOn()
     ui->pBAutoBrowse->setVisible(flag);
     ui->pBAutoEstimate->setVisible(flag);
     ui->pBAutoRun->setVisible(flag);
+    if (flag)
+        AutoEstimate();
 
 }
 //-----------------------------------------------
@@ -177,11 +204,7 @@ void SplitFile::AutoRun()
     if (!dir.exists())
     {
         /// create folder
-        QString last = QString(outputPath).remove(outputPath.length()-1,1);
-        last =  QString(last).split("/").last();
-        QString dir = QString(outputPath).remove("/" + last);
-        QDir dir2(dir);
-        dir2.mkdir(last);
+        dir.mkpath(outputPath);
     }
     else
     {
@@ -195,17 +218,28 @@ void SplitFile::AutoRun()
         }
     }
 
-
     /// split file
     QString filename, text;
     QString textinput = TextOfFile;
-    int pos;
+    int pos, posNext;
 
     ///first delete
     pos = textinput.indexOf(TagOfFile);
+<<<<<<< HEAD
     text = QString(textinput).remove(pos, textinput.length()-pos);
     //    textinput.remove(text);
     textinput = removeFirst(textinput, text);
+=======
+    text = QString(textinput).remove(pos, textinput.length() - pos);
+
+    if (
+            text != " " &&
+            text != "\n" &&
+            text != TagOfFile
+            )
+        textinput.remove(text);
+
+>>>>>>> next
     for (int i = 1; i < countFiles+1; i++)
     {
         /// create files
@@ -227,8 +261,8 @@ void SplitFile::AutoRun()
         }
         else
         {
-            pos += TagOfFile.length();
-            text = QString(textinput).remove(pos, textinput.length()-pos);
+            posNext = textinput.indexOf(TagOfFile, pos+TagOfFile.length());
+            text = textinput.mid(pos, posNext-TagOfFile.length());
         }
 //        qDebug() << "pos = " << pos;
         textinput.remove(text);
@@ -264,5 +298,15 @@ void SplitFile::saveTextEdit()
         file.close();
     }
 }
-
 //-----------------------------------------------
+void SplitFile::refreshAutoInfo()
+{
+    QString filepath = ui->LEFilePath->text();
+    ui->LAInputFile->setText(filepath);
+
+    QString outputpath = QString(filepath)
+            .remove(QString(filepath).split("/").last())
+            + "Output/";
+    ui->LEDirOutput->setText(outputpath);
+    AutoEstimate();
+}

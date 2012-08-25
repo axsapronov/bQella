@@ -24,6 +24,7 @@
 //#include "profile.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 
 
@@ -52,8 +53,8 @@ DocuParser *DocuParser::createParser(const QString &fileName)
     if(!file.open(QFile::ReadOnly)) {
         return 0;
     }
-	
-    return new DocuParserRAP;
+
+    return new DocuParserPEM;
 }
 
 //===================== class DocuParser =====================
@@ -73,19 +74,19 @@ QString DocuParser::errorProtocol() const {    return errorProt; }
 QList<ContentItem> DocuParser::getContentItems(){  return contentList; }
 QList<IndexItem*> DocuParser::getIndexItems(){    return indexList; }
 
-DocuParserRAP::DocuParserRAP()
+DocuParserPEM::DocuParserPEM()
     : prof(new Profile)
 {
 }
 
-//===================== class DocuParserRAP =====================
-bool DocuParserRAP::startDocument()
+//===================== class DocuParserPEM =====================
+bool DocuParserPEM::startDocument()
 {
     state = StateInit;
     errorProt = QString("");
     contentRef = QString("");
     indexRef = QString("");
-	indexKey = QString("");
+    indexKey = QString("");
     depth = 0;
     contentList.clear();
     indexList.clear();
@@ -94,32 +95,32 @@ bool DocuParserRAP::startDocument()
 }
 
 //-------------------------------------------------
-bool DocuParserRAP::startElement(const QString &, const QString &, 
-								 const QString &qname, const QXmlAttributes &attr)
+bool DocuParserPEM::startElement(const QString &, const QString &,
+                                 const QString &qname, const QXmlAttributes &attr)
 {
-//    QString lower = qname.toLower();
+    //    QString lower = qname.toLower();
     QString lower = qname;
 
     switch(state) {
 
     case StateInit:
         if(lower == QString("pemproject"))
-			state = StateProfile;
+            state = StateProfile;
         break;
 
-	case StateProfile:
+    case StateProfile:
         if(lower == QString("property")) {
             state = StateProperty;
             propertyName = attr.value(QString("name"));
         }
         break;
 
-	case StateProperty: //values are set at the endElement tag </property>
+    case StateProperty: //values are set at the endElement tag </property>
         break;
 
-	case StateContents: 
-		if(lower == QString("contents")) 
-			state = StateSection;
+    case StateContents:
+        if(lower == QString("contents"))
+            state = StateSection;
         break;
 
     case StateSection:
@@ -127,21 +128,21 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
             docTitle = attr.value(QString("title"));
             contentRef = urlifyFileName(absolutifyFileName(attr.value(QString("ref")), Config::configuration() -> CurPrjDir()));
             iconFileName = absolutifyFileName(attr.value(QString("icon")),Config::configuration() -> CurPrjDir());
-			contentList.append(ContentItem(docTitle, contentRef, iconFileName, depth));
-			depth++; 
+            contentList.append(ContentItem(docTitle, contentRef, iconFileName, depth));
+            depth++;
         }
         break;
 
-	case StateKeywords: 
+    case StateKeywords:
         if (lower == QString("keyword")) {
             indexRef = absolutifyFileName(attr.value(QString("ref")), Config::configuration() -> CurPrjDir());
-			indexKey = attr.value(QString("key"));
-			state = StateKeyword;
-        } 
+            indexKey = attr.value(QString("key"));
+            state = StateKeyword;
+        }
         break;
 
-	case StateKeyword:
-		break;
+    case StateKeyword:
+        break;
 
     default:
         break;
@@ -151,7 +152,7 @@ bool DocuParserRAP::startElement(const QString &, const QString &,
 }
 
 //-------------------------------------------------
-bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localName, const QString &qName)
+bool DocuParserPEM::endElement(const QString &nameSpace, const QString &localName, const QString &qName)
 {
     Q_UNUSED(nameSpace);
     Q_UNUSED(localName);
@@ -161,7 +162,7 @@ bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localNam
     case StateInit:
         break;
     case StateProfile:
-		state = StateContents;
+        state = StateContents;
         break;
     case StateProperty:
         state = StateProfile;
@@ -169,23 +170,23 @@ bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localNam
             return false;
         }else{
             static const QStringList lst = QStringList()  // lst is a list of properties with file names
-				<< QString("startpage");
+                    << QString("startpage");
             if (lst.contains(propertyName)){ //see if propertyValue is a file name then convert string to full path name
                 propertyValue = absolutifyFileName(propertyValue, Config::configuration() -> CurPrjDir());
-			}
+            }
         }
         prof -> addProperty(propertyName, propertyValue);
         break;
-	case StateSection:
+    case StateSection:
         if(contentRef.isEmpty())  return false;
-		depth--;
-		break;
-	case StateContents:
-		state = StateKeywords; 
+        depth--;
+        break;
+    case StateContents:
+        state = StateKeywords;
         break;
     case StateKeyword:
-		state = StateKeywords;
-		if(indexRef.isEmpty())  return false;
+        state = StateKeywords;
+        if(indexRef.isEmpty())  return false;
         break;
     case StateKeywords:
         state = StateInit;
@@ -195,7 +196,7 @@ bool DocuParserRAP::endElement(const QString &nameSpace, const QString &localNam
 }
 
 //-------------------------------------------------
-bool DocuParserRAP::characters(const QString& ch)
+bool DocuParserPEM::characters(const QString& ch)
 {
     QString str = ch.simplified();
     if (str.isEmpty())
@@ -221,12 +222,12 @@ bool DocuParserRAP::characters(const QString& ch)
 }
 
 //-------------------------------------------------
-bool DocuParserRAP::fatalError(const QXmlParseException& exception)
+bool DocuParserPEM::fatalError(const QXmlParseException& exception)
 {
     errorProt += QString::fromUtf8("fatal parsing error: %1 in line %2, column %3\n")
-        .arg(exception.message())
-        .arg(exception.lineNumber())
-        .arg(exception.columnNumber());
+            .arg(exception.message())
+            .arg(exception.lineNumber())
+            .arg(exception.columnNumber());
 
     return QXmlDefaultHandler::fatalError(exception);
 }

@@ -29,6 +29,7 @@ DEPENDPATH += \
     src/dialogs/bookdialog \
     src/dialogs/finds/findandreplacedialog \
     src/properties/projectproperty \
+    src/properties/docproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
     src/import/importdialog \
@@ -48,7 +49,10 @@ DEPENDPATH += \
     src/export \
     src/topicchooser \
     src/advance/splitFile \
-    src/advance/preview
+    src/advance/preview \
+    src/cpp/common \
+    src/h/common \
+    src/panel
 
 
 INCLUDEPATH += \
@@ -63,6 +67,7 @@ INCLUDEPATH += \
     src/properties/projectproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
+    src/properties/docproperty \
     src/import/importdialog \
     src/import/importbookdialog \
     src/properties/tagdialog \
@@ -80,7 +85,9 @@ INCLUDEPATH += \
     src/export \
     src/topicchooser \
     src/advance/splitFile \
-    src/advance/preview
+    src/advance/preview \
+    src/h/common \
+    src/panel
 
 
 FORMS += \
@@ -105,7 +112,8 @@ FORMS += \
      strongproperty.ui \
      splitfile.ui \
     src/advance/preview/previewbook.ui \
-    src/advance/preview/previewmodule.ui
+    src/advance/preview/previewmodule.ui \
+    src/panel/rightpanel.ui
 
 SOURCES +=  \
      config.cpp \
@@ -130,6 +138,8 @@ SOURCES +=  \
      linkproperty.cpp \
      index.cpp \
      pcommon.cpp \
+     strongcommon.cpp \
+     filecommon.cpp \
      raedit.cpp \
      srclistparser.cpp \
      cellsplit.cpp \
@@ -142,7 +152,8 @@ SOURCES +=  \
      strongproperty.cpp \
      splitfile.cpp \
     src/advance/preview/previewbook.cpp \
-    src/advance/preview/previewmodule.cpp
+    src/advance/preview/previewmodule.cpp \
+    src/panel/rightpanel.cpp
 
 HEADERS += \
      docproperty.h \
@@ -166,6 +177,8 @@ HEADERS += \
      tableproperty.h \
      cellsplit.h \
      pcommon.h \
+     filecommon.h \
+     strongcommon.h \
      index.h \
      raedit.h \
      srclistparser.h \
@@ -178,7 +191,8 @@ HEADERS += \
      strongproperty.h \
      splitfile.h \
     src/advance/preview/previewbook.h \
-    src/advance/preview/previewmodule.h
+    src/advance/preview/previewmodule.h \
+    src/panel/rightpanel.h
 
 RESOURCES += \
     resources/resources.qrc

@@ -369,6 +369,9 @@
    <property name="whatsThis">
     <string>Open a new window.</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
   </action>
   <action name="actionDeleteFile">
    <property name="icon">
@@ -723,6 +726,9 @@
    <property name="toolTip">
     <string>Save project as...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="actionLang_en">
    <property name="checkable">
@@ -770,6 +776,9 @@
    </property>
    <property name="text">
     <string>Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
    </property>
   </action>
   <action name="actionProjectSources">
@@ -1076,6 +1085,9 @@
   <action name="actionAdvanceSplitFile">
    <property name="text">
     <string>&amp;Split file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+1</string>
    </property>
   </action>
  </widget>

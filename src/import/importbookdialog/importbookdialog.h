@@ -56,6 +56,10 @@ private slots:
     void createBookPreview();
 
 
+    void estimate();
+    void deletePreviewFolder();
+
+
 
 private:
     Ui::ImportBookDialog *ui;
@@ -73,6 +77,8 @@ private:
       */
     void accept();
     void saveData();
+
+    void debug();
     QStringList getReplaceList();
 
     QString bookShortName, bookFullName, bookHtmlFilter, projectfile;

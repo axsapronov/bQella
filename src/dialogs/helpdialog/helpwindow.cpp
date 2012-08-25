@@ -29,6 +29,7 @@
 #include "helpdialog.h"
 #include "config.h"
 #include "pcommon.h"
+#include "filecommon.h"
 
 
 #include <QMessageBox>
@@ -384,7 +385,7 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
     else
     {
 //        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
-        s = lText + " " + "<l><u>0" + lLocation + "</l></u> ";
+        s = lText + " " + "<l><u>" + incstr(lLocation, 5, "0") + "</l></u> ";
 //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);

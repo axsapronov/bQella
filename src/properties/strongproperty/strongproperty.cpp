@@ -2,6 +2,7 @@
 #include "ui_strongproperty.h"
 #include "config.h"
 #include "pcommon.h"
+#include "strongcommon.h"
 
 #include <QFileDialog>
 #include <QMessageBox>

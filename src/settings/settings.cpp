@@ -36,6 +36,7 @@ AppSettings::AppSettings(QWidget *parent)
 
     ui.CBItemAutoProperties->setChecked(true);
     ui.CBItemAutoProperties->setVisible(false);
+    ui.CBContentsAdditionalView->setVisible(false);
     connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));
 }
 
