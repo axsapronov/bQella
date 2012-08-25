@@ -18,13 +18,8 @@ SplitFile::SplitFile(QWidget *parent) :
 
     setData();
     //    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
-<<<<<<< HEAD
-//    QString str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/48_1john.htm";
-//    ui->LEFilePath->setText(str);
-=======
     //    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
     //    ui->LEFilePath->setText(str);
->>>>>>> next
 
     QString tag = "<h4>";
     //     QString tag = "<A NAME";
@@ -36,19 +31,11 @@ SplitFile::SplitFile(QWidget *parent) :
 
     //    showFileHtml(str);
     ui->cBAutoOn->setChecked(false);
-<<<<<<< HEAD
-//    ui->cBAutoOn->setChecked(true);
-    AutoSplitOn();
-    showFileText();
-//    AutoEstimate();
-    //    AutoRun();
-=======
     //    ui->cBAutoOn->setChecked(true);
     AutoSplitOn();
     showFileText();
     AutoEstimate();
     AutoRun();
->>>>>>> next
 }
 //--------------------------------------------
 SplitFile::~SplitFile()
@@ -70,6 +57,7 @@ void SplitFile::createConnect()
     connect(ui->pBAutoBrowse, SIGNAL(clicked()), this, SLOT(AutoBrowse()));
     connect(ui->pBAutoEstimate, SIGNAL(clicked()), this, SLOT(AutoEstimate()));
     connect(ui->pBSave, SIGNAL(clicked()), this, SLOT(saveTextEdit()));
+
     /// auto refresh if edit text
     connect(ui->textEdit, SIGNAL(textChanged()), this, SLOT(refreshTextHtml()));
 }
@@ -86,13 +74,9 @@ void SplitFile::browse()
     if (!fileName.isNull())
     {
         ui->LEFilePath->setText(fileName);
-<<<<<<< HEAD
-        showFileText();
-=======
         ui->LAEncoding->setText(getEncodingFromFile(fileName));
         showFileText();
         refreshAutoInfo();
->>>>>>> next
     }
 }
 //--------------------------------------------
@@ -105,12 +89,6 @@ void SplitFile::showFileText()
 {
     setEncoding(ui->LAEncoding->text());
     TextOfFile = getTextFromFile(ui->LEFilePath->text(), getEncoding());
-<<<<<<< HEAD
-    //    showFileHtml(ui->LEFilePath->text());
-    //    showFileEdit(ui->LEFilePath->text());
-
-=======
->>>>>>> next
     showFileHtml(TextOfFile);
     showFileEdit(TextOfFile);
 }
@@ -225,11 +203,6 @@ void SplitFile::AutoRun()
 
     ///first delete
     pos = textinput.indexOf(TagOfFile);
-<<<<<<< HEAD
-    text = QString(textinput).remove(pos, textinput.length()-pos);
-    //    textinput.remove(text);
-    textinput = removeFirst(textinput, text);
-=======
     text = QString(textinput).remove(pos, textinput.length() - pos);
 
     if (
@@ -239,7 +212,6 @@ void SplitFile::AutoRun()
             )
         textinput.remove(text);
 
->>>>>>> next
     for (int i = 1; i < countFiles+1; i++)
     {
         /// create files
@@ -247,13 +219,7 @@ void SplitFile::AutoRun()
 
         /// detect pos of tag
         /// and split block
-        pos = textinput.indexOf(TagOfFile);
-        if (pos == 0)
-        {
-            textinput = removeFirst(textinput, TagOfFile);
-            pos = textinput.indexOf(TagOfFile);
-        }
-
+        pos = textinput.indexOf(TagOfFile)  ;
         if (pos == -1)
         {
             pos = 0;
@@ -264,9 +230,8 @@ void SplitFile::AutoRun()
             posNext = textinput.indexOf(TagOfFile, pos+TagOfFile.length());
             text = textinput.mid(pos, posNext-TagOfFile.length());
         }
-//        qDebug() << "pos = " << pos;
         textinput.remove(text);
-        createEmptyHtml(filename, QString::number(i), TagOfFile+text);
+        createEmptyHtml(filename, QString::number(i), text);
     }
 }
 //-----------------------------------------------
