@@ -30,7 +30,7 @@
 class Profile;
 
 struct ContentItem {
-    ContentItem() 
+    ContentItem()
         : title( QString() ), reference( QString()  ), depth( 0 ) {}
     ContentItem( const QString &t, const QString &r, const QString &i, int d )
         : title( t ), reference( r ), depth( d ) {}
@@ -46,7 +46,7 @@ QDataStream &operator<<( QDataStream &s, const ContentItem &ci );
 
 struct IndexItem {
     IndexItem( const QString &k, const QString &r )
-	: keyword( k ), reference( r ) {}
+        : keyword( k ), reference( r ) {}
     QString keyword;
     QString reference;
 };
@@ -58,15 +58,15 @@ public:
     static DocuParser *createParser( const QString &fileName );
 
     virtual bool parse( QFile *file );
-    
+
     QList<ContentItem> getContentItems();
     QList<IndexItem*> getIndexItems();
 
     QString errorProtocol() const;
-    
+
 protected:
     //QString absolutify( const QString &input, bool makeUrl = true ) const;
-    
+
     QString contentRef, indexRef, indexKey, errorProt;
     QString docTitle, title, iconFileName;
     QList<ContentItem> contentList;
@@ -74,32 +74,32 @@ protected:
     QString fname;
 };
 
-//===================== class DocuParserRAP =====================
-class DocuParserRAP : public DocuParser //parser for bQella Project
+//===================== class DocuParserPEM =====================
+class DocuParserPEM : public DocuParser //parser for bQella Project
 {
 public:
     enum States { StateInit, StateProfile, StateProperty, StateContents, StateSection,
-				  StateKeywords, StateKeyword };
+                                  StateKeywords, StateKeyword };
 
-    DocuParserRAP();    
+    DocuParserPEM();
     // parse xml file with SAX method. Procedures are called when pareser finds one of <element> charecters </element>
     bool startDocument();
-    bool startElement( const QString&, const QString&, const QString&, const QXmlAttributes& ); 
+    bool startElement( const QString&, const QString&, const QString&, const QXmlAttributes& );
     bool endElement( const QString&, const QString&, const QString& );
     bool characters( const QString & );
     bool fatalError( const QXmlParseException& exception );
 
     //virtual void addTo( Profile *p );
-    Profile *profile() const { return prof; }    
+    Profile *profile() const { return prof; }
 
 private:
-    
+
     States state;
     int depth;
     QString propertyValue;
     QString propertyName;
     Profile *prof;
-	
+
 };
 
 #endif // DOCUPARSER_H

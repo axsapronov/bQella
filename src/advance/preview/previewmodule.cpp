@@ -37,7 +37,6 @@ void PreviewModule::showPreviewBook()
     QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),
                                                                getEncoding());
     QString book = listfiles.at(ui->ComBBooks->currentIndex());
-
     prevbook->setEncoding(getEncoding());
     prevbook->setData(book);
     emit createBookPreviewModule(listvaluetext.at(ui->ComBBooks->currentIndex()));
@@ -105,5 +104,5 @@ void PreviewModule::createListBook()
                                                                getEncoding());
     ui->ComBBooks->clear();
     ui->ComBBooks->addItems(listvaluetext);
-    ui->ComBBooks->model()->sort(0);
+//    ui->ComBBooks->model()->sort(0);
 }

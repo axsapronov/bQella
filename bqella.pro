@@ -29,6 +29,7 @@ DEPENDPATH += \
     src/dialogs/bookdialog \
     src/dialogs/finds/findandreplacedialog \
     src/properties/projectproperty \
+    src/properties/docproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
     src/import/importdialog \
@@ -66,6 +67,7 @@ INCLUDEPATH += \
     src/properties/projectproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
+    src/properties/docproperty \
     src/import/importdialog \
     src/import/importbookdialog \
     src/properties/tagdialog \

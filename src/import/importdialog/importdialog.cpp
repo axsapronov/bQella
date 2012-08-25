@@ -777,8 +777,8 @@ void Import::setData()
     //    ui.cBEncoding -> setModel(typeModel);
     ui.LEImportFile->setText("");
 
-//    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
-//    ui.LAEncoding->setText(getEncodingFromFile(ui.LEImportFile->text()));
+    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/Makarij/bibleqt.ini");
+    ui.LAEncoding->setText(getEncodingFromFile(ui.LEImportFile->text()));
 
     //    QString importstr = "/home/files/Documents/Bible/unrar/my/BIBLEQT.INI";
     //    ui.LEImportFile->setText(importstr);

@@ -30,6 +30,8 @@ ImportBookDialog::ImportBookDialog(QWidget *parent) :
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(deletePreviewFolder()));
     setData();
+    ui->LETagChapter->setText("<h4>");
+    ui->LETagVerse->setText("<p>");
 //    debug();
 }
 ///------------------------------------------------
@@ -40,11 +42,9 @@ ImportBookDialog::~ImportBookDialog()
 ///------------------------------------------------
 void ImportBookDialog::setData()
 {
-
     QStringListModel *modelShortName;
     modelShortName = new QStringListModel(getFillShortName(), this);
     ui->CBShortName->setModel(modelShortName);
-
 
 }
 ///------------------------------------------------
@@ -75,6 +75,8 @@ void ImportBookDialog::browse()
     {
         ui->LEFilePath->setText(fileName);
         ui->LAEncoding->setText(getEncodingFromFile(fileName));
+        if (!ui->LETagVerse->text().isEmpty()
+                && !ui->LETagChapter->text().isEmpty())
         estimate();
         //        qDebug() << getEncodingFromFile(fileName);
     }

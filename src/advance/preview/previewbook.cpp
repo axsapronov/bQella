@@ -111,9 +111,6 @@ void PreviewBook::createBookPreviewFunc()
     ui->comBChapters_1->model()->sort(0);
     ui->comBChapters_2->model()->sort(0);
 
-    ui->comBChapters_1->setCurrentIndex(0);
-    ui->comBChapters_2->setCurrentIndex(0);
-
     createConnects();
     if (!chapters.isEmpty())
         showChapter(0);

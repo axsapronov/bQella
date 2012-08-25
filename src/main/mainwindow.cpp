@@ -1072,6 +1072,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     Config::configuration() -> setCurPrjSrc();
     Config::configuration() -> toPrjLog(1, tr("- done", "For log"));
     helpDock->saveProject(fn);
+    rightDock->refreshInfo();
     //    ProjectOpen(fn);
 }
 
