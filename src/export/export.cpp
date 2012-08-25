@@ -193,7 +193,8 @@ QString Export::exportChapter (QString filename, QString i, bool chapt)
         }
     }
     else
-        qDebug() << "Error exist";
+        qDebug() << "Debug: _exportChapter:" << "Error exist"
+                 << "filename =" << filename;
     file.close();
     return str;
 }

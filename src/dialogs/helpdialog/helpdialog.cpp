@@ -1644,7 +1644,7 @@ void HelpDialog::InsertContentsItem(QString title, QString shortname, int count,
             }
         }
         else
-            qDebug() << "Error exist";
+            qDebug() << "Debug: _HelpDialog::InsertContentsItem" <<"Error exist";
         file1.close();
 
         Config::configuration() -> toPrjLog(3," + Item on same Level");
@@ -1790,7 +1790,7 @@ void HelpDialog::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStr
         }
     }
     else
-        qDebug() << "Error exist";
+        qDebug() << "Debug: _HelpDialog::fixedBookConfFile" << "Error exist";
     file.close();
     file.remove();
 

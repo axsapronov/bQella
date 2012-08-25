@@ -452,7 +452,7 @@ QString Import::importChapter(QString line)
     line
             .remove("<sup>")
             .remove("</sup>")
-            .replace(rx, "<p><b><sup>\\4</b></sup> ");
+            .replace(rx, "<p><sup><b>\\4</b></sup> ");
 
     /// remove tags
     QStringList htmlfilterlist = QString(htmlfilter).split(" ");

@@ -776,9 +776,14 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
         str.replace(titlec,chapter)
                 .replace(titlec2,chapter);
 
+//        qDebug() << str;
         str.remove("p, li { white-space: pre-wrap; }")
                 .replace("<P>","<p>")
-                .remove(title);
+                .remove(title)
+                .remove("<sup><b>")
+                .remove("</b></sup>");
+
+
         // переписать это убожество
         if (str.indexOf("<p align=\"center\"") >= 0)
         {
