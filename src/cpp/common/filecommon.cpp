@@ -185,15 +185,15 @@ QString urlifyFileName(const QString &fileName)
     QString name = fileName;
     QUrl url(name);
 #if defined(Q_OS_WIN32)
-    if (!url.isValid() || url.scheme().isEmpty() || url.scheme().toLower() != QString("file:")) {
+    if (!url.isValid() || url.scheme().isEmpty() || QString(url.scheme()).toLower() != QString("file:")) {
         int i = name.indexOf(QChar('#'));
         QString anchor = name.mid(i);
-        name = name.toLower();
+        name = name;
         if (i > -1)
             name.replace(i, anchor.length(), anchor);
         name.replace(QChar('\\'), QChar('/'));
         foreach (QFileInfo drive, QDir::drives()) {
-            if (name.startsWith(drive.absolutePath().toLower())) {
+            if (name.startsWith(QString(drive.absolutePath()).toLower())) {
                 name = QString("file:") + name;
                 break;
             }
