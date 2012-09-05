@@ -50,8 +50,7 @@ DEPENDPATH += \
     src/topicchooser \
     src/advance/splitFile \
     src/advance/preview \
-    src/cpp/common \
-    src/h/common \
+    src/common \
     src/panel
 
 
@@ -86,7 +85,7 @@ INCLUDEPATH += \
     src/topicchooser \
     src/advance/splitFile \
     src/advance/preview \
-    src/h/common \
+    src/common \
     src/panel
 
 

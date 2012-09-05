@@ -31,9 +31,6 @@
 
 int main( int argc, char ** argv )
 {
-//    Q_INIT_RESOURCE(ra); //Initialize the resources specified by the .qrc file
-
-//    QString aDocPath;
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
