@@ -126,6 +126,7 @@ void ImportBookDialog::accept()
     {
         saveData();
         QStringList replaceduplex = getReplaceList();;
+        bookEncoding = ui->LAEncoding->text();
         importm->setHtmlFilter (ui->LEHtmlFilter->text ());
         importm->setTextReplace (replaceduplex);
         importm->importBook(projectfile,

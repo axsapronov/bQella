@@ -86,6 +86,7 @@ void Import::accept()
         QTextCodec::setCodecForCStrings(codec);
         QTextCodec::setCodecForLocale(codec);
         QTextCodec::setCodecForTr(codec);
+        Config::configuration()->setDefaultEncoding(encoding);
 
         QStringList replaceduplex = getReplaceList();
         setTextReplace(replaceduplex);
@@ -266,7 +267,6 @@ void Import::importBook(QString pathName2, QString FullName, QString ShortName, 
 
     // create book file
     createBookFile(pathName, FullName, ShortName, ChapterQty);
-
 
     QString chunksnameforchapter = QString(path).remove("./book_").remove(".htm");
     QString filenameforchapter;

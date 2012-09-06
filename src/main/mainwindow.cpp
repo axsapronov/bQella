@@ -141,7 +141,7 @@ MainWindow::MainWindow():
     //    ui.actionImportBook->setVisible(false);
     ui.actionPrint_Preview ->setVisible(false);
     ui.actionTagHtml->setVisible(false);
-    ui.actionTextColor->setVisible(false);
+//    ui.actionTextColor->setVisible(false);
     ui.actionImportDoc->setVisible(false);
     ui.actionImportHTML->setVisible(false);
 
