@@ -1009,11 +1009,15 @@
    </property>
   </action>
   <action name="actionTagBr">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/other/images/_br_.png</normaloff>:/other/images/_br_.png</iconset>
+   </property>
    <property name="text">
-    <string>New line</string>
+    <string/>
    </property>
    <property name="iconText">
-    <string>&lt;br&gt;</string>
+    <string/>
    </property>
    <property name="toolTip">
     <string>Add to text symbol 
@@ -1024,11 +1028,15 @@
    </property>
   </action>
   <action name="actionTagStrongNumber">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/other/images/S#.png</normaloff>:/other/images/S#.png</iconset>
+   </property>
    <property name="text">
     <string>Add Strong's number</string>
    </property>
    <property name="iconText">
-    <string>strong</string>
+    <string>Add Strong's number</string>
    </property>
    <property name="shortcut">
     <string>Alt+3</string>
