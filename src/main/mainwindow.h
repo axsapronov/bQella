@@ -43,7 +43,7 @@ class QMenu;
 class QDockWidget;
 class QTreeWidget;
 class TabbedBrowser;
-class HelpDialog;
+class LeftPanel;
 class HelpWindow;
 class AboutDialog;
 class Export;
@@ -68,7 +68,7 @@ public:
     Ui::MainWindow ui;
 
     TabbedBrowser *browsers() const;
-    HelpDialog *helpDialog() const;
+    LeftPanel *helpDialog() const;
 
 
     void setupPopupMenu(QMenu *menu);
@@ -155,7 +155,7 @@ private:
     ProjectProperties *prjprop;
     //ProjectSettings *prjset;
     AppSettings *appsets;
-    HelpDialog *helpDock;
+    LeftPanel *helpDock;
     RightPanel *rightDock;
     FRDialog *frdialog;
     Assistant *assistant;

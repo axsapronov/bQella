@@ -23,7 +23,7 @@
 
 #include "importdialog.h"
 #include "pcommon.h"
-#include "helpdialog.h"
+#include "leftpanel.h"
 #include "mainwindow.h"
 #include "config.h"
 #include "previewmodule.h"

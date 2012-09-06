@@ -2,8 +2,8 @@
 <ui version="4.0">
  <comment>*********************************************************************
 *********************************************************************</comment>
- <class>HelpDialog</class>
- <widget class="QWidget" name="HelpDialog">
+ <class>LeftPanel</class>
+ <widget class="QWidget" name="LeftPanel">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -109,7 +109,7 @@ int main( int argc, char ** argv )
   *
   * config	- configuration of the application, global functions and variables
   * docuparser 	- parse profile file
-  * helpdialog	- slidebar functions: content, index, bookmarks, search
+  * leftpanel   - slidebar functions: content, index, bookmarks, search
   * helpwindow	- working area functions: text edit, font, file
   * index 	- procedures to build up index in index tab on helpdialog slidebar
   * mainwindow 	- main menu functions
@@ -119,13 +119,13 @@ int main( int argc, char ** argv )
   *
   * ------- Forms aviable from (classes interaction) -------
   *
-  * HelpDialog		Ui::HelpDialog ui;		MainWindow *mw;
+  * LeftPanel		Ui::LeftPanel ui;		MainWindow *mw;
   * HelpWindow		MainWindow *mw;			ItemProperties *itemprop;
-  * MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	HelpDialog *helpDock;[private]
-  * TabbedBrowser *browsers();		HelpDialog *helpDialog();
+  * MainWindow		Ui::MainWindow ui;		TabbedBrowser *tabs;[private]	LeftPanel *helpDock;[private]
+  * TabbedBrowser *browsers();		LeftPanel *helpDialog();
   * TabbedBrowser	Ui::TabbedBrowser ui;	MainWindow *mainWindow();		HelpWindow *currentBrowser();
   *
-  * To access from HelpDialog to HelpWindow functions use:
+  * To access from LeftPanel to HelpWindow functions use:
   * mw -> browsers() -> currentBrowser() -> ...
   *
   */

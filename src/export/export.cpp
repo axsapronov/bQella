@@ -21,7 +21,7 @@
  */
 
 #include "export.h"
-#include "helpdialog.h"
+#include "leftpanel.h"
 #include "config.h"
 #include "pcommon.h"
 

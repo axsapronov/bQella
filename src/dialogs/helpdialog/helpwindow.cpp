@@ -26,7 +26,7 @@
 #include "helpwindow.h"
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
-#include "helpdialog.h"
+#include "leftpanel.h"
 #include "config.h"
 #include "pcommon.h"
 #include "filecommon.h"

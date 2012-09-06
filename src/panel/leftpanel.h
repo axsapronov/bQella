@@ -24,7 +24,7 @@
 #ifndef HELPDIALOG_H
 #define HELPDIALOG_H
 
-#include "ui_helpdialog.h"
+#include "ui_leftpanel.h"
 #include "index.h"
 #include "helpwindow.h"
 #include "docuparser.h"
@@ -75,13 +75,13 @@ public:
     QValidator::State validate(QString &str, int &) const;
 }; // class SearchValidator
 
-//==================== class HelpDialog ====================
+//==================== class LeftPanel ====================
 
-class HelpDialog : public QWidget
+class LeftPanel : public QWidget
 {
     Q_OBJECT
 public:
-    HelpDialog(QWidget *parent, MainWindow *h);
+    LeftPanel(QWidget *parent, MainWindow *h);
 
     inline QTabWidget *tabWidget() const  { return ui.tabWidget; }
     QString titleOfLink(const QString &link);
@@ -201,7 +201,7 @@ private:
 
 
 
-    Ui::HelpDialog ui;
+    Ui::LeftPanel ui;
     MainWindow *mw;
     Export * exportf;
     BookAddDialog *bookadddialog;
@@ -252,6 +252,6 @@ private:
     QAction *actionItemBookAdd;
     QAction *actionItemExportBook;
 
-}; //class HelpDialog
+}; //class LeftPanel
 
 #endif // HELPDIALOG_H

@@ -91,7 +91,7 @@ INCLUDEPATH += \
 
 FORMS += \
      docproperty.ui \
-     helpdialog.ui \
+     leftpanel.ui\
      itemproperty.ui \
      linkproperty.ui \
      bookadddialog.ui \
@@ -126,7 +126,7 @@ SOURCES +=  \
      tableproperty.cpp \
      projectproperty.cpp \
      fontsettingsdialog.cpp \
-     helpdialog.cpp \
+     leftpanel.cpp \
      helpwindow.cpp \
      fontpanel.cpp \
      importdialog.cpp \
@@ -158,7 +158,7 @@ HEADERS += \
      docproperty.h \
      docuparser.h \
      fontsettingsdialog.h \
-     helpdialog.h \
+     leftpanel.h \
      helpwindow.h \
      fontpanel.h \
      importdialog.h \

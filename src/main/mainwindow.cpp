@@ -23,7 +23,7 @@
 
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
-#include "helpdialog.h"
+#include "leftpanel.h"
 #include "rightpanel.h"
 #include "config.h"
 #include "pcommon.h"
@@ -88,7 +88,7 @@ MainWindow::MainWindow():
     dwLeft -> setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     dwLeft -> setWindowTitle(tr("Project manager"));
     dwLeft -> setObjectName(QString("sidebar"));
-    helpDock = new HelpDialog(dwLeft, this);
+    helpDock = new LeftPanel(dwLeft, this);
     dwLeft -> setWidget(helpDock);
     dwLeft ->setMaximumWidth (250);
     addDockWidget(Qt::LeftDockWidgetArea, dwLeft);
@@ -624,7 +624,7 @@ void MainWindow::showSearchLink(const QString &link, const QStringList &terms)
 
 
 //-------------------------------------------------
-HelpDialog* MainWindow::helpDialog() const
+LeftPanel* MainWindow::helpDialog() const
 {
     return helpDock;
 }

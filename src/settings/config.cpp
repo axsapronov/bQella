@@ -127,7 +127,7 @@ void Config::loadSettings()
     sideBar = settings.value(QString("SideBarPage") ).toInt();
     rebuildDocs = settings.value(QString("RebuildDocDB"), true ).toBool();
     profileFNs = settings.value(QString("Projects") ).toStringList();
-    profileFNs = absolutifyFileList(profileFNs, prjDir);	//we will load this list to widget in HelpDialog::initialize()
+    profileFNs = absolutifyFileList(profileFNs, prjDir);	//we will load this list to widget in LeftPanel::initialize()
     curProject = settings.value(QString("ActiveProject") ).toString();
     curProject = absolutifyFileName(curProject, prjDir);	 //absolutify project file path
     setContentsSortOrder(settings.value(QString("ContentsSortOrder") ).toString());
@@ -262,7 +262,7 @@ QStringList Config::source() const
 }
 
 //-------------------------------------------------
-QStringList Config::docFiles() const //used in HelpDialog to build keyword DB. Earlier it used to return profil -> docs
+QStringList Config::docFiles() const //used in LeftPanel to build keyword DB. Earlier it used to return profil -> docs
 {
     QStringList tmp;
     tmp << curProject; //probably will need to change to something else.
