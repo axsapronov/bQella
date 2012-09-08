@@ -2710,4 +2710,104 @@ void LeftPanel::on_searchButton_clicked()
 {
     startSearch();
 }
+//-------------------------------------------------
+void LeftPanel::copyFileImages(QString fileName)
+{
+	int start, end, fnStart, fnEnd, n; //?+? change int ulong for big files? But QString::IndexOf() returns int
+	QString fullFN;
 
+	bool extImage;
+	bool fileChanged = false;
+	//QTextCodec::setCodecForTr(QTextCodec::codecForName("System"));
+	//QString fn = tr(fileName.toAscii().constData());
+	QString fn = unurlifyFileName(fileName);
+	QFile file(fn);
+	if (!file.open(QFile::ReadOnly)){
+		Config::configuration()->toPrjLog(3, tr("Fail to open file: %1. Failed to copy images for it", "For log").arg(fn));
+		return;
+	}
+	qDebug() << "Check for ext images in: " << fileName;
+	QTextStream stream(&file);
+	stream.setCodec("UTF-8");
+	QString text = stream.readAll();
+	file.close();
+	start=0; end=0;
+	// process all <img ... /> tags in document
+	while (start >= 0){
+		extImage = false;
+		start = text.indexOf(QLatin1String("<img"), end, Qt::CaseInsensitive);
+		end = text.indexOf(QLatin1String("/>"), start, Qt::CaseInsensitive);
+		if (end - start > 0){ //process tag <img>
+			fnStart = text.indexOf(QLatin1String("src="), start, Qt::CaseInsensitive) + 5;
+			fnEnd	= text.indexOf(QLatin1String("\""), fnStart, Qt::CaseInsensitive);
+			n = fnEnd - fnStart;
+			QString imgFN = unurlifyFileName( text.mid(fnStart, n) );
+			qDebug() << "- found image: " << imgFN;
+			QString imgNewFN = copyImage(imgFN);
+			if (!imgNewFN.isEmpty()){
+				text.replace(fnStart, n, imgNewFN);
+				fileChanged = true;
+				qDebug() << "- and copied to: " << imgNewFN;
+				//Config::configuration()->toPrjLog(3, tr("- chars=%3 to %4,replaced %1 with %2").arg(imgFN).arg(imgNewFN).arg(n).arg(imgNewFN.size()));
+			}
+		}
+	}
+	if (fileChanged){
+		if (file.open(QIODevice::WriteOnly)){	//try to open or create file
+			QTextStream ts(&file);
+			ts.setCodec("UTF-8");
+			ts << text;
+			file.close();
+			Config::configuration()->toPrjLog(3, tr("- all images copied, references updated", "For log"));
+		}else
+			Config::configuration()->toPrjLog(3, tr("- failed to save file after update", "For log"));
+	}
+}
+//-------------------------------------------------
+// Copy one image to project image directory.
+// Return relative file name in success or empty string if fail
+// !+! make universal function (in pcommon.cpp) copyResource(QString resourceFN, destinationDir, relatifyDir)
+QString LeftPanel::copyImage(QString imgFN)
+{
+	QString ret;
+	QString fullFN;
+	QFileInfo fi;
+	bool extImage = false;
+	Config::configuration()->toPrjLog(3, tr("Copy image: %1, to project image dir: %2", "For log").arg(imgFN).arg(Config::configuration()->CurPrjImgDir()));
+	QUrl url(imgFN);
+	if (!url.isRelative()){
+		fi.setFile(imgFN);
+		//check if it is in project image dir
+		if ( fi.absolutePath() == Config::configuration()->CurPrjImgDir()){
+			ret = relatifyFileName(imgFN, Config::configuration()->CurPrjDir());
+			Config::configuration()->toPrjLog(3, tr("- ralatified: %1", "For log").arg(ret));
+		}else{
+			extImage = true;
+			fullFN = imgFN;
+		}
+	}else if (!(imgFN.startsWith("images/") ||
+				imgFN.startsWith("./images/"))){   // image is not in project image dir, but it has relative path
+		fullFN = absolutifyFileName(imgFN, Config::configuration()->CurPrjDir());
+		fi.setFile(fullFN);
+		if (fi.absolutePath() != Config::configuration()->ImgDir() ){ // check if image is in appDir/images/
+			extImage = true;
+			Config::configuration()->toPrjLog(3, tr("- is relative but not to app or prj dirs", "For log"));
+		}else
+			Config::configuration()->toPrjLog(3, tr("- image is in application image dir. Did not copy", "For log"));
+	}
+    if (extImage){ // create unique valid file name and copy file to project directory
+                Config::configuration()->toPrjLog(3, tr("- start to process ext image: %1", "For log").arg(fullFN));
+                QString fnFrom = fullFN;
+                fi.setFile(fnFrom);
+                QString ext = fi.suffix();
+                QString base = fi.completeBaseName();
+                QString fnTo = CreateValidWebFileName(base);
+                fnTo = uniqueFileName(Config::configuration()->CurPrjImgDir() +"/"+ fnTo +"."+ ext);
+                if ( QFile::copy(fnFrom, fnTo) ) {
+                        ret = relatifyFileName(fnTo, Config::configuration()->CurPrjDir());
+                        Config::configuration()->toPrjLog(3, tr("- copied to: %1, Project dir=%2", "For log").arg(ret).arg(Config::configuration()->CurPrjDir()));
+                }else
+                        Config::configuration()->toPrjLog(3, tr("- failed","For log"));
+        }
+        return ret;
+}

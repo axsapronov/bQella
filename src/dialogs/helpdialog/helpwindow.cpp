@@ -32,6 +32,7 @@
 #include "filecommon.h"
 
 
+
 #include <QMessageBox>
 #include <QStatusBar>
 #include <QDesktopServices>
@@ -75,7 +76,7 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         docprop  = new DocProperties(this);
         tagprop = new TagDialog(this);
         strongprop = new StrongProperties(this);
-
+        imageprop = new ImageProperties(this);
         tableprop = new TableProperties(this);
         cellsplit = new DialogCellSplit(this);
 
@@ -83,6 +84,11 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         setupEditActions();
         setupTextActions();
         setupTableActions();
+        setupImageActions();
+
+	//signals from raEdit class
+	connect(this, SIGNAL(insertImageFromClipboard(QImage)), this, SLOT(imageInsert(QImage)));
+	connect(this, SIGNAL(insertHtmlFromClipboard(QString)), this, SLOT(htmlInsert(QString)));
 
         connect(this, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)), this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
         connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
@@ -98,6 +104,9 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         connect(tableprop, SIGNAL(updateTable(int, int, QTextTableFormat)), this, SLOT(tableUpdate(int, int, QTextTableFormat)));
         //        connect(tagprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(tagprop, SIGNAL(addTag(QString)), this, SLOT(addTag(QString)));
+
+        connect(imageprop, SIGNAL(newImage(QString)), this, SLOT(htmlInsert(QString)));
+        connect(imageprop, SIGNAL(updateImage(QString)), this, SLOT(imageUpdate(QString)));
 
 
         connect(mw -> browsers(), SIGNAL(showDocProperties()), this, SLOT(showDocProperties()));
@@ -115,7 +124,7 @@ void HelpWindow::setSource(const QUrl &name)
 {
     // qDebug() << "[8]";
     if (name.isValid()) {
-//        qDebug() << "[32]";
+        //        qDebug() << "[32]";
         // pass URL to OS
         if (name.scheme() == QString("http")
                 || name.scheme() == QString("ftp")
@@ -165,16 +174,16 @@ void HelpWindow::setSource(const QUrl &name)
         }
     }
     //display error
-//    qDebug() << "[43]";
+    //    qDebug() << "[43]";
     mw -> statusBar() -> showMessage(tr("Failed to open link: '%1'").arg(name.toString()), 5000);
-//    qDebug() << "[44]";
+    //    qDebug() << "[44]";
     raEdit::setSource( Config::configuration() -> ErrPage() );
-//    qDebug() << "[45]";
+    //    qDebug() << "[45]";
     //    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
     setHtml(tr("").arg(name.toString()));
-//    qDebug() << "[46]";
+    //    qDebug() << "[46]";
     mw -> browsers() -> updateTitle(tr("Error..."));
-//    qDebug() << "[47]";
+    //    qDebug() << "[47]";
 }
 
 //-------------------------------------------------
@@ -384,9 +393,9 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
     }
     else
     {
-//        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
+        //        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
         s = lText + " " + "<l><u>" + incstr(lLocation, 5, "0") + "</l></u> ";
-//        qDebug() << "s = " << s;
+        //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
@@ -433,7 +442,7 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
         removeLink();
     }else{
         s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
-//        qDebug() << "s = " << s;
+        //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
         cursor.setPosition(selStart, QTextCursor::MoveAnchor);
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
@@ -594,9 +603,9 @@ void HelpWindow::setupTextActions()
     connect(mw -> ui.actionTextJustify, 	SIGNAL(triggered()), this, SLOT(textAlignJustify()));
     connect(mw -> ui.actionTextColor, 	SIGNAL(triggered()), this, SLOT(textColor()));
 
-//    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
+    //    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
     comboStyle = new QComboBox();
-//    mw -> ui.toolBarFormat -> addWidget(comboStyle);
+    //    mw -> ui.toolBarFormat -> addWidget(comboStyle);
     comboStyle -> addItem(tr("Standard","Text style (paragraph layout)"));
     comboStyle -> addItem(tr("Bullet List (Disc)"));
     comboStyle -> addItem(tr("Bullet List (Circle)"));
@@ -606,15 +615,15 @@ void HelpWindow::setupTextActions()
     comboStyle -> addItem(tr("Ordered List (Alpha upper)"));
     connect(comboStyle, SIGNAL(activated(int)), this, SLOT(textStyle(int)));
 
-//    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
+    //    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
     comboFont = new QFontComboBox();
-//    mw -> ui.toolBarFormat -> addWidget(comboFont);
+    //    mw -> ui.toolBarFormat -> addWidget(comboFont);
     connect(comboFont, SIGNAL(activated(const QString &)), this, SLOT(textFamily(const QString &)));
 
-//    comboSize = new QComboBox(mw -> ui.toolBarFormat);
+    //    comboSize = new QComboBox(mw -> ui.toolBarFormat);
     comboSize = new QComboBox();
     comboSize -> setObjectName("comboSize");
-//    mw -> ui.toolBarFormat -> addWidget(comboSize);
+    //    mw -> ui.toolBarFormat -> addWidget(comboSize);
     comboSize -> setEditable(true);
 
     QFontDatabase db;
@@ -639,6 +648,11 @@ void HelpWindow::setupTableActions()
     connect(mw->ui.actionDeleteColumn, SIGNAL(triggered()), this, SLOT(columnDelete()));
 }
 //------------------------------------------------------
+void HelpWindow::setupImageActions()
+{
+    connect(mw->ui.actionInsertImage, SIGNAL(triggered()), this, SLOT(imageNew()));
+}
+//------------------------------------------------------
 bool HelpWindow::load(const QString &f)
 {
     if (!QFile::exists(f))
@@ -651,7 +665,6 @@ bool HelpWindow::load(const QString &f)
     setCurrentFileName(f);
     return true;
 }
-
 //-------------------------------------------------
 bool HelpWindow::maybeSave()
 {
@@ -871,6 +884,29 @@ void HelpWindow::textAlignRight()	{ raEdit::setAlignment(Qt::AlignRight); }
 void HelpWindow::textAlignJustify()	{ raEdit::setAlignment(Qt::AlignJustify); }
 
 //-------------------------------------------------
+void HelpWindow::imageNew()
+{
+    imageprop->setProperties(0, 0, QImage());
+    imageprop->show();
+}
+//-------------------------------------------------
+void HelpWindow::imageInsert(QImage image)
+{
+    QString fn = uniqueFileName(Config::configuration()->CurPrjImgDir()+"/image.png");
+    //Config::configuration()->toPrjLog(3,tr("Image fn: %1, CurPrjImgDir= %2","For log").arg(fn).arg(Config::configuration()->CurPrjImgDir()));
+    if ( image.save(fn, "PNG") ){
+        fn = relatifyFileName(fn, Config::configuration()->CurPrjDir());
+        htmlInsert(QString("<img src=\"%1\" />").arg(fn));
+    }else
+        Config::configuration()->toPrjLog(3,tr("Could not save image from clipboard to file: %1","For log").arg(fn));
+}
+//-------------------------------------------------
+void HelpWindow::imageUpdate(QString html)
+{
+    //QTextCursor cursor = raEdit::textCursor();
+    Config::configuration()->toPrjLog(3,"Image update code: "+html);
+}
+//-------------------------------------------------
 void HelpWindow::currentCharFormatChanged(const QTextCharFormat &format)
 {
     fontChanged(format.font());
@@ -1077,3 +1113,19 @@ void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
     table->setFormat(tableFormat);
 }
 //-------------------------------------------------
+void HelpWindow::htmlInsert(QString html)
+{
+    QTextCursor cursor = raEdit::textCursor(); // this->
+    //!+! change html (if external images) before insert, so we don't have to process the whole file after
+    //QString text = html;
+    //Config::configuration()->toPrjLog(3,"HTML to insert, before check of external image: "+text);
+    //if (text.indexOf(QLatin1String("<img"), 0, Qt::CaseInsensitive) > 0){
+    //	text = copyExternalImages(text);
+    cursor.insertHtml(html);
+    if (html.indexOf(QLatin1String("<img"), 0, Qt::CaseInsensitive) > -1){
+        qDebug() << "- Insert html and replace img tags";
+        fileSave();
+        mw->helpDialog()->copyFileImages(source().toString());
+    }
+}
+

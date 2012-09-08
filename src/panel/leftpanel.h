@@ -93,6 +93,7 @@ public:
     void enableProjectButtons();
 
     bool autosavestart;
+    QString copyImage(QString imgFN);
 signals:
     void showLink(const QString &s);
     void showSearchLink(const QString &s, const QStringList &terms);
@@ -130,6 +131,7 @@ public slots:
     void exportBook();
 
     QString getContents(QTreeWidgetItem *item);
+    void copyFileImages(QString fileName);
 
 private slots:
     void newItem();

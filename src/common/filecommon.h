@@ -15,7 +15,7 @@ QString removeAnchorFromLink(const QString &link);		//returns link without ancho
 bool verifyDirectory(const QString &str);	//create dir if not exist and if there is no such file name
 bool pathIsRelative(QString path);	//return true if path starts with ./ or ../
 QString CreateValidWebFileName(QString str); //выбирает из строки только разрешённые символы
-
+QString uniqueFileName(QString fileName); //return a unique file name based on "fileName"
 
 
 /**

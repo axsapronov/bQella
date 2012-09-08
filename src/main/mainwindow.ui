@@ -154,6 +154,7 @@
      <addaction name="actionEditFindPrev"/>
     </widget>
     <addaction name="menuTable"/>
+    <addaction name="actionInsertImage"/>
     <addaction name="separator"/>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
@@ -266,6 +267,7 @@
    <addaction name="actionTagHtml"/>
    <addaction name="actionTagBr"/>
    <addaction name="actionTagStrongNumber"/>
+   <addaction name="actionInsertImage"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionFilePrint">
@@ -818,14 +820,6 @@
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionInsertImage">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Insert Image</string>
-   </property>
-  </action>
   <action name="actionAddBookmark">
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
@@ -1030,7 +1024,7 @@
   <action name="actionTagStrongNumber">
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
-     <normaloff>:/other/images/S#.png</normaloff>:/other/images/S#.png</iconset>
+     <normaloff>:/other/images/strong.png</normaloff>:/other/images/strong.png</iconset>
    </property>
    <property name="text">
     <string>Add Strong's number</string>
@@ -1096,6 +1090,15 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+1</string>
+   </property>
+  </action>
+  <action name="actionInsertImage">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/app_about.png</normaloff>:/images/app_about.png</iconset>
+   </property>
+   <property name="text">
+    <string>Insert Image</string>
    </property>
   </action>
  </widget>

@@ -37,6 +37,7 @@
 #include "assistant.h"
 #include "contentsbook.h"
 #include "splitfile.h"
+#include "statistics.h"
 
 
 #include <QMessageBox>

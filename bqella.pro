@@ -32,6 +32,8 @@ DEPENDPATH += \
     src/properties/docproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
+    src/properties/imageproperty \
+    src/other \
     src/import/importdialog \
     src/import/importbookdialog \
     src/properties/tagdialog \
@@ -66,11 +68,13 @@ INCLUDEPATH += \
     src/properties/projectproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
+    src/properties/imageproperty \
     src/properties/docproperty \
     src/import/importdialog \
     src/import/importbookdialog \
     src/properties/tagdialog \
     src/table/tableproperty \
+    src/other \
     src/properties/strongproperty \
     src/table/cellsplit \
     src/dialogs/assistant \
@@ -110,9 +114,11 @@ FORMS += \
      topicchooser.ui \
      strongproperty.ui \
      splitfile.ui \
+     imageproperty.ui \
     src/advance/preview/previewbook.ui \
     src/advance/preview/previewmodule.ui \
-    src/panel/rightpanel.ui
+    src/panel/rightpanel.ui \
+     statistics.ui
 
 SOURCES +=  \
      config.cpp \
@@ -129,6 +135,7 @@ SOURCES +=  \
      leftpanel.cpp \
      helpwindow.cpp \
      fontpanel.cpp \
+     imageproperty.cpp \
      importdialog.cpp \
      frdialog.cpp \
      bookadddialog.cpp \
@@ -152,7 +159,8 @@ SOURCES +=  \
      splitfile.cpp \
     src/advance/preview/previewbook.cpp \
     src/advance/preview/previewmodule.cpp \
-    src/panel/rightpanel.cpp
+    src/panel/rightpanel.cpp \
+     statistics.cpp
 
 HEADERS += \
      docproperty.h \
@@ -170,6 +178,7 @@ HEADERS += \
      projectproperty.h \
      mainwindow.h \
      settings.h \
+     imageproperty.h \
      profile.h \
      config.h \
      tabbedbrowser.h \
@@ -191,7 +200,8 @@ HEADERS += \
      splitfile.h \
     src/advance/preview/previewbook.h \
     src/advance/preview/previewmodule.h \
-    src/panel/rightpanel.h
+    src/panel/rightpanel.h \
+     statistics.h
 
 RESOURCES += \
     resources/resources.qrc

@@ -131,7 +131,9 @@ public:
     QString PrjDir()	{ return prjDir; }
     QString ImgDir()	{ return imgDir; }
     QString CurPrjDir()	{ return curPrjDir; }
+    QString CurPrjName(){ return curPrjName; }
     QString CurProject(){ return curProject; }
+    QString CurPrjImgDir()	{ return curPrjImgDir; }
     QString CurFile()	{ return curFile; }
     QString CurPrjSrc()	{ return curPrjSrc; }
     QString Lang()	{ return lang; }
@@ -141,6 +143,7 @@ public:
     QString ContentsSortOrder()	{ return contentsSortOrder; }
     QString IndentString()	{ return "   "; }
 
+    bool AcceptDropImages()			{ return acceptDropImages; }
 
     bool AutoNumbers() { return autoNumbers; }
     //
@@ -183,7 +186,8 @@ public:
     void setCacheDir(QString dir)	{ cacheDir = dir; }
     void setPrjDir(QString dir)		{ prjDir = dir; }
     void setImgDir(QString dir)		{ imgDir = dir; }
-    void setCurPrjDir(QString dir)	{ curPrjDir = dir; }
+    void setCurPrjDir(QString dir)	{ curPrjDir = dir; curPrjImgDir = dir + "/images";}
+    void setCurPrjName(QString name){ curPrjName = name; }
     void setCurProject(QString prjFN)	{ curProject = prjFN; }
     void setCurFile(QString fn)		{ curFile = fn; }
     void setCurPrjSrc();
@@ -225,6 +229,7 @@ public:
 
 
 
+    void setAcceptDropImages(bool b)	{ acceptDropImages = b; }
     //variables from Settings window
     QString AppLogFN()	{ return appLogFN; }
     QString PrjLogFN()	{ return prjLogFN; }
@@ -288,8 +293,10 @@ private:
     QString imgDir;
     QString curPrjDir;
     QString curProject;	// current project file name *.pep
+    QString curPrjImgDir;
     QString curFile;	// opened file. We need this to save any changes automaticly
     QString curPrjSrc;
+    QString curPrjName;
     QString lang;
     QString errPage;	// html file to output application errors
     QString iniFile;
@@ -332,6 +339,7 @@ private:
     bool showSubItemsTitle;
     bool autoCollapse;
     bool itemAutoProperties;
+    bool acceptDropImages;
     QString externalEditor;
     QString externalBrowser;
     QString externalArchiver;

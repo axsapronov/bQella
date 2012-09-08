@@ -162,6 +162,7 @@ void Config::loadSettings()
     setItemAutoProperties(settings.value(QString("ItemAutoProperties")).toBool() );
     setAutoNumbers(			settings.value(QString("AutoNumbers")).toBool() );
 
+    setAcceptDropImages(settings.value(QLatin1String("AcceptDropImages")).toBool() );
 
     //settings from Signature window
     setDefaultSignatureID(		settings.value(QString("DefaultSignatureID")).toInt() );
@@ -210,6 +211,7 @@ void Config::saveSettings()
     settings.setValue(QString("AutoNumbers"),AutoNumbers());
 
 
+    settings.setValue(QLatin1String("AcceptDropImages"),AcceptDropImages());
     //settings from Signature window
     settings.setValue(QString("DefaultSignatureID"),DefaultSignatureID());
 

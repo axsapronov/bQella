@@ -77,6 +77,6 @@
     </qresource>
     <qresource prefix="/other">
         <file>images/_br_.png</file>
-        <file>images/S#.png</file>
+        <file>images/strong.png</file>
     </qresource>
 </RCC>

@@ -32,6 +32,7 @@
 #include "linkproperty.h"
 #include "strongproperty.h"
 #include "docproperty.h"
+#include "imageproperty.h"
 #include "tableproperty.h"
 #include "cellsplit.h"
 #include "tagdialog.h"
@@ -84,6 +85,10 @@ public slots:
     void tableUpdate(int rows, int columns, QTextTableFormat tableFormat);
 
     void insertRichText(QString text);	//insert HTML text at cursor. Used from other modules, f.e. MainWindow::setMenuSign()
+    void imageInsert(QImage image);
+    void imageUpdate(QString html);
+
+    void htmlInsert(QString html);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *e);
@@ -105,6 +110,7 @@ private:
     LinkProperties *linkprop;
     DocProperties *docprop;
     TagDialog *tagprop;
+    ImageProperties *imageprop;
     TableProperties *tableprop;
     DialogCellSplit *cellsplit;
 
@@ -122,6 +128,7 @@ private:
     void setupEditActions();
     void setupTextActions();
     void setupTableActions();
+    void setupImageActions();
     bool load(const QString &f);
     bool maybeSave();
     void setCurrentFileName(const QString fName);
@@ -188,6 +195,8 @@ private slots:
     void cellMerge();
     void cellSplit();
     void cellSplit(int rows, int columns);
+
+    void imageNew();
 
 
 }; // class HelpWindow

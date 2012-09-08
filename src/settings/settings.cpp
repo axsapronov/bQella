@@ -78,6 +78,7 @@ void AppSettings::set()
     ui.SBAppLogLevel -> setValue(Config::configuration() -> AppLogLevel());
     ui.SBPrjLogLevel -> setValue(Config::configuration() -> PrjLogLevel());
     ui.cBAutoSetNumbers -> setChecked(Config::configuration()->AutoNumbers());
+//    ui.CBAcceptDropImages->setChecked(Config::configuration()->AcceptDropImages());
 }
 
 //-------------------------------------------------

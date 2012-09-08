@@ -76,11 +76,15 @@ public:
     bool ModeHtml() { return modeHtml; }
     void setModeHtml(bool b) { modeHtml = b; }
 
+    bool canInsertFromMimeData( const QMimeData *source ) const;
+
 signals:
     void sourceChanged(const QUrl &);
     void highlighted(const QUrl &);
     void highlighted(const QString &);
     void anchorClicked(const QUrl &);
+    void insertImageFromClipboard(QImage image);
+    void insertHtmlFromClipboard(QString html);
     //    void modifed(const bool &);
 
 public slots:
@@ -92,6 +96,7 @@ public slots:
         //        emit modifed(textOrSourceChanged);
         forceLoadOnSourceChange = !currentURL.path().isEmpty();
     }
+    void insertFromMimeData( const QMimeData *source );
 
 protected:
     bool event(QEvent *e);

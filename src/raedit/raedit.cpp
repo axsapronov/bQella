@@ -22,6 +22,8 @@
 
 
 #include "raedit.h"
+#include "config.h"
+
 #include <qapplication.h>
 #include <qevent.h>
 #include <qdesktopwidget.h>
@@ -353,3 +355,25 @@ QVariant raEdit::loadResource(int /*type*/, const QUrl &name)
     }
     return data;
 }
+
+//-------------------------------------------------
+bool raEdit::canInsertFromMimeData( const QMimeData *source ) const
+{
+	 if (source->hasImage() && Config::configuration()->AcceptDropImages())
+		 return true;
+	 else
+		 return QTextEdit::canInsertFromMimeData(source);
+}
+
+//-------------------------------------------------
+void raEdit::insertFromMimeData( const QMimeData *source )
+ {
+        if (source->hasImage() && Config::configuration()->AcceptDropImages()) {
+                 QImage image = qvariant_cast<QImage>(source->imageData());
+                 emit insertImageFromClipboard(image);
+        }else if (source->hasHtml()) {
+                emit insertHtmlFromClipboard(source->html());
+        }else{
+                QTextEdit::insertFromMimeData(source);
+        }
+ }

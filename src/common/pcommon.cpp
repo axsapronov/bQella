@@ -1438,3 +1438,21 @@ QString getFolderFile(QString *file)
     return str;
 }
 //------------------------------------------------------------
+QString uniqueFileName(QString fileName)
+{
+	QString fn = fileName;
+	if (fn.isEmpty())
+		fn = QDir::currentPath()+ "/file.txt";
+	QFileInfo fi(fn);
+	QString path = fi.path();
+	QString base = fi.completeBaseName();
+	QString ext = fi.suffix();
+	int counter = 1;
+	while ( QFile::exists(fn) ){
+		fn = path +"/"+ base +"-"+ QString::number(counter) +"."+ ext;
+		counter++;
+	}
+    //fn = fn.toLower();
+        return fn;
+}
+//------------------------------------------------------------
