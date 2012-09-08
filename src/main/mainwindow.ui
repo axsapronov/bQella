@@ -255,7 +255,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <addaction name="actionTextBold"/>
    <addaction name="actionTextItalic"/>
@@ -706,7 +706,7 @@
   </action>
   <action name="actionTextColor">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../../resources/resources.qrc">
