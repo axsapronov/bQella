@@ -64,6 +64,10 @@ MainWindow *TabbedBrowser::mainWindow() const
     return static_cast<MainWindow*>(parentWidget());
 }
 //------------------------------------------------------------------------------
+TabbedBrowser::~TabbedBrowser()
+{
+}
+//------------------------------------------------------------------------------
 void TabbedBrowser::forward()
 {
     //    currentBrowser() -> forward();
