@@ -45,7 +45,7 @@
 
 static Config *static_configuration = 0;
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 Config::Config()
     : profil(0), hideSidebar(false), rebuildDocs(true)
 {
@@ -56,14 +56,14 @@ Config::Config()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 Config *Config::configuration()
 {
     Q_ASSERT( static_configuration );
     return static_configuration;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::loadProject(const QString &projectFileName)
 {
     toAppLog(2, "Load project: " + projectFileName);
@@ -109,7 +109,7 @@ void Config::loadProject(const QString &projectFileName)
     toAppLog(2, "- loaded succesfully");
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::loadSettings()
 {
     QSettings settings(iniFile, QSettings::IniFormat);
@@ -170,7 +170,7 @@ void Config::loadSettings()
     toAppLog(2, "- done");
 }//loadSettings()
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::saveSettings()
 {
     toAppLog(2, "Save application settings");
@@ -218,7 +218,7 @@ void Config::saveSettings()
     toAppLog(2, "- done");
 }//saveSettings()
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList Config::mimePaths() //where to make full search. Used only in TabbedBrowser::createHelpWindow
 {
     static QStringList lst;
@@ -230,7 +230,7 @@ QStringList Config::mimePaths() //where to make full search. Used only in Tabbed
     return lst;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::delProject(QString prj)
 {
     int i, index=-1;
@@ -242,7 +242,7 @@ void Config::delProject(QString prj)
         profileFNs.removeAt(index);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString Config::profileTitle() const
 {
     QString s = profil -> props[QString("title")];
@@ -251,19 +251,19 @@ QString Config::profileTitle() const
     return s;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString Config::homePage() const
 {
     return startPage.isEmpty() ? profil -> props[QString("startpage")] : startPage;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList Config::source() const
 {
     return src.size() == 0 ? QStringList(profil -> props[QString("startpage")]) : src;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList Config::docFiles() const //used in LeftPanel to build keyword DB. Earlier it used to return profil -> docs
 {
     QStringList tmp;
@@ -271,17 +271,17 @@ QStringList Config::docFiles() const //used in LeftPanel to build keyword DB. Ea
     return tmp;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::hideSideBar( bool b ) {  hideSidebar = b; }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool Config::sideBarHidden() const {  return hideSidebar; }
 
 
 void Config::hideRightPanel( bool b ) {  hideRightpanel = b; }
 bool Config::rightPanelHidden() const {  return hideRightpanel; }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString Config::getProjectProperty(QString prop, QString prjFN)
 {
 //qDebug() << "[19]";
@@ -311,7 +311,7 @@ QString Config::getProjectProperty(QString prop, QString prjFN)
     return profil_tmp -> props[prop];
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::setCurPrjSrc()
 {
     curPrjSrc = CurProject();
@@ -320,7 +320,7 @@ void Config::setCurPrjSrc()
     curPrjSrc = curPrjSrc + "-sources.xml";	// !+! for future XML import-export
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::setFontPointSize(qreal size)
 {
     pointFntSize = size;
@@ -328,14 +328,14 @@ void Config::setFontPointSize(qreal size)
     m_fontSettings.browserFont.setPointSizeF(size);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::toAppLog(int logLevel, QString msg)
 {
     if (logLevel <= AppLogLevel())
         toLog(AppLogFN() ,msg);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void Config::toPrjLog(int logLevel, QString msg)
 {
     if (logLevel <= PrjLogLevel())

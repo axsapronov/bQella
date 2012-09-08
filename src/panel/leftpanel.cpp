@@ -58,7 +58,7 @@ QString ind1="   ";		//number of spaces (or tabs) for one indent
 QString indent = ind1; 	//=(ind1 * number_of_indents) - subsection depth
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 struct IndexKeyword {
     //--- constructors ---
     IndexKeyword(const QString &kw, const QString &l)
@@ -82,7 +82,7 @@ struct IndexKeyword {
     QString link;
 };
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QDataStream &operator>>(QDataStream &s, IndexKeyword &ik)
 {
     s >> ik.keyword;
@@ -90,7 +90,7 @@ QDataStream &operator>>(QDataStream &s, IndexKeyword &ik)
     return s;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QDataStream &operator<<(QDataStream &s, const IndexKeyword &ik)
 {
     s << ik.keyword;
@@ -98,7 +98,7 @@ QDataStream &operator<<(QDataStream &s, const IndexKeyword &ik)
     return s;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool caseInsensitiveLessThan(const QString &as, const QString &bs)
 {
     const QChar *a = as.unicode();
@@ -139,7 +139,7 @@ private:
     QMultiMap<QString, QString> contents;
 };
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /**
  * \a real is kinda a hack for the smart search, need a way to match a regexp to an item
  * How would you say the best match for Q.*Wiget is QWidget?
@@ -250,7 +250,7 @@ LeftPanel::LeftPanel(QWidget *parent, MainWindow *h)
 
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::initialize()
 {
 //    qDebug() << "[15]";
@@ -450,7 +450,7 @@ void LeftPanel::initialize()
     //ui.listContents -> setColumnCount(3);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::initTabs()
 {
     contentList.clear();
@@ -467,19 +467,19 @@ void LeftPanel::initTabs()
     //ui.listContents -> setColumnCount(3);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::processEvents()
 {
     qApp -> processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::lastWinClosed()
 {
     lwClosed = true;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::removeOldCacheFiles(bool onlyFulltextSearchIndex)
 {
     if (!verifyDirectory(Config::configuration() -> CacheDir())) {
@@ -509,7 +509,7 @@ void LeftPanel::removeOldCacheFiles(bool onlyFulltextSearchIndex)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // ?-? do we need it
 void LeftPanel::timerEvent(QTimerEvent *e)
 {
@@ -520,7 +520,7 @@ void LeftPanel::timerEvent(QTimerEvent *e)
         qApp -> quit();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::loadIndexFile()
 {
 //    qDebug() << "[2]";
@@ -589,7 +589,7 @@ void LeftPanel::loadIndexFile()
     setCursor(Qt::ArrowCursor);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 quint32 LeftPanel::getFileAges()
 {
     QStringList addDocuFiles = Config::configuration() -> docFiles();
@@ -606,7 +606,7 @@ quint32 LeftPanel::getFileAges()
     return fileAges;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::buildKeywordDB()
 {
     QStringList addDocuFiles = Config::configuration() -> docFiles();
@@ -673,7 +673,7 @@ void LeftPanel::buildKeywordDB()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::setupTitleMap() //?-? check this procedure, may be remove some code
 {
     if (titleMapDone)
@@ -711,7 +711,7 @@ void LeftPanel::setupTitleMap() //?-? check this procedure, may be remove some c
     processEvents();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::getAllContents()
 {
 //    qDebug() << "[24]";
@@ -749,7 +749,7 @@ void LeftPanel::getAllContents()
     processEvents();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::buildContentDict() //fill up contents = create TreeWidget nodes (TreeWidgetItems)
 {
 //    qDebug() << "[28]";
@@ -806,7 +806,7 @@ void LeftPanel::buildContentDict() //fill up contents = create TreeWidget nodes 
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::currentTabChanged(int index)
 {
     QString s = ui.tabWidget -> widget(index) -> objectName();
@@ -820,7 +820,7 @@ void LeftPanel::currentTabChanged(int index)
         QTimer::singleShot(0, this, SLOT(setupFullTextIndex()));
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showInitDoneMessage()
 {
 //    qDebug() << "[1]";
@@ -830,14 +830,14 @@ void LeftPanel::showInitDoneMessage()
     mw -> statusBar() -> showMessage(tr("Done"), 3000);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showTopic(QTreeWidgetItem *item)
 {
     if (item)
         showTopic();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showTopic()
 {
     QString tabName = ui.tabWidget -> currentWidget() -> objectName();
@@ -878,7 +878,7 @@ void LeftPanel::showTopic()
 */
 
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showIndexTopic()
 {
     int row = ui.listIndex -> currentIndex().row();
@@ -912,7 +912,7 @@ void LeftPanel::showIndexTopic()
     ui.listIndex -> scrollTo(ui.listIndex -> currentIndex(), QAbstractItemView::PositionAtTop);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::searchInIndex(const QString &searchString)
 {
     QRegExp atoz(QString("[A-Z]"));
@@ -937,7 +937,7 @@ void LeftPanel::searchInIndex(const QString &searchString)
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString LeftPanel::titleOfLink(const QString &link)
 {
     QString s = removeAnchorFromLink(link);
@@ -947,7 +947,7 @@ QString LeftPanel::titleOfLink(const QString &link)
     return s;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool LeftPanel::eventFilter(QObject * o, QEvent * e)
 {
     QString objName = o -> objectName();
@@ -1048,7 +1048,7 @@ bool LeftPanel::eventFilter(QObject * o, QEvent * e)
     }
     return QWidget::eventFilter(o, e);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for saving bookmarks to file. Used by LeftPanel::saveBookmarks()
 void LeftPanel::store(QTreeWidgetItem *i, QTextStream &ts)
 {
@@ -1062,14 +1062,14 @@ void LeftPanel::store(QTreeWidgetItem *i, QTextStream &ts)
         store(i -> child(index), ts);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for saving bookmarks to file. Used by LeftPanel::saveBookmarks()
 void LeftPanel::store(QTreeWidget *tw, QTextStream &ts)
 {
     for (int index = 0; index < tw -> topLevelItemCount(); ++index)
         store(tw -> topLevelItem(index), ts);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::insertContents()
 {
 //    qDebug() << "[3]-YAS";
@@ -1140,7 +1140,7 @@ void LeftPanel::insertContents()
     showInitDoneMessage();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showContentsTopic() //show topic on click in contens
 {
     QTreeWidgetItem *i;
@@ -1176,7 +1176,7 @@ void LeftPanel::showContentsTopic() //show topic on click in contens
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QTreeWidgetItem * LeftPanel::locateLink(QTreeWidgetItem *item, const QString &link)
 {
     QTreeWidgetItem *child = 0;
@@ -1202,7 +1202,7 @@ QTreeWidgetItem * LeftPanel::locateLink(QTreeWidgetItem *item, const QString &li
     return child;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::locateContents(const QString &link)
 {
 //    qDebug() << "[6]";
@@ -1274,7 +1274,7 @@ void LeftPanel::locateContents(const QString &link)
     ui.listContents -> scrollToItem(item);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::toggleContents()
 {
     if (!isVisible() || ui.tabWidget -> currentIndex() != 0) {
@@ -1284,7 +1284,7 @@ void LeftPanel::toggleContents()
     else
         parentWidget() -> hide();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::setupFullTextIndex()
 {
     if (fullTextIndex)
@@ -1347,13 +1347,13 @@ void LeftPanel::setupFullTextIndex()
     keywordDocuments.clear();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::setIndexingProgress(int prog)
 {
     ui.progressPrepare -> setValue(prog);
     processEvents();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showContentsItemMenu(const QPoint &pos)
 {
     QTreeWidget *treeWidget = qobject_cast<QTreeWidget*>(sender());
@@ -1396,7 +1396,7 @@ void LeftPanel::showContentsItemMenu(const QPoint &pos)
     triggerAction(item, action);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::triggerAction(QTreeWidgetItem *item, QAction *action)
 {
     if (action)
@@ -1543,7 +1543,7 @@ void LeftPanel::triggerAction(QTreeWidgetItem *item, QAction *action)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showTreeItemMenu(const QPoint &pos) //bookmark popup menu
 {
     QTreeWidget *treeWidget = qobject_cast<QTreeWidget*>(sender());
@@ -1576,7 +1576,7 @@ void LeftPanel::showTreeItemMenu(const QPoint &pos) //bookmark popup menu
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showItemProperties()
 {
     QTreeWidgetItem *item;
@@ -1593,7 +1593,7 @@ void LeftPanel::showItemProperties()
 
     qDebug() << "Debug: _LeftPanel::showItemProperties()" << "item prop title = " << title << ", link = " << fName;
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //insert new document in content
 void LeftPanel::InsertContentsItem(QString title, QString shortname, int count, QString fileName)
 {
@@ -1720,7 +1720,7 @@ void LeftPanel::InsertContentsItem(QString title, QString shortname, int count, 
         fixedBookConfFile(strfor, newEntry, title);
     }
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::InsertChapter(QTreeWidgetItem * book, QString title, QString fileName)
 {
     QTreeWidgetItem *newEntry;
@@ -1740,7 +1740,7 @@ void LeftPanel::InsertChapter(QTreeWidgetItem * book, QString title, QString fil
     }
     mw -> projectModified(true);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QString title)
 {
     title = title;
@@ -1805,7 +1805,7 @@ void LeftPanel::fixedBookConfFile(QString filename, QTreeWidgetItem* item, QStri
     file.close();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for saving contents to file. Used by LeftPanel::saveContents()
 static void store2xml(QTreeWidgetItem *i, QTextStream &ts)
 {
@@ -1822,7 +1822,7 @@ static void store2xml(QTreeWidgetItem *i, QTextStream &ts)
     ts << indent << "</section>" << endl;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for saving contents to file. Used by LeftPanel::saveContents()
 static void store2xml(QTreeWidget *tw, QTextStream &ts)
 {
@@ -1833,13 +1833,13 @@ static void store2xml(QTreeWidget *tw, QTextStream &ts)
     ts << "</contents>" << endl;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::saveProject()
 {
     saveProject(Config::configuration() -> CurProject());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::saveProject(QString profileFN)
 {
     //    qDebug() << "profileFN" << profileFN;
@@ -1877,7 +1877,7 @@ void LeftPanel::saveProject(QString profileFN)
     mw -> statusBar() -> showMessage(tr("Project has been saved"), 5000);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::updateItemProperties(QString fullname, QString shortname, int count, QString fileName) //update item properties
 {
     QTreeWidgetItem *item;
@@ -1917,7 +1917,7 @@ void LeftPanel::updateItemProperties(QString fullname, QString shortname, int co
     mw -> projectModified(true);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::removeItem()
 {
     int ret = QMessageBox::warning(this, GL_PROG_NAME, tr("Delete just contents item? Source file will be untouched."),
@@ -1927,7 +1927,7 @@ void LeftPanel::removeItem()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::removeItemDontAsk()
 {
     QTreeWidgetItem *parent = ui.listContents -> currentItem() -> parent();
@@ -1951,7 +1951,7 @@ void LeftPanel::removeItemDontAsk()
     mw -> projectModified(true);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::deleteItem()
 {
     QTreeWidgetItem *item = ui.listContents -> currentItem();
@@ -1979,7 +1979,7 @@ void LeftPanel::deleteItem()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_BProjectAdd_clicked()
 {
     QString prjFN = Config::configuration() -> CurProject();
@@ -1993,7 +1993,7 @@ void LeftPanel::on_BProjectAdd_clicked()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_BProjectDelete_clicked()
 {
     if (ui.CBProjects -> itemData(ui.CBProjects -> currentIndex(), LinkRole) != "Empty link")
@@ -2017,7 +2017,7 @@ void LeftPanel::on_BProjectDelete_clicked()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::loadProjectFromList(int prjIndex)
 {
     //!+! check if project modified and ask for saving. Don not save automaticly
@@ -2025,7 +2025,7 @@ void LeftPanel::loadProjectFromList(int prjIndex)
     mw -> ProjectOpen(ui.CBProjects -> itemData(prjIndex, LinkRole).toString());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::enableProjectButtons()
 {
 //    qDebug() << "[21]";
@@ -2045,19 +2045,19 @@ void LeftPanel::enableProjectButtons()
     ui.CBProjects -> setCurrentIndex(ind);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showContentsAV(bool b)
 {
     ui.TWSubItems -> setVisible(b);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showContentsAVHeader(bool b)
 {
     ui.TWSubItems -> setItemHidden(ui.TWSubItems -> headerItem(), !b);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::fillSubList()
 {
     int index;
@@ -2073,7 +2073,7 @@ void LeftPanel::fillSubList()
         item -> setData(0, LinkRole, i -> child(index) -> data(0,LinkRole));
     }
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::cloneItem(QTreeWidgetItem *item, bool subItem)
 {
     if (subItem){
@@ -2083,14 +2083,14 @@ void LeftPanel::cloneItem(QTreeWidgetItem *item, bool subItem)
     //    qDebug() <<  "Debug: _ LeftPanel::cloneItem()" << "inserted item title = " << item -> text(0) << ", link = " << item -> data(0, LinkRole);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::cloneDone()
 {
     saveProject();
     mw -> ProjectOpen( Config::configuration() -> CurProject() );
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::currentItemChanged(QTreeWidgetItem* curItem,QTreeWidgetItem* prevItem)
 {
     ui.listContents -> closePersistentEditor(prevItem);
@@ -2098,7 +2098,7 @@ void LeftPanel::currentItemChanged(QTreeWidgetItem* curItem,QTreeWidgetItem* pre
     //ui.listContents -> setFocus();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::newItem()
 {
     // определяем уровень дерева для нового элемента, если больше 2 (с нуля считаю), то не создаем ничего
@@ -2159,7 +2159,7 @@ void LeftPanel::newItem()
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::sortAscending()
 {
     ui.listContents -> setSortingEnabled(true);
@@ -2169,7 +2169,7 @@ void LeftPanel::sortAscending()
     //void QTreeWidgetItem::sortChildren ( int column, Qt::SortOrder order )
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::sortDescending()
 {
     ui.listContents -> setSortingEnabled(true);
@@ -2177,14 +2177,14 @@ void LeftPanel::sortDescending()
     Config::configuration() -> setContentsSortOrder("Descending");
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::sortDisable()
 {
     ui.listContents -> setSortingEnabled(false);
     Config::configuration() -> setContentsSortOrder("Disable");
 }
 /*
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for building up list of items, to fast locate. LeftPanel::locateItemByName()
 static void pickItems(QTreeWidgetItem *i, QList<QTreeWidgetItem> &iList, QString &name)
 {
@@ -2196,7 +2196,7 @@ static void pickItems(QTreeWidgetItem *i, QList<QTreeWidgetItem> &iList, QString
  }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //for building up list of items, to fast locate. LeftPanel::locateItemByName()
 static void pickItems(QTreeWidget *tw, QList<QTreeWidgetItem> &iList, QString &name)
 {
@@ -2207,7 +2207,7 @@ static void pickItems(QTreeWidget *tw, QList<QTreeWidgetItem> &iList, QString &n
 }
 */
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool LeftPanel::findItemByName(QTreeWidgetItem *i, QString &name) //for building up list of items, to fast locate. LeftPanel::locateItemByName()
 {
     if (curChildIndex > liChildIndex) //compare only if we came to the next child (for nextMatchedItem() )
@@ -2227,7 +2227,7 @@ bool LeftPanel::findItemByName(QTreeWidgetItem *i, QString &name) //for building
     return false;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool LeftPanel::findItemByName(QString &name)  //for building up list of items, to fast locate. LeftPanel::locateItemByName()
 {
     for (int index = liTopLevelIndex; index < ui.listContents -> topLevelItemCount(); ++index)
@@ -2242,7 +2242,7 @@ bool LeftPanel::findItemByName(QString &name)  //for building up list of items, 
     return false;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::locateItemByName(QString name)
 {
     if(!name.isEmpty()){
@@ -2252,7 +2252,7 @@ void LeftPanel::locateItemByName(QString name)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::nextMatchedItem()
 {
     QString name = ui.LELocateItemByName -> text();
@@ -2264,7 +2264,7 @@ void LeftPanel::nextMatchedItem()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::itemChanged(QTreeWidgetItem* item, int column)
 {
     if (mw -> browsers() -> currentBrowser() -> getTagTitle() == str_NewItemTitle)
@@ -2272,35 +2272,35 @@ void LeftPanel::itemChanged(QTreeWidgetItem* item, int column)
     mw -> projectModified(true);
     saveProject();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString LeftPanel::getNameFolder(QString cur_dir)
 {
     QStringList path = cur_dir.split("/");
     path.removeLast();
     return path.last();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString LeftPanel::getFileBibleqtName()
 {
     return ui.listContents -> topLevelItem(0) -> data(0,LinkRole).toString().remove("file:");
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString LeftPanel::getFileName(int i)
 {
     return ui.listContents -> topLevelItem(i) -> data(0, LinkRole).toString().remove("file:");
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString LeftPanel::getTest()
 {
     //    exportf -> setTopLevelItemCount(10);
     return getFileBibleqtName();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 int LeftPanel::getTopLevelItemCount()
 {
     return ui.listContents -> topLevelItemCount();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::exportModule()
 {
     saveProject();
@@ -2316,7 +2316,7 @@ void LeftPanel::exportModule()
         exportBibleBook(filename, QString("%1").arg(i));
     }
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::exportBibleBook(QString filenamebook, QString i)
 {
     QFile filebook(filenamebook);
@@ -2355,7 +2355,7 @@ void LeftPanel::exportBibleBook(QString filenamebook, QString i)
     filebook.close();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::exportBook()
 {
     mw->browsers() -> currentBrowser() -> fileSave(); /// save files
@@ -2371,7 +2371,7 @@ void LeftPanel::exportBook()
 
     exportBibleBook(filename, numberOfBook); /// export book
 }
-//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 QString LeftPanel::getContents(QTreeWidgetItem *item)
 {
     QString filebook = unurlifyFileName(item->data(0, LinkRole).toString());
@@ -2393,7 +2393,7 @@ QString LeftPanel::getContents(QTreeWidgetItem *item)
     return "";
 
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::addBookmark()
 {
     if (!bookmarksInserted)
@@ -2413,13 +2413,13 @@ void LeftPanel::addBookmark()
     mw -> projectModified(true);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_buttonAdd_clicked()
 {
     addBookmark();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_buttonRemove_clicked()
 {
     if (!ui.listBookmarks -> currentItem())
@@ -2435,7 +2435,7 @@ void LeftPanel::on_buttonRemove_clicked()
     mw -> projectModified(true);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::insertBookmarks() //to list in Bookmarks tab. Add to Bookmark menu in  MainWindow::setupBookmarkMenu()
 {
     if (bookmarksInserted)
@@ -2458,7 +2458,7 @@ void LeftPanel::insertBookmarks() //to list in Bookmarks tab. Add to Bookmark me
     mw -> projectModified(true);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::saveBookmarks()
 {
     QFile f(Config::configuration() -> CacheDir() + QDir::separator() + QString("bookmarks.") + Config::configuration() -> profileName());
@@ -2469,7 +2469,7 @@ void LeftPanel::saveBookmarks()
     store(ui.listBookmarks, ts);
     f.close();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showBookmarkTopic()
 {
     if (!ui.listBookmarks -> currentItem())
@@ -2484,7 +2484,7 @@ void LeftPanel::showBookmarkTopic()
     emit showLink(lnk);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::toggleIndex()
 {
     if (!isVisible() || ui.tabWidget -> currentIndex() != 1 || !ui.editIndex -> hasFocus()) {
@@ -2496,7 +2496,7 @@ void LeftPanel::toggleIndex()
         parentWidget() -> hide();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::startSearch()
 {
     QString str = ui.termsEdit -> text();
@@ -2574,7 +2574,7 @@ void LeftPanel::startSearch()
     setCursor(Qt::ArrowCursor);
 }
 /*
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_helpButton_clicked()
 {
     emit showLink(MainWindow::urlifyFileName(
@@ -2583,20 +2583,20 @@ void LeftPanel::on_helpButton_clicked()
 }
 */
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_resultBox_itemActivated(QListWidgetItem *item)
 {
     showResultPage(item);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showResultPage(QListWidgetItem *item)
 {
     if (item)
         emit showSearchLink(foundDocs[ui.resultBox -> row(item)], terms);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showIndexItemMenu(const QPoint &pos) //on click in index (keyword) list
 {
     QListView *listView = qobject_cast<QListView*>(sender());
@@ -2643,7 +2643,7 @@ void LeftPanel::showIndexItemMenu(const QPoint &pos) //on click in index (keywor
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::showListItemMenu(const QPoint &pos) // show doc from search result list
 {
     QListWidget *listWidget = qobject_cast<QListWidget*>(sender());
@@ -2671,7 +2671,7 @@ void LeftPanel::showListItemMenu(const QPoint &pos) // show doc from search resu
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::toggleBookmarks()
 {
     if (!isVisible() || ui.tabWidget -> currentIndex() != 2) {
@@ -2682,7 +2682,7 @@ void LeftPanel::toggleBookmarks()
         parentWidget() -> hide();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::toggleSearch()
 {
     if (!isVisible() || ui.tabWidget -> currentIndex() != 3) {
@@ -2693,24 +2693,24 @@ void LeftPanel::toggleSearch()
         parentWidget() -> hide();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_termsEdit_returnPressed()
 {
     startSearch();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::updateSearchButton(const QString &txt)
 {
     ui.searchButton -> setDisabled(txt.isEmpty());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::on_searchButton_clicked()
 {
     startSearch();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void LeftPanel::copyFileImages(QString fileName)
 {
 	int start, end, fnStart, fnEnd, n; //?+? change int ulong for big files? But QString::IndexOf() returns int
@@ -2763,7 +2763,7 @@ void LeftPanel::copyFileImages(QString fileName)
 			Config::configuration()->toPrjLog(3, tr("- failed to save file after update", "For log"));
 	}
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Copy one image to project image directory.
 // Return relative file name in success or empty string if fail
 // !+! make universal function (in pcommon.cpp) copyResource(QString resourceFN, destinationDir, relatifyDir)

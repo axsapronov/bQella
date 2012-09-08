@@ -57,7 +57,7 @@
 
 bool needConnection = true;
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
     : raEdit(parent)
     , mw(w)
@@ -118,7 +118,7 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
 
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // open link in this window or pass url to OS
 void HelpWindow::setSource(const QUrl &name)
 {
@@ -186,7 +186,7 @@ void HelpWindow::setSource(const QUrl &name)
     //    qDebug() << "[47]";
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::openLinkInNewWindow()
 {
     if (lastAnchor.isEmpty())
@@ -196,14 +196,14 @@ void HelpWindow::openLinkInNewWindow()
     newWindow = false;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::openLinkInNewWindow(const QString &link)
 {
     lastAnchor = link;
     openLinkInNewWindow();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::openLinkInNewPage()
 {
     if(lastAnchor.isEmpty())
@@ -212,14 +212,14 @@ void HelpWindow::openLinkInNewPage()
     lastAnchor.clear();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::openLinkInNewPage(const QString &link)
 {
     lastAnchor = link;
     openLinkInNewPage();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HelpWindow::hasAnchorAt(const QPoint& pos)
 {
     lastAnchor = anchorAt(pos);
@@ -234,7 +234,7 @@ bool HelpWindow::hasAnchorAt(const QPoint& pos)
     return true;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
 {
     QMenu *m = new QMenu(0);
@@ -259,7 +259,7 @@ void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
     delete m;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::showLinkProperties()
 {
     QString s = "";
@@ -298,7 +298,7 @@ void HelpWindow::showLinkProperties()
  */
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::showStrongProperties()
 {
     QString s = "";
@@ -334,7 +334,7 @@ void HelpWindow::showStrongProperties()
 
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::showTagProperties()
 {
     QString s = "";
@@ -370,7 +370,7 @@ void HelpWindow::showTagProperties()
  */
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::removeStrong()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -382,7 +382,7 @@ void HelpWindow::removeStrong()
     //!+! убрать форматирование текста
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::updateStrong(QString lText, QString lLocation)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -421,7 +421,7 @@ void HelpWindow::addBrTag()
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::removeLink()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -433,7 +433,7 @@ void HelpWindow::removeLink()
     //!+! убрать форматирование текста
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::updateLink(QString lText, QString lLocation)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -452,7 +452,7 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::addTag(QString tag)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -476,14 +476,14 @@ void HelpWindow::addTag(QString tag)
     //    qDebug() << "=======end========\n\n";
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::mouseMoveEvent(QMouseEvent *e)
 {
     //	!+! Change cursor when mouse is over link and Ctrl is pressed.
     raEdit::mouseMoveEvent(e);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e -> button() == Qt::XButton1) {
@@ -511,7 +511,7 @@ void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
     raEdit::mouseReleaseEvent(e);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::mousePressEvent(QMouseEvent *e)
 {
     shiftPressed = e -> modifiers() & Qt::ShiftModifier;
@@ -519,7 +519,7 @@ void HelpWindow::mousePressEvent(QMouseEvent *e)
         raEdit::mousePressEvent(e);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::keyPressEvent(QKeyEvent *e)
 {
     //shiftPressed = e -> modifiers() & Qt::ShiftModifier;
@@ -527,13 +527,13 @@ void HelpWindow::keyPressEvent(QKeyEvent *e)
     raEdit::keyPressEvent(e);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::blockScrolling(bool b)
 {
     blockScroll = b;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::ensureCursorVisible()
 {
     if (!blockScroll)
@@ -550,7 +550,7 @@ void HelpWindow::closeEvent(QCloseEvent *e)
         e -> ignore();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setupFileActions()
 {
 
@@ -570,7 +570,7 @@ void HelpWindow::setupFileActions()
     mw -> ui.actionSaveFile -> setEnabled(raEdit::document() -> isModified());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setupEditActions()
 {
     connect(raEdit::document(), SIGNAL(undoAvailable(bool)), mw -> ui.actionUndo, SLOT(setEnabled(bool)));
@@ -591,7 +591,7 @@ void HelpWindow::setupEditActions()
     mw -> ui.actionPaste -> setEnabled(!QApplication::clipboard() -> text().isEmpty());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setupTextActions()
 {
     connect(mw -> ui.actionTextBold, 		SIGNAL(triggered()), this, SLOT(textBold()));
@@ -630,7 +630,7 @@ void HelpWindow::setupTextActions()
     connect(comboSize, SIGNAL(activated(const QString &)), this, SLOT(textSize(const QString &)));
     comboSize -> setCurrentIndex(comboSize -> findText(QString::number(QApplication::font().pointSize())));
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setupTableActions()
 {
     connect(mw->ui.menuTable, SIGNAL(aboutToShow()), this, SLOT(setupTableMenu()));
@@ -644,12 +644,12 @@ void HelpWindow::setupTableActions()
     connect(mw->ui.actionInsertColumnRight, SIGNAL(triggered()), this, SLOT(columnInsertRight()));
     connect(mw->ui.actionDeleteColumn, SIGNAL(triggered()), this, SLOT(columnDelete()));
 }
-//----------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 void HelpWindow::setupImageActions()
 {
     connect(mw->ui.actionInsertImage, SIGNAL(triggered()), this, SLOT(imageNew()));
 }
-//----------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 bool HelpWindow::load(const QString &f)
 {
     if (!QFile::exists(f))
@@ -662,7 +662,7 @@ bool HelpWindow::load(const QString &f)
     setCurrentFileName(f);
     return true;
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HelpWindow::maybeSave()
 {
     if (!raEdit::document() -> isModified())
@@ -681,27 +681,27 @@ bool HelpWindow::maybeSave()
     return true;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setCurrentFileName(const QString fName)
 {
     Config::configuration() -> setCurFile(fName);
     raEdit::document() -> setModified(false);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::loadNewItemFile()
 {
     load(itemprop -> getFilename());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::updateItem(QString fullname, QString shName, int count, QString path)
 {
     itemprop -> setProperties(fullname, shName, count, path );
     itemprop -> show();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::fileNew()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("New File..."),
@@ -716,7 +716,7 @@ void HelpWindow::fileNew()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::fileOpen()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Open File..."),
@@ -731,7 +731,7 @@ void HelpWindow::fileOpen()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HelpWindow::fileSave()
 {
     if (Config::configuration() -> CurFile().isEmpty())
@@ -750,7 +750,7 @@ bool HelpWindow::fileSave()
     return true;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HelpWindow::fileSaveAs()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("Save file as..."),
@@ -764,7 +764,7 @@ bool HelpWindow::fileSaveAs()
     return fileSave();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textBold()
 {
     QTextCharFormat fmt;
@@ -772,7 +772,7 @@ void HelpWindow::textBold()
     mergeFormatOnWordOrSelection(fmt);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textItalic()
 {
     QTextCharFormat fmt;
@@ -780,7 +780,7 @@ void HelpWindow::textItalic()
     mergeFormatOnWordOrSelection(fmt);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textUnderline()
 {
     QTextCharFormat fmt;
@@ -788,7 +788,7 @@ void HelpWindow::textUnderline()
     mergeFormatOnWordOrSelection(fmt);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textFamily(const QString &f)
 {
     QTextCharFormat fmt;
@@ -796,7 +796,7 @@ void HelpWindow::textFamily(const QString &f)
     mergeFormatOnWordOrSelection(fmt);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textSize(const QString &p)
 {
     QTextCharFormat fmt;
@@ -805,7 +805,7 @@ void HelpWindow::textSize(const QString &p)
     mergeFormatOnWordOrSelection(fmt);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textStyle(int styleIndex)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -862,7 +862,7 @@ void HelpWindow::textStyle(int styleIndex)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textColor()
 {
     QColor col = QColorDialog::getColor(raEdit::textColor(), this);
@@ -874,19 +874,19 @@ void HelpWindow::textColor()
     colorChanged(col);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::textAlignLeft()	{ raEdit::setAlignment(Qt::AlignLeft); }
 void HelpWindow::textAlignCenter()	{ raEdit::setAlignment(Qt::AlignCenter); }
 void HelpWindow::textAlignRight()	{ raEdit::setAlignment(Qt::AlignRight); }
 void HelpWindow::textAlignJustify()	{ raEdit::setAlignment(Qt::AlignJustify); }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::imageNew()
 {
     imageprop->setProperties(0, 0, QImage());
     imageprop->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::imageInsert(QImage image)
 {
     QString fn = uniqueFileName(Config::configuration()->CurPrjImgDir()+"/image.png");
@@ -897,32 +897,32 @@ void HelpWindow::imageInsert(QImage image)
     }else
         Config::configuration()->toPrjLog(3,tr("Could not save image from clipboard to file: %1","For log").arg(fn));
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::imageUpdate(QString html)
 {
     //QTextCursor cursor = raEdit::textCursor();
     Config::configuration()->toPrjLog(3,"Image update code: "+html);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::currentCharFormatChanged(const QTextCharFormat &format)
 {
     fontChanged(format.font());
     colorChanged(format.foreground().color());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::cursorPositionChanged()
 {
     alignmentChanged(raEdit::alignment());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::clipboardDataChanged()
 {
     mw -> ui.actionPaste -> setEnabled(!QApplication::clipboard() -> text().isEmpty());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -932,7 +932,7 @@ void HelpWindow::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
     raEdit::mergeCurrentCharFormat(format);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::fontChanged(const QFont &f)
 {
     comboFont -> setCurrentIndex(comboFont -> findText(QFontInfo(f).family()));
@@ -942,7 +942,7 @@ void HelpWindow::fontChanged(const QFont &f)
     mw -> ui.actionTextUnderline -> setChecked(f.underline());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::colorChanged(const QColor &c) //for text and background color indicators
 {
     c.colorNames();
@@ -953,7 +953,7 @@ void HelpWindow::colorChanged(const QColor &c) //for text and background color i
     //    actionTextColor -> setIcon(pix);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::alignmentChanged(Qt::Alignment a)
 {
     if (a & Qt::AlignLeft) {
@@ -966,29 +966,29 @@ void HelpWindow::alignmentChanged(Qt::Alignment a)
         mw -> ui.actionTextJustify -> setChecked(true);
     }
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::setTagTitle(QString title)
 {
     raEdit::setDocumentTitle(title);
     fileSave();
     mw -> browsers() -> updateTitle(title);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QString HelpWindow::getTagTitle() { return raEdit::documentTitle(); }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::showDocProperties()
 {
     docprop -> setTitle(raEdit::documentTitle());
     docprop -> setFileName(raEdit::source().toString());
     docprop -> show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::insertRichText(QString text)
 {	//!+! reimplement procedures in reEdit to work with HTML comment, since QTextEdit does not understand it
     QTextCursor cursor = raEdit::textCursor();
     cursor.insertHtml(text);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 void HelpWindow::setupTableMenu()
 {
@@ -1004,13 +1004,13 @@ void HelpWindow::setupTableMenu()
     mw->ui.actionInsertColumnRight->setEnabled(state);
     mw->ui.menuDelete->setEnabled(state);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::tableNew()
 {
     tableprop->setProperties(2, 2, QTextTableFormat(), true);
     tableprop->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::tableProperties()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1018,14 +1018,14 @@ void HelpWindow::tableProperties()
     tableprop->setProperties(table->rows(), table->columns(), table->format(), false);
     tableprop->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::tableDelete()
 {
     QTextCursor cursor = raEdit::textCursor();
     QTextTable *table = cursor.currentTable();
     table->removeRows(0, table->rows());
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::rowInsertAbove()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1033,7 +1033,7 @@ void HelpWindow::rowInsertAbove()
     QTextTableCell cell = table->cellAt(cursor);
     table->insertRows(cell.row(), 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::rowInsertBelow()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1041,7 +1041,7 @@ void HelpWindow::rowInsertBelow()
     QTextTableCell cell = table->cellAt(cursor);
     table->insertRows(cell.row()+1, 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::rowDelete()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1049,7 +1049,7 @@ void HelpWindow::rowDelete()
     QTextTableCell cell = table->cellAt(cursor);
     table->removeRows(cell.row(), 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::columnInsertLeft()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1057,7 +1057,7 @@ void HelpWindow::columnInsertLeft()
     QTextTableCell cell = table->cellAt(cursor);
     table->insertColumns(cell.column(), 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::columnInsertRight()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1065,7 +1065,7 @@ void HelpWindow::columnInsertRight()
     QTextTableCell cell = table->cellAt(cursor);
     table->insertColumns(cell.column()+1, 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::columnDelete()
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1073,19 +1073,19 @@ void HelpWindow::columnDelete()
     QTextTableCell cell = table->cellAt(cursor);
     table->removeColumns(cell.column(), 1);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::cellMerge()
 {
     QTextCursor cursor = raEdit::textCursor();
     QTextTable *table = cursor.currentTable();
     table->mergeCells(cursor);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::cellSplit()
 {
     cellsplit->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::cellSplit(int rows, int columns)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1094,14 +1094,14 @@ void HelpWindow::cellSplit(int rows, int columns)
     Config::configuration()->toPrjLog(3,"Cell Split: cell.row()="+QString::number(cell.row())+", cell.column()="+QString::number(cell.column())+", rows="+QString::number(rows)+", columns="+QString::number(columns));
     table->splitCell(cell.row(), cell.column(), rows, columns);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::tableInsert(int rows, int columns, QTextTableFormat format)
 {
     QTextCursor cursor = raEdit::textCursor();
     QTextTable *table = cursor.insertTable(rows, columns);
     table->setFormat(format);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
 {
     QTextCursor cursor = raEdit::textCursor();
@@ -1109,7 +1109,7 @@ void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
     table->resize(rows, colums);
     table->setFormat(tableFormat);
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HelpWindow::htmlInsert(QString html)
 {
     QTextCursor cursor = raEdit::textCursor(); // this->

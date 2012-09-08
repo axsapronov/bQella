@@ -57,7 +57,7 @@ QList<MainWindow*> MainWindow::windows;
 extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 #endif
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 MainWindow::MainWindow():
     aboutd(new AboutDialog(this))
 {
@@ -160,14 +160,14 @@ MainWindow::MainWindow():
 //    importdi->show();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
     windows.removeAll(this);
     //    delete goActionDocFiles;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::setup()
 {
 //    qDebug() << "[7]";
@@ -305,19 +305,19 @@ void MainWindow::setup()
     setupCompleted = true;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::exportModule()
 {
     //    helpDock->autosavestart = false;
     browsers() -> currentBrowser() -> fileSave();
     helpDock -> exportModule();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::importModule()
 {
     importm->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::importModuleSuccessful()
 {
     ModuleProperties pr;
@@ -336,7 +336,7 @@ void MainWindow::importModuleSuccessful()
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::importBookSuccessful()
 {
     ModuleProperties pr;
@@ -356,12 +356,12 @@ void MainWindow::importBookSuccessful()
     browsers() -> currentBrowser() -> fileSave();
     helpDock->saveProject();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::importBook()
 {
     importdi->show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::browserTabChanged()
 {
     /*    if (tabs -> currentBrowser()) {
@@ -371,7 +371,7 @@ void MainWindow::browserTabChanged()
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::updateTabActions(int index)
 {
     bool enabled = (index > 1) ? true : false;
@@ -381,7 +381,7 @@ void MainWindow::updateTabActions(int index)
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     qDebug()<< "closeEvent()";
@@ -389,22 +389,22 @@ void MainWindow::closeEvent(QCloseEvent *e)
     e -> accept();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::about()
 {
     aboutd -> show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::showDocumentation()
 {
     assistant->showDocumentation("index_ru.html");
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::on_actionAboutAssistant_triggered()
 {
     about();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::showLinkFromClient(const QString &link)
 {
     setWindowState(windowState() & ~Qt::WindowMinimized);
@@ -416,7 +416,7 @@ void MainWindow::showLinkFromClient(const QString &link)
         showNormal();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // open link in active tab. Link should be in format file://<absolute path>/filename.html
 void MainWindow::showLink(const QString &link)
 {
@@ -463,7 +463,7 @@ void MainWindow::modifededitor(bool my)
     //    }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // open several links in new tabs
 void MainWindow::showLinks(const QStringList &links)
 {
@@ -503,7 +503,7 @@ void MainWindow::showLinks(const QStringList &links)
     return;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::removePendingBrowser(HelpWindow *win)
 {
     if (!pendingBrowsers.count())
@@ -519,7 +519,7 @@ void MainWindow::removePendingBrowser(HelpWindow *win)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::timerEvent(QTimerEvent *e)
 {
     QPair<HelpWindow*, QString> browser = pendingBrowsers.first();
@@ -531,7 +531,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
     browser.first -> setSource(urlifyFileName(browser.second));
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 MainWindow* MainWindow::newWindow()
 {
     qDebug()<< "Debug: _MainWindow::newWindow()" << "newWindow()";
@@ -546,7 +546,7 @@ MainWindow* MainWindow::newWindow()
     return mw;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::saveSettings()
 {
     Config *config = Config::configuration();
@@ -567,13 +567,13 @@ void MainWindow::saveSettings()
     config -> saveSettings();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 TabbedBrowser* MainWindow::browsers() const
 {
     return tabs;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::showSearchLink(const QString &link, const QStringList &terms)
 {
     HelpWindow * hw = tabs -> currentBrowser();
@@ -622,13 +622,13 @@ void MainWindow::showSearchLink(const QString &link, const QStringList &terms)
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 LeftPanel* MainWindow::helpDialog() const
 {
     return helpDock;
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::updateProfileSettings()
 {
     Config *config = Config::configuration();
@@ -645,7 +645,7 @@ void MainWindow::updateProfileSettings()
         setWindowTitle(config -> profileTitle());
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::setupPopupMenu(QMenu *m)
 {
     m -> addMenu(menuSign);
@@ -663,7 +663,7 @@ void MainWindow::setupPopupMenu(QMenu *m)
     m -> addAction(ui.actionEditFind);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::ProjectOpen()
 {
     helpDock->autosavestart = false;
@@ -675,7 +675,7 @@ void MainWindow::ProjectOpen()
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::ProjectOpen(QString fileName)
 {
     if (!fileName.isEmpty())
@@ -700,7 +700,7 @@ void MainWindow::ProjectOpen(QString fileName)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::ProjectSaveAs()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Project As"), Config::configuration() -> CurPrjDir(), tr("Project bQella (*.pem)"));
@@ -712,13 +712,13 @@ void MainWindow::ProjectSaveAs()
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::on_actionNewWindow_triggered()
 {
     newWindow() -> show();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::on_actionSaveFileAs_triggered()
 {
     QString fileName;
@@ -791,7 +791,7 @@ void MainWindow::on_actionSaveFileAs_triggered()
     s.flush();
     file.close();
 } //on_actionSaveFileAs_triggered()
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::updateAppFont(FontSettings settings)
 {
     QFont font = settings.windowFont;
@@ -806,7 +806,7 @@ void MainWindow::updateAppFont(FontSettings settings)
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::exitApp()
 {
     browsers() -> currentBrowser() -> fileSave();
@@ -814,7 +814,7 @@ void MainWindow::exitApp()
     qApp -> closeAllWindows();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::ProjectNew()
 {
     helpDock->autosavestart = false;
@@ -863,7 +863,7 @@ void MainWindow::ProjectNew()
     prjprop -> show();
 }
 
-////-----------------------------------------------------------------------------------------------------------
+////------------------------------------------------------------------------------
 //void MainWindow::ProjectNewDiary()
 //{
 //    ProjectNew();
@@ -872,7 +872,7 @@ void MainWindow::ProjectNew()
 //    helpDock -> dialogAutoItems -> show();
 //}
 
-////-----------------------------------------------------------------------------------------------------------
+////------------------------------------------------------------------------------
 //void MainWindow::ProjectNewNotebook()
 //{
 //    ProjectNew();
@@ -883,7 +883,7 @@ void MainWindow::ProjectNew()
 //    helpDock -> dialogAutoItems -> show();
 //}
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::ProjectProps()
 {
     ModuleProperties pr;
@@ -928,7 +928,7 @@ void MainWindow::ProjectProps()
     prjprop -> showUpdate();
     prjprop -> show();
 }
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::createProject(ModuleProperties pr)
 {
     QString ind1="   ";
@@ -1016,7 +1016,7 @@ void MainWindow::createProject(ModuleProperties pr)
     ProjectOpen(fn);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::updateProjectProperties(ModuleProperties pr)
 {
     QString fn = unurlifyFileName(pr.prjFN);
@@ -1075,7 +1075,7 @@ void MainWindow::updateProjectProperties(ModuleProperties pr)
     //    ProjectOpen(fn);
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::setLangEn()
 {
     ui.actionLang_en -> setChecked(true);
@@ -1084,7 +1084,7 @@ void MainWindow::setLangEn()
     msgReloadRequest();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::setLangRu()
 {
     ui.actionLang_en -> setChecked(false);
@@ -1093,20 +1093,20 @@ void MainWindow::setLangRu()
     msgReloadRequest();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::msgReloadRequest()
 {
     if (setupCompleted)
         QMessageBox::warning(this, tr("Reload application"), tr("Changes will be applied after application reload.", "Append this warning in English after translation"));
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::showAppSettings()
 {
     appsets -> show();
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::OpenInExternalApplication(QString app, QString FileName)
 {
     QString fn = unurlifyFileName(FileName);
@@ -1117,7 +1117,7 @@ void MainWindow::OpenInExternalApplication(QString app, QString FileName)
     Config::configuration() -> toPrjLog(2, tr("Open file in external application: %1 %2", "For log").arg(app).arg(FileName));
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::globalShortcut_CtrlShiftInsert()
 {
     if (QApplication::focusWidget() -> objectName() == "WorkArea"){
@@ -1126,31 +1126,31 @@ void MainWindow::globalShortcut_CtrlShiftInsert()
 
 }
 
-//-----------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWindow::projectModified(bool modified){
     ui.actionProjectSave -> setEnabled(modified);
 }
-//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 void MainWindow::contentsBookAdd()
 {
     contbook->show();
 }
-//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 void MainWindow::contentsBookDelete()
 {
 
 }
-//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 void MainWindow::contentsBookEdit()
 {
     contbook->show();
 }
-//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 void MainWindow::showHomePage()
 {
     QDesktopServices::openUrl(QUrl(GL_WEB_SITE));
 }
-//------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 void MainWindow::showSplitFile()
 {
     splitFileDialog->show();
