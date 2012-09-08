@@ -26,11 +26,15 @@
 
 #include <QtGui/qtextedit.h>
 #include <QtCore/qurl.h>
+#include <QAction>
+#include <QContextMenuEvent>
 
+#include "hunspell.hxx"
+#include "settingaspell.h"
 
 QT_MODULE(Gui)
-//====================== class raEdit ============================
-class raEdit : public QTextEdit  //this is a remake of QTextBrowser
+//====================== class TextEditorBQella ============================
+class TextEditorBQella : public QTextEdit  //this is a remake of QTextBrowser
 {
     //The Q_OBJECT macro must appear in the private section of a class definition that declares its own signals and slots or that uses other services provided by Qt's meta-object system.
     Q_OBJECT
@@ -40,8 +44,11 @@ class raEdit : public QTextEdit  //this is a remake of QTextBrowser
     Q_PROPERTY(QUrl source READ source WRITE setSource)
 
 public:
-    explicit raEdit(QWidget* parent = 0);
-    virtual ~raEdit();
+    explicit TextEditorBQella(QWidget* parent = 0, QString SpellDic="");
+    virtual ~TextEditorBQella();
+
+    QStringList getWordPropositions(const QString word);
+    bool setDict(const QString SpellDic);
 
     QUrl source() const;
     void setSearchPaths(const QStringList &paths);
@@ -89,6 +96,7 @@ signals:
     void insertImageFromClipboard(QImage image);
     void insertHtmlFromClipboard(QString html);
     //    void modifed(const bool &);
+    void addWord(QString word);
 
 public slots:
     // virtual void setSource(const QUrl &name);
@@ -112,11 +120,19 @@ protected:
     //virtual bool focusNextPrevChild(bool next);
     // virtual void paintEvent(QPaintEvent *e);
 
+    void createActions();
+    void contextMenuEvent(QContextMenuEvent *event);
+
     void resizeEvent(QResizeEvent *event);
 private slots:
     void updateLineNumberAreaWidth(int newBlockCount);
     void highlightCurrentLine();
     void updateLineNumberArea(const QRect &, int);
+
+    void correctWord();
+    void slot_addWord();
+    void slot_ignoreWord();
+
 
 private:
     bool modeHtml;
@@ -130,6 +146,16 @@ private:
     void setCursorLocation( QPoint p );
     QPoint getCursorLocation();
 
+    enum { MaxWords = 5 };
+    QAction *misspelledWordsActs[MaxWords];
+
+    QString spell_dic;
+    Hunspell *pChecker;
+
+    QPoint lastPos;
+
+    QStringList addedWords;
+
 };
 
 
@@ -140,7 +166,7 @@ private:
 class LineNumberArea : public QWidget
 {
 public:
-    LineNumberArea(raEdit *editor) : QWidget(editor) {
+    LineNumberArea(TextEditorBQella *editor) : QWidget(editor) {
         codeEditor = editor;
     }
 
@@ -154,7 +180,7 @@ protected:
     }
 
 private:
-    raEdit *codeEditor;
+    TextEditorBQella *codeEditor;
 };
 
 

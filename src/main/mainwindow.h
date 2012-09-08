@@ -118,6 +118,8 @@ private slots:
     void browserTabChanged();
     void updateTabActions(int index);
 
+    void updateSpell();
+
     // about
     void showDocumentation();
     void showHomePage(); ///  open web page in browser

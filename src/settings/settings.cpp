@@ -24,6 +24,7 @@
 #include "settings.h"
 #include "config.h"
 
+
 #include <QtDebug> //to use qWarning and qDebug messages
 #include <QFileDialog>
 
@@ -34,12 +35,18 @@ AppSettings::AppSettings(QWidget *parent)
 {
     ui.setupUi(this);
 
+    createConnects();
     ui.CBItemAutoProperties->setChecked(true);
     ui.CBItemAutoProperties->setVisible(false);
     ui.CBContentsAdditionalView->setVisible(false);
-    connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));
-}
 
+}
+//------------------------------------------------------------------------------
+void AppSettings::createConnects()
+{
+    connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));
+    connect(ui.pBSpellDict, SIGNAL(clicked()), this, SLOT(setSpell()));
+}
 //------------------------------------------------------------------------------
 void AppSettings::reject()
 {
@@ -78,7 +85,7 @@ void AppSettings::set()
     ui.SBAppLogLevel -> setValue(Config::configuration() -> AppLogLevel());
     ui.SBPrjLogLevel -> setValue(Config::configuration() -> PrjLogLevel());
     ui.cBAutoSetNumbers -> setChecked(Config::configuration()->AutoNumbers());
-//    ui.CBAcceptDropImages->setChecked(Config::configuration()->AcceptDropImages());
+    //    ui.CBAcceptDropImages->setChecked(Config::configuration()->AcceptDropImages());
 }
 
 //------------------------------------------------------------------------------
@@ -96,4 +103,21 @@ void AppSettings::showFontSettingsDialog()
     config -> setFontSettings(settings);
 
     emit updateApplicationFontSettings(settings);
+}
+//------------------------------------------------------------------------------
+void AppSettings::setSpell()
+{
+    QString SpellDic = "";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                    tr("Select Dictionary "), SpellDic, tr("Dictionary (*.dic)"));
+
+    QString new_Dict = fileName;
+
+    if (SpellDic != new_Dict)
+    {
+        SpellDic = new_Dict;
+        highlighter->setDict(SpellDic);
+        Config::configuration()->setSpellDict(SpellDic);
+        emit signalSetSpell();
+    }
 }

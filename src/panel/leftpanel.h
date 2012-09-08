@@ -42,7 +42,7 @@
 
 class QProgressBar;
 class MainWindow;
-class raEdit;
+class TextEditorBQella;
 class IndexListModel;
 class Export;
 

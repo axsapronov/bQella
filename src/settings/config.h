@@ -142,6 +142,7 @@ public:
     QString DbName()	{ return dbName; }
     QString ContentsSortOrder()	{ return contentsSortOrder; }
     QString IndentString()	{ return "   "; }
+    QString SpellDict() {return spellDict; }
 
     bool AcceptDropImages()			{ return acceptDropImages; }
 
@@ -196,6 +197,8 @@ public:
     void setIniFile(QString fn)		{ iniFile = fn; }
     void setDbName(QString fn)		{ dbName = fn; }
     void setContentsSortOrder(QString order)	{ contentsSortOrder = order; }
+
+    void setSpellDict(QString fn)       { spellDict = fn; }
 
     //Module
     void setModuleBiblename(QString fn)   { moduleBiblename = fn; }
@@ -284,6 +287,7 @@ private:
     FontSettings m_fontSettings;
 
     //variables for global use via  Config::configuration() -> variable()
+    QString spellDict;
 
     bool autoNumbers;
     QString appDir;

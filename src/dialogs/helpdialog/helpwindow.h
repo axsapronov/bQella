@@ -51,7 +51,7 @@ class QTextCharFormat;
 
 //==================== class HelpWindow ====================
 
-class HelpWindow : public raEdit
+class HelpWindow : public TextEditorBQella
 {
     Q_OBJECT
 public:

@@ -246,6 +246,7 @@ void MainWindow::setup()
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
 //    connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
+    connect(appsets, SIGNAL(signalSetSpell()), this, SLOT(updateSpell()));
 
     // Menu Tabs
     connect(ui.actionOpenPage,  SIGNAL(triggered()), tabs, SLOT(newTab()));
@@ -283,6 +284,7 @@ void MainWindow::setup()
     ui.actionEditFind -> setShortcut(QKeySequence::Find);
     ui.actionEditFindNext -> setShortcut(QKeySequence::FindNext);
     ui.actionEditFindPrev -> setShortcut(QKeySequence::FindPrevious);
+
 
 
 
@@ -1155,3 +1157,10 @@ void MainWindow::showSplitFile()
 {
     splitFileDialog->show();
 }
+//-------------------------------------------------------------------------------
+void MainWindow::updateSpell()
+{
+    qDebug() << Config::configuration()->SpellDict();
+//    splitFileDialog->show();
+}
+//-------------------------------------------------------------------------------

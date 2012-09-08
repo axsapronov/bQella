@@ -26,29 +26,37 @@
 
 #include "ui_settings.h"
 #include "fontsettingsdialog.h"
+#include "settingaspell.h"
+#include "highlighter.h"
 
 class AppSettings : public QDialog
 {
-     Q_OBJECT
+    Q_OBJECT
 
 public:
-	AppSettings(QWidget *parent = 0);
+    AppSettings(QWidget *parent = 0);
 
 signals:
-	void showContentsAV(bool b);
-	void showContentsAVHeader(bool b);
-	void updateApplicationFontSettings(FontSettings);
+    void showContentsAV(bool b);
+    void showContentsAVHeader(bool b);
+    void updateApplicationFontSettings(FontSettings);
+    void signalSetSpell();
 
 public slots:
-	void accept();
-	void reject();
-	void apply();
-	void set();
+    void accept();
+    void reject();
+    void apply();
+    void set();
+private slots:
+    void setSpell();
 
 private:
-	Ui::AppSettings ui;
+    Ui::AppSettings ui;
+    void createConnects();
+
+    Highlighter *highlighter;
 
 private slots:
-	void showFontSettingsDialog();
+    void showFontSettingsDialog();
 };
 #endif // __SETTINGS_H__

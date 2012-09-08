@@ -59,7 +59,7 @@ bool needConnection = true;
 
 //------------------------------------------------------------------------------
 HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
-    : raEdit(parent)
+    : TextEditorBQella(parent)
     , mw(w)
     , blockScroll(false)
     , shiftPressed(false)
@@ -86,7 +86,7 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         setupTableActions();
         setupImageActions();
 
-	//signals from raEdit class
+	//signals from TextEditorBQella class
 	connect(this, SIGNAL(insertImageFromClipboard(QImage)), this, SLOT(imageInsert(QImage)));
 	connect(this, SIGNAL(insertHtmlFromClipboard(QString)), this, SLOT(htmlInsert(QString)));
 
@@ -161,15 +161,15 @@ void HelpWindow::setSource(const QUrl &name)
             else
             {   // open in active window
                 //                qDebug() << "[38]";
-                raEdit::setSource(name);
+                TextEditorBQella::setSource(name);
                 //                qDebug() << "[39]";
-                raEdit::scrollToAnchor(name.fragment());
+                TextEditorBQella::scrollToAnchor(name.fragment());
                 //                qDebug() << "[40]";
             }
             //            qDebug() << "[41]";
             setCurrentFileName(name.toLocalFile());		//? do we need it?
             //            qDebug() << "[42]";
-            mw -> statusBar() -> showMessage(tr("Source: %1").arg(raEdit::source().toString()), 5000);
+            mw -> statusBar() -> showMessage(tr("Source: %1").arg(TextEditorBQella::source().toString()), 5000);
             return;
         }
     }
@@ -177,7 +177,7 @@ void HelpWindow::setSource(const QUrl &name)
     //    qDebug() << "[43]";
     mw -> statusBar() -> showMessage(tr("Failed to open link: '%1'").arg(name.toString()), 5000);
     //    qDebug() << "[44]";
-    raEdit::setSource( Config::configuration() -> ErrPage() );
+    TextEditorBQella::setSource( Config::configuration() -> ErrPage() );
     //    qDebug() << "[45]";
     //    setHtml(tr("<div align=\"center\"><h1>The page could not be found</h1><br><h3>'%1'</h3></div>").arg(name.toString()));
     setHtml(tr("").arg(name.toString()));
@@ -263,7 +263,7 @@ void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
 void HelpWindow::showLinkProperties()
 {
     QString s = "";
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextCharFormat cf = cursor.charFormat();
     selCur = cursor.position();
     if (cf.isAnchor())
@@ -285,7 +285,7 @@ void HelpWindow::showLinkProperties()
     if (!cursor.hasSelection())//if there is no selection, select the word under cursor
         cursor.select(QTextCursor::WordUnderCursor);
     // Выделение текста остаётся только в этой процедуре, поэтому используем глоб переменные.
-    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на raEdit::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
+    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на TextEditorBQella::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
     selStart = cursor.selectionStart();
     selEnd = cursor.selectionEnd();
     s = cursor.selectedText();
@@ -302,7 +302,7 @@ void HelpWindow::showLinkProperties()
 void HelpWindow::showStrongProperties()
 {
     QString s = "";
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextCharFormat cf = cursor.charFormat();
     selCur = cursor.position();
     if (cf.isAnchor())
@@ -324,7 +324,7 @@ void HelpWindow::showStrongProperties()
     if (!cursor.hasSelection())//if there is no selection, select the word under cursor
         cursor.select(QTextCursor::WordUnderCursor);
     // Выделение текста остаётся только в этой процедуре, поэтому используем глоб переменные.
-    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на raEdit::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
+    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на TextEditorBQella::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
     selStart = cursor.selectionStart();
     selEnd = cursor.selectionEnd();
     s = cursor.selectedText();
@@ -338,7 +338,7 @@ void HelpWindow::showStrongProperties()
 void HelpWindow::showTagProperties()
 {
     QString s = "";
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextCharFormat cf = cursor.charFormat();
     selCur = cursor.position();
     if (cf.isAnchor()){		//select whole text of the link.
@@ -357,7 +357,7 @@ void HelpWindow::showTagProperties()
     if (!cursor.hasSelection())//if there is no selection, select the word under cursor
         cursor.select(QTextCursor::WordUnderCursor);
     // Выделение текста остаётся только в этой процедуре, поэтому используем глоб переменные.
-    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на raEdit::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
+    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на TextEditorBQella::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
     selStart = cursor.selectionStart();
     selEnd = cursor.selectionEnd();
     s = cursor.selectedText();
@@ -373,7 +373,7 @@ void HelpWindow::showTagProperties()
 //------------------------------------------------------------------------------
 void HelpWindow::removeStrong()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     cursor.setPosition(selStart, QTextCursor::MoveAnchor);
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
     QString s =	cursor.selectedText();;
@@ -385,7 +385,7 @@ void HelpWindow::removeStrong()
 //------------------------------------------------------------------------------
 void HelpWindow::updateStrong(QString lText, QString lLocation)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QString s =	lText;
     if (lLocation.isEmpty())
     {
@@ -401,13 +401,13 @@ void HelpWindow::updateStrong(QString lText, QString lLocation)
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
         cursor.removeSelectedText();
         cursor.insertFragment(fragment);
-        raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+        TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
     }
 }
 //------------------------------------------------
 void HelpWindow::addBrTag()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     selStart = cursor.selectionStart();
     selEnd = cursor.selectionEnd();
     selCur = cursor.position();
@@ -417,14 +417,14 @@ void HelpWindow::addBrTag()
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
     cursor.insertFragment(fragment);
-    raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+    TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 }
 
 
 //------------------------------------------------------------------------------
 void HelpWindow::removeLink()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     cursor.setPosition(selStart, QTextCursor::MoveAnchor);
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
     QString s =	cursor.selectedText();;
@@ -436,7 +436,7 @@ void HelpWindow::removeLink()
 //------------------------------------------------------------------------------
 void HelpWindow::updateLink(QString lText, QString lLocation)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QString s =	lText;
     if (lLocation.isEmpty()){
         removeLink();
@@ -448,14 +448,14 @@ void HelpWindow::updateLink(QString lText, QString lLocation)
         cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
         cursor.removeSelectedText();
         cursor.insertFragment(fragment);
-        raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+        TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
     }
 }
 
 //------------------------------------------------------------------------------
 void HelpWindow::addTag(QString tag)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QString s =	tag;
 
     //    s = "<a href=\" fff \">"+ tag +"</a>";
@@ -470,7 +470,7 @@ void HelpWindow::addTag(QString tag)
     cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
     cursor.insertFragment(fragment);
-    raEdit::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+    TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 
     //    qDebug() << "\n\n =====begin==== \n str = " << fragment.toPlainText() << " strhtml = " << fragment.toHtml();
     //    qDebug() << "=======end========\n\n";
@@ -480,19 +480,19 @@ void HelpWindow::addTag(QString tag)
 void HelpWindow::mouseMoveEvent(QMouseEvent *e)
 {
     //	!+! Change cursor when mouse is over link and Ctrl is pressed.
-    raEdit::mouseMoveEvent(e);
+    TextEditorBQella::mouseMoveEvent(e);
 }
 
 //------------------------------------------------------------------------------
 void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e -> button() == Qt::XButton1) {
-        //        raEdit::backward();
+        //        TextEditorBQella::backward();
         return;
     }
 
     if (e -> button() == Qt::XButton2) {
-        //      raEdit::forward();
+        //      TextEditorBQella::forward();
         return;
     }
 
@@ -508,7 +508,7 @@ void HelpWindow::mouseReleaseEvent(QMouseEvent *e)
         showLinkProperties();
         return;
     }
-    raEdit::mouseReleaseEvent(e);
+    TextEditorBQella::mouseReleaseEvent(e);
 }
 
 //------------------------------------------------------------------------------
@@ -516,7 +516,7 @@ void HelpWindow::mousePressEvent(QMouseEvent *e)
 {
     shiftPressed = e -> modifiers() & Qt::ShiftModifier;
     if (!(shiftPressed && hasAnchorAt(e -> pos())))
-        raEdit::mousePressEvent(e);
+        TextEditorBQella::mousePressEvent(e);
 }
 
 //------------------------------------------------------------------------------
@@ -524,7 +524,7 @@ void HelpWindow::keyPressEvent(QKeyEvent *e)
 {
     //shiftPressed = e -> modifiers() & Qt::ShiftModifier;
     // ctrlPressed = e -> modifiers() & Qt::ControlModifier;
-    raEdit::keyPressEvent(e);
+    TextEditorBQella::keyPressEvent(e);
 }
 
 //------------------------------------------------------------------------------
@@ -537,7 +537,7 @@ void HelpWindow::blockScrolling(bool b)
 void HelpWindow::ensureCursorVisible()
 {
     if (!blockScroll)
-        raEdit::ensureCursorVisible();
+        TextEditorBQella::ensureCursorVisible();
 }
 
 // ====================== from TextEdit =================================
@@ -563,22 +563,22 @@ void HelpWindow::setupFileActions()
     mw -> ui.actionSaveFile -> setShortcut(QKeySequence::Save);
     connect(mw, SIGNAL(saveOpenedLink()), this, SLOT(fileSave()));
 
-    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), mw -> ui.actionSaveFile, SLOT(setEnabled(bool)));
-    //    connect(raEdit::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
+    connect(TextEditorBQella::document(), SIGNAL(modificationChanged(bool)), mw -> ui.actionSaveFile, SLOT(setEnabled(bool)));
+    //    connect(TextEditorBQella::document(), SIGNAL(modificationChanged(bool)), this, SLOT(setWindowModified(bool)));
 
-    //    setWindowModified(raEdit::document() -> isModified());
-    mw -> ui.actionSaveFile -> setEnabled(raEdit::document() -> isModified());
+    //    setWindowModified(TextEditorBQella::document() -> isModified());
+    mw -> ui.actionSaveFile -> setEnabled(TextEditorBQella::document() -> isModified());
 }
 
 //------------------------------------------------------------------------------
 void HelpWindow::setupEditActions()
 {
-    connect(raEdit::document(), SIGNAL(undoAvailable(bool)), mw -> ui.actionUndo, SLOT(setEnabled(bool)));
-    connect(raEdit::document(), SIGNAL(redoAvailable(bool)), mw -> ui.actionRedo, SLOT(setEnabled(bool)));
+    connect(TextEditorBQella::document(), SIGNAL(undoAvailable(bool)), mw -> ui.actionUndo, SLOT(setEnabled(bool)));
+    connect(TextEditorBQella::document(), SIGNAL(redoAvailable(bool)), mw -> ui.actionRedo, SLOT(setEnabled(bool)));
     connect(mw -> ui.actionUndo, SIGNAL(triggered()), this, SLOT(undo()));
     connect(mw -> ui.actionRedo, SIGNAL(triggered()), this, SLOT(redo()));
-    mw -> ui.actionUndo -> setEnabled(raEdit::document() -> isUndoAvailable());
-    mw -> ui.actionRedo -> setEnabled(raEdit::document() -> isRedoAvailable());
+    mw -> ui.actionUndo -> setEnabled(TextEditorBQella::document() -> isUndoAvailable());
+    mw -> ui.actionRedo -> setEnabled(TextEditorBQella::document() -> isRedoAvailable());
 
     connect(mw -> ui.actionCut,   SIGNAL(triggered()), this, SLOT(cut()));
     connect(mw -> ui.actionCopy,  SIGNAL(triggered()), this, SLOT(copy()));
@@ -658,14 +658,14 @@ bool HelpWindow::load(const QString &f)
     if (!file.open(QFile::ReadOnly))
         return false;
 
-    raEdit::setSource(urlifyFileName(f));
+    TextEditorBQella::setSource(urlifyFileName(f));
     setCurrentFileName(f);
     return true;
 }
 //------------------------------------------------------------------------------
 bool HelpWindow::maybeSave()
 {
-    if (!raEdit::document() -> isModified())
+    if (!TextEditorBQella::document() -> isModified())
         return true;
     if (Config::configuration() -> CurFile().startsWith(QString(":/")))
         return true;
@@ -685,7 +685,7 @@ bool HelpWindow::maybeSave()
 void HelpWindow::setCurrentFileName(const QString fName)
 {
     Config::configuration() -> setCurFile(fName);
-    raEdit::document() -> setModified(false);
+    TextEditorBQella::document() -> setModified(false);
 }
 
 //------------------------------------------------------------------------------
@@ -742,11 +742,11 @@ bool HelpWindow::fileSave()
         return false;
     QTextStream ts(&file);
     ts.setCodec(QTextCodec::codecForName("UTF-8"));
-    if (raEdit::ModeHtml()){
-        ts << raEdit::document() -> toHtml("UTF-8");
+    if (TextEditorBQella::ModeHtml()){
+        ts << TextEditorBQella::document() -> toHtml("UTF-8");
     }else //!+! does not work yet. Needs to edit rich text and plain in the same widget
-        ts << raEdit::document() -> toPlainText();
-    raEdit::document() -> setModified(false);
+        ts << TextEditorBQella::document() -> toPlainText();
+    TextEditorBQella::document() -> setModified(false);
     return true;
 }
 
@@ -808,7 +808,7 @@ void HelpWindow::textSize(const QString &p)
 //------------------------------------------------------------------------------
 void HelpWindow::textStyle(int styleIndex)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
 
     if (styleIndex != 0) {
         QTextListFormat::Style style = QTextListFormat::ListDisc;
@@ -865,7 +865,7 @@ void HelpWindow::textStyle(int styleIndex)
 //------------------------------------------------------------------------------
 void HelpWindow::textColor()
 {
-    QColor col = QColorDialog::getColor(raEdit::textColor(), this);
+    QColor col = QColorDialog::getColor(TextEditorBQella::textColor(), this);
     if (!col.isValid())
         return;
     QTextCharFormat fmt;
@@ -875,10 +875,10 @@ void HelpWindow::textColor()
 }
 
 //------------------------------------------------------------------------------
-void HelpWindow::textAlignLeft()	{ raEdit::setAlignment(Qt::AlignLeft); }
-void HelpWindow::textAlignCenter()	{ raEdit::setAlignment(Qt::AlignCenter); }
-void HelpWindow::textAlignRight()	{ raEdit::setAlignment(Qt::AlignRight); }
-void HelpWindow::textAlignJustify()	{ raEdit::setAlignment(Qt::AlignJustify); }
+void HelpWindow::textAlignLeft()	{ TextEditorBQella::setAlignment(Qt::AlignLeft); }
+void HelpWindow::textAlignCenter()	{ TextEditorBQella::setAlignment(Qt::AlignCenter); }
+void HelpWindow::textAlignRight()	{ TextEditorBQella::setAlignment(Qt::AlignRight); }
+void HelpWindow::textAlignJustify()	{ TextEditorBQella::setAlignment(Qt::AlignJustify); }
 
 //------------------------------------------------------------------------------
 void HelpWindow::imageNew()
@@ -900,7 +900,7 @@ void HelpWindow::imageInsert(QImage image)
 //------------------------------------------------------------------------------
 void HelpWindow::imageUpdate(QString html)
 {
-    //QTextCursor cursor = raEdit::textCursor();
+    //QTextCursor cursor = TextEditorBQella::textCursor();
     Config::configuration()->toPrjLog(3,"Image update code: "+html);
 }
 //------------------------------------------------------------------------------
@@ -913,7 +913,7 @@ void HelpWindow::currentCharFormatChanged(const QTextCharFormat &format)
 //------------------------------------------------------------------------------
 void HelpWindow::cursorPositionChanged()
 {
-    alignmentChanged(raEdit::alignment());
+    alignmentChanged(TextEditorBQella::alignment());
 }
 
 //------------------------------------------------------------------------------
@@ -925,11 +925,11 @@ void HelpWindow::clipboardDataChanged()
 //------------------------------------------------------------------------------
 void HelpWindow::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     if (!cursor.hasSelection())
         cursor.select(QTextCursor::WordUnderCursor);
     cursor.mergeCharFormat(format);
-    raEdit::mergeCurrentCharFormat(format);
+    TextEditorBQella::mergeCurrentCharFormat(format);
 }
 
 //------------------------------------------------------------------------------
@@ -969,23 +969,23 @@ void HelpWindow::alignmentChanged(Qt::Alignment a)
 //------------------------------------------------------------------------------
 void HelpWindow::setTagTitle(QString title)
 {
-    raEdit::setDocumentTitle(title);
+    TextEditorBQella::setDocumentTitle(title);
     fileSave();
     mw -> browsers() -> updateTitle(title);
 }
 //------------------------------------------------------------------------------
-QString HelpWindow::getTagTitle() { return raEdit::documentTitle(); }
+QString HelpWindow::getTagTitle() { return TextEditorBQella::documentTitle(); }
 //------------------------------------------------------------------------------
 void HelpWindow::showDocProperties()
 {
-    docprop -> setTitle(raEdit::documentTitle());
-    docprop -> setFileName(raEdit::source().toString());
+    docprop -> setTitle(TextEditorBQella::documentTitle());
+    docprop -> setFileName(TextEditorBQella::source().toString());
     docprop -> show();
 }
 //------------------------------------------------------------------------------
 void HelpWindow::insertRichText(QString text)
 {	//!+! reimplement procedures in reEdit to work with HTML comment, since QTextEdit does not understand it
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     cursor.insertHtml(text);
 }
 //------------------------------------------------------------------------------
@@ -993,7 +993,7 @@ void HelpWindow::insertRichText(QString text)
 void HelpWindow::setupTableMenu()
 {
     bool state = false;
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     if ( table != 0) state = true;
 
@@ -1013,7 +1013,7 @@ void HelpWindow::tableNew()
 //------------------------------------------------------------------------------
 void HelpWindow::tableProperties()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     tableprop->setProperties(table->rows(), table->columns(), table->format(), false);
     tableprop->show();
@@ -1021,14 +1021,14 @@ void HelpWindow::tableProperties()
 //------------------------------------------------------------------------------
 void HelpWindow::tableDelete()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     table->removeRows(0, table->rows());
 }
 //------------------------------------------------------------------------------
 void HelpWindow::rowInsertAbove()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->insertRows(cell.row(), 1);
@@ -1036,7 +1036,7 @@ void HelpWindow::rowInsertAbove()
 //------------------------------------------------------------------------------
 void HelpWindow::rowInsertBelow()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->insertRows(cell.row()+1, 1);
@@ -1044,7 +1044,7 @@ void HelpWindow::rowInsertBelow()
 //------------------------------------------------------------------------------
 void HelpWindow::rowDelete()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->removeRows(cell.row(), 1);
@@ -1052,7 +1052,7 @@ void HelpWindow::rowDelete()
 //------------------------------------------------------------------------------
 void HelpWindow::columnInsertLeft()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->insertColumns(cell.column(), 1);
@@ -1060,7 +1060,7 @@ void HelpWindow::columnInsertLeft()
 //------------------------------------------------------------------------------
 void HelpWindow::columnInsertRight()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->insertColumns(cell.column()+1, 1);
@@ -1068,7 +1068,7 @@ void HelpWindow::columnInsertRight()
 //------------------------------------------------------------------------------
 void HelpWindow::columnDelete()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     table->removeColumns(cell.column(), 1);
@@ -1076,7 +1076,7 @@ void HelpWindow::columnDelete()
 //------------------------------------------------------------------------------
 void HelpWindow::cellMerge()
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     table->mergeCells(cursor);
 }
@@ -1088,7 +1088,7 @@ void HelpWindow::cellSplit()
 //------------------------------------------------------------------------------
 void HelpWindow::cellSplit(int rows, int columns)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     QTextTableCell cell = table->cellAt(cursor);
     Config::configuration()->toPrjLog(3,"Cell Split: cell.row()="+QString::number(cell.row())+", cell.column()="+QString::number(cell.column())+", rows="+QString::number(rows)+", columns="+QString::number(columns));
@@ -1097,14 +1097,14 @@ void HelpWindow::cellSplit(int rows, int columns)
 //------------------------------------------------------------------------------
 void HelpWindow::tableInsert(int rows, int columns, QTextTableFormat format)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.insertTable(rows, columns);
     table->setFormat(format);
 }
 //------------------------------------------------------------------------------
 void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
 {
-    QTextCursor cursor = raEdit::textCursor();
+    QTextCursor cursor = TextEditorBQella::textCursor();
     QTextTable *table = cursor.currentTable();
     table->resize(rows, colums);
     table->setFormat(tableFormat);
@@ -1112,7 +1112,7 @@ void HelpWindow::tableUpdate(int rows, int colums, QTextTableFormat tableFormat)
 //------------------------------------------------------------------------------
 void HelpWindow::htmlInsert(QString html)
 {
-    QTextCursor cursor = raEdit::textCursor(); // this->
+    QTextCursor cursor = TextEditorBQella::textCursor(); // this->
     //!+! change html (if external images) before insert, so we don't have to process the whole file after
     //QString text = html;
     //Config::configuration()->toPrjLog(3,"HTML to insert, before check of external image: "+text);

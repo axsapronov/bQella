@@ -51,6 +51,7 @@ DEPENDPATH += \
     src/doc \
     src/export \
     src/topicchooser \
+    src/hunspell \
     src/advance/splitFile \
     src/advance/preview \
     src/common \
@@ -73,6 +74,7 @@ INCLUDEPATH += \
     src/properties/docproperty \
     src/import/importdialog \
     src/import/importbookdialog \
+    src/hunspell \
     src/properties/tagdialog \
     src/table/tableproperty \
     src/other \
@@ -112,6 +114,7 @@ FORMS += \
      tagdialog.ui \
      importbookdialog.ui \
      contentsbook.ui \
+     settingaspell.ui \
      topicchooser.ui \
      strongproperty.ui \
      splitfile.ui \
@@ -159,9 +162,23 @@ SOURCES +=  \
      strongproperty.cpp \
      splitfile.cpp \
      previewbook.cpp \
+     settingaspell.cpp \
      previewmodule.cpp \
      rightpanel.cpp \
-     statistics.cpp
+     statistics.cpp \
+     src/hunspell/affentry.cxx \
+     src/hunspell/affixmgr.cxx \
+     src/hunspell/csutil.cxx \
+     src/hunspell/dictmgr.cxx \
+     src/hunspell/filemgr.cxx \
+     src/hunspell/hashmgr.cxx \
+     src/hunspell/hunspell.cxx \
+     src/hunspell/hunzip.cxx \
+     src/hunspell/phonet.cxx \
+     src/hunspell/suggestmgr.cxx \
+     src/hunspell/utf_info.cxx \
+     src/hunspell/highlighter.cpp
+
 
 HEADERS += \
      docproperty.h \
@@ -181,6 +198,7 @@ HEADERS += \
      settings.h \
      imageproperty.h \
      profile.h \
+     settingaspell.h \
      config.h \
      tabbedbrowser.h \
      tableproperty.h \
@@ -202,7 +220,24 @@ HEADERS += \
      previewbook.h \
      previewmodule.h \
      rightpanel.h \
-     statistics.h
+     statistics.h \
+     src/hunspell/affentry.hxx \
+     src/hunspell/affixmgr.hxx \
+     src/hunspell/atypes.hxx \
+     src/hunspell/baseaffix.hxx \
+     src/hunspell/csutil.hxx \
+     src/hunspell/dictmgr.hxx \
+     src/hunspell/filemgr.hxx \
+     src/hunspell/hashmgr.hxx \
+     src/hunspell/htypes.hxx \
+     src/hunspell/hunspell.h \
+     src/hunspell/hunspell.hxx \
+     src/hunspell/hunzip.hxx \
+     src/hunspell/langnum.hxx \
+     src/hunspell/phonet.hxx \
+     src/hunspell/suggestmgr.hxx \
+     src/hunspell/w_char.hxx \
+     highlighter.h
 
 RESOURCES += \
     resources/resources.qrc

@@ -296,7 +296,7 @@ QStringList TabbedBrowser::sources() const
     QStringList lst;
     int cnt = ui.tab -> count();
     for(int i=0; i<cnt; i++) {
-        lst.append(((raEdit*) ui.tab -> widget(i)) -> source().toString());
+        lst.append(((TextEditorBQella*) ui.tab -> widget(i)) -> source().toString());
     }
     return lst;
 }
