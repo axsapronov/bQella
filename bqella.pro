@@ -1,3 +1,4 @@
+
 QT += xml sql
 TARGET = bQella
 TEMPLATE = app
@@ -115,9 +116,9 @@ FORMS += \
      strongproperty.ui \
      splitfile.ui \
      imageproperty.ui \
-    src/advance/preview/previewbook.ui \
-    src/advance/preview/previewmodule.ui \
-    src/panel/rightpanel.ui \
+     previewbook.ui \
+     previewmodule.ui \
+     rightpanel.ui \
      statistics.ui
 
 SOURCES +=  \
@@ -157,9 +158,9 @@ SOURCES +=  \
      topicchooser.cpp \
      strongproperty.cpp \
      splitfile.cpp \
-    src/advance/preview/previewbook.cpp \
-    src/advance/preview/previewmodule.cpp \
-    src/panel/rightpanel.cpp \
+     previewbook.cpp \
+     previewmodule.cpp \
+     rightpanel.cpp \
      statistics.cpp
 
 HEADERS += \
@@ -198,9 +199,9 @@ HEADERS += \
      topicchooser.h \
      strongproperty.h \
      splitfile.h \
-    src/advance/preview/previewbook.h \
-    src/advance/preview/previewmodule.h \
-    src/panel/rightpanel.h \
+     previewbook.h \
+     previewmodule.h \
+     rightpanel.h \
      statistics.h
 
 RESOURCES += \

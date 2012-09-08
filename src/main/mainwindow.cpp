@@ -240,10 +240,11 @@ void MainWindow::setup()
 
     /// menu advance
     connect(ui.actionAdvanceSplitFile, SIGNAL(triggered()), this, SLOT(showSplitFile()));
+
     // Menu Format
     connect(appsets, SIGNAL(showContentsAV(bool)), helpDock, SLOT(showContentsAV(bool)));
     connect(appsets, SIGNAL(showContentsAVHeader(bool)), helpDock, SLOT(showContentsAVHeader(bool)));
-    //connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
+//    connect(ui.actionEditFont_Settings, SIGNAL(triggered()), this, SLOT(showFontSettingsDialog()));
     connect(appsets, SIGNAL(updateApplicationFontSettings(FontSettings)), this, SLOT (updateAppFont(FontSettings)));
 
     // Menu Tabs
@@ -266,8 +267,6 @@ void MainWindow::setup()
     // Menu about
     connect(ui.actionHelp, SIGNAL(triggered()), this, SLOT(showDocumentation()));
     connect(ui.actionHomePage, SIGNAL(triggered()), this, SLOT(showHomePage()));
-
-
 
     Config *config = Config::configuration();
 

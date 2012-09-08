@@ -603,9 +603,8 @@ void HelpWindow::setupTextActions()
     connect(mw -> ui.actionTextJustify, 	SIGNAL(triggered()), this, SLOT(textAlignJustify()));
     connect(mw -> ui.actionTextColor, 	SIGNAL(triggered()), this, SLOT(textColor()));
 
-    //    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
-    comboStyle = new QComboBox();
-    //    mw -> ui.toolBarFormat -> addWidget(comboStyle);
+    comboStyle = new QComboBox(mw -> ui.toolBarFormat);
+    mw -> ui.toolBarFormat -> addWidget(comboStyle);
     comboStyle -> addItem(tr("Standard","Text style (paragraph layout)"));
     comboStyle -> addItem(tr("Bullet List (Disc)"));
     comboStyle -> addItem(tr("Bullet List (Circle)"));
@@ -615,15 +614,13 @@ void HelpWindow::setupTextActions()
     comboStyle -> addItem(tr("Ordered List (Alpha upper)"));
     connect(comboStyle, SIGNAL(activated(int)), this, SLOT(textStyle(int)));
 
-    //    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
-    comboFont = new QFontComboBox();
-    //    mw -> ui.toolBarFormat -> addWidget(comboFont);
+    comboFont = new QFontComboBox(mw -> ui.toolBarFormat);
+    mw -> ui.toolBarFormat -> addWidget(comboFont);
     connect(comboFont, SIGNAL(activated(const QString &)), this, SLOT(textFamily(const QString &)));
 
-    //    comboSize = new QComboBox(mw -> ui.toolBarFormat);
-    comboSize = new QComboBox();
+    comboSize = new QComboBox(mw -> ui.toolBarFormat);
     comboSize -> setObjectName("comboSize");
-    //    mw -> ui.toolBarFormat -> addWidget(comboSize);
+    mw -> ui.toolBarFormat -> addWidget(comboSize);
     comboSize -> setEditable(true);
 
     QFontDatabase db;
