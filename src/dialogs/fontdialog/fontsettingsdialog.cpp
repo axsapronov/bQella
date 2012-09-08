@@ -71,13 +71,13 @@ FontSettingsDialog::FontSettingsDialog(QWidget *parent)
     connect(comboBox, SIGNAL(activated(int)), stackWidget, SLOT(setCurrentIndex(int)));
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 FontSettingsDialog::~FontSettingsDialog()
 {
     // nothing todo
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool FontSettingsDialog::showDialog(FontSettings *settings)
 {
     setupFontSettingsDialog(settings);
@@ -89,7 +89,7 @@ bool FontSettingsDialog::showDialog(FontSettings *settings)
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void FontSettingsDialog::updateFontSettings(FontSettings *settings)
 {
     settings -> useWindowFont = m_windowFontPanel -> isChecked();
@@ -102,7 +102,7 @@ void FontSettingsDialog::updateFontSettings(FontSettings *settings)
     settings -> browserWritingSystem = settings -> useBrowserFont ? m_browserFontPanel -> writingSystem() : QFontDatabase::Latin;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void FontSettingsDialog::setupFontSettingsDialog(const FontSettings *settings)
 {
     m_windowFontPanel -> setSelectedFont(settings -> windowFont);

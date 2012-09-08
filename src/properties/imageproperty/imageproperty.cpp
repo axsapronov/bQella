@@ -22,13 +22,13 @@ ImageProperties::ImageProperties(QWidget *parent)
     ui.GBSize->setVisible(false);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::reject()
 {
         QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::accept()
 {
 	//!+! copy image to prj image dir. See HelpWindow::htmlInsert(QString html) to decide where to do this.
@@ -42,7 +42,7 @@ void ImageProperties::accept()
 	QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::setProperties(int height, int width, QImage image)
 {
 	ui.SBHeight->setValue(height);
@@ -58,7 +58,7 @@ void ImageProperties::setProperties(int height, int width, QImage image)
 	}
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::LoadImage()
 {
 	QString path = Config::configuration()->CurPrjImgDir();
@@ -98,7 +98,7 @@ void ImageProperties::LoadImage()
 	}
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::previewImage()
 {
 	QString s = "<img";
@@ -121,14 +121,14 @@ void ImageProperties::previewImage()
     //ui.PTEImageInfo->appendPlainText(strHtml);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::showSizeOriginal(bool state)
 {
 	showSizeCustom(!state);
 	previewImage();
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::showSizeCustom(bool state)
 {
 	ui.CBKeepRatio->setEnabled(state);
@@ -139,7 +139,7 @@ void ImageProperties::showSizeCustom(bool state)
 	previewImage();
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::setHeight(int y)
 {
 	ui.SBHeight->setValue(y);
@@ -150,7 +150,7 @@ void ImageProperties::setHeight(int y)
 	previewImage();
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ImageProperties::setWidth(int x)
 {
 	ui.SBWidth->setValue(x);

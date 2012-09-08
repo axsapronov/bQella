@@ -78,6 +78,9 @@ public:
 
     bool canInsertFromMimeData( const QMimeData *source ) const;
 
+    void lineNumberAreaPaintEvent(QPaintEvent *event);
+    int lineNumberAreaWidth();
+
 signals:
     void sourceChanged(const QUrl &);
     void highlighted(const QUrl &);
@@ -97,6 +100,7 @@ public slots:
         forceLoadOnSourceChange = !currentURL.path().isEmpty();
     }
     void insertFromMimeData( const QMimeData *source );
+    void loadSettings();
 
 protected:
     bool event(QEvent *e);
@@ -107,10 +111,51 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *ev);
     //virtual bool focusNextPrevChild(bool next);
     // virtual void paintEvent(QPaintEvent *e);
+
+    void resizeEvent(QResizeEvent *event);
+private slots:
+    void updateLineNumberAreaWidth(int newBlockCount);
+    void highlightCurrentLine();
+    void updateLineNumberArea(const QRect &, int);
+
 private:
     bool modeHtml;
-    QTextDocument *doc;
+    QTextDocument *docText;
+
+    QWidget *lineNumberArea;
+
+    uint getLineCount();
+    void setCursorLocation( int x, int y );
+
+    void setCursorLocation( QPoint p );
+    QPoint getCursorLocation();
 
 };
+
+
+
+//![codeeditordefinition]
+//![extraarea]
+
+class LineNumberArea : public QWidget
+{
+public:
+    LineNumberArea(raEdit *editor) : QWidget(editor) {
+        codeEditor = editor;
+    }
+
+    QSize sizeHint() const {
+        return QSize(codeEditor->lineNumberAreaWidth(), 0);
+    }
+
+protected:
+    void paintEvent(QPaintEvent *event) {
+        codeEditor->lineNumberAreaPaintEvent(event);
+    }
+
+private:
+    raEdit *codeEditor;
+};
+
 
 #endif // QRAEDITOR_H

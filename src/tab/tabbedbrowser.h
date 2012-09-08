@@ -31,33 +31,8 @@ class HelpWindow;
 class QStyleSheet;
 class QMimeSourceFactory;
 class QTimer;
-class LineNumberArea;
 
 
-class LineNumberArea : public QWidget
-{
-public:
-
-    LineNumberArea(QWidget *parent)
-    {
-//        codeEditor = editor;
-    }
-
-    QSize sizeHint() const
-    {
-//        return QSize(codeEditor->lineNumberAreaWidth(), 0);
-        return (QSize(2,2));
-    }
-
-protected:
-    void paintEvent(QPaintEvent *event)
-    {
-//        codeEditor->lineNumberAreaPaintEvent(event);
-    }
-
-//private:
-//    CodeEditor *codeEditor;
-};
 
 
 class TabbedBrowser : public QWidget
@@ -83,8 +58,8 @@ signals:
     void showDocProperties();
 
 protected:
-        void keyPressEvent(QKeyEvent *);
-        bool eventFilter(QObject *o, QEvent *e);
+    void keyPressEvent(QKeyEvent *);
+    bool eventFilter(QObject *o, QEvent *e);
 
 public slots:
     void init();
@@ -109,7 +84,6 @@ public slots:
     void zoomIn();
     void zoomOut();
 
-
     void find();
     void findNext();
     void findPrevious();
@@ -127,7 +101,7 @@ private:
     QString fixedFontFam;
     QColor lnkColor;
     bool underlineLnk;
-        QTimer *autoHideTimer;
+    QTimer *autoHideTimer;
 };
 
 #endif // TABBEDBROWSER_H

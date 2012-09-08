@@ -46,7 +46,7 @@ TableProperties::TableProperties(QWidget *parent)
 	ui.CBHeight -> setVisible(false);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::setProperties(int rows, int colums, QTextTableFormat tableFormat, bool newTable)
 {
 	ui.SBRows -> setValue(rows);
@@ -83,7 +83,7 @@ void TableProperties::setProperties(int rows, int colums, QTextTableFormat table
 	}
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::getTableFormat()
 {
 	// global table settings
@@ -108,20 +108,20 @@ void TableProperties::getTableFormat()
 	tFormat.setCellPadding(ui.SBCellMargins -> value());
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::reject()
 {
 	QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::apply()
 {
 	getTableFormat();
 	emit updateTable(ui.SBRows -> value(), ui.SBColumns -> value(), tFormat);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::accept()
 {	
 	getTableFormat();
@@ -133,7 +133,7 @@ void TableProperties::accept()
 	QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::changeColorTable()
 {
     QColor col = QColorDialog::getColor(colorTable, this);
@@ -143,7 +143,7 @@ void TableProperties::changeColorTable()
 	ui.PBTableColor -> setStyleSheet("background-color: " + colorTable.name() +";");
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void TableProperties::changeColorBorder()
 {
     QColor col = QColorDialog::getColor(colorBorder, this);

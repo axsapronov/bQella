@@ -36,6 +36,8 @@
 #include <qtextobject.h>
 #include <qdesktopservices.h>
 
+
+
 static bool isAbsoluteFileName(const QString &name)
 {
     return !name.isEmpty()
@@ -50,13 +52,21 @@ static bool isAbsoluteFileName(const QString &name)
 //====================== class raEdit ============================
 raEdit::raEdit(QWidget *parent)
 {
-    doc = new QTextDocument();
+    docText = new QTextDocument();
     setTextInteractionFlags(Qt::TextEditorInteraction);
     setReadOnly(false);
     setModeHtml(true);
     QObject::connect(document(), SIGNAL(contentsChanged()),this, SLOT(_q_documentModified()));
     //QObject::connect(document(), SIGNAL(linkActivated(QString)),this, SLOT(_q_activateAnchor(QString)));
     //QObject::connect(document(), SIGNAL(linkHovered(QString)),this, SLOT(_q_highlightLink(QString)));
+
+    lineNumberArea = new LineNumberArea(this);
+
+    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
+    updateLineNumberAreaWidth(0);
+    highlightCurrentLine();
+    setWordWrapMode(QTextOption::NoWrap);
+    loadSettings();
 }
 
 raEdit::~raEdit()
@@ -177,7 +187,7 @@ void raEdit::setSource(const QUrl &url)
     if (url.isValid()
             && (newUrlWithoutFragment != currentUrlWithoutFragment || forceLoadOnSourceChange))
     {
-//        QVariant data = loadResource(QTextDocument::UserResource, resolveUrl(url));
+        //        QVariant data = loadResource(QTextDocument::UserResource, resolveUrl(url));
         QVariant data = loadResource(QTextDocument::HtmlResource, resolveUrl(url));
         if (data.type() == QVariant::String)
         {
@@ -294,11 +304,11 @@ void raEdit::keyPressEvent(QKeyEvent *ev)
 {
     QTextEdit::keyPressEvent(ev);
 
-//    if (ev->key() == Qt::Key_Return)
-//    {
-//        qDebug() << "ENTER PRESS";
-//        QTextEdit::append("LOL");
-//    }
+    //    if (ev->key() == Qt::Key_Return)
+    //    {
+    //        qDebug() << "ENTER PRESS";
+    //        QTextEdit::append("LOL");
+    //    }
 }
 
 void raEdit::mousePressEvent(QMouseEvent *e)
@@ -356,24 +366,187 @@ QVariant raEdit::loadResource(int /*type*/, const QUrl &name)
     return data;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool raEdit::canInsertFromMimeData( const QMimeData *source ) const
 {
-	 if (source->hasImage() && Config::configuration()->AcceptDropImages())
-		 return true;
-	 else
-		 return QTextEdit::canInsertFromMimeData(source);
+    if (source->hasImage() && Config::configuration()->AcceptDropImages())
+        return true;
+    else
+        return QTextEdit::canInsertFromMimeData(source);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void raEdit::insertFromMimeData( const QMimeData *source )
- {
-        if (source->hasImage() && Config::configuration()->AcceptDropImages()) {
-                 QImage image = qvariant_cast<QImage>(source->imageData());
-                 emit insertImageFromClipboard(image);
-        }else if (source->hasHtml()) {
-                emit insertHtmlFromClipboard(source->html());
-        }else{
-                QTextEdit::insertFromMimeData(source);
-        }
- }
+{
+    if (source->hasImage() && Config::configuration()->AcceptDropImages()) {
+        QImage image = qvariant_cast<QImage>(source->imageData());
+        emit insertImageFromClipboard(image);
+    }else if (source->hasHtml()) {
+        emit insertHtmlFromClipboard(source->html());
+    }else{
+        QTextEdit::insertFromMimeData(source);
+    }
+}
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+QPoint raEdit::getCursorLocation()
+{
+    QTextDocument *doc = docText;
+    QTextBlock block = doc->begin();
+    int cursorOffset = this->textCursor().position();
+    int off = 0;
+    int x=1, y=1;
+
+    while( cursorOffset>=(off + block.length()) )
+    {
+        off += block.length();
+        block = block.next();
+        y+= 1;
+    }
+    x = cursorOffset - off +1;
+
+    return QPoint( x, y );
+}
+//------------------------------------------------------------------------------
+void raEdit::setCursorLocation( QPoint p )
+{
+    QTextDocument *doc = docText;
+    QTextBlock block = doc->begin();
+    int off = 0;
+    int y=1;
+
+    for( ; y<p.y(); y++ )
+    {
+        off += block.length();
+
+        if (block != doc->end())
+            block = block.next();
+        else
+            return;
+    }
+
+    off+= p.x();
+
+    QTextCursor c = this->textCursor();
+    c.setPosition( off );
+    this->setTextCursor( c );
+}
+//------------------------------------------------------------------------------
+void raEdit::setCursorLocation( int x, int y )
+{
+    setCursorLocation( QPoint(x,y) );
+}
+//------------------------------------------------------------------------------
+uint raEdit::getLineCount()
+{
+    QTextDocument *doc = docText;
+    QTextBlock block = doc->begin();
+    int y=1;
+
+    for( block=doc->begin(); block!= doc->end(); block = block.next())
+        y++;
+    return y;
+}
+//------------------------------------------------------------------------------
+int raEdit::lineNumberAreaWidth()
+{
+    int digits = 1;
+    int max = qMax(1, docText->blockCount());
+    while (max >= 10) {
+        max /= 10;
+        ++digits;
+    }
+
+    int space = 3 + fontMetrics().width(QLatin1Char('9')) * digits;
+
+    return space;
+}
+//------------------------------------------------------------------------------
+void raEdit::updateLineNumberAreaWidth(int /* newBlockCount */)
+{
+    setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
+}
+//------------------------------------------------------------------------------
+void raEdit::updateLineNumberArea(const QRect &rect, int dy)
+{
+    if (dy)
+        lineNumberArea->scroll(0, dy);
+    else
+        lineNumberArea->update(0, rect.y(), lineNumberArea->width(), rect.height());
+
+    if (rect.contains(viewport()->rect()))
+        updateLineNumberAreaWidth(0);
+}
+//------------------------------------------------------------------------------
+void raEdit::resizeEvent(QResizeEvent *e)
+{
+    QTextEdit::resizeEvent(e);
+
+    QRect cr = contentsRect();
+    lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
+}
+//------------------------------------------------------------------------------
+void raEdit::highlightCurrentLine()
+{
+    QList<QTextEdit::ExtraSelection> extraSelections;
+
+    if (!isReadOnly())
+    {
+        QTextEdit::ExtraSelection selection;
+        QSettings settings("CuteNotes", "CuteNotes");
+        QColor color = settings.value("lineHighlightColor").toString().isEmpty() ?
+                    QColor(Qt::lightGray) : settings.value("lineHighlightColor").toString();
+        QColor lineColor = color;
+
+        selection.format.setBackground(lineColor);
+        selection.format.setProperty(QTextFormat::FullWidthSelection, true);
+        selection.cursor = textCursor();
+        selection.cursor.clearSelection();
+        extraSelections.append(selection);
+    }
+    setExtraSelections(extraSelections);
+}
+//------------------------------------------------------------------------------
+void raEdit::loadSettings()
+{
+    QSettings settings("bQella", "bQella");
+    QFont font;
+    font.fromString(settings.value("Font").toString());
+    setStyleSheet("color:" + settings.value("fontColor").toString());
+    setFont(font);
+    //This calls the necessary functions to update CodeEditor
+    highlightCurrentLine();
+}
+//------------------------------------------------------------------------------
+void raEdit::lineNumberAreaPaintEvent(QPaintEvent *event)
+{
+//    QPainter painter(lineNumberArea);
+//    painter.fillRect(event->rect(), Qt::lightGray);
+//    QTextBlock block = firstVisibleBlock();
+//    int blockNumber = block.blockNumber();
+//    int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
+//    int bottom = top + (int) blockBoundingRect(block).height();
+//    while (block.isValid() && top <= event->rect().bottom()) {
+//        if (block.isVisible() && bottom >= event->rect().top()) {
+//            QString number = QString::number(blockNumber + 1);
+//            QSettings settings("CuteNotes", "CuteNotes");
+//            painter.setPen(QColor(settings.value("lineNumberColor").toString()));
+//            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
+//                             Qt::AlignRight, number);
+//        }
+
+//        block = block.next();
+//        top = bottom;
+//        bottom = top + (int) blockBoundingRect(block).height();
+//        ++blockNumber;
+//    }
+}
+//------------------------------------------------------------------------------

@@ -38,9 +38,9 @@
 #include <QTextCodec>
 
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //======== процедуры и функции общего назначения ============================
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //Возвращаем список строк, где в каждой строке по одному числу
 // Deviders определяет разделители чисел, все остальные символы игнорируются
 // Таким образом, если строка разделителей = "./ ", то получаем
@@ -67,7 +67,7 @@ QStringList SplitNumString(QString Str, QString Deviders)
     return str2;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //сигнум. Возвращает 1 if x>0; -1 if x<0; 0 if x=0
 int pSign(int x){
     int y=0;
@@ -76,7 +76,7 @@ int pSign(int x){
     return y;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // округляет вещ.число до целого;
 /*int pRound(double x){ //-pm- use Qt: int qRound ( qreal value )
   int y;
@@ -87,7 +87,7 @@ int pSign(int x){
   if (z>=0.5) y++;
   return y;
 }*/
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 
 double pRound(double x, int Accuracy){ //округляет вещ.число до указанного знака
     double y, res;
@@ -98,7 +98,7 @@ double pRound(double x, int Accuracy){ //округляет вещ.число д
     res = y / m;
     return res;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 
 // определяем склонение слова, напр "день","дня","дней"
 QString pNumToStr(int N, QString One, QString Two, QString Five){
@@ -126,7 +126,7 @@ QString pNumToStr(int N, QString One, QString Two, QString Five){
     return tmpstr;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // преобразования логических переменных
 QString pBoolToStr(bool B){
     QString bstr;
@@ -146,7 +146,7 @@ bool pStrToBool(QString S){
     return B;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // преобразуем тип убирая символ перевода строки
 QString pQString(char Str[65000])
 {
@@ -157,7 +157,7 @@ QString pQString(char Str[65000])
     return Str2;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //дополняет строку Str указанным символом Chr до длины Len
 QString pFillString(QString Str, QString Chr, int Len, QString Align){
     QString ReturnStr;
@@ -180,7 +180,7 @@ QString pFillString(QString Str, QString Chr, int Len, QString Align){
 }
 
 /*
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString FontStyleToString(TFont *FS){
   QString tmp="";
   if (FS -> Style.Contains(fsBold))       tmp  = "Bold+";
@@ -191,7 +191,7 @@ QString FontStyleToString(TFont *FS){
   return tmp;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 
 TFontStyles StringToFontStyle(QString FS){
   TFontStyles tmp;
@@ -209,7 +209,7 @@ TFontStyles StringToFontStyle(QString FS){
   return tmp;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString AlignmentToString(TAlignment A){
   QString tmp;
   if (A == taLeftJustify) tmp = "Left";
@@ -218,7 +218,7 @@ QString AlignmentToString(TAlignment A){
   return tmp;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 TAlignment StringToAlignment(QString S){
    TAlignment tmp;
    if (S == "Left") tmp = taLeftJustify;
@@ -227,7 +227,7 @@ TAlignment StringToAlignment(QString S){
    return tmp;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // -pm- use Qt SaveSettins and LoadSettings instead
 QString GetOptionName(QString OptN){
    QString OName =OptN;
@@ -238,7 +238,7 @@ QString GetOptionName(QString OptN){
    return OName;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString GetOptionValue(QString OptV){
    QString OVal;
    int ind=0;
@@ -250,7 +250,7 @@ QString GetOptionValue(QString OptV){
 }
 */
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // порядковый номер месяца преобразуем в название
 QString pMonthName(int n, QString format)
 {
@@ -278,13 +278,13 @@ QString pMonthName(int n, QString format)
     return ret;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString pMonthName(int n)
 {
     return pMonthName(n, "full");
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // порядковый номер зодиакального зозвездия преобразуем в название
 QString ZodiakName(int n)
 {
@@ -301,7 +301,7 @@ QString ZodiakName(int n)
     return ret;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int DaysInYear(long cYear){
     int days=365;
     if (cYear !=0){
@@ -312,7 +312,7 @@ int DaysInYear(long cYear){
     return days;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int DaysInYear_Jul(long cYear){
     int days=365;
     if (cYear !=0){
@@ -321,42 +321,42 @@ int DaysInYear_Jul(long cYear){
     return days;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool LeapYear(long cYear){
     bool IsLeap=false;
     if (DaysInYear(cYear)==366) IsLeap= true;
     return IsLeap;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool LeapYear_Jul(long cYear){
     bool IsLeap=false;
     if (DaysInYear_Jul(cYear)==366) IsLeap= true;
     return IsLeap;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int HoursInYear(long cYear){
     int h;
     h = DaysInYear(cYear) * 24;
     return h;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int MinutsInYear(long cYear){
     int m;
     m = DaysInYear(cYear) * 1440;
     return m;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int SecondsInYear(long cYear){
     int s;
     s = DaysInYear(cYear) * 86400;
     return s;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //сумирует цифры числа между собой до получения одной цифры
 int Digit(int Number){
     int x,i;
@@ -374,7 +374,7 @@ int Digit(int Number){
     return x;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //возвращает максимальный из аргументов
 int max(int x1, int x2, int x3){
     int res;
@@ -385,7 +385,7 @@ int max(int x1, int x2, int x3){
     return res;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //true если все цифры числа одинаковы, напр. 777
 bool SameDigits(int x){
     QString tmp,y1,y2;
@@ -403,7 +403,7 @@ bool SameDigits(int x){
     return res;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // вычисление пропорции  х - 100%
 //                       y - res%       res = y * 100 / x;
 double Proporsion(double x, double y){
@@ -414,20 +414,20 @@ double Proporsion(double x, double y){
     return res;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //возвращает букву из строки
 QString IntToLetter(int n, QString str){
     QString ret = str.at(n-1); //-1 т.к. первая буква в строке имеет индекс = 0
     return ret;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //возвращает букву латинского алфавита
 QString IntToLetter(int n){
     return IntToLetter(n,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //возвращает номер буквы в указанном алфавите
 int LetterToInt(QString letter, QString srcAlphabet)
 {
@@ -435,7 +435,7 @@ int LetterToInt(QString letter, QString srcAlphabet)
     return ind;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //возвращает номер буквы латинского алфавита
 int LetterToInt(QString letter)
 {
@@ -443,7 +443,7 @@ int LetterToInt(QString letter)
 }
 
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 /* ?+? Процедуры для чисел > 26 (вернее больше числа букв в алфавите), так для латинского алфавита 27 = аа, 28 = ab
 QString IntToLetters(int n, QString str)
 {
@@ -453,13 +453,13 @@ QString IntToLetters(int n, QString str)
  return retStr;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString IntToLetters(int n)
 {
  return NumToStr(n, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int LettersToInt(QString str, QString sourceStr)
 {
  int retInt;
@@ -470,14 +470,14 @@ int LettersToInt(QString str, QString sourceStr)
  return retInt;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int LettersToInt(QString str)
 {
  return LettersToInt(str, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 */
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 /* Римские цифры
 1 		I
 5 		V
@@ -511,7 +511,7 @@ int r2i(QChar letter)
     return i;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int RomanToInt(QString romanInt)
 {
     int n = romanInt.length();
@@ -527,7 +527,7 @@ int RomanToInt(QString romanInt)
     return sum;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString IntToRoman(int n)
 {
     QString roman = "";
@@ -571,7 +571,7 @@ QString IntToRoman(int n)
 }
 
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool createFileText(QString fileName, QString text)
 {
     bool ret = true;
@@ -592,7 +592,7 @@ bool createFileText(QString fileName, QString text)
     }
     return ret;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext)
 {
     QFile file(filepath);
@@ -633,7 +633,7 @@ void replaceTextOfFile(QString filepath, QString beforetext, QString replacetext
     st.setCodec(codec);
     st << writelist;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool addToEndFile(QString fileName, QString text)
 {
     if (QFile::exists(fileName))
@@ -650,7 +650,7 @@ bool addToEndFile(QString fileName, QString text)
     }
     return false;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString ist(QString str)
 {
     if (str == "")
@@ -659,21 +659,21 @@ QString ist(QString str)
     }
     return str;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 int BooltoInt(bool foo)
 {
     if (foo == true)
         return 1;
     return 0;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString BooltoQString(bool foo)
 {
     if (foo == true)
         return "Y";
     return "N";
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // юзать только для преобразования параметров проекта
 bool QStringtoBool(QString str)
 {
@@ -683,7 +683,7 @@ bool QStringtoBool(QString str)
         return false;
     return true;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString incstr(QString str, int n, QString mychar)
 {
     while (str.length() != n)
@@ -692,13 +692,13 @@ QString incstr(QString str, int n, QString mychar)
     }
     return str;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString tagToQuestion(QString tag)
 {
     tag = "<" + tag + ">";
     return tag.replace("<","?").replace(">","_.");
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString questionToTag(QString question)
 {
     question = "?" + question + "_.";
@@ -708,7 +708,7 @@ QString questionToTag(QString question)
     }
     return question.replace("?","<").replace("_.",">");
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString editStringList(QString list, QStringList tags, bool f)
 {
     QString tag;
@@ -735,7 +735,7 @@ QString editStringList(QString list, QStringList tags, bool f)
     }
     return list;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString getCenterTag(QString str)
 {
     QRegExp rxp("<p align=\"center\".*?>");
@@ -744,7 +744,7 @@ QString getCenterTag(QString str)
             .replace(rxp, "<p><center>");
     return str;
 }
-//------------------------------------------------------
+//-----------------------------------------------------------------------------------
 QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bool createcontent)
 {
     QStringList strlist = strinput.split("\n");
@@ -839,7 +839,7 @@ QString getHtmlCoolCode(QString strinput, QString inumber, QString mychapter ,bo
     }
     return teststr;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString getParseTagSpan(QString str, QString text, QString tag)
 {
     QString span = "<span>";
@@ -865,7 +865,7 @@ QString getParseTagSpan(QString str, QString text, QString tag)
     }
     return str;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 int getDepthTreeWidgetItem(QTreeWidgetItem *item)
 {
     int depth = 0;
@@ -876,7 +876,7 @@ int getDepthTreeWidgetItem(QTreeWidgetItem *item)
     }
     return depth;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QStringList getFillShortName()
 {
     QTextCodec * codec = QTextCodec::codecForName("UTF-8"); // set encoding for progs
@@ -966,7 +966,7 @@ QStringList getFillShortName()
           << QString ("Матф. Матф Мтф. Мтф Мф. Мф Мт. Мт Матфея Матфей Мат Мат. Mt. Mt Ma. Ma Matt. Matt Mat. Mat Matthew");
     return items;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 
 QStringList getFillEncoding()
 {
@@ -1016,7 +1016,7 @@ QStringList getFillEncoding()
 
 }
 
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString getShortName(QString filename)
 {
     // translate to hindi
@@ -1040,7 +1040,7 @@ QString getShortName(QString filename)
     }
     return str;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString miniparserini(QString str, QString po)
 {
     po.append(" = ");
@@ -1080,7 +1080,7 @@ QString miniparserini(QString str, QString po)
     }
     return "";
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString getTextInStr(QString strf, int begin, int end)
 {
     //    qDebug() << " str before = " << strf;
@@ -1094,7 +1094,7 @@ QString getTextInStr(QString strf, int begin, int end)
     begin = begin;
     end = end;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString replaceFullShortName(QString line, QString text, QString name)
 {
     QString str;
@@ -1108,7 +1108,7 @@ QString replaceFullShortName(QString line, QString text, QString name)
     }
     return line;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 void writeQStringList(QString filename, QStringList list)
 {
     QFile file(unurlifyFileName(filename));
@@ -1119,7 +1119,7 @@ void writeQStringList(QString filename, QStringList list)
     }
     //    qDebug() << " list = " << list;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString getCheckShortNameForFile(QString str, QString full)
 {
     // если нету в short неймах такого названия, то юзаем все полное название книги
@@ -1132,7 +1132,7 @@ QString getCheckShortNameForFile(QString str, QString full)
     }
     return full;
 }
-//-----------------------------------------------------
+//----------------------------------------------------------------------------------
 QString checkExistenceFile(QString filename)
 {
     QString end = QString(filename).split(".").last();
@@ -1144,7 +1144,7 @@ QString checkExistenceFile(QString filename)
     //    qDebug() << "filename = " << filename;
     return filename+"."+end;
 }
-//-------------------------------------------------------
+//------------------------------------------------------------------------------------
 QString checkTag(QString tag)
 {
     //    if ((tag.at(0) != "<") and (tag.at(tag.length()) != ">"))
@@ -1154,19 +1154,19 @@ QString checkTag(QString tag)
     }
     return tag;
 }
-//--------------------------------------------------------
+//-------------------------------------------------------------------------------------
 QString uncheckTag(QString tag)
 {
     return tag.remove ("<").remove (">");
 }
-//-------------------------------------------------------
+//------------------------------------------------------------------------------------
 QString checkEndTag(QString tag)
 {
     tag = checkTag (tag);
     tag.replace ("<","</");
     return tag;
 }
-//-------------------------------------------------------
+//------------------------------------------------------------------------------------
 QString getFileNameAbs(QString file)
 {
     QStringList list;
@@ -1177,7 +1177,7 @@ QString getFileNameAbs(QString file)
 
     return str;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void removeStringInFile(QString filename, QStringList list)
 {
     QFile file(filename);
@@ -1210,7 +1210,7 @@ void removeStringInFile(QString filename, QStringList list)
         file.write(output.toUtf8());
     }
 }
-//---------------------------------------------------
+//--------------------------------------------------------------------------------
 QString checkProcentRol(QString str, QString out, int procent)
 {
     QStringList liststr = QString(str).split(" ");
@@ -1282,7 +1282,7 @@ QTextCodec * getCodecOfEncoding(QString encoding)
     //    qDebug() << " encoding = " << encoding;
     return codec;
 }
-//---------------------------------------------------
+//--------------------------------------------------------------------------------
 QString removeFirst(QString str, QString remove)
 {
     int pos = str.indexOf(remove);
@@ -1292,7 +1292,7 @@ QString removeFirst(QString str, QString remove)
     }
     return str;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QString getParamBook(QString filename, QString param)
 {
     // translate to hindi
@@ -1319,14 +1319,14 @@ QString getParamBook(QString filename, QString param)
     }
     return str;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void visitTree(QStringList &list, QTreeWidgetItem *item)
 {
     list << item->text(0);
     for(int i = 0; i < item->childCount(); ++i)
         visitTree(list, item->child(i));
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QStringList visitTree(QTreeWidget *tree)
 {
     QStringList list;
@@ -1334,7 +1334,7 @@ QStringList visitTree(QTreeWidget *tree)
         visitTree(list, tree->topLevelItem( i ));
     return list;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QStringList getParentText(QTreeWidgetItem *item)
 {
     QStringList list;
@@ -1342,7 +1342,7 @@ QStringList getParentText(QTreeWidgetItem *item)
         visitTree(list, item->child(i));
     return list;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 bool checkFileContainsText(QString filename, QString text)
 {
     QFile file(filename);
@@ -1362,7 +1362,7 @@ bool checkFileContainsText(QString filename, QString text)
     return false;
 }
 
-//----------------------------------------------------------
+//---------------------------------------------------------------------------------------
 void printToDebugModuleProperties(ModuleProperties *pr)
 {
     qDebug()
@@ -1395,12 +1395,12 @@ void printToDebugModuleProperties(ModuleProperties *pr)
             << "\n" << " useChapterHead       = " <<  pr->useChapterHead;
 }
 
-//----------------------------------------------------------
+//---------------------------------------------------------------------------------------
 QString replaceSpaceInStrToText(QString str, QString text)
 {
     return str.replace(" ",text);
 }
-//----------------------------------------------------------
+//---------------------------------------------------------------------------------------
 QString getTextFromFile(QString filepath, QString encoding)
 {
     QString filetext = "";
@@ -1417,7 +1417,7 @@ QString getTextFromFile(QString filepath, QString encoding)
     }
     return filetext;
 }
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 int countTheNumberOfFiles(QString *textinput, QString tag)
 {
     int count = 0;
@@ -1430,14 +1430,14 @@ int countTheNumberOfFiles(QString *textinput, QString tag)
     //    qDebug() << text;
     return count;
 }
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 QString getFolderFile(QString *file)
 {
     QString str = *file;
     str = str.remove(str.split("/").last());
     return str;
 }
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 QString uniqueFileName(QString fileName)
 {
 	QString fn = fileName;
@@ -1455,4 +1455,4 @@ QString uniqueFileName(QString fileName)
     //fn = fn.toLower();
         return fn;
 }
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------

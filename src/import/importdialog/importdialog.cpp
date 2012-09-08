@@ -46,7 +46,7 @@ Import::Import(QWidget *parent)
     connect(ui.pBPreview, SIGNAL(clicked()), this, SLOT(showPreview()));
     connect(prevmodule, SIGNAL(createBookPreviewModule(QString)), this, SLOT(createBookPreviewModule(QString)));
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::selectImportFile()
 {
     QString beginpath = Config::configuration ()->AppDir ();
@@ -64,7 +64,7 @@ void Import::selectImportFile()
         setEncodingForPreview(ui.LAEncoding->text());
     }
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::accept()
 {
     QString s = "";  //holds list of errors
@@ -148,7 +148,7 @@ QStringList Import::getReplaceList()
     }
     return replaceduplex;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::importModule(QString file)
 {
     //    qDebug() << "Debug: _Import::importModule()" << "Start import Module";
@@ -158,7 +158,7 @@ void Import::importModule(QString file)
     createInstructionFile();
     addContentToEndProjectFile();
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::importIni(QString filename)
 {
     //    qDebug() << "Debug: _Import::importIni()" << "Start import ini";
@@ -250,7 +250,7 @@ void Import::importIni(QString filename)
         file.close();
     }
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::importBook(QString pathName2, QString FullName, QString ShortName, int ChapterQty)
 {
     QString title = FullName;
@@ -328,7 +328,7 @@ void Import::importBook(QString pathName2, QString FullName, QString ShortName, 
     QString text = "</section>";
     addContentToProjectFile(text, false);
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::importBook(QString projectfile,
                         QString pathName2,
                         QString FullName,
@@ -444,7 +444,7 @@ void Import::importBook(QString projectfile,
         addContentToProjectFile(projectfile, text, false);
     }
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QString Import::importChapter(QString line)
 {
     QRegExp rx("^(<[^>](.?){1,10}>)(\\s*)(\\d*)(\\s*)(<[^>]*>)*\\s*");
@@ -476,7 +476,7 @@ QString Import::importChapter(QString line)
     }
     return line;
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::importProjectFile()
 {
     createProjectFile();
@@ -586,7 +586,7 @@ void Import::importProjectFile()
     Config::configuration() -> toAppLog(3, tr("- project sources DB: %1", "For log").arg(Config::configuration() -> DbName()));
     Config::configuration() -> toAppLog(1, tr("- done", "For log"));
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::createImportFolder(QString path)
 {
     QDir dir(path);
@@ -601,7 +601,7 @@ void Import::createImportFolder(QString path)
     }
     Config::configuration()->setCurPrjDir(path);
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::createBookFile(QString pathName, QString FullName, QString ShortName, int ChapterQty)
 {
     QString pathNameE = pathName + ".htm";
@@ -624,7 +624,7 @@ void Import::createBookFile(QString pathName, QString FullName, QString ShortNam
             .arg(ChapterQty);
     createEmptyHtml(fileimportname, "" , text);
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::createChapterFile(QString file, QString text, int i)
 {
 
@@ -642,7 +642,7 @@ void Import::createChapterFile(QString file, QString text, int i)
         createEmptyHtmlWithEncoding(file, QString("%1").arg(i) , text, getEncodingForPreview());
     }
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::createProjectFile()
 {
     QString filename;
@@ -661,7 +661,7 @@ void Import::createProjectFile()
         file1.write(QString("").toUtf8());
     }
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::createInstructionFile()
 {
     QString text = tr("Add a manual");
@@ -670,7 +670,7 @@ void Import::createInstructionFile()
     //    else
     //        createEmptyHtml(QString(Config::configuration()->CurPrjDir()+"/"+ pathOutput +"/   ___Instruction"), QString("   ___Instruction"), text);
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::addContentToProjectFile(QString text, bool tr)
 {
     QString ind1="   ";
@@ -698,7 +698,7 @@ void Import::addContentToProjectFile(QString text, bool tr)
     }
     f.close();
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::addContentToProjectFile(QString filename, QString text, bool tr)
 {
     if (!tr)
@@ -733,7 +733,7 @@ void Import::addContentToProjectFile(QString filename, QString text, bool tr)
     }
     f.close();
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::addContentToEndProjectFile()
 {
     QString fn = unurlifyFileName(getPrjFN());
@@ -745,7 +745,7 @@ void Import::addContentToEndProjectFile()
     ts << "</pemproject>" << endl;
     f.close();
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 void Import::addContentToEndProjectFile(QString filename)
 {
     QString fn = unurlifyFileName(filename);
@@ -757,17 +757,17 @@ void Import::addContentToEndProjectFile(QString filename)
     ts << "</pemproject>" << endl;
     f.close();
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QString Import::getPrjFN()
 {
     return QString(Config::configuration()->CurPrjDir()+"/" + Config::configuration()->ModuleBibleShortName()+ GL_PROJECT_FILE); // Нахера если Config::configuration->CurProject тоже самое? =)
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 QString Import::getStartPage()
 {
     return QString(Config::configuration()->CurPrjDir()+"/ru.html");
 }
-//----------------------------------------------------
+//---------------------------------------------------------------------------------
 
 void Import::setData()
 {
@@ -784,7 +784,7 @@ void Import::setData()
     //    ui.LEImportFile->setText(importstr);
     //    ui.LEImportFile->setText("/home/files/Documents/Bible/unrar/NT_Greek_WH-E_UTF8/BIBLEQT.INI");
 }
-///-----------------------------------------------------
+///----------------------------------------------------------------------------------
 void Import::showPreview()
 {
     prevmodule->setEncoding(ui.LAEncoding->text());
@@ -799,7 +799,7 @@ void Import::showPreview()
     prevmodule->createPreview();
     prevmodule->show();
 }
-////-----------------------------------------------------
+////----------------------------------------------------------------------------------
 void Import::createBookPreviewModule(QString fullname)
 {
     QStringList listparams = getParamsBibleQtIni(fullname);

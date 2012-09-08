@@ -41,13 +41,13 @@ ProjectStatistics::ProjectStatistics(QWidget *parent)
      ui.TBEditFileName->setVisible(false);
  }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::accept()
 {
         QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::getStatistics()
 {
     ui.PrgBarCopyImages->setValue(0);
@@ -66,7 +66,7 @@ void ProjectStatistics::getStatistics()
     ui.PrgBarCopyImages->setVisible(false);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setStatCountImages(int total, int unique, int external)
 {
 	ui.TEStatistics->append(tr("Images in documents:")+ QString("<strong> %1</strong>").arg(total));
@@ -75,7 +75,7 @@ void ProjectStatistics::setStatCountImages(int total, int unique, int external)
     ui.TBFileCopy->setEnabled(external > 0);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setStatImageLists(QStringList total, QStringList unique, QStringList external)
 {
     /*int n = total.count();
@@ -115,7 +115,7 @@ void ProjectStatistics::setStatImageLists(QStringList total, QStringList unique,
     }
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setStatDocLists(QStringList unused, QStringList unique, QStringList external)
 {
     ui.TEStatistics->append(tr("Documents in use:")+ QString("<strong> %1</strong>").arg(unique.count()));
@@ -130,14 +130,14 @@ void ProjectStatistics::setStatDocLists(QStringList unused, QStringList unique, 
     }
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::copyImages()
 {
     emit copyAllImages(); //!+! copy selected image and update links in all documents
     ui.TBFileCopy->setEnabled(false);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setTW(QTreeWidget *tw, QStringList values, QString path)
 {
     QString link;
@@ -154,7 +154,7 @@ void ProjectStatistics::setTW(QTreeWidget *tw, QStringList values, QString path)
     //qDebug() << "-- setTW: values=" << values.count() << ", path="<< path;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setList(QString listName, QStringList list)
 {
     QString t = listName.toLower();
@@ -201,7 +201,7 @@ void ProjectStatistics::setList(QString listName, QStringList list)
     //qDebug() << "-- setList: listName=" << listName << ", numbetr=" << list.count();
 }
 /*
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::setList(QString listName, QTreeWidget tw)
 {
     QString t = listName.toLower();
@@ -211,7 +211,7 @@ void ProjectStatistics::setList(QString listName, QTreeWidget tw)
     if ( t == "imagelistunused")    twImageListUnused = tw;
 }
 */
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::changeList(QString itemName)
 {
     QString lt = ui.CBType->currentText().toLower();
@@ -242,7 +242,7 @@ void ProjectStatistics::changeList(QString itemName)
     ToolBarEnabled(n > 0);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 // copy QTreeWidget object, since '=' operator does not work
 void ProjectStatistics::setTWFiles(QTreeWidget *tw)
 {
@@ -252,7 +252,7 @@ void ProjectStatistics::setTWFiles(QTreeWidget *tw)
     }
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::TWFilesCurrentItemChanged(QTreeWidgetItem *curItem ,QTreeWidgetItem *prevItem)
 {
     qDebug() << "preview resource";
@@ -288,7 +288,7 @@ void ProjectStatistics::TWFilesCurrentItemChanged(QTreeWidgetItem *curItem ,QTre
 
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::ToolBarEnabled(bool b)
 {
     ui.TBEditFileName->setEnabled(b);
@@ -296,7 +296,7 @@ void ProjectStatistics::ToolBarEnabled(bool b)
     ui.TBFileDelete->setEnabled(b);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::showImageControl(bool b)
 {
     ui.HSImgSize->setVisible(b);
@@ -305,7 +305,7 @@ void ProjectStatistics::showImageControl(bool b)
     ui.CBImgShrink->setVisible(b);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::Clear()
 {
     twDocListTotal.clear();
@@ -325,7 +325,7 @@ void ProjectStatistics::Clear()
     showImageControl(false);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 void ProjectStatistics::fileDelete()
 {
     QString fn = ui.LFileName->text();

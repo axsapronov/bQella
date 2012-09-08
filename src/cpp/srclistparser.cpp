@@ -35,7 +35,7 @@ SrcListParser::SrcListParser()
 {
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 SrcListParser *SrcListParser::createParser(const QString &fileName)
 {
     QFile file(fileName);
@@ -47,7 +47,7 @@ SrcListParser *SrcListParser::createParser(const QString &fileName)
     return parser; 
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::parse()
 {	
 	QFile file(fName);
@@ -59,7 +59,7 @@ bool SrcListParser::parse()
     return p;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::startDocument()
 {
     errorString = QString("");
@@ -71,7 +71,7 @@ bool SrcListParser::startDocument()
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::startElement(const QString &, const QString &, const QString &qname, const QXmlAttributes &attr)
 {
     QString lower = qname.toLower();
@@ -90,7 +90,7 @@ bool SrcListParser::startElement(const QString &, const QString &, const QString
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::endElement(const QString &nameSpace, const QString &localName, const QString &qName)
 {
     Q_UNUSED(nameSpace);// These variables required for the function, but we don't use them. 
@@ -103,7 +103,7 @@ bool SrcListParser::endElement(const QString &nameSpace, const QString &localNam
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::characters(const QString& ch)
 {
     QString str = ch.simplified();
@@ -119,7 +119,7 @@ bool SrcListParser::characters(const QString& ch)
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool SrcListParser::fatalError(const QXmlParseException& exception)
 {
     errorString += QString::fromUtf8("Fatal error encountered during parsing sources list: %1 in line %2, column %3")

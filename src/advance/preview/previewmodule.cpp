@@ -16,12 +16,12 @@ PreviewModule::PreviewModule(QWidget *parent) :
 //    showPreviewBook();
     prevbook = new PreviewBook();
 }
-///------------------------------------------------------------------
+///-----------------------------------------------------------------------------------------------
 PreviewModule::~PreviewModule()
 {
     delete ui;
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::setData(QString filepath)
 {
     ui->LAFile->setText(filepath);
@@ -30,7 +30,7 @@ void PreviewModule::setData(QString filepath)
     ///
     createListBook();
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::showPreviewBook()
 {
     QStringList listfiles = getListFilesFromBibleqtIni(getFileBibleqtIni());
@@ -43,38 +43,38 @@ void PreviewModule::showPreviewBook()
     prevbook->createBookPreviewFunc();
     prevbook->show();
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::createPreview()
 {
     createFolder(prjDir + "/");
     createBookPreview();
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::createFolder(QString path)
 {
     QDir dir(path);
 //    qDebug() << " path = " << path;
     dir.mkdir("_Preview_");
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::createBookPreview()
 {
 
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::accept()
 {
 //    qDebug() << "accept";
     removePreviewFiles();
     QWidget::hide();  //close dialog
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::reject()
 {
 //    qDebug() << "reject";
     QWidget::hide();  //close dialog
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::removePreviewFiles()
 {
     QString outputPath = prjDir  + "_Preview_/";
@@ -97,7 +97,7 @@ void PreviewModule::removePreviewFiles()
         dir2.rmdir("_Preview_");
     }
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewModule::createListBook()
 {
     QStringList listvaluetext = getListValueTextFromBibleqtIni(getFileBibleqtIni(),

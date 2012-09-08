@@ -28,7 +28,7 @@
 #include <QFileDialog>
 
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 AppSettings::AppSettings(QWidget *parent)
     : QDialog(parent)
 {
@@ -40,20 +40,20 @@ AppSettings::AppSettings(QWidget *parent)
     connect(ui.PBFontSettings, SIGNAL(clicked()), this, SLOT(showFontSettingsDialog()));
 }
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void AppSettings::reject()
 {
     QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void AppSettings::accept()
 {
     apply();
     QWidget::hide();  //close dialog
 }
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void AppSettings::apply()
 {
     Config::configuration() -> setContentsAdditionalView(ui.CBContentsAdditionalView -> isChecked());
@@ -68,7 +68,7 @@ void AppSettings::apply()
     Config::configuration() -> setItemAutoProperties(true);
 }
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void AppSettings::set()
 {
     ui.CBContentsAdditionalView -> setChecked(Config::configuration() -> ContentsAdditionalView());
@@ -81,7 +81,7 @@ void AppSettings::set()
 //    ui.CBAcceptDropImages->setChecked(Config::configuration()->AcceptDropImages());
 }
 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void AppSettings::showFontSettingsDialog()
 {
     Config *config = Config::configuration();

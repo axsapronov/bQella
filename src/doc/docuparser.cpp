@@ -28,7 +28,7 @@
 
 
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QDataStream &operator>>(QDataStream &s, ContentItem &ci)
 {
     s >> ci.title;
@@ -37,7 +37,7 @@ QDataStream &operator>>(QDataStream &s, ContentItem &ci)
     return s;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QDataStream &operator<<(QDataStream &s, const ContentItem &ci)
 {
     s << ci.title;
@@ -46,7 +46,7 @@ QDataStream &operator<<(QDataStream &s, const ContentItem &ci)
     return s;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 DocuParser *DocuParser::createParser(const QString &fileName)
 {
     QFile file(fileName);
@@ -68,7 +68,7 @@ bool DocuParser::parse(QFile *file)
     return reader.parse(source);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString DocuParser::errorProtocol() const {    return errorProt; }
 
 QList<ContentItem> DocuParser::getContentItems(){  return contentList; }
@@ -94,7 +94,7 @@ bool DocuParserPEM::startDocument()
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool DocuParserPEM::startElement(const QString &, const QString &,
                                  const QString &qname, const QXmlAttributes &attr)
 {
@@ -151,7 +151,7 @@ bool DocuParserPEM::startElement(const QString &, const QString &,
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool DocuParserPEM::endElement(const QString &nameSpace, const QString &localName, const QString &qName)
 {
     Q_UNUSED(nameSpace);
@@ -195,7 +195,7 @@ bool DocuParserPEM::endElement(const QString &nameSpace, const QString &localNam
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool DocuParserPEM::characters(const QString& ch)
 {
     QString str = ch.simplified();
@@ -221,7 +221,7 @@ bool DocuParserPEM::characters(const QString& ch)
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool DocuParserPEM::fatalError(const QXmlParseException& exception)
 {
     errorProt += QString::fromUtf8("fatal parsing error: %1 in line %2, column %3\n")

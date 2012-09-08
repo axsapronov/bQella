@@ -59,10 +59,6 @@ TabbedBrowser::TabbedBrowser(MainWindow *parent)
 
 }
 //------------------------------------------------------------------------------
-TabbedBrowser::~TabbedBrowser()
-{
-}
-//------------------------------------------------------------------------------
 MainWindow *TabbedBrowser::mainWindow() const
 {
     return static_cast<MainWindow*>(parentWidget());

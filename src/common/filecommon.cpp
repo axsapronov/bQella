@@ -3,7 +3,7 @@
 #include "config.h"
 
 
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 QStringList getChapterList()
 {
     QString path = Config::configuration()->PrjDir() + "/" + "_Preview_/_Preview_/";
@@ -25,7 +25,7 @@ QStringList getChapterList()
     return files;
 }
 
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 QStringList  getChapterComboText()
 {
     QStringList list = getChapterList();
@@ -47,7 +47,7 @@ QStringList  getChapterComboText()
 //    qDebug() << "chapters" << chapters << "\n";
     return chapters;
 }
-///-------------------------------------------------------
+///------------------------------------------------------------------------------------
 QStringList getListFilesFromBibleqtIni(QString filename)
 {
     QStringList listFiles;
@@ -91,7 +91,7 @@ QStringList getListFilesFromBibleqtIni(QString filename)
     }
     return listFiles;
 }
-///-------------------------------------------------------
+///------------------------------------------------------------------------------------
 QStringList getListValueTextFromBibleqtIni(QString filename, QString encoding)
 {
 
@@ -138,7 +138,7 @@ QStringList getListValueTextFromBibleqtIni(QString filename, QString encoding)
     return listValueText;
 }
 
-///-------------------------------------------------------
+///------------------------------------------------------------------------------------
 QString getEncodingFromFile(QString file, QString language)
 {
     QProcess pr;
@@ -178,7 +178,7 @@ QString getEncodingFromFile(QString file, QString language)
 
 
 //======= работа с файлами =======
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 
 QString urlifyFileName(const QString &fileName)
 {
@@ -206,7 +206,7 @@ QString urlifyFileName(const QString &fileName)
     return name;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString unurlifyFileName(const QString &fileName)
 {
     QString fn = fileName;
@@ -221,7 +221,7 @@ QString unurlifyFileName(const QString &fileName)
     return fn;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 //Turns absolute path to relative to 'path'
 //Difference from QDir::relativeFilePath() in: adds "./" and removes "file:" or "file:///"
 QString relatifyFileName(QString url, QString path)
@@ -264,7 +264,7 @@ QString relatifyFileName(QString url, QString path)
     return str;
 }	//relatifyFileName
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList relatifyFileList(QStringList urls, QString path)
 {
     QStringList sl;
@@ -276,7 +276,7 @@ QStringList relatifyFileList(QStringList urls, QString path)
     return sl;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString absolutifyFileName(QString fn, QString path)
 {
     QString afn;
@@ -287,7 +287,7 @@ QString absolutifyFileName(QString fn, QString path)
     return afn;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList absolutifyFileList(QStringList fns, QString path)
 {
     QStringList sl;
@@ -299,7 +299,7 @@ QStringList absolutifyFileList(QStringList fns, QString path)
     return sl;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString removeAnchorFromLink(const QString &link)
 {
     int i = link.length();
@@ -316,7 +316,7 @@ QString removeAnchorFromLink(const QString &link)
     return link.left(i);
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool verifyDirectory(const QString &str)
 {
     QFileInfo dirInfo(str);
@@ -329,7 +329,7 @@ bool verifyDirectory(const QString &str)
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool pathIsRelative(QString path)
 {
     bool r = false;
@@ -338,7 +338,7 @@ bool pathIsRelative(QString path)
     return r;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 QString CreateValidWebFileName(QString str)
 {
     QString validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-_,.()[]{}<>~!@#$%^&*+=";
@@ -353,7 +353,7 @@ QString CreateValidWebFileName(QString str)
     return fn;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool toLog(QString logFN, QString logMessage)
 {
     QFile file(logFN);
@@ -368,7 +368,7 @@ bool toLog(QString logFN, QString logMessage)
     return true;
 }
 
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool createEmptyHtml(QString fileName, QString title)
 {
     bool ret = true;
@@ -390,7 +390,7 @@ bool createEmptyHtml(QString fileName, QString title)
     }
     return ret;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool createEmptyHtml(QString fileName, QString title, QString text)
 {
     bool ret = true;
@@ -412,7 +412,7 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
     }
     return ret;
 }
-//-------------------------------------------------
+//------------------------------------------------------------------------------
 bool createEmptyHtmlWithEncoding(QString fileName, QString title, QString text, QString encoding)
 {
     bool ret = true;

@@ -48,7 +48,7 @@ ProjectProperties::ProjectProperties(QWidget *parent)
     setData(); /// set firsrt data (list encoding)
     setToolTipLabels(); ///set what'is labels
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
 {
 //    printToDebugModuleProperties(&pr);
@@ -86,13 +86,13 @@ void ProjectProperties::setProperties(bool newPrj, ModuleProperties pr)
     ui.comBLanguage->setCurrentIndex(ui.comBLanguage->findText(pr.language));
     hideshow();
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::reject()
 {
     validProperties = false;
     QWidget::hide();  //close dialog
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::showUpdate()
 {
     if(!modeNewProject)
@@ -104,7 +104,7 @@ void ProjectProperties::showUpdate()
         ui.LEBibleName->setEnabled(true);
     }
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::accept()
 {
     QString s = "";  //holds list of errors
@@ -233,7 +233,7 @@ void ProjectProperties::accept()
         }
     }
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::setToolTipLabels()
 {
     QString str;
@@ -409,14 +409,14 @@ void ProjectProperties::setToolTipLabels()
                      "Put <b>Y</b> if the module you want to display the entire text to the right"));
     ui.cbUseRightAlignment->setToolTip(str);
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::setData()
 {
     QStringListModel *modelEncoding;
     modelEncoding = new QStringListModel(getFillEncoding(), this);
     ui.comBEncoding->setModel(modelEncoding);
 }
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 void ProjectProperties::hideshow()
 {
     /// strong number

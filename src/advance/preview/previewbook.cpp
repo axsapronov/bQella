@@ -51,14 +51,14 @@ void PreviewBook::setData(QString filepath)
             "_Preview_/";
     createFolder(folderpath);
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 //void PreviewBook::reject()
 //{
 //    //    qDebug() << "reject";
 //        removePreviewFiles();
 //    QWidget::hide();  //close dialog
 //}
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewBook::accept()
 {
     removePreviewFiles();
@@ -76,7 +76,7 @@ void PreviewBook::accept()
 
     QWidget::hide();  //close dialog
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewBook::removePreviewFiles()
 {
     QString outputPath = Config::configuration()->PrjDir() + "_Preview_/_Preview_";
@@ -98,7 +98,7 @@ void PreviewBook::removePreviewFiles()
         dir2.rmdir("_Preview_");
     }
 }
-///-------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------
 void PreviewBook::createBookPreviewFunc()
 {
     QStringList chapters = getChapterComboText();
@@ -115,7 +115,7 @@ void PreviewBook::createBookPreviewFunc()
     if (!chapters.isEmpty())
         showChapter(0);
 }
-///------------------------------------------------------------------
+///-----------------------------------------------------------------------------------------------
 void PreviewBook::showChapter(int count)
 {
 
@@ -146,7 +146,7 @@ void PreviewBook::showChapter(int count)
         ui->tbViewChapter->setHtml(textchapter);
     }
 }
-///------------------------------------------------------------------
+///-----------------------------------------------------------------------------------------------
 void PreviewBook::createFolder(QString folderPath)
 {
     //    qDebug() << folderPath;
@@ -168,7 +168,7 @@ void PreviewBook::createFolder(QString folderPath)
         }
     }
 }
-///---------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
 void PreviewBook::createConnects()
 {
     connect(ui->comBChapters_1, SIGNAL(currentIndexChanged(int)), this, SLOT(showChapter(int)));

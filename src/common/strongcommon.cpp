@@ -6,7 +6,7 @@
 
 
 
-//------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 QString getInfoFromStrongFile(QString horg, QString number)
 {
     QString filename = getFileNameOfStrong(horg, number);
@@ -51,7 +51,7 @@ QString getInfoFromStrongFile(QString horg, QString number)
     }
     return "";
 }
-//----------------------------------------------------------
+//---------------------------------------------------------------------------------------
 QString getFileNameOfStrong(QString horg, QString numberstr)
 {
     int number = numberstr.toInt();
