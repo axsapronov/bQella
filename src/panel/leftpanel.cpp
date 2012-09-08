@@ -1131,7 +1131,7 @@ void LeftPanel::insertContents()
                 stack.push(childEntry);
             }
         }
-        //processEvents(); // ? why do we need it ?
+        processEvents(); // ? why do we need it ?
     }
 
     setCursor(Qt::ArrowCursor);

@@ -13,34 +13,33 @@ SplitFile::SplitFile(QWidget *parent) :
     ui(new Ui::SplitFile)
 {
     ui->setupUi(this);
-
     createConnect();
-
     setData();
+}
+//--------------------------------------------
+SplitFile::~SplitFile()
+{
+    delete ui;
+}
+//--------------------------------------------
+void SplitFile::debug()
+{
     //    QString str = "/home/files/Documents/Bible/unrar/my/1Co.htm";
     //    str = "/home/files/Documents/Bible/unrar/NT_Russian_Kassian/57_philippians.htm";
     //    ui->LEFilePath->setText(str);
 
-    QString tag = "<h4>";
-    //     QString tag = "<A NAME";
-    ui->LETagSplit->setText(tag);
 
     //    QStringListModel *modelEncoding;
     //    modelEncoding = new QStringListModel(getFillEncoding(), this);
     //    ui->comBEncoding->setModel(modelEncoding);
 
     //    showFileHtml(str);
-    ui->cBAutoOn->setChecked(false);
     //    ui->cBAutoOn->setChecked(true);
-    AutoSplitOn();
-    showFileText();
-    AutoEstimate();
-    AutoRun();
-}
-//--------------------------------------------
-SplitFile::~SplitFile()
-{
-    delete ui;
+    //    AutoSplitOn();
+    //    showFileText();
+    //    AutoEstimate();
+    //    AutoRun();
+
 }
 //--------------------------------------------
 void SplitFile::createConnect()
@@ -82,7 +81,11 @@ void SplitFile::browse()
 //--------------------------------------------
 void SplitFile::setData()
 {
+    QString tag = "<h4>";
+    //     QString tag = "<A NAME";
+    ui->LETagSplit->setText(tag);
 
+    ui->cBAutoOn->setChecked(false);
 }
 //--------------------------------------------
 void SplitFile::showFileText()
@@ -130,6 +133,7 @@ void SplitFile::AutoSplitOn()
     QString outputpath = QString(filepath)
             .remove(QString(filepath).split("/").last())
             + "Output/";
+    qDebug() << "test1";
     ui->LEDirOutput->setText(outputpath);
 
     /// visible

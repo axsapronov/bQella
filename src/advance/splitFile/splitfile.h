@@ -115,6 +115,12 @@ private:
       */
     void refreshAutoInfo();
 
+    /**
+      @function
+      Debug function
+      */
+    void debug();
+
     QString TextOfFile;
     QString TagOfFile;
     int countFiles;
