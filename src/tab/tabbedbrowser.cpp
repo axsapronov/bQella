@@ -47,8 +47,6 @@ TabbedBrowser::TabbedBrowser(MainWindow *parent)
     ui.setupUi(this);
     init();
 
-
-
     QStackedWidget *stack = qFindChild<QStackedWidget*>(ui.tab);
     Q_ASSERT(stack);
     stack -> setContentsMargins(0, 0, 0, 0);
@@ -60,62 +58,62 @@ TabbedBrowser::TabbedBrowser(MainWindow *parent)
     setPalette(p);
 
 }
-
+//------------------------------------------------------------------------------
 TabbedBrowser::~TabbedBrowser()
 {
 }
-
+//------------------------------------------------------------------------------
 MainWindow *TabbedBrowser::mainWindow() const
 {
     return static_cast<MainWindow*>(parentWidget());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::forward()
 {
     //    currentBrowser() -> forward();
     //    emit browserUrlChanged(currentBrowser() -> source().toString());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::backward()
 {
     //    currentBrowser() -> backward();
     //    emit browserUrlChanged(currentBrowser() -> source().toString());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::setSource( const QString &ref )
 {
     HelpWindow * win = currentBrowser();
     win -> setSource(ref);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::reload()
 {
     currentBrowser() -> reload();
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::home()
 {
     //!+! go to start page    currentBrowser() -> home();
 }
-
+//------------------------------------------------------------------------------
 HelpWindow *TabbedBrowser::currentBrowser() const
 {
     return static_cast<HelpWindow*>(ui.tab -> currentWidget());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::nextTab()
 {
     if(ui.tab -> currentIndex()<=ui.tab -> count()-1)
         ui.tab -> setCurrentIndex(ui.tab -> currentIndex()+1);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::previousTab()
 {
     int idx = ui.tab -> currentIndex()-1;
     if(idx>=0)
         ui.tab -> setCurrentIndex(idx);
 }
-
+//------------------------------------------------------------------------------
 HelpWindow *TabbedBrowser::createHelpWindow()
 {
     MainWindow *mainWin = mainWindow();
@@ -139,16 +137,14 @@ HelpWindow *TabbedBrowser::createHelpWindow()
     ui.editFind -> installEventFilter(this);
     return win;
 }
-
-
-
+//------------------------------------------------------------------------------
 HelpWindow *TabbedBrowser::newBackgroundTab()
 {
     HelpWindow *win = createHelpWindow();
     emit tabCountChanged(ui.tab -> count());
     return win;
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::newTab(const QString &lnk)
 {
     QString link(lnk);
@@ -166,8 +162,7 @@ void TabbedBrowser::newTab(const QString &lnk)
         }
     emit tabCountChanged(ui.tab -> count());
 }
-
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::init()
 {
 
@@ -229,17 +224,17 @@ void TabbedBrowser::init()
     autoHideTimer -> setSingleShot(true);
     QObject::connect(autoHideTimer, SIGNAL(timeout()), ui.frameFind, SLOT(hide()));
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::updateTitle(const QString &title)
 {
     ui.tab -> setTabText(ui.tab -> indexOf(currentBrowser()), title.trimmed());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::newTab()
 {
     newTab(QString());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::transferFocus()
 {
     if(currentBrowser()) {
@@ -249,21 +244,21 @@ void TabbedBrowser::transferFocus()
                                    + QString(" - ")
                                    + currentBrowser() -> documentTitle());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::initHelpWindow(HelpWindow * /*win*/)
 {
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::setup()
 {
     newTab(QString());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::copy()
 {
     currentBrowser() -> copy();
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::closeTab()
 {
     if(ui.tab -> count()==1)
@@ -275,7 +270,7 @@ void TabbedBrowser::closeTab()
     ui.tab -> cornerWidget(Qt::TopRightCorner) -> setEnabled(ui.tab -> count() > 1);
     emit tabCountChanged(ui.tab -> count());
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::closeAllTabs()
 {
     int i;
@@ -295,8 +290,7 @@ void TabbedBrowser::closeAllTabs()
     currentBrowser() -> setSource( Config::configuration() -> profile() -> props["startpage"] );
     //Config::configuration() -> curFile = "";  //?+? may be display empty page on close all tabs?
 }
-
-
+//------------------------------------------------------------------------------
 QStringList TabbedBrowser::sources() const
 {
     QStringList lst;
@@ -306,7 +300,7 @@ QStringList TabbedBrowser::sources() const
     }
     return lst;
 }
-
+//------------------------------------------------------------------------------
 QList<HelpWindow*> TabbedBrowser::browsers() const
 {
     QList<HelpWindow*> list;
@@ -316,7 +310,7 @@ QList<HelpWindow*> TabbedBrowser::browsers() const
     }
     return list;
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::sourceChanged()
 {
     HelpWindow *win = ::qobject_cast<HelpWindow *>(QObject::sender());
@@ -334,7 +328,7 @@ void TabbedBrowser::sourceChanged()
     ui.labelWrapped -> hide();
     win -> setTextCursor(win -> cursorForPosition(QPoint(0, 0))); //!+! move curcor when in SourceView mode
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::setAppTitle(HelpWindow *win, const QString &title)
 {
     const QString tt = title.trimmed();
@@ -342,7 +336,7 @@ void TabbedBrowser::setAppTitle(HelpWindow *win, const QString &title)
     if (win == currentBrowser())
         mainWindow() -> setWindowTitle("bQella  " + Config::configuration() -> profileTitle() + QString(" - ") + tt);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::keyPressEvent(QKeyEvent *e)
 {
     int key = e -> key();
@@ -386,17 +380,17 @@ void TabbedBrowser::keyPressEvent(QKeyEvent *e)
     ui.editFind -> setText(ttf);
     find(ttf, false, false);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::findNext()
 {
     find(ui.editFind -> text(), true, false);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::findPrevious()
 {
     find(ui.editFind -> text(), false, true);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::find()
 {
     ui.frameFind -> show();
@@ -404,7 +398,7 @@ void TabbedBrowser::find()
     ui.editFind -> selectAll();
     autoHideTimer -> stop();
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::find(QString ttf, bool forward, bool backward)
 {
     HelpWindow *browser = currentBrowser();
@@ -453,7 +447,7 @@ void TabbedBrowser::find(QString ttf, bool forward, bool backward)
     if (!ui.editFind -> hasFocus())
         autoHideTimer -> start();
 }
-
+//------------------------------------------------------------------------------
 bool TabbedBrowser::eventFilter(QObject *o, QEvent *e)
 {
     if (o == ui.editFind) {
@@ -469,7 +463,7 @@ bool TabbedBrowser::eventFilter(QObject *o, QEvent *e)
 
     return QWidget::eventFilter(o, e);
 }
-
+//------------------------------------------------------------------------------
 void TabbedBrowser::openTabMenu(const QPoint& pos)
 {
     QTabBar *tabBar = qFindChild<QTabBar*>(ui.tab);
@@ -534,3 +528,16 @@ void TabbedBrowser::openTabMenu(const QPoint& pos)
     }
     delete m;
 }
+//------------------------------------------------------------------------------
+void TabbedBrowser::zoomIn()
+{
+    currentBrowser()->zoomIn();
+    Config::configuration()->setFontPointSize(currentBrowser()->font().pointSizeF());
+}
+//------------------------------------------------------------------------------
+void TabbedBrowser::zoomOut()
+{
+    currentBrowser()->zoomOut();
+    Config::configuration()->setFontPointSize(currentBrowser()->font().pointSizeF());
+}
+//------------------------------------------------------------------------------

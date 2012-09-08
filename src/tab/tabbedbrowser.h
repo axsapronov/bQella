@@ -106,6 +106,8 @@ public slots:
     void closeTab();
     void closeAllTabs();
     void sourceChanged();
+    void zoomIn();
+    void zoomOut();
 
 
     void find();

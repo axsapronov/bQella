@@ -87,6 +87,8 @@
    </attribute>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -194,6 +196,8 @@
      <addaction name="actionPrevPage"/>
     </widget>
     <addaction name="actionNewWindow"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
     <addaction name="separator"/>
     <addaction name="goMenu"/>
    </widget>
@@ -1099,6 +1103,24 @@
    </property>
    <property name="text">
     <string>Insert Image</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/msc/images/zoomin.png</normaloff>:/msc/images/zoomin.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/msc/images/zoomout.png</normaloff>:/msc/images/zoomout.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom out</string>
    </property>
   </action>
  </widget>

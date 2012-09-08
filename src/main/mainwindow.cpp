@@ -104,9 +104,6 @@ MainWindow::MainWindow():
     dwRight->setMaximumWidth (350);
     addDockWidget(Qt::RightDockWidgetArea, dwRight);
 
-
-
-
     frdialog = new FRDialog();
     exportm = new Export();
     importm = new Import(this);
@@ -237,7 +234,9 @@ void MainWindow::setup()
     connect(ui.actionEditFindPrev, SIGNAL(triggered()), tabs, SLOT(findPrevious()));
     connect(ui.actionEditFindAndReplace, SIGNAL(triggered()), frdialog, SLOT(show()));
 
-
+    /// menu view
+    connect(ui.actionZoomIn,  SIGNAL(triggered()), tabs, SLOT(zoomIn()));
+    connect(ui.actionZoomOut, SIGNAL(triggered()), tabs, SLOT(zoomOut()));
 
     /// menu advance
     connect(ui.actionAdvanceSplitFile, SIGNAL(triggered()), this, SLOT(showSplitFile()));
