@@ -42,7 +42,7 @@ DEPENDPATH += \
     src/properties/strongproperty \
     src/table/cellsplit \
     src/dialogs/assistant \
-    src/raedit \
+    src/texteditorbqella \
     src/dialogs/contents/book \
     src/dialogs/contents/module \
     src/tab \
@@ -81,7 +81,7 @@ INCLUDEPATH += \
     src/properties/strongproperty \
     src/table/cellsplit \
     src/dialogs/assistant \
-    src/raedit \
+    src/texteditorbqella \
     src/dialogs/contents/book \
     src/dialogs/contents/module \
     src/tab \
@@ -150,7 +150,7 @@ SOURCES +=  \
      pcommon.cpp \
      strongcommon.cpp \
      filecommon.cpp \
-     raedit.cpp \
+     texteditorbqella.cpp \
      srclistparser.cpp \
      cellsplit.cpp \
      export.cpp \
@@ -207,7 +207,7 @@ HEADERS += \
      filecommon.h \
      strongcommon.h \
      index.h \
-     raedit.h \
+     texteditorbqella.h \
      srclistparser.h \
      export.h \
      tagdialog.h \

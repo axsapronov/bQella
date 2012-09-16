@@ -27,7 +27,7 @@
 #include <QMap>
 #include <QPointer>
 #include <QToolBar>
-#include "raedit.h"
+#include "texteditorbqella.h"
 #include "itemproperty.h"
 #include "linkproperty.h"
 #include "strongproperty.h"

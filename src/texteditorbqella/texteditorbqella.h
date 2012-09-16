@@ -24,7 +24,8 @@
 #ifndef QRAEDITOR_H
 #define QRAEDITOR_H
 
-#include <QtGui/qtextedit.h>
+//#include <QtGui/qtextedit.h>
+#include <QTextBrowser>
 #include <QtCore/qurl.h>
 #include <QAction>
 #include <QContextMenuEvent>
@@ -34,7 +35,7 @@
 
 QT_MODULE(Gui)
 //====================== class TextEditorBQella ============================
-class TextEditorBQella : public QTextEdit  //this is a remake of QTextBrowser
+class TextEditorBQella : public QTextBrowser  //this is a remake of QTextBrowser
 {
     //The Q_OBJECT macro must appear in the private section of a class definition that declares its own signals and slots or that uses other services provided by Qt's meta-object system.
     Q_OBJECT
@@ -155,6 +156,12 @@ private:
     QPoint lastPos;
 
     QStringList addedWords;
+
+    int getCountFirstVisibleBlock();
+    QTextBlock getFirstVisibleBlock();
+    QRectF blockBoundingGeometry(QTextBlock &block);
+    QRectF blockBoundingRect(QTextBlock &block);
+    QPointF contentOffset();
 
 };
 

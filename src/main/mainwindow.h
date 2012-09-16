@@ -28,7 +28,7 @@
 #include "projectproperty.h"
 #include "settings.h"
 #include "config.h"
-#include "raedit.h"
+#include "texteditorbqella.h"
 #include "fontsettingsdialog.h"
 
 #include <QMap>

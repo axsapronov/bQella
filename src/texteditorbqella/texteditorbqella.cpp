@@ -21,7 +21,7 @@
  */
 
 
-#include "raedit.h"
+#include "texteditorbqella.h"
 #include "config.h"
 
 #include <qapplication.h>
@@ -45,7 +45,7 @@
 #include <QTextCodec>
 #include <QSettings>
 #include <QTextStream>
-#include <iostream>
+//#include <iostream>
 
 
 static bool isAbsoluteFileName(const QString &name)
@@ -62,6 +62,7 @@ static bool isAbsoluteFileName(const QString &name)
 //====================== class TextEditorBQella ============================
 TextEditorBQella::TextEditorBQella(QWidget *parent, QString SpellDic)
 {
+    Q_UNUSED(parent)
     docText = new QTextDocument();
     setTextInteractionFlags(Qt::TextEditorInteraction);
     setReadOnly(false);
@@ -73,6 +74,10 @@ TextEditorBQella::TextEditorBQella(QWidget *parent, QString SpellDic)
     lineNumberArea = new LineNumberArea(this);
 
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
+
+    //    connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
+    //    connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
+
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();
     setWordWrapMode(QTextOption::NoWrap);
@@ -134,7 +139,7 @@ TextEditorBQella::~TextEditorBQella()
         foreach(QString elem, addedWords){
             encodedString = codec->fromUnicode(elem);
             out << encodedString.data() << "\n";
-            std::cout << encodedString.data() << std::endl;
+            //            std::cout << encodedString.data() << std::endl;
         }
     }
 }
@@ -584,26 +589,237 @@ void TextEditorBQella::loadSettings()
 //------------------------------------------------------------------------------
 void TextEditorBQella::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
-    //    QPainter painter(lineNumberArea);
-    //    painter.fillRect(event->rect(), Qt::lightGray);
-    //    QTextBlock block = firstVisibleBlock();
-    //    int blockNumber = block.blockNumber();
-    //    int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
-    //    int bottom = top + (int) blockBoundingRect(block).height();
-    //    while (block.isValid() && top <= event->rect().bottom()) {
-    //        if (block.isVisible() && bottom >= event->rect().top()) {
-    //            QString number = QString::number(blockNumber + 1);
-    //            QSettings settings("CuteNotes", "CuteNotes");
-    //            painter.setPen(QColor(settings.value("lineNumberColor").toString()));
-    //            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
-    //                             Qt::AlignRight, number);
-    //        }
+    QPainter painter(lineNumberArea);
+    painter.fillRect(event->rect(), Qt::lightGray);
 
-    //        block = block.next();
-    //        top = bottom;
-    //        bottom = top + (int) blockBoundingRect(block).height();
-    //        ++blockNumber;
-    //    }
+    QTextBlock block = getFirstVisibleBlock();
+    int blockNumber = block.blockNumber();
+    int top = (int) blockBoundingGeometry(block).translated(contentOffset()).top();
+    int bottom = top + (int) blockBoundingRect(block).height();
+    while (block.isValid() && top <= event->rect().bottom())
+    {
+        if (block.isVisible() && bottom >= event->rect().top())
+        {
+            QString number = QString::number(blockNumber + 1);
+            QSettings settings("CuteNotes", "CuteNotes");
+            painter.setPen(QColor(settings.value("lineNumberColor").toString()));
+            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
+                             Qt::AlignRight, number);
+        }
+
+        block = block.next();
+        top = bottom;
+        bottom = top + (int) blockBoundingRect(block).height();
+        ++blockNumber;
+    }
+}
+
+//------------------------------------------------------------------------------
+bool TextEditorBQella::setDict(const QString SpellDic)
+{
+    if(SpellDic!=""){
+        //mWords.clear();
+        spell_dic=SpellDic.left(SpellDic.length()-4);
+        delete pChecker;
+        pChecker = new Hunspell(spell_dic.toLatin1()+".aff",spell_dic.toLatin1()+".dic");
+    }
+    else spell_dic="";
+
+    QFileInfo fi(SpellDic);
+    if (!(fi.exists() && fi.isReadable())){
+        delete pChecker;
+        pChecker=0;
+    }
+
+    // get user config dictionary
+    QSettings setting;
+    QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
+    filePath = filePath + "/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+    qDebug() << "raE1" << qPrintable(filePath);
+    fi=QFileInfo(filePath);
+    if (fi.exists() && fi.isReadable()){
+        pChecker->add_dic(filePath.toLatin1());
+    }
+    else filePath="";
+
+    return (spell_dic!="");
+}
+//------------------------------------------------------------------------------
+void TextEditorBQella::createActions()
+{
+    for (int i = 0; i < MaxWords; ++i)
+    {
+        misspelledWordsActs[i] = new QAction(this);
+        misspelledWordsActs[i]->setVisible(false);
+        connect(misspelledWordsActs[i], SIGNAL(triggered()), this, SLOT(correctWord()));
+    }
+}
+//------------------------------------------------------------------------------
+void TextEditorBQella::correctWord()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action)
+    {
+        QString replacement = action->text();
+        QTextCursor cursor = cursorForPosition(lastPos);
+        //QTextCursor cursor = textCursor();
+        QString zeile = cursor.block().text();
+        cursor.select(QTextCursor::WordUnderCursor);
+        cursor.deleteChar();
+        cursor.insertText(replacement);
+    }
+}
+//------------------------------------------------------------------------------
+void TextEditorBQella::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu *menu = createStandardContextMenu();
+    lastPos=event->pos();
+    QTextCursor cursor = cursorForPosition(lastPos);
+    QString zeile = cursor.block().text();
+    int pos = cursor.columnNumber();
+    int end = zeile.indexOf(QRegExp("\\W+"),pos);
+    int begin = zeile.lastIndexOf(QRegExp("\\W+"),pos);
+    zeile=zeile.mid(begin+1,end-begin-1);
+    QStringList liste = getWordPropositions(zeile);
+    if (!liste.isEmpty())
+    {
+        menu->addSeparator();
+        QAction *a;
+        a = menu->addAction(tr("Add .."), this, SLOT(slot_addWord()));
+        a = menu->addAction(tr("Ignore .."), this, SLOT(slot_ignoreWord()));
+        for (int i = 0; i < qMin(int(MaxWords),liste.size()); ++i) {
+            misspelledWordsActs[i]->setText(liste.at(i).trimmed());
+            misspelledWordsActs[i]->setVisible(true);
+            menu->addAction(misspelledWordsActs[i]);
+        }
+
+    } // if  misspelled
+    menu->exec(event->globalPos());
+    delete menu;
+}
+//------------------------------------------------------------------------------
+QStringList TextEditorBQella::getWordPropositions(const QString word)
+{
+    QStringList wordList;
+    if(pChecker)
+    {
+        QByteArray encodedString;
+        QString spell_encoding=QString(pChecker->get_dic_encoding());
+        QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+        encodedString = codec->fromUnicode(word);
+        bool check = pChecker->spell(encodedString.data());
+        if(!check){
+            char ** wlst;
+            int ns = pChecker->suggest(&wlst,encodedString.data());
+            if (ns > 0)
+            {
+                for (int i=0; i < ns; i++)
+                {
+                    wordList.append(codec->toUnicode(wlst[i]));
+                    //free(wlst[i]);
+                }
+                //free(wlst);
+                pChecker->free_list(&wlst, ns);
+            }// if ns >0
+        }// if check
+    }
+    return wordList;
+}
+//------------------------------------------------------------------------------
+void TextEditorBQella::slot_addWord()
+{
+    QTextCursor cursor = cursorForPosition(lastPos);
+    QString zeile = cursor.block().text();
+    int pos = cursor.columnNumber();
+    int end = zeile.indexOf(QRegExp("\\W+"),pos);
+    int begin = zeile.left(pos).lastIndexOf(QRegExp("\\W+"),pos);
+    zeile = zeile.mid(begin + 1, end-begin - 1);
+    qDebug() << "raEdit2" << qPrintable(zeile);
+    QByteArray encodedString;
+    QString spell_encoding = QString(pChecker->get_dic_encoding());
+    QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+    encodedString = codec->fromUnicode(zeile);
+    pChecker->add(encodedString.data());
+    addedWords.append(zeile);
+    emit addWord(zeile);
+}
+//------------------------------------------------------------------------------
+void TextEditorBQella::slot_ignoreWord()
+{
+    QTextCursor cursor = cursorForPosition(lastPos);
+    QString zeile = cursor.block().text();
+    int pos = cursor.columnNumber();
+    int end = zeile.indexOf(QRegExp("\\W+"),pos);
+    int begin = zeile.left(pos).lastIndexOf(QRegExp("\\W+"),pos);
+    zeile=zeile.mid(begin+1,end-begin-1);
+    QByteArray encodedString;
+    QString spell_encoding=QString(pChecker->get_dic_encoding());
+    QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+    encodedString = codec->fromUnicode(zeile);
+    pChecker->add(encodedString.data());
+    emit addWord(zeile);
+}
+//------------------------------------------------------------------------------
+int TextEditorBQella::getCountFirstVisibleBlock()
+{
+    QTextDocument *pDoc = docText;
+    int nFirstVisible = 0;
+    for(QTextBlock block = pDoc->begin(); block != pDoc->end(); block = block.next())
+    {
+        nFirstVisible += 1;
+        if (block.isVisible())
+        {
+            return nFirstVisible;
+        }
+    }
+    return nFirstVisible;
+}
+//------------------------------------------------------------------------------
+QTextBlock TextEditorBQella::getFirstVisibleBlock()
+{
+    QTextDocument *pDoc = docText;
+    //    int nFirstVisible = 0;
+    for(QTextBlock block = pDoc->begin(); block != pDoc->end(); block = block.next())
+    {
+        //        nFirstVisible += 1;
+        if (block.isVisible())
+        {
+            return block;
+        }
+    }
+    QTextBlock block;
+    return block;
+}
+//------------------------------------------------------------------------------
+QRectF TextEditorBQella::blockBoundingGeometry(QTextBlock &block)
+{
+    if(block.isValid())
+    {
+        QRectF rect = block.layout()->boundingRect().translated(block.layout()->position());
+        //        qDebug() << "block" << block.blockNumber() << ": " << rect;
+        return rect;
+    }
+    else
+        return QRectF();
+}
+//------------------------------------------------------------------------------
+QPointF TextEditorBQella::contentOffset()
+{
+    //    Q_D(const QPlainTextEdit);
+    //    return QPointF(-d->horizontalOffset(), -d->verticalOffset());
+    return QPoint(0,0);
+}
+//------------------------------------------------------------------------------
+QRectF TextEditorBQella::blockBoundingRect(QTextBlock &block)
+{
+    if(block.isValid())
+    {
+        QRectF rect = block.layout()->boundingRect();
+        //        qDebug() << "block" << block.blockNumber() << ": " << rect;
+        return rect;
+    }
+    else
+        return QRectF();
 }
 //------------------------------------------------------------------------------
 //TextEditorBQella::SpellTextEdit(QWidget *parent,QString SpellDic)
@@ -668,145 +884,3 @@ void TextEditorBQella::lineNumberAreaPaintEvent(QPaintEvent *event)
 //        }
 //    }
 //}
-//------------------------------------------------------------------------------
-bool TextEditorBQella::setDict(const QString SpellDic)
-{
-    if(SpellDic!=""){
-        //mWords.clear();
-        spell_dic=SpellDic.left(SpellDic.length()-4);
-        delete pChecker;
-        pChecker = new Hunspell(spell_dic.toLatin1()+".aff",spell_dic.toLatin1()+".dic");
-    }
-    else spell_dic="";
-
-    QFileInfo fi(SpellDic);
-    if (!(fi.exists() && fi.isReadable())){
-        delete pChecker;
-        pChecker=0;
-    }
-
-    // get user config dictionary
-    QSettings setting;
-    QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
-    filePath = filePath + "/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
-    qDebug() << "raE1" << qPrintable(filePath);
-    fi=QFileInfo(filePath);
-    if (fi.exists() && fi.isReadable()){
-        pChecker->add_dic(filePath.toLatin1());
-    }
-    else filePath="";
-
-    return (spell_dic!="");
-}
-//------------------------------------------------------------------------------
-void TextEditorBQella::createActions() {
-    for (int i = 0; i < MaxWords; ++i) {
-        misspelledWordsActs[i] = new QAction(this);
-        misspelledWordsActs[i]->setVisible(false);
-        connect(misspelledWordsActs[i], SIGNAL(triggered()), this, SLOT(correctWord()));
-    }
-}
-//------------------------------------------------------------------------------
-void TextEditorBQella::correctWord() {
-    QAction *action = qobject_cast<QAction *>(sender());
-    if (action)
-    {
-        QString replacement = action->text();
-        QTextCursor cursor = cursorForPosition(lastPos);
-        //QTextCursor cursor = textCursor();
-        QString zeile = cursor.block().text();
-        cursor.select(QTextCursor::WordUnderCursor);
-        cursor.deleteChar();
-        cursor.insertText(replacement);
-    }
-}
-//------------------------------------------------------------------------------
-void TextEditorBQella::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu *menu = createStandardContextMenu();
-    lastPos=event->pos();
-    QTextCursor cursor = cursorForPosition(lastPos);
-    QString zeile = cursor.block().text();
-    int pos = cursor.columnNumber();
-    int end = zeile.indexOf(QRegExp("\\W+"),pos);
-    int begin = zeile.lastIndexOf(QRegExp("\\W+"),pos);
-    zeile=zeile.mid(begin+1,end-begin-1);
-    QStringList liste = getWordPropositions(zeile);
-    if (!liste.isEmpty())
-    {
-        menu->addSeparator();
-        QAction *a;
-        a = menu->addAction(tr("Add .."), this, SLOT(slot_addWord()));
-        a = menu->addAction(tr("Ignore .."), this, SLOT(slot_ignoreWord()));
-        for (int i = 0; i < qMin(int(MaxWords),liste.size()); ++i) {
-            misspelledWordsActs[i]->setText(liste.at(i).trimmed());
-            misspelledWordsActs[i]->setVisible(true);
-            menu->addAction(misspelledWordsActs[i]);
-        }
-
-    } // if  misspelled
-    menu->exec(event->globalPos());
-    delete menu;
-}
-//------------------------------------------------------------------------------
-QStringList TextEditorBQella::getWordPropositions(const QString word)
-{
-    QStringList wordList;
-    if(pChecker){
-        QByteArray encodedString;
-        QString spell_encoding=QString(pChecker->get_dic_encoding());
-        QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-        encodedString = codec->fromUnicode(word);
-        bool check = pChecker->spell(encodedString.data());
-        if(!check){
-            char ** wlst;
-            int ns = pChecker->suggest(&wlst,encodedString.data());
-            if (ns > 0)
-            {
-                for (int i=0; i < ns; i++)
-                {
-                    wordList.append(codec->toUnicode(wlst[i]));
-                    //free(wlst[i]);
-                }
-                //free(wlst);
-                pChecker->free_list(&wlst, ns);
-            }// if ns >0
-        }// if check
-    }
-    return wordList;
-}
-//------------------------------------------------------------------------------
-void TextEditorBQella::slot_addWord()
-{
-    QTextCursor cursor = cursorForPosition(lastPos);
-    QString zeile = cursor.block().text();
-    int pos = cursor.columnNumber();
-    int end = zeile.indexOf(QRegExp("\\W+"),pos);
-    int begin = zeile.left(pos).lastIndexOf(QRegExp("\\W+"),pos);
-    zeile = zeile.mid(begin + 1, end-begin - 1);
-    qDebug() << "raEdit2" << qPrintable(zeile);
-    QByteArray encodedString;
-    QString spell_encoding = QString(pChecker->get_dic_encoding());
-    QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-    encodedString = codec->fromUnicode(zeile);
-    pChecker->add(encodedString.data());
-    addedWords.append(zeile);
-    emit addWord(zeile);
-}
-//------------------------------------------------------------------------------
-void TextEditorBQella::slot_ignoreWord()
-{
-    QTextCursor cursor = cursorForPosition(lastPos);
-    QString zeile = cursor.block().text();
-    int pos = cursor.columnNumber();
-    int end = zeile.indexOf(QRegExp("\\W+"),pos);
-    int begin = zeile.left(pos).lastIndexOf(QRegExp("\\W+"),pos);
-    zeile=zeile.mid(begin+1,end-begin-1);
-    QByteArray encodedString;
-    QString spell_encoding=QString(pChecker->get_dic_encoding());
-    QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-    encodedString = codec->fromUnicode(zeile);
-    pChecker->add(encodedString.data());
-    emit addWord(zeile);
-}
-//------------------------------------------------------------------------------
