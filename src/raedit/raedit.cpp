@@ -35,9 +35,18 @@
 #include <qwhatsthis.h>
 #include <qtextobject.h>
 #include <qdesktopservices.h>
-#include <QMenu>
 
+
+#include <QTextCursor>
+#include <QTextBlock>
+#include <QMenu>
+#include <QContextMenuEvent>
+#include <QFileInfo>
+#include <QTextCodec>
+#include <QSettings>
+#include <QTextStream>
 #include <iostream>
+
 
 static bool isAbsoluteFileName(const QString &name)
 {
@@ -69,31 +78,29 @@ TextEditorBQella::TextEditorBQella(QWidget *parent, QString SpellDic)
     setWordWrapMode(QTextOption::NoWrap);
     loadSettings();
 
-
     createActions();
     // create misspell actions in context menu
-    spell_dic=SpellDic.left(SpellDic.length()-4);
+    spell_dic = SpellDic.left(SpellDic.length()-4);
     pChecker = new Hunspell(spell_dic.toLatin1()+".aff",spell_dic.toLatin1()+".dic");
 
     QFileInfo fi(SpellDic);
-    if (!(fi.exists() && fi.isReadable())){
-            delete pChecker;
-            pChecker=0;
+    if (!(fi.exists() && fi.isReadable()))
+    {
+        delete pChecker;
+        pChecker = 0;
     }
     // get user config dictionary
     QSettings setting;
-    QString filePath=QFileInfo(setting.fileName()).absoluteFilePath();
-    filePath=filePath+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
-    std::cout << qPrintable(filePath) << std::endl;
-    fi=QFileInfo(filePath);
-    if (fi.exists() && fi.isReadable()){
-            pChecker->add_dic(filePath.toLatin1());
+    QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
+    filePath = filePath + "/User_" + QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+    qDebug() << "ra3" << qPrintable(filePath);
+    fi = QFileInfo(filePath);
+    if (fi.exists() && fi.isReadable())
+    {
+        pChecker->add_dic(filePath.toLatin1());
     }
-    else filePath="";
-
-
+    else filePath = "";
     addedWords.clear();
-
 }
 //------------------------------------------------------------------------------
 TextEditorBQella::~TextEditorBQella()
@@ -101,34 +108,34 @@ TextEditorBQella::~TextEditorBQella()
 
     // write user dictionary
     QSettings setting;
-    QString fileName=QFileInfo(setting.fileName()).absoluteFilePath();
-    fileName=fileName+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
-    std::cout << qPrintable(fileName) << std::endl;
+    QString fileName = QFileInfo(setting.fileName()).absoluteFilePath();
+    fileName = fileName + "/User_" + QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+    qDebug() << "raE2" << qPrintable(fileName);
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-         QTextStream in(&file);
-         in.readLine();
-         while (!in.atEnd()) {
-             QString line = in.readLine();
-             if(!addedWords.contains(line)) addedWords << line;
-         }
-         file.close();
+        QTextStream in(&file);
+        in.readLine();
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            if(!addedWords.contains(line)) addedWords << line;
+        }
+        file.close();
     }
     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-            std::cout << "write" << std::endl;
+        qDebug() << "write";
 
-	    QTextStream out(&file);
-	    QByteArray encodedString;
-	    QString spell_encoding=QString(pChecker->get_dic_encoding());
-	    QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	    out << addedWords.count() << "\n";
-	    foreach(QString elem, addedWords){
-		    encodedString = codec->fromUnicode(elem);
-		    out << encodedString.data() << "\n";
-		    std::cout << encodedString.data() << std::endl;
-	    }
+        QTextStream out(&file);
+        QByteArray encodedString;
+        QString spell_encoding=QString(pChecker->get_dic_encoding());
+        QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
+        out << addedWords.count() << "\n";
+        foreach(QString elem, addedWords){
+            encodedString = codec->fromUnicode(elem);
+            out << encodedString.data() << "\n";
+            std::cout << encodedString.data() << std::endl;
+        }
     }
 }
 //------------------------------------------------------------------------------
@@ -680,9 +687,9 @@ bool TextEditorBQella::setDict(const QString SpellDic)
 
     // get user config dictionary
     QSettings setting;
-    QString filePath=QFileInfo(setting.fileName()).absoluteFilePath();
-    filePath=filePath+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
-    std::cout << qPrintable(filePath) << std::endl;
+    QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
+    filePath = filePath + "/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+    qDebug() << "raE1" << qPrintable(filePath);
     fi=QFileInfo(filePath);
     if (fi.exists() && fi.isReadable()){
         pChecker->add_dic(filePath.toLatin1());
@@ -776,10 +783,10 @@ void TextEditorBQella::slot_addWord()
     int pos = cursor.columnNumber();
     int end = zeile.indexOf(QRegExp("\\W+"),pos);
     int begin = zeile.left(pos).lastIndexOf(QRegExp("\\W+"),pos);
-    zeile=zeile.mid(begin+1,end-begin-1);
-    std::cout << qPrintable(zeile) << std::endl;
+    zeile = zeile.mid(begin + 1, end-begin - 1);
+    qDebug() << "raEdit2" << qPrintable(zeile);
     QByteArray encodedString;
-    QString spell_encoding=QString(pChecker->get_dic_encoding());
+    QString spell_encoding = QString(pChecker->get_dic_encoding());
     QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
     encodedString = codec->fromUnicode(zeile);
     pChecker->add(encodedString.data());

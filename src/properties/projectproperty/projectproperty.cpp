@@ -316,7 +316,7 @@ void ProjectProperties::setToolTipLabels()
     str = QString(tr("<i>The short name of the module (reduction).</i><br><br>"
                      "Must be unique for each module.<br>"
                      "Option only English characters (if possible - see below).<br>"
-                     "Coincides with the module name of the folder \ backup (optional).<br>"
+                     "Coincides with the module name of the folder \\ backup (optional).<br>"
                      "Language through an underscore in those modules "
                      "that exist in multiple languages​​, and then a year after "
                      "an underscore where there are several different editions."
@@ -325,7 +325,7 @@ void ProjectProperties::setToolTipLabels()
                      "Septuagint - LXX, <br>"
                      "Russian Synodal Version - RSV, <br>"
                      "Translation Kuznetsova - TK, <br>"
-                     "the Byzantine text-type (Majority Text) is denoted by the letter [ ]."
+                     "The Byzantine text-type (Majority Text) is denoted by the letter [ ]."
                      ));
     ui.sShortName->setToolTip(str);
 

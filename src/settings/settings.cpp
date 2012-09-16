@@ -107,7 +107,7 @@ void AppSettings::showFontSettingsDialog()
 //------------------------------------------------------------------------------
 void AppSettings::setSpell()
 {
-    QString SpellDic = "";
+    QString SpellDic = Config::configuration()->PrjDir();
     QString fileName = QFileDialog::getOpenFileName(this,
                     tr("Select Dictionary "), SpellDic, tr("Dictionary (*.dic)"));
 

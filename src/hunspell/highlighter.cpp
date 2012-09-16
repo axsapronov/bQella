@@ -44,6 +44,7 @@
 #include <QtGui>
 #include <iostream>
 #include "highlighter.h"
+#include "config.h"
 
 Highlighter::Highlighter(QTextDocument *parent,QString SpellDic,bool spellCheckState) :
     QSyntaxHighlighter(parent) {
@@ -68,8 +69,9 @@ Highlighter::Highlighter(QTextDocument *parent,QString SpellDic,bool spellCheckS
         // get user config dictionary
         QSettings setting;
         QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
-        filePath = filePath+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
-        std::cout << qPrintable(filePath) << std::endl;
+//        filePath = filePath+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+        filePath = Config::configuration()->SpellDict();
+        qDebug() << "spell1 = " << qPrintable(filePath);
         fi = QFileInfo(filePath);
         if (fi.exists() && fi.isReadable())
         {
@@ -156,13 +158,13 @@ bool Highlighter::checkWord(QString word)
 bool Highlighter::setDict(const QString SpellDic)
 {
     bool spell;
-    if(SpellDic!="")
+    if(SpellDic != "")
     {
         //mWords.clear();
-        spell_dic = SpellDic.left(SpellDic.length()-4);
+        spell_dic = SpellDic.left(SpellDic.length() - 4);
         delete pChecker;
         pChecker = new Hunspell(spell_dic.toLatin1()+".aff",spell_dic.toLatin1()+".dic");
-        spell_encoding=QString(pChecker->get_dic_encoding());
+        spell_encoding = QString(pChecker->get_dic_encoding());
         codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 
         QFileInfo fi(SpellDic);
@@ -173,7 +175,7 @@ bool Highlighter::setDict(const QString SpellDic)
         // get user config dictionary
         QSettings setting;
         QString filePath = QFileInfo(setting.fileName()).absoluteFilePath();
-        filePath = filePath+"/User_"+QFileInfo(spell_dic.toLatin1()+".dic").fileName();
+        filePath = filePath + "/User_" + QFileInfo(spell_dic.toLatin1()+".dic").fileName();
 //        std::cout << qPrintable(filePath) << std::endl;
         fi = QFileInfo(filePath);
         if (fi.exists() && fi.isReadable())
@@ -182,7 +184,8 @@ bool Highlighter::setDict(const QString SpellDic)
         }
         else filePath = "";
 
-        spellCheckFormat.setForeground(Qt::red);//faster Cursoroperation ...
+        spellCheckFormat.setForeground(Qt::red);
+        //faster Cursoroperation ...
         //spellCheckFormat.setUnderlineColor(QColor(Qt::red));
         //spellCheckFormat.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
     }
@@ -196,7 +199,7 @@ bool Highlighter::setDict(const QString SpellDic)
 
 void Highlighter::slot_addWord(QString word)
 {
-    std::cout << qPrintable(word) << std::endl;
+    qDebug() << "spell2" << qPrintable(word);
     QByteArray encodedString;
     QString spell_encoding=QString(pChecker->get_dic_encoding());
     QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());

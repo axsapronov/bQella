@@ -253,7 +253,7 @@ LeftPanel::LeftPanel(QWidget *parent, MainWindow *h)
 //------------------------------------------------------------------------------
 void LeftPanel::initialize()
 {
-//    qDebug() << "[15]";
+    //    qDebug() << "[15]";
     connect(ui.tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
     ui.tabWidget -> setElideMode(Qt::ElideNone);	//show tab titles, do not elide them by placing "..."
     ui.tabWidget -> removeTab(1); //hide Index tab
@@ -421,7 +421,7 @@ void LeftPanel::initialize()
     for (; it != sl.end(); ++it)
     {
 
-//        qDebug() << "[18]";
+        //        qDebug() << "[18]";
         title = Config::configuration() -> getProjectProperty("title", *it);
         if (!title.isEmpty())
         {
@@ -431,7 +431,7 @@ void LeftPanel::initialize()
             ui.CBProjects -> setItemData(0, *it, LinkRole);
         }
     }
-//    qDebug() << "[16]";
+    //    qDebug() << "[16]";
 
     int ind = sl.indexOf(Config::configuration() -> CurProject());	//!+! stores index in unsorted list
     ui.CBProjects -> setCurrentIndex(ind);
@@ -443,7 +443,7 @@ void LeftPanel::initialize()
     enableProjectButtons();
     newSameLevelItem = false;	// This should be set in create-item functions. Init here just in case
 
-//    qDebug() << "[17]";
+    //    qDebug() << "[17]";
     initTabs();
 
     ui.CBProjects ->setCurrentIndex(0);
@@ -455,7 +455,7 @@ void LeftPanel::initTabs()
 {
     contentList.clear();
 
-//    qDebug() << "[22]";
+    //    qDebug() << "[22]";
     initDoneMsgShown = false;
     fullTextIndex = 0;
     indexDone = false;
@@ -523,7 +523,7 @@ void LeftPanel::timerEvent(QTimerEvent *e)
 //------------------------------------------------------------------------------
 void LeftPanel::loadIndexFile()
 {
-//    qDebug() << "[2]";
+    //    qDebug() << "[2]";
     if (indexDone)
         return;
 
@@ -679,7 +679,7 @@ void LeftPanel::setupTitleMap() //?-? check this procedure, may be remove some c
     if (titleMapDone)
         return;
 
-//    qDebug() << "[23]";
+    //    qDebug() << "[23]";
     bool needRebuild = false;
     if (Config::configuration() -> profileName() == QString("default")) {
         const QStringList docuFiles = Config::configuration() -> docFiles();
@@ -714,12 +714,12 @@ void LeftPanel::setupTitleMap() //?-? check this procedure, may be remove some c
 //------------------------------------------------------------------------------
 void LeftPanel::getAllContents()
 {
-//    qDebug() << "[24]";
+    //    qDebug() << "[24]";
     QFile contentFile(Config::configuration() -> profileName());
     contentList.clear();
     if (!contentFile.open(QFile::ReadOnly))
     {
-//        qDebug() << "[25]";
+        //        qDebug() << "[25]";
         buildContentDict();
         return;
     }
@@ -729,7 +729,7 @@ void LeftPanel::getAllContents()
     ds >> fileAges;
     if (fileAges != getFileAges())
     {
-//        qDebug() << "[26]";
+        //        qDebug() << "[26]";
         contentFile.close();
         removeOldCacheFiles(true);
         buildContentDict();
@@ -739,7 +739,7 @@ void LeftPanel::getAllContents()
     QList<ContentItem> lst;
     while (!ds.atEnd())
     {
-//        qDebug() << "[27]";
+        //        qDebug() << "[27]";
         ds >> key;
         ds >> lst;
         //contentList += qMakePair(key, QList<ContentItem>(lst));
@@ -752,34 +752,40 @@ void LeftPanel::getAllContents()
 //------------------------------------------------------------------------------
 void LeftPanel::buildContentDict() //fill up contents = create TreeWidget nodes (TreeWidgetItems)
 {
-//    qDebug() << "[28]";
+    //    qDebug() << "[28]";
     QStringList docuFiles = Config::configuration() -> docFiles();
 
     quint32 fileAges = 0;
     for (QStringList::iterator it = docuFiles.begin(); it != docuFiles.end(); ++it)
     {
-//        qDebug() << "[29]";
+        //        qDebug() << "[29]";
         QFile file(*it);
         //        qDebug() << "buildContentDict: " << *it;   // ?-? it is always only one iteration: current project *.pem file. Should we remove 'for' cycle and docuFiles
 
-        if (!file.exists()) {
+        if (!file.exists())
+        {
             QMessageBox::warning(this, tr("Warning"),
-                                 tr("Project file %1 does not exist!\nSkipping file.").arg(QFileInfo(file).absoluteFilePath()));
+                                 tr("Project file %1 does not exist!\nSkipping file.")
+                                 .arg(QFileInfo(file).absoluteFilePath()));
             continue;
         }
         fileAges += QFileInfo(file).lastModified().toTime_t();
         DocuParser *handler = DocuParser::createParser(*it);
-        if (!handler) {
+        if (!handler)
+        {
             QMessageBox::warning(this, tr("Warning"),
-                                 tr("Project file %1 is not compatible!\nSkipping file.").arg(QFileInfo(file).absoluteFilePath()));
+                                 tr("Project file %1 is not compatible!\nSkipping file.")
+                                 .arg(QFileInfo(file).absoluteFilePath()));
             continue;
         }
         bool ok = handler -> parse(&file);
         file.close();
-        if (ok) {
+        if (ok)
+        {
             contentList += handler -> getContentItems();
             delete handler;
-        } else {
+        } else
+        {
             QString msg = QString::fromUtf8("In file %1:\n%2")
                     .arg(QFileInfo(file).absoluteFilePath())
                     .arg(handler -> errorProtocol());
@@ -789,16 +795,19 @@ void LeftPanel::buildContentDict() //fill up contents = create TreeWidget nodes 
     }
 
 
-    QString filename = Config::configuration() -> CacheDir() + QDir::separator() + QString("contentdb40.") + Config::configuration() -> profileName();
+    QString filename = Config::configuration() -> CacheDir() +
+            QDir::separator() + QString("contentdb40.")
+            + Config::configuration() -> profileName();
     if (filename.indexOf("bQella") == -1)
     {
         QFile contentOut(filename);
         if (contentOut.open(QFile::WriteOnly))
         {
-    //        qDebug() << "[30]";
+            //        qDebug() << "[30]";
             QDataStream s(&contentOut);
             s << fileAges;
-            for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it) {
+            for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it)
+            {
                 s << *it;
             }
             contentOut.close();
@@ -823,7 +832,7 @@ void LeftPanel::currentTabChanged(int index)
 //------------------------------------------------------------------------------
 void LeftPanel::showInitDoneMessage()
 {
-//    qDebug() << "[1]";
+    //    qDebug() << "[1]";
     if (initDoneMsgShown)
         return;
     initDoneMsgShown = true;
@@ -850,18 +859,18 @@ void LeftPanel::showTopic()
         ui.listContents -> setFocus();
     }
 
-//     if there is no title for the document set one to title of the item
-//     падает из за этого блока
-//        QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
-//        if (t.isEmpty())
-//        {
-//            if (ContCur == ContTreeView)
-//                t = ui.listContents -> currentItem() -> text(0);
-//            else if (ContCur == ContSubItems)
-//                t = ui.TWSubItems -> currentItem() -> text(0);
-//            mw -> browsers() -> currentBrowser() -> setTagTitle(t);
-//            mw -> browsers() -> sourceChanged();
-//        }
+    //     if there is no title for the document set one to title of the item
+    //     падает из за этого блока
+    //        QString t = mw -> browsers() -> currentBrowser() -> getTagTitle();
+    //        if (t.isEmpty())
+    //        {
+    //            if (ContCur == ContTreeView)
+    //                t = ui.listContents -> currentItem() -> text(0);
+    //            else if (ContCur == ContSubItems)
+    //                t = ui.TWSubItems -> currentItem() -> text(0);
+    //            mw -> browsers() -> currentBrowser() -> setTagTitle(t);
+    //            mw -> browsers() -> sourceChanged();
+    //        }
 
     /*	-pm- the following is for debug
  // display item index
@@ -1072,7 +1081,7 @@ void LeftPanel::store(QTreeWidget *tw, QTextStream &ts)
 //------------------------------------------------------------------------------
 void LeftPanel::insertContents()
 {
-//    qDebug() << "[3]-YAS";
+    //    qDebug() << "[3]-YAS";
     int int64 = 64;    // ? Why 64? Maximum depth of tree?
     QTreeWidgetItem *rootEntry;
     QTreeWidgetItem *childEntry;
@@ -1081,7 +1090,7 @@ void LeftPanel::insertContents()
     int depth = 0;
     QTreeWidgetItem *lastItem[int64];    // ? Why 64? Maximum depth of tree?
 
-//    qDebug() << "[104]";
+    //    qDebug() << "[104]";
     if (contentsInserted)
         return;
     if (contentList.isEmpty())
@@ -1095,7 +1104,7 @@ void LeftPanel::insertContents()
     for (int j = 0; j < int64; ++j)
         lastItem[j] = 0;
 
-//    qDebug() << "[101]\n=============";
+    //    qDebug() << "[101]\n=============";
     for (QList<ContentItem>::Iterator it = contentList.begin(); it != contentList.end(); ++it)
     {
         //        qDebug() << "[102]";
@@ -1136,7 +1145,7 @@ void LeftPanel::insertContents()
 
     setCursor(Qt::ArrowCursor);
 
-//    qDebug() << "\n==========\n[100]";
+    //    qDebug() << "\n==========\n[100]";
     showInitDoneMessage();
 }
 
@@ -1205,14 +1214,14 @@ QTreeWidgetItem * LeftPanel::locateLink(QTreeWidgetItem *item, const QString &li
 //------------------------------------------------------------------------------
 void LeftPanel::locateContents(const QString &link)
 {
-//    qDebug() << "[6]";
+    //    qDebug() << "[6]";
     //ensure the TOC is filled
     if (!contentsInserted)
     {
         insertContents();
-//        QFuture<void> f1 = QtConcurrent::run(this,
-//                                             &LeftPanel::insertContents);
-//        f1.waitForFinished();
+        //        QFuture<void> f1 = QtConcurrent::run(this,
+        //                                             &LeftPanel::insertContents);
+        //        f1.waitForFinished();
     }
 #ifdef Q_OS_WIN
     Qt::CaseSensitivity checkCase = Qt::CaseInsensitive;
@@ -1221,26 +1230,26 @@ void LeftPanel::locateContents(const QString &link)
 #endif
     QString findLink(link);
 
-//    qDebug() << "[50]";
+    //    qDebug() << "[50]";
     //Installations on a windows local drive will give the 'link' as <file:///C:/xxx>
     //and the contents in the TOC will be <file:C:/xxx>.
     //But on others the 'link' of format <file:///root/xxx>
     //and the contents in the TOC will be <file:/root/xxx>.
     if (findLink.contains(QString("file:///")))
     {
-//        qDebug() << "[51]";
+        //        qDebug() << "[51]";
         if (findLink[9] == QChar(':')) //on windows drives
             findLink.replace(0, 8, QString("file:"));
         else
             findLink.replace(0, 8, QString("file:/"));
     }
 
-//    qDebug() << "[52]";
+    //    qDebug() << "[52]";
     bool topLevel = false;
     QTreeWidgetItem *item = 0;
     int totalItems = ui.listContents -> topLevelItemCount();
 
-//    qDebug() << "[53]";
+    //    qDebug() << "[53]";
     for (int i = 0; i < totalItems; i++ ) {
         // first see if we are one of the top level items
         item = (QTreeWidgetItem*)ui.listContents -> topLevelItem(i);
@@ -1250,7 +1259,7 @@ void LeftPanel::locateContents(const QString &link)
         }
     }
 
-//    qDebug() << "[54]";
+    //    qDebug() << "[54]";
     if (!topLevel) {
         // now try to find it in the sublevel items
         for (int n = 0; n < totalItems; ++n) {
@@ -1260,14 +1269,14 @@ void LeftPanel::locateContents(const QString &link)
                 break;
         }
     }
-//    qDebug() << "[55]";
+    //    qDebug() << "[55]";
 
     //remove the old selection
     QList<QTreeWidgetItem *> selected = ui.listContents -> selectedItems();
     foreach(QTreeWidgetItem *sel, selected)
         ui.listContents -> setItemSelected(sel, false);
 
-//    qDebug() << "[56]";
+    //    qDebug() << "[56]";
     //set the TOC item and show
     ui.listContents -> setCurrentItem(item);
     ui.listContents -> setItemSelected(item, true);
@@ -2028,7 +2037,7 @@ void LeftPanel::loadProjectFromList(int prjIndex)
 //------------------------------------------------------------------------------
 void LeftPanel::enableProjectButtons()
 {
-//    qDebug() << "[21]";
+    //    qDebug() << "[21]";
     int i;
     int n = ui.CBProjects -> count();
     int ind = -1;
@@ -2713,55 +2722,55 @@ void LeftPanel::on_searchButton_clicked()
 //------------------------------------------------------------------------------
 void LeftPanel::copyFileImages(QString fileName)
 {
-	int start, end, fnStart, fnEnd, n; //?+? change int ulong for big files? But QString::IndexOf() returns int
-	QString fullFN;
+    int start, end, fnStart, fnEnd, n; //?+? change int ulong for big files? But QString::IndexOf() returns int
+    QString fullFN;
 
-	bool extImage;
-	bool fileChanged = false;
-	//QTextCodec::setCodecForTr(QTextCodec::codecForName("System"));
-	//QString fn = tr(fileName.toAscii().constData());
-	QString fn = unurlifyFileName(fileName);
-	QFile file(fn);
-	if (!file.open(QFile::ReadOnly)){
-		Config::configuration()->toPrjLog(3, tr("Fail to open file: %1. Failed to copy images for it", "For log").arg(fn));
-		return;
-	}
-	qDebug() << "Check for ext images in: " << fileName;
-	QTextStream stream(&file);
-	stream.setCodec("UTF-8");
-	QString text = stream.readAll();
-	file.close();
-	start=0; end=0;
-	// process all <img ... /> tags in document
-	while (start >= 0){
-		extImage = false;
-		start = text.indexOf(QLatin1String("<img"), end, Qt::CaseInsensitive);
-		end = text.indexOf(QLatin1String("/>"), start, Qt::CaseInsensitive);
-		if (end - start > 0){ //process tag <img>
-			fnStart = text.indexOf(QLatin1String("src="), start, Qt::CaseInsensitive) + 5;
-			fnEnd	= text.indexOf(QLatin1String("\""), fnStart, Qt::CaseInsensitive);
-			n = fnEnd - fnStart;
-			QString imgFN = unurlifyFileName( text.mid(fnStart, n) );
-			qDebug() << "- found image: " << imgFN;
-			QString imgNewFN = copyImage(imgFN);
-			if (!imgNewFN.isEmpty()){
-				text.replace(fnStart, n, imgNewFN);
-				fileChanged = true;
-				qDebug() << "- and copied to: " << imgNewFN;
-				//Config::configuration()->toPrjLog(3, tr("- chars=%3 to %4,replaced %1 with %2").arg(imgFN).arg(imgNewFN).arg(n).arg(imgNewFN.size()));
-			}
-		}
-	}
-	if (fileChanged){
-		if (file.open(QIODevice::WriteOnly)){	//try to open or create file
-			QTextStream ts(&file);
-			ts.setCodec("UTF-8");
-			ts << text;
-			file.close();
-			Config::configuration()->toPrjLog(3, tr("- all images copied, references updated", "For log"));
-		}else
-			Config::configuration()->toPrjLog(3, tr("- failed to save file after update", "For log"));
-	}
+    bool extImage;
+    bool fileChanged = false;
+    //QTextCodec::setCodecForTr(QTextCodec::codecForName("System"));
+    //QString fn = tr(fileName.toAscii().constData());
+    QString fn = unurlifyFileName(fileName);
+    QFile file(fn);
+    if (!file.open(QFile::ReadOnly)){
+        Config::configuration()->toPrjLog(3, tr("Fail to open file: %1. Failed to copy images for it", "For log").arg(fn));
+        return;
+    }
+    qDebug() << "Check for ext images in: " << fileName;
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    QString text = stream.readAll();
+    file.close();
+    start=0; end=0;
+    // process all <img ... /> tags in document
+    while (start >= 0){
+        extImage = false;
+        start = text.indexOf(QLatin1String("<img"), end, Qt::CaseInsensitive);
+        end = text.indexOf(QLatin1String("/>"), start, Qt::CaseInsensitive);
+        if (end - start > 0){ //process tag <img>
+            fnStart = text.indexOf(QLatin1String("src="), start, Qt::CaseInsensitive) + 5;
+            fnEnd	= text.indexOf(QLatin1String("\""), fnStart, Qt::CaseInsensitive);
+            n = fnEnd - fnStart;
+            QString imgFN = unurlifyFileName( text.mid(fnStart, n) );
+            qDebug() << "- found image: " << imgFN;
+            QString imgNewFN = copyImage(imgFN);
+            if (!imgNewFN.isEmpty()){
+                text.replace(fnStart, n, imgNewFN);
+                fileChanged = true;
+                qDebug() << "- and copied to: " << imgNewFN;
+                //Config::configuration()->toPrjLog(3, tr("- chars=%3 to %4,replaced %1 with %2").arg(imgFN).arg(imgNewFN).arg(n).arg(imgNewFN.size()));
+            }
+        }
+    }
+    if (fileChanged){
+        if (file.open(QIODevice::WriteOnly)){	//try to open or create file
+            QTextStream ts(&file);
+            ts.setCodec("UTF-8");
+            ts << text;
+            file.close();
+            Config::configuration()->toPrjLog(3, tr("- all images copied, references updated", "For log"));
+        }else
+            Config::configuration()->toPrjLog(3, tr("- failed to save file after update", "For log"));
+    }
 }
 //------------------------------------------------------------------------------
 // Copy one image to project image directory.
@@ -2769,45 +2778,45 @@ void LeftPanel::copyFileImages(QString fileName)
 // !+! make universal function (in pcommon.cpp) copyResource(QString resourceFN, destinationDir, relatifyDir)
 QString LeftPanel::copyImage(QString imgFN)
 {
-	QString ret;
-	QString fullFN;
-	QFileInfo fi;
-	bool extImage = false;
-	Config::configuration()->toPrjLog(3, tr("Copy image: %1, to project image dir: %2", "For log").arg(imgFN).arg(Config::configuration()->CurPrjImgDir()));
-	QUrl url(imgFN);
-	if (!url.isRelative()){
-		fi.setFile(imgFN);
-		//check if it is in project image dir
-		if ( fi.absolutePath() == Config::configuration()->CurPrjImgDir()){
-			ret = relatifyFileName(imgFN, Config::configuration()->CurPrjDir());
-			Config::configuration()->toPrjLog(3, tr("- ralatified: %1", "For log").arg(ret));
-		}else{
-			extImage = true;
-			fullFN = imgFN;
-		}
-	}else if (!(imgFN.startsWith("images/") ||
-				imgFN.startsWith("./images/"))){   // image is not in project image dir, but it has relative path
-		fullFN = absolutifyFileName(imgFN, Config::configuration()->CurPrjDir());
-		fi.setFile(fullFN);
-		if (fi.absolutePath() != Config::configuration()->ImgDir() ){ // check if image is in appDir/images/
-			extImage = true;
-			Config::configuration()->toPrjLog(3, tr("- is relative but not to app or prj dirs", "For log"));
-		}else
-			Config::configuration()->toPrjLog(3, tr("- image is in application image dir. Did not copy", "For log"));
-	}
-    if (extImage){ // create unique valid file name and copy file to project directory
-                Config::configuration()->toPrjLog(3, tr("- start to process ext image: %1", "For log").arg(fullFN));
-                QString fnFrom = fullFN;
-                fi.setFile(fnFrom);
-                QString ext = fi.suffix();
-                QString base = fi.completeBaseName();
-                QString fnTo = CreateValidWebFileName(base);
-                fnTo = uniqueFileName(Config::configuration()->CurPrjImgDir() +"/"+ fnTo +"."+ ext);
-                if ( QFile::copy(fnFrom, fnTo) ) {
-                        ret = relatifyFileName(fnTo, Config::configuration()->CurPrjDir());
-                        Config::configuration()->toPrjLog(3, tr("- copied to: %1, Project dir=%2", "For log").arg(ret).arg(Config::configuration()->CurPrjDir()));
-                }else
-                        Config::configuration()->toPrjLog(3, tr("- failed","For log"));
+    QString ret;
+    QString fullFN;
+    QFileInfo fi;
+    bool extImage = false;
+    Config::configuration()->toPrjLog(3, tr("Copy image: %1, to project image dir: %2", "For log").arg(imgFN).arg(Config::configuration()->CurPrjImgDir()));
+    QUrl url(imgFN);
+    if (!url.isRelative()){
+        fi.setFile(imgFN);
+        //check if it is in project image dir
+        if ( fi.absolutePath() == Config::configuration()->CurPrjImgDir()){
+            ret = relatifyFileName(imgFN, Config::configuration()->CurPrjDir());
+            Config::configuration()->toPrjLog(3, tr("- ralatified: %1", "For log").arg(ret));
+        }else{
+            extImage = true;
+            fullFN = imgFN;
         }
-        return ret;
+    }else if (!(imgFN.startsWith("images/") ||
+                imgFN.startsWith("./images/"))){   // image is not in project image dir, but it has relative path
+        fullFN = absolutifyFileName(imgFN, Config::configuration()->CurPrjDir());
+        fi.setFile(fullFN);
+        if (fi.absolutePath() != Config::configuration()->ImgDir() ){ // check if image is in appDir/images/
+            extImage = true;
+            Config::configuration()->toPrjLog(3, tr("- is relative but not to app or prj dirs", "For log"));
+        }else
+            Config::configuration()->toPrjLog(3, tr("- image is in application image dir. Did not copy", "For log"));
+    }
+    if (extImage){ // create unique valid file name and copy file to project directory
+        Config::configuration()->toPrjLog(3, tr("- start to process ext image: %1", "For log").arg(fullFN));
+        QString fnFrom = fullFN;
+        fi.setFile(fnFrom);
+        QString ext = fi.suffix();
+        QString base = fi.completeBaseName();
+        QString fnTo = CreateValidWebFileName(base);
+        fnTo = uniqueFileName(Config::configuration()->CurPrjImgDir() +"/"+ fnTo +"."+ ext);
+        if ( QFile::copy(fnFrom, fnTo) ) {
+            ret = relatifyFileName(fnTo, Config::configuration()->CurPrjDir());
+            Config::configuration()->toPrjLog(3, tr("- copied to: %1, Project dir=%2", "For log").arg(ret).arg(Config::configuration()->CurPrjDir()));
+        }else
+            Config::configuration()->toPrjLog(3, tr("- failed","For log"));
+    }
+    return ret;
 }

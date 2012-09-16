@@ -25,12 +25,10 @@
 #define CONFIG_H
 
 #include "profile.h"
-#include "docuparser.h"
 
 #include <QString>
 #include <QStringList>
 #include <QMap>
-
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 
@@ -49,7 +47,7 @@
 #define GL_LENGT_ITEM_STRING 3  // минимальная длина для title в таблице. (надо чтобы export удачен был)
 #define GL_PROCENT_OF_MATCHES 50 // процент совпадения shortname из файла и из списка, чтобы сократить название файлов
 
-class Profile;
+
 
 struct FontSettings
 {

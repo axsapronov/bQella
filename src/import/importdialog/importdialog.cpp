@@ -50,8 +50,9 @@ Import::Import(QWidget *parent)
 void Import::selectImportFile()
 {
     QString beginpath = Config::configuration ()->AppDir ();
-    if (!ui.LEImportFile->text().isEmpty())
-        beginpath = getFolderFile(&QString(ui.LEImportFile->text()));
+    QString t_text = ui.LEImportFile->text();
+    if (!t_text.isEmpty())
+        beginpath = getFolderFile(&t_text);
 
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Select bibleqt.ini"),

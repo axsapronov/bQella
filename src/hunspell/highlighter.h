@@ -48,7 +48,7 @@
 
 #include <QHash>
 #include <QTextCharFormat>
-#include "hunspell/hunspell.hxx"
+#include "hunspell.hxx"
 
 class QTextDocument;
 
@@ -67,7 +67,7 @@ public:
     bool setDict(const QString SpellDic);
 
 public slots:
-	void slot_addWord(QString word);
+    void slot_addWord(QString word);
 
 protected:
     void highlightBlock(const QString &text);

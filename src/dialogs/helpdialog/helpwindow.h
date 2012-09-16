@@ -37,6 +37,8 @@
 #include "cellsplit.h"
 #include "tagdialog.h"
 
+#include "highlighter.h"
+
 class MainWindow;
 class QKeyEvent;
 class QMime;
@@ -104,6 +106,7 @@ private:
 
     bool hasAnchorAt(const QPoint& pos);
 
+
     MainWindow *mw;
     ItemProperties *itemprop;
     StrongProperties *strongprop;
@@ -143,6 +146,10 @@ private:
     QComboBox *comboSize;
     QToolBar *tb;
     int selCur, selStart, selEnd;
+
+    Highlighter *highlighter;
+    QString SpellDic;
+
 
 private slots:
     void openLinkInNewWindow();

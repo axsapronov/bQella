@@ -285,9 +285,6 @@ void MainWindow::setup()
     ui.actionEditFindNext -> setShortcut(QKeySequence::FindNext);
     ui.actionEditFindPrev -> setShortcut(QKeySequence::FindPrevious);
 
-
-
-
     qApp -> restoreOverrideCursor();
     //    ui.actionGoPrevious -> setEnabled(false);
     //    ui.actionGoNext -> setEnabled(false);

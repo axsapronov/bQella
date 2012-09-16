@@ -96,7 +96,7 @@ class AffixMgr
   int                 havecontclass; // boolean variable
   char                contclasses[CONTSIZE]; // flags of possible continuing classes (twofold affix)
   flag                flag_mode;
-  
+
 public:
 
   AffixMgr(const char * affpath, HashMgr** ptr, int * md,

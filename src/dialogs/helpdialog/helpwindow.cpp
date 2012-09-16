@@ -116,6 +116,23 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
     }
     // create submenus for table operations
 
+    QFont font;
+    font.setFamily("Courier");
+    font.setFixedPitch(true);
+    font.setPointSize(10);
+
+    SpellDic="./en_GB.dic";
+//    editor = new SpellTextEdit;
+    TextEditorBQella::setFont(font);
+    TextEditorBQella::setDict(SpellDic);
+
+    highlighter = new Highlighter(TextEditorBQella::document(), SpellDic,true);
+//    connect(TextEditorBQella,SIGNAL(addWord(QString)),highlighter,SLOT(slot_addWord(QString)));
+
+//    QFile file("mainwindow.h");
+//    if (file.open(QFile::ReadOnly | QFile::Text))
+//            editor->setPlainText(file.readAll());
+
 }
 
 //------------------------------------------------------------------------------

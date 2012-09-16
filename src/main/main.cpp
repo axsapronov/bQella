@@ -34,7 +34,7 @@ int main( int argc, char ** argv )
     bool hideSidebar = false;
     bool withGUI = true;
     QApplication a(argc, argv, withGUI);
-    a.setOrganizationName(GL_PROG_AUTHOR);
+//    a.setOrganizationName(GL_PROG_AUTHOR);
     a.setApplicationName(GL_PROG_NAME);
 
     Config *conf = new Config();
@@ -45,6 +45,7 @@ int main( int argc, char ** argv )
     conf -> setIniFile(conf -> AppDir() + "project.ini");
     conf -> setErrPage(conf -> AppDir() + "last-error.html");
     conf -> setAppLogFN(conf -> AppDir() + "log/project.log");
+    conf -> setSpellDict("./en_GB.dic");
     toLog(conf -> AppLogFN(), "-------");
     toLog(conf -> AppLogFN(), "Project bQella started.");
     conf -> loadSettings();
@@ -102,7 +103,7 @@ int main( int argc, char ** argv )
 /********************* Comments to project *********************
 
 --------------------- Files description ---------------------
-
+*/
 /**
   * @file
   *

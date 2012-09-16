@@ -29,11 +29,19 @@
 
 class Profile;
 
-struct ContentItem {
+struct ContentItem
+{
     ContentItem()
-        : title( QString() ), reference( QString()  ), depth( 0 ) {}
+        : title( QString() ), reference( QString()  ), depth( 0 )
+    {
+
+    }
     ContentItem( const QString &t, const QString &r, const QString &i, int d )
-        : title( t ), reference( r ), depth( d ) {}
+        : title( t ), reference( r ), depth( d )
+    {
+        Q_UNUSED(i);
+
+    }
     QString title;
     QString reference;
 
