@@ -36,7 +36,6 @@
 #include <qtextobject.h>
 #include <qdesktopservices.h>
 
-
 #include <QTextCursor>
 #include <QTextBlock>
 #include <QMenu>
@@ -45,8 +44,6 @@
 #include <QTextCodec>
 #include <QSettings>
 #include <QTextStream>
-//#include <iostream>
-
 
 static bool isAbsoluteFileName(const QString &name)
 {
@@ -74,8 +71,7 @@ TextEditorBQella::TextEditorBQella(QWidget *parent, QString SpellDic)
     lineNumberArea = new LineNumberArea(this);
 
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
-
-    //    connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
+    connect(this->document(), SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
     //    connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
 
     updateLineNumberAreaWidth(0);
@@ -448,12 +444,17 @@ bool TextEditorBQella::canInsertFromMimeData( const QMimeData *source ) const
 //------------------------------------------------------------------------------
 void TextEditorBQella::insertFromMimeData( const QMimeData *source )
 {
-    if (source->hasImage() && Config::configuration()->AcceptDropImages()) {
+    if (source->hasImage() && Config::configuration()->AcceptDropImages())
+    {
         QImage image = qvariant_cast<QImage>(source->imageData());
         emit insertImageFromClipboard(image);
-    }else if (source->hasHtml()) {
+    }
+    else if (source->hasHtml())
+    {
         emit insertHtmlFromClipboard(source->html());
-    }else{
+    }
+    else
+    {
         QTextEdit::insertFromMimeData(source);
     }
 }
@@ -520,7 +521,10 @@ uint TextEditorBQella::getLineCount()
 int TextEditorBQella::lineNumberAreaWidth()
 {
     int digits = 1;
-    int max = qMax(1, docText->blockCount());
+//    qDebug() << "==test==\n"
+//             << docText->blockCount()
+//             << this->document()->blockCount();
+    int max = qMax(1, this->document()->blockCount());
     while (max >= 10) {
         max /= 10;
         ++digits;
@@ -777,7 +781,7 @@ int TextEditorBQella::getCountFirstVisibleBlock()
 //------------------------------------------------------------------------------
 QTextBlock TextEditorBQella::getFirstVisibleBlock()
 {
-    QTextDocument *pDoc = docText;
+    QTextDocument *pDoc = this->document();
     //    int nFirstVisible = 0;
     for(QTextBlock block = pDoc->begin(); block != pDoc->end(); block = block.next())
     {
