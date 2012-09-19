@@ -119,7 +119,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *ev);
     virtual void mouseReleaseEvent(QMouseEvent *ev);
     //virtual bool focusNextPrevChild(bool next);
-    // virtual void paintEvent(QPaintEvent *e);
+//     virtual void paintEvent(QPaintEvent *e);
 
     void createActions();
     void contextMenuEvent(QContextMenuEvent *event);

@@ -759,9 +759,11 @@ bool HelpWindow::fileSave()
         return false;
     QTextStream ts(&file);
     ts.setCodec(QTextCodec::codecForName("UTF-8"));
-    if (TextEditorBQella::ModeHtml()){
+    if (TextEditorBQella::ModeHtml())
+    {
         ts << TextEditorBQella::document() -> toHtml("UTF-8");
-    }else //!+! does not work yet. Needs to edit rich text and plain in the same widget
+    }
+    else //!+! does not work yet. Needs to edit rich text and plain in the same widget
         ts << TextEditorBQella::document() -> toPlainText();
     TextEditorBQella::document() -> setModified(false);
     return true;
