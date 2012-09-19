@@ -73,6 +73,8 @@ TextEditorBQella::TextEditorBQella(QWidget *parent, QString SpellDic)
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
     connect(this->document(), SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
     //    connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
+
+    /// reload line number
     connect(this->document(), SIGNAL(contentsChanged()), SLOT(repaint()));
 
 
@@ -529,7 +531,8 @@ int TextEditorBQella::lineNumberAreaWidth()
 //             << docText->blockCount()
 //             << this->document()->blockCount();
     int max = qMax(1, this->document()->blockCount());
-    while (max >= 10) {
+    while (max >= 10)
+    {
         max /= 10;
         ++digits;
     }
@@ -590,7 +593,9 @@ void TextEditorBQella::loadSettings()
     QFont font;
     font.fromString(settings.value("Font").toString());
     setStyleSheet("color:" + settings.value("fontColor").toString());
+//    qDebug() << "yes2";
     setFont(font);
+
     //This calls the necessary functions to update CodeEditor
     highlightCurrentLine();
 }

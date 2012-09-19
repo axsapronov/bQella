@@ -73,6 +73,7 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
     {
         itemprop = new ItemProperties(this);
         linkprop = new LinkProperties(this);
+        linkmoduleprop = new LinkModuleProperties(this);
         docprop  = new DocProperties(this);
         tagprop = new TagDialog(this);
         strongprop = new StrongProperties(this);
@@ -97,6 +98,8 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         connect(itemprop, SIGNAL(updateContentsItem(QString, QString, int, QString)), mw -> helpDialog(), SLOT(updateItemProperties(QString, QString, int, QString)));
         connect(linkprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
         connect(linkprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
+        connect(linkmoduleprop, SIGNAL(removeLink()), this, SLOT(removeLink()));
+        connect(linkmoduleprop, SIGNAL(updateLink(QString, QString)), this, SLOT(updateLink(QString, QString)));
         connect(strongprop, SIGNAL(removeStrong()), this, SLOT(removeStrong()));
         connect(strongprop, SIGNAL(updateStrong(QString, QString)), this, SLOT(updateStrong(QString, QString)));
 
@@ -314,7 +317,44 @@ void HelpWindow::showLinkProperties()
  QTextCharFormat::setAnchorNames ( const QStringList & names )
  */
 }
-
+//------------------------------------------------------------------------------
+void HelpWindow::showLinkModuleProperties()
+{
+    QString s = "";
+    QTextCursor cursor = TextEditorBQella::textCursor();
+    QTextCharFormat cf = cursor.charFormat();
+    selCur = cursor.position();
+    if (cf.isAnchor())
+    {		//select whole text of the link.
+        while (cf.isAnchor())
+        {	//move anchor to the start of hypertext link
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor);
+            cf = cursor.charFormat();
+        }
+        cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+        cf = cursor.charFormat();
+        while (cf.isAnchor())
+        { //move cursor to the end of hypertext link
+            cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+            cf = cursor.charFormat();
+        }
+        cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor);
+    }
+    if (!cursor.hasSelection())//if there is no selection, select the word under cursor
+        cursor.select(QTextCursor::WordUnderCursor);
+    // Выделение текста остаётся только в этой процедуре, поэтому используем глоб переменные.
+    // Cделать cursor глобальным нельзя, т.к. почему-то курсор всегда и в конце текста и на выделении. Баг qt? Использовать указатель на TextEditorBQella::textCursor() не помогло - таже ошибка. Подставил Edit::textCursor() вместо cursor - вообще прога зависать стала при просмотре свойств ссылки.
+    selStart = cursor.selectionStart();
+    selEnd = cursor.selectionEnd();
+    s = cursor.selectedText();
+    linkmoduleprop -> setProperties(s, lastAnchor);
+    linkmoduleprop -> show();
+    /*
+ QTextCharFormat::setAnchor ( bool anchor )
+ QTextCharFormat::setAnchorHref ( const QString & value )
+ QTextCharFormat::setAnchorNames ( const QStringList & names )
+ */
+}
 //------------------------------------------------------------------------------
 void HelpWindow::showStrongProperties()
 {
@@ -348,9 +388,6 @@ void HelpWindow::showStrongProperties()
     strongprop -> setProperties(s, lastAnchor);
     strongprop -> show();
 }
-
-
-
 //------------------------------------------------------------------------------
 void HelpWindow::showTagProperties()
 {
@@ -436,8 +473,6 @@ void HelpWindow::addBrTag()
     cursor.insertFragment(fragment);
     TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
 }
-
-
 //------------------------------------------------------------------------------
 void HelpWindow::removeLink()
 {
@@ -452,6 +487,39 @@ void HelpWindow::removeLink()
 
 //------------------------------------------------------------------------------
 void HelpWindow::updateLink(QString lText, QString lLocation)
+{
+    QTextCursor cursor = TextEditorBQella::textCursor();
+    QString s =	lText;
+    if (lLocation.isEmpty())
+    {
+        removeLink();
+    }
+    else
+    {
+        s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
+        //        qDebug() << "s = " << s;
+        QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);
+        cursor.setPosition(selStart, QTextCursor::MoveAnchor);
+        cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
+        cursor.removeSelectedText();
+        cursor.insertFragment(fragment);
+        TextEditorBQella::textCursor().setPosition(selCur, QTextCursor::MoveAnchor);
+    }
+}
+//------------------------------------------------------------------------------
+void HelpWindow::removeLinkModule()
+{
+    QTextCursor cursor = TextEditorBQella::textCursor();
+    cursor.setPosition(selStart, QTextCursor::MoveAnchor);
+    cursor.setPosition(selEnd, QTextCursor::KeepAnchor);
+    QString s =	cursor.selectedText();;
+    cursor.removeSelectedText();
+    cursor.insertText(s);
+    //!+! убрать форматирование текста
+}
+
+//------------------------------------------------------------------------------
+void HelpWindow::updateLinkModule(QString lText, QString lLocation)
 {
     QTextCursor cursor = TextEditorBQella::textCursor();
     QString s =	lText;

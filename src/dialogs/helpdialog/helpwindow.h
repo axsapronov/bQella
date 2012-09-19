@@ -36,6 +36,7 @@
 #include "tableproperty.h"
 #include "cellsplit.h"
 #include "tagdialog.h"
+#include "linkmoduleproperty.h"
 
 #include "highlighter.h"
 
@@ -111,6 +112,7 @@ private:
     ItemProperties *itemprop;
     StrongProperties *strongprop;
     LinkProperties *linkprop;
+    LinkModuleProperties *linkmoduleprop;
     DocProperties *docprop;
     TagDialog *tagprop;
     ImageProperties *imageprop;
@@ -155,11 +157,14 @@ private slots:
     void openLinkInNewWindow();
     void openLinkInNewPage();
     void showLinkProperties();
+    void showLinkModuleProperties();
     void showTagProperties();
     void addTag(QString tag);
     void removeLink();
+    void removeLinkModule();
     void addBrTag();
     void updateLink(QString lText, QString lLocation);
+    void updateLinkModule(QString lText, QString lLocation);
     void loadNewItemFile();
     void showDocProperties();
 

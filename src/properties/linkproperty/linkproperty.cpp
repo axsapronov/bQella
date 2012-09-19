@@ -27,52 +27,53 @@
 
 //====================== class ItemProperties ============================
 LinkProperties::LinkProperties(QWidget *parent)
-     : QDialog(parent)
+    : QDialog(parent)
 {
-     ui.setupUi(this);
-     
-     connect(ui.BRemove, SIGNAL(clicked()), this, SLOT(RemoveLink()) );
-     connect(ui.BChooseFile, SIGNAL(clicked()), this, SLOT(chooseFile()) );  
-}
+    ui.setupUi(this);
 
+    connect(ui.BRemove, SIGNAL(clicked()), this, SLOT(RemoveLink()) );
+    connect(ui.BChooseFile, SIGNAL(clicked()), this, SLOT(chooseFile()) );
+}
+///-----------------------------------------------------------------------------
 void LinkProperties::RemoveLink()
 {
-	emit removeLink();
-	QWidget::hide();  //close dialog	
+    emit removeLink();
+    QWidget::hide();  //close dialog
 }
-
+///-----------------------------------------------------------------------------
 void LinkProperties::chooseFile()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Choose file to link to"),
-                               Config::configuration() -> CurPrjDir(), tr("HTML (*.htm *.html);;All Files (*)"));
+                                              Config::configuration() -> CurPrjDir(), tr("HTML (*.htm *.html);;All Files (*)"));
     if (!fn.isEmpty()){
-    	ui.ELinkLocation -> setText(fn);
-   	}
+        ui.ELinkLocation -> setText(fn);
+    }
 }
-
+///-----------------------------------------------------------------------------
 void LinkProperties::setProperties(QString lText, QString lLocation)
 {
-	linkText = lText;
-	linkLocation = lLocation;
-	
-	ui.ELinkText -> setText(lText);
-	ui.ELinkLocation -> setText(lLocation);
-}
+    linkText = lText;
+    linkLocation = lLocation;
 
+    ui.ELinkText -> setText(lText);
+    ui.ELinkLocation -> setText(lLocation);
+}
+///-----------------------------------------------------------------------------
 void LinkProperties::reject()
 {
-	validProperties = false;
-	QWidget::hide();  //close dialog	
+    validProperties = false;
+    QWidget::hide();  //close dialog
 }
-
+///-----------------------------------------------------------------------------
 void LinkProperties::accept()
 {
-	linkText = ui.ELinkText -> text();
-	linkLocation = ui.ELinkLocation -> text();
-	validProperties = true;
-	if ( ui.ELinkLocation -> text().isEmpty() )
-		emit removeLink();
-	else
-		emit updateLink(linkText, linkLocation);	
-	QWidget::hide();  //close dialog		
+    linkText = ui.ELinkText -> text();
+    linkLocation = ui.ELinkLocation -> text();
+    validProperties = true;
+    if ( ui.ELinkLocation -> text().isEmpty() )
+        emit removeLink();
+    else
+        emit updateLink(linkText, linkLocation);
+    QWidget::hide();  //close dialog
 }
+///-----------------------------------------------------------------------------

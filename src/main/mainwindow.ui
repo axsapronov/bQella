@@ -271,6 +271,7 @@
    <addaction name="actionTagHtml"/>
    <addaction name="actionTagBr"/>
    <addaction name="actionTagStrongNumber"/>
+   <addaction name="actionLinkModule"/>
    <addaction name="actionInsertImage"/>
    <addaction name="separator"/>
   </widget>
@@ -1121,6 +1122,21 @@
    </property>
    <property name="text">
     <string>Zoom out</string>
+   </property>
+  </action>
+  <action name="actionLinkModule">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/file/images/link.png</normaloff>:/file/images/link.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hyperlink</string>
+   </property>
+   <property name="toolTip">
+    <string>LinkModule</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+7</string>
    </property>
   </action>
  </widget>

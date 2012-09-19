@@ -33,6 +33,7 @@ DEPENDPATH += \
     src/properties/docproperty \
     src/properties/itemproperty \
     src/properties/linkproperty \
+    src/properties/linkmoduleproperty \
     src/properties/imageproperty \
     src/other \
     src/import/importdialog \
@@ -71,6 +72,7 @@ INCLUDEPATH += \
     src/properties/itemproperty \
     src/properties/linkproperty \
     src/properties/imageproperty \
+    src/properties/linkmoduleproperty \
     src/properties/docproperty \
     src/import/importdialog \
     src/import/importbookdialog \
@@ -122,7 +124,8 @@ FORMS += \
      previewbook.ui \
      previewmodule.ui \
      rightpanel.ui \
-     statistics.ui
+     statistics.ui \
+    src/properties/linkmoduleproperty/linkmoduleproperty.ui
 
 SOURCES +=  \
      config.cpp \
@@ -177,8 +180,8 @@ SOURCES +=  \
      src/hunspell/phonet.cxx \
      src/hunspell/suggestmgr.cxx \
      src/hunspell/utf_info.cxx \
-     src/hunspell/highlighter.cpp
-
+     src/hunspell/highlighter.cpp \
+    src/properties/linkmoduleproperty/linkmoduleproperty.cpp
 
 HEADERS += \
      docproperty.h \
@@ -237,7 +240,8 @@ HEADERS += \
      src/hunspell/phonet.hxx \
      src/hunspell/suggestmgr.hxx \
      src/hunspell/w_char.hxx \
-     highlighter.h
+     highlighter.h \
+    src/properties/linkmoduleproperty/linkmoduleproperty.h
 
 RESOURCES += \
     resources/resources.qrc

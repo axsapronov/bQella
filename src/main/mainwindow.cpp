@@ -213,6 +213,7 @@ void MainWindow::setup()
     connect(ui.actionHyperlink, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkProperties())); // add a href
     connect(ui.actionTagStrongNumber, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(showStrongProperties())); // strong
     connect(ui.actionTagHtml, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showTagProperties())); // add other html tag
+    connect(ui.actionLinkModule, SIGNAL(triggered()), browsers() -> currentBrowser(), SLOT(showLinkModuleProperties())); // add a link module
     connect(ui.actionTagBr, SIGNAL(triggered()), browsers()->currentBrowser(), SLOT(addBrTag()));
 
     // contents book

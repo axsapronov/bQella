@@ -26,30 +26,30 @@
 //===================== class LinkProperties =====================
 class LinkProperties : public QDialog
 {
-     Q_OBJECT
+    Q_OBJECT
 
 public:
-	LinkProperties(QWidget *parent = 0);
-	bool valid() { return validProperties; }
-	QString LinkText() { return linkText; }
-	QString LinkLocation() { return linkLocation; }
+    LinkProperties(QWidget *parent = 0);
+    bool valid() { return validProperties; }
+    QString LinkText() { return linkText; }
+    QString LinkLocation() { return linkLocation; }
 
 signals:
-        void removeLink();
-	void updateLink(QString lText, QString lLocation);
-     
+    void removeLink();
+    void updateLink(QString lText, QString lLocation);
+
 public slots:
-	void chooseFile();
-	void RemoveLink();
-	void accept();
-	void reject();
-	void setProperties(QString lText, QString lLocation);
-	
+    void chooseFile();
+    void RemoveLink();
+    void accept();
+    void reject();
+    void setProperties(QString lText, QString lLocation);
+
 private:
-	Ui::LinkProperty ui;
-	
-	QString linkText, linkLocation;
-	bool validProperties;
+    Ui::LinkProperty ui;
+
+    QString linkText, linkLocation;
+    bool validProperties;
 
 }; // class LinkProperties
 
