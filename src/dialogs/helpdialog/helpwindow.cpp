@@ -40,6 +40,8 @@
 #include <QTextDocumentFragment>
 #include <QClipboard>
 
+#include <QMenu>
+
 //------- taken from TextEdit -------
 #include <QContextMenuEvent>
 #include <QMoveEvent>
@@ -255,28 +257,58 @@ bool HelpWindow::hasAnchorAt(const QPoint& pos)
 }
 
 //------------------------------------------------------------------------------
-void HelpWindow::contextMenuEvent(QContextMenuEvent *e)
+void HelpWindow::contextMenuEvent(QContextMenuEvent *event)
 {
-    QMenu *m = new QMenu(0);
-    if (hasAnchorAt(e -> pos()))
-    {
-        m -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
-        m -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
-        m -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
-        m -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
-    }
-    else
-    {
-        if ( textCursor().hasSelection() )
-        {
-            m -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
-            m -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
-        }
-    }
-    m -> addSeparator();
-    mw -> setupPopupMenu(m);
-    m -> exec(e -> globalPos());
-    delete m;
+    QMenu *menu = new QMenu(0);
+//    if (hasAnchorAt(event -> pos()))
+//    {
+//        menu -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
+//        menu -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
+//        menu -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
+//        menu -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
+//    }
+//    else
+//    {
+//        if ( textCursor().hasSelection() )
+//        {
+//            menu -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
+//            menu -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
+//        }
+//    }
+//    menu -> addSeparator();
+
+    TextEditorBQella::contextMenuEvent(event);
+
+
+//    QPoint lastPos = event->pos();
+//    QTextCursor cursor = cursorForPosition(lastPos);
+//    QString zeile = cursor.block().text();
+//    int pos = cursor.columnNumber();
+//    int end = zeile.indexOf(QRegExp("\\W+"), pos);
+//    int begin = zeile.lastIndexOf(QRegExp("\\W+"), pos);
+//    zeile = zeile.mid(begin + 1, end - begin - 1);
+//    QStringList liste = getWordPropositions(zeile);
+//    qDebug() << liste;
+//    if (!liste.isEmpty())
+//    {
+//        menu -> addSeparator();
+//        QAction *a;
+//        //replace this  to TextEditBQella
+//        a = menu->addAction(tr("Add .."), this, SLOT(slot_addWord(lastPos)));
+//        a = menu->addAction(tr("Ignore .."), this, SLOT(slot_ignoreWord(lastPos)));
+//        for (int i = 0; i < qMin(int(MaxWords), liste.size()); ++i)
+//        {
+//            misspelledWordsActs[i]->setText(liste.at(i).trimmed());
+//            misspelledWordsActs[i]->setVisible(true);
+//            menu -> addAction(misspelledWordsActs[i]);
+//        }
+
+//    } // if  misspelled
+
+
+    mw -> setupPopupMenu(menu);
+    menu -> exec(event -> globalPos());
+    delete menu;
 }
 
 //------------------------------------------------------------------------------
@@ -517,15 +549,17 @@ void HelpWindow::removeLinkModule()
     cursor.insertText(s);
     //!+! убрать форматирование текста
 }
-
 //------------------------------------------------------------------------------
 void HelpWindow::updateLinkModule(QString lText, QString lLocation)
 {
     QTextCursor cursor = TextEditorBQella::textCursor();
     QString s =	lText;
-    if (lLocation.isEmpty()){
+    if (lLocation.isEmpty())
+    {
         removeLink();
-    }else{
+    }
+    else
+    {
         s = "<a href=\"" + lLocation +"\">"+ lText +"</a>";
         //        qDebug() << "s = " << s;
         QTextDocumentFragment fragment = QTextDocumentFragment::fromHtml(s);

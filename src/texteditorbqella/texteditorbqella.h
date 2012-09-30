@@ -89,6 +89,21 @@ public:
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
 
+
+    void createActions();
+    void contextMenuEvent(QContextMenuEvent *event);
+
+    enum { MaxWords = 5 };
+    QAction *misspelledWordsActs[MaxWords];
+
+
+    QString spell_dic;
+    Hunspell *pChecker;
+
+    QPoint lastPos;
+
+    QStringList addedWords;
+
 signals:
     void sourceChanged(const QUrl &);
     void highlighted(const QUrl &);
@@ -120,20 +135,17 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *ev);
     //virtual bool focusNextPrevChild(bool next);
 //     virtual void paintEvent(QPaintEvent *e);
-
-    void createActions();
-    void contextMenuEvent(QContextMenuEvent *event);
-
     void resizeEvent(QResizeEvent *event);
+
+protected slots:
+    void correctWord();
+    void slot_addWord(QPoint lastpos);
+    void slot_ignoreWord(QPoint lastpos);
+
 private slots:
     void updateLineNumberAreaWidth(int newBlockCount);
     void highlightCurrentLine();
     void updateLineNumberArea(const QRect &, int);
-
-    void correctWord();
-    void slot_addWord();
-    void slot_ignoreWord();
-
 
 private:
     bool modeHtml;
@@ -146,16 +158,6 @@ private:
 
     void setCursorLocation( QPoint p );
     QPoint getCursorLocation();
-
-    enum { MaxWords = 5 };
-    QAction *misspelledWordsActs[MaxWords];
-
-    QString spell_dic;
-    Hunspell *pChecker;
-
-    QPoint lastPos;
-
-    QStringList addedWords;
 
     int getCountFirstVisibleBlock();
     QTextBlock getFirstVisibleBlock();
