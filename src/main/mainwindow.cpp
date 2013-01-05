@@ -23,8 +23,8 @@
 
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
-#include "leftpanel.h"
-#include "rightpanel.h"
+#include "src/gui/panel/leftpanel.h"
+#include "src/gui/panel/rightpanel.h"
 #include "config.h"
 #include "pcommon.h"
 #include "filecommon.h"

@@ -26,7 +26,7 @@
 #include "helpwindow.h"
 #include "mainwindow.h"
 #include "tabbedbrowser.h"
-#include "leftpanel.h"
+#include "src/gui/panel/leftpanel.h"
 #include "config.h"
 #include "pcommon.h"
 #include "filecommon.h"
@@ -89,9 +89,9 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
         setupTableActions();
         setupImageActions();
 
-	//signals from TextEditorBQella class
-	connect(this, SIGNAL(insertImageFromClipboard(QImage)), this, SLOT(imageInsert(QImage)));
-	connect(this, SIGNAL(insertHtmlFromClipboard(QString)), this, SLOT(htmlInsert(QString)));
+        //signals from TextEditorBQella class
+        connect(this, SIGNAL(insertImageFromClipboard(QImage)), this, SLOT(imageInsert(QImage)));
+        connect(this, SIGNAL(insertHtmlFromClipboard(QString)), this, SLOT(htmlInsert(QString)));
 
         connect(this, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)), this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
         connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
@@ -127,16 +127,16 @@ HelpWindow::HelpWindow(MainWindow *w, QWidget *parent)
     font.setPointSize(10);
 
     SpellDic="./en_GB.dic";
-//    editor = new SpellTextEdit;
+    //    editor = new SpellTextEdit;
     TextEditorBQella::setFont(font);
     TextEditorBQella::setDict(SpellDic);
 
     highlighter = new Highlighter(TextEditorBQella::document(), SpellDic,true);
-//    connect(TextEditorBQella,SIGNAL(addWord(QString)),highlighter,SLOT(slot_addWord(QString)));
+    //    connect(TextEditorBQella,SIGNAL(addWord(QString)),highlighter,SLOT(slot_addWord(QString)));
 
-//    QFile file("mainwindow.h");
-//    if (file.open(QFile::ReadOnly | QFile::Text))
-//            editor->setPlainText(file.readAll());
+    //    QFile file("mainwindow.h");
+    //    if (file.open(QFile::ReadOnly | QFile::Text))
+    //            editor->setPlainText(file.readAll());
 
 }
 
@@ -260,50 +260,50 @@ bool HelpWindow::hasAnchorAt(const QPoint& pos)
 void HelpWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(0);
-//    if (hasAnchorAt(event -> pos()))
-//    {
-//        menu -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
-//        menu -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
-//        menu -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
-//        menu -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
-//    }
-//    else
-//    {
-//        if ( textCursor().hasSelection() )
-//        {
-//            menu -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
-//            menu -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
-//        }
-//    }
-//    menu -> addSeparator();
+    //    if (hasAnchorAt(event -> pos()))
+    //    {
+    //        menu -> addAction( tr("Open Link in New Window\tShift+LMB"), this, SLOT(openLinkInNewWindow()) );
+    //        menu -> addAction( tr("Open Link in New Tab\tMMB"), this, SLOT(openLinkInNewPage()) );
+    //        menu -> addAction( tr("Link properties..."), this, SLOT(showLinkProperties()) );
+    //        menu -> addAction( tr("Tag properties..."), this, SLOT(showTagProperties()) );
+    //    }
+    //    else
+    //    {
+    //        if ( textCursor().hasSelection() )
+    //        {
+    //            menu -> addAction( tr("Create link..."), this, SLOT(showLinkProperties()) );
+    //            menu -> addAction( tr("Add tag..."), this, SLOT(showTagProperties()) );
+    //        }
+    //    }
+    //    menu -> addSeparator();
 
     TextEditorBQella::contextMenuEvent(event);
 
 
-//    QPoint lastPos = event->pos();
-//    QTextCursor cursor = cursorForPosition(lastPos);
-//    QString zeile = cursor.block().text();
-//    int pos = cursor.columnNumber();
-//    int end = zeile.indexOf(QRegExp("\\W+"), pos);
-//    int begin = zeile.lastIndexOf(QRegExp("\\W+"), pos);
-//    zeile = zeile.mid(begin + 1, end - begin - 1);
-//    QStringList liste = getWordPropositions(zeile);
-//    qDebug() << liste;
-//    if (!liste.isEmpty())
-//    {
-//        menu -> addSeparator();
-//        QAction *a;
-//        //replace this  to TextEditBQella
-//        a = menu->addAction(tr("Add .."), this, SLOT(slot_addWord(lastPos)));
-//        a = menu->addAction(tr("Ignore .."), this, SLOT(slot_ignoreWord(lastPos)));
-//        for (int i = 0; i < qMin(int(MaxWords), liste.size()); ++i)
-//        {
-//            misspelledWordsActs[i]->setText(liste.at(i).trimmed());
-//            misspelledWordsActs[i]->setVisible(true);
-//            menu -> addAction(misspelledWordsActs[i]);
-//        }
+    //    QPoint lastPos = event->pos();
+    //    QTextCursor cursor = cursorForPosition(lastPos);
+    //    QString zeile = cursor.block().text();
+    //    int pos = cursor.columnNumber();
+    //    int end = zeile.indexOf(QRegExp("\\W+"), pos);
+    //    int begin = zeile.lastIndexOf(QRegExp("\\W+"), pos);
+    //    zeile = zeile.mid(begin + 1, end - begin - 1);
+    //    QStringList liste = getWordPropositions(zeile);
+    //    qDebug() << liste;
+    //    if (!liste.isEmpty())
+    //    {
+    //        menu -> addSeparator();
+    //        QAction *a;
+    //        //replace this  to TextEditBQella
+    //        a = menu->addAction(tr("Add .."), this, SLOT(slot_addWord(lastPos)));
+    //        a = menu->addAction(tr("Ignore .."), this, SLOT(slot_ignoreWord(lastPos)));
+    //        for (int i = 0; i < qMin(int(MaxWords), liste.size()); ++i)
+    //        {
+    //            misspelledWordsActs[i]->setText(liste.at(i).trimmed());
+    //            misspelledWordsActs[i]->setVisible(true);
+    //            menu -> addAction(misspelledWordsActs[i]);
+    //        }
 
-//    } // if  misspelled
+    //    } // if  misspelled
 
 
     mw -> setupPopupMenu(menu);

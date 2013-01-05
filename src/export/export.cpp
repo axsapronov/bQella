@@ -21,7 +21,7 @@
  */
 
 #include "export.h"
-#include "leftpanel.h"
+#include "src/gui/panel/leftpanel.h"
 #include "config.h"
 #include "pcommon.h"
 

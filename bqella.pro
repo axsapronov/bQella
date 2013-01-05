@@ -24,76 +24,76 @@ DEPENDPATH += \
     src/cpp \
     src/h \
     src/ui \
-    src/dialogs/helpdialog \
-    src/dialogs/about \
-    src/dialogs/fontdialog \
-    src/dialogs/bookdialog \
-    src/dialogs/finds/findandreplacedialog \
-    src/properties/projectproperty \
-    src/properties/docproperty \
-    src/properties/itemproperty \
-    src/properties/linkproperty \
-    src/properties/linkmoduleproperty \
-    src/properties/imageproperty \
-    src/other \
-    src/import/importdialog \
-    src/import/importbookdialog \
-    src/properties/tagdialog \
-    src/table/tableproperty \
-    src/properties/strongproperty \
-    src/table/cellsplit \
-    src/dialogs/assistant \
+    src/gui/dialogs/helpdialog \
+    src/gui/dialogs/about \
+    src/gui/dialogs/fontdialog \
+    src/gui/dialogs/bookdialog \
+    src/gui/dialogs/finds/findandreplacedialog \
+    src/gui/dialogs/contents/book \
+    src/gui/dialogs/contents/module \
+    src/gui/dialogs/assistant \
+    src/gui/properties/projectproperty \
+    src/gui/properties/docproperty \
+    src/gui/properties/itemproperty \
+    src/gui/properties/linkproperty \
+    src/gui/properties/linkmoduleproperty \
+    src/gui/properties/imageproperty \
+    src/gui/properties/strongproperty \
+    src/gui/properties/tagdialog\
+    src/gui/table/cellsplit \
+    src/gui/panel \
+    src/gui/import/importdialog \
+    src/gui/import/importbookdialog \
+    src/gui/table/tableproperty \
+    src/gui/advance/splitFile \
+    src/gui/advance/preview \
+    src/gui/tab \
     src/texteditorbqella \
-    src/dialogs/contents/book \
-    src/dialogs/contents/module \
-    src/tab \
+    src/gui/topicchooser \
     src/settings \
     src/main \
     src/doc \
     src/export \
-    src/topicchooser \
     src/hunspell \
-    src/advance/splitFile \
-    src/advance/preview \
     src/common \
-    src/panel
-
+    src/other
 
 INCLUDEPATH += \
     src/cpp \
     src/h \
     src/ui \
-    src/dialogs/helpdialog \
-    src/dialogs/about \
-    src/dialogs/fontdialog \
-    src/dialogs/bookdialog \
-    src/dialogs/finds/findandreplacedialog \
-    src/properties/projectproperty \
-    src/properties/itemproperty \
-    src/properties/linkproperty \
-    src/properties/imageproperty \
-    src/properties/linkmoduleproperty \
-    src/properties/docproperty \
-    src/import/importdialog \
-    src/import/importbookdialog \
-    src/hunspell \
-    src/properties/tagdialog \
-    src/table/tableproperty \
+    src/gui/dialogs/helpdialog \
+    src/gui/dialogs/about \
+    src/gui/dialogs/fontdialog \
+    src/gui/dialogs/bookdialog \
+    src/gui/dialogs/finds/findandreplacedialog \
+    src/gui/dialogs/contents/book \
+    src/gui/dialogs/contents/module \
+    src/gui/dialogs/assistant \
+    src/gui/properties/projectproperty \
+    src/gui/properties/docproperty \
+    src/gui/properties/itemproperty \
+    src/gui/properties/linkproperty \
+    src/gui/properties/linkmoduleproperty \
+    src/gui/properties/imageproperty \
+    src/gui/properties/strongproperty \
+    src/gui/properties/tagdialog\
+    src/gui/table/tableproperty \
+    src/gui/advance/splitFile \
+    src/gui/advance/preview \
+    src/gui/table/cellsplit \
+    src/gui/import/importdialog \
+    src/gui/import/importbookdialog \
+    src/gui/tab \
+    src/gui/topicchooser \
     src/other \
-    src/properties/strongproperty \
-    src/table/cellsplit \
-    src/dialogs/assistant \
+    src/hunspell \
+    src/other \
     src/texteditorbqella \
-    src/dialogs/contents/book \
-    src/dialogs/contents/module \
-    src/tab \
     src/settings \
     src/main \
     src/doc \
     src/export \
-    src/topicchooser \
-    src/advance/splitFile \
-    src/advance/preview \
     src/common \
     src/panel
 
@@ -125,7 +125,7 @@ FORMS += \
      previewmodule.ui \
      rightpanel.ui \
      statistics.ui \
-    src/properties/linkmoduleproperty/linkmoduleproperty.ui
+     linkmoduleproperty.ui
 
 SOURCES +=  \
      config.cpp \
@@ -181,7 +181,7 @@ SOURCES +=  \
      src/hunspell/suggestmgr.cxx \
      src/hunspell/utf_info.cxx \
      src/hunspell/highlighter.cpp \
-    src/properties/linkmoduleproperty/linkmoduleproperty.cpp
+     linkmoduleproperty.cpp
 
 HEADERS += \
      docproperty.h \
@@ -241,7 +241,7 @@ HEADERS += \
      src/hunspell/suggestmgr.hxx \
      src/hunspell/w_char.hxx \
      highlighter.h \
-    src/properties/linkmoduleproperty/linkmoduleproperty.h
+     linkmoduleproperty.h
 
 RESOURCES += \
     resources/resources.qrc

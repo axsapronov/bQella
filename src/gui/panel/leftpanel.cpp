@@ -21,7 +21,7 @@
  */
 
 
-#include "leftpanel.h"
+#include "src/gui/panel/leftpanel.h"
 #include "helpwindow.h"
 #include "docuparser.h"
 #include "mainwindow.h"
